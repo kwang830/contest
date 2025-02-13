@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Prdlst">
+
+	<resultMap id="PrdlstDetail" type="egovframework.custom.prdlst.service.PrdlstManageVO">
+		<result property="jhNo" column="JH_NO"/>
+		<result property="maker" column="MAKER"/>
+		<result property="model" column="MODEL"/>
+		<result property="part" column="PART"/>
+		<result property="emark" column="EMARK"/>
+		<result property="drwOrigin" column="DRW_ORIGIN"/>
+		<result property="mnfctPosblAt" column="MNFCT_POSBL_AT"/>
+		<result property="newDevlopAt" column="NEW_DEVLOP_AT"/>
+		<result property="boxQy" column="BOX_QY"/>
+		<result property="wt" column="WT"/>
+		<result property="size" column="SIZE"/>
+		<result property="outboxSize" column="OUTBOX_SIZE"/>
+		<result property="mnfcturPrmpcShim" column="MNFCTUR_PRMPC_SHIM"/>
+		<result property="mnfcturPrmpc" column="MNFCTUR_PRMPC"/>
+		<result property="memo" column="MEMO"/>
+		<result property="useSe" column="USE_SE"/>
+		<result property="prdlstCode" column="PRDLST_CODE"/>
+	</resultMap>
+	
+	<resultMap id="PrdlstSub" type="egovframework.custom.prdlst.service.PrdlstManageVO">
+		<result property="jhNo" column="JH_NO"/>
+		<result property="subSn" column="SN"/>
+		<result property="subMaker" column="MAKER"/>
+		<result property="subModel" column="MODEL"/>
+		<result property="subPart" column="PART"/>
+		<result property="subYear" column="YEAR"/>
+		<result property="subApplication" column="APPLICATION"/>
+		<result property="subNoSe" column="NO_SE"/>
+		<result property="subNo" column="SUB_NO"/>
+		<result property="useSe" column="USE_SE"/>
+	</resultMap>
+
+	<resultMap id="PrdlstList" type="egovframework.custom.prdlst.service.PrdlstManageVO">
+		<result property="jhNo" column="JH_NO"/>
+		<result property="subNoSe" column="NO_SE"/>
+		<result property="subNo" column="SUB_NO"/>
+		<result property="prdlstCode" column="PRDLST_CODE"/>
+		<result property="maker" column="MAKER"/>
+		<result property="model" column="MODEL"/>
+		<result property="part" column="PART"/>
+		<result property="mnfcturPrmpcShim" column="MNFCTUR_PRMPC_SHIM"/>
+		<result property="mnfcturPrmpc" column="MNFCTUR_PRMPC"/>
+		<result property="useSe" column="USE_SE"/>
+	</resultMap>	
+	
+	<resultMap id="PrdlstCode" type="egovframework.custom.prdlst.service.PrdlstManageVO">
+		<result property="codeId" column="CODE_ID"/>
+		<result property="code" column="CODE"/>
+		<result property="codeNm" column="CODE_NM"/>
+		<result property="codeDc" column="CODE_DC"/>
+		<result property="useAt" column="USE_AT"/>
+		<result property="orderBy" column="ORDER_BY"/>
+	</resultMap>	
+
+	<select id="selectPrdlstDetail" parameterType="egovframework.custom.prdlst.service.PrdlstManageVO" resultMap="PrdlstDetail">
+			SELECT JH_NO, MAKER, MODEL, PART, EMARK, DRW_ORIGIN, MNFCT_POSBL_AT, NEW_DEVLOP_AT, BOX_QY, WT, SIZE, 
+			MNFCTUR_PRMPC_SHIM, MNFCTUR_PRMPC, MEMO, USE_SE, OUTBOX_SIZE, PRDLST_CODE, ATCH_FILE_ID
+			from JBC_PRDLST
+			where JH_NO = #{jhNo} 
+	</select>
+
+	<insert id="insertPrdlst" parameterType="egovframework.custom.prdlst.service.PrdlstManageVO">
+			INSERT INTO JBC_PRDLST
+			(JH_NO, MAKER, MODEL, PART, EMARK, DRW_ORIGIN, MNFCT_POSBL_AT, NEW_DEVLOP_AT, BOX_QY, WT, SIZE, 
+			 MNFCTUR_PRMPC_SHIM, MNFCTUR_PRMPC, MEMO, USE_SE, OUTBOX_SIZE, PRDLST_CODE, FRST_REGISTER_ID, FRST_REGIST_PNTTM,
+			 ATCH_FILE_ID
+			 )
+			VALUES
+			( #{jhNo}, #{maker}, #{model}, #{part}, #{emark}, #{drwOrigin}, #{mnfctPosblAt}, #{newDevlopAt}, #{boxQy}, #{wt}, #{size}
+			, #{mnfcturPrmpcShim}, #{mnfcturPrmpc}, #{memo}, #{useSe}, #{outboxSize}, #{prdlstCode}, #{frstRegisterId}, SYSDATE()
+			, #{atchFileId}
+			 )			
+	</insert>
+	
+ 	<update id="updatePrdlst" parameterType="egovframework.custom.prdlst.service.PrdlstManageVO">
+			UPDATE JBC_PRDLST SET 
+				MAKER = #{maker},
+				MODEL = #{model},
+				PART = #{part},
+				EMARK = #{emark},
+				DRW_ORIGIN = #{drwOrigin},
+				MNFCT_POSBL_AT = #{mnfctPosblAt},
+				NEW_DEVLOP_AT = #{newDevlopAt},
+				BOX_QY = #{boxQy},
+				WT = #{wt},
+				SIZE = #{size},
+				MEMO = #{memo},
+				MNFCTUR_PRMPC_SHIM = #{mnfcturPrmpcShim},
+				MNFCTUR_PRMPC = #{mnfcturPrmpc},
+				USE_SE = #{useSe},
+				OUTBOX_SIZE = #{outboxSize},
+				PRDLST_CODE = #{prdlstCode},
+				LAST_UPDUSR_ID = #{lastUpdusrId},
+				LAST_UPDT_PNTTM = SYSDATE() 				
+			WHERE JH_NO = #{jhNo}
+ 	</update>
+ 	
+ 	
+	<select id="selectPrdlstSub" parameterType="egovframework.custom.prdlst.service.PrdlstManageVO" resultMap="PrdlstSub">
+			SELECT JH_NO, SN, MAKER, MODEL, PART, YEAR, APPLICATION, NO_SE, SUB_NO, USE_SE
+			FROM JBC_PRDLST_SUB
+			WHERE JH_NO = #{jhNo} AND USE_SE = 'Y' 
+	</select> 	
+
+	<select id="selectPrdlstSubCnt" parameterType="egovframework.custom.prdlst.service.PrdlstManageVO" resultType="java.lang.Integer">
+		
+			SELECT 
+				COUNT(a.JH_NO)
+			FROM
+				JBC_PRDLST_SUB a
+			WHERE 1=1 
+				AND	a.JH_NO = #{jhNo}
+				AND USE_SE = 'Y'  		
+			<if test="jhNo == 0">
+				AND	a.BBS_NM LIKE CONCAT ('%', #{jhNo},'%') 		
+			</if>
+			<if test="jhNo == 1">
+				AND	a.BBS_INTRCN LIKE CONCAT ('%', #{jhNo},'%') 		
+			</if>	
+	</select>	
+	
+	<insert id="insertPrdlstSub" parameterType="egovframework.custom.prdlst.service.PrdlstManageVO">
+		<selectKey keyProperty="subSn" resultType="string" order="BEFORE">
+			SELECT IFNULL(MAX(SN),0)+1 AS SUB_SN  FROM JBC_PRDLST_SUB
+			WHERE JH_NO = #{jhNo} 
+		</selectKey>
+	    
+			INSERT INTO JBC_PRDLST_SUB
+			(JH_NO, SN, MAKER, MODEL, PART, YEAR, APPLICATION, NO_SE, SUB_NO, USE_SE, FRST_REGISTER_ID, FRST_REGIST_PNTTM)
+			VALUES
+			( #{jhNo}, #{subSn}, #{subMaker}, #{subModel}, #{subPart}, #{subYear}, #{subApplication}, #{subNoSe}, #{subNo}, 'Y', #{frstRegisterId}, SYSDATE() )		
+	</insert>	
+	
+
+	
+ 	<update id="updatePrdlstSub" parameterType="egovframework.custom.prdlst.service.PrdlstManageVO">
+			UPDATE JBC_PRDLST_SUB SET 
+				MAKER = #{subMaker},
+				MODEL = #{subModel},
+				PART = #{subPart},
+				YEAR = #{subYear},
+				APPLICATION = #{subApplication},
+				NO_SE = #{subNoSe},
+				SUB_NO = #{subNo},
+				USE_SE = 'Y',
+  				LAST_UPDT_PNTTM = SYSDATE(),
+  				LAST_UPDUSR_ID = #{lastUpdusrId}				
+			WHERE JH_NO = #{jhNo}
+			AND SN = #{subSn}
+ 	</update>		
+ 	
+ 	<update id="deletePrdlstSub" parameterType="egovframework.custom.prdlst.service.PrdlstManageVO">
+			UPDATE JBC_PRDLST_SUB SET 
+				USE_SE = 'N',
+ 				LAST_UPDT_PNTTM = SYSDATE(),
+  				LAST_UPDUSR_ID = #{lastUpdusrId}
+			WHERE JH_NO = #{jhNo}
+			AND SN = #{subSn}
+ 	</update>
+	
+    <select id="checkKeyJhno_S" resultType="int">
+            SELECT COUNT(1) usedCnt
+                FROM JBC_PRDLST 
+            WHERE JH_NO = #{checkId}
+    </select>
+    
+	<select id="selectPrdlstInqireList" parameterType="egovframework.custom.prdlst.service.PrdlstManageVO" resultMap="PrdlstList">
+select JH_NO , NO_SE ,  SUB_NO ,  PRDLST_CODE 
+, MAKER , MODEL , PART , MNFCTUR_PRMPC_SHIM
+, MNFCTUR_PRMPC , USE_SE
+from (
+  SELECT A.JH_NO as JH_NO , '' as NO_SE , '' as SUB_NO , A.PRDLST_CODE as PRDLST_CODE 
+  , A.MAKER as MAKER , A.MODEL as MODEL , A.PART as PART , A.MNFCTUR_PRMPC_SHIM as MNFCTUR_PRMPC_SHIM
+  , A.MNFCTUR_PRMPC as MNFCTUR_PRMPC , A.USE_SE as USE_SE
+  FROM JBC_PRDLST A 
+  union
+  SELECT A.JH_NO as JH_NO , B.NO_SE as NO_SE , B.SUB_NO as SUB_NO , A.PRDLST_CODE as PRDLST_CODE 
+  , A.MAKER as MAKER , A.MODEL as MODEL , A.PART as PART , A.MNFCTUR_PRMPC_SHIM as MNFCTUR_PRMPC_SHIM
+  , A.MNFCTUR_PRMPC as MNFCTUR_PRMPC , A.USE_SE as USE_SE
+  FROM JBC_PRDLST A INNER JOIN JBC_PRDLST_SUB B 
+  WHERE A.JH_NO =B.JH_NO 
+) C
+WHERE 1=1
+			<if test="srcPrdlstCode != null and srcPrdlstCode != ''">
+				AND C.PRDLST_CODE = #{srcPrdlstCode} 		
+			</if>			
+			<if test="srcPrdlstNo != null and srcPrdlstNo != ''"> 		
+				AND ( C.JH_NO LIKE CONCAT ('%', #{srcPrdlstNo}, '%') OR C.SUB_NO LIKE CONCAT ('%', #{srcPrdlstNo}, '%') ) 
+			</if>			
+			<if test="srcMaker != null and srcMaker != ''">
+				AND C.MAKER = #{srcMaker} 		
+			</if>
+			<if test="srcModel != null and srcModel != ''">
+				AND C.MODEL = #{srcModel} 			
+			</if>
+			<if test="srcPart != null and srcPart != ''">
+				AND C.PART = #{srcPart} 			
+			</if>
+			<if test="srcUseSe != null and srcUseSe != ''">
+				AND C.USE_SE = #{srcUseSe} 			
+			</if>  
+	        LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
+	</select>     
+ 	
+	<select id="selectPrdlstInqireListCnt" parameterType="egovframework.custom.prdlst.service.PrdlstManageVO" resultType="java.lang.Integer">		
+select count(1)
+from (
+  SELECT A.JH_NO as JH_NO , '' as NO_SE , '' as SUB_NO , A.PRDLST_CODE as PRDLST_CODE 
+  , A.MAKER as MAKER , A.MODEL as MODEL , A.PART as PART , A.MNFCTUR_PRMPC_SHIM as MNFCTUR_PRMPC_SHIM
+  , A.MNFCTUR_PRMPC as MNFCTUR_PRMPC , A.USE_SE as USE_SE
+  FROM JBC_PRDLST A 
+  union
+  SELECT A.JH_NO as JH_NO , B.NO_SE as NO_SE , B.SUB_NO as SUB_NO , A.PRDLST_CODE as PRDLST_CODE 
+  , A.MAKER as MAKER , A.MODEL as MODEL , A.PART as PART , A.MNFCTUR_PRMPC_SHIM as MNFCTUR_PRMPC_SHIM
+  , A.MNFCTUR_PRMPC as MNFCTUR_PRMPC , A.USE_SE as USE_SE
+  FROM JBC_PRDLST A INNER JOIN JBC_PRDLST_SUB B 
+  WHERE A.JH_NO =B.JH_NO 
+) C 		
+WHERE 1=1
+			<if test="srcPrdlstCode != null and srcPrdlstCode != ''">
+				AND C.PRDLST_CODE = #{srcPrdlstCode} 		
+			</if>			
+			<if test="srcPrdlstNo != null and srcPrdlstNo != ''"> 		
+				AND ( C.JH_NO LIKE CONCAT ('%', #{srcPrdlstNo}, '%') OR C.SUB_NO LIKE CONCAT ('%', #{srcPrdlstNo}, '%') ) 
+			</if>			
+			<if test="srcMaker != null and srcMaker != ''">
+				AND C.MAKER = #{srcMaker} 		
+			</if>
+			<if test="srcModel != null and srcModel != ''">
+				AND C.MODEL = #{srcModel} 			
+			</if>
+			<if test="srcPart != null and srcPart != ''">
+				AND C.PART = #{srcPart} 			
+			</if>
+			<if test="srcUseSe != null and srcUseSe != ''">
+				AND C.USE_SE = #{srcUseSe} 			
+			</if> 	
+	</select>	
+	
+	<select id="selectPrdlstCodeList" parameterType="egovframework.custom.prdlst.service.PrdlstManageVO" resultMap="PrdlstCode">
+			SELECT CODE_ID, CODE, CODE_NM, CODE_DC, USE_AT, ORDER_BY
+			FROM comtccmmndetailcode
+      		WHERE CODE_ID = #{searchCondition}
+      		ORDER BY ORDER_BY ASC
+	</select>     
+ 	
+	<select id="selectPrdlstCodeListCnt" parameterType="egovframework.custom.prdlst.service.PrdlstManageVO" resultType="java.lang.Integer">		
+			SELECT COUNT(CODE_ID)
+			FROM comtccmmndetailcode
+      		WHERE CODE_ID = #{searchCondition}
+	</select>
+	
+	<insert id="insertPrdlstCode" parameterType="egovframework.custom.prdlst.service.PrdlstManageVO">	    
+			INSERT INTO COMTCCMMNDETAILCODE
+			(CODE_ID, CODE, CODE_NM, CODE_DC, USE_AT, ORDER_BY, FRST_REGISTER_ID, FRST_REGIST_PNTTM)
+			VALUES
+			( #{codeId}, #{code}, #{codeNm}, #{codeDc}, #{useAt}, #{orderBy}, #{frstRegisterId}, SYSDATE() )		
+	</insert>	
+	
+ 	<update id="updatePrdlstCode" parameterType="egovframework.custom.prdlst.service.PrdlstManageVO">
+			UPDATE COMTCCMMNDETAILCODE SET 
+				CODE = #{code},
+				CODE_NM = #{codeNm},
+				CODE_DC = #{codeDc},
+				USE_AT = #{useAt},
+				ORDER_BY = #{orderBy},
+  				LAST_UPDT_PNTTM = SYSDATE(),
+  				LAST_UPDUSR_ID = #{lastUpdusrId}				
+			WHERE CODE_ID = #{codeId}
+			AND CODE = #{subSn}
+ 	</update>
+	
+	<delete id="deletePrdlstCode">		
+			DELETE FROM COMTCCMMNDETAILCODE
+			WHERE CODE_ID = #{codeGroup}
+			AND CODE = #{subSn}		
+	</delete> 	
+</mapper>

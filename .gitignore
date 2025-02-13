@@ -1,0 +1,22 @@
+# Gradle
+.gradle/
+build/
+out/
+!gradle-wrapper.jar
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+
+# IDE 설정 파일
+.idea/
+*.iml
+*.iws
+
+# 환경 설정 파일 (선택 사항)
+application.properties
+application.yml
+.env

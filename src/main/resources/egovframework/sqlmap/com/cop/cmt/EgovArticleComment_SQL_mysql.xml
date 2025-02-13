@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- 
+	수정일                 수정자                          수정내용
+  =========     =======    =================================================
+  2011.9.7   	정진오     	 	resultMap id="commentDetail"   : FRST_REGISTER_ID -> FRST_REGISTER_NM 
+  							"selectComment"  : FRST_REGISTER_ID -> FRST_REGISTER_NM
+  							오라클 SQL MAP과 일치하도록 하기 위해 수정함						
+  2011.10.18       서준식               insertComment	 : select key 태그 삭제										
+-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ArticleComment">
+	
+	<resultMap id="commentList" type="egovframework.com.cop.cmt.service.CommentVO">
+		<result property="commentNo" column="ANSWER_NO"/>
+		<result property="nttId" column="NTT_ID"/>
+		<result property="bbsId" column="BBS_ID"/>
+		<result property="wrterId" column="WRTER_ID"/>
+		<result property="wrterNm" column="WRTER_NM"/>
+		<result property="commentPassword" column="PASSWORD"/>
+		<result property="commentCn" column="ANSWER"/>
+		<result property="scoreNum" column="SCORE"/>
+		<result property="useAt" column="USE_AT"/>
+		<result property="frstRegisterPnttm" column="FRST_REGIST_PNTTM"/>
+		<result property="frstRegisterNm" column="FRST_REGISTER_ID"/>
+		<result property="deptCode" column="DEPT_CODE"/>
+		<result property="titleCode" column="TITLE_CODE"/>
+		<result property="positionCode" column="POSITION_CODE"/>
+		<result property="rankCode" column="RANK_CODE"/>
+		<result property="deptNmF" column="DEPT_NM_F"/>
+		<result property="deptNmS" column="DEPT_NM_S"/>
+		<result property="titleNm" column="TITLE_NM"/>
+		<result property="positionNm" column="POSITION_NM"/>
+		<result property="rankNm" column="RANK_NM"/>		
+	</resultMap>
+	
+	<resultMap id="commentDetail" type="egovframework.com.cop.cmt.service.CommentVO">
+		<result property="commentNo" column="ANSWER_NO"/>
+		<result property="nttId" column="NTT_ID"/>
+		<result property="bbsId" column="BBS_ID"/>
+		<result property="wrterId" column="WRTER_ID"/>
+		<result property="wrterNm" column="WRTER_NM"/>
+		<result property="commentPassword" column="PASSWORD"/>
+		<result property="commentCn" column="ANSWER"/>
+		<result property="scoreNum" column="SCORE"/>
+		<result property="useAt" column="USE_AT"/>
+		<result property="frstRegisterPnttm" column="FRST_REGIST_PNTTM"/>
+		<result property="frstRegisterNm" column="FRST_REGISTER_NM"/>
+	</resultMap>
+
+	<select id="selectArticleCommentList" parameterType="egovframework.com.cop.cmt.service.CommentVO" resultMap="commentList">
+		
+			SELECT
+				a.ANSWER_NO, a.NTT_ID, a.BBS_ID, 
+				a.WRTER_ID, a.WRTER_NM, a.PASSWORD, a.ANSWER, a.USE_AT,
+				DATE_FORMAT(a.FRST_REGIST_PNTTM, '%Y-%m-%d %H:%i:%S') 
+				as FRST_REGIST_PNTTM,
+				b.USER_NM as FRST_REGISTER_ID,
+				a.SCORE, a.PICKS_AT
+				
+				, b.DEPT_CODE as DEPT_CODE , b.TITLE_CODE as TITLE_CODE 
+				, b.POSITION_CODE as POSITION_CODE , b.RANK_CODE as RANK_CODE , cda.CODE_NM as DEPT_NM_F , cda.CODE_DC as DEPT_NM_S , cdb.CODE_NM as TITLE_NM , cdc.CODE_NM as POSITION_NM , cdd.CODE_NM as RANK_NM 
+			FROM
+				COMTNCOMMENT a
+			LEFT OUTER JOIN COMVNUSERMASTER b ON a.FRST_REGISTER_ID = b.ESNTL_ID
+			LEFT OUTER JOIN comtccmmndetailcode cda ON b.DEPT_CODE = cda.CODE AND cda.CODE_ID = 'IBK001' AND cda.USE_AT ='Y' 
+			LEFT OUTER JOIN comtccmmndetailcode cdb ON b.TITLE_CODE = cdb.CODE AND cdb.CODE_ID = 'IBK002' AND cdb.USE_AT ='Y' 
+			LEFT OUTER JOIN comtccmmndetailcode cdc ON b.POSITION_CODE = cdc.CODE AND cdc.CODE_ID = 'IBK003' AND cdc.USE_AT ='Y' 
+			LEFT OUTER JOIN comtccmmndetailcode cdd ON b.RANK_CODE = cdd.CODE AND cdd.CODE_ID = 'IBK004' AND cdd.USE_AT ='Y' 
+			
+			WHERE
+				a.BBS_ID = #{bbsId} AND a.NTT_ID = #{nttId}
+			AND
+				a.USE_AT = 'Y'
+			ORDER BY a.FRST_REGIST_PNTTM ASC
+			LIMIT #{subRecordCountPerPage} OFFSET #{subFirstIndex}
+						
+	</select>	
+	
+	<select id="selectArticleCommentListCnt" parameterType="egovframework.com.cop.cmt.service.CommentVO" resultType="java.lang.Integer">
+		
+			SELECT
+				COUNT(ANSWER_NO)
+			FROM
+				COMTNCOMMENT 
+			WHERE BBS_ID = #{bbsId} 
+			AND NTT_ID = #{nttId}
+			AND USE_AT = 'Y'
+					
+	</select>
+	
+	<select id="selectArticleCommentListCntW" parameterType="egovframework.com.cop.cmt.service.CommentVO" resultType="java.lang.Integer">
+		
+			SELECT
+				COUNT(ANSWER_NO)
+			FROM
+				COMTNCOMMENT 
+			WHERE BBS_ID = #{bbsId} 
+			AND NTT_ID = #{nttId}
+			AND WRTER_ID = #{wrterId}
+			AND USE_AT = 'Y'
+					
+	</select>
+	
+	<select id="selectArticleCommentListCntT" parameterType="egovframework.com.cop.cmt.service.CommentVO" resultType="java.lang.Integer">
+		
+	    	select count(1) from COMTNGNRLMBER a, COMTNBBS b where a.MBER_ID = b.NTCR_ID and b.BBS_ID = #{bbsId} AND b.NTT_ID = #{nttId} 
+			and exists ( select * from COMTNGNRLMBER c where c.esntl_id = #{wrterId} and c.DEPT_CODE = a.DEPT_CODE)
+	    					
+	</select>
+	
+	<insert id="insertArticleComment" parameterType="egovframework.com.cop.cmt.service.CommentVO">
+		
+		
+			INSERT INTO COMTNCOMMENT
+			(ANSWER_NO, NTT_ID, BBS_ID, WRTER_ID, WRTER_NM, PASSWORD, 
+			 ANSWER, SCORE, USE_AT, PICKS_AT,
+			 FRST_REGISTER_ID, FRST_REGIST_PNTTM
+			 )
+			VALUES
+			( #{commentNo}, #{nttId}, #{bbsId}, #{wrterId}, #{wrterNm}, #{commentPassword}, 
+			  #{commentCn}, #{scoreNum}, 'Y', #{picksAt},
+			  #{frstRegisterId}, SYSDATE()
+			 )
+		
+	</insert>
+	
+	<update id="deleteArticleComment" parameterType="egovframework.com.cop.cmt.service.CommentVO">
+		
+			UPDATE COMTNCOMMENT
+			SET USE_AT = 'N', SCORE = 0
+			WHERE ANSWER_NO = #{commentNo}
+					
+	</update>
+	
+	<select id="selectArticleCommentDetail" parameterType="egovframework.com.cop.cmt.service.CommentVO" resultMap="commentDetail">
+		
+			SELECT
+				a.ANSWER_NO, a.NTT_ID, a.BBS_ID, 
+				a.WRTER_ID, a.WRTER_NM, a.PASSWORD, a.ANSWER, a.USE_AT,
+				DATE_FORMAT(a.FRST_REGIST_PNTTM, '%Y-%m-%d %H:%i:%S') 
+				as FRST_REGIST_PNTTM,
+				b.USER_NM as FRST_REGISTER_NM,
+				a.SCORE, a.PICKS_AT
+			FROM
+				COMTNCOMMENT a
+			LEFT OUTER JOIN COMVNUSERMASTER b
+				ON a.FRST_REGISTER_ID = b.ESNTL_ID
+			WHERE
+				a.ANSWER_NO = #{commentNo}
+
+						
+	</select> 
+
+ 	 <update id="updateArticleComment" parameterType="egovframework.com.cop.cmt.service.CommentVO">
+ 		
+			UPDATE COMTNCOMMENT SET 
+				ANSWER = #{commentCn},
+				SCORE = #{scoreNum},
+				PICKS_AT = #{picksAt},
+				LAST_UPDUSR_ID = #{lastUpdusrId},
+				LAST_UPDT_PNTTM = SYSDATE()
+			WHERE ANSWER_NO = #{commentNo} 
+ 		
+ 	</update>
+ 	
+	<select id="checkArticleCommentNo" parameterType="egovframework.com.cop.cmt.service.CommentVO" resultType="java.lang.Integer">
+	    
+			SELECT
+				IFNULL(MAX(ANSWER_NO),0) AS commentNo
+			FROM
+				COMTNCOMMENT 
+			WHERE BBS_ID = #{bbsId} 
+			AND NTT_ID = #{nttId}
+			AND WRTER_ID = #{wrterId}
+			AND USE_AT = 'Y'
+					
+	</select>
+ 	
+</mapper>

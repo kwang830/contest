@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Estmt">
+	
+	<resultMap id="BcncList" type="egovframework.custom.estmt.service.EstmtBcncVO">
+		<result property="bcncNm" column="BCNC_NM"/>
+	</resultMap>
+	
+	<resultMap id="EstmtDetail" type="egovframework.custom.estmt.service.EstmtManageVO">
+		<result property="manageNo" column="MANAGE_NO"/>
+		<result property="docNo" column="DOC_NO"/>
+		<result property="docSj" column="DOC_SJ"/>
+		<result property="registDe" column="REGIST_DE"/>
+		<result property="cntrctDe" column="CNTRCT_DE"/>
+		<result property="progrsSttus" column="PROGRS_STTUS"/>
+		<result property="bcncNm" column="BCNC_NM"/>
+		<result property="bcncCode" column="BCNC_CODE"/>
+		<result property="estmtMemo" column="ESTMT_MEMO"/>
+		<result property="totAmount" column="TOTAMOUNT"/>
+	</resultMap>
+	
+	<resultMap id="EstmtBcncDetail" type="egovframework.custom.estmt.service.EstmtManageVO">
+		<result property="manageNo" column="MANAGE_NO"/>
+		<result property="subSn" column="SUB_SN"/>
+		<result property="bcncNm" column="BCNC_NM"/>
+		<result property="bcncCode" column="BCNC_CODE"/>
+		<result property="bcncCharger" column="BCNC_CHARGER"/>
+		<result property="cttpc" column="CTTPC"/>
+		<result property="email" column="EMAIL"/>
+		<result property="jobCharger" column="JOB_CHARGER"/>
+		<result property="mainYn" column="MAIN_YN"/>
+		<result property="adres" column="ADRES"/>
+		<result property="memo" column="MEMO"/>
+	</resultMap>	
+	
+	<resultMap id="EstmtPrdlstDetail" type="egovframework.custom.estmt.service.EstmtManageVO">
+		<result property="manageNo" column="MANAGE_NO"/>
+		<result property="prdlstSubSn" column="SUB_SN"/>
+		<result property="prdlstDirectYn" column="PRDLST_DIRECT_YN"/>
+		<result property="prdlstJhno" column="JHNO"/>
+		<result property="prdlstNoSe" column="NO_SE"/>
+		<result property="prdlstSubNo" column="SUB_NO"/>
+		<result property="prdlstModel" column="MODEL"/>
+		<result property="prdlstPart" column="PART"/>
+		<result property="prdlstShim" column="SHIM"/>
+		<result property="prdlstUntpc" column="UNTPC"/>
+		<result property="prdlstProfitRt" column="PROFIT_RT"/>
+		<result property="prdlstQy" column="QY"/>
+		<result property="prdlstAmount" column="AMOUNT"/>
+	</resultMap>
+	
+	<select id="selectEstmtDetail" parameterType="egovframework.custom.estmt.service.EstmtManageVO" resultMap="EstmtDetail">
+SELECT MANAGE_NO, DOC_NO, DOC_SJ, REGIST_DE, CNTRCT_DE, PROGRS_STTUS, BCNC_NM, BCNC_CODE, ESTMT_MEMO
+, TOTAMOUNT, FRST_REGIST_PNTTM, FRST_REGISTER_ID, LAST_UPDT_PNTTM, LAST_UPDUSR_ID 
+FROM jbc_estmt
+WHERE MANAGE_NO = #{manageNo} 
+	</select>
+
+	<select id="selectBcncList" resultType="egovMap">
+        SELECT 
+            uniqId, userTy, userId , cmpnyNm, userNm, emailAdres, areaNo, middleTelno, endTelno, moblphonNo, groupId, sttus, sbscrbDe, adres
+        FROM(
+            SELECT 
+                ESNTL_ID               uniqId,
+                'USR02'               userTy,
+                ENTRPRS_MBER_ID        userId,
+                CMPNY_NM              cmpnyNm,
+                APPLCNT_NM            userNm,
+                APPLCNT_EMAIL_ADRES   emailAdres,
+                AREA_NO               areaNo,
+                ENTRPRS_MIDDLE_TELNO  middleTelno,
+                ENTRPRS_END_TELNO     endTelno,
+                ''                    moblphonNo,
+                GROUP_ID              groupId,
+                ENTRPRS_MBER_STTUS    sttus,
+                SBSCRB_DE             sbscrbDe,
+                ADRES			      adres
+            FROM    COMTNENTRPRSMBER
+            ) A
+        WHERE 1=1
+        <if test="bcncNm != null">
+            AND cmpnyNm LIKE CONCAT ('%', #{bcncNm},'%')
+        </if>              
+	</select> 	
+
+	<select id="selectBcncListCnt" resultType="int">
+		SELECT COUNT(1) totcnt
+            FROM(
+	            SELECT 
+	                ESNTL_ID              uniqId,
+	                'USR02'               userTy,
+	                ENTRPRS_MBER_ID       userId,
+	                CMPNY_NM              cmpnyNm,
+	                APPLCNT_NM            userNm,
+	                APPLCNT_EMAIL_ADRES   emailAdres,
+	                AREA_NO               areaNo,
+	                ENTRPRS_MIDDLE_TELNO  middleTelno,
+	                ENTRPRS_END_TELNO     endTelno,
+	                ''                    moblphonNo,
+	                GROUP_ID              groupId,
+	                ENTRPRS_MBER_STTUS    sttus,
+	                SBSCRB_DE             sbscrbDe,
+	                ADRES			      adres
+	            FROM    COMTNENTRPRSMBER
+	            ) A
+	        WHERE 1=1	
+        <if test="bcncNm != null">
+            AND cmpnyNm LIKE CONCAT ('%', #{bcncNm},'%')
+        </if>
+	</select>
+		
+	<select id="selectPrdlstList" resultType="egovMap">
+select JH_NO , NO_SE ,  SUB_NO ,  PRDLST_CODE 
+, MAKER , MODEL , PART , MNFCTUR_PRMPC_SHIM
+, MNFCTUR_PRMPC , USE_SE
+from (
+  SELECT A.JH_NO as JH_NO , '' as NO_SE , '' as SUB_NO , A.PRDLST_CODE as PRDLST_CODE 
+  , A.MAKER as MAKER , A.MODEL as MODEL , A.PART as PART , A.MNFCTUR_PRMPC_SHIM as MNFCTUR_PRMPC_SHIM
+  , A.MNFCTUR_PRMPC as MNFCTUR_PRMPC , A.USE_SE as USE_SE
+  FROM JBC_PRDLST A 
+  union
+  SELECT A.JH_NO as JH_NO , B.NO_SE as NO_SE , B.SUB_NO as SUB_NO , A.PRDLST_CODE as PRDLST_CODE 
+  , A.MAKER as MAKER , A.MODEL as MODEL , A.PART as PART , A.MNFCTUR_PRMPC_SHIM as MNFCTUR_PRMPC_SHIM
+  , A.MNFCTUR_PRMPC as MNFCTUR_PRMPC , A.USE_SE as USE_SE
+  FROM JBC_PRDLST A INNER JOIN JBC_PRDLST_SUB B 
+  WHERE A.JH_NO =B.JH_NO 
+) C
+WHERE 1=1
+			<if test="srcPrdlstCode != null and srcPrdlstCode != ''">
+				AND C.PRDLST_CODE = #{srcPrdlstCode} 		
+			</if>			
+			<if test="srcPrdlstNo != null and srcPrdlstNo != ''"> 		
+				AND ( C.JH_NO LIKE CONCAT ('%', #{srcPrdlstNo}, '%') OR C.SUB_NO LIKE CONCAT ('%', #{srcPrdlstNo}, '%') ) 
+			</if>			
+			<if test="srcMaker != null and srcMaker != ''">
+				AND C.MAKER = #{srcMaker} 		
+			</if>
+			<if test="srcModel != null and srcModel != ''">
+				AND C.MODEL = #{srcModel} 			
+			</if>
+			<if test="srcPart != null and srcPart != ''">
+				AND C.PART = #{srcPart} 			
+			</if>
+			<if test="srcUseSe != null and srcUseSe != ''">
+				AND C.USE_SE = #{srcUseSe} 			
+			</if>  
+	        LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
+	</select> 	
+
+	<select id="selectPrdlstListCnt" resultType="int">
+select count(1)
+from (
+  SELECT A.JH_NO as JH_NO , '' as NO_SE , '' as SUB_NO , A.PRDLST_CODE as PRDLST_CODE 
+  , A.MAKER as MAKER , A.MODEL as MODEL , A.PART as PART , A.MNFCTUR_PRMPC_SHIM as MNFCTUR_PRMPC_SHIM
+  , A.MNFCTUR_PRMPC as MNFCTUR_PRMPC , A.USE_SE as USE_SE
+  FROM JBC_PRDLST A 
+  union
+  SELECT A.JH_NO as JH_NO , B.NO_SE as NO_SE , B.SUB_NO as SUB_NO , A.PRDLST_CODE as PRDLST_CODE 
+  , A.MAKER as MAKER , A.MODEL as MODEL , A.PART as PART , A.MNFCTUR_PRMPC_SHIM as MNFCTUR_PRMPC_SHIM
+  , A.MNFCTUR_PRMPC as MNFCTUR_PRMPC , A.USE_SE as USE_SE
+  FROM JBC_PRDLST A INNER JOIN JBC_PRDLST_SUB B 
+  WHERE A.JH_NO =B.JH_NO 
+) C 		
+WHERE 1=1
+			<if test="srcPrdlstCode != null and srcPrdlstCode != ''">
+				AND C.PRDLST_CODE = #{srcPrdlstCode} 		
+			</if>			
+			<if test="srcPrdlstNo != null and srcPrdlstNo != ''"> 		
+				AND ( C.JH_NO LIKE CONCAT ('%', #{srcPrdlstNo}, '%') OR C.SUB_NO LIKE CONCAT ('%', #{srcPrdlstNo}, '%') ) 
+			</if>			
+			<if test="srcMaker != null and srcMaker != ''">
+				AND C.MAKER = #{srcMaker} 		
+			</if>
+			<if test="srcModel != null and srcModel != ''">
+				AND C.MODEL = #{srcModel} 			
+			</if>
+			<if test="srcPart != null and srcPart != ''">
+				AND C.PART = #{srcPart} 			
+			</if>
+			<if test="srcUseSe != null and srcUseSe != ''">
+				AND C.USE_SE = #{srcUseSe} 			
+			</if> 	
+	</select>
+
+    <select id="checkEstmtManageNo" resultType="string">
+            SELECT CONCAT(date_format(now(),'%Y%m%d'),'M',LPAD(count(1)+1,4,'0')) FROM jbc_estmt where date_format(now(),'%Y%m%d') = date_format(FRST_REGIST_PNTTM,'%Y%m%d')
+    </select>	
+	
+	<insert id="insertEstmt" parameterType="egovframework.custom.estmt.service.EstmtBcncVO">    
+INSERT INTO jbc_estmt(
+   MANAGE_NO
+  ,DOC_NO
+  ,DOC_SJ
+  ,REGIST_DE
+  ,CNTRCT_DE
+  ,PROGRS_STTUS
+  ,BCNC_NM
+  ,BCNC_CODE
+  ,ESTMT_MEMO
+  ,TOTAMOUNT
+  ,FRST_REGIST_PNTTM
+  ,FRST_REGISTER_ID
+  ,USE_SE
+) VALUES (
+   #{manageNo}
+  ,#{docNo}
+  ,#{docSj}
+  ,replace(#{registDe},'-','')
+  ,replace(#{cntrctDe},'-','')
+  ,#{progrsSttus}
+  ,#{bcncNm}
+  ,#{bcncCode}
+  ,#{estmtMemo}
+  ,#{totAmount}
+  ,SYSDATE()
+  ,#{frstRegisterId}
+  ,'Y'
+)	    		
+	</insert>
+	
+ 	<update id="updateEstmt" parameterType="egovframework.custom.estmt.service.EstmtBcncVO">
+			UPDATE jbc_estmt SET 
+				DOC_NO = #{docNo},
+				DOC_SJ = #{docSj},
+				REGIST_DE = replace(#{registDe},'-',''),
+				CNTRCT_DE = replace(#{cntrctDe},'-',''),
+				PROGRS_STTUS = #{progrsSttus},
+				BCNC_NM = #{bcncNm},
+				BCNC_CODE = #{bcncCode},
+				ESTMT_MEMO = #{estmtMemo},
+				TOTAMOUNT = #{totAmount},
+				LAST_UPDUSR_ID = #{lastUpdusrId},
+				LAST_UPDT_PNTTM = SYSDATE() 				
+			WHERE MANAGE_NO = #{manageNo}
+ 	</update>	
+	
+	<insert id="insertEstmtBcnc" parameterType="egovframework.custom.estmt.service.EstmtBcncVO">
+		<selectKey keyProperty="subSn" resultType="string" order="BEFORE">
+			SELECT IFNULL(MAX(SUB_SN),0)+1 AS SUB_SN  FROM JBC_ESTMT_BCNC
+			WHERE MANAGE_NO = #{manageNo} 
+		</selectKey>	    
+INSERT INTO JBC_ESTMT_BCNC(
+   MANAGE_NO
+  ,SUB_SN
+  ,BCNC_NM
+  ,BCNC_CODE
+  ,BCNC_CHARGER
+  ,CTTPC
+  ,EMAIL
+  ,JOB_CHARGER
+  ,MAIN_YN
+  ,ADRES
+  ,MEMO
+  ,FRST_REGIST_PNTTM
+  ,FRST_REGISTER_ID
+  ,USE_SE
+) VALUES (
+   #{manageNo}
+  ,#{subSn}
+  ,#{bcncNm}
+  ,#{bcncCode}
+  ,#{bcncCharger}
+  ,#{cttpc}
+  ,#{email}
+  ,#{jobCharger}
+  ,#{mainYn}
+  ,#{adres}
+  ,#{memo}
+  ,SYSDATE()
+  ,#{frstRegisterId}
+  ,'Y'
+)    		
+	</insert>
+	
+ 	<update id="updateEstmtBcnc" parameterType="egovframework.custom.estmt.service.EstmtBcncVO">
+			UPDATE JBC_ESTMT_BCNC SET 
+				BCNC_NM = #{bcncNm},
+				BCNC_CODE = #{bcncCode},
+				BCNC_CHARGER = #{bcncCharger},
+				CTTPC = #{cttpc},
+				EMAIL = #{email},
+				JOB_CHARGER = #{jobCharger},
+				MAIN_YN = #{mainYn},
+				ADRES = #{adres},
+				MEMO = #{memo},
+				LAST_UPDUSR_ID = #{lastUpdusrId},
+				LAST_UPDT_PNTTM = SYSDATE() 				
+			WHERE MANAGE_NO = #{manageNo}
+			AND SUB_SN = #{subSn}
+ 	</update>	 	
+ 	
+	<insert id="insertEstmtPrdlst" parameterType="egovframework.custom.estmt.service.EstmtBcncVO">
+		<selectKey keyProperty="subSn" resultType="string" order="BEFORE">
+			SELECT IFNULL(MAX(SUB_SN),0)+1 AS SUB_SN  FROM JBC_ESTMT_PRDLST
+			WHERE MANAGE_NO = #{manageNo} 
+		</selectKey>	    
+INSERT INTO JBC_ESTMT_PRDLST(
+   MANAGE_NO
+  ,SUB_SN
+  ,PRDLST_DIRECT_YN
+  ,JHNO
+  ,NO_SE
+  ,SUB_NO
+  ,MODEL
+  ,PART
+  ,SHIM
+  ,UNTPC
+  ,PROFIT_RT
+  ,QY
+  ,AMOUNT
+  ,FRST_REGIST_PNTTM
+  ,FRST_REGISTER_ID
+  ,USE_SE
+) VALUES (
+   #{manageNo}
+  ,#{subSn}
+  ,#{prdlstDirectYn}
+  ,#{prdlstJhno}
+  ,#{prdlstNoSe}
+  ,#{prdlstSubNo}
+  ,#{prdlstModel}
+  ,#{prdlstPart}
+  ,#{prdlstShim}
+  ,#{prdlstUntpc}
+  ,#{prdlstProfitRt}
+  ,#{prdlstQy}
+  ,#{prdlstAmount}
+  ,SYSDATE()
+  ,#{frstRegisterId}
+  ,'Y'
+)
+	</insert>
+	
+ 	<update id="updateEstmtPrdlst" parameterType="egovframework.custom.estmt.service.EstmtBcncVO">
+			UPDATE JBC_ESTMT_PRDLST SET 
+				PRDLST_DIRECT_YN = #{prdlstDirectYn},
+				JHNO = #{prdlstJhno},
+				NO_SE = #{prdlstNoSe},
+				SUB_NO = #{prdlstSubNo},
+				MODEL = #{prdlstModel},
+				PART = #{prdlstPart},
+				SHIM = #{prdlstShim},
+				UNTPC = #{prdlstUntpc},
+				PROFIT_RT = #{prdlstProfitRt},
+				QY = #{prdlstQy},
+				AMOUNT = #{prdlstAmount},
+				LAST_UPDUSR_ID = #{lastUpdusrId},
+				LAST_UPDT_PNTTM = SYSDATE() 				
+			WHERE MANAGE_NO = #{manageNo}
+			AND SUB_SN = #{subSn}
+ 	</update>	 	
+ 	
+	<select id="selectEstmtBcncDetail" parameterType="egovframework.custom.estmt.service.EstmtManageVO" resultMap="EstmtBcncDetail">
+SELECT MANAGE_NO, SUB_SN, BCNC_NM, BCNC_CODE, BCNC_CHARGER, CTTPC, EMAIL, JOB_CHARGER, MAIN_YN, ADRES, MEMO, FRST_REGIST_PNTTM, FRST_REGISTER_ID, LAST_UPDT_PNTTM, LAST_UPDUSR_ID 
+FROM jbc_estmt_bcnc 
+WHERE MANAGE_NO = #{manageNo} AND USE_SE = 'Y'
+	</select> 	
+
+	<select id="selectEstmtBcncDetailCnt" parameterType="egovframework.custom.estmt.service.EstmtManageVO" resultType="java.lang.Integer">
+SELECT COUNT(MANAGE_NO) 
+FROM jbc_estmt_bcnc
+WHERE MANAGE_NO = #{manageNo} AND USE_SE = 'Y'
+	</select> 	
+	
+	<select id="selectEstmtPrdlstDetail" parameterType="egovframework.custom.estmt.service.EstmtManageVO" resultMap="EstmtPrdlstDetail">
+SELECT MANAGE_NO, SUB_SN, PRDLST_DIRECT_YN, JHNO, NO_SE, SUB_NO, MODEL, PART, SHIM, 
+FORMAT(REPLACE(UNTPC,',',''),0) AS UNTPC, 
+PROFIT_RT, QY, 
+FORMAT(REPLACE(AMOUNT,',',''),0) AS AMOUNT, 
+FRST_REGIST_PNTTM, FRST_REGISTER_ID, LAST_UPDT_PNTTM, LAST_UPDUSR_ID 
+FROM jbc_estmt_prdlst
+WHERE MANAGE_NO = #{manageNo} AND USE_SE = 'Y'
+	</select> 	
+
+	<select id="selectEstmtPrdlstDetailCnt" parameterType="egovframework.custom.estmt.service.EstmtManageVO" resultType="java.lang.Integer">
+		
+SELECT COUNT(MANAGE_NO) 
+FROM jbc_estmt_prdlst
+WHERE MANAGE_NO = #{manageNo} AND USE_SE = 'Y'
+	</select> 	
+ 	
+	
+ 	<update id="deleteEstmtSub" parameterType="egovframework.custom.estmt.service.EstmtManageVO">
+			UPDATE jbc_estmt_bcnc SET 
+				USE_SE = 'N',
+ 				LAST_UPDT_PNTTM = SYSDATE(),
+  				LAST_UPDUSR_ID = #{lastUpdusrId}
+			WHERE MANAGE_NO = #{manageNo}
+			AND SUB_SN = #{subSn}
+ 	</update>
+ 	
+	<update id="deletePrdlstSub" parameterType="egovframework.custom.estmt.service.EstmtManageVO">
+			UPDATE jbc_estmt_prdlst SET 
+				USE_SE = 'N',
+ 				LAST_UPDT_PNTTM = SYSDATE(),
+  				LAST_UPDUSR_ID = #{lastUpdusrId}
+			WHERE MANAGE_NO = #{manageNo}
+			AND SUB_SN = #{subSn}
+ 	</update>
+ 	
+	<select id="selectEstmtList" resultType="egovMap">
+        SELECT 
+            manageNo, docNo, docSj, registDe, cntrctDe, progrsSttus, progrsSttusCode, bcncNm, bcncCode, totamount, bcncCharger, jobCharger
+        FROM(
+SELECT 
+ESTMT.MANAGE_NO AS manageNo
+, ESTMT.DOC_NO AS docNo
+, ESTMT.DOC_SJ AS docSj
+, CONCAT(substring(ESTMT.REGIST_DE,1,4),'-',substring(ESTMT.REGIST_DE,5,2),'-',substring(ESTMT.REGIST_DE,7,2)) AS registDe
+, CONCAT(substring(ESTMT.CNTRCT_DE,1,4),'-',substring(ESTMT.CNTRCT_DE,5,2),'-',substring(ESTMT.CNTRCT_DE,7,2)) AS cntrctDe
+, (SELECT CODE_NM FROM COMTCCMMNDETAILCODE WHERE CODE_ID = 'JHB005' AND CODE = ESTMT.PROGRS_STTUS ) AS progrsSttus
+, ESTMT.PROGRS_STTUS AS progrsSttusCode
+, ESTMT.BCNC_NM AS bcncNm
+, ESTMT.BCNC_CODE AS bcncCode
+, FORMAT(REPLACE(ESTMT.TOTAMOUNT,',',''),0) AS totamount
+, BCNC.BCNC_CHARGER AS bcncCharger
+, BCNC.JOB_CHARGER AS jobCharger
+FROM JBC_ESTMT ESTMT, JBC_ESTMT_BCNC BCNC
+WHERE BCNC.MANAGE_NO = ESTMT.MANAGE_NO
+AND ESTMT.USE_SE = 'Y' 
+AND ESTMT.USE_SE = BCNC.USE_SE 
+AND BCNC.MAIN_YN = '1'
+            ) A
+        WHERE 1=1
+        <if test="searchBcncCode != null and searchBcncCode != ''">
+            AND bcncCode = #{searchBcncCode}
+        </if>
+        <if test="cmbCharger == 'bcnc'">
+            AND bcncCharger like CONCAT ('%', #{searchCharger}, '%')
+        </if>
+        <if test="cmbCharger == 'job'">
+            AND jobCharger like CONCAT ('%', #{searchCharger}, '%')
+        </if>
+        <if test="cmbDe == 'regist'">
+            <if test="searchFromDe != null and searchFromDe !='' and searchToDe != null and searchToDe !=''">
+            AND registDe between #{searchFromDe} and #{searchToDe}
+            </if>
+            <if test="searchFromDe != null and searchFromDe !='' and searchToDe == null and searchToDe ==''">
+            AND registDe = #{searchFromDe} 
+            </if>
+            <if test="searchFromDe == null and searchFromDe =='' and searchToDe != null and searchToDe !=''">
+            AND registDe = #{searchToDe} 
+            </if>            
+        </if>
+        <if test="cmbDe == 'cntrct'">            
+            <if test="searchFromDe != null and searchFromDe !='' and searchToDe != null and searchToDe !=''">
+            AND cntrctDe between #{searchFromDe} and #{searchToDe}
+            </if>
+            <if test="searchFromDe != null and searchFromDe !='' and searchToDe == null and searchToDe ==''">
+            AND cntrctDe = #{searchFromDe} 
+            </if>
+            <if test="searchFromDe == null and searchFromDe =='' and searchToDe != null and searchToDe !=''">
+            AND cntrctDe = #{searchToDe} 
+            </if>            
+        </if>
+        <if test="cmbNo == 'doc'">
+            AND docNo like CONCAT ('%', #{searchNo}, '%')
+        </if>
+        <if test="cmbNo == 'manage'">
+            AND manageNo like CONCAT ('%', #{searchNo}, '%')
+        </if>
+        <if test="progrsSttus != null and progrsSttus != ''">
+            AND progrsSttusCode= #{progrsSttus}
+        </if> 
+        LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
+	</select> 	
+
+	<select id="selectEstmtListCnt" resultType="int">
+		SELECT COUNT(1) totcnt
+            FROM(
+SELECT 
+ESTMT.MANAGE_NO AS manageNo
+, ESTMT.DOC_NO AS docNo
+, ESTMT.DOC_SJ AS docSj
+, CONCAT(substring(ESTMT.REGIST_DE,1,4),'-',substring(ESTMT.REGIST_DE,5,2),'-',substring(ESTMT.REGIST_DE,7,2)) AS registDe
+, CONCAT(substring(ESTMT.CNTRCT_DE,1,4),'-',substring(ESTMT.CNTRCT_DE,5,2),'-',substring(ESTMT.CNTRCT_DE,7,2)) AS cntrctDe
+, (SELECT CODE_NM FROM COMTCCMMNDETAILCODE WHERE CODE_ID = 'JHB005' AND CODE = ESTMT.PROGRS_STTUS ) AS progrsSttus
+, ESTMT.PROGRS_STTUS AS progrsSttusCode
+, ESTMT.BCNC_NM AS bcncNm
+, ESTMT.BCNC_CODE AS bcncCode
+, FORMAT(REPLACE(ESTMT.TOTAMOUNT,',',''),0) AS totamount
+, BCNC.BCNC_CHARGER AS bcncCharger
+, BCNC.JOB_CHARGER AS jobCharger
+FROM JBC_ESTMT ESTMT, JBC_ESTMT_BCNC BCNC
+WHERE BCNC.MANAGE_NO = ESTMT.MANAGE_NO
+AND ESTMT.USE_SE = 'Y' 
+AND ESTMT.USE_SE = BCNC.USE_SE 
+AND BCNC.MAIN_YN = '1'
+	            ) A
+	        WHERE 1=1	
+        <if test="searchBcncCode != null and searchBcncCode != ''">
+            AND bcncCode = #{searchBcncCode}
+        </if>
+        <if test="cmbCharger == 'bcnc'">
+            AND bcncCharger like CONCAT ('%', #{searchCharger}, '%')
+        </if>
+        <if test="cmbCharger == 'job'">
+            AND jobCharger like CONCAT ('%', #{searchCharger}, '%')
+        </if>
+        <if test="cmbDe == 'regist'">
+            <if test="searchFromDe != null and searchFromDe !='' and searchToDe != null and searchToDe !=''">
+            AND registDe between #{searchFromDe} and #{searchToDe}
+            </if>
+            <if test="searchFromDe != null and searchFromDe !='' and searchToDe == null and searchToDe ==''">
+            AND registDe = #{searchFromDe} 
+            </if>
+            <if test="searchFromDe == null and searchFromDe =='' and searchToDe != null and searchToDe !=''">
+            AND registDe = #{searchToDe} 
+            </if>            
+        </if>
+        <if test="cmbDe == 'cntrct'">            
+            <if test="searchFromDe != null and searchFromDe !='' and searchToDe != null and searchToDe !=''">
+            AND cntrctDe between #{searchFromDe} and #{searchToDe}
+            </if>
+            <if test="searchFromDe != null and searchFromDe !='' and searchToDe == null and searchToDe ==''">
+            AND cntrctDe = #{searchFromDe} 
+            </if>
+            <if test="searchFromDe == null and searchFromDe =='' and searchToDe != null and searchToDe !=''">
+            AND cntrctDe = #{searchToDe} 
+            </if>            
+        </if>
+        <if test="cmbNo == 'doc'">
+            AND docNo like CONCAT ('%', #{searchNo}, '%')
+        </if>
+        <if test="cmbNo == 'manage'">
+            AND manageNo like CONCAT ('%', #{searchNo}, '%')
+        </if>
+        <if test="progrsSttus != null and progrsSttus != ''">
+            AND progrsSttusCode= #{progrsSttus}
+        </if> 
+	</select>	
+</mapper>
