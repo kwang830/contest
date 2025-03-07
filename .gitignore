@@ -1,0 +1,15 @@
+# Gradle or Maven 빌드 디렉토리 제외
+/target
+/build
+
+# IDE 설정 파일 제외
+/.idea
+*.iml
+*.class
+
+# 환경 설정 파일 제외
+application.yml
+application.properties
+
+# 로그 및 기타 불필요한 파일 제외
+*.log
