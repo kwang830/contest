@@ -476,7 +476,7 @@
 											</a>
 										</div>
 										<div class="portfolio-desc">
-											<h3>이진석 대리</h3>
+											<h3>이진석 대리(계장)</h3>
 											<span>개발, 운영</span>
 											<i class="icon-phone-sign"></i> 02-3407-6074
 										</div>
