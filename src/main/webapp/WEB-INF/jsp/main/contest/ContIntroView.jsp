@@ -105,7 +105,7 @@
 										<tr>
 											<td>공모 주제</td>
 											<td>
-												미래를 여는 AI, 혁신을 향한 도전! AI 아이디어 공모전
+												미래를 여는 AI, 혁신을 향한 도전! AI 아이디어 챌린지
 											</td>
 										</tr>
 										<tr>
@@ -681,7 +681,7 @@
 
 									<div class="col_full">
 										<label for="comment">내용</label>
-										<textarea name="comment" cols="58" rows="7" tabindex="4" class="sm-form-control"></textarea>
+										<textarea name="comment" id="comment" cols="58" rows="7" tabindex="4" class="sm-form-control"></textarea>
 									</div>
 
 									<div class="col_full nobottommargin">
