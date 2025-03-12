@@ -538,4 +538,50 @@ public class EgovMberManageController {
 
 		return "cmm/uss/umt/EgovIdDplctCnfirm";
 	}
+
+	/**
+	 * 내정보관리
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/uss/umt/mber/MyInfo.do")
+	public String memberMyInfoView(ModelMap model, @RequestParam Map<String, Object> commandMap, @ModelAttribute("searchVO") UserDefaultVO userSearchVO,
+									 @ModelAttribute("mberManageVO") MberManageVO mberManageVO) throws Exception {
+
+		// 미인증 사용자에 대한 보안처리
+		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+		if(!isAuthenticated) {
+			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
+			return "uat/uia/EgovLoginUsr";
+		}
+
+		String userTyForPassword = (String) commandMap.get("userTyForPassword");
+		mberManageVO.setUserTy(userTyForPassword);
+
+		model.addAttribute("userSearchVO", userSearchVO);
+		model.addAttribute("mberManageVO", mberManageVO);
+		return "cmm/uss/umt/MemberMyInfoView";
+	}
+
+	/**
+	 * 내정보관리
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/uss/umt/mber/userMngm.do")
+	public String memberUserMngmView(ModelMap model, @RequestParam Map<String, Object> commandMap, @ModelAttribute("searchVO") UserDefaultVO userSearchVO,
+								   @ModelAttribute("mberManageVO") MberManageVO mberManageVO) throws Exception {
+
+		// 미인증 사용자에 대한 보안처리
+		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+		if(!isAuthenticated) {
+			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
+			return "uat/uia/EgovLoginUsr";
+		}
+
+		String userTyForPassword = (String) commandMap.get("userTyForPassword");
+		mberManageVO.setUserTy(userTyForPassword);
+
+		model.addAttribute("userSearchVO", userSearchVO);
+		model.addAttribute("mberManageVO", mberManageVO);
+		return "cmm/uss/umt/MemberUserMngmView";
+	}
 }

@@ -25,23 +25,24 @@
 					<nav id="primary-menu">
 
 						<ul>
-							<li class="current"><a href="/"><div class="r_bar">공모전 홈</div></a>
-							</li>
-							<li class=""><a href="/cmm/main/contIntroPage.do"><div class="r_bar">공모개요</div></a>
-							</li>
-							<li class=""><a href="/"><div class="r_bar">접수 및 평가</div></a>
-							</li>
-							<li><a href="#"><div class="r_bar">커뮤니티</div></a>
+							<li class="current"><a href="/"><div class="r_bar">공모전 홈</div></a></li>
+							<li class=""><a href="/cmm/contest/apfrRcip.do"><div class="r_bar">신청서접수</div></a></li>
+							<li class=""><a href="/cmm/contest/contestVote.do"><div class="r_bar">공모전 투표</div></a></li>
+							<li class=""><a href="/cmm/contest/contestOtcm.do"><div class="r_bar">공모전 성과</div></a></li>
+							<li><a href="#"><div class="r_bar">공통게시판</div></a>
 								<ul>
 									<li><a href="/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_AAAAAAAAAAAA"><div><i class="icon-megaphone"></i>공지사항</div></a>
-									<li><a href="#"><div><i class="icon-image1"></i>홍보자료</div></a>
-									<li><a href="#"><div><i class="icon-list-alt1"></i>FAQ</div></a>
-									<li><a href="#"><div><i class="icon-comments-alt"></i>QNA</div></a>
-									<li><a href="#"><div><i class="icon-download1"></i>신청서 다운로드</div></a>
+									<li><a href="/uss/olh/faq/FaqListInqire.do"><div><i class="icon-list-alt1"></i>FAQ</div></a>
+									<li><a href="/uss/olh/qna/QnaListInqire.do"><div><i class="icon-comments-alt"></i>QNA</div></a>
+									<li><a href="/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_BBBBBBBBBBBB"><div><i class="icon-comments-alt"></i>접수내역[관리자]</div></a>
+									<li><a href="/sym/log/clg/userLgnHsty.do"><div><i class="icon-comments-alt"></i>로그인 이력[관리자]</div></a>
+									<li><a href="/cmm/contest/deptSttcPsst.do"><div><i class="icon-comments-alt"></i>부서 통계 현황[관리자]</div></a>
+									<li><a href="/uss/umt/mber/MyInfo.do"><div><i class="icon-comments-alt"></i>내정보관리[임시링크]</div></a>
+									<li><a href="/uss/umt/mber/userMngm.do"><div><i class="icon-comments-alt"></i>사용자정보관리[임시링크]</div></a>
 								</ul>
 							</li>
-							<li class=""><a href="index.html"><div class="r_bar">공모전 성과</div></a></li>
-							<li class=""><a href="index.html"><div><i class="icon-line2-login"></i>로그인</div></a></li>
+
+							<li class=""><a href="/uat/uia/egovLoginUsr.do"><div><i class="icon-line2-login"></i>로그인</div></a></li>
 						</ul>
 
 

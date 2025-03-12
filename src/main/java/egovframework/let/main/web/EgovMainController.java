@@ -324,8 +324,6 @@ public class EgovMainController {
 
     /**
      * 좌측메뉴를 조회한다.
-     * @param menuManageVO MenuManageVO
-     * @param vStartP      String
      * @return 출력페이지정보 "main_left"
      * @exception Exception
      */
@@ -452,5 +450,65 @@ public class EgovMainController {
 	  throws Exception{
 
 		return "main/contest/ContIntroView";
+	}
+
+	/**
+	 * 공모전 신청서접수
+	 * @return 메인페이지 정보 Map [key : 항목명]
+	 *
+	 * @param request
+	 * @param model
+	 * @exception Exception Exception
+	 */
+	@RequestMapping(value = "/cmm/contest/apfrRcip.do")
+	public String getContestApfrRcipPage(HttpServletRequest request, ModelMap model)
+			throws Exception{
+
+		return "main/contest/ApfrRcipView";
+	}
+
+	/**
+	 * 공모전 성과
+	 * @return 메인페이지 정보 Map [key : 항목명]
+	 *
+	 * @param request
+	 * @param model
+	 * @exception Exception Exception
+	 */
+	@RequestMapping(value = "/cmm/contest/contestOtcm.do")
+	public String getContestOtcmPage(HttpServletRequest request, ModelMap model)
+			throws Exception{
+
+		return "main/contest/ContestOtcmView";
+	}
+
+	/**
+	 * 공모전 투표
+	 * @return 메인페이지 정보 Map [key : 항목명]
+	 *
+	 * @param request
+	 * @param model
+	 * @exception Exception Exception
+	 */
+	@RequestMapping(value = "/cmm/contest/contestVote.do")
+	public String getContestVotePage(HttpServletRequest request, ModelMap model)
+			throws Exception{
+
+		return "main/contest/ContestVoteView";
+	}
+
+	/**
+	 * 공모전 부서 통계 현황
+	 * @return 메인페이지 정보 Map [key : 항목명]
+	 *
+	 * @param request
+	 * @param model
+	 * @exception Exception Exception
+	 */
+	@RequestMapping(value = "/cmm/contest/deptSttcPsst.do")
+	public String getContestDeptSttcPsstPage(HttpServletRequest request, ModelMap model)
+			throws Exception{
+
+		return "main/contest/DeptSttcPsstView";
 	}
 }
