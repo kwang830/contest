@@ -511,4 +511,19 @@ public class EgovMainController {
 
 		return "main/contest/DeptSttcPsstView";
 	}
+
+	/**
+	 * 공모전 개요 페이지 조회
+	 * @return 메인페이지 정보 Map [key : 항목명]
+	 *
+	 * @param request
+	 * @param model
+	 * @exception Exception Exception
+	 */
+	@RequestMapping(value = "/cmm/contest/contestOvrv.do")
+	public String getContestOvrvPage(HttpServletRequest request, ModelMap model)
+			throws Exception{
+
+		return "main/contest/ContestOvrvView";
+	}
 }

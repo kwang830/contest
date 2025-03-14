@@ -31,7 +31,7 @@
 					<nav id="primary-menu">
 
 						<ul>
-							<li class="<%= currentPage.contains("EgovMainView.jsp") ? "current" : "" %>"><a href="/"><div class="r_bar">공모전 홈</div></a></li>
+							<li class="<%= currentPage.contains("ContestOvrvView.jsp") ? "current" : "" %>"><a href="/cmm/contest/contestOvrv.do"><div class="r_bar">공모개요</div></a></li>
 							<li class="<%= currentPage.contains("ApfrRcipView.jsp") ? "current" : "" %>"><a href="/cmm/contest/apfrRcip.do"><div class="r_bar">신청서접수</div></a></li>
 							<li class="<%= currentPage.contains("ContestVoteView.jsp") ? "current" : "" %>"><a href="/cmm/contest/contestVote.do"><div class="r_bar">공모전 투표</div></a></li>
 							<li class="<%= currentPage.contains("ContestOtcmView.jsp") ? "current" : "" %>"><a href="/cmm/contest/contestOtcm.do"><div class="r_bar">공모전 성과</div></a></li>
