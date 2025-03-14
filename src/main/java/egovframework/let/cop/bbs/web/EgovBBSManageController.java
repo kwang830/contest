@@ -182,7 +182,8 @@ public class EgovBBSManageController {
 		model.addAttribute("brdMstrVO", master);
 		model.addAttribute("paginationInfo", paginationInfo);
 		
-		return "cop/bbs/EgovNoticeList";
+		//return "cop/bbs/EgovNoticeList";
+		return "cop/bbs/ContNoticeList";
 	}
 
 	/**

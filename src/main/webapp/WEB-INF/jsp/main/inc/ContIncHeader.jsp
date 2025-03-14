@@ -2,7 +2,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import ="egovframework.com.cmm.LoginVO" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%
+	// 현재 페이지 URL 가져오기
+	String currentPage = request.getRequestURI();
+	System.out.println("currentPage:"+currentPage);
+	System.out.println("currentPage:"+currentPage);
+	System.out.println("currentPage:"+currentPage);
+%>
 <!-- Header
 		============================================= -->
 		<header id="header" class="full-header">
@@ -25,11 +31,11 @@
 					<nav id="primary-menu">
 
 						<ul>
-							<li class="current"><a href="/"><div class="r_bar">공모전 홈</div></a></li>
-							<li class=""><a href="/cmm/contest/apfrRcip.do"><div class="r_bar">신청서접수</div></a></li>
-							<li class=""><a href="/cmm/contest/contestVote.do"><div class="r_bar">공모전 투표</div></a></li>
-							<li class=""><a href="/cmm/contest/contestOtcm.do"><div class="r_bar">공모전 성과</div></a></li>
-							<li><a href="#"><div class="r_bar">공통게시판</div></a>
+							<li class="<%= currentPage.contains("EgovMainView.jsp") ? "current" : "" %>"><a href="/"><div class="r_bar">공모전 홈</div></a></li>
+							<li class="<%= currentPage.contains("ApfrRcipView.jsp") ? "current" : "" %>"><a href="/cmm/contest/apfrRcip.do"><div class="r_bar">신청서접수</div></a></li>
+							<li class="<%= currentPage.contains("ContestVoteView.jsp") ? "current" : "" %>"><a href="/cmm/contest/contestVote.do"><div class="r_bar">공모전 투표</div></a></li>
+							<li class="<%= currentPage.contains("ContestOtcmView.jsp") ? "current" : "" %>"><a href="/cmm/contest/contestOtcm.do"><div class="r_bar">공모전 성과</div></a></li>
+							<li class=""><a href="#"><div class="r_bar">공통게시판</div></a>
 								<ul>
 									<li><a href="/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_AAAAAAAAAAAA"><div><i class="icon-megaphone"></i>공지사항</div></a>
 									<li><a href="/uss/olh/faq/FaqListInqire.do"><div><i class="icon-list-alt1"></i>FAQ</div></a>
@@ -42,7 +48,15 @@
 								</ul>
 							</li>
 
+							<%
+								LoginVO loginVO = (LoginVO)session.getAttribute("LoginVO");
+								if(loginVO == null){
+							%>
 							<li class=""><a href="/uat/uia/egovLoginUsr.do"><div><i class="icon-line2-login"></i>로그인</div></a></li>
+							<% }else{ %>
+							<li class=""><a href="/uss/umt/mber/MyInfo.do"><div class="r_bar">내정보관리</div></a></li>
+							<li class=""><c:out value="${loginName}" /> <a href="/uat/uia/actionLogout.do"><div><i class="icon-line2-logout"></i>로그아웃</div></a></li>
+							<% } %>
 						</ul>
 
 

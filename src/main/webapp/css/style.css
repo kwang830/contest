@@ -1193,7 +1193,7 @@ body.stretched #header.full-header .container {
 }
 
 #primary-menu ul li:hover > a,
-#primary-menu ul li.current > a { color: #000; text-shadow: -2px -2px 5px #bbbbbb,2px 2px 11px #555555; }
+#primary-menu ul li.current > a { color: #007bff; }
 
 #primary-menu > ul > li.sub-menu > a > div { }
 
