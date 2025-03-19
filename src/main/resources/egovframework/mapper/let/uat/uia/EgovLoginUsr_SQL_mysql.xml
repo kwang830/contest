@@ -30,7 +30,6 @@
 	<select id="actionLogin" resultMap="login">
         <!-- 일반회원 -->
         <if test="userSe == &quot;GNR&quot;">
-            
             SELECT mber_id AS id
                  , mber_nm AS name
                  , ihidNum AS ihidNum
@@ -43,8 +42,23 @@
              WHERE mber_id = #{id}
                AND password = #{password}
                AND mber_sttus = 'P'
-            
         </if>
+        <!-- 대상없을 때 -->
+        <if test="userSe == null or userSe == &quot;&quot;">
+            SELECT mber_id AS id
+            , mber_nm AS name
+            , ihidNum AS ihidNum
+            , password AS password
+            , mber_email_adres AS email
+            , 'GNR' AS userSe
+            , '-' AS orgnztId
+            , esntl_id AS uniqId
+            FROM LETTNGNRLMBER
+            WHERE mber_id = 'test'
+            AND password = '1'
+            AND mber_sttus = 'P'
+        </if>
+
 	</select>
 	
 	<!-- 인증서 로그인

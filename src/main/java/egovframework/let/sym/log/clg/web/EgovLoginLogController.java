@@ -2,9 +2,12 @@ package egovframework.let.sym.log.clg.web;
 
 import java.util.HashMap;
 
+import egovframework.com.cmm.EgovMessageSource;
 import egovframework.com.cmm.annotation.IncludedInfo;
+import egovframework.com.cmm.util.EgovUserDetailsHelper;
 import egovframework.let.sym.log.clg.service.EgovLoginLogService;
 import egovframework.let.sym.log.clg.service.LoginLog;
+
 
 import org.egovframe.rte.fdl.property.EgovPropertyService;
 import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
@@ -43,6 +46,10 @@ public class EgovLoginLogController {
 
 	@Resource(name="propertiesService")
 	protected EgovPropertyService propertyService;
+
+	/** EgovMessageSource */
+	@Resource(name="egovMessageSource")
+	EgovMessageSource egovMessageSource;
 
 	/**
 	 * 로그인 로그 목록 조회

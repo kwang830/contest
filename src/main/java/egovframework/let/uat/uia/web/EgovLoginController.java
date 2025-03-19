@@ -1,10 +1,16 @@
 package egovframework.let.uat.uia.web;
 
+import java.util.Locale;
 import java.util.Map;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+import javax.servlet.http.HttpServletRequest;
 
 import egovframework.com.cmm.EgovMessageSource;
 import egovframework.com.cmm.LoginVO;
+import egovframework.let.sym.log.clg.service.LoginLog;
 import egovframework.let.uat.uia.service.EgovLoginService;
+import egovframework.let.sym.log.clg.service.EgovLoginLogService;
 
 import org.egovframe.rte.fdl.cmmn.trace.LeaveaTrace;
 import org.egovframe.rte.fdl.property.EgovPropertyService;
@@ -23,23 +29,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.support.WebApplicationContextUtils;
-/**
- * 일반 로그인을 처리하는 컨트롤러 클래스
- * @author 공통서비스 개발팀 박지욱
- * @since 2009.03.06
- * @version 1.0
- * @see
- *
- * <pre>
- * << 개정이력(Modification Information) >>
- *
- *   수정일      수정자          수정내용
- *  -------    --------    ---------------------------
- *  2009.03.06  박지욱          최초 생성
- *  2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성
- *
- *  </pre>
- */
+
 @Controller
 public class EgovLoginController {
 
@@ -55,15 +45,52 @@ public class EgovLoginController {
     @Resource(name = "propertiesService")
     protected EgovPropertyService propertiesService;
 
-    /** TRACE */
+	/** EgovLoginLogService */
+	@Resource(name="EgovLoginLogService")
+	private EgovLoginLogService loginLogService;
+
+	/** TRACE */
     @Resource(name="leaveaTrace")
     LeaveaTrace leaveaTrace;
 
+	public static String getClientIp(HttpServletRequest request) {
+		String ip = getHeaderIp(request);
+
+		// IPv4 주소인지 확인하는 정규식
+		String ipv4Pattern = "^([0-9]{1,3}\\.){3}[0-9]{1,3}$";
+		Pattern pattern = Pattern.compile(ipv4Pattern);
+		Matcher matcher = pattern.matcher(ip);
+
+		if (matcher.matches()) {
+			return ip; // IPv4면 그대로 반환
+		} else {
+			return request.getRemoteAddr(); // IPv4가 아니면 request.getRemoteAddr() 사용
+		}
+	}
+
+	// 클라이언트 IP를 가져오는 메서드 (X-Forwarded-For 포함)
+	public static String getHeaderIp(HttpServletRequest request) {
+		String[] headers = {
+				"X-FORWARDED-FOR",
+				"Proxy-Client-IP",
+				"WL-Proxy-Client-IP"
+		};
+
+		for (String header : headers) {
+			String ip = request.getHeader(header);
+			if (ip != null && ip.length() != 0 && !"unknown".equalsIgnoreCase(ip)) {
+				// X-Forwarded-For 값이 여러 개일 경우 첫 번째 값 사용
+				if (ip.contains(",")) {
+					ip = ip.split(",")[0].trim();
+				}
+				return ip;
+			}
+		}
+		return request.getRemoteAddr(); // 모든 값이 없으면 기본 IP 반환
+	}
+
 	/**
 	 * 로그인 화면으로 들어간다
-	 * @param vo - 로그인후 이동할 URL이 담긴 LoginVO
-	 * @return 로그인 페이지
-	 * @exception Exception
 	 */
     @RequestMapping(value="/uat/uia/egovLoginUsr.do")
 	public String loginUsrView(@ModelAttribute("loginVO") LoginVO loginVO,
@@ -71,22 +98,21 @@ public class EgovLoginController {
 			HttpServletResponse response,
 			ModelMap model)
 			throws Exception {
-    	//return "uat/uia/EgovLoginUsr";
-    	return "uat/uia/ContLoginUsr";
+    	return "uat/uia/EgovLoginUsr";
 	}
 
     /**
 	 * 일반(스프링 시큐리티) 로그인을 처리한다
-	 * @param vo - 아이디, 비밀번호가 담긴 LoginVO
-	 * @param request - 세션처리를 위한 HttpServletRequest
-	 * @return result - 로그인결과(세션정보)
-	 * @exception Exception
 	 */
     @RequestMapping(value="/uat/uia/actionSecurityLogin.do")
     public String actionSecurityLogin(@ModelAttribute("loginVO") LoginVO loginVO,
-    		                   HttpServletRequest request, HttpServletResponse response,
-    		                   ModelMap model)
+									  HttpServletRequest request, HttpServletResponse response,
+									  ModelMap model, Locale locale)
             throws Exception {
+
+		System.out.println("loginVO.getUserSe:"+loginVO.getUserSe());
+		System.out.println("loginVO.getUserSe:"+loginVO.getUserSe());
+		System.out.println("loginVO.getUserSe:"+loginVO.getUserSe());
 
     	// 1. 일반 로그인 처리
         LoginVO resultVO = loginService.actionLogin(loginVO);
@@ -117,12 +143,26 @@ public class EgovLoginController {
 			}
         	
         	springSecurity.doFilter(new RequestWrapperForSecurity(request, resultVO.getUserSe() + resultVO.getId() , resultVO.getUniqId()), response, null);
-        	
+
+			String ip = EgovLoginController.getHeaderIp(request);  // static 메서드로 호출
+
+			LoginLog loginLog = new LoginLog();
+			loginLog.setLoginId(resultVO.getId());
+			loginLog.setLoginIp(ip);
+			loginLog.setLoginMthd("I"); // 로그인:I, 로그아웃:O
+			loginLog.setErrOccrrAt("N");
+			loginLog.setErrorCode("");
+			loginLog.setPcInfo(loginVO.getPcInfo());
+			loginLog.setBrowserInfo(loginVO.getBrowserInfo());
+
+			loginLogService.logInsertLoginLog(loginLog);
+
         	return "forward:/cmm/main/mainPage.do";	// 성공 시 페이지.. (redirect 불가)
 
         } else {
         	
-        	model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
+        	//model.addAttribute("message", egovMessageSource.getMessage("fail.common.login", null, null, locale.KOREAN));
+			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
         	return "uat/uia/EgovLoginUsr";
         }
     }
@@ -195,4 +235,6 @@ class RequestWrapperForSecurity extends HttpServletRequestWrapper {
 
 		return super.getParameter(name);
 	}
+
+
 }

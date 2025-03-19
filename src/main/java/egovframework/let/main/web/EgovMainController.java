@@ -3,6 +3,7 @@ package egovframework.let.main.web;
 import java.util.Map;
 
 import egovframework.com.cmm.ComDefaultVO;
+import egovframework.com.cmm.EgovMessageSource;
 import egovframework.com.cmm.LoginVO;
 import egovframework.let.cop.bbs.service.BoardVO;
 import egovframework.let.cop.bbs.service.EgovBBSManageService;
@@ -62,6 +63,10 @@ public class EgovMainController {
 	/** egovQustnrRespondInfoService */
 	@Resource(name = "egovQustnrRespondInfoService")
 	private EgovQustnrRespondInfoService egovQustnrRespondInfoService;
+
+	/** EgovMessageSource */
+	@Resource(name="egovMessageSource")
+	EgovMessageSource egovMessageSource;
 
 	/**
 	 * 메인 페이지에서 각 업무 화면으로 연계하는 기능을 제공한다.
@@ -508,6 +513,13 @@ public class EgovMainController {
 	@RequestMapping(value = "/cmm/contest/deptSttcPsst.do")
 	public String getContestDeptSttcPsstPage(HttpServletRequest request, ModelMap model)
 			throws Exception{
+
+		// 미인증 사용자에 대한 보안처리
+		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+		if(!isAuthenticated) {
+			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
+			return "uat/uia/EgovLoginUsr";
+		}
 
 		return "main/contest/DeptSttcPsstView";
 	}

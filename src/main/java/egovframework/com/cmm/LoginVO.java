@@ -52,6 +52,11 @@ public class LoginVO implements Serializable{
 	private String ip;
 	/** GPKI인증 DN */
 	private String dn;
+	/** 사용자 PC정보 */
+	private String pcInfo;
+	/** 사용자 Browser정보 */
+	private String browserInfo;
+
 	/**
 	 * id attribute 를 리턴한다.
 	 * @return String
@@ -246,5 +251,28 @@ public class LoginVO implements Serializable{
 	public void setOrgnztNm(String orgnztNm) {
 		this.orgnztNm = orgnztNm;
 	}
-	
+	/**
+	 * @return the pcInfo
+	 */
+	public String getPcInfo() {
+		return pcInfo;
+	}
+	/**
+	 * @param pcInfo the pcInfo to set
+	 */
+	public void setPcInfo(String pcInfo) {
+		this.pcInfo = pcInfo;
+	}
+	/**
+	 * @return the browserInfo
+	 */
+	public String getBrowserInfo() {
+		return browserInfo;
+	}
+	/**
+	 * @param browserInfo the browserInfo to set
+	 */
+	public void setBrowserInfo(String browserInfo) {
+		this.browserInfo = browserInfo;
+	}
 }

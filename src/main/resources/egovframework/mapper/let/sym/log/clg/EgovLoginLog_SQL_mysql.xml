@@ -10,6 +10,8 @@
 		<result property="loginIp" column="CONECT_IP"/>
 		<result property="loginId" column="CONECT_ID"/>
 		<result property="loginNm" column="LOGIN_NM"/>
+		<result property="pcInfo" column="PC_INFO"/>
+		<result property="browserInfo" column="BROWSER_INFO"/>
 	</resultMap>
 
 	<!-- 로그인 로그 등록 -->
@@ -22,14 +24,18 @@
 				  , CONECT_IP
 				  , ERROR_OCCRRNC_AT
 				  , ERROR_CODE
-				  , CREAT_DT )
+				  , CREAT_DT
+				  , PC_INFO
+				  , BROWSER_INFO )
 			VALUES ( #{logId}
 				  , #{loginMthd}
 				  , #{loginId}
 				  , #{loginIp}
 				  , #{errOccrrAt}
 				  , #{errorCode}
-				  , sysdate())
+				  , sysdate()
+				  , #{pcInfo}
+				  , #{browserInfo})
 		]]>
 		
 	</insert>
@@ -66,10 +72,12 @@
 				, a.CONECT_IP
 				, a.CONECT_ID
 				, b.USER_NM AS LOGIN_NM
+				, a.PC_INFO
+				, a.BROWSER_INFO
 			FROM
 				LETTNLOGINLOG a
 			LEFT OUTER JOIN COMVNUSERMASTER b
-				ON a.CONECT_ID = b.ESNTL_ID
+				ON a.CONECT_ID = b.USER_ID
 			WHERE 
 				1 = 1
 			]]>

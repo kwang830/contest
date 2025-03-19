@@ -317,7 +317,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="egovWikiBookmarkIdMsgtrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="WIKI_ID"/>
     </bean>
     <bean name="egovWikiBookmarkIdMsgtrategy"
@@ -334,7 +334,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="egovRequestOfferIdMsgtrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="KNO_ID2"/>
     </bean>
     <bean name="egovRequestOfferIdMsgtrategy"
@@ -350,7 +350,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="egovRssTagManageIdMsgtrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="RSS_ID"/>
     </bean>
     <bean name="egovRssTagManageIdMsgtrategy"
@@ -367,7 +367,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="egovNoteManageIdMsgtrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="NOTE_ID"/>
     </bean>
     <bean name="egovNoteManageIdMsgtrategy"
@@ -384,7 +384,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="egovNoteTrnsmitIdMsgtrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="NOTE_TRNSMIT_ID"/>
     </bean>
     <bean name="egovNoteTrnsmitIdMsgtrategy"
@@ -401,7 +401,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="egovNoteRecptnIdMsgtrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="NOTE_RECPTN_ID"/>
     </bean>
     <bean name="egovNoteRecptnIdMsgtrategy"
@@ -419,7 +419,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="egovSystemCntcIdMsgtrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="CNTC_ID"/>
     </bean>
     <bean name="egovSystemCntcIdMsgtrategy"
@@ -436,7 +436,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="egovCntcInsttIdMsgtrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="INSTT_ID"/>
     </bean>
     <bean name="egovCntcInsttIdMsgtrategy"
@@ -453,7 +453,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="egovCntcSystemIdMsgtrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="SYS_ID"/>
     </bean>
     <bean name="egovCntcSystemIdMsgtrategy"
@@ -470,7 +470,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="egovCntcServiceIdMsgtrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="SVC_ID"/>
     </bean>
     <bean name="egovCntcServiceIdMsgtrategy"
@@ -487,7 +487,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="egovCntcMessageIdMsgtrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="CNTC_MESSAGE_ID"/>
     </bean>
     <bean name="egovCntcMessageIdMsgtrategy"
@@ -504,7 +504,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="egovCntcMessageItemIdMsgtrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="ITEM_ID"/>
     </bean>
     <bean name="egovCntcMessageItemIdMsgtrategy"
@@ -520,7 +520,7 @@
         destroy-method="destroy">
         <property name="dataSource" ref="egov.dataSource" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="INSTT_CODE_OPERT"/>
     </bean>
 
@@ -530,7 +530,7 @@
         destroy-method="destroy">
         <property name="dataSource" ref="egov.dataSource" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="ADMIN_CODE_OPERT"/>
     </bean>
 
@@ -541,7 +541,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="egovPopupManageIdMsgtrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="POPUP_ID"/>
     </bean>
     <bean name="egovPopupManageIdMsgtrategy"
@@ -558,7 +558,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="srchwrdManageIdMsgtrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="SRCHWRD_MANAGEID"/>
     </bean>
     <bean name="srchwrdManageIdMsgtrategy"
@@ -574,7 +574,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="srchwrdIdMsgtrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="SRCHWRD_ID"/>
     </bean>
     <bean name="srchwrdIdMsgtrategy"
@@ -592,7 +592,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="administrationWordIdMsgtrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="ADMINIST_WORD_ID"/>
     </bean>
     <bean name="administrationWordIdMsgtrategy"
@@ -609,7 +609,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="unityLinkIdMsgtrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="UNITY_LINK_ID"/>
     </bean>
     <bean name="unityLinkIdMsgtrategy"
@@ -626,7 +626,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="onlineMenualMsgtrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="ONLINE_MUL_ID"/>
     </bean>
     <bean name="onlineMenualMsgtrategy"
@@ -643,7 +643,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="onlinePollManageMsgtrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="POLL_MGR_ID"/>
     </bean>
     <bean name="onlinePollManageMsgtrategy"
@@ -659,7 +659,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="onlinePollItemMsgtrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="POLL_IEM_ID"/>
     </bean>
     <bean name="onlinePollItemMsgtrategy"
@@ -675,7 +675,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="onlinePollResultMsgtrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="POLL_RUT_ID"/>
     </bean>
     <bean name="onlinePollResultMsgtrategy"
@@ -711,7 +711,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="nttIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="NTT_ID"/>
     </bean>
     <bean name="nttIdStrategy"
@@ -725,7 +725,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="clbStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="CLB_ID"/>
     </bean>
     <bean name="clbStrategy"
@@ -741,7 +741,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="cmmntyStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="CMMNTY_ID"/>
     </bean>
     <bean name="cmmntyStrategy"
@@ -757,7 +757,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="mailMsgtrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="MAILMSG_ID"/>
     </bean>
     <bean name="mailMsgtrategy"
@@ -772,7 +772,7 @@
         destroy-method="destroy">
         <property name="dataSource" ref="egov.dataSource" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="RESTDE_ID"/>
     </bean>
             
@@ -783,7 +783,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="wordDicaryStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="WORD_ID"/>
     </bean>
 
@@ -802,7 +802,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="mgtMsgtrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="MTG_ID"/>
     </bean>
     <bean name="mgtMsgtrategy"
@@ -819,7 +819,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="mgtEventInfotrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="EVENTINFO_ID"/>
     </bean>
     <bean name="mgtEventInfotrategy"
@@ -836,7 +836,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="mgtExtrlhrInfotrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="EXTRLHRINFO_ID"/>
     </bean>
     <bean name="mgtExtrlhrInfotrategy"
@@ -853,7 +853,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="DeptSchdulManageStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="SCHDUL_ID"/>
     </bean>
     <bean name="DeptSchdulManageStrategy"
@@ -869,7 +869,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="DiaryManageInfotrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="DIARY_ID"/>
     </bean>
     <bean name="DiaryManageInfotrategy"
@@ -886,7 +886,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="siteManageStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="SITE_ID"/>
     </bean>
 
@@ -905,7 +905,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="recomendSiteManageStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="RECOMEND_SITE_ID"/>
     </bean>
 
@@ -924,7 +924,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="hpcmManageStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="HPCM_ID"/>
     </bean>
 
@@ -943,7 +943,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="newsManageStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="NEWS_ID"/>
     </bean>
 
@@ -962,7 +962,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="ncrdIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="NCRD_ID"/>
     </bean>
 
@@ -979,7 +979,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="adbkIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="ADBK_ID"/>
     </bean>
     <bean name="adbkIdStrategy"
@@ -994,7 +994,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="adbkUserIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="ADBKUSER_ID"/>
     </bean>
     <bean name="adbkUserIdStrategy"
@@ -1011,7 +1011,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="cpyrhtPrtcPolicyStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="CPYRHT_ID"/>
     </bean>
 
@@ -1030,7 +1030,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="cnsltManageStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="CNSLT_ID"/>
     </bean>
 
@@ -1049,7 +1049,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="loginLogStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="LOGINLOG_ID"/>
     </bean>
 
@@ -1068,7 +1068,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="sysLogStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="SYSLOG_ID"/>
     </bean>
 
@@ -1087,7 +1087,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="webLogStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="WEBLOG_ID"/>
     </bean>
 
@@ -1106,7 +1106,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="trsmrcvLogStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="TRSMRCVLOG_ID"/>
     </bean>
 
@@ -1125,7 +1125,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="loginScrinImageIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="LSI_ID"/>
     </bean>
 
@@ -1144,7 +1144,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="mainImageIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="MSI_ID"/>
     </bean>
 
@@ -1163,7 +1163,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="mainImageIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="ISG_ID"/>
     </bean>
 
@@ -1182,7 +1182,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="cntntsIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="CNTNTS_ID"/>
     </bean>
     <bean name="cntntsIdStrategy"
@@ -1200,7 +1200,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="reprtStatsIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="RS_ID"/>
     </bean>
 
@@ -1219,7 +1219,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="dtaUseStatsIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="DUS_ID"/>
     </bean>
 
@@ -1237,7 +1237,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="smsStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="SMS_ID"/>
     </bean>
     <bean name="smsStrategy"
@@ -1253,7 +1253,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="scrapStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="SCRAP_ID"/>
     </bean>
     <bean name="scrapStrategy"
@@ -1270,7 +1270,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="orgnztIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="ORGNZT_ID"/>
     </bean>
 
@@ -1289,7 +1289,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="ntwrkIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="NTWRK_ID"/>
     </bean>
 
@@ -1308,7 +1308,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="ServerEqpmnIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="SEVEQ_ID"/>
     </bean>
 
@@ -1327,7 +1327,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="ServerIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="SERVER_ID"/>
     </bean>
 
@@ -1346,7 +1346,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="TroblIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="TROBL_ID"/>
     </bean>
 
@@ -1366,7 +1366,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="SynchrnServerIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="SYNCHRNSERVER_ID"/>
     </bean>
 
@@ -1386,7 +1386,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="mtgPlaceManageIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="MTG_PLACE_ID"/>
     </bean>
 
@@ -1405,7 +1405,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="mtgPlaceResveIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="RESVE_ID"/>
     </bean>
 
@@ -1424,7 +1424,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="eventManageEventIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="EVENT_ID"/>
     </bean>
 
@@ -1443,7 +1443,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="eventAtdrnApplcntIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="APPLCNT_ID"/>
     </bean>
 
@@ -1462,7 +1462,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="rwardManageIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="RWARD_ID"/>
     </bean>
 
@@ -1481,7 +1481,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="ctsnnManageIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="CTSNN_ID"/>
     </bean>
 
@@ -1500,7 +1500,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="annvrsryManageIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="ANN_ID"/>
     </bean>
 
@@ -1520,7 +1520,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="LeaderSchdulStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="LEADER_SCHDUL_ID"/>
     </bean>
     <bean name="LeaderSchdulStrategy"
@@ -1538,7 +1538,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="DeptJobBxStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="DEPT_JOB_BX_ID"/>
     </bean>
     <bean name="DeptJobBxStrategy"
@@ -1556,7 +1556,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="DeptJobStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="DEPT_JOB_ID"/>
     </bean>
     <bean name="DeptJobStrategy"
@@ -1574,7 +1574,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="WikMnthngReprtStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="WIKMNTHNG_REPRT"/>
     </bean>
     <bean name="WikMnthngReprtStrategy"
@@ -1592,7 +1592,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="MemoTodoStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="MEMO_TODO_ID"/>
     </bean>
     <bean name="MemoTodoStrategy"
@@ -1610,7 +1610,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="MemoReprtStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="MEMO_REPRT"/>
     </bean>
     <bean name="MemoReprtStrategy"
@@ -1628,7 +1628,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy" ref="InfrmlSanctnStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="INFRML_SANCTN"/>
     </bean>
     <bean name="InfrmlSanctnStrategy"
@@ -1646,7 +1646,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="dbMntrngLogIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="DB_MNTRNG_LOG_ID"/>
     </bean>
 
@@ -1665,7 +1665,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="trsmrcvMntrngLogIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="TR_MNTRNG_LOG_ID"/>
     </bean>
 
@@ -1684,7 +1684,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="batchOpertIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="BATCH_OPERT_ID"/>
     </bean>
     <bean name="batchOpertIdStrategy"
@@ -1702,7 +1702,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="batchSchdulIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="BATCH_SCHDUL_ID"/>
     </bean>
     <bean name="batchSchdulIdStrategy"
@@ -1720,7 +1720,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="batchResultIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="BATCH_RESULT_ID"/>
     </bean>
     <bean name="batchResultIdStrategy"
@@ -1738,7 +1738,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="fileSysMntrngIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="FILESYS_MNTRNG"/>
     </bean>
 
@@ -1757,7 +1757,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="ntwrkSvcMntrngLogIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="NTWRKSVC_LOGID"/>
     </bean>
 
@@ -1776,7 +1776,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="fileSysMntrngLogIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="FILESYS_LOGID"/>
     </bean>
 
@@ -1795,7 +1795,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="ProxySvcIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="PROXYSVC_ID"/>
     </bean>
 
@@ -1814,7 +1814,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="ProxyLogIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="PROXYLOG_ID"/>
     </bean>
 
@@ -1833,7 +1833,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="damManageStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="DAM_ID"/>
     </bean>
 
@@ -1852,7 +1852,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="backupOpertIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="BACKUP_OPERT_ID"/>
     </bean>
     <bean name="backupOpertIdStrategy"
@@ -1870,7 +1870,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="backupResultIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="BACKUP_RESULT_ID"/>
     </bean>
     <bean name="backupResultIdStrategy"
@@ -1888,7 +1888,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="ServerResrceMntrngLogIdStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="SVCRESMONTLOG_ID"/>
     </bean>
 
@@ -1907,7 +1907,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="httpManageStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="HTTP_ID"/>
     </bean>
 
@@ -1926,7 +1926,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="httLManageStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="HTTL_ID"/>
     </bean>
 
@@ -1945,7 +1945,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="procManageStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="PROC_ID"/>
     </bean>
 
@@ -1964,7 +1964,7 @@
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="prolManageStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="table"      value="IDS"/>
         <property name="tableName"  value="PROL_ID"/>
     </bean>
 

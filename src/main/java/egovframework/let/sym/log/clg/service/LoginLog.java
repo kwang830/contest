@@ -47,6 +47,12 @@ public class LoginLog implements Serializable {
 	/** 생성일시 */
 	private String creatDt;
 
+	/** 사용자 PC정보 */
+	private String pcInfo;
+
+	/** 사용자 Browser정보 */
+	private String browserInfo;
+
 	/**
 	 * 검색시작일
 	 */
@@ -189,6 +195,26 @@ public class LoginLog implements Serializable {
 	}
 	public void setCreatDt(String creatDt) {
 		this.creatDt = creatDt;
+	}
+
+	/**
+	 * 사용자 PC정보
+	 */
+	public String getPcInfo() {
+		return pcInfo;
+	}
+	public void setPcInfo(String pcInfo) {
+		this.pcInfo = pcInfo;
+	}
+
+	/**
+	 * 사용자 Browser정보
+	 */
+	public String getBrowserInfo() {
+		return browserInfo;
+	}
+	public void setBrowserInfo(String browserInfo) {
+		this.browserInfo = browserInfo;
 	}
 
 	/**
