@@ -20,7 +20,7 @@
 	<link rel="stylesheet" href="<c:url value='/'/>css/font-icons.css" type="text/css" />
 	<link rel="stylesheet" href="<c:url value='/'/>css/animate.css" type="text/css" />
 	<link rel="stylesheet" href="<c:url value='/'/>css/magnific-popup.css" type="text/css" />
-
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 	<link rel="stylesheet" href="<c:url value='/'/>css/responsive.css" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -29,8 +29,84 @@
 	<title>IBK시스템, AI 아이디어 챌린지 - 로그인 이력 조회</title>
 
 </head>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
+<script type="text/javascript">
 
-<body class="stretched">
+/* ********************************************************
+ * 달력
+ ******************************************************** */
+function fn_contest_init_date(){
+	flatpickr("#searchBgnDe", {
+		locale: "ko",
+		dateFormat: "Y-m-d"
+	});
+
+	flatpickr("#searchEndDe", {
+		locale: "ko",
+		dateFormat: "Y-m-d"
+	});
+	<%--$("#searchBgnDe").datepicker(--%>
+	<%--		{dateFormat:'yy-mm-dd'--%>
+	<%--			, showOn: 'button'--%>
+	<%--			, buttonImage: '<c:url value='/images/bu_icon_carlendar.gif'/>'--%>
+	<%--			, buttonImageOnly: true--%>
+
+	<%--			, showMonthAfterYear: true--%>
+	<%--			, showOtherMonths: true--%>
+	<%--			, selectOtherMonths: true--%>
+
+	<%--			, changeMonth: true // 월선택 select box 표시 (기본은 false)--%>
+	<%--			, changeYear: true  // 년선택 selectbox 표시 (기본은 false)--%>
+	<%--			, showButtonPanel: true // 하단 today, done  버튼기능 추가 표시 (기본은 false)--%>
+	<%--		});--%>
+
+
+	<%--$("#searchEndDe").datepicker(--%>
+	<%--		{dateFormat:'yy-mm-dd'--%>
+	<%--			, showOn: 'button'--%>
+	<%--			, buttonImage: '<c:url value='/images/bu_icon_carlendar.gif'/>'--%>
+	<%--			, buttonImageOnly: true--%>
+
+	<%--			, showMonthAfterYear: true--%>
+	<%--			, showOtherMonths: true--%>
+	<%--			, selectOtherMonths: true--%>
+
+	<%--			, changeMonth: true // 월선택 select box 표시 (기본은 false)--%>
+	<%--			, changeYear: true  // 년선택 selectbox 표시 (기본은 false)--%>
+	<%--			, showButtonPanel: true // 하단 today, done  버튼기능 추가 표시 (기본은 false)--%>
+	<%--		});--%>
+}
+/*********************************************************
+ * 페이징 처리 함수
+ ******************************************************** */
+function fn_egov_select_linkPage(pageNo){
+	document.LoginLogForm.pageIndex.value = pageNo;
+	document.LoginLogForm.action = "<c:url value='/sym/log/clg/userLgnHsty.do'/>";
+	document.LoginLogForm.submit();
+}
+/*********************************************************
+ * 조회 처리 함수
+ ******************************************************** */
+function fn_egov_search_loginLog(){
+	var vFrom = document.LoginLogForm;
+
+	if(vFrom.searchEndDe.value != ""){
+		if(vFrom.searchBgnDe.value > vFrom.searchEndDe.value){
+			alert("검색조건의 시작일자가 종료일자보다  늦습니다. 검색조건 날짜를 확인하세요!"); //검색조건의 시작일자가 종료일자보다  늦습니다. 검색조건 날짜를 확인하세요!
+			return;
+		}
+	}else{
+		vFrom.searchEndDe.value = "";
+	}
+
+	vFrom.pageIndex.value = "1";
+	vFrom.action = "<c:url value='/sym/log/clg/userLgnHsty.do'/>";
+	vFrom.submit();
+}
+</script>
+
+<body class="stretched" onload="fn_contest_init_date()">
 
 <!-- Document Wrapper
 ============================================= -->
@@ -63,7 +139,7 @@
 			<div class="container clearfix">
 
 				<h3>로그인 이력 목록</h3>
-
+				<form name="LoginLogForm" action="<c:url value='/sym/log/clg/userLgnHsty.do'/>" method="post" onSubmit="fn_egov_search_loginLog(); return false;">
 				<!-- 검색영역 -->
 				<!-- 발생일자 선택 -->
 				<div class="search_box" title="">
@@ -73,14 +149,34 @@
 							<input type="text" name="searchBgnDe" id="searchBgnDe" size="15" maxlength="10" value="${searchVO.searchBgnDe}" title="검색시작일" > ~ <!-- 검색시작일  -->
 							<input type="text" name="searchEndDe" id="searchEndDe" size="15" maxlength="10" value="${searchVO.searchEndDe}" title="검색종료일" >&nbsp;&nbsp;&nbsp;<!-- 검색종료일  -->
 						</li>
-						<li><div style="line-height:6px;">&nbsp;&nbsp;&nbsp;&nbsp;</div><div>로그유형 :  </div></li><!-- 로그유형-->
 						<!-- 검색키워드 및 조회버튼 -->
+<%--						<li>--%>
+<%--							로그유형 :--%>
+<%--							<input class="s_input" name="searchWrd" type="text"  size="15" title="검색키워드" value='<c:out value="${searchVO.searchWrd}"/>'  maxlength="15" >--%>
+<%--						</li>--%>
 						<li>
+							<select name="searchCnd" class="select" title="선택">
+								<c:choose>
+									<c:when test="${empty searchVO.searchCnd}">
+										<option value="0" selected="selected">사용자ID</option>
+										<option value="1">사용자</option>
+										<option value="2">PC 정보</option>
+										<option value="3">브라우저</option>
+									</c:when>
+									<c:otherwise>
+										<option value="0" ${searchVO.searchCnd eq '0' ? 'selected="selected"' : ''}>사용자ID</option>
+										<option value="1" ${searchVO.searchCnd eq '1' ? 'selected="selected"' : ''}>사용자</option>
+										<option value="2" ${searchVO.searchCnd eq '2' ? 'selected="selected"' : ''}>PC 정보</option>
+										<option value="3" ${searchVO.searchCnd eq '3' ? 'selected="selected"' : ''}>브라우저</option>
+									</c:otherwise>
+								</c:choose>
+							</select>
 							<input class="s_input" name="searchWrd" type="text"  size="15" title="검색키워드" value='<c:out value="${searchVO.searchWrd}"/>'  maxlength="15" >
-							<input type="submit" class="s_btn" value="조회" title="조회버튼" />
 						</li>
+						<input type="submit" class="s_btn" value="조회" title="조회버튼" />
 					</ul>
 				</div>
+				</form>
 				<!--// 검색조건 -->
 
 				<div class="row show-grid">
@@ -88,8 +184,8 @@
 					<div class="col-lg-2">로그ID</div>
 					<div class="col-lg-2">발생일자</div>
 					<div class="col-lg-1">로그유형</div>
-					<div class="col-lg-1">사용자ID</div>
 					<div class="col-lg-1">사용자</div>
+					<div class="col-lg-1">사용자ID</div>
 					<div class="col-lg-2">접속IP</div>
 					<div class="col-lg-1">PC정보</div>
 					<div class="col-lg-1">브라우저</div>
@@ -146,7 +242,7 @@
 ============================================= -->
 <script src="<c:url value='/'/>js/jquery-3.3.1.js"></script>
 <script src="<c:url value='/'/>js/plugins.js"></script>
-
+<script src="<c:url value='/'/>js/jqueryui.js"></script>
 <!-- Footer Scripts
 ============================================= -->
 <script src="<c:url value='/'/>js/functions.js"></script>

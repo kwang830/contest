@@ -40,6 +40,15 @@
 									<li><a href="/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_AAAAAAAAAAAA"><div><i class="icon-megaphone"></i>공지사항</div></a>
 									<li><a href="/uss/olh/faq/FaqListInqire.do"><div><i class="icon-list-alt1"></i>FAQ</div></a>
 									<li><a href="/uss/olh/qna/QnaListInqire.do"><div><i class="icon-comments-alt"></i>QNA</div></a>
+								</ul>
+							</li>
+							<%
+								// 관리자 권한의 경우 게시판 표시
+								LoginVO loginVO = (LoginVO)session.getAttribute("LoginVO");
+								if(loginVO != null && loginVO.getUniqId().equals("USRCNFRM_00000000000")){
+							%>
+							<li class=""><a href="#"><div class="r_bar">시스템관리</div></a>
+								<ul>
 									<li><a href="/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_BBBBBBBBBBBB"><div><i class="icon-comments-alt"></i>접수내역[관리자]</div></a>
 									<li><a href="/sym/log/clg/userLgnHsty.do"><div><i class="icon-comments-alt"></i>로그인 이력[관리자]</div></a>
 									<li><a href="/cmm/contest/deptSttcPsst.do"><div><i class="icon-comments-alt"></i>부서 통계 현황[관리자]</div></a>
@@ -47,9 +56,8 @@
 									<li><a href="/uss/umt/mber/userMngm.do"><div><i class="icon-comments-alt"></i>사용자정보관리[임시링크]</div></a>
 								</ul>
 							</li>
-
+							<% } %>
 							<%
-								LoginVO loginVO = (LoginVO)session.getAttribute("LoginVO");
 								if(loginVO == null){
 							%>
 							<li class=""><a href="/uat/uia/egovLoginUsr.do"><div><i class="icon-line2-login"></i>로그인</div></a></li>
