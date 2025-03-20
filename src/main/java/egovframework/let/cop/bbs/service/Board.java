@@ -9,17 +9,15 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * @author 공통 서비스 개발팀 이삼섭
  * @since 2009.03.06
  * @version 1.0
- * @see
- *  
- * <pre>
- * << 개정이력(Modification Information) >>
- * 
+ *
+ *
+ *   개정이력(Modification Information)
  *   수정일      수정자          수정내용
  *  -------    --------    ---------------------------
  *  2009.03.06  이삼섭          최초 생성
  *  2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성 
  *  
- *  </pre>
+ *
  */
 @SuppressWarnings("serial")
 public class Board implements Serializable {
@@ -116,7 +114,70 @@ public class Board implements Serializable {
 	 * 게시 시작일
 	 */
 	private String ntceBgndeView = "";
-	
+
+	/**
+	 * 비밀글 여부
+	 */
+	private String secretAt = "";
+
+	/**
+	 * 공지사항 여부
+	 */
+	private String noticeAt = "";
+
+	/**
+	 * 제목 Bold 여부
+	 */
+	private String sjBoldAt = "";
+	/**
+	 * 부서코드
+	 */
+	private String deptCode = "";
+	/**
+	 * 호칭 코드
+	 */
+	private String titleCode = "";
+	/**
+	 * 직책코드
+	 */
+	private String positionCode = "";
+	/**
+	 * 직급코드
+	 */
+	private String rankCode = "";
+	/**
+	 * 부서명 Full
+	 */
+	private String deptNmF = "";
+	/**
+	 * 부서명 Single
+	 */
+	private String deptNmS = "";
+	/**
+	 * 호칭
+	 */
+	private String titleNm = "";
+	/**
+	 * 직책
+	 */
+	private String positionNm = "";
+	/**
+	 * 직급
+	 */
+	private String rankNm = "";
+	/**
+	 * 추천수
+	 */
+	private String picksCo = "";
+	/**
+	 * 합계점수
+	 */
+	private String scoreS = "";
+	/**
+	 * 평점점수
+	 */
+	private String scoreA = "";
+
 	/**
 	 * atchFileId attribute를 리턴한다.
 	 * @return the atchFileId
@@ -490,5 +551,246 @@ public class Board implements Serializable {
 	 */
 	public String toString(){
 		return ToStringBuilder.reflectionToString(this);
+	}
+
+	/**
+	 * secretAt attribute를 리턴한다.
+	 * @return the secretAt
+	 */
+	public String getSecretAt() {
+		return secretAt;
+	}
+
+	/**
+	 * secretAt attribute 값을 설정한다.
+	 * @param secretAt the secretAt to set
+	 */
+	public void setSecretAt(String secretAt) {
+		this.secretAt = secretAt;
+	}
+
+	/**
+	 * noticeAt attribute를 리턴한다.
+	 * @return the noticeAt
+	 */
+	public String getNoticeAt() {
+		return noticeAt;
+	}
+
+	/**
+	 * noticeAt attribute 값을 설정한다.
+	 * @param noticeAt the noticeAt to set
+	 */
+	public void setNoticeAt(String noticeAt) {
+		this.noticeAt = noticeAt;
+	}
+
+
+	/**
+	 * sjBoldAt attribute를 리턴한다.
+	 * @return the sjBoldAt
+	 */
+	public String getSjBoldAt() {
+		return sjBoldAt;
+	}
+
+	/**
+	 * sjBoldAt attribute 값을 설정한다.
+	 * @param sjBoldAt the sjBoldAt to set
+	 */
+	public void setSjBoldAt(String sjBoldAt) {
+		this.sjBoldAt = sjBoldAt;
+	}
+
+	/**
+	 * deptCode attribute를 리턴한다.
+	 * @return the deptCode
+	 */
+	public String getDeptCode() {
+		return deptCode;
+	}
+
+	/**
+	 * deptCode attribute 값을 설정한다.
+	 * @param deptCode the deptCode to set
+	 */
+	public void setDeptCode(String deptCode) {
+		this.deptCode = deptCode;
+	}
+
+	/**
+	 * titleCode attribute를 리턴한다.
+	 * @return the titleCode
+	 */
+	public String getTitleCode() {
+		return titleCode;
+	}
+
+	/**
+	 * titleCode attribute 값을 설정한다.
+	 * @param titleCode the titleCode to set
+	 */
+	public void setTitleCode(String titleCode) {
+		this.titleCode = titleCode;
+	}
+
+	/**
+	 * positionCode attribute를 리턴한다.
+	 * @return the positionCode
+	 */
+	public String getPositionCode() {
+		return positionCode;
+	}
+
+	/**
+	 * positionCode attribute 값을 설정한다.
+	 * @param positionCode the positionCode to set
+	 */
+	public void setPositionCode(String positionCode) {
+		this.positionCode = positionCode;
+	}
+
+	/**
+	 * rankCode attribute를 리턴한다.
+	 * @return the rankCode
+	 */
+	public String getRankCode() {
+		return rankCode;
+	}
+
+	/**
+	 * rankCode attribute 값을 설정한다.
+	 * @param rankCode the rankCode to set
+	 */
+	public void setRankCode(String rankCode) {
+		this.rankCode = rankCode;
+	}
+
+	/**
+	 * deptNmF attribute를 리턴한다.
+	 * @return the deptNmF
+	 */
+	public String getDeptNmF() {
+		return deptNmF;
+	}
+
+	/**
+	 * deptNmF attribute 값을 설정한다.
+	 * @param deptNmF the deptNmF to set
+	 */
+	public void setDeptNmF(String deptNmF) {
+		this.deptNmF = deptNmF;
+	}
+
+	/**
+	 * deptNmS attribute를 리턴한다.
+	 * @return the deptNmS
+	 */
+	public String getDeptNmS() {
+		return deptNmS;
+	}
+
+	/**
+	 * deptNmS attribute 값을 설정한다.
+	 * @param deptNmS the deptNmS to set
+	 */
+	public void setDeptNmS(String deptNmS) {
+		this.deptNmS = deptNmS;
+	}
+
+	/**
+	 * titleNm attribute를 리턴한다.
+	 * @return the titleNm
+	 */
+	public String getTitleNm() {
+		return titleNm;
+	}
+
+	/**
+	 * titleNm attribute 값을 설정한다.
+	 * @param titleNm the titleNm to set
+	 */
+	public void setTitleNm(String titleNm) {
+		this.titleNm = titleNm;
+	}
+
+	/**
+	 * positionNm attribute를 리턴한다.
+	 * @return the positionNm
+	 */
+	public String getPositionNm() {
+		return positionNm;
+	}
+
+	/**
+	 * positionNm attribute 값을 설정한다.
+	 * @param positionNm the positionNm to set
+	 */
+	public void setPositionNm(String positionNm) {
+		this.positionNm = positionNm;
+	}
+
+	/**
+	 * rankNm attribute를 리턴한다.
+	 * @return the rankNm
+	 */
+	public String getRankNm() {
+		return rankNm;
+	}
+
+	/**
+	 * rankNm attribute 값을 설정한다.
+	 * @param rankNm the rankNm to set
+	 */
+	public void setRankNm(String rankNm) {
+		this.rankNm = rankNm;
+	}
+
+	/**
+	 * picksCo attribute를 리턴한다.
+	 * @return the picksCo
+	 */
+	public String getPicksCo() {
+		return picksCo;
+	}
+
+	/**
+	 * picksCo attribute 값을 설정한다.
+	 * @param picksCo the picksCo to set
+	 */
+	public void setPicksCO(String picksCo) {
+		this.picksCo = picksCo;
+	}
+
+	/**
+	 * scoreS attribute를 리턴한다.
+	 * @return the scoreS
+	 */
+	public String getScoreS() {
+		return scoreS;
+	}
+
+	/**
+	 * scoreS attribute 값을 설정한다.
+	 * @param scoreS the scoreS to set
+	 */
+	public void setScoreS(String scoreS) {
+		this.scoreS = scoreS;
+	}
+
+	/**
+	 * scoreA attribute를 리턴한다.
+	 * @return the scoreA
+	 */
+	public String getScoreA() {
+		return scoreA;
+	}
+
+	/**
+	 * scoreA attribute 값을 설정한다.
+	 * @param scoreA the scoreA to set
+	 */
+	public void setScoreA(String scoreA) {
+		this.scoreA = scoreA;
 	}
 }

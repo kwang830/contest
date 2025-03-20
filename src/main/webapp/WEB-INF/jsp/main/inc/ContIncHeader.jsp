@@ -49,11 +49,10 @@
 							%>
 							<li class=""><a href="#"><div class="r_bar">시스템관리</div></a>
 								<ul>
-									<li><a href="/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_BBBBBBBBBBBB"><div><i class="icon-comments-alt"></i>접수내역[관리자]</div></a>
-									<li><a href="/sym/log/clg/userLgnHsty.do"><div><i class="icon-comments-alt"></i>로그인 이력[관리자]</div></a>
-									<li><a href="/cmm/contest/deptSttcPsst.do"><div><i class="icon-comments-alt"></i>부서 통계 현황[관리자]</div></a>
-									<li><a href="/uss/umt/mber/MyInfo.do"><div><i class="icon-comments-alt"></i>내정보관리[임시링크]</div></a>
-									<li><a href="/uss/umt/mber/userMngm.do"><div><i class="icon-comments-alt"></i>사용자정보관리[임시링크]</div></a>
+									<li><a href="/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_BBBBBBBBBBBB"><div><i class="icon-comments-alt"></i>접수 내역</div></a>
+									<li><a href="/sym/log/clg/userLgnHsty.do"><div><i class="icon-comments-alt"></i>로그인 이력</div></a>
+									<li><a href="/cmm/contest/deptSttcPsst.do"><div><i class="icon-comments-alt"></i>부서 통계 현황</div></a>
+									<li><a href="/uss/umt/mber/userMngm.do"><div><i class="icon-comments-alt"></i>사용자 정보 관리</div></a>
 								</ul>
 							</li>
 							<% } %>

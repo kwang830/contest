@@ -115,6 +115,46 @@ public class MberManageVO extends UserDefaultVO{
 	 * oldPassword attribute 값을  리턴한다.
 	 * @return String
 	 */
+	/**
+	 * 부서코드
+	 */
+	private String deptCode = "";
+	/**
+	 * 호칭 코드
+	 */
+	private String titleCode = "";
+	/**
+	 * 직책코드
+	 */
+	private String positionCode = "";
+	/**
+	 * 직급코드
+	 */
+	private String rankCode = "";
+	/**
+	 * 부서명 Full
+	 */
+	private String deptNmF = "";
+	/**
+	 * 부서명 Single
+	 */
+	private String deptNmS = "";
+	/**
+	 * 호칭
+	 */
+	private String titleNm = "";
+	/**
+	 * 직책
+	 */
+	private String positionNm = "";
+	/**
+	 * 직급
+	 */
+	private String rankNm = "";
+
+
+
+
 	public String getOldPassword() {
 		return oldPassword;
 	}
@@ -419,5 +459,148 @@ public class MberManageVO extends UserDefaultVO{
 	public void setMberEmailAdres(String mberEmailAdres) {
 		this.mberEmailAdres = mberEmailAdres;
 	}
-	
+
+	/**
+	 * deptCode attribute를 리턴한다.
+	 * @return the deptCode
+	 */
+	public String getDeptCode() {
+		return deptCode;
+	}
+
+	/**
+	 * deptCode attribute 값을 설정한다.
+	 * @param deptCode the deptCode to set
+	 */
+	public void setDeptCode(String deptCode) {
+		this.deptCode = deptCode;
+	}
+
+	/**
+	 * titleCode attribute를 리턴한다.
+	 * @return the titleCode
+	 */
+	public String getTitleCode() {
+		return titleCode;
+	}
+
+	/**
+	 * titleCode attribute 값을 설정한다.
+	 * @param titleCode the titleCode to set
+	 */
+	public void setTitleCode(String titleCode) {
+		this.titleCode = titleCode;
+	}
+
+	/**
+	 * positionCode attribute를 리턴한다.
+	 * @return the positionCode
+	 */
+	public String getPositionCode() {
+		return positionCode;
+	}
+
+	/**
+	 * positionCode attribute 값을 설정한다.
+	 * @param positionCode the positionCode to set
+	 */
+	public void setPositionCode(String positionCode) {
+		this.positionCode = positionCode;
+	}
+
+	/**
+	 * rankCode attribute를 리턴한다.
+	 * @return the rankCode
+	 */
+	public String getRankCode() {
+		return rankCode;
+	}
+
+	/**
+	 * rankCode attribute 값을 설정한다.
+	 * @param rankCode the rankCode to set
+	 */
+	public void setRankCode(String rankCode) {
+		this.rankCode = rankCode;
+	}
+
+	/**
+	 * deptNmF attribute를 리턴한다.
+	 * @return the deptNmF
+	 */
+	public String getDeptNmF() {
+		return deptNmF;
+	}
+
+	/**
+	 * deptNmF attribute 값을 설정한다.
+	 * @param deptNmF the deptNmF to set
+	 */
+	public void setDeptNmF(String deptNmF) {
+		this.deptNmF = deptNmF;
+	}
+
+	/**
+	 * deptNmS attribute를 리턴한다.
+	 * @return the deptNmS
+	 */
+	public String getDeptNmS() {
+		return deptNmS;
+	}
+
+	/**
+	 * deptNmS attribute 값을 설정한다.
+	 * @param deptNmS the deptNmS to set
+	 */
+	public void setDeptNmS(String deptNmS) {
+		this.deptNmS = deptNmS;
+	}
+
+	/**
+	 * titleNm attribute를 리턴한다.
+	 * @return the titleNm
+	 */
+	public String getTitleNm() {
+		return titleNm;
+	}
+
+	/**
+	 * titleNm attribute 값을 설정한다.
+	 * @param titleNm the titleNm to set
+	 */
+	public void setTitleNm(String titleNm) {
+		this.titleNm = titleNm;
+	}
+
+	/**
+	 * positionNm attribute를 리턴한다.
+	 * @return the positionNm
+	 */
+	public String getPositionNm() {
+		return positionNm;
+	}
+
+	/**
+	 * positionNm attribute 값을 설정한다.
+	 * @param positionNm the positionNm to set
+	 */
+	public void setPositionNm(String positionNm) {
+		this.positionNm = positionNm;
+	}
+
+	/**
+	 * rankNm attribute를 리턴한다.
+	 * @return the rankNm
+	 */
+	public String getRankNm() {
+		return rankNm;
+	}
+
+	/**
+	 * rankNm attribute 값을 설정한다.
+	 * @param rankNm the rankNm to set
+	 */
+	public void setRankNm(String rankNm) {
+		this.rankNm = rankNm;
+	}
 }

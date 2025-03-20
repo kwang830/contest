@@ -12,6 +12,7 @@ import egovframework.let.sym.mnu.mpm.service.MenuManageVO;
 import egovframework.let.uss.olh.faq.service.EgovFaqManageService;
 import egovframework.let.uss.olh.faq.service.FaqManageDefaultVO;
 import egovframework.let.uss.olp.qri.service.EgovQustnrRespondInfoService;
+import egovframework.let.cop.bbs.service.EgovArticleService;
 
 import org.egovframe.rte.fdl.security.userdetails.util.EgovUserDetailsHelper;
 import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
@@ -67,6 +68,9 @@ public class EgovMainController {
 	/** EgovMessageSource */
 	@Resource(name="egovMessageSource")
 	EgovMessageSource egovMessageSource;
+
+	@Resource(name = "EgovArticleService")
+	private EgovArticleService egovArticleService;
 
 	/**
 	 * 메인 페이지에서 각 업무 화면으로 연계하는 기능을 제공한다.
@@ -385,7 +389,7 @@ public class EgovMainController {
 
 		// 공지사항 메인컨텐츠 조회 끝 -----------------------------------
 
-		// 자유게시판 메인 컨텐츠 조회 시작 ---------------------------------
+		// 접수게시판 메인 컨텐츠 조회 시작 ---------------------------------
 		boardVO.setPageUnit(9);
 		boardVO.setPageSize(10);
 		boardVO.setBbsId("BBSMSTR_BBBBBBBBBBBB");
@@ -520,6 +524,19 @@ public class EgovMainController {
 			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
 			return "uat/uia/EgovLoginUsr";
 		}
+
+		BoardVO boardVO = new BoardVO();
+		boardVO.setPageUnit(9);
+		boardVO.setPageSize(10);
+
+		// 게시물 검색 기준
+		boardVO.setSearchBgnDe("2025-01-01");
+		boardVO.setSearchEndDe("2025-12-31");
+		boardVO.setBbsId("BBSMSTR_BBBBBBBBBBBB");
+
+		model.addAttribute("bbsDeptBbsList", egovArticleService.selectDeptBbsList(boardVO).get("resultList"));
+		model.addAttribute("bbsDeptLoginList", egovArticleService.selectDeptLoginList(boardVO).get("resultList"));
+		model.addAttribute("bbsUserLoginList", egovArticleService.selectUserLoginList(boardVO).get("resultList"));
 
 		return "main/contest/DeptSttcPsstView";
 	}

@@ -99,7 +99,22 @@ public class BoardVO extends Board implements Serializable {
     
     /** 조회 수 증가 여부 */
     private boolean plusCount = false;
-    
+
+    /** 익명등록 여부 */
+    private String anonymousAt = "";
+
+    /** 게시글 댓글갯수 */
+    private String commentCo = "";
+
+    /** 검색대상사용자 */
+    private String searchId = "";
+
+    /** 댓글등록여부 */
+    private String replyRegCo = "";
+
+    /** 평가등록여부 */
+    private String testRegCo = "";
+
     //---------------------------------
     // 2009.06.29 : 2단계 기능 추가
     //---------------------------------
@@ -600,5 +615,85 @@ public class BoardVO extends Board implements Serializable {
      */
     public String toString() {
     	return ToStringBuilder.reflectionToString(this);
+    }
+
+    /**
+     * anonymousAt attribute를 리턴한다.
+     * @return the anonymousAt
+     */
+    public String getAnonymousAt() {
+        return anonymousAt;
+    }
+
+    /**
+     * anonymousAt attribute 값을 설정한다.
+     * @param anonymousAt the anonymousAt to set
+     */
+    public void setAnonymousAt(String anonymousAt) {
+        this.anonymousAt = anonymousAt;
+    }
+
+    /**
+     * commentCo attribute를 리턴한다.
+     * @return the commentCo
+     */
+    public String getCommentCo() {
+        return commentCo;
+    }
+
+    /**
+     * commentCo attribute 값을 설정한다.
+     * @param commentCo the commentCo to set
+     */
+    public void setCommentCo(String commentCo) {
+        this.commentCo = commentCo;
+    }
+
+    /**
+     * searchId attribute를 리턴한다.
+     * @return the searchId
+     */
+    public String getSearchId() {
+        return searchId;
+    }
+
+    /**
+     * searchId attribute 값을 설정한다.
+     * @param searchId the searchId to set
+     */
+    public void setSearchId(String searchId) {
+        this.searchId = searchId;
+    }
+
+    /**
+     * replyRegCo attribute를 리턴한다.
+     * @return the replyRegCo
+     */
+    public String getReplyRegCo() {
+        return replyRegCo;
+    }
+
+    /**
+     * replyRegCo attribute 값을 설정한다.
+     * @param replyRegCo the replyRegCo to set
+     */
+    public void setReplyRegCo(String replyRegCo) {
+        this.replyRegCo = replyRegCo;
+    }
+
+    /**
+     * testRegCo attribute를 리턴한다.
+     * @return the testRegCo
+     */
+    public String getTestRegCo() {
+        return testRegCo;
+    }
+
+    /**
+     * testRegCo attribute 값을 설정한다.
+     * @param testRegCo the testRegCo to set
+     */
+    public void setTestRegCo(String testRegCo) {
+        this.testRegCo = testRegCo;
     }
 }

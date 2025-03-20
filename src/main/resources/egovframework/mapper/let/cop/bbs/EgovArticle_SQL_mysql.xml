@@ -1,0 +1,663 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BBSArticle">
+
+	<resultMap id="boardList" type="egovframework.let.cop.bbs.service.BoardVO">
+		<result property="bbsId" column="BBS_ID"/>
+		<result property="nttId" column="NTT_ID"/>
+		<result property="nttSj" column="NTT_SJ"/>
+		<result property="frstRegisterId" column="FRST_REGISTER_ID"/>
+		<result property="frstRegisterNm" column="FRST_REGISTER_NM"/>
+		<result property="frstRegisterPnttm" column="FRST_REGIST_PNTTM"/>
+		<result property="inqireCo" column="RDCNT"/>
+		<result property="parnts" column="PARNTSCTT_NO"/>
+		<result property="replyAt" column="ANSWER_AT"/>		
+		<result property="replyLc" column="ANSWER_LC"/>
+		<result property="useAt" column="USE_AT"/>
+		<result property="atchFileId" column="ATCH_FILE_ID"/>
+		<result property="ntceBgnde" column="NTCE_BGNDE"/>
+		<result property="ntceEndde" column="NTCE_ENDDE"/>
+		<result property="sjBoldAt" column="SJ_BOLD_AT"/>
+		<result property="noticeAt" column="NOTICE_AT"/>
+		<result property="secretAt" column="SECRET_AT"/>
+		<result property="commentCo" column="COMMENT_CO"/>		
+		<result property="deptCode" column="DEPT_CODE"/>
+		<result property="titleCode" column="TITLE_CODE"/>
+		<result property="positionCode" column="POSITION_CODE"/>
+		<result property="rankCode" column="RANK_CODE"/>
+		<result property="deptNmF" column="DEPT_NM_F"/>
+		<result property="deptNmS" column="DEPT_NM_S"/>
+		<result property="titleNm" column="TITLE_NM"/>
+		<result property="positionNm" column="POSITION_NM"/>
+		<result property="rankNm" column="RANK_NM"/>
+		<result property="picksCo" column="PICKS_CO"/>
+		<result property="scoreS" column="SCORE_S"/>
+		<result property="scoreA" column="SCORE_A"/>
+		<result property="replyRegCo" column="REPLY_REG_CO"/>
+		<result property="testRegCo" column="TEST_REG_CO"/>
+		<result property="lastUpdusrPnttm" column="LAST_LOGIN_DT"/>
+	</resultMap>
+
+	<resultMap id="boardDetail" type="egovframework.let.cop.bbs.service.BoardVO">
+		<result property="bbsId" column="BBS_ID"/>
+		<result property="nttId" column="NTT_ID"/>
+		<result property="nttSj" column="NTT_SJ"/>	
+		<result property="ntcrId" column="NTCR_ID"/>
+		<result property="ntcrNm" column="NTCR_NM"/>
+		<result property="nttNo" column="NTT_NO"/>
+		<result property="nttCn" column="NTT_CN"/>
+		<result property="password" column="PASSWORD"/>
+		<result property="frstRegisterId" column="FRST_REGISTER_ID"/>
+		<result property="frstRegisterNm" column="FRST_REGISTER_NM"/>
+		<result property="frstRegisterPnttm" column="FRST_REGIST_PNTTM"/>
+		<result property="ntceBgnde" column="NTCE_BGNDE"/>
+		<result property="ntceEndde" column="NTCE_ENDDE"/>
+		<result property="inqireCo" column="RDCNT"/>
+		<result property="useAt" column="USE_AT"/>
+		<result property="atchFileId" column="ATCH_FILE_ID"/>
+		<result property="parnts" column="PARNTSCTT_NO"/>
+		<result property="replyAt" column="ANSWER_AT"/>		
+		<result property="replyLc" column="ANSWER_LC"/>
+		<result property="sortOrdr" column="SORT_ORDR"/>
+		<result property="bbsTyCode" column="BBS_TY_CODE"/>
+		<result property="replyPosblAt" column="REPLY_POSBL_AT"/>
+		<result property="fileAtchPosblAt" column="FILE_ATCH_POSBL_AT"/>
+		<result property="posblAtchFileNumber" column="ATCH_POSBL_FILE_NUMBER"/>
+		<result property="bbsNm" column="BBS_NM"/>
+		<result property="sjBoldAt" column="SJ_BOLD_AT"/>
+		<result property="noticeAt" column="NOTICE_AT"/>
+		<result property="secretAt" column="SECRET_AT"/>
+		<result property="deptCode" column="DEPT_CODE"/>
+		<result property="titleCode" column="TITLE_CODE"/>
+		<result property="positionCode" column="POSITION_CODE"/>
+		<result property="rankCode" column="RANK_CODE"/>
+		<result property="deptNmF" column="DEPT_NM_F"/>
+		<result property="deptNmS" column="DEPT_NM_S"/>
+		<result property="titleNm" column="TITLE_NM"/>
+		<result property="positionNm" column="POSITION_NM"/>
+		<result property="rankNm" column="RANK_NM"/>
+		<result property="picksCo" column="PICKS_CO"/>
+		<result property="scoreS" column="SCORE_S"/>
+		<result property="commentCo" column="COMMENT_CO"/>
+		<result property="scoreA" column="SCORE_A"/>		
+	</resultMap>
+
+	<resultMap id="sortList" type="egovframework.let.cop.bbs.service.BoardVO">
+		<result property="bbsId" column="BBS_ID"/>
+		<result property="nttId" column="NTT_ID"/>
+		<result property="sortOrdr" column="SORT_ORDR"/>
+		<result property="parnts" column="PARNTSCTT_NO"/>
+		<result property="nttNo" column="NTT_NO"/>		
+		<result property="replyLc" column="ANSWER_LC"/>
+	</resultMap>
+
+	<resultMap id="guestList" type="egovframework.let.cop.bbs.service.BoardVO">
+		<result property="bbsId" column="BBS_ID"/>
+		<result property="nttId" column="NTT_ID"/>
+		<result property="nttSj" column="NTT_SJ"/>
+		<result property="frstRegisterPnttm" column="FRST_REGIST_PNTTM"/>
+		<result property="nttCn" column="NTT_CN"/>
+		<result property="useAt" column="USE_AT"/>
+		<result property="frstRegisterNm" column="FRST_REGISTER_NM"/>
+		<result property="frstRegisterId" column="FRST_REGISTER_ID"/>
+	</resultMap>
+
+
+ 	<select id="selectMaxNttId" resultType="java.lang.Long">
+ 		
+			SELECT IFNULL(MAX(NTT_ID),0)+1 AS NTT_ID  FROM LETTNBBS
+ 		
+ 	</select>
+ 	
+	<insert id="insertArticle" parameterType="egovframework.let.cop.bbs.service.BoardVO">
+		<selectKey keyProperty="nttNo" resultType="java.lang.Long">
+			SELECT IFNULL(MAX(SORT_ORDR),0)+1 AS NTT_NO  FROM LETTNBBS
+			WHERE BBS_ID = #{bbsId}
+		</selectKey>
+		
+			INSERT INTO LETTNBBS
+			(NTT_ID, BBS_ID, NTT_SJ, NTT_CN, SORT_ORDR, 
+			 NTCR_ID, NTCR_NM, PASSWORD, RDCNT, 
+			 NTCE_BGNDE, NTCE_ENDDE, ANSWER_AT,  			   
+			 PARNTSCTT_NO, NTT_NO, ANSWER_LC, ATCH_FILE_ID,
+			 FRST_REGISTER_ID, FRST_REGIST_PNTTM, USE_AT,
+			 SJ_BOLD_AT, NOTICE_AT, SECRET_AT
+			 )
+			VALUES
+			( #{nttId}, #{bbsId}, #{nttSj}, #{nttCn}, #{nttId}, 
+			  #{ntcrId}, #{ntcrNm}, #{password}, #{inqireCo}, 
+			  #{ntceBgnde}, #{ntceEndde}, #{replyAt}, 
+			  #{parnts}, 1, #{replyLc}, #{atchFileId},
+			  #{frstRegisterId}, SYSDATE(), 'Y',
+			  #{sjBoldAt}, #{noticeAt}, #{secretAt}
+			 )			
+		
+	</insert>
+	
+	<insert id="insertArticleLog" parameterType="egovframework.let.cop.bbs.service.BoardVO">
+		<selectKey keyProperty="nttNo" resultType="java.lang.Long" order="BEFORE">
+			SELECT IFNULL(MAX(REQ_ID),0)+1 AS NTT_NO  FROM LETTNBBSLOG
+		</selectKey>
+		
+			INSERT INTO LETTNBBSLOG
+			 (
+				REQ_ID, NTT_ID, BBS_ID, NTCR_ID, NTCR_NM, FRST_REGIST_PNTTM, FRST_REGISTER_ID
+			 )
+			VALUES
+			 ( 
+				#{nttNo},#{nttId}, #{bbsId}, #{ntcrId}, #{ntcrNm}, SYSDATE(), #{frstRegisterId}
+			 )			
+		
+	</insert>	
+	
+	<insert id="replyArticle" parameterType="egovframework.let.cop.bbs.service.BoardVO">
+		<selectKey keyProperty="nttNo" resultType="java.lang.Long" order="BEFORE">
+			SELECT IFNULL(MAX(NTT_NO),0)+1 AS NTT_NO  FROM LETTNBBS
+			WHERE BBS_ID = #{bbsId} AND SORT_ORDR = #{sortOrdr}
+		</selectKey>			
+		
+			INSERT INTO LETTNBBS
+			(NTT_ID, BBS_ID, NTT_SJ, NTT_CN, SORT_ORDR, 
+			 NTCR_ID, NTCR_NM, PASSWORD, RDCNT, 
+			 NTCE_BGNDE, NTCE_ENDDE, ANSWER_AT,  			   
+			 PARNTSCTT_NO, NTT_NO, ANSWER_LC, ATCH_FILE_ID,
+			 FRST_REGISTER_ID, FRST_REGIST_PNTTM, USE_AT,
+			 SJ_BOLD_AT, NOTICE_AT, SECRET_AT
+			 )
+			VALUES
+			( #{nttId}, #{bbsId}, #{nttSj}, #{nttCn}, #{sortOrdr}, 
+			  #{ntcrId}, #{ntcrNm}, #{password}, #{inqireCo}, 
+			  #{ntceBgnde}, #{ntceEndde}, #{replyAt}, 
+			  #{parnts}, #{nttNo}, #{replyLc}, #{atchFileId},
+			  #{frstRegisterId}, SYSDATE(), 'Y',
+			  #{sjBoldAt}, #{noticeAt}, #{secretAt}
+			 )			
+		
+	</insert>	
+	
+	<select id="selectArticleList" parameterType="egovframework.let.cop.bbs.service.BoardVO" resultMap="boardList">
+		
+			SELECT
+				a.NTT_ID, a.NTT_SJ, a.FRST_REGISTER_ID, IFNULL(b.USER_NM, a.NTCR_NM) as FRST_REGISTER_NM,
+				DATE_FORMAT(a.FRST_REGIST_PNTTM, '%Y-%m-%d') as FRST_REGIST_PNTTM,
+				a.RDCNT, a.PARNTSCTT_NO, a.ANSWER_AT, a.ANSWER_LC, a.USE_AT, a.ATCH_FILE_ID,
+				a.BBS_ID, a.NTCE_BGNDE, a.NTCE_ENDDE, a.SJ_BOLD_AT, a.NOTICE_AT, a.SECRET_AT, c.COMMENT_CO
+				
+				, b.DEPT_CODE as DEPT_CODE
+				, b.TITLE_CODE as TITLE_CODE
+				, b.POSITION_CODE as POSITION_CODE
+				, b.RANK_CODE as RANK_CODE
+				, cda.CODE_NM as DEPT_NM_F
+				, cda.CODE_DC as DEPT_NM_S
+				, cdb.CODE_NM as TITLE_NM
+				, cdc.CODE_NM as POSITION_NM
+				, cdd.CODE_NM as RANK_NM
+				, d.PICKS_CO as PICKS_CO 
+				, c.SCORE_S as SCORE_S 
+				, CAST(ROUND(c.SCORE_S/c.COMMENT_CO,1)*10 AS UNSIGNED) AS SCORE_A 
+				, e.REPLY_REG_CO as REPLY_REG_CO
+				
+			FROM
+				LETTNBBS a
+			LEFT OUTER JOIN COMVNUSERMASTER b ON a.FRST_REGISTER_ID = b.ESNTL_ID			
+			LEFT OUTER JOIN comtccmmndetailcode cda ON b.DEPT_CODE = cda.CODE AND cda.CODE_ID = 'IBK001' AND cda.USE_AT ='Y'
+			LEFT OUTER JOIN comtccmmndetailcode cdb ON b.TITLE_CODE = cdb.CODE AND cdb.CODE_ID = 'IBK002' AND cdb.USE_AT ='Y'
+			LEFT OUTER JOIN comtccmmndetailcode cdc ON b.POSITION_CODE = cdc.CODE AND cdc.CODE_ID = 'IBK003' AND cdc.USE_AT ='Y'
+			LEFT OUTER JOIN comtccmmndetailcode cdd ON b.RANK_CODE = cdd.CODE AND cdd.CODE_ID = 'IBK004' AND cdd.USE_AT ='Y'
+			 
+			LEFT OUTER JOIN (SELECT NTT_ID, BBS_ID, COUNT(1) AS COMMENT_CO, SUM(SCORE) AS SCORE_S FROM LETTNCOMMENT WHERE USE_AT = 'Y' GROUP BY NTT_ID, BBS_ID) c ON a.NTT_ID = c.NTT_ID AND a.BBS_ID = c.BBS_ID
+			LEFT OUTER JOIN (SELECT NTT_ID, BBS_ID, COUNT(1) AS PICKS_CO FROM LETTNCOMMENT WHERE USE_AT = 'Y' and PICKS_AT='Y' GROUP BY NTT_ID, BBS_ID) d ON a.NTT_ID = d.NTT_ID AND a.BBS_ID = d.BBS_ID
+			LEFT OUTER JOIN (SELECT NTT_ID, BBS_ID, COUNT(1) AS REPLY_REG_CO FROM LETTNCOMMENT WHERE USE_AT = 'Y' and WRTER_ID=#{searchId} GROUP BY NTT_ID, BBS_ID) e ON a.NTT_ID = e.NTT_ID AND a.BBS_ID = e.BBS_ID
+			 
+			WHERE
+				a.BBS_ID = #{bbsId}
+			AND a.USE_AT = 'Y'
+		
+			<if test="searchCnd == 0">AND
+					a.NTT_SJ LIKE CONCAT ('%', #{searchWrd},'%') 		
+			</if>
+			<if test="searchCnd == 1">AND
+					a.NTT_CN LIKE CONCAT ('%', #{searchWrd},'%') 		
+			</if>	
+			<if test="searchCnd == 2">AND
+					b.USER_NM LIKE CONCAT ('%', #{searchWrd},'%') 		
+			</if>				
+					
+			ORDER BY a.SORT_ORDR DESC, NTT_NO ASC
+			LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
+						
+	</select>	
+	
+	<select id="selectArticleListCnt" parameterType="egovframework.let.cop.bbs.service.BoardVO" resultType="java.lang.Integer">
+		
+			SELECT
+				COUNT(a.NTT_ID)
+			FROM
+				LETTNBBS a
+			LEFT OUTER JOIN 
+				COMVNUSERMASTER b
+			ON a.FRST_REGISTER_ID = b.ESNTL_ID 
+			WHERE
+				a.BBS_ID = #{bbsId}
+			AND a.USE_AT = 'Y'
+		
+			<if test="searchCnd == 0">AND
+					a.NTT_SJ LIKE CONCAT ('%', #{searchWrd},'%') 		
+			</if>
+			<if test="searchCnd == 1">AND
+					a.NTT_CN LIKE CONCAT ('%', #{searchWrd},'%') 		
+			</if>	
+			<if test="searchCnd == 2">AND
+					b.USER_NM LIKE CONCAT ('%', #{searchWrd},'%') 		
+			</if>			
+	</select>	
+	
+	<select id="selectArticleListPicks" parameterType="egovframework.let.cop.bbs.service.BoardVO" resultMap="boardList">
+		
+	    select * from (
+			SELECT
+				a.NTT_ID, a.NTT_SJ, a.FRST_REGISTER_ID, IFNULL(b.USER_NM, a.NTCR_NM) as FRST_REGISTER_NM,
+				DATE_FORMAT(a.FRST_REGIST_PNTTM, '%Y-%m-%d') as FRST_REGIST_PNTTM,
+				a.RDCNT, a.PARNTSCTT_NO, a.ANSWER_AT, a.ANSWER_LC, a.USE_AT, a.ATCH_FILE_ID,
+				a.BBS_ID, a.NTCE_BGNDE, a.NTCE_ENDDE, a.SJ_BOLD_AT, a.NOTICE_AT, a.SECRET_AT, c.COMMENT_CO
+				
+				, b.DEPT_CODE as DEPT_CODE
+				, b.TITLE_CODE as TITLE_CODE
+				, b.POSITION_CODE as POSITION_CODE
+				, b.RANK_CODE as RANK_CODE
+				, cda.CODE_NM as DEPT_NM_F
+				, cda.CODE_DC as DEPT_NM_S
+				, cdb.CODE_NM as TITLE_NM
+				, cdc.CODE_NM as POSITION_NM
+				, cdd.CODE_NM as RANK_NM
+				, d.PICKS_CO as PICKS_CO 
+				, c.SCORE_S as SCORE_S 
+				, CAST(ROUND(c.SCORE_S/c.COMMENT_CO,1)*10 AS UNSIGNED) AS SCORE_A 
+
+				
+			FROM
+				LETTNBBS a
+			LEFT OUTER JOIN COMVNUSERMASTER b ON a.FRST_REGISTER_ID = b.ESNTL_ID			
+			LEFT OUTER JOIN lettccmmndetailcode cda ON b.DEPT_CODE = cda.CODE AND cda.CODE_ID = 'IBK001' AND cda.USE_AT ='Y'
+			LEFT OUTER JOIN lettccmmndetailcode cdb ON b.TITLE_CODE = cdb.CODE AND cdb.CODE_ID = 'IBK002' AND cdb.USE_AT ='Y'
+			LEFT OUTER JOIN lettccmmndetailcode cdc ON b.POSITION_CODE = cdc.CODE AND cdc.CODE_ID = 'IBK003' AND cdc.USE_AT ='Y'
+			LEFT OUTER JOIN lettccmmndetailcode cdd ON b.RANK_CODE = cdd.CODE AND cdd.CODE_ID = 'IBK004' AND cdd.USE_AT ='Y'
+			 
+			LEFT OUTER JOIN (SELECT NTT_ID, BBS_ID, COUNT(1) AS COMMENT_CO, SUM(SCORE) AS SCORE_S FROM LETTNCOMMENT WHERE USE_AT = 'Y' GROUP BY NTT_ID, BBS_ID) c ON a.NTT_ID = c.NTT_ID AND a.BBS_ID = c.BBS_ID
+			LEFT OUTER JOIN (SELECT NTT_ID, BBS_ID, COUNT(1) AS PICKS_CO FROM LETTNCOMMENT WHERE USE_AT = 'Y' and PICKS_AT='Y' GROUP BY NTT_ID, BBS_ID) d ON a.NTT_ID = d.NTT_ID AND a.BBS_ID = d.BBS_ID
+ 
+			 
+			WHERE
+				a.BBS_ID = #{bbsId}
+			AND a.USE_AT = 'Y'
+		
+			<if test="searchCnd == 0">AND
+					a.NTT_SJ LIKE CONCAT ('%', #{searchWrd},'%') 		
+			</if>
+			<if test="searchCnd == 1">AND
+					a.NTT_CN LIKE CONCAT ('%', #{searchWrd},'%') 		
+			</if>	
+			<if test="searchCnd == 2">AND
+					b.USER_NM LIKE CONCAT ('%', #{searchWrd},'%') 		
+			</if>	
+			
+			) aa			
+					
+			ORDER BY aa.PICKS_CO DESC, aa.SCORE_A DESC, aa.SCORE_S DESC
+			LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
+						
+	</select>	
+	
+	<select id="selectArticleListPicksCnt" parameterType="egovframework.let.cop.bbs.service.BoardVO" resultType="java.lang.Integer">
+		
+			SELECT
+				COUNT(a.NTT_ID)
+			FROM
+				LETTNBBS a
+			LEFT OUTER JOIN 
+				COMVNUSERMASTER b
+			ON a.FRST_REGISTER_ID = b.ESNTL_ID 
+			WHERE
+				a.BBS_ID = #{bbsId}
+			AND a.USE_AT = 'Y'
+		
+			<if test="searchCnd == 0">AND
+					a.NTT_SJ LIKE CONCAT ('%', #{searchWrd},'%') 		
+			</if>
+			<if test="searchCnd == 1">AND
+					a.NTT_CN LIKE CONCAT ('%', #{searchWrd},'%') 		
+			</if>	
+			<if test="searchCnd == 2">AND
+					b.USER_NM LIKE CONCAT ('%', #{searchWrd},'%') 		
+			</if>			
+	</select>		
+	
+	<select id="selectArticleListScore" parameterType="egovframework.let.cop.bbs.service.BoardVO" resultMap="boardList">
+		
+	    select * from (
+			SELECT
+				a.NTT_ID, a.NTT_SJ, a.FRST_REGISTER_ID, IFNULL(b.USER_NM, a.NTCR_NM) as FRST_REGISTER_NM,
+				DATE_FORMAT(a.FRST_REGIST_PNTTM, '%Y-%m-%d') as FRST_REGIST_PNTTM,
+				a.RDCNT, a.PARNTSCTT_NO, a.ANSWER_AT, a.ANSWER_LC, a.USE_AT, a.ATCH_FILE_ID,
+				a.BBS_ID, a.NTCE_BGNDE, a.NTCE_ENDDE, a.SJ_BOLD_AT, a.NOTICE_AT, a.SECRET_AT, c.COMMENT_CO
+				
+				, b.DEPT_CODE as DEPT_CODE
+				, b.TITLE_CODE as TITLE_CODE
+				, b.POSITION_CODE as POSITION_CODE
+				, b.RANK_CODE as RANK_CODE
+				, cda.CODE_NM as DEPT_NM_F
+				, cda.CODE_DC as DEPT_NM_S
+				, cdb.CODE_NM as TITLE_NM
+				, cdc.CODE_NM as POSITION_NM
+				, cdd.CODE_NM as RANK_NM
+				, d.PICKS_CO as PICKS_CO 
+				, c.SCORE_S as SCORE_S 
+				, CAST(ROUND(c.SCORE_S/c.COMMENT_CO,1)*10 AS UNSIGNED) AS SCORE_A 
+
+				
+			FROM
+				LETTNBBS a
+			LEFT OUTER JOIN COMVNUSERMASTER b ON a.FRST_REGISTER_ID = b.ESNTL_ID			
+			LEFT OUTER JOIN lettccmmndetailcode cda ON b.DEPT_CODE = cda.CODE AND cda.CODE_ID = 'IBK001' AND cda.USE_AT ='Y'
+			LEFT OUTER JOIN lettccmmndetailcode cdb ON b.TITLE_CODE = cdb.CODE AND cdb.CODE_ID = 'IBK002' AND cdb.USE_AT ='Y'
+			LEFT OUTER JOIN lettccmmndetailcode cdc ON b.POSITION_CODE = cdc.CODE AND cdc.CODE_ID = 'IBK003' AND cdc.USE_AT ='Y'
+			LEFT OUTER JOIN lettccmmndetailcode cdd ON b.RANK_CODE = cdd.CODE AND cdd.CODE_ID = 'IBK004' AND cdd.USE_AT ='Y'
+			 
+			LEFT OUTER JOIN (SELECT NTT_ID, BBS_ID, COUNT(1) AS COMMENT_CO, SUM(SCORE) AS SCORE_S FROM LETTNCOMMENT WHERE USE_AT = 'Y' GROUP BY NTT_ID, BBS_ID) c ON a.NTT_ID = c.NTT_ID AND a.BBS_ID = c.BBS_ID
+			LEFT OUTER JOIN (SELECT NTT_ID, BBS_ID, COUNT(1) AS PICKS_CO FROM LETTNCOMMENT WHERE USE_AT = 'Y' and PICKS_AT='Y' GROUP BY NTT_ID, BBS_ID) d ON a.NTT_ID = d.NTT_ID AND a.BBS_ID = d.BBS_ID
+ 
+			 
+			WHERE
+				a.BBS_ID = #{bbsId}
+			AND a.USE_AT = 'Y'
+		
+			<if test="searchCnd == 0">AND
+					a.NTT_SJ LIKE CONCAT ('%', #{searchWrd},'%') 		
+			</if>
+			<if test="searchCnd == 1">AND
+					a.NTT_CN LIKE CONCAT ('%', #{searchWrd},'%') 		
+			</if>	
+			<if test="searchCnd == 2">AND
+					b.USER_NM LIKE CONCAT ('%', #{searchWrd},'%') 		
+			</if>	
+			
+			) aa			
+					
+			ORDER BY aa.SCORE_A DESC, aa.SCORE_S DESC
+			LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
+						
+	</select>	
+	
+	<select id="selectArticleListScoreCnt" parameterType="egovframework.let.cop.bbs.service.BoardVO" resultType="java.lang.Integer">
+		
+			SELECT
+				COUNT(a.NTT_ID)
+			FROM
+				LETTNBBS a
+			LEFT OUTER JOIN 
+				COMVNUSERMASTER b
+			ON a.FRST_REGISTER_ID = b.ESNTL_ID 
+			WHERE
+				a.BBS_ID = #{bbsId}
+			AND a.USE_AT = 'Y'
+		
+			<if test="searchCnd == 0">AND
+					a.NTT_SJ LIKE CONCAT ('%', #{searchWrd},'%') 		
+			</if>
+			<if test="searchCnd == 1">AND
+					a.NTT_CN LIKE CONCAT ('%', #{searchWrd},'%') 		
+			</if>	
+			<if test="searchCnd == 2">AND
+					b.USER_NM LIKE CONCAT ('%', #{searchWrd},'%') 		
+			</if>			
+	</select>	
+ 
+	<select id="selectArticleListBoard" parameterType="egovframework.let.cop.bbs.service.BoardVO" resultMap="boardList">
+		
+select 'cntWeekTot' as RANK_NM, count(1) as SCORE_S from lettnbbs where FRST_REGIST_PNTTM between '2023-05-08' and '2023-06-17' and BBS_ID='BBSMSTR_000000000001'  and USE_AT='Y'
+union 
+select 'cntWeek1' as RANK_NM, count(1) as SCORE_S from lettnbbs where FRST_REGIST_PNTTM between '2023-05-07' and '2023-05-14' and BBS_ID='BBSMSTR_000000000001'  and USE_AT='Y'
+union
+select 'cntWeek2' as RANK_NM, count(1) as SCORE_S from lettnbbs where FRST_REGIST_PNTTM between '2023-05-14' and '2023-05-21' and BBS_ID='BBSMSTR_000000000001'  and USE_AT='Y'
+union
+select 'cntWeek3' as RANK_NM, count(1) as SCORE_S from lettnbbs where FRST_REGIST_PNTTM between '2023-05-21' and '2023-05-28' and BBS_ID='BBSMSTR_000000000001'  and USE_AT='Y'
+union
+select 'cntWeek4' as RANK_NM, count(1) as SCORE_S from lettnbbs where FRST_REGIST_PNTTM between '2023-05-28' and '2023-06-04' and BBS_ID='BBSMSTR_000000000001'  and USE_AT='Y'
+union
+select 'cntWeek5' as RANK_NM, count(1) as SCORE_S from lettnbbs where FRST_REGIST_PNTTM between '2023-06-04' and '2023-06-11' and BBS_ID='BBSMSTR_000000000001'  and USE_AT='Y'
+union
+select 'cntWeek6' as RANK_NM, count(1) as SCORE_S from lettnbbs where FRST_REGIST_PNTTM between '2023-06-11' and '2023-06-17' and BBS_ID='BBSMSTR_000000000001'  and USE_AT='Y'
+union
+select 'cntWeekTest' as RANK_NM, count(1) as SCORE_S from lettnbbs where FRST_REGIST_PNTTM between '2023-04-01' and '2023-05-06' and BBS_ID='BBSMSTR_000000000001'  and USE_AT='Y'
+union
+select 'cntTotWId' as RANK_NM, count(distinct WRTER_ID) as SCORE_S from lettncomment where BBS_ID='BBSMSTR_000000000001' and USE_AT='Y'
+union 
+select 'cntTotCId' as RANK_NM, count(distinct CONECT_ID) as SCORE_S from lettnloginlog where CREAT_DT &gt; '2023-05-08' and CONECT_ID not in ('kimdaekwang','baekdanbi','ssy0202')
+union
+select 'perTotWId' as RANK_NM, CAST(count(distinct WRTER_ID)/603*100 AS UNSIGNED) as SCORE_S from lettncomment where BBS_ID='BBSMSTR_000000000001' and USE_AT='Y'
+union 
+select 'perTotCId' as RANK_NM, CAST(count(distinct CONECT_ID)/603*100 AS UNSIGNED) as SCORE_S from lettnloginlog where CREAT_DT &gt; '2023-05-08' and CONECT_ID not in ('kimdaekwang','baekdanbi','ssy0202')
+						
+	</select>		
+	
+	<select id="selectDeptLoginList" parameterType="egovframework.let.cop.bbs.service.BoardVO" resultMap="boardList">
+		
+select IFNULL(dept,'전체') as deptNmS , IFNULL(chk,'소계') as scoreS, count(1) as scoreA
+from ( 
+  select user_nm, cdc.code_dc as dept , cdb.code_dc as title, IFNULL(mmb.cnt,0) AS cnt, IFNULL(mmb.chk,'X') AS chk
+  from COMVNUSERMASTER mb 
+  LEFT OUTER JOIN lettccmmndetailcode cdb ON mb.TITLE_CODE = cdb.CODE AND cdb.CODE_ID = 'IBK002' AND cdb.USE_AT ='Y'
+  LEFT OUTER JOIN lettccmmndetailcode cdc ON mb.DEPT_CODE = cdc.CODE AND cdc.CODE_ID = 'IBK101' AND cdc.USE_AT ='Y'
+  LEFT OUTER JOIN (
+
+select conect_id, 
+case when count(1) &gt; 0 and count(1) &lt; 3 then 'A'
+     when count(1) &gt; 2 then 'B'
+  ELSE 'X'
+END
+ AS chk,  count(1) as cnt from lettnloginlog where creat_dt &gt; '2023-05-08' group by conect_id
+     
+  ) mmb ON mmb.conect_id = mb.user_id 
+  where mb.USER_SE = 'GNR' and mb.DEPT_CODE is not null and mb.POSITION_CODE not like 'A%'
+) asd group by dept, chk with rollup 
+						
+	</select>	
+	
+	<select id="selectDeptBbsList" parameterType="egovframework.let.cop.bbs.service.BoardVO" resultMap="boardList">
+		
+select code as deptCode, code_dc as deptNmS, count(1) as scoreA from (
+
+select  cdc.code, cdc.code_dc, bbs.NTT_ID from lettnbbs bbs
+LEFT OUTER JOIN COMVNUSERMASTER usr ON bbs.FRST_REGISTER_ID = usr.ESNTL_ID AND usr.USER_SE = 'GNR' and usr.DEPT_CODE is not null and usr.POSITION_CODE not like 'A%'
+LEFT OUTER JOIN lettccmmndetailcode cdc ON usr.DEPT_CODE = cdc.CODE AND cdc.CODE_ID = 'IBK101' AND cdc.USE_AT ='Y'
+where bbs.FRST_REGIST_PNTTM between #{searchBgnDe} and #{searchEndDe} and bbs.BBS_ID=#{bbsId}  and bbs.USE_AT='Y' order by bbs.NTT_ID desc
+) nTable
+group by code_dc order by code_dc
+						
+	</select>	
+	
+	<select id="selectUserLoginList" parameterType="egovframework.let.cop.bbs.service.BoardVO" resultMap="boardList">
+		
+select 
+user_nm as FRST_REGISTER_NM
+, cdc.code_dc as DEPT_NM_S
+, cda.code_dc as DEPT_NM_T 
+, cda.code_nm as DEPT_NM_F
+, cdb.code_dc as TITLE_NM
+, IFNULL(mmb.cnt,0) as SCORE_S
+, mmb.last_login_dt as LAST_LOGIN_DT
+from COMVNUSERMASTER mb 
+LEFT OUTER JOIN lettccmmndetailcode cda ON mb.DEPT_CODE = cda.CODE AND cda.CODE_ID = 'IBK001' AND cda.USE_AT ='Y'
+LEFT OUTER JOIN lettccmmndetailcode cdb ON mb.TITLE_CODE = cdb.CODE AND cdb.CODE_ID = 'IBK002' AND cdb.USE_AT ='Y'
+LEFT OUTER JOIN lettccmmndetailcode cdc ON mb.DEPT_CODE = cdc.CODE AND cdc.CODE_ID = 'IBK101' AND cdc.USE_AT ='Y'
+LEFT OUTER JOIN (select conect_id, count(1) as cnt, max(CREAT_DT) as last_login_dt  from lettnloginlog where creat_dt > '2023-05-08' group by conect_id) mmb ON mmb.conect_id = mb.user_id where mb.USER_SE = 'GNR' and mb.DEPT_CODE is not null
+order by cda.code_nm, cdb.code, user_nm
+						
+	</select>
+	
+	<select id="selectArticleDetail" parameterType="egovframework.let.cop.bbs.service.BoardVO" resultMap="boardDetail">
+		
+			SELECT
+				a.NTT_SJ, a.NTCR_ID, a.NTCR_NM, a.NTT_NO, a.NTT_CN,
+				a.PASSWORD, a.FRST_REGISTER_ID, IFNULL(b.USER_NM, a.NTCR_NM) as FRST_REGISTER_NM,
+				DATE_FORMAT(a.FRST_REGIST_PNTTM, '%Y-%m-%d') as FRST_REGIST_PNTTM,
+				a.NTCE_BGNDE, a.NTCE_ENDDE, a.RDCNT, 
+				a.USE_AT, a.ATCH_FILE_ID, a.BBS_ID, a.NTT_ID,
+				a.SJ_BOLD_AT, a.NOTICE_AT, a.SECRET_AT,
+				a.PARNTSCTT_NO, a.ANSWER_AT, a.ANSWER_LC, a.SORT_ORDR,
+				c.BBS_TY_CODE, c.REPLY_POSBL_AT, 
+				c.FILE_ATCH_POSBL_AT, c.ATCH_POSBL_FILE_NUMBER, c.BBS_NM
+				
+				, b.DEPT_CODE as DEPT_CODE
+				, b.TITLE_CODE as TITLE_CODE
+				, b.POSITION_CODE as POSITION_CODE
+				, b.RANK_CODE as RANK_CODE
+				, cda.CODE_NM as DEPT_NM_F
+				, cda.CODE_DC as DEPT_NM_S
+				, cdb.CODE_NM as TITLE_NM
+				, cdc.CODE_NM as POSITION_NM
+				, cdd.CODE_NM as RANK_NM
+ 				, dd.PICKS_CO as PICKS_CO 
+				, cc.SCORE_S as SCORE_S 
+				, cc.COMMENT_CO
+				, CAST(ROUND(cc.SCORE_S/cc.COMMENT_CO,1)*10 AS UNSIGNED) AS SCORE_A 
+				
+			FROM
+				LETTNBBS a
+			LEFT OUTER JOIN COMVNUSERMASTER b ON a.FRST_REGISTER_ID = b.ESNTL_ID
+			LEFT OUTER JOIN comtccmmndetailcode cda ON b.DEPT_CODE = cda.CODE AND cda.CODE_ID = 'IBK001' AND cda.USE_AT ='Y'
+			LEFT OUTER JOIN comtccmmndetailcode cdb ON b.TITLE_CODE = cdb.CODE AND cdb.CODE_ID = 'IBK002' AND cdb.USE_AT ='Y'
+			LEFT OUTER JOIN comtccmmndetailcode cdc ON b.POSITION_CODE = cdc.CODE AND cdc.CODE_ID = 'IBK003' AND cdc.USE_AT ='Y'
+			LEFT OUTER JOIN comtccmmndetailcode cdd ON b.RANK_CODE = cdd.CODE AND cdd.CODE_ID = 'IBK004' AND cdd.USE_AT ='Y'
+			
+			LEFT OUTER JOIN (SELECT NTT_ID, BBS_ID, COUNT(1) AS COMMENT_CO, SUM(SCORE) AS SCORE_S FROM LETTNCOMMENT WHERE USE_AT = 'Y' GROUP BY NTT_ID, BBS_ID) cc ON a.NTT_ID = cc.NTT_ID AND a.BBS_ID = cc.BBS_ID
+			LEFT OUTER JOIN (SELECT NTT_ID, BBS_ID, COUNT(1) AS PICKS_CO FROM LETTNCOMMENT WHERE USE_AT = 'Y' and PICKS_AT='Y' GROUP BY NTT_ID, BBS_ID) dd ON a.NTT_ID = dd.NTT_ID AND a.BBS_ID = dd.BBS_ID
+			 
+			LEFT OUTER JOIN 
+				COMTNBBSMASTER c
+			ON a.BBS_ID = c.BBS_ID			
+			WHERE
+				a.BBS_ID = #{bbsId}	
+			AND
+				a.NTT_ID = #{nttId}	
+			AND 
+				a.USE_AT = 'Y'
+						
+	</select> 
+ 
+ 	<update id="updateArticle" parameterType="egovframework.let.cop.bbs.service.BoardVO">
+ 		
+			UPDATE LETTNBBS SET
+				NTT_SJ = #{nttSj},
+				NTT_CN = #{nttCn}, 
+				NTCE_BGNDE = #{ntceBgnde},		
+				NTCE_ENDDE = #{ntceEndde},
+				LAST_UPDUSR_ID = #{lastUpdusrId},
+				ATCH_FILE_ID = #{atchFileId},
+				LAST_UPDT_PNTTM = SYSDATE(),
+				SJ_BOLD_AT = #{sjBoldAt},
+				NOTICE_AT = #{noticeAt},
+				SECRET_AT = #{secretAt}
+			WHERE BBS_ID = #{bbsId}
+			AND NTT_ID = #{nttId}
+ 		
+ 	</update>
+
+ 	<update id="deleteArticle" parameterType="egovframework.let.cop.bbs.service.BoardVO">
+ 		
+			UPDATE LETTNBBS SET
+				NTT_SJ = #{nttSj},
+				USE_AT = 'N',
+				LAST_UPDUSR_ID = #{lastUpdusrId},
+				LAST_UPDT_PNTTM = SYSDATE()
+			WHERE BBS_ID = #{bbsId}
+			AND NTT_ID = #{nttId}
+ 		
+ 	</update>
+
+ 	<select id="selectMaxInqireCo" parameterType="egovframework.let.cop.bbs.service.BoardVO" resultType="java.lang.Integer">
+ 		
+			SELECT IFNULL(MAX(RDCNT),0)+1 AS RDCNT FROM LETTNBBS
+			WHERE BBS_ID = #{bbsId}
+			AND NTT_ID = #{nttId}
+ 		
+ 	</select>
+ 	
+
+ 	<update id="updateInqireCo" parameterType="egovframework.let.cop.bbs.service.BoardVO">
+ 		
+			UPDATE LETTNBBS SET
+				RDCNT = #{inqireCo},
+				LAST_UPDUSR_ID = #{lastUpdusrId},
+				LAST_UPDT_PNTTM = SYSDATE()
+			WHERE BBS_ID = #{bbsId}
+			AND NTT_ID = #{nttId}
+ 		
+ 	</update>
+
+ 	
+ 	<select id="selectNoticeArticleList" parameterType="egovframework.let.cop.bbs.service.BoardVO" resultMap="boardList">
+		
+			SELECT
+				a.NTT_ID, a.NTT_SJ, a.FRST_REGISTER_ID, IFNULL(b.USER_NM, a.NTCR_NM) as FRST_REGISTER_NM,
+				DATE_FORMAT(a.FRST_REGIST_PNTTM, '%Y-%m-%d') as FRST_REGIST_PNTTM,
+				a.RDCNT, a.PARNTSCTT_NO, a.ANSWER_AT, a.ANSWER_LC, a.USE_AT, a.ATCH_FILE_ID,
+				a.BBS_ID, a.NTCE_BGNDE, a.NTCE_ENDDE, a.SJ_BOLD_AT, a.NOTICE_AT, a.SECRET_AT, c.COMMENT_CO
+			FROM
+				LETTNBBS a
+			LEFT OUTER JOIN 
+				COMVNUSERMASTER b
+			ON a.FRST_REGISTER_ID = b.ESNTL_ID 
+			LEFT OUTER JOIN
+				(SELECT NTT_ID, BBS_ID, COUNT(1) AS COMMENT_CO 
+				   FROM LETTNCOMMENT
+				 WHERE USE_AT = 'Y' 
+				 GROUP BY NTT_ID, BBS_ID) c
+			ON a.NTT_ID = c.NTT_ID
+			AND a.BBS_ID = c.BBS_ID
+			WHERE
+				a.BBS_ID = #{bbsId}
+			AND a.NOTICE_AT = 'Y'
+			AND a.USE_AT = 'Y'
+					
+			ORDER BY a.SORT_ORDR DESC, NTT_NO ASC
+			LIMIT 5 
+						
+	</select>	
+	
+	<select id="selectGuestArticleList" parameterType="egovframework.let.cop.bbs.service.BoardVO" resultMap="guestList">
+		
+			SELECT
+				a.NTT_ID, a.NTT_SJ,  
+				DATE_FORMAT(a.FRST_REGIST_PNTTM, '%Y-%m-%d %H:%i:%S')	as FRST_REGIST_PNTTM,
+				a.NTT_CN, a.USE_AT, a.BBS_ID, b.USER_NM as FRST_REGISTER_NM, a.FRST_REGISTER_ID
+			FROM
+				LETTNBBS a, COMVNUSERMASTER b
+			WHERE
+				a.BBS_ID = #{bbsId}
+			AND 
+				a.FRST_REGISTER_ID = b.ESNTL_ID
+			AND
+				a.USE_AT = 'Y'
+			ORDER BY a.SORT_ORDR DESC, a.NTT_NO ASC
+			LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
+						
+	</select>	
+	
+	<select id="selectGuestArticleListCnt" parameterType="egovframework.let.cop.bbs.service.BoardVO" resultType="java.lang.Integer">
+		
+			SELECT
+				COUNT(NTT_ID)
+			FROM
+				LETTNBBS
+			WHERE
+				BBS_ID = #{bbsId}	
+			AND
+				USE_AT = 'Y'
+					
+	</select>
+	
+	
+	
+</mapper>
