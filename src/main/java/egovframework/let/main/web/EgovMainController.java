@@ -96,85 +96,9 @@ public class EgovMainController {
 	@RequestMapping(value = "/cmm/main/mainPage.do")
 	public String getMgtMainPage(HttpServletRequest request, ModelMap model)
 	  throws Exception{
-		
-		// 공지사항 메인 컨텐츠 조회 시작 ---------------------------------
-		BoardVO boardVO = new BoardVO();
-		boardVO.setUseAt("Y");
-		boardVO.setPageUnit(5);
-		boardVO.setPageSize(10);
-		boardVO.setBbsId("BBSMSTR_AAAAAAAAAAAA");
 
-		PaginationInfo paginationInfo = new PaginationInfo();
-
-		paginationInfo.setCurrentPageNo(boardVO.getPageIndex());
-		paginationInfo.setRecordCountPerPage(boardVO.getPageUnit());
-		paginationInfo.setPageSize(boardVO.getPageSize());
-
-		boardVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
-		boardVO.setLastIndex(paginationInfo.getLastRecordIndex());
-		boardVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
-
-		Map<String, Object> map = bbsMngService.selectBoardArticles(boardVO, "BBSA02");
-		model.addAttribute("notiList", map.get("resultList"));
-
-
-		// 공지사항 메인컨텐츠 조회 끝 -----------------------------------
-
-		// 자유게시판 메인 컨텐츠 조회 시작 ---------------------------------
-		boardVO.setPageUnit(9);
-		boardVO.setPageSize(10);
-		boardVO.setBbsId("BBSMSTR_BBBBBBBBBBBB");
-
-		paginationInfo.setCurrentPageNo(boardVO.getPageIndex());
-		paginationInfo.setRecordCountPerPage(boardVO.getPageUnit());
-		paginationInfo.setPageSize(boardVO.getPageSize());
-
-		boardVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
-		boardVO.setLastIndex(paginationInfo.getLastRecordIndex());
-		boardVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
-
-		model.addAttribute("bbsList", bbsMngService.selectBoardArticles(boardVO, "BBSA02").get("resultList"));
-
-		// 자유게시판 메인컨텐츠 조회 끝 -----------------------------------
-
-		// FAQ 메인 컨텐츠 조회 시작 ---------------------------------
-		/** EgovPropertyService.SiteList */
-		FaqManageDefaultVO searchVO = new FaqManageDefaultVO();
-		searchVO.setPageUnit(3);
-    	searchVO.setPageSize(10);
-
-    	/** pageing */
-    	paginationInfo.setCurrentPageNo(searchVO.getPageIndex());
-		paginationInfo.setRecordCountPerPage(searchVO.getPageUnit());
-		paginationInfo.setPageSize(searchVO.getPageSize());
-
-		searchVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
-		searchVO.setLastIndex(paginationInfo.getLastRecordIndex());
-		searchVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
-
-        model.addAttribute("faqList", faqManageService.selectFaqList(searchVO));
-
-		// FAQ 메인 컨텐츠 조회 끝 -----------------------------------
-
-        // 설문참여 메인 컨텐츠 조회 시작 -----------------------------------
-        ComDefaultVO qVO = new ComDefaultVO();
-    	qVO.setPageUnit(1);
-    	qVO.setPageSize(10);
-
-    	/** pageing */
-		paginationInfo.setCurrentPageNo(qVO.getPageIndex());
-		paginationInfo.setRecordCountPerPage(qVO.getPageUnit());
-		paginationInfo.setPageSize(qVO.getPageSize());
-
-		qVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
-		qVO.setLastIndex(paginationInfo.getLastRecordIndex());
-		qVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
-
-        model.addAttribute("qriList", egovQustnrRespondInfoService.selectQustnrRespondInfoManageList(qVO));
-
-     // 설문참여 메인 컨텐츠 조회 끝 -----------------------------------
-
-		return "main/EgovMainView";
+		//return "main/EgovMainView";
+		return "main/contest/ContIntroView";
 	}
 
 	/**
@@ -530,13 +454,18 @@ public class EgovMainController {
 		boardVO.setPageSize(10);
 
 		// 게시물 검색 기준
-		boardVO.setSearchBgnDe("2025-01-01");
+		boardVO.setSearchBgnDe("2023-01-01");
 		boardVO.setSearchEndDe("2025-12-31");
 		boardVO.setBbsId("BBSMSTR_BBBBBBBBBBBB");
 
 		model.addAttribute("bbsDeptBbsList", egovArticleService.selectDeptBbsList(boardVO).get("resultList"));
+		System.out.println("chk :"+egovArticleService.selectDeptBbsList(boardVO).get("resultList"));
+
 		model.addAttribute("bbsDeptLoginList", egovArticleService.selectDeptLoginList(boardVO).get("resultList"));
+		System.out.println("chk :"+egovArticleService.selectDeptLoginList(boardVO).get("resultList"));
+
 		model.addAttribute("bbsUserLoginList", egovArticleService.selectUserLoginList(boardVO).get("resultList"));
+		System.out.println("chk :"+egovArticleService.selectUserLoginList(boardVO).get("resultList"));
 
 		return "main/contest/DeptSttcPsstView";
 	}
@@ -554,5 +483,20 @@ public class EgovMainController {
 			throws Exception{
 
 		return "main/contest/ContestOvrvView";
+	}
+
+	/**
+	 * 템플릿 메인 페이지 조회
+	 * @return 메인페이지 정보 Map [key : 항목명]
+	 *
+	 * @param request
+	 * @param model
+	 * @exception Exception Exception
+	 */
+	@RequestMapping(value = "/cmm/main/mainPage3.do")
+	public String getMgtMainPage3(HttpServletRequest request, ModelMap model)
+			throws Exception{
+
+		return "main/EgovMainView";
 	}
 }

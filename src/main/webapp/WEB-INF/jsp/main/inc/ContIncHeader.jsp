@@ -6,9 +6,39 @@
 	// 현재 페이지 URL 가져오기
 	String currentPage = request.getRequestURI();
 	System.out.println("currentPage:"+currentPage);
-	System.out.println("currentPage:"+currentPage);
-	System.out.println("currentPage:"+currentPage);
 %>
+<script type="text/javascript">
+	<!--
+	function getLastLink(menuNo){
+		var tNode = new Array;
+		for (var i = 0; i < document.menuListForm.tmp_menuNm.length; i++) {
+			tNode[i] = document.menuListForm.tmp_menuNm[i].value;
+			var nValue = tNode[i].split("|");
+			//선택된 메뉴(menuNo)의 하위 메뉴중 첫번재 메뉴의 링크정보를 리턴한다.
+			if (nValue[1]==menuNo) {
+				if(nValue[5]!="dir" && nValue[5]!="" && nValue[5]!="/"){
+					//링크정보가 있으면 링크정보를 리턴한다.
+					return nValue[5];
+				}else{
+					//링크정보가 없으면 하위 메뉴중 첫번째 메뉴의 링크정보를 리턴한다.
+					return getLastLink(nValue[0]);
+				}
+			}else if (nValue[0]==menuNo) {
+				if(nValue[5]!="dir" && nValue[5]!="" && nValue[5]!="/"){
+					//링크정보가 있으면 링크정보를 리턴한다.
+					return nValue[5];
+				}
+			}
+		}
+	}
+	function goMenuPage(menuNo){
+		document.getElementById("menuNo").value=menuNo;
+		//document.getElementById("link").value=getLastLink(menuNo);
+		document.menuListForm.action = "<c:url value='/'/>"+getLastLink(menuNo).substring(1);
+		document.menuListForm.submit();
+	}
+	//-->
+</script>
 <!-- Header
 		============================================= -->
 		<header id="header" class="full-header">
@@ -31,37 +61,47 @@
 					<nav id="primary-menu">
 
 						<ul>
-							<li class="<%= currentPage.contains("ContestOvrvView.jsp") ? "current" : "" %>"><a href="/cmm/contest/contestOvrv.do"><div class="r_bar">공모개요</div></a></li>
-							<li class="<%= currentPage.contains("ApfrRcipView.jsp") ? "current" : "" %>"><a href="/cmm/contest/apfrRcip.do"><div class="r_bar">신청서접수</div></a></li>
-							<li class="<%= currentPage.contains("ContestVoteView.jsp") ? "current" : "" %>"><a href="/cmm/contest/contestVote.do"><div class="r_bar">공모전 투표</div></a></li>
-							<li class="<%= currentPage.contains("ContestOtcmView.jsp") ? "current" : "" %>"><a href="/cmm/contest/contestOtcm.do"><div class="r_bar">공모전 성과</div></a></li>
-							<li class=""><a href="#"><div class="r_bar">공통게시판</div></a>
-								<ul>
-									<li><a href="/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_AAAAAAAAAAAA"><div><i class="icon-megaphone"></i>공지사항</div></a>
-									<li><a href="/uss/olh/faq/FaqListInqire.do"><div><i class="icon-list-alt1"></i>FAQ</div></a>
-									<li><a href="/uss/olh/qna/QnaListInqire.do"><div><i class="icon-comments-alt"></i>QNA</div></a>
-								</ul>
-							</li>
+							<c:forEach var="parent" items="${list_headmenu}">
+								<c:if test="${parent.upperMenuId == 0}">
+									<li>
+									<a href="#LINK" onclick="goMenuPage('<c:out value="${parent.menuNo}"/>')">
+										<c:out value="${parent.menuNm}"/>
+									</a>
+
+									<!-- 자식 개수 확인 -->
+									<c:set var="childCount" value="0"/>
+									<c:forEach var="childCheck" items="${list_headmenu}">
+										<c:if test="${childCheck.upperMenuId == parent.menuNo}">
+											<c:set var="childCount" value="${childCount + 1}"/>
+										</c:if>
+									</c:forEach>
+
+									<!-- 자식이 2개 이상이면 ul 태그 생성 -->
+									<c:if test="${childCount > 1}">
+										<ul>
+											<c:forEach var="child" items="${list_headmenu}">
+												<c:if test="${child.upperMenuId == parent.menuNo}">
+													<li>
+														<a href="#LINK" onclick="goMenuPage('<c:out value="${child.menuNo}"/>')">
+															<c:out value="${child.menuNm}"/>
+														</a>
+													</li>
+												</c:if>
+											</c:forEach>
+										</ul>
+									</c:if>
+
+									</li>
+								</c:if>
+							</c:forEach>
+
 							<%
-								// 관리자 권한의 경우 게시판 표시
 								LoginVO loginVO = (LoginVO)session.getAttribute("LoginVO");
-								if(loginVO != null && loginVO.getUniqId().equals("USRCNFRM_00000000000")){
-							%>
-							<li class=""><a href="#"><div class="r_bar">시스템관리</div></a>
-								<ul>
-									<li><a href="/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_BBBBBBBBBBBB"><div><i class="icon-comments-alt"></i>접수 내역</div></a>
-									<li><a href="/sym/log/clg/userLgnHsty.do"><div><i class="icon-comments-alt"></i>로그인 이력</div></a>
-									<li><a href="/cmm/contest/deptSttcPsst.do"><div><i class="icon-comments-alt"></i>부서 통계 현황</div></a>
-									<li><a href="/uss/umt/mber/userMngm.do"><div><i class="icon-comments-alt"></i>사용자 정보 관리</div></a>
-								</ul>
-							</li>
-							<% } %>
-							<%
 								if(loginVO == null){
 							%>
 							<li class=""><a href="/uat/uia/egovLoginUsr.do"><div><i class="icon-line2-login"></i>로그인</div></a></li>
 							<% }else{ %>
-							<li class=""><a href="/uss/umt/mber/MyInfo.do"><div class="r_bar">내정보관리</div></a></li>
+							<li class=""><a href="/uss/umt/mber/MyInfo.do"><div class="">내정보관리</div></a></li>
 							<li class=""><c:out value="${loginName}" /> <a href="/uat/uia/actionLogout.do"><div><i class="icon-line2-logout"></i>로그아웃</div></a></li>
 							<% } %>
 						</ul>
@@ -72,5 +112,15 @@
 				</div>
 
 			</div>
+
+			<form name="menuListForm" action ="" method="post">
+				<input type="hidden" id="menuNo" name="menuNo" value="<%=session.getAttribute("menuNo")%>" />
+				<input type="hidden" id="link" name="link" value="" />
+				<div style="width:0px; height:0px;">
+					<c:forEach var="result" items="${list_menulist}" varStatus="status" >
+						<input type="hidden" name="tmp_menuNm" value="<c:out value='${result.menuNo}'/>|<c:out value='${result.upperMenuId}'/>|<c:out value='${result.menuNm}'/>|<c:out value='${result.relateImagePath}'/>|<c:out value='${result.relateImageNm}'/>|<c:out value='${result.chkURL}'/>|" />
+					</c:forEach>
+				</div>
+			</form>
 
 		</header><!-- #header end -->

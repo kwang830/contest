@@ -30,6 +30,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.JwtParser;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureException;
+
 @Controller
 public class EgovLoginController {
 
@@ -98,6 +105,80 @@ public class EgovLoginController {
 			HttpServletResponse response,
 			ModelMap model)
 			throws Exception {
+
+		String tokenString = request.getParameter("jwt"); // 토큰스트링
+		//eyJhbGciOiJIUzUxMiIsInJlZ0RhdGUiOjE2ODYxMTYxMzE1ODUsInR5cCI6IkpXVCJ9.eyJkZXB0TmFtZSI6Iu2UjOueq-2PvOyCrOyXhe2MgCIsImV4cCI6MTY4NjExNjIzMSwiZW1wTmFtZSI6Iuq5gOuMgOq0kSIsInBvc05hbWUiOiLssKjsnqUiLCJlbXBDb2RlIjoiNTAyNzkifQ.qCsZkr8J20WuEym_pQsy2Z--Fj_BsudyqkskTFG3Loy03nGfsgbwIe73Fg6W7KQFlUm-9jixSEi3q26yXIHFAg
+//		String tokenString = "eyJhbGciOiJIUzUxMiIsInJlZ0RhdGUiOjE2ODYxMjE3NDg0NjYsInR5cCI6IkpXVCJ9.eyJkZXB0TmFtZSI6Iu2UjOueq-2PvOyCrOyXhe2MgCIsImV4cCI6MTY4NjEyMTg0OCwiZW1wTmFtZSI6IuuwseuLqOu5hCIsInBvc05hbWUiOiLrjIDrpqwiLCJlbXBDb2RlIjoiNTAzMTgifQ.F13FWamvRuVl4-yJP2WH6RycmmMIQKfXq5ehCUAzWFq_gl26dim9_7-q5i1S4A4xNOrUGbJkNA2SCTKtJGP6yw";
+
+		System.out.println("[로그인] loginUsrView >>> ");
+
+		try{
+			String JWT_KEY = "X19JQktTWVNURU1fT1BSSVNLX18=" ; // 암호화key
+
+			JwtParser jp = Jwts.parser() ;
+			jp.setSigningKey(JWT_KEY.getBytes("UTF-8"));
+			Jws<Claims> claims = jp.parseClaimsJws(tokenString);
+
+			/*
+				empCode : 사번(ex:99511)
+				empName : 이름(ex:이항)
+				deptName: 부서명(ex:정보지원팀)
+				posName : 직위(ex:차장)
+			*/
+			String empCode = claims.getBody().get("empCode").toString();
+			String empName = claims.getBody().get("empName").toString();
+			String deptName = claims.getBody().get("deptName").toString();
+			String posName = claims.getBody().get("posName").toString();
+			System.out.println(">>>>>>>>>>> empCode : " + empCode);
+			System.out.println(">>>>>>>>>>> empName : " + empName);
+			System.out.println(">>>>>>>>>>> deptName : " + deptName);
+			System.out.println(">>>>>>>>>>> posName : " + posName);
+
+			String ip = request.getHeader("X-FORWARDED-FOR");
+
+			if (ip == null || ip.length() == 0) {
+				ip= request.getHeader("Proxy-Client-IP");
+			}
+
+			if (ip == null || ip.length() == 0) {
+				ip= request.getHeader("WL-Proxy-Client-IP");
+			}
+
+			if (ip == null || ip.length() == 0) {
+				ip= request.getRemoteAddr() ;
+			}
+
+			loginVO.setUrl("PASS");
+			loginVO.setId(empCode);
+			loginVO.setUserSe("GNR");
+			LoginVO resultVO = loginService.actionLogin(loginVO); //사번만 확인
+
+			LoginLog loginLog = new LoginLog();
+			loginLog.setLoginId(resultVO.getId());
+			loginLog.setLoginIp(ip);
+			loginLog.setLoginMthd("I"); // 로그인:I, 로그아웃:O
+			loginLog.setErrOccrrAt("N");
+			loginLog.setErrorCode("");
+			loginLog.setBrowserInfo(loginVO.getBrowserInfo());
+			loginLog.setPcInfo(loginVO.getPcInfo());
+			loginLogService.logInsertLoginLog(loginLog);
+
+			// 2-1. 로그인 정보를 세션에 저장
+			request.getSession().setAttribute("loginVO", resultVO);
+
+			return "redirect:/uat/uia/actionMain.do";
+
+
+		}catch(ExpiredJwtException expiredJwtException){
+			// jwt 토큰만료
+			System.out.println(">>>>>>>>>>> expiredJwtException : " + expiredJwtException);
+		}catch(SignatureException signatureException){
+			// jwt 키 불일치
+			System.out.println(">>>>>>>>>>> signatureException : " + signatureException);
+		}catch(Exception globalException){
+			System.out.println(">>>>>>>>>>> globalException : " + globalException);
+		}
+
     	return "uat/uia/EgovLoginUsr";
 	}
 

@@ -18,11 +18,12 @@
 				, (SELECT C.URL FROM LETTNPROGRMLIST C WHERE B.PROGRM_FILE_NM = C.PROGRM_FILE_NM) AS chkURL
 			FROM LETTNMENUCREATDTLS A, LETTNMENUINFO B 
 			WHERE  B.Menu_NO &gt; 0 
-			AND    B.UPPER_MENU_NO = 0  
-			AND    A.MENU_NO  = B.MENU_NO 
+			<!--AND    B.UPPER_MENU_NO = 0-->
+			AND    A.MENU_NO  = B.MENU_NO
+			AND    A.USE_AT = 'Y'
 			AND    A.AUTHOR_CODE = (SELECT C.AUTHOR_CODE from LETTNEMPLYRSCRTYESTBS C
 	                                WHERE  C.SCRTY_DTRMN_TRGET_ID = #{tmp_UniqId})
-			ORDER BY MENU_ORDR
+			ORDER BY B.Menu_NO
 		 
 	</select>
 
@@ -37,7 +38,8 @@
 				 , B.RELATE_IMAGE_NM AS relateImageNm
 				 , (SELECT C.URL FROM LETTNPROGRMLIST C WHERE B.PROGRM_FILE_NM = C.PROGRM_FILE_NM) AS chkURL	
 			FROM   LETTNMENUCREATDTLS A, LETTNMENUINFO B
-			WHERE  A.MENU_NO  = B.MENU_NO 
+			WHERE  A.MENU_NO  = B.MENU_NO
+		    AND    A.USE_AT = 'Y'
 			AND    A.AUTHOR_CODE = (SELECT AUTHOR_CODE from LETTNEMPLYRSCRTYESTBS
 	                                WHERE  SCRTY_DTRMN_TRGET_ID = #{tmp_UniqId})
 			ORDER BY B.MENU_ORDR
@@ -63,6 +65,7 @@
 			      (select MIN(MENU_ORDR) 
 			       from LETTNMENUCREATDTLS A, LETTNMENUINFO B
 			       where A.MENU_NO = B.MENU_NO
+				   AND   A.USE_AT = 'Y'
 			       AND   A.AUTHOR_CODE = (SELECT AUTHOR_CODE from LETTNEMPLYRSCRTYESTBS
 	                                      WHERE  SCRTY_DTRMN_TRGET_ID = #{tempValue})
 			       AND   B.UPPER_MENU_NO = #{menuNo})
@@ -101,6 +104,7 @@
             AND    B.UPPER_MENU_NO = 0  
             AND    A.MENU_NO  = B.MENU_NO 
             AND    A.AUTHOR_CODE = #{authorCode}
+		    AND    A.USE_AT = 'Y'
             ORDER BY B.MENU_ORDR
          
     </select>
@@ -118,6 +122,7 @@
             FROM   LETTNMENUCREATDTLS A, LETTNMENUINFO B
             WHERE  A.MENU_NO  = B.MENU_NO 
             AND    A.AUTHOR_CODE =  #{authorCode}
+			AND    A.USE_AT = 'Y'
             ORDER BY B.MENU_ORDR
          
     </select>

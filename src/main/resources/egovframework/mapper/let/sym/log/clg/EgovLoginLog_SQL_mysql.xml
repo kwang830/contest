@@ -81,18 +81,18 @@
 		1 = 1
 	]]>
 
-		<if test="searchWrd != null and searchWrd != ''">
+		<if test="searchWrd != null and searchWrd.trim() != ''">
 			<choose>
-				<when test="searchCnd eq '0'">
+				<when test="searchCnd == 0">
 					<![CDATA[ AND a.CONECT_ID LIKE CONCAT('%', #{searchWrd}, '%') ]]>
 				</when>
-				<when test="searchCnd eq '1'">
+				<when test="searchCnd == 1">
 					<![CDATA[ AND b.USER_NM LIKE CONCAT('%', #{searchWrd}, '%') ]]>
 				</when>
-				<when test="searchCnd eq '2'">
+				<when test="searchCnd == 2">
 					<![CDATA[ AND a.PC_INFO LIKE CONCAT('%', #{searchWrd}, '%') ]]>
 				</when>
-				<when test="searchCnd eq '3'">
+				<when test="searchCnd == 3">
 					<![CDATA[ AND a.BROWSER_INFO LIKE CONCAT('%', #{searchWrd}, '%') ]]>
 				</when>
 			</choose>
@@ -123,16 +123,16 @@
 
 		<if test="searchWrd != null and searchWrd != ''">
 			<choose>
-				<when test="searchCnd eq '0'">
+				<when test="searchCnd == 0">
 					<![CDATA[ AND a.CONECT_ID LIKE CONCAT('%', #{searchWrd}, '%') ]]>
 				</when>
-				<when test="searchCnd eq '1'">
+				<when test="searchCnd == 1">
 					<![CDATA[ AND b.USER_NM LIKE CONCAT('%', #{searchWrd}, '%') ]]>
 				</when>
-				<when test="searchCnd eq '2'">
+				<when test="searchCnd == 2">
 					<![CDATA[ AND a.PC_INFO LIKE CONCAT('%', #{searchWrd}, '%') ]]>
 				</when>
-				<when test="searchCnd eq '3'">
+				<when test="searchCnd == 3">
 					<![CDATA[ AND a.BROWSER_INFO LIKE CONCAT('%', #{searchWrd}, '%') ]]>
 				</when>
 			</choose>

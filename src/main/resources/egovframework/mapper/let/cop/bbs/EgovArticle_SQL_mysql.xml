@@ -443,7 +443,7 @@ select 'perTotCId' as RANK_NM, CAST(count(distinct CONECT_ID)/603*100 AS UNSIGNE
 	
 	<select id="selectDeptLoginList" parameterType="egovframework.let.cop.bbs.service.BoardVO" resultMap="boardList">
 		
-select IFNULL(dept,'전체') as deptNmS , IFNULL(chk,'소계') as scoreS, count(1) as scoreA
+select IFNULL(dept,'전체') as DEPT_NM_S , IFNULL(chk,'소계') as SCORE_S, count(1) as SCORE_A
 from ( 
   select user_nm, cdc.code_dc as dept , cdb.code_dc as title, IFNULL(mmb.cnt,0) AS cnt, IFNULL(mmb.chk,'X') AS chk
   from COMVNUSERMASTER mb 
@@ -466,12 +466,12 @@ END
 	
 	<select id="selectDeptBbsList" parameterType="egovframework.let.cop.bbs.service.BoardVO" resultMap="boardList">
 		
-select code as deptCode, code_dc as deptNmS, count(1) as scoreA from (
+select code as DEPT_CODE, code_dc as DEPT_NM_S, count(1) as SCORE_A from (
 
 select  cdc.code, cdc.code_dc, bbs.NTT_ID from lettnbbs bbs
 LEFT OUTER JOIN COMVNUSERMASTER usr ON bbs.FRST_REGISTER_ID = usr.ESNTL_ID AND usr.USER_SE = 'GNR' and usr.DEPT_CODE is not null and usr.POSITION_CODE not like 'A%'
 LEFT OUTER JOIN lettccmmndetailcode cdc ON usr.DEPT_CODE = cdc.CODE AND cdc.CODE_ID = 'IBK101' AND cdc.USE_AT ='Y'
-where bbs.FRST_REGIST_PNTTM between #{searchBgnDe} and #{searchEndDe} and bbs.BBS_ID=#{bbsId}  and bbs.USE_AT='Y' order by bbs.NTT_ID desc
+where bbs.FRST_REGIST_PNTTM between #{searchBgnDe} and #{searchEndDe} and bbs.BBS_ID=#{bbsId}  and bbs.USE_AT='Y' and cdc.code is not null order by bbs.NTT_ID desc
 ) nTable
 group by code_dc order by code_dc
 						

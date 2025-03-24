@@ -32,12 +32,19 @@ public class RenewPaginationRenderer extends AbstractPaginationRenderer implemen
 	}
 
 	public void initVariables(){
-        firstPageLabel    = "<li class=\"btn\"><a href=\"?pageIndex={1}\" onclick=\"{0}({1});return false; \" class=\"first\">처음</a></li>";
-        previousPageLabel = "<li class=\"btn\"><a href=\"?pageIndex={1}\" onclick=\"{0}({1});return false; \" class=\"btn prev\">이전</a></li>";
-        currentPageLabel  = "<li><strong>{0}</strong></li>";
-        otherPageLabel    = "<li><a href=\"?pageIndex={1}\" onclick=\"{0}({1});return false; \">{2}</a></li>";
-        nextPageLabel     = "<li class=\"btn\"><a href=\"?pageIndex={1}\" onclick=\"{0}({1});return false; \" class=\"btn next\">다음</a></li>";
-        lastPageLabel     = "<li class=\"btn\"><a href=\"?pageIndex={1}\" onclick=\"{0}({1});return false; \" class=\"btn last\">마지막</a></li>";
+//        firstPageLabel    = "<li class=\"btn\"><a href=\"?pageIndex={1}\" onclick=\"{0}({1});return false; \" class=\"first\">처음</a></li>";
+//        previousPageLabel = "<li class=\"btn\"><a href=\"?pageIndex={1}\" onclick=\"{0}({1});return false; \" class=\"btn prev\">이전</a></li>";
+//        currentPageLabel  = "<li><strong>{0}</strong></li>";
+//        otherPageLabel    = "<li><a href=\"?pageIndex={1}\" onclick=\"{0}({1});return false; \">{2}</a></li>";
+//        nextPageLabel     = "<li class=\"btn\"><a href=\"?pageIndex={1}\" onclick=\"{0}({1});return false; \" class=\"btn next\">다음</a></li>";
+//        lastPageLabel     = "<li class=\"btn\"><a href=\"?pageIndex={1}\" onclick=\"{0}({1});return false; \" class=\"btn last\">마지막</a></li>";
+
+		firstPageLabel    = "<li class=\"btn\"><a href=\"?pageIndex={1}\" onclick=\"event.preventDefault(); {0}({1}); \" class=\"first\">처음</a></li>";
+		previousPageLabel = "<li class=\"btn\"><a href=\"?pageIndex={1}\" onclick=\"event.preventDefault(); {0}({1}); \" class=\"btn prev\">이전</a></li>";
+		currentPageLabel  = "<li><strong>{0}</strong></li>";
+		otherPageLabel    = "<li><a href=\"?pageIndex={1}\" onclick=\"event.preventDefault(); {0}({1}); \">{2}</a></li>";
+		nextPageLabel     = "<li class=\"btn\"><a href=\"?pageIndex={1}\" onclick=\"event.preventDefault(); {0}({1}); \" class=\"btn next\">다음</a></li>";
+		lastPageLabel     = "<li class=\"btn\"><a href=\"?pageIndex={1}\" onclick=\"event.preventDefault(); {0}({1}); \" class=\"btn last\">마지막</a></li>";
 	}
 
 	@Override

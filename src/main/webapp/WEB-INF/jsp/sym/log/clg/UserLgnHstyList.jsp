@@ -20,70 +20,92 @@
 	<link rel="stylesheet" href="<c:url value='/'/>css/font-icons.css" type="text/css" />
 	<link rel="stylesheet" href="<c:url value='/'/>css/animate.css" type="text/css" />
 	<link rel="stylesheet" href="<c:url value='/'/>css/magnific-popup.css" type="text/css" />
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 	<link rel="stylesheet" href="<c:url value='/'/>css/responsive.css" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<script src="<c:url value='/'/>js/jquery-1.11.2.min.js"></script>
+	<script src="<c:url value='/'/>js/ui.js"></script>
+	<script src="<c:url value='/'/>js/jquery.js"></script>
+	<script src="<c:url value='/'/>js/jqueryui.js"></script>
+	<link rel="stylesheet" href="<c:url value='/'/>css/jqueryui.css">
 
 	<!-- Document Title
 	============================================= -->
 	<title>IBK시스템, AI 아이디어 챌린지 - 로그인 이력 조회</title>
 
 </head>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
 <script type="text/javascript">
 
 /* ********************************************************
  * 달력
  ******************************************************** */
 function fn_contest_init_date(){
-	flatpickr("#searchBgnDe", {
-		locale: "ko",
-		dateFormat: "Y-m-d"
+	$("#searchBgnDe").datepicker(
+		{dateFormat:'yy-mm-dd'
+			, showOn: 'button'
+			, buttonImage: '<c:url value='/images/ico_calendar.png'/>'
+			, buttonImageOnly: true
+
+			, showMonthAfterYear: true
+			, showOtherMonths: true
+			, selectOtherMonths: true
+			, monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']
+
+			, changeMonth: true // 월선택 select box 표시 (기본은 false)
+			, changeYear: true  // 년선택 selectbox 표시 (기본은 false)
+			, showButtonPanel: true // 하단 today, done  버튼기능 추가 표시 (기본은 false)
+		});
+
+	$("#searchEndDe").datepicker(
+		{dateFormat:'yy-mm-dd'
+			, showOn: 'button'
+			, buttonImage: '<c:url value='/images/ico_calendar.png'/>'
+			, buttonImageOnly: true
+
+			, showMonthAfterYear: true
+			, showOtherMonths: true
+			, selectOtherMonths: true
+			, monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']
+
+			, changeMonth: true // 월선택 select box 표시 (기본은 false)
+			, changeYear: true  // 년선택 selectbox 표시 (기본은 false)
+			, showButtonPanel: true // 하단 today, done  버튼기능 추가 표시 (기본은 false)
+		});
+
+	$('#btn_reset').click(function(){
+		let form = document.forms["LoginLogForm"];
+		if(form){
+			//form.reset();
+			form.pageIndex.value = 1;
+			form.searchBgnDe.value = '';
+			form.searchEndDe.value = '';
+			form.searchCnd.value = 0;
+			form.searchWrd.value = '';
+		} else {
+			console.log("LoginLogForm을 찾을 수 없습니다.");
+		}
 	});
 
-	flatpickr("#searchEndDe", {
-		locale: "ko",
-		dateFormat: "Y-m-d"
-	});
-	<%--$("#searchBgnDe").datepicker(--%>
-	<%--		{dateFormat:'yy-mm-dd'--%>
-	<%--			, showOn: 'button'--%>
-	<%--			, buttonImage: '<c:url value='/images/bu_icon_carlendar.gif'/>'--%>
-	<%--			, buttonImageOnly: true--%>
-
-	<%--			, showMonthAfterYear: true--%>
-	<%--			, showOtherMonths: true--%>
-	<%--			, selectOtherMonths: true--%>
-
-	<%--			, changeMonth: true // 월선택 select box 표시 (기본은 false)--%>
-	<%--			, changeYear: true  // 년선택 selectbox 표시 (기본은 false)--%>
-	<%--			, showButtonPanel: true // 하단 today, done  버튼기능 추가 표시 (기본은 false)--%>
-	<%--		});--%>
-
-
-	<%--$("#searchEndDe").datepicker(--%>
-	<%--		{dateFormat:'yy-mm-dd'--%>
-	<%--			, showOn: 'button'--%>
-	<%--			, buttonImage: '<c:url value='/images/bu_icon_carlendar.gif'/>'--%>
-	<%--			, buttonImageOnly: true--%>
-
-	<%--			, showMonthAfterYear: true--%>
-	<%--			, showOtherMonths: true--%>
-	<%--			, selectOtherMonths: true--%>
-
-	<%--			, changeMonth: true // 월선택 select box 표시 (기본은 false)--%>
-	<%--			, changeYear: true  // 년선택 selectbox 표시 (기본은 false)--%>
-	<%--			, showButtonPanel: true // 하단 today, done  버튼기능 추가 표시 (기본은 false)--%>
-	<%--		});--%>
 }
+
+
+
 /*********************************************************
  * 페이징 처리 함수
  ******************************************************** */
 function fn_egov_select_linkPage(pageNo){
-	document.LoginLogForm.pageIndex.value = pageNo;
-	document.LoginLogForm.action = "<c:url value='/sym/log/clg/userLgnHsty.do'/>";
-	document.LoginLogForm.submit();
+	let form = document.forms["LoginLogForm"];
+	if(form){
+		// console.log("LoginLogForm 존재함");
+		form.pageIndex.value = pageNo;
+		form.action = "<c:url value='/sym/log/clg/userLgnHsty.do'/>";
+		form.submit();
+	} else {
+		console.log("LoginLogForm을 찾을 수 없습니다.");
+	}
+	//document.LoginLogForm.pageIndex.value = pageNo;
+	//document.LoginLogForm.action = "<c:url value='/sym/log/clg/userLgnHsty.do'/>";
+	//document.LoginLogForm.submit();
 }
 /*********************************************************
  * 조회 처리 함수
@@ -150,10 +172,6 @@ function fn_egov_search_loginLog(){
 							<input type="text" name="searchEndDe" id="searchEndDe" size="15" maxlength="10" value="${searchVO.searchEndDe}" title="검색종료일" >&nbsp;&nbsp;&nbsp;<!-- 검색종료일  -->
 						</li>
 						<!-- 검색키워드 및 조회버튼 -->
-<%--						<li>--%>
-<%--							로그유형 :--%>
-<%--							<input class="s_input" name="searchWrd" type="text"  size="15" title="검색키워드" value='<c:out value="${searchVO.searchWrd}"/>'  maxlength="15" >--%>
-<%--						</li>--%>
 						<li>
 							<select name="searchCnd" class="select" title="선택">
 								<c:choose>
@@ -173,7 +191,9 @@ function fn_egov_search_loginLog(){
 							</select>
 							<input class="s_input" name="searchWrd" type="text"  size="15" title="검색키워드" value='<c:out value="${searchVO.searchWrd}"/>'  maxlength="15" >
 						</li>
+						<input type="hidden" name="pageIndex" id="pageIndex" class="" value="1"  />
 						<input type="submit" class="s_btn" value="조회" title="조회버튼" />
+						<input type="button" name="btn_reset" id="btn_reset" class="s_btn" value="초기화" title="초기화버튼" />
 					</ul>
 				</div>
 				</form>
@@ -216,7 +236,7 @@ function fn_egov_search_loginLog(){
 				<div class="board_list_bot">
 					<div class="paging" id="paging_div">
 						<ul>
-							<ui:pagination paginationInfo="${paginationInfo}" type="renew" jsFunction="fn_egov_select_noticeList" />
+							<ui:pagination paginationInfo="${paginationInfo}" type="renew" jsFunction="fn_egov_select_linkPage" />
 						</ul>
 					</div>
 				</div>

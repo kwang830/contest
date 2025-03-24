@@ -133,6 +133,13 @@ public class EgovLoginLogController {
 		loginLog.setLastIndex(paginationInfo.getLastRecordIndex());
 		loginLog.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 
+		System.out.println("-----------------------------");
+		System.out.println(loginLog.getSearchBgnDe()+"//");
+		System.out.println(loginLog.getSearchEndDe()+"//");
+		System.out.println(loginLog.getSearchCnd()+"//");
+		System.out.println(loginLog.getSearchWrd()+"//");
+		System.out.println("-----------------------------");
+
 		HashMap<?, ?> _map = (HashMap<?, ?>)loginLogService.selectLoginLogInf(loginLog);
 		int totCnt = Integer.parseInt((String)_map.get("resultCnt"));
 
