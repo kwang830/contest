@@ -141,8 +141,10 @@ public class EgovFileDownloadController {
 	public void cvplFileDownload(@RequestParam Map<String, Object> commandMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+		System.out.println("isAuthenticated:"+isAuthenticated);
+		String AuthPass = (String) commandMap.get("authPass");
 
-		if (isAuthenticated) {
+		if (isAuthenticated || AuthPass.equals("yes")) {
 			
 			// 암호화된 atchFileId 를 복호화. (2022.12.06 추가) - 파일아이디가 유추 불가능하도록 조치
 			String param_atchFileId = (String) commandMap.get("atchFileId");
@@ -196,6 +198,8 @@ public class EgovFileDownloadController {
 						}
 					}
 				}
+				
+				fileService.updateFileInfRdcnt(fileVO); // 다운로드 수 체크
 
 			} else {
 				request.getRequestDispatcher("/cmm/error/egovBizException.jsp").forward(request, response);

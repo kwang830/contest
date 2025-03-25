@@ -27,6 +27,19 @@
 	============================================= -->
 	<title>IBK시스템, AI 아이디어 챌린지 - 공모전 성과</title>
 
+	<script type="text/javascript">
+		<!--
+		function fn_egov_downFile(atchFileId, fileSn) {
+			window.open("/cmm/fms/FileDown.do?atchFileId="+atchFileId+"&fileSn="+fileSn+"&authPass=yes");
+		}
+
+		function fn_contest_attach_file_down() {
+			// 공모전 참가 신청서
+			fn_egov_downFile('EcqfhYxRcnWG52hkOGYp/F3suq/5SFOvAnxJUaQhI01X9dgmJjJ+3mWoSYu1PsdTs4dfuDM2VdFX2fN3C0X4iQ==','0');
+		}
+		//-->
+	</script>
+
 </head>
 
 <body class="stretched">
@@ -41,7 +54,7 @@
 
 	<h3>공모전 준비중</h3>
 
-
+	<input type="button" class="s_btn" value="신청서 다운로드" title="다운로드 버튼" onclick="fn_contest_attach_file_down(); return false;" />
 
 	<!-- footer 시작 -->
 	<c:import url="/sym/mms/ContFooter.do" />

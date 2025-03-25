@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ page import ="egovframework.com.cmm.LoginVO" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html dir="ltr" lang="en-US">
 <head>
@@ -70,7 +70,7 @@
 			<h1>2025년 AI 아이디어 공모전</h1>
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item" aria-current="page">Home</li>
-				<li class="breadcrumb-item active" aria-current="page">내정보관리</li>
+				<li class="breadcrumb-item active" aria-current="page">공지사항</li>
 			</ol>
 		</div>
 
@@ -105,11 +105,11 @@
 							</select>
 						</label>
 						<span class="item f_search">
-											<input class="f_input w_500" type="text" name="searchWrd" value='<c:out value="${searchVO.searchWrd}"/>' title="검색어 입력">
-											<button class="btn" type="submit" onclick="fn_egov_select_noticeList('1'); return false;"><spring:message code='button.inquire' /></button><!-- 조회 -->
-										</span>
+							<input class="f_input w_500" type="text" name="searchWrd" value='<c:out value="${searchVO.searchWrd}"/>' title="검색어 입력">
+							<input type="submit" class="s_btn" value="조회" title="조회버튼" onclick="fn_egov_select_noticeList('1'); return false;" />
+						</span>
 						<c:if test="${brdMstrVO.authFlag == 'Y'}">
-							<a href="<c:url value='/cop/bbs${prefix}/addBoardArticle.do?bbsId=${boardVO.bbsId}'/>" class="item btn btn_blue_46 w_100"><spring:message code="button.create" /></a><!-- 등록 -->
+							<input type="button" class="s_btn" value="등록" title="등록버튼" onclick="location.href='<c:url value='/cop/bbs${prefix}/addBoardArticle.do?bbsId=${boardVO.bbsId}'/>'" />
 						</c:if>
 
 					</form>
@@ -137,13 +137,25 @@
 					<div class="row show-grid">
 						<div class="col-lg-1"><c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageSize + status.count)}" /></div>
 						<div class="col-lg-5">
+							<form name="subForm" method="post" action="<c:url value='/cop/bbs${prefix}/selectBoardArticle.do'/>">
 							<c:if test="${result.replyLc!=0}">
 								<c:forEach begin="0" end="${result.replyLc}" step="1">
 									&nbsp;
 								</c:forEach>
 								<img src="<c:url value='/'/>images/ico_reply.png" alt="reply arrow">
 							</c:if>
-							<c:out value="${result.nttSj}" /></div>
+								<input type="hidden" name="bbsId" value="<c:out value='${result.bbsId}'/>" />
+								<input type="hidden" name="nttId" value="<c:out value="${result.nttId}"/>" />
+								<input type="hidden" name="bbsTyCode" value="<c:out value='${brdMstrVO.bbsTyCode}'/>" />
+								<input type="hidden" name="bbsAttrbCode" value="<c:out value='${brdMstrVO.bbsAttrbCode}'/>" />
+								<input type="hidden" name="authFlag" value="<c:out value='${brdMstrVO.authFlag}'/>" />
+								<input name="pageIndex" type="hidden" value="<c:out value='${searchVO.pageIndex}'/>" />
+								<a href="javascript:;" onclick="parentNode.submit();" class="lnk">
+									<c:out value="${result.nttSj}" />
+								</a>
+
+							</form>
+						</div>
 						<div class="col-lg-2"><c:if test="${anonymous != 'true'}">관리자</c:if></div>
 						<div class="col-lg-2">${result.frstRegisterPnttm}</div>
 						<div class="col-lg-2">${result.inqireCo}</div>

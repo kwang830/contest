@@ -373,4 +373,14 @@
 			AND NTT_ID = #{nttId}
  		
  	</update>
+
+	<select id="selectBoardArticleFileRdcnt" parameterType="egovframework.let.cop.bbs.service.Board" resultType="java.lang.String">
+
+		SELECT
+			RDCNT
+		FROM
+			LETTNFILEDETAIL
+		WHERE ATCH_FILE_ID = #{atchFileId}
+
+	</select>
 </mapper>

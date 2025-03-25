@@ -27,12 +27,12 @@
 
 					<div class="row">
 						<div class="col-lg-6 bottommargin-sm">
-							<div class="counter counter-small"><span data-from="50" data-to="1024" data-refresh-interval="80" data-speed="3000" data-comma="true"></span></div>
+							<div class="counter counter-small"><span data-from="1" data-to="${visit_count}" data-refresh-interval="80" data-speed="3000" data-comma="true"></span></div>
 							<h5 class="nobottommargin">홈페이지 방문수</h5>
 						</div>
 
 						<div class="col-lg-6 bottommargin-sm">
-							<div class="counter counter-small"><span data-from="100" data-to="465" data-refresh-interval="50" data-speed="2000" data-comma="true"></span></div>
+							<div class="counter counter-small"><span data-from="1" data-to="${download_count}" data-refresh-interval="50" data-speed="2000" data-comma="true"></span></div>
 							<h5 class="nobottommargin">신청서 다운로드수</h5>
 						</div>
 

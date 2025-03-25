@@ -165,6 +165,15 @@
 				a.USE_AT = 'Y'				
 			ORDER BY b.FILE_SN	
  		
- 	</select>	
- 	
+ 	</select>
+
+	<update id="updateFileInfRdcnt" parameterType="FileVO">
+		UPDATE LETTNFILEDETAIL
+		SET RDCNT = COALESCE(RDCNT, 0) + 1
+		WHERE
+			ATCH_FILE_ID = #{atchFileId}
+		  AND
+			FILE_SN = #{fileSn}
+
+	</update>
 </mapper>

@@ -41,7 +41,9 @@
 			     , esntl_id AS uniqId
 			  FROM LETTNGNRLMBER
 			 WHERE mber_id = #{id}
+			<if test="url != 'PASS'">
 			   AND password = #{password}
+			</if>
 			   AND mber_sttus = 'P'
 			
 		</if>

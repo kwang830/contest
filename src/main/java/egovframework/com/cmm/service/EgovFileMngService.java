@@ -112,4 +112,13 @@ public interface EgovFileMngService {
      * @throws Exception
      */
     public List<FileVO> selectImageFileList(FileVO vo) throws Exception;
+
+    /**
+     * 파일에 대한 조회수를 업데이트 한다.
+     *
+     * @param fvo
+     * @return
+     * @throws Exception
+     */
+    public void updateFileInfRdcnt(FileVO fvo) throws Exception;
 }

@@ -179,4 +179,14 @@ public class FileManageDAO extends EgovComAbstractDAO {
 	public List<FileVO> selectImageFileList(FileVO vo) throws Exception {
 		return (List<FileVO>) list("FileManageDAO.selectImageFileList", vo);
 	}
+
+	/**
+	 * 파일에 대한 조회수를 업데이트 한다.
+	 *
+	 * @param fvo
+	 * @throws Exception
+	 */
+	public void updateFileInfRdcnt(FileVO fvo) throws Exception {
+		update("FileManageDAO.updateFileInfRdcnt", fvo);
+	}
 }

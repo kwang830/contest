@@ -225,4 +225,15 @@ public class BBSManageDAO extends EgovAbstractMapper {
     public String getPasswordInf(Board board) throws Exception {
 	return (String)selectOne("BBSManageDAO.getPasswordInf", board);
     }
+
+    /**
+     * 첨부파일 조회수를 조회 한다.
+     *
+     * @param board
+     * @return
+     * @throws Exception
+     */
+    public String selectBoardArticleFileRdcnt(Board board) throws Exception {
+        return (String)selectOne("BBSManageDAO.selectBoardArticleFileRdcnt", board);
+    }
 }

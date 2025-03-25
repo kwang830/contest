@@ -196,4 +196,15 @@ public class EgovBBSManageServiceImpl extends EgovAbstractServiceImpl implements
     public String getPasswordInf(Board board) throws Exception {
 	return bbsMngDAO.getPasswordInf(board);
     }
+
+	/**
+	 * 첨부파일 조회수를 조회 한다.
+	 *
+	 * @param board
+	 * @return
+	 * @throws Exception
+	 */
+	public String selectBoardArticleFileRdcnt(Board board) throws Exception {
+		return bbsMngDAO.selectBoardArticleFileRdcnt(board);
+	}
 }

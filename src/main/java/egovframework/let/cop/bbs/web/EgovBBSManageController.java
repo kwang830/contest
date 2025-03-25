@@ -197,6 +197,8 @@ public class EgovBBSManageController {
 	 */
 	@RequestMapping("/cop/bbs/selectBoardArticle.do")
 	public String selectBoardArticle(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model) throws Exception {
+
+		System.out.println("------------ selectBoardArticle start -------------");
 		LoginVO user = new LoginVO();
 		if (EgovUserDetailsHelper.isAuthenticated()) {
 			user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
@@ -230,7 +232,10 @@ public class EgovBBSManageController {
 
 		model.addAttribute("brdMstrVO", masterVo);
 
-		return "cop/bbs/EgovNoticeInqire";
+		System.out.println("------------ selectBoardArticle end -------------");
+
+		//return "cop/bbs/EgovNoticeInqire";
+		return "cop/bbs/ContNoticeInqire";
 	}
 
 	/**
@@ -271,7 +276,8 @@ public class EgovBBSManageController {
 		model.addAttribute("brdMstrVO", bdMstr);
 		////-----------------------------
 		
-		return "cop/bbs/EgovNoticeRegist";
+		//return "cop/bbs/EgovNoticeRegist";
+		return "cop/bbs/ContNoticeRegist";
 	}
 
 	/**
@@ -290,6 +296,9 @@ public class EgovBBSManageController {
 
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+
+		System.out.println("/cop/bbs/insertBoardArticle.do >> ");
+		System.out.println("isAuthenticated:"+isAuthenticated);
 
 		beanValidator.validate(board, bindingResult);
 		if (bindingResult.hasErrors()) {
@@ -316,7 +325,7 @@ public class EgovBBSManageController {
 
 			return "cop/bbs/EgovNoticeRegist";
 		}
-
+		System.out.println("/cop/bbs/insertBoardArticle.do >> chk 1 ");
 		if (isAuthenticated) {
 			List<FileVO> result = null;
 			String atchFileId = "";
@@ -337,7 +346,7 @@ public class EgovBBSManageController {
 
 			bbsMngService.insertBoardArticle(board);
 		}
-
+		System.out.println("/cop/bbs/insertBoardArticle.do >> chk 2 ");
 		return "forward:/cop/bbs/selectBoardList.do";
 	}
 
@@ -380,7 +389,8 @@ public class EgovBBSManageController {
 		model.addAttribute("brdMstrVO", master);
 		////-----------------------------
 
-		return "cop/bbs/EgovNoticeReply";
+		//return "cop/bbs/EgovNoticeReply";
+		return "cop/bbs/ContNoticeReply";
 	}
 
 	/**
@@ -499,7 +509,8 @@ public class EgovBBSManageController {
 		model.addAttribute("brdMstrVO", bmvo);
 		////-----------------------------
 
-		return "cop/bbs/EgovNoticeUpdt";
+		//return "cop/bbs/EgovNoticeUpdt";
+		return "cop/bbs/ContNoticeUpdt";
 	}
 
 	/**

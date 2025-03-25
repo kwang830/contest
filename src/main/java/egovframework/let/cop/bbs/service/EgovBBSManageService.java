@@ -98,4 +98,13 @@ public interface EgovBBSManageService {
 	public void updateBoardArticle(Board Board)
 	  throws Exception;
 
+	/**
+	 * 첨부파일 조회수를 조회 한다.
+	 * @return
+	 *
+	 * @param Board
+	 * @exception Exception Exception
+	 */
+	public String selectBoardArticleFileRdcnt(Board Board)
+			throws Exception;
 }

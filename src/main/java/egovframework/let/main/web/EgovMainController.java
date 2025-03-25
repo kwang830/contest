@@ -1,5 +1,6 @@
 package egovframework.let.main.web;
 
+import java.math.BigDecimal;
 import java.util.Map;
 
 import egovframework.com.cmm.ComDefaultVO;
@@ -7,6 +8,7 @@ import egovframework.com.cmm.EgovMessageSource;
 import egovframework.com.cmm.LoginVO;
 import egovframework.let.cop.bbs.service.BoardVO;
 import egovframework.let.cop.bbs.service.EgovBBSManageService;
+import egovframework.let.sym.log.clg.service.impl.LoginLogDAO;
 import egovframework.let.sym.mnu.mpm.service.EgovMenuManageService;
 import egovframework.let.sym.mnu.mpm.service.MenuManageVO;
 import egovframework.let.uss.olh.faq.service.EgovFaqManageService;
@@ -14,6 +16,7 @@ import egovframework.let.uss.olh.faq.service.FaqManageDefaultVO;
 import egovframework.let.uss.olp.qri.service.EgovQustnrRespondInfoService;
 import egovframework.let.cop.bbs.service.EgovArticleService;
 
+import org.egovframe.rte.fdl.idgnr.EgovIdGnrService;
 import org.egovframe.rte.fdl.security.userdetails.util.EgovUserDetailsHelper;
 import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
@@ -72,6 +75,10 @@ public class EgovMainController {
 	@Resource(name = "EgovArticleService")
 	private EgovArticleService egovArticleService;
 
+	/** ID Generation */
+	@Resource(name="egovVisitCountLogIdGnrService")
+	private EgovIdGnrService egovVisitCountLogIdGnrService;
+
 	/**
 	 * 메인 페이지에서 각 업무 화면으로 연계하는 기능을 제공한다.
 	 *
@@ -96,6 +103,19 @@ public class EgovMainController {
 	@RequestMapping(value = "/cmm/main/mainPage.do")
 	public String getMgtMainPage(HttpServletRequest request, ModelMap model)
 	  throws Exception{
+
+		// 방문수 확인용
+		//String logId = egovVisitCountLogIdGnrService.getNextStringId();
+		BigDecimal visit_count = egovVisitCountLogIdGnrService.getNextBigDecimalId();
+		model.addAttribute("visit_count", visit_count);
+
+		// 신청서 다운로드 첨부파일 조회수 시작 ---------------------------------
+		BoardVO boardVO = new BoardVO();
+		boardVO.setAtchFileId("FILE_000000000000061");
+
+		String download_count = bbsMngService.selectBoardArticleFileRdcnt(boardVO);
+		model.addAttribute("download_count", download_count);
+
 
 		//return "main/EgovMainView";
 		return "main/contest/ContIntroView";
