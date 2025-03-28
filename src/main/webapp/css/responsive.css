@@ -278,7 +278,8 @@
 		line-height: 0;
 	}
 
-	#logo a.standard-logo { display: inline-block; width: 90%;}
+	#logo a.standard-logo { display: inline-block; }
+	#logo a { width: 90%;}
 	#header.sticky-header:not(.static-sticky) #logo a{width: 70%;}
 
 

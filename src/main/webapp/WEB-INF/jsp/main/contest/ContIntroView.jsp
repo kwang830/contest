@@ -7,29 +7,49 @@
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="author" content="SemiColonWeb" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-	<!-- Stylesheets
+	<!-- Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+	<!-- preload -->
+	<link rel="preload" href="<c:url value='/'/>css/bootstrap.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="preload" href="<c:url value='/'/>css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="preload" href="<c:url value='/'/>css/responsive.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="preload" href="<c:url value='/'/>css/coming-soon.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+	<!-- 비동기
 	============================================= -->
-	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="<c:url value='/'/>css/swiper.css" type="text/css" media="print" onload="this.media='all'" />
+	<link rel="stylesheet" href="<c:url value='/'/>css/font-icons.css" type="text/css" media="print" onload="this.media='all'" />
+	<link rel="stylesheet" href="<c:url value='/'/>css/animate.css" type="text/css" media="print" onload="this.media='all'" />
+	<link rel="stylesheet" href="<c:url value='/'/>css/magnific-popup.css" type="text/css" media="print" onload="this.media='all'" />
 
-	<link rel="stylesheet" href="<c:url value='/'/>css/bootstrap.css" type="text/css" />
-	<link rel="stylesheet" href="<c:url value='/'/>css/styles.css" type="text/css" />
-	<link rel="stylesheet" href="<c:url value='/'/>css/swiper.css" type="text/css" />
-<%--	<link rel="stylesheet" href="<c:url value='/'/>css/dark.css" type="text/css" />--%>
-	<link rel="stylesheet" href="<c:url value='/'/>css/font-icons.css" type="text/css" />
-	<link rel="stylesheet" href="<c:url value='/'/>css/animate.css" type="text/css" />
-	<link rel="stylesheet" href="<c:url value='/'/>css/magnific-popup.css" type="text/css" />
+	<link rel="stylesheet" href="<c:url value='/'/>css/coming-soon.css" type="text/css">
 
-	<link rel="stylesheet" href="<c:url value='/'/>css/responsive.css" type="text/css" />
-	<link rel="stylesheet" href="<c:url value='/'/>css/coming-soon.css" type="text/css" />
+	<noscript>
+		<link rel="stylesheet" href="<c:url value='/'/>css/bootstrap.css">
+		<link rel="stylesheet" href="<c:url value='/'/>css/styles.css">
+		<link rel="stylesheet" href="<c:url value='/'/>css/swiper.css">
+		<link rel="stylesheet" href="<c:url value='/'/>css/font-icons.css">
+		<link rel="stylesheet" href="<c:url value='/'/>css/animate.css">
+		<link rel="stylesheet" href="<c:url value='/'/>css/magnific-popup.css">
+		<link rel="stylesheet" href="<c:url value='/'/>css/responsive.css">
+		<link rel="stylesheet" href="<c:url value='/'/>css/coming-soon.css">
+	</noscript>
 
 	<script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
 
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 	<!-- Document Title
 	============================================= -->
-	<title>IBK시스템, AI 아이디어 챌린지 - 공모전 성과</title>
+	<title>IBK시스템 AI 아이디어 챌린지</title>
+
+	<!-- favicon -->
+	<link rel="icon" type="image/x-icon" href="<c:url value='/'/>images/favicon.ico">
 
 	<script type="text/javascript">
 		<!--
@@ -46,7 +66,7 @@
 
 </head>
 
-<body class="stretched">
+<body class="no-transition stretched">
 
 <!-- Document Wrapper
 ============================================= -->
@@ -72,8 +92,8 @@
 					여러분의 아이디어를 세상에 펼쳐보세요!
 				</div>
 				<div class="date-box">
-					<span class="date-tag">접수기간</span>
-					<span class="date-text">2025.04.28 (월) ~ 06.05 (목)</span>
+					<span class="date-tag">접수시작</span>
+					<span class="date-text">2025.04.28 (월) 09:00 </span>
 				</div>
 				<div class="date-counter">
 					<svg xmlns="http://www.w3.org/2000/svg" width="51" height="52" viewBox="0 0 51 52" fill="none">
@@ -115,7 +135,7 @@
 					</div>
 					<div class="info-text">
 						<div class="info-title">
-							역대수상작
+							역대수상작 (오픈예정)
 						</div>
 						<div class="info-desc">
 							역대 수상작을 확인하려면
@@ -129,8 +149,10 @@
 					</div>
 					<div class="info-text">
 						<div class="info-title">
-							공모전 신청서 접수<span>는</span><br/>
-							4월 28일<span>부터 가능합니다.</span>
+							공모전 신청서 접수
+						</div>
+						<div class="info-desc">
+							<strong>4월 28일</strong>부터 <strong>6월 5일</strong>까지 가능합니다.
 						</div>
 					</div>
 				</div>
@@ -163,10 +185,10 @@
 
 <!-- External JavaScripts
 ============================================= -->
-<script src="<c:url value='/'/>js/jquery-3.3.1.js"></script>
-<script src="<c:url value='/'/>js/plugins.js"></script>
+<script type="text/javascript" src="<c:url value='/'/>js/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="<c:url value='/'/>js/plugins.js"></script>
 
-<script src="<c:url value='/'/>js/include.js"></script>
+<script type="text/javascript" src="<c:url value='/'/>js/include.js"></script>
 
 <!-- Footer Scripts
 ============================================= -->
@@ -174,7 +196,7 @@
 
 <script>
 	function diffDay(){
-		const endDate = new Date("2025-06-05 18:00:00");
+		const endDate = new Date("2025-04-28 09:00:00");
 		const nowDate = new Date();
 
 		const diff = endDate - nowDate;
@@ -191,7 +213,7 @@
 	$(document).ready(function(){
 		diffDay();
 		setInterval(diffDay, 1000);
-	})
+	});
 
 	function openPopup(id){
 		if($('#'+id)){
@@ -203,15 +225,8 @@
 	$('.popup-close').on('click', function(e) {
 		$('body').css('overflow', '');
 		if($(e.target).closest('.popup-wrap')) $(e.target).closest('.popup-wrap').hide();
-	})
+	});
 
-	function downloadFile(fileName){
-		const element = document.createElement('a');
-		element.setAttribute('href', '/files/template.pptx');
-		element.setAttribute('download', '(양식)2025년 AI 아이디어 챌린지 기획서_참가팀명.pptx');
-		element.click();
-		document.body.removeChile(element);
-	}
 </script>
 </body>
 </html>

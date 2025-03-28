@@ -12,15 +12,16 @@
 				· AI공모전 담당자 · <span class="footer-email">contest_admin@ibksystem.co.kr</span> · 02-3407-6074<br/>
 				<div id="copyright">Copyright © 2025 IBK System Co. Ltd. All Rights Reserved.</div>
 			</div>
+
 			<div class="col-12 col-lg-4">
 				<div class="widget clearfix">
 					<div class="row" style="justify-content: center;">
 						<div class="col-auto">
-							<div class="counter counter-small"><span data-from="1" data-to="${visit_count}" data-refresh-interval="80" data-speed="3000" data-comma="true">${visit_count}</span></div>
+							<div class="counter counter-small"><span data-from="1" data-to="${visit_count}" data-refresh-interval="10" data-speed="2000" data-comma="true">${visit_count}</span></div>
 							<h5 class="nobottommargin">홈페이지 방문수</h5>
 						</div>
 						<div class="col-auto">
-							<div class="counter counter-small"><span data-from="1" data-to="${download_count}" data-refresh-interval="50" data-speed="2000" data-comma="true">${download_count}</span></div>
+							<div class="counter counter-small"><span data-from="1" data-to="${download_count}" data-refresh-interval="10" data-speed="2000" data-comma="true">${download_count}</span></div>
 							<h5 class="nobottommargin">신청서 다운로드수</h5>
 						</div>
 					</div>

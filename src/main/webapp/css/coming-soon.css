@@ -51,7 +51,7 @@
 }
 
 .banner-wrap .banner-desc{
-	font-size: 20px;
+	font-size: 18px;
 	line-height: 30px;
 	font-weight: 300;
 	color: #fff;
@@ -59,8 +59,9 @@
 }
 
 .banner-wrap .date-box{
-	font-size: 0;
-	line-height: 0;
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
 }
 
 .banner-wrap .date-tag{
@@ -91,12 +92,13 @@
 }
 
 .banner-wrap .date-counter > #dDayCounter{
-	font-size: 36px;
+	font-size: 32px;
 	line-height: 56px;
 	font-weight: 700;
 	color: #fff;
 	vertical-align: middle;
 	margin-left: 5px;
+	letter-spacing: -1px;
 }
 
 .banner-wrap .banner-btn-con{
@@ -169,6 +171,9 @@
 	margin-top: 8px;
 	word-break: keep-all;
 }
+.info-wrap .info-desc > strong{
+	font-weight: 700;
+}
 
 /*popup*/
 .popup-wrap{
@@ -234,6 +239,7 @@
 	.banner-wrap .date-counter > #dDayCounter{
 		font-size: 45px;
 		line-height: 65px;
+		letter-spacing: 0;
 	}
 
 	.banner-wrap .banner-btn{

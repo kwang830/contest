@@ -399,12 +399,12 @@
 
 	<!-- External JavaScripts
 	============================================= -->
-	<script src="<c:url value='/'/>js/jquery-3.3.1.js"></script>
-	<script src="<c:url value='/'/>js/plugins.js"></script>
+	<script type="text/javascript" src="<c:url value='/'/>js/jquery-3.3.1.js"></script>
+	<script type="text/javascript" src="<c:url value='/'/>js/plugins.js"></script>
 
 	<!-- Footer Scripts
 	============================================= -->
-	<script src="<c:url value='/'/>js/functions.js"></script>
+	<script type="text/javascript" src="<c:url value='/'/>js/functions.js"></script>
 
 </body>
 </html>

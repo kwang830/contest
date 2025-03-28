@@ -1,0 +1,98 @@
+@charset "UTF-8";
+
+html {
+	font-size: 100%;
+	line-height: 1.2;
+	word-wrap: break-word;
+}
+
+body {
+	font-size: 16px;
+	line-height: 1.2;
+	color: black;
+	background: white;
+}
+
+* {
+	font-family: inherit;
+	font-size: inherit;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+	text-size-adjust: 100%;
+}
+
+*::before, *::after {
+	box-sizing: inherit;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+
+ol, ul, li {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+button, input, textarea, select {
+	font: inherit;
+	border: none;
+	background: none;
+	outline: none;
+}
+button {
+	cursor: pointer;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+	border: 0;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+caption, th, td {
+	text-align: left;
+	font-weight: normal;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: "";
+}
+blockquote, q {
+	quotes: "" "";
+}
+
+caption {text-indent: -9999px; font-size: 0;}

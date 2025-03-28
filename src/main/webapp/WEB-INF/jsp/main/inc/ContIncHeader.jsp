@@ -52,8 +52,8 @@
 					<!-- Logo
 					============================================= -->
 					<div id="logo">
-						<a href="/" class="standard-logo" data-dark-logo="images/logo-dark.png"><img src="<c:url value='/'/>images/logo.png" alt="AI공모전"></a>
-						<a href="/" class="retina-logo" data-dark-logo="images/logo-dark@2x.png"><img src="<c:url value='/'/>images/logo@2x.png" alt="AI공모전"></a>
+						<a href="/" class="standard-logo"><img src="<c:url value='/'/>images/logo-img.png" alt="AI공모전"></a>
+						<a href="/" class="retina-logo"><img src="<c:url value='/'/>images/logo-img@2x.png" alt="AI공모전"></a>
 					</div><!-- #logo end -->
 
 					<!-- Primary Navigation
