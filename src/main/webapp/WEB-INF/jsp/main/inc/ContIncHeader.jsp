@@ -101,7 +101,9 @@
 							%>
 							<li class=""><a href="/uat/uia/egovLoginUsr.do"><div><i class="icon-line2-login"></i>로그인</div></a></li>
 							<% }else{ %>
+							<%    if(!loginVO.getUniqId().equals("USRCNFRM_00000000000")){ %>
 							<li class=""><a href="/uss/umt/mber/MyInfo.do"><div class="">내정보관리</div></a></li>
+							<%    } %>
 							<li class=""><c:out value="${loginName}" /> <a href="/uat/uia/actionLogout.do"><div><i class="icon-line2-logout"></i>로그아웃</div></a></li>
 							<% } %>
 						</ul>

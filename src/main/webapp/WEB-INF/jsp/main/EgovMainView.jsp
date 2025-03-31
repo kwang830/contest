@@ -30,7 +30,7 @@
 
 </head>
 
-<body class="stretched">
+<body class="no-transition stretched">
 
 	<!-- Document Wrapper
 	============================================= -->

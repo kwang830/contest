@@ -7,9 +7,9 @@
 	font-style: normal;
 }
 
-#primary-menu{display: none !important;}
-#primary-menu > ul{display: none !important;}
-#primary-menu-trigger{display: none !important;}
+/*#primary-menu{display: none !important;}*/
+/*#primary-menu > ul{display: none !important;}*/
+/*#primary-menu-trigger{display: none !important;}*/
 
 .banner-wrap{
 	position: relative;
