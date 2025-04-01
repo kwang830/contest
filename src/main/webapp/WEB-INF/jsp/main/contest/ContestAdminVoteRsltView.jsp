@@ -68,50 +68,50 @@
 
 <body class="no-transition stretched">
 
-<!-- Document Wrapper
-============================================= -->
-<div id="wrapper" class="clearfix">
+	<!-- Document Wrapper
+	============================================= -->
+	<div id="wrapper" class="clearfix">
 
-	<!-- header start -->
-	<c:import url="/sym/mms/ContHeader.do" />
-	<!-- //header end -->
+        <!-- header start -->
+	    <c:import url="/sym/mms/ContHeader.do" />
+	    <!-- //header end -->
 
-	<!-- Page Title
-    ============================================= -->
-	<section id="page-title">
+		<!-- Page Title
+		============================================= -->
+		<section id="page-title">
 
-		<div class="container clearfix">
-			<h1>2025년 AI 아이디어 공모전</h1>
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item" aria-current="page">Home</li>
-				<li class="breadcrumb-item active" aria-current="page">신청서 접수</li>
-			</ol>
-		</div>
+			<div class="container clearfix">
+				<h1>2025년 AI 아이디어 공모전</h1>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item" aria-current="page">Home</li>
+					<li class="breadcrumb-item active" aria-current="page">공모전 심사결과</li>
+				</ol>
+			</div>
 
-	</section><!-- #page-title end -->
+		</section><!-- #page-title end -->
 
 
 
-	<!-- footer 시작 -->
-	<c:import url="/sym/mms/ContFooter.do" />
-	<!-- //footer 끝 -->
+		<!-- footer 시작 -->
+	    <c:import url="/sym/mms/ContFooter.do" />
+	    <!-- //footer 끝 -->
 
-</div><!-- #wrapper end -->
+	</div><!-- #wrapper end -->
 
-<!-- Go To Top
-============================================= -->
-<div id="gotoTop" class="icon-angle-up"></div>
+	<!-- Go To Top
+	============================================= -->
+	<div id="gotoTop" class="icon-angle-up"></div>
 
-<!-- External JavaScripts
-============================================= -->
-<script type="text/javascript" src="<c:url value='/'/>js/jquery-3.3.1.js"></script>
-<script type="text/javascript" src="<c:url value='/'/>js/plugins.js"></script>
+	<!-- External JavaScripts
+	============================================= -->
+	<script type="text/javascript" src="<c:url value='/'/>js/jquery-3.3.1.js"></script>
+	<script type="text/javascript" src="<c:url value='/'/>js/plugins.js"></script>
 
-<script type="text/javascript" src="<c:url value='/'/>js/include.js"></script>
+	<script type="text/javascript" src="<c:url value='/'/>js/include.js"></script>
 
-<!-- Footer Scripts
-============================================= -->
-<script type="text/javascript" src="<c:url value='/'/>js/functions.js"></script>
+	<!-- Footer Scripts
+	============================================= -->
+	<script type="text/javascript" src="<c:url value='/'/>js/functions.js"></script>
 
 </body>
 </html>

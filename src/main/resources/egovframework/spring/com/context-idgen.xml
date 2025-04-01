@@ -1067,7 +1067,7 @@
           destroy-method="destroy">
         <property name="dataSource" ref="egov.dataSource" />
         <property name="strategy"   ref="loginLogStrategy" />
-        <property name="blockSize"  value="10"/>
+        <property name="blockSize"  value="1"/>
         <property name="table"      value="IDS"/>
         <property name="tableName"  value="VISIT_COUNT_ID"/>
     </bean>

@@ -126,7 +126,7 @@ public class BBSManageDAO extends EgovAbstractMapper {
     /**
      * 게시물에 대한 조회 건수를 수정 한다.
      *
-     * @param board
+     * @param boardVO
      * @throws Exception
      */
     public void updateInqireCo(BoardVO boardVO) throws Exception {
@@ -147,7 +147,7 @@ public class BBSManageDAO extends EgovAbstractMapper {
     /**
      * 게시판에 대한 목록을 정렬 순서로 조회 한다.
      *
-     * @param boardVO
+     * @param board
      * @return
      * @throws Exception
      */
@@ -174,7 +174,7 @@ public class BBSManageDAO extends EgovAbstractMapper {
     /**
      * 게시판에 대한 현재 게시물 번호의 최대값을 구한다.
      *
-     * @param boardVO
+     * @param board
      * @return
      * @throws Exception
      */
@@ -235,5 +235,16 @@ public class BBSManageDAO extends EgovAbstractMapper {
      */
     public String selectBoardArticleFileRdcnt(Board board) throws Exception {
         return (String)selectOne("BBSManageDAO.selectBoardArticleFileRdcnt", board);
+    }
+
+    /**
+     * 홈페이지 방문수를 조회 한다.
+     *
+     * @param board
+     * @return
+     * @throws Exception
+     */
+    public String selectBoardArticleVisitRdcnt(Board board) throws Exception {
+        return (String)selectOne("BBSManageDAO.selectBoardArticleVisitRdcnt", board);
     }
 }

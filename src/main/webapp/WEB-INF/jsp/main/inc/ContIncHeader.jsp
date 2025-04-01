@@ -10,21 +10,22 @@
 <script type="text/javascript">
 	<!--
 	function getLastLink(menuNo){
-		var tNode = new Array;
-		for (var i = 0; i < document.menuListForm.tmp_menuNm.length; i++) {
+		const tNode = new Array;
+		for (let i = 0; i < document.menuListForm.tmp_menuNm.length; i++) {
 			tNode[i] = document.menuListForm.tmp_menuNm[i].value;
-			var nValue = tNode[i].split("|");
+			const nValue = tNode[i].split("|");
 			//선택된 메뉴(menuNo)의 하위 메뉴중 첫번재 메뉴의 링크정보를 리턴한다.
-			if (nValue[1]==menuNo) {
-				if(nValue[5]!="dir" && nValue[5]!="" && nValue[5]!="/"){
-					//링크정보가 있으면 링크정보를 리턴한다.
+			if (nValue[1].toString()===menuNo) {
+				if (nValue[5] && nValue[5] !== "dir" && nValue[5] !== "/") {
+					// 링크 정보가 있으면 그대로 반환
 					return nValue[5];
-				}else{
-					//링크정보가 없으면 하위 메뉴중 첫번째 메뉴의 링크정보를 리턴한다.
+				} else {
+					// 링크 정보가 없으면 하위 메뉴 중 첫 번째 메뉴의 링크 정보를 반환
 					return getLastLink(nValue[0]);
 				}
-			}else if (nValue[0]==menuNo) {
-				if(nValue[5]!="dir" && nValue[5]!="" && nValue[5]!="/"){
+
+			}else if (nValue[0]===menuNo) {
+				if (nValue[5] !== "dir" && nValue[5] !== "" && nValue[5] !== "/"){
 					//링크정보가 있으면 링크정보를 리턴한다.
 					return nValue[5];
 				}
@@ -52,8 +53,8 @@
 					<!-- Logo
 					============================================= -->
 					<div id="logo">
-						<a href="/" class="standard-logo"><img src="<c:url value='/'/>images/logo-img.png" alt="AI공모전"></a>
-						<a href="/" class="retina-logo"><img src="<c:url value='/'/>images/logo-img@2x.png" alt="AI공모전"></a>
+						<a href="/" class="standard-logo"><img src="<c:url value='/'/>images/logo-img.png" alt="AI 아이디어 챌린지 공모전"></a>
+						<a href="/" class="retina-logo"><img src="<c:url value='/'/>images/logo-img@2x.png" alt="AI 아이디어 챌린지 공모전"></a>
 					</div><!-- #logo end -->
 
 					<!-- Primary Navigation
@@ -97,15 +98,15 @@
 
 							<%
 								LoginVO loginVO = (LoginVO)session.getAttribute("LoginVO");
-								if(loginVO == null){
+								if (loginVO == null){
 							%>
 							<li class=""><a href="/uat/uia/egovLoginUsr.do"><div><i class="icon-line2-login"></i>로그인</div></a></li>
-							<% }else{ %>
-							<%    if(!loginVO.getUniqId().equals("USRCNFRM_00000000000")){ %>
+							<%  }else{ %>
+							<%     if(!loginVO.getUniqId().equals("USRCNFRM_00000000000")){ %>
 							<li class=""><a href="/uss/umt/mber/MyInfo.do"><div class="">내정보관리</div></a></li>
-							<%    } %>
+							<%     } %>
 							<li class=""><c:out value="${loginName}" /> <a href="/uat/uia/actionLogout.do"><div><i class="icon-line2-logout"></i>로그아웃</div></a></li>
-							<% } %>
+							<%  } %>
 						</ul>
 
 
@@ -118,7 +119,7 @@
 			<form name="menuListForm" action ="" method="post">
 				<input type="hidden" id="menuNo" name="menuNo" value="<%=session.getAttribute("menuNo")%>" />
 				<input type="hidden" id="link" name="link" value="" />
-				<div style="width:0px; height:0px;">
+				<div style="width:0; height:0;">
 					<c:forEach var="result" items="${list_menulist}" varStatus="status" >
 						<input type="hidden" name="tmp_menuNm" value="<c:out value='${result.menuNo}'/>|<c:out value='${result.upperMenuId}'/>|<c:out value='${result.menuNm}'/>|<c:out value='${result.relateImagePath}'/>|<c:out value='${result.relateImageNm}'/>|<c:out value='${result.chkURL}'/>|" />
 					</c:forEach>

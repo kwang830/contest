@@ -1,16 +1,3 @@
-<%--
-  Class Name : EgovMberPasswordUpdt.jsp
-  Description : 일반회원암호수정 JSP
-  Modification Information
- 
-      수정일         수정자                   수정내용
-    -------    --------    ---------------------------
-     2009.04.02  JJY          최초 생성
-     2011.08.31  JJY       경량환경 버전 생성
- 
-    author   : 공통서비스 개발팀 JJY
-    since    : 2009.04.02
---%>
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
@@ -18,20 +5,50 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="validator" uri="http://www.springmodules.org/tags/commons-validator" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html dir="ltr" lang="ko">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="<c:url value='/'/>css/base.css">
-	<link rel="stylesheet" href="<c:url value='/'/>css/layout.css">
-	<link rel="stylesheet" href="<c:url value='/'/>css/component.css">
-	<link rel="stylesheet" href="<c:url value='/'/>css/page.css">
-	<script src="<c:url value='/'/>js/jquery-1.11.2.min.js"></script>
-	<script src="<c:url value='/'/>js/ui.js"></script>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="SemiColonWeb" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>샘플 포털 > 포털시스템관리 > 사용자관리 > 회원관리</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <!-- preload -->
+    <link rel="preload" href="<c:url value='/'/>css/bootstrap.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="<c:url value='/'/>css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="<c:url value='/'/>css/responsive.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="<c:url value='/'/>css/coming-soon.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+    <!-- 비동기
+    ============================================= -->
+    <link rel="stylesheet" href="<c:url value='/'/>css/swiper.css" type="text/css" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="<c:url value='/'/>css/font-icons.css" type="text/css" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="<c:url value='/'/>css/animate.css" type="text/css" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="<c:url value='/'/>css/magnific-popup.css" type="text/css" media="print" onload="this.media='all'" />
+
+    <link rel="stylesheet" href="<c:url value='/'/>css/coming-soon.css" type="text/css">
+
+    <noscript>
+        <link rel="stylesheet" href="<c:url value='/'/>css/bootstrap.css">
+        <link rel="stylesheet" href="<c:url value='/'/>css/styles.css">
+        <link rel="stylesheet" href="<c:url value='/'/>css/swiper.css">
+        <link rel="stylesheet" href="<c:url value='/'/>css/font-icons.css">
+        <link rel="stylesheet" href="<c:url value='/'/>css/animate.css">
+        <link rel="stylesheet" href="<c:url value='/'/>css/magnific-popup.css">
+        <link rel="stylesheet" href="<c:url value='/'/>css/responsive.css">
+        <link rel="stylesheet" href="<c:url value='/'/>css/coming-soon.css">
+    </noscript>
+
+    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+
+    <!-- Document Title
+    ============================================= -->
+    <title>IBK시스템 AI 아이디어 챌린지 - 회원관리</title>
 <script type="text/javascript" src="<c:url value="/validator.do"/>"></script>
 <validator:javascript formName="passwordChgVO" staticJavascript="false" xhtml="true" cdata="false"/>
 <script type="text/javaScript" language="javascript" defer="defer">
@@ -53,36 +70,35 @@ function fnUpdate(){
 //-->
 </script>
 </head>
-<body>
+<body class="no-transition stretched">
 
-    <!-- Skip navigation -->
-    <a href="#contents" class="skip_navi">본문 바로가기</a>
-
-    <div class="wrap">
+    <!-- Document Wrapper
+    ============================================= -->
+    <div id="wrapper" class="clearfix">
         <!-- header start -->
-	    <c:import url="/sym/mms/EgovHeader.do" />
-	    <!-- //header end -->
+        <c:import url="/sym/mms/ContHeader.do" />
+        <!-- //header end -->
+
+        <!-- Page Title
+============================================= -->
+        <section id="page-title">
+
+            <div class="container clearfix">
+                <h1>2025년 AI 아이디어 공모전</h1>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item" aria-current="page">Home</li>
+                    <li class="breadcrumb-item active" aria-current="page">사용자관리</li>
+                </ol>
+            </div>
+
+        </section><!-- #page-title end -->
 
         <div class="container">
             <div class="sub_layout">
                 <div class="sub_in">
                     <div class="layout">
-                        <!-- Left menu -->
-	                    <c:import url="/sym/mms/EgovMenuLeft.do" />
-	                    <!--// Left menu -->
-        
                         <div class="content_wrap">
                             <div id="contents" class="content">
-                                 <!-- Location -->
-                                <div class="location">
-                                    <ul>
-                                        <li><a class="home" href="">Home</a></li>
-                                        <li><a href="">포털시스템관리</a></li>
-                                        <li><a href="">사용자관리</a></li>
-                                        <li>회원관리</li>
-                                    </ul>
-                                </div>
-                                <!--// Location -->
 
 								<form name="passwordChgVO" method="post" action="<c:url value="${'/uss/umt/mber/EgovMberPasswordUpdt.do'}"/>" >
 						        <!-- 상세정보 사용자 삭제시 prameter 전달용 input -->
@@ -95,16 +111,10 @@ function fnUpdate(){
 						        <!-- 우편번호검색 -->
 						        <input type="hidden" name="url" value="<c:url value='/sym/ccm/zip/EgovCcmZipSearchPopup.do'/>" />
 
-                                <h1 class="tit_1">포털시스템관리</h1>
-
-                                <p class="txt_1">포털시스템에서 제공되는 서비스들에 대한 컨텐츠를 관리합니다.</p>
-
-                                <h2 class="tit_2">사용자관리</h2>
-
-                                <h3 class="tit_3">회원관리</h3>
+                                <h2>사용자관리</h2>
 
                                 <div class="board_view2">
-                                    <table summary="SUMMARY">
+                                    <table>
                                         <colgroup>
                                             <col style="width: 190px;">
                                             <col style="width: auto;">
@@ -151,19 +161,12 @@ function fnUpdate(){
                                     </table>
                                 </div>
 
-								<!-- 목록/저장버튼  시작-->
-                                <div class="board_view_bot">
-                                    <div class="left_col btn3">
-                                        <a href="#LINK" class="btn btn_skyblue_h46 w_100" onclick="javascript:document.passwordChgVO.reset();"><spring:message code="button.reset" /></a><!-- 취소 -->
-                                    </div>
-
-                                    <div class="right_col btn1">
-                                        <a href="#LINK" class="btn btn_blue_46 w_100" onclick="fnUpdate(); return false;"><spring:message code="button.save" /></a><!-- 저장 -->
-                                        <a href="<c:url value='/uss/umt/mber/EgovMberManage.do'/>" class="btn btn_blue_46 w_100" onclick="fnListPage(); return false;"><spring:message code="button.list" /></a><!-- 목록 -->
-                                    </div>
-                                </div>
+                                <!-- 목록/저장버튼  시작-->
+                                <input type="button" name="btn_cancel" id="btn_cancel" class="s_btn" value="취소" title="취소버튼" onclick="javascript:document.passwordChgVO.reset();" />
+                                <input type="button" name="btn_save" id="btn_save" class="s_btn" value="저장" title="저장버튼" onclick="fnUpdate(); return false;" />
+                                <input type="button" name="btn_list" id="btn_list" class="s_btn" value="목록" title="목록버튼" onclick="fnListPage(); return false;" />
                                 <!-- 목록/저장버튼  끝-->
-                                
+
                                 </form>
                                 
                             </div>
@@ -174,9 +177,24 @@ function fnUpdate(){
         </div>
 
         <!-- footer 시작 -->
-	    <c:import url="/sym/mms/EgovFooter.do" />
-	    <!-- //footer 끝 -->
+        <c:import url="/sym/mms/ContFooter.do" />
+        <!-- //footer 끝 -->
     </div>
+
+    <!-- Go To Top
+    ============================================= -->
+    <div id="gotoTop" class="icon-angle-up"></div>
+
+    <!-- External JavaScripts
+    ============================================= -->
+    <script type="text/javascript" src="<c:url value='/'/>js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="<c:url value='/'/>js/plugins.js"></script>
+
+    <script type="text/javascript" src="<c:url value='/'/>js/include.js"></script>
+
+    <!-- Footer Scripts
+    ============================================= -->
+    <script type="text/javascript" src="<c:url value='/'/>js/functions.js"></script>
     
 </body>
 </html>

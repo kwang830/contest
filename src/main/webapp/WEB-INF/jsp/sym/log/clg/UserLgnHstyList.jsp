@@ -3,37 +3,72 @@
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page import ="egovframework.com.cmm.LoginVO" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html dir="ltr" lang="en-US">
+<!DOCTYPE html>
+<html dir="ltr" lang="ko">
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="author" content="SemiColonWeb" />
-
-	<!-- Stylesheets
-	============================================= -->
-	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" rel="stylesheet" type="text/css" />
-
-	<link rel="stylesheet" href="<c:url value='/'/>css/bootstrap.css" type="text/css" />
-	<link rel="stylesheet" href="<c:url value='/'/>css/style.css" type="text/css" />
-	<link rel="stylesheet" href="<c:url value='/'/>css/swiper.css" type="text/css" />
-	<link rel="stylesheet" href="<c:url value='/'/>css/dark.css" type="text/css" />
-	<link rel="stylesheet" href="<c:url value='/'/>css/font-icons.css" type="text/css" />
-	<link rel="stylesheet" href="<c:url value='/'/>css/animate.css" type="text/css" />
-	<link rel="stylesheet" href="<c:url value='/'/>css/magnific-popup.css" type="text/css" />
-	<link rel="stylesheet" href="<c:url value='/'/>css/responsive.css" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-	<script src="<c:url value='/'/>js/jquery-1.11.2.min.js"></script>
-	<script src="<c:url value='/'/>js/ui.js"></script>
-	<script src="<c:url value='/'/>js/jquery.js"></script>
-	<script src="<c:url value='/'/>js/jqueryui.js"></script>
-	<link rel="stylesheet" href="<c:url value='/'/>css/jqueryui.css">
+	<!-- Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+	<!-- preload -->
+	<link rel="preload" href="<c:url value='/'/>css/bootstrap.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="preload" href="<c:url value='/'/>css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="preload" href="<c:url value='/'/>css/responsive.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="preload" href="<c:url value='/'/>css/coming-soon.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+	<!-- 비동기
+	============================================= -->
+	<link rel="stylesheet" href="<c:url value='/'/>css/swiper.css" type="text/css" media="print" onload="this.media='all'" />
+	<link rel="stylesheet" href="<c:url value='/'/>css/font-icons.css" type="text/css" media="print" onload="this.media='all'" />
+	<link rel="stylesheet" href="<c:url value='/'/>css/animate.css" type="text/css" media="print" onload="this.media='all'" />
+	<link rel="stylesheet" href="<c:url value='/'/>css/magnific-popup.css" type="text/css" media="print" onload="this.media='all'" />
+
+	<link rel="stylesheet" href="<c:url value='/'/>css/coming-soon.css" type="text/css">
+
+	<link rel="stylesheet" href="<c:url value='/'/>css/jqueryui.css" type="text/css">
+
+	<noscript>
+		<link rel="stylesheet" href="<c:url value='/'/>css/bootstrap.css">
+		<link rel="stylesheet" href="<c:url value='/'/>css/styles.css">
+		<link rel="stylesheet" href="<c:url value='/'/>css/swiper.css">
+		<link rel="stylesheet" href="<c:url value='/'/>css/font-icons.css">
+		<link rel="stylesheet" href="<c:url value='/'/>css/animate.css">
+		<link rel="stylesheet" href="<c:url value='/'/>css/magnific-popup.css">
+		<link rel="stylesheet" href="<c:url value='/'/>css/responsive.css">
+		<link rel="stylesheet" href="<c:url value='/'/>css/coming-soon.css">
+	</noscript>
+
+	<script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+
 
 	<!-- Document Title
 	============================================= -->
-	<title>IBK시스템, AI 아이디어 챌린지 - 로그인 이력 조회</title>
+	<title>IBK시스템 AI 아이디어 챌린지</title>
+
+	<!-- favicon -->
+	<link rel="icon" type="image/x-icon" href="<c:url value='/'/>images/favicon.ico">
+
+	<script type="text/javascript">
+		<!--
+		function fn_egov_downFile(atchFileId, fileSn) {
+			window.open("/cmm/fms/FileDown.do?atchFileId="+atchFileId+"&fileSn="+fileSn+"&authPass=yes");
+		}
+
+		function fn_contest_attach_file_down() {
+			// 공모전 참가 신청서
+			fn_egov_downFile('EcqfhYxRcnWG52hkOGYp/F3suq/5SFOvAnxJUaQhI01X9dgmJjJ+3mWoSYu1PsdTs4dfuDM2VdFX2fN3C0X4iQ==','0');
+		}
+		//-->
+	</script>
 
 </head>
+
 <script type="text/javascript">
 
 /* ********************************************************
@@ -128,7 +163,7 @@ function fn_egov_search_loginLog(){
 }
 </script>
 
-<body class="stretched" onload="fn_contest_init_date()">
+<body class="no-transition stretched" onload="fn_contest_init_date()">
 
 <!-- Document Wrapper
 ============================================= -->
@@ -260,12 +295,15 @@ function fn_egov_search_loginLog(){
 
 <!-- External JavaScripts
 ============================================= -->
-<script src="<c:url value='/'/>js/jquery-3.3.1.js"></script>
-<script src="<c:url value='/'/>js/plugins.js"></script>
-<script src="<c:url value='/'/>js/jqueryui.js"></script>
+<script type="text/javascript" src="<c:url value='/'/>js/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="<c:url value='/'/>js/plugins.js"></script>
+
+<script type="text/javascript" src="<c:url value='/'/>js/include.js"></script>
+
+<script type="text/javascript" src="<c:url value='/'/>js/jqueryui.js"></script>
 <!-- Footer Scripts
 ============================================= -->
-<script src="<c:url value='/'/>js/functions.js"></script>
+<script type="text/javascript" src="<c:url value='/'/>js/functions.js"></script>
 
 </body>
 </html>

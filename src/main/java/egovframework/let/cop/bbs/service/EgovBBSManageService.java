@@ -107,4 +107,14 @@ public interface EgovBBSManageService {
 	 */
 	public String selectBoardArticleFileRdcnt(Board Board)
 			throws Exception;
+
+	/**
+	 * 홈페이지 방문수를 조회 한다.
+	 * @return
+	 *
+	 * @param Board
+	 * @exception Exception Exception
+	 */
+	public String selectBoardArticleVisitRdcnt(Board Board)
+			throws Exception;
 }

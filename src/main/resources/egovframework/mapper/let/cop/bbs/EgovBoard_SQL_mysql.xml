@@ -383,4 +383,13 @@
 		WHERE ATCH_FILE_ID = #{atchFileId}
 
 	</select>
+
+	<select id="selectBoardArticleVisitRdcnt" parameterType="egovframework.let.cop.bbs.service.Board" resultType="java.lang.String">
+
+		SELECT
+			NEXT_ID
+		FROM
+			IDS
+		WHERE TABLE_NAME = 'VISIT_COUNT_ID'
+	</select>
 </mapper>

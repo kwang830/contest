@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page import ="egovframework.com.cmm.LoginVO" %>
 <!DOCTYPE html>
-<html dir="ltr" lang="en-US">
+<html dir="ltr" lang="ko">
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="author" content="SemiColonWeb" />
@@ -28,7 +28,7 @@
 	<link rel="stylesheet" href="<c:url value='/'/>css/animate.css" type="text/css" media="print" onload="this.media='all'" />
 	<link rel="stylesheet" href="<c:url value='/'/>css/magnific-popup.css" type="text/css" media="print" onload="this.media='all'" />
 
-	<link rel="stylesheet" href="<c:url value='/'/>css/coming-soon.css?edit_dt=25032811" type="text/css">
+	<link rel="stylesheet" href="<c:url value='/'/>css/coming-soon.css" type="text/css">
 
 	<noscript>
 		<link rel="stylesheet" href="<c:url value='/'/>css/bootstrap.css">
@@ -61,6 +61,11 @@
 			// 공모전 참가 신청서
 			fn_egov_downFile('EcqfhYxRcnWG52hkOGYp/F3suq/5SFOvAnxJUaQhI01X9dgmJjJ+3mWoSYu1PsdTs4dfuDM2VdFX2fN3C0X4iQ==','0');
 		}
+		function fn_contest_history_file_down() {
+			// 공모전 역대 수상작
+			fn_egov_downFile('lOL6JF8m5ZoPksOpjrNiuaGtkjLqYcjbsZZFEt1UnqxX9dgmJjJ+3mWoSYu1PsdTeEQo1bzVt9EUDFB5K1/5NA==','0');
+		}
+
 		//-->
 	</script>
 
@@ -129,13 +134,13 @@
 						</div>
 					</div>
 				</div>
-				<div class="info-box">
+				<div class="info-box" onClick="fn_contest_history_file_down()">
 					<div class="info-img">
 						<dotlottie-player src="https://lottie.host/20f4c33b-f835-49bb-a346-f49d4dc70d75/9OkpJWJkyl.lottie" background="transparent" speed="1" autoplay></dotlottie-player>
 					</div>
 					<div class="info-text">
 						<div class="info-title">
-							역대수상작 (오픈예정)
+							역대수상작
 						</div>
 						<div class="info-desc">
 							역대 수상작을 확인하려면
@@ -192,7 +197,7 @@
 
 <!-- Footer Scripts
 ============================================= -->
-<script src="<c:url value='/'/>js/functions.js"></script>
+<script type="text/javascript" src="<c:url value='/'/>js/functions.js"></script>
 
 <script>
 	function diffDay(){

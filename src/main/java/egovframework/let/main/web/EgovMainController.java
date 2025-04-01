@@ -43,7 +43,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
  *  수정일              수정자           수정내용
  *  ----------  --------   ---------------------------
  *  2011.08.31  JJY        최초 생성
- *  2021.08.12  신용호            추가 URL 생성 
+ *  2021.08.12  신용호            추가 URL 생성
  *
  * </pre>
  */
@@ -105,17 +105,8 @@ public class EgovMainController {
 	  throws Exception{
 
 		// 방문수 확인용
-		//String logId = egovVisitCountLogIdGnrService.getNextStringId();
 		BigDecimal visit_count = egovVisitCountLogIdGnrService.getNextBigDecimalId();
-		model.addAttribute("visit_count", visit_count);
-
-		// 신청서 다운로드 첨부파일 조회수 시작 ---------------------------------
-		BoardVO boardVO = new BoardVO();
-		boardVO.setAtchFileId("FILE_000000000000061");
-
-		String download_count = bbsMngService.selectBoardArticleFileRdcnt(boardVO);
-		model.addAttribute("download_count", download_count);
-
+		System.out.println("visit_count:"+visit_count);
 
 		//return "main/EgovMainView";
 		return "main/contest/ContIntroView";
@@ -155,7 +146,7 @@ public class EgovMainController {
     	return "main/inc/EgovIncHeader"; // 업무화면의 상단메뉴 화면
 
     }
-	
+
 	/**
      * Header Page를 조회한다.
      * @param menuManageVO MenuManageVO
@@ -193,7 +184,7 @@ public class EgovMainController {
 
 	/**
      * Footer Page를 조회한다.
-     * @param 
+     * @param
      * @return 출력페이지정보 "EgovIncFooter"
      * @exception Exception
      */
@@ -201,21 +192,32 @@ public class EgovMainController {
     public String selectFooter(ModelMap model) throws Exception {
     	return "main/inc/EgovIncFooter";
     }
-	
+
 	/**
      * Footer Page를 조회한다.
-     * @param 
+     * @param
      * @return 출력페이지정보 "ContIncFooter"
      * @exception Exception
      */
 	@RequestMapping(value="/sym/mms/ContFooter.do")
     public String selectFooter2(ModelMap model) throws Exception {
+
+		// 신청서 다운로드 첨부파일 조회수 시작 ---------------------------------
+		BoardVO boardVO = new BoardVO();
+		boardVO.setAtchFileId("FILE_000000000000061");
+
+		String visit_count = bbsMngService.selectBoardArticleVisitRdcnt(boardVO);
+		model.addAttribute("visit_count", visit_count);
+
+		String download_count = bbsMngService.selectBoardArticleFileRdcnt(boardVO);
+		model.addAttribute("download_count", download_count);
+
     	return "main/inc/ContIncFooter";
     }
-    
+
     /**
      * 좌측메뉴를 조회한다.
-     * @param 
+     * @param
      * @return 출력페이지정보 "EgovIncLeftmenu"
      * @exception Exception
      */
@@ -297,7 +299,7 @@ public class EgovMainController {
       	return "main/inc/EgovIncLeftmenuOld";
     }
 
-	
+
 	/**
 	 * 템플릿 메인 페이지 조회
 	 * @return 메인페이지 정보 Map [key : 항목명]
@@ -309,7 +311,7 @@ public class EgovMainController {
 	@RequestMapping(value = "/cmm/main/mainPage2.do")
 	public String getMgtMainPage2(HttpServletRequest request, ModelMap model)
 	  throws Exception{
-		
+
 		// 공지사항 메인 컨텐츠 조회 시작 ---------------------------------
 		BoardVO boardVO = new BoardVO();
 		boardVO.setUseAt("Y");
@@ -389,7 +391,7 @@ public class EgovMainController {
 
 		return "main/EgovMainView2";
 	}
-	
+
 	/**
 	 * 공모전 소개 페이지 조회
 	 * @return 메인페이지 정보 Map [key : 항목명]
@@ -448,6 +450,51 @@ public class EgovMainController {
 			throws Exception{
 
 		return "main/contest/ContestVoteView";
+	}
+
+	/**
+	 * 공모전 심사
+	 * @return 메인페이지 정보 Map [key : 항목명]
+	 *
+	 * @param request
+	 * @param model
+	 * @exception Exception Exception
+	 */
+	@RequestMapping(value = "/cmm/contest/contestAdminVote.do")
+	public String getContestAdminVotePage(HttpServletRequest request, ModelMap model)
+			throws Exception{
+
+		return "main/contest/ContestAdminVoteView";
+	}
+
+	/**
+	 * 공모전 투표결과
+	 * @return 메인페이지 정보 Map [key : 항목명]
+	 *
+	 * @param request
+	 * @param model
+	 * @exception Exception Exception
+	 */
+	@RequestMapping(value = "/cmm/contest/contestVoteRslt.do")
+	public String getContestVoteRsltPage(HttpServletRequest request, ModelMap model)
+			throws Exception{
+
+		return "main/contest/ContestVoteRsltView";
+	}
+
+	/**
+	 * 공모전 심사결과
+	 * @return 메인페이지 정보 Map [key : 항목명]
+	 *
+	 * @param request
+	 * @param model
+	 * @exception Exception Exception
+	 */
+	@RequestMapping(value = "/cmm/contest/contestAdminVoteRslt.do")
+	public String getContestAdminVoteRsltPage(HttpServletRequest request, ModelMap model)
+			throws Exception{
+
+		return "main/contest/ContestAdminVoteRsltView";
 	}
 
 	/**

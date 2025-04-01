@@ -207,4 +207,15 @@ public class EgovBBSManageServiceImpl extends EgovAbstractServiceImpl implements
 	public String selectBoardArticleFileRdcnt(Board board) throws Exception {
 		return bbsMngDAO.selectBoardArticleFileRdcnt(board);
 	}
+
+	/**
+	 * 홈페이지 방문수를 조회 한다.
+	 *
+	 * @param board
+	 * @return
+	 * @throws Exception
+	 */
+	public String selectBoardArticleVisitRdcnt(Board board) throws Exception {
+		return bbsMngDAO.selectBoardArticleVisitRdcnt(board);
+	}
 }
