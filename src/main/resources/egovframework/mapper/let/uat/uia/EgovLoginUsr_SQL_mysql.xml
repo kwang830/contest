@@ -13,7 +13,8 @@
 		<result property="password" column="password"/>
 		<result property="userSe" column="userSe"/>
 		<result property="orgnztId" column="orgnztId"/>
-		<result property="uniqId" column="uniqId"/>		
+		<result property="uniqId" column="uniqId"/>
+        <result property="url" column="url"/>
 	</resultMap>
 	
 	<!-- 아이디 찾기를 위한 resultMap 
@@ -40,7 +41,9 @@
                  , esntl_id AS uniqId
               FROM LETTNGNRLMBER
              WHERE mber_id = #{id}
-               AND password = #{password}
+            <if test="url != &quot;PASS&quot;">
+                AND password = #{password}
+            </if>
                AND mber_sttus = 'P'
         </if>
         <!-- 대상없을 때 -->

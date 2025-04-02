@@ -108,9 +108,10 @@ public class EgovLoginController {
 
 		String tokenString = request.getParameter("jwt"); // 토큰스트링
 		//eyJhbGciOiJIUzUxMiIsInJlZ0RhdGUiOjE2ODYxMTYxMzE1ODUsInR5cCI6IkpXVCJ9.eyJkZXB0TmFtZSI6Iu2UjOueq-2PvOyCrOyXhe2MgCIsImV4cCI6MTY4NjExNjIzMSwiZW1wTmFtZSI6Iuq5gOuMgOq0kSIsInBvc05hbWUiOiLssKjsnqUiLCJlbXBDb2RlIjoiNTAyNzkifQ.qCsZkr8J20WuEym_pQsy2Z--Fj_BsudyqkskTFG3Loy03nGfsgbwIe73Fg6W7KQFlUm-9jixSEi3q26yXIHFAg
-//		String tokenString = "eyJhbGciOiJIUzUxMiIsInJlZ0RhdGUiOjE2ODYxMjE3NDg0NjYsInR5cCI6IkpXVCJ9.eyJkZXB0TmFtZSI6Iu2UjOueq-2PvOyCrOyXhe2MgCIsImV4cCI6MTY4NjEyMTg0OCwiZW1wTmFtZSI6IuuwseuLqOu5hCIsInBvc05hbWUiOiLrjIDrpqwiLCJlbXBDb2RlIjoiNTAzMTgifQ.F13FWamvRuVl4-yJP2WH6RycmmMIQKfXq5ehCUAzWFq_gl26dim9_7-q5i1S4A4xNOrUGbJkNA2SCTKtJGP6yw";
+		//String tokenString = "eyJhbGciOiJIUzUxMiIsInJlZ0RhdGUiOjE3NDM1Nzg3OTEzMDcsInR5cCI6IkpXVCJ9.eyJkZXB0TmFtZSI6IuqyveyYgeygleuztO2MgCIsImV4cCI6MTc0MzU3ODg5MSwiZW1wTmFtZSI6IuqwleyYge2VnCIsInBvc05hbWUiOiLssKjsnqUiLCJlbXBDb2RlIjoiOTk1MzUifQ.VS5ekJsf4CeSNUkTvEeyycQbiTnC69G8_q2rtuFiMjoYwbrjBRg3V8DW2w4x34BoaINv2iadchO7My5MYII3qw";
+		//eyJhbGciOiJIUzUxMiIsInJlZ0RhdGUiOjE3NDM1Nzg3OTEzMDcsInR5cCI6IkpXVCJ9.eyJkZXB0TmFtZSI6IuqyveyYgeygleuztO2MgCIsImV4cCI6MTc0MzU3ODg5MSwiZW1wTmFtZSI6IuqwleyYge2VnCIsInBvc05hbWUiOiLssKjsnqUiLCJlbXBDb2RlIjoiOTk1MzUifQ.VS5ekJsf4CeSNUkTvEeyycQbiTnC69G8_q2rtuFiMjoYwbrjBRg3V8DW2w4x34BoaINv2iadchO7My5MYII3qw
 
-		System.out.println("[로그인] loginUsrView >>> ");
+		//System.out.println("[로그인] loginUsrView >>> tokenString :"+tokenString);
 
 		try{
 			String JWT_KEY = "X19JQktTWVNURU1fT1BSSVNLX18=" ; // 암호화key
@@ -152,22 +153,54 @@ public class EgovLoginController {
 			loginVO.setId(empCode);
 			loginVO.setUserSe("GNR");
 			LoginVO resultVO = loginService.actionLogin(loginVO); //사번만 확인
+			//System.out.println("resultVO.getId():"+resultVO.getId());
 
-			LoginLog loginLog = new LoginLog();
-			loginLog.setLoginId(resultVO.getId());
-			loginLog.setLoginIp(ip);
-			loginLog.setLoginMthd("I"); // 로그인:I, 로그아웃:O
-			loginLog.setErrOccrrAt("N");
-			loginLog.setErrorCode("");
-			loginLog.setBrowserInfo(loginVO.getBrowserInfo());
-			loginLog.setPcInfo(loginVO.getPcInfo());
-			loginLogService.logInsertLoginLog(loginLog);
+			boolean loginPolicyYn = true;
 
-			// 2-1. 로그인 정보를 세션에 저장
-			request.getSession().setAttribute("loginVO", resultVO);
+			if (resultVO != null && resultVO.getId() != null && !resultVO.getId().equals("") && loginPolicyYn) {
 
-			return "redirect:/uat/uia/actionMain.do";
+				// 2. spring security 연동
+				request.getSession().setAttribute("LoginVO", resultVO);
 
+				UsernamePasswordAuthenticationFilter springSecurity = null;
+
+				ApplicationContext act = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getSession().getServletContext());
+
+
+				Map<String, UsernamePasswordAuthenticationFilter> beans = act.getBeansOfType(UsernamePasswordAuthenticationFilter.class);
+
+				if (beans.size() > 0) {
+
+					springSecurity = (UsernamePasswordAuthenticationFilter) beans.values().toArray()[0];
+					springSecurity.setUsernameParameter("egov_security_username");
+					springSecurity.setPasswordParameter("egov_security_password");
+					springSecurity.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher(request.getServletContext().getContextPath() +"/egov_security_login", "POST"));
+
+				} else {
+					throw new IllegalStateException("No AuthenticationProcessingFilter");
+				}
+
+				springSecurity.doFilter(new RequestWrapperForSecurity(request, resultVO.getUserSe() + resultVO.getId() , resultVO.getUniqId()), response, null);
+
+				LoginLog loginLog = new LoginLog();
+				loginLog.setLoginId(resultVO.getId());
+				loginLog.setLoginIp(ip);
+				loginLog.setLoginMthd("I"); // 로그인:I, 로그아웃:O
+				loginLog.setErrOccrrAt("N");
+				loginLog.setErrorCode("");
+				loginLog.setPcInfo(loginVO.getPcInfo());
+				loginLog.setBrowserInfo(loginVO.getBrowserInfo());
+
+				loginLogService.logInsertLoginLog(loginLog);
+
+				return "forward:/cmm/main/mainPage.do";	// 성공 시 페이지.. (redirect 불가)
+
+			} else {
+
+				//model.addAttribute("message", egovMessageSource.getMessage("fail.common.login", null, null, locale.KOREAN));
+				model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
+				return "uat/uia/EgovLoginUsr";
+			}
 
 		}catch(ExpiredJwtException expiredJwtException){
 			// jwt 토큰만료
@@ -257,9 +290,12 @@ public class EgovLoginController {
     @RequestMapping(value="/uat/uia/actionMain.do")
 	public String actionMain(ModelMap model)
 			throws Exception {
+
+		System.out.println("# /uat/uia/actionMain.do ; actionMain >> ");
     	
     	// 1. Spring Security 사용자권한 처리
     	Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+		System.out.println("isAuthenticated:"+isAuthenticated);
     	if(!isAuthenticated) {
     		model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
         	return "uat/uia/EgovLoginUsr";
