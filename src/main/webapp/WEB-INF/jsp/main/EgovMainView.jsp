@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page import ="egovframework.com.cmm.LoginVO" %>
@@ -12,33 +12,33 @@
 	<!-- Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" as="style" crossorigin
+		  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"/>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+		  rel="stylesheet">
 
 	<!-- preload -->
 	<link rel="preload" href="<c:url value='/'/>css/bootstrap.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/responsive.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-	<link rel="preload" href="<c:url value='/'/>css/coming-soon.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="preload" href="<c:url value='/'/>css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
 	<!-- 비동기
 	============================================= -->
-	<link rel="stylesheet" href="<c:url value='/'/>css/swiper.css" type="text/css" media="print" onload="this.media='all'" />
 	<link rel="stylesheet" href="<c:url value='/'/>css/font-icons.css" type="text/css" media="print" onload="this.media='all'" />
 	<link rel="stylesheet" href="<c:url value='/'/>css/animate.css" type="text/css" media="print" onload="this.media='all'" />
 	<link rel="stylesheet" href="<c:url value='/'/>css/magnific-popup.css" type="text/css" media="print" onload="this.media='all'" />
-
-	<link rel="stylesheet" href="<c:url value='/'/>css/coming-soon.css" type="text/css">
+	<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" >
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
 
 	<noscript>
+		<link rel="stylesheet" href="<c:url value='/'/>css/main.css">
 		<link rel="stylesheet" href="<c:url value='/'/>css/bootstrap.css">
 		<link rel="stylesheet" href="<c:url value='/'/>css/styles.css">
-		<link rel="stylesheet" href="<c:url value='/'/>css/swiper.css">
 		<link rel="stylesheet" href="<c:url value='/'/>css/font-icons.css">
 		<link rel="stylesheet" href="<c:url value='/'/>css/animate.css">
 		<link rel="stylesheet" href="<c:url value='/'/>css/magnific-popup.css">
 		<link rel="stylesheet" href="<c:url value='/'/>css/responsive.css">
-		<link rel="stylesheet" href="<c:url value='/'/>css/coming-soon.css">
 	</noscript>
 
 	<script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
@@ -66,7 +66,7 @@
 
 </head>
 
-<body class="no-transition stretched">
+<body class="stretched">
 
 	<!-- Document Wrapper
 	============================================= -->
@@ -76,352 +76,269 @@
 	    <c:import url="/sym/mms/ContHeader.do" />
 	    <!-- //header end -->
 
-		<section id="slider" class="slider-element slider-parallax swiper_wrapper clearfix">
-
-			<div class="slider-parallax-inner">
-
-				<div class="swiper-container swiper-parent">
-					<div class="swiper-wrapper">
-						<div class="swiper-slide dark" style="background-image: url('<c:url value='/'/>images/slider/swiper/22.jpg'); background-position: center top;">
-							<div class="container clearfix">
-								<div class="slider-caption slider-caption-center">
-									<h2 data-animate="fadeInUp">미래를 여는 AI<br> 혁신을 향한 도전!</h2>
-									<p class="d-none d-sm-block" data-animate="fadeInUp" data-delay="200">AI Opening the Future, Challenges for Innovation!</p>
-								</div>
-							</div>
-						</div>
-						<div class="swiper-slide dark" style="background-image: url('<c:url value='/'/>images/slider/swiper/18.jpg'); background-position: center top;">
-							<div class="container clearfix">
-								<div class="slider-caption slider-caption-right">
-									<h2 data-animate="fadeInUp">미래를 여는 AI<br> 혁신을 향한 도전!</h2>
-									<p class="d-none d-sm-block" data-animate="fadeInUp" data-delay="200">AI Opening the Future, Challenges for Innovation!</p>
-								</div>
-							</div>
-						</div>
-						<div class="swiper-slide dark" style="background-image: url('<c:url value='/'/>images/slider/swiper/17.jpg');">
-							<div class="container clearfix">
-								<div class="slider-caption slider-caption-left">
-									<h2 data-animate="fadeInUp">Welcome to<br> AI공모전</h2>
-									<p class="d-none d-sm-block" data-animate="fadeInUp" data-delay="200">AI공모전 홈페이지에 오신것을 환영합니다.</p>
-								</div>
-							</div>
-						</div>
-						<div class="swiper-slide dark" style="background-image: url('<c:url value='/'/>images/slider/swiper/16.jpg');">
-							<div class="container clearfix">
-								<div class="slider-caption slider-caption-center">
-									<h2 data-animate="fadeInUp">AI 공모전에 참여하세요!</h2>
-									<p class="d-none d-sm-block" data-animate="fadeInUp" data-delay="200">Act as if what you do makes a difference. It does.</p>
-									<p class="d-none d-sm-block" data-animate="fadeInUp" data-delay="200">당신이 하는 일이 변화를 가져오는 것처럼 행동하세요. 실제로 그렇게 됩니다.</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="slider-arrow-left"><i class="icon-angle-left"></i></div>
-					<div class="slider-arrow-right"><i class="icon-angle-right"></i></div>
-					<div class="slide-number"><div class="slide-number-current"></div><span>/</span><div class="slide-number-total"></div></div>
-				</div>
-
-			</div>
-
-		</section>
-
 		<!-- Content
-		============================================= -->
-		<section id="content">
-
-			<div class="content-wrap">
-
-				<div class="promo promo-light promo-full bottommargin-sm header-stick notopborder">
-					<div class="container clearfix">
-						<h3><span><i class="icon-robot"></i>&nbsp;AI의 미래</span>, 당신의 손끝에서 시작됩니다!&nbsp;&nbsp;&nbsp;<span>IBK시스템 AI 아이디어 공모전.<i class="icon-line2-trophy"></i></span></h3>
-						<a href="#" class="button button-dark button-xlarge button-rounded">신청서 다운로드</a>
+============================================= -->
+		<div id="content">
+			<section class="banner-wrap">
+				<div class="container">
+					<div class="small-title">
+						2025 AI 아이디어
+					</div>
+					<div class="big-title">
+						챌린지 공모전
+					</div>
+					<div class="banner-desc">
+						미래를 여는 AI 혁신을 향한 도전!
+					</div>
+					<div class="date-box">
+						<span class="date-tag">접수기간</span>
+						<span class="date-text">2025. 04. 28 (월)~06. 05 (금)</span>
+					</div>
+					<div class="date-counter">
+						<svg xmlns="http://www.w3.org/2000/svg" width="51" height="52" viewBox="0 0 51 52" fill="none">
+							<path d="M33.0438 36.4613L35.6293 33.8762L27.3769 25.5887V15.2113H23.8356V27.005L33.0438 36.4613ZM25.5 47.5469C22.5841 47.5469 19.8335 46.9891 17.2481 45.8734C14.6627 44.7578 12.4077 43.2379 10.4832 41.3137C8.55897 39.3892 7.03906 37.1342 5.92344 34.5488C4.80781 31.9634 4.25 29.2127 4.25 26.2969C4.25 23.381 4.80781 20.6304 5.92344 18.045C7.03906 15.4596 8.55897 13.2046 10.4832 11.28C12.4077 9.35584 14.6627 7.83594 17.2481 6.72031C19.8335 5.60469 22.5841 5.04688 25.5 5.04688C28.4159 5.04688 31.1665 5.60469 33.7519 6.72031C36.3373 7.83594 38.5923 9.35584 40.5168 11.28C42.441 13.2046 43.9609 15.4596 45.0766 18.045C46.1922 20.6304 46.75 23.381 46.75 26.2969C46.75 29.2127 46.1922 31.9634 45.0766 34.5488C43.9609 37.1342 42.441 39.3892 40.5168 41.3137C38.5923 43.2379 36.3373 44.7578 33.7519 45.8734C31.1665 46.9891 28.4159 47.5469 25.5 47.5469ZM25.5 44.005C30.3758 44.005 34.5461 42.2726 38.0109 38.8078C41.4758 35.343 43.2082 31.1727 43.2082 26.2969C43.2082 21.4211 41.4758 17.2508 38.0109 13.7859C34.5461 10.3211 30.3758 8.58872 25.5 8.58872C20.6242 8.58872 16.4539 10.3211 12.9891 13.7859C9.52425 17.2508 7.79184 21.4211 7.79184 26.2969C7.79184 31.1727 9.52425 35.343 12.9891 38.8078C16.4539 42.2726 20.6242 44.005 25.5 44.005Z"
+								  fill="white"/>
+						</svg>
+						<span id="dDayCounter"></span>
+					</div>
+					<div class="banner-btn-con">
+						<a href="javascript:openPopup('posterPop');" class="banner-btn">공모개요</a>
+						<a href="/cmm/contest/apfrRcip.do" class="banner-btn type2">작품접수하기</a>
 					</div>
 				</div>
-
-				<div class="container clearfix">
-
-					<div class="col_one_third nobottommargin col_background_etc1">
-						<div class="feature-box fbox-center fbox-light fbox-effect nobottomborder">
-							<div class="fbox-icon2">
-								<i class="i-alt noborder icon-user21"></i>
-							</div>
-							<h3>공모전 문의
-								<span class="subtitle">IT혁신사업본부 이진석 대리</span>
-								<span class="t700">문의전화 : 02-3407-6074</span><br>
-							</h3>
-						</div>
+				<div class="banner-bg">
+					<div class="banner-left-bg">
+						<img src="<c:url value='/'/>images/main-banner-left-bg.png" alt="" data-aos="fade-down-right" data-aos-duration="500">
 					</div>
-
-					<div class="col_one_third nobottommargin col_background_etc1">
-						<div class="feature-box fbox-center fbox-light fbox-effect nobottomborder">
-							<div class="fbox-icon2">
-								<a href="#"><i class="i-alt noborder icon-megaphone"></i></a>
-							</div>
-							<h3>공모전 개요<span class="subtitle">2025년 AI 아이디어 공모전</span><span class="t700">↑↑ Click! ↑↑</span></h3>
-						</div>
+					<div class="banner-right-bg">
+						<img src="<c:url value='/'/>images/main-banner-right-bg.png" alt="" data-aos="fade-up-left" data-aos-duration="500" data-aos-delay="100">
 					</div>
-
-					<div class="col_one_third nobottommargin col_last col_background_etc1">
-						<div class="feature-box fbox-center fbox-light fbox-effect nobottomborder">
-							<div class="fbox-icon2">
-								<a href="#"><i class="i-alt noborder icon-hand-right"></i></a>
-							</div>
-							<h3>접수하기<span class="subtitle">공모전 참가 접수</span><span class="t700">↑↑ Click! ↑↑</span></h3>
-						</div>
-					</div>
-
-					<div class="clear"></div><div class="line bottommargin-lg"></div>
-
-					<div class="col_two_fifth nobottommargin">
-						<a href="https://www.youtube.com/watch?v=LksdLk5Jqak" data-lightbox="iframe">
-							<img src="<c:url value='/'/>images/others/1.jpg" alt="Image">
-							<span class="i-overlay"><img src="<c:url value='/'/>images/icons/play.png" alt="Play"></span>
-						</a>
-					</div>
-
-					<div class="col_three_fifth nobottommargin col_last">
-
-						<div class="heading-block">
-							<h2>공모전 홍보영상</h2>
-						</div>
-
-						<p>2023년 DT공모전부터 2025년 AI 아이디어 공모전까지 !</p>
-
-						<div class="col_half nobottommargin">
-							<ul class="iconlist iconlist-color nobottommargin">
-								<li><i class="icon-caret-right"></i> Responsive Ready Layout</li>
-								<li><i class="icon-caret-right"></i> Retina Display Supported</li>
-								<li><i class="icon-caret-right"></i> Powerful &amp; Optimized Code</li>
-								<li><i class="icon-caret-right"></i> 380+ Templates Included</li>
-							</ul>
-						</div>
-
-						<div class="col_half nobottommargin col_last">
-							<ul class="iconlist iconlist-color nobottommargin">
-								<li><i class="icon-caret-right"></i> 12+ Headers &amp; Menu Designs</li>
-								<li><i class="icon-caret-right"></i> Premium Sliders Included</li>
-								<li><i class="icon-caret-right"></i> Light &amp; Dark Colors</li>
-								<li><i class="icon-caret-right"></i> e-Commerce Design Included</li>
-							</ul>
-						</div>
-
-					</div>
-
-					<div class="clear"></div>
-
-				</div>
-
-				<div class="section topmargin-lg">
-					<div class="container clearfix">
-
-						<div class="heading-block center">
-							<h2>AI공모전 소개</h2>
-							<span>디지털기술을 활용한 혁신적이고 차별화된 아이디어를 발굴,
-이를 실현하기 위한 도약점을 마련하고자 응모부터 평가까지 전 직원이 함께 참여하는
-「너DO 나DO IT! DT 공모전」을 다음과 같이 추친합니다.</span>
-						</div>
-
-						<div class="clear bottommargin-sm"></div>
-
-						<div class="col_one_third">
-							<div class="feature-box fbox-small fbox-plain" data-animate="fadeIn">
-								<div class="fbox-icon">
-									<a href="#"><i class="icon-phone2"></i></a>
-								</div>
-								<h3>공모주제</h3>
-								<p>우리가(너Do 나Do) 혁신(Just Do It!)하는 디지털 아이디어 공모전</p>
-							</div>
-						</div>
-
-						<div class="col_one_third">
-							<div class="feature-box fbox-small fbox-plain" data-animate="fadeIn" data-delay="200">
-								<div class="fbox-icon">
-									<a href="#"><i class="icon-eye"></i></a>
-								</div>
-								<h3>행사 주관</h3>
-								<p>IBK시스템 IT혁신사업본부</p>
-							</div>
-						</div>
-
-						<div class="col_one_third col_last">
-							<div class="feature-box fbox-small fbox-plain" data-animate="fadeIn" data-delay="400">
-								<div class="fbox-icon">
-									<a href="#"><i class="icon-star2"></i></a>
-								</div>
-								<h3>응모 자격</h3>
-								<p>당사직원 - 개인 또는 팀 (최대 3명)참가 , 多건 응모가능</p>
-							</div>
-						</div>
-						
-						<div class="clear bottommargin-sm"></div>
-
-						<div class="col_one_third">
-							<div class="feature-box fbox-small fbox-plain" data-animate="fadeIn">
-								<div class="fbox-icon">
-									<a href="#"><i class="icon-phone2"></i></a>
-								</div>
-								<h3>공모분야</h3>
-								<p>AI를 활용한 아이디어(금융,기타)</p>
-							</div>
-						</div>
-
-						<div class="col_one_third">
-							<div class="feature-box fbox-small fbox-plain" data-animate="fadeIn" data-delay="200">
-								<div class="fbox-icon">
-									<a href="#"><i class="icon-eye"></i></a>
-								</div>
-								<h3>접수 및 평가 일정</h3>
-								<p>2025년 3월 0일~ 5월 0일</p>
-							</div>
-						</div>
-
-						<div class="col_one_third col_last">
-							<div class="feature-box fbox-small fbox-plain" data-animate="fadeIn" data-delay="400">
-								<div class="fbox-icon">
-									<a href="#"><i class="icon-star2"></i></a>
-								</div>
-								<h3>시상 내역</h3>
-								<p>대상 1건, 가족여행 상품권 (2백만원 상당)</p>
-							</div>
-						</div>
-
-						<div class="clear"></div>
-
+					<div class="banner-ball">
+						<img src="<c:url value='/'/>images/main-banner-ball.png" alt="" data-aos="zoom-in" data-aos-duration="700" data-aos-delay="300">
 					</div>
 				</div>
-
-				<div class="container clearfix">
-
-					<div class="heading-block center">
-						<h3>공모전 <span>홍보 포스터</span></h3>
-						<span>소개 자료 설명............</span>
+			</section>
+			<section class="schedule-wrap">
+				<div class="container">
+					<div class="schedule-left-con">
+						<div class="schedule-left-title">
+							현재 AI 아이디어 챌린지 공모전<br/>
+							<span>전체 신청건 수</span> 입니다.
+						</div>
+						<div class="counter schedule-counter">
+							<span data-from="0" data-to="10" data-refresh-interval="80" data-speed="800" data-comma="true">10</span>
+							건
+						</div>
 					</div>
-
-					<div id="oc-portfolio" class="owl-carousel portfolio-carousel portfolio-nomargin carousel-widget" data-margin="1" data-pagi="false" data-autoplay="5000" data-items-xs="1" data-items-sm="2" data-items-md="3" data-items-xl="4">
-
-						<div class="oc-item">
-							<div class="iportfolio">
-								<div class="portfolio-image">
-									<a href="portfolio-single.html">
-										<img src="<c:url value='/'/>images/portfolio/contest/001.png" alt="Open Imagination">
-									</a>
-									<div class="portfolio-overlay">
-										<a href="<c:url value='/'/>images/portfolio/contest/001.png" class="left-icon" data-lightbox="image"><i class="icon-line-plus"></i></a>
-										<a href="portfolio-single.html" class="right-icon"><i class="icon-line-ellipsis"></i></a>
+					<div class="schedule-right-con">
+						<div class="schedule-right-title">
+							공모전 일정
+						</div>
+						<div class="step-wrap">
+							<div class="step-con">
+								<!--일정 변경 시 data-start, data-end 속성이랑 step-date 내 텍스트 변경 필요-->
+								<div class="step" data-start="2025-04-28" data-end="2025-06-05">
+									<div class="step-progress"></div>
+									<div class="step-text">
+										<div class="step-tag">STEP1</div>
+										<div class="step-title">신청서 접수</div>
+										<div class="step-date">2025.04.28~06.05</div>
 									</div>
 								</div>
-								<div class="portfolio-desc">
-									<h3><a href="portfolio-single.html">DT공모전</a></h3>
-									<span><a href="#">2023</a></span>
+								<div class="step" data-start="2025-06-09" data-end="2025-06-20">
+									<div class="step-progress"></div>
+									<div class="step-text">
+										<div class="step-tag">STEP2</div>
+										<div class="step-title">예선 평가</div>
+										<div class="step-date">2025.06.09~06.20</div>
+									</div>
+								</div>
+								<div class="step" data-start="2025-07-14" data-end="2025-08-07">
+									<div class="step-progress"></div>
+									<div class="step-text">
+										<div class="step-tag">STEP3</div>
+										<div class="step-title">본선 1/2차 평가</div>
+										<div class="step-date">2025.07.14~08.07</div>
+									</div>
+								</div>
+								<div class="step" data-start="2025-08-21" data-end="2025-08-21">
+									<div class="step-progress"></div>
+									<div class="step-text">
+										<div class="step-tag">STEP4</div>
+										<div class="step-title">시상식</div>
+										<div class="step-date">2025.08.21</div>
+									</div>
 								</div>
 							</div>
 						</div>
-
-						<div class="oc-item">
-							<div class="iportfolio">
-								<div class="portfolio-image">
-									<a href="portfolio-single.html">
-										<img src="<c:url value='/'/>images/portfolio/contest/002.png" alt="Locked Steel Gate">
-									</a>
-									<div class="portfolio-overlay">
-										<a href="<c:url value='/'/>images/portfolio/contest/002.png" class="left-icon" data-lightbox="image"><i class="icon-line-plus"></i></a>
-										<a href="portfolio-single.html" class="right-icon"><i class="icon-line-ellipsis"></i></a>
-									</div>
-								</div>
-								<div class="portfolio-desc">
-									<h3><a href="portfolio-single.html">DT공모전</a></h3>
-									<span><a href="#">2023</a></span>
-								</div>
-							</div>
-						</div>
-
-						<div class="oc-item">
-							<div class="iportfolio">
-								<div class="portfolio-image">
-									<a href="#">
-										<img src="<c:url value='/'/>images/portfolio/contest/004.png" alt="Mac Sunglasses">
-									</a>
-									<div class="portfolio-overlay">
-										<a href="<c:url value='/'/>images/portfolio/contest/004.png" class="left-icon" data-lightbox="image"><i class="icon-line-plus"></i></a>
-										<a href="portfolio-single.html" class="right-icon"><i class="icon-line-ellipsis"></i></a>
-									</div>
-								</div>
-								<div class="portfolio-desc">
-									<h3><a href="portfolio-single.html">DT공모전</a></h3>
-									<span><a href="#">2023</a></span>
-								</div>
-							</div>
-						</div>
-
-						<div class="oc-item">
-							<div class="iportfolio">
-								<div class="portfolio-image">
-									<a href="#">
-										<img src="<c:url value='/'/>images/portfolio/contest/005.png" alt="Mac Sunglasses">
-									</a>
-									<div class="portfolio-overlay">
-										<a href="<c:url value='/'/>images/portfolio/contest/005.png" class="left-icon" data-lightbox="image"><i class="icon-line-plus"></i></a>
-										<a href="portfolio-single.html" class="right-icon"><i class="icon-line-ellipsis"></i></a>
-									</div>
-								</div>
-								<div class="portfolio-desc">
-									<h3><a href="portfolio-single.html">DT공모전</a></h3>
-									<span><a href="#">2023</a></span>
-								</div>
-							</div>
-						</div>
-						
-						<div class="oc-item">
-							<div class="iportfolio">
-								<div class="portfolio-image">
-									<a href="#">
-										<img src="<c:url value='/'/>images/portfolio/contest/006.png" alt="Mac Sunglasses">
-									</a>
-									<div class="portfolio-overlay">
-										<a href="<c:url value='/'/>images/portfolio/contest/006.png" class="left-icon" data-lightbox="image"><i class="icon-line-plus"></i></a>
-										<a href="portfolio-single.html" class="right-icon"><i class="icon-line-ellipsis"></i></a>
-									</div>
-								</div>
-								<div class="portfolio-desc">
-									<h3><a href="portfolio-single.html">DT공모전</a></h3>
-									<span><a href="#">2023</a></span>
-								</div>
-							</div>
-						</div>
-						
-						<div class="oc-item">
-							<div class="iportfolio">
-								<div class="portfolio-image">
-									<a href="#">
-										<img src="<c:url value='/'/>images/portfolio/contest/007.png" alt="Mac Sunglasses">
-									</a>
-									<div class="portfolio-overlay">
-										<a href="<c:url value='/'/>images/portfolio/contest/007.png" class="left-icon" data-lightbox="image"><i class="icon-line-plus"></i></a>
-										<a href="portfolio-single.html" class="right-icon"><i class="icon-line-ellipsis"></i></a>
-									</div>
-								</div>
-								<div class="portfolio-desc">
-									<h3><a href="portfolio-single.html">DT공모전</a></h3>
-									<span><a href="#">2023</a></span>
-								</div>
-							</div>
-						</div>
-						
-
 					</div>
-
 				</div>
-
-
-				<a href="#" class="button button-full center tright footer-stick">
-					<div class="container clearfix">
-						당신의 창의적인 아이디어로 도전하세요!  <strong>참여하기</strong> <i class="icon-caret-right" style="top:4px;"></i>
+			</section>
+			<!--직원 평가 페이지 작업 후 추가 예정-->
+			<section class="work-wrap" style="display: none;">
+				<div class="container">
+					<div class="work-title">
+						본선 1차 직원 평가
 					</div>
-				</a>
+					<div class="work-desc">
+						작품평가만 해도 많은 경품과 상품을 드립니다.<br/>
+						작품평가 해보세요.
+					</div>
+					<a href="javascript:void(0)" class="work-btn">
+						평가하러가기
+						<svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+							<path d="M16.5312 11.6746H0.5V9.59149H16.5312L9.03125 2.09149L10.5 0.633057L20.5 10.6331L10.5 20.6331L9.03125 19.1746L16.5312 11.6746Z"
+								  fill="white"/>
+						</svg>
+					</a>
+				</div>
+				<div class="work-dim"></div>
+			</section>
+			<section class="history-wrap">
+				<div class="history-con">
+					<div class="history-title">
+						공모전 <span>History</span>
+					</div>
+					<div class="history-desc">
+						AI공모전 History를 확인해보세요!
+					</div>
+					<div class="swiper-btn-con">
+						<div class="swiper-btn swiper-button-prev">
+							<svg xmlns="http://www.w3.org/2000/svg" width="12" height="21" viewBox="0 0 12 21" fill="none">
+								<path d="M4.06117 10.9721L11.8915 2.91666L9.97453 0.94458L0.226808 10.9721L9.97453 21L11.8915 19.0279L4.06117 10.9721Z"
+									  fill="#1F1F1F"/>
+							</svg>
+						</div>
+						<div class="swiper-btn swiper-button-next">
+							<svg xmlns="http://www.w3.org/2000/svg" width="12" height="21" viewBox="0 0 12 21" fill="none">
+								<path d="M8.01195 10.9721L0.18161 2.91666L2.09859 0.94458L11.8463 10.9721L2.09859 21L0.18161 19.0279L8.01195 10.9721Z"
+									  fill="#1F1F1F"/>
+							</svg>
+						</div>
+						<div class="swiper-btn plus-btn">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+								<path d="M10.591 13.3887H0.60022V10.6112H10.591V0.333252H13.2908V10.6112H23.2816V13.3887H13.2908V23.6666H10.591V13.3887Z"
+									  fill="white"/>
+							</svg>
+						</div>
+					</div>
+				</div>
+				<div class="history-img-con" id="historySwiper">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<img src="<c:url value='/'/>images/history-img-000.jpg" alt="">
+						</div>
+						<div class="swiper-slide">
+							<img src="<c:url value='/'/>images/history-img-001.jpg" alt="">
+						</div>
+						<div class="swiper-slide">
+							<img src="<c:url value='/'/>images/history-img-002.jpg" alt="">
+						</div>
+						<div class="swiper-slide">
+							<img src="<c:url value='/'/>images/history-img-003.jpg" alt="">
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="notice-wrap">
+				<div class="container">
+					<div class="info-con">
+						<div class="notice-title">
+							공모전 문의전화
+						</div>
+						<div class="notice-desc">
+							AI공모전 문의
+						</div>
+						<div class="info-manager">
+							(주)IBK 시스템 ・AI공모전 담당자<br/>
+							<span>이진석 대리</span>
+						</div>
+						<div class="info-tel">
+							02-3407-6600
+						</div>
+						<div class="info-icon">
+							<img src="<c:url value='/'/>images/inquiry-icon.png" alt="">
+						</div>
+					</div>
+					<div class="notice-con">
+						<div class="notice-title">
+							공지사항
+						</div>
+						<div class="notice-desc">
+							AI공모전 <span>공지사항</span>을 확인해보세요!
+						</div>
+						<div class="swiper-btn-con">
+							<div class="swiper-btn swiper-button-prev">
+								<svg xmlns="http://www.w3.org/2000/svg" width="12" height="21" viewBox="0 0 12 21"
+									 fill="none">
+									<path d="M4.06117 10.9721L11.8915 2.91666L9.97453 0.94458L0.226808 10.9721L9.97453 21L11.8915 19.0279L4.06117 10.9721Z"
+										  fill="#1F1F1F"/>
+								</svg>
+							</div>
+							<div class="swiper-btn swiper-button-next">
+								<svg xmlns="http://www.w3.org/2000/svg" width="12" height="21" viewBox="0 0 12 21"
+									 fill="none">
+									<path d="M8.01195 10.9721L0.18161 2.91666L2.09859 0.94458L11.8463 10.9721L2.09859 21L0.18161 19.0279L8.01195 10.9721Z"
+										  fill="#1F1F1F"/>
+								</svg>
+							</div>
+							<div class="swiper-btn plus-btn">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+									 fill="none">
+									<path d="M10.591 13.3887H0.60022V10.6112H10.591V0.333252H13.2908V10.6112H23.2816V13.3887H13.2908V23.6666H10.591V13.3887Z"
+										  fill="white"/>
+								</svg>
+							</div>
+						</div>
+						<div class="notice-list-con" id="noticeSwiper">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide">
+									<div class="swiper-slide-inner">
+										<div class="notice-list-year">2025</div>
+										<div class="notice-list-date">04.02</div>
+										<div class="notice-list-desc">
+											2025 AI공모전 공지사항 게시판입니다.
+										</div>
+									</div>
+								</div>
+								<div class="swiper-slide">
+									<div class="swiper-slide-inner">
+										<div class="notice-list-year">2025</div>
+										<div class="notice-list-date">04.02</div>
+										<div class="notice-list-desc">
+											2025 AI공모전 공지사항 게시판입니다.2025 AI공모전 공지사항 게시판입니다.
+										</div>
+									</div>
+								</div>
+								<div class="swiper-slide">
+									<div class="swiper-slide-inner">
+										<div class="notice-list-year">2025</div>
+										<div class="notice-list-date">04.02</div>
+										<div class="notice-list-desc">
+											2025 AI공모전 공지사항 게시판입니다.2025 AI공모전 공지사항 게시판입니다.2025 AI공모전 공지사항 게시판입니다.
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+		<!-- #content end -->
 
+		<div class="popup-wrap" id="posterPop">
+			<div class="popup-content">
+				<img src="<c:url value='/'/>images/poster-img.jpg" alt="" style="max-height: 100%;">
 			</div>
-
-		</section><!-- #content end -->
+			<div class="popup-close">
+				<svg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 24 24" fill="none">
+					<path fill-rule="evenodd" clip-rule="evenodd"
+						  d="M5.29289 5.29289C5.68342 4.90237 6.31658 4.90237 6.70711 5.29289L12 10.5858L17.2929 5.29289C17.6834 4.90237 18.3166 4.90237 18.7071 5.29289C19.0976 5.68342 19.0976 6.31658 18.7071 6.70711L13.4142 12L18.7071 17.2929C19.0976 17.6834 19.0976 18.3166 18.7071 18.7071C18.3166 19.0976 17.6834 19.0976 17.2929 18.7071L12 13.4142L6.70711 18.7071C6.31658 19.0976 5.68342 19.0976 5.29289 18.7071C4.90237 18.3166 4.90237 17.6834 5.29289 17.2929L10.5858 12L5.29289 6.70711C4.90237 6.31658 4.90237 5.68342 5.29289 5.29289Z"
+						  fill="#fff"/>
+				</svg>
+			</div>
+		</div>
 		
 		<!-- footer 시작 -->
 	    <c:import url="/sym/mms/ContFooter.do" />
@@ -438,9 +355,153 @@
 	<script type="text/javascript" src="<c:url value='/'/>js/jquery-3.3.1.js"></script>
 	<script type="text/javascript" src="<c:url value='/'/>js/plugins.js"></script>
 
+	<script type="text/javascript" src="<c:url value='/'/>js/include.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
 	<!-- Footer Scripts
 	============================================= -->
 	<script type="text/javascript" src="<c:url value='/'/>js/functions.js"></script>
 
+	<script>
+		AOS.init();
+
+		$(function () {
+			function diffDay() {
+				const endDate = new Date("2025-06-05 23:59:59");
+				const nowDate = new Date();
+
+				const diff = endDate - nowDate;
+
+				const diffDay = String(Math.floor(diff / (1000 * 60 * 60 * 24)));
+				const diffHour = String(Math.floor(diff / (1000 * 60 * 60) % 24)).padStart(2, '0');
+				const diffMin = String(Math.floor(diff / (1000 * 60) % 60)).padStart(2, '0');
+				const diffSec = String(Math.floor(diff / 1000 % 60)).padStart(2, '0');
+				const diffDayHourMinSec = "D-"+ diffDay+"일 " + diffHour + "시 " + diffMin + "분 " + diffSec + "초";
+
+				$('#dDayCounter').text(diffDayHourMinSec);
+			}
+
+			diffDay();
+			setInterval(diffDay, 1000);
+
+			// 공모전 일정
+			function getActiveStepIndex() {
+				const now = new Date();
+				const $steps = $('.step-con .step');
+
+				const stepsData = $steps.map(function (index) {
+					const start = new Date($(this).data('start'));
+					const end = new Date($(this).data('end'));
+					return {index, start, end};
+				}).get();
+
+				// 1. 현재 포함된 구간 찾기
+				for (let step of stepsData) {
+					if (now >= step.start && now <= step.end) {
+						return step.index;
+					}
+				}
+
+				// 2. 포함된 구간이 없다면, 지금보다 start가 더 나중인 것 중 가장 빠른 것
+				for (let step of stepsData) {
+					if (now < step.start) {
+						return step.index;
+					}
+				}
+
+				// 3. 모든 스텝이 지났으면 마지막 걸 active로
+				return stepsData.length - 1;
+			}
+
+
+			function animateSteps(activeIndex) {
+				const $steps = $('.step-con .step');
+				const duration = 700; // duration 수정 시 css - moveProgressBar duration도 수정 필요
+
+				$steps.removeClass('end active'); // 초기화
+
+				$steps.each(function (index) {
+					if (index < activeIndex) {
+						setTimeout(() => {
+							$(this).addClass('end');
+						}, index * duration);
+					} else if (index === activeIndex) {
+						setTimeout(() => {
+							$(this).addClass('active');
+						}, index * duration);
+					}
+				});
+			}
+
+			const index = getActiveStepIndex();
+			animateSteps(index);
+
+			// 공모전 History
+			new Swiper('#historySwiper', {
+				direction: 'horizontal',
+				slidesPerView: 'auto',
+				centeredSlides: true,
+				loop: true,
+				autoplay: {
+					delay: 5000,   // 시간 설정
+					disableOnInteraction: false,  // false로 설정하면 스와이프 후 자동 재생이 비활성화 되지 않음
+				},
+				navigation: {
+					nextEl: '.history-wrap .swiper-button-next',
+					prevEl: '.history-wrap .swiper-button-prev',
+				},
+				breakpoints: {
+					// 모바일 (예: 768px 이하)
+					0: {
+						spaceBetween: 20,
+					},
+					// PC (예: 769px 이상)
+					769: {
+						spaceBetween: 40,
+					}
+				}
+			});
+
+			// 공지사항
+			new Swiper('#noticeSwiper', {
+				direction: 'horizontal',
+				slidesPerView: 'auto',
+				loop: true,
+				autoplay: {
+					delay: 8000,
+					disableOnInteraction: false,
+				},
+				navigation: {
+					nextEl: '.notice-wrap .swiper-button-next',
+					prevEl: '.notice-wrap .swiper-button-prev',
+				},
+				breakpoints: {
+					// 모바일 (예: 768px 이하)
+					0: {
+						centeredSlides: true,
+						spaceBetween: 20,
+					},
+					// PC (예: 769px 이상)
+					769: {
+						centeredSlides: false,
+						spaceBetween: 20,
+					}
+				}
+			});
+		})
+
+		function openPopup(id) {
+			if ($('#' + id)) {
+				$('body').css('overflow', 'hidden');
+				$('#' + id).show();
+			}
+		}
+
+		$('.popup-close').on('click', function (e) {
+			$('body').css('overflow', '');
+			if ($(e.target).closest('.popup-wrap')) $(e.target).closest('.popup-wrap').hide();
+		})
+	</script>
 </body>
 </html>

@@ -108,8 +108,13 @@ public class EgovMainController {
 		BigDecimal visit_count = egovVisitCountLogIdGnrService.getNextBigDecimalId();
 		System.out.println("visit_count:"+visit_count);
 
-		//return "main/EgovMainView";
-		return "main/contest/ContIntroView";
+		LoginVO user =
+				EgovUserDetailsHelper.isAuthenticated()? (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser():null;
+		if(EgovUserDetailsHelper.isAuthenticated() && user!=null){
+			return "main/EgovMainView";
+		}else{
+			return "main/contest/ContIntroView";
+		}
 	}
 
 	/**

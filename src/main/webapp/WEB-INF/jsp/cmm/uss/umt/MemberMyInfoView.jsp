@@ -81,28 +81,47 @@
     <div id="content" style="padding-top:100px;">
         <div class="form-wrap">
             <div class="container">
-                내정보수정
 
+                <h2>내정보</h2>
 
                 <form action="" class="form-con" id="form">
                     <div class="form-list-con">
                         <div class="form-list">
                             <div class="form-title">이름</div>
                             <div class="form-input">
-                                <input name="name" type="text" placeholder="이름을 입력해주세요.">
+                                <input name="name" type="text">
                             </div>
-                            <div class="form-error-text" style="display: none;"></div>
                         </div>
                         <div class="form-list">
-                            <div class="form-title">제목</div>
+                            <div class="form-title">소속</div>
                             <div class="form-input">
-                                <input name="title" type="text" placeholder="제목을 입력해주세요.">
+                                <input name="title" type="text">
                             </div>
-                            <div class="form-error-text" style="display: none;"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-list-con">
+                        <div class="form-list">
+                            <div class="form-title">이전 비밀번호</div>
+                            <div class="form-input">
+                                <input name="name" type="text">
+                            </div>
+                        </div>
+                        <div class="form-list">
+                            <div class="form-title">신규 비밀번호</div>
+                            <div class="form-input">
+                                <input name="title" type="text">
+                            </div>
+                        </div>
+                        <div class="form-list">
+                            <div class="form-title">신규 비밀번호 확인</div>
+                            <div class="form-input">
+                                <input name="title" type="text">
+                            </div>
                         </div>
                     </div>
                     <div class="form-btn-con">
-                        <button type="submit" class="submit-btn">제출</button>
+                        <button type="submit" class="submit-btn">저장</button>
                     </div>
                 </form>
             </div>

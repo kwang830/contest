@@ -476,6 +476,8 @@ public class EgovMberManageController {
 	public String updatePasswordView(ModelMap model, @RequestParam Map<String, Object> commandMap, @ModelAttribute("searchVO") UserDefaultVO userSearchVO,
 			@ModelAttribute("mberManageVO") MberManageVO mberManageVO) throws Exception {
 
+		System.out.println("updatePasswordView >>> mberManageVO:" + mberManageVO);
+
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
     	if(!isAuthenticated) {
@@ -485,6 +487,8 @@ public class EgovMberManageController {
 
 		String userTyForPassword = (String) commandMap.get("userTyForPassword");
 		mberManageVO.setUserTy(userTyForPassword);
+
+		System.out.println("userTyForPassword :" + userTyForPassword);
 
 		model.addAttribute("userSearchVO", userSearchVO);
 		model.addAttribute("mberManageVO", mberManageVO);
@@ -544,7 +548,7 @@ public class EgovMberManageController {
 	 * 내정보관리
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/uss/umt/mber/MyInfo.do")
+	@RequestMapping(value = "/uss/umt/edit/MyInfo.do")
 	public String memberMyInfoView(ModelMap model, @RequestParam Map<String, Object> commandMap, @ModelAttribute("searchVO") UserDefaultVO userSearchVO,
 									 @ModelAttribute("mberManageVO") MberManageVO mberManageVO) throws Exception {
 

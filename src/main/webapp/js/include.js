@@ -25,9 +25,11 @@ function loadLayout(){
 
 /* 공통 기능 초기화 */
 function initFunctions() {
-	SEMICOLON.documentOnReady.init();
-	SEMICOLON.documentOnLoad.init();
-	$(window).on("resize", SEMICOLON.documentOnResize.init);
+	if(typeof SEMICOLON !== "undefined"){
+		SEMICOLON.documentOnReady.init();
+		SEMICOLON.documentOnLoad.init();
+		$(window).on("resize", SEMICOLON.documentOnResize.init);
+	}
 }
 
 /* 뷰포트 설정 */

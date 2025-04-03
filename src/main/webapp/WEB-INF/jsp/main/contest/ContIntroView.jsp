@@ -28,8 +28,6 @@
 	<link rel="stylesheet" href="<c:url value='/'/>css/animate.css" type="text/css" media="print" onload="this.media='all'" />
 	<link rel="stylesheet" href="<c:url value='/'/>css/magnific-popup.css" type="text/css" media="print" onload="this.media='all'" />
 
-	<link rel="stylesheet" href="<c:url value='/'/>css/coming-soon.css" type="text/css">
-
 	<noscript>
 		<link rel="stylesheet" href="<c:url value='/'/>css/bootstrap.css">
 		<link rel="stylesheet" href="<c:url value='/'/>css/styles.css">

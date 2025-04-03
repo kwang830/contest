@@ -10,6 +10,11 @@
 		height: auto !important;
 	}
 
+	#logo img{
+		max-width: 260px;
+	}
+	#header.sticky-header:not(.static-sticky) #logo a > img{max-width: 240px;}
+
 	.promo h3 { font-size: 20px; }
 
 	.promo > span,
@@ -279,13 +284,13 @@
 	}
 
 	#logo a.standard-logo { display: inline-block; }
-	#logo a { width: 90%;}
-	#header.sticky-header:not(.static-sticky) #logo a{width: 70%;}
+	#header.sticky-header:not(.static-sticky) #logo a > img{max-width: 200px;}
 
 
 	#primary-menu {
 		display: block;
 		float: none;
+		margin-right: 50px;
 	}
 
 	#primary-menu-trigger {
@@ -298,7 +303,7 @@
 	}
 
 	.sticky-header #primary-menu-trigger {
-		top: 7px;
+		top: 5px;
 	}
 
 	#primary-menu .container #primary-menu-trigger {
@@ -324,6 +329,10 @@
 		left: 0;
 		width: 100%;
 		background-color: #fff;
+	}
+
+	#header.sticky-header #primary-menu > ul.d-block{
+		top: 60px;
 	}
 
 	#primary-menu > div > ul { padding-top: 60px !important; }
@@ -1558,14 +1567,6 @@
 }
 
 @media (max-width: 575.98px) {
-
-	.container,
-	#header.full-header .container,
-	.container-fullwidth {
-		width: 100% !important;
-		padding-left: 20px !important;
-		padding-right: 20px !important;
-	}
 
 	#top-cart { display: none; }
 
