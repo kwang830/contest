@@ -548,8 +548,11 @@ public class EgovMberManageController {
 	public String memberMyInfoView(ModelMap model, @RequestParam Map<String, Object> commandMap, @ModelAttribute("searchVO") UserDefaultVO userSearchVO,
 									 @ModelAttribute("mberManageVO") MberManageVO mberManageVO) throws Exception {
 
+		System.out.println("memberMyInfoView >> ");
+
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+		System.out.println("memberMyInfoView isAuthenticated: "+isAuthenticated);
 		if(!isAuthenticated) {
 			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
 			return "uat/uia/EgovLoginUsr";
@@ -557,6 +560,8 @@ public class EgovMberManageController {
 
 		String userTyForPassword = (String) commandMap.get("userTyForPassword");
 		mberManageVO.setUserTy(userTyForPassword);
+
+		System.out.println("memberMyInfoView userTyForPassword: "+userTyForPassword);
 
 		model.addAttribute("userSearchVO", userSearchVO);
 		model.addAttribute("mberManageVO", mberManageVO);

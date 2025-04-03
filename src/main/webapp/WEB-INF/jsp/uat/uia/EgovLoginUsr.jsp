@@ -3,83 +3,40 @@
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<c:url value='/'/>css/base.css">
-    <link rel="stylesheet" href="<c:url value='/'/>css/layout.css">
-    <link rel="stylesheet" href="<c:url value='/'/>css/component.css">
-    <link rel="stylesheet" href="<c:url value='/'/>css/page.css">
-    <script src="<c:url value='/'/>js/jquery-1.11.2.min.js"></script>
-    <script src="<c:url value='/'/>js/ui.js"></script>
-    <%-- <link href="<c:url value='/'/>css_old/default.css" rel="stylesheet" type="text/css" > --%>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="SemiColonWeb" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>로그인</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" as="style" crossorigin
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet">
+
+    <!-- Stylesheets
+    ============================================= -->
+    <link rel="stylesheet" href="<c:url value='/'/>css/bootstrap.css" type="text/css"/>
+    <link rel="stylesheet" href="<c:url value='/'/>css/styles.css" type="text/css"/>
+    <link rel="stylesheet" href="<c:url value='/'/>css/font-icons.css" type="text/css"/>
+
+    <link rel="stylesheet" href="<c:url value='/'/>css/responsive.css" type="text/css"/>
+    <link rel="stylesheet" href="<c:url value='/'/>css/form.css" type="text/css"/>
+    <link rel="stylesheet" href="<c:url value='/'/>css/login.css" type="text/css"/>
+
+    <!-- Document Title
+    ============================================= -->
+    <title>IBK시스템 AI 아이디어 챌린지 - 로그인</title>
+
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="<c:url value='/'/>images/favicon.ico">
+
     <script type="text/javascript">
         <!--
-        function actionLogin() {
-
-            if (document.loginForm.id.value =="") {
-                alert("아이디를 입력하세요");
-            } else if (document.loginForm.password.value =="") {
-                alert("비밀번호를 입력하세요");
-            } else {
-                document.loginForm.action="<c:url value='/uat/uia/actionSecurityLogin.do'/>";
-                //document.loginForm.j_username.value = document.loginForm.userSe.value + document.loginForm.username.value;
-                //document.loginForm.action="<c:url value='/j_spring_security_check'/>";
-                document.loginForm.submit();
-            }
-        }
-
-
-        function goRegiUsr() {
-            var userSe = document.loginForm.userSe.value;
-            // 일반회원
-            if (userSe == "GNR") {
-                document.loginForm.action="<c:url value='/uss/umt/cmm/EgovMberSbscrbView.do'/>";
-                document.loginForm.submit();
-            }else{
-                alert("일반회원 가입만 허용됩니다.");
-            }
-        }
-
-        function setCookie (name, value, expires) {
-            document.cookie = name + "=" + escape (value) + "; path=/; expires=" + expires.toGMTString();
-        }
-
-        function getCookie(Name) {
-            var search = Name + "="
-            if (document.cookie.length > 0) { // 쿠키가 설정되어 있다면
-                offset = document.cookie.indexOf(search)
-                if (offset != -1) { // 쿠키가 존재하면
-                    offset += search.length
-                    // set index of beginning of value
-                    end = document.cookie.indexOf(";", offset)
-                    // 쿠키 값의 마지막 위치 인덱스 번호 설정
-                    if (end == -1)
-                        end = document.cookie.length
-                    return unescape(document.cookie.substring(offset, end))
-                }
-            }
-            return "";
-        }
-
-        function saveid(form) {
-            var expdate = new Date();
-            // 기본적으로 30일동안 기억하게 함. 일수를 조절하려면 * 30에서 숫자를 조절하면 됨
-            if (form.checkId.checked)
-                expdate.setTime(expdate.getTime() + 1000 * 3600 * 24 * 30); // 30일
-            else
-                expdate.setTime(expdate.getTime() - 1); // 쿠키 삭제조건
-            setCookie("saveid", form.id.value, expdate);
-        }
-
-        function getid(form) {
-            form.checkId.checked = ((form.id.value = getCookie("saveid")) != "");
-        }
 
         function getPcInfo() {
             var os;
@@ -103,7 +60,7 @@
 
         function getBrowserInfo() {
             var agent = navigator.userAgent.toUpperCase();
-            console.log('User Agent:', agent);
+            //console.log('User Agent:', agent);
 
             if (agent.indexOf('EDG') >= 0) {
                 return 'EDGE';
@@ -126,8 +83,6 @@
                 alert(message);
             }
 
-            getid(document.loginForm);
-
             var pcInfo = getPcInfo();
             var browserInfo = getBrowserInfo();
             $("input[name='pcInfo']").val(pcInfo);
@@ -136,61 +91,178 @@
         //-->
     </script>
 </head>
-<body onLoad="fnInit();">
+<body class="no-transition stretched" onLoad="fnInit();">
 
-<!-- skip navigation -->
-<a href="#contents" class="skip_navi">본문 바로가기</a>
+<div id="wrapper" class="clearfix">
 
-<div class="wrap">
+    <!-- header start -->
+    <c:import url="/sym/mms/ContHeader.do" />
+    <!-- //header end -->
 
-    <div class="container">
-        <div class="p_login">
-            <h1>로그인</h1>
-            <p class="txt">공모전 로그인 변경 필요</p>
-            <p class="txt"><a href="/">홈 바로가기</a></p>
-            <div class="loginbox">
+    <!-- Content
+    ============================================= -->
+    <div id="content">
+        <div class="login-layout">
+            <div class="container">
+                <div class="login-title">
+                    로그인
+                </div>
+                <div class="login-desc">
+                    AI 아이디어 챌린지 공모전에 오신것을 환영합니다.
+                </div>
+            </div>
+        </div>
+        <div class="form-wrap login-form-wrap">
+            <div class="container">
+                <form action="<c:url value='/uat/uia/actionSecurityLogin.do'/>" class="form-con login-form-con" name="loginForm" id="loginForm" method="post">
 
-                <form name="loginForm" action ="<c:url value='/uat/uia/actionSecurityLogin.do'/>" method="post">
-                    <div style="visibility:hidden;display:none;">
-                        <input name="iptSubmit1" type="submit" value="전송" title="전송" />
-                    </div>
                     <input type="hidden" name="message" value="<c:out value='${message}'/>" />
                     <input type="hidden" name="pcInfo" value=""/>
                     <input type="hidden" name="browserInfo" value=""/>
+                    <input type="hidden" name="userSe" value="GNR"/>
 
-                    <fieldset>
-                        <legend>로그인</legend>
-
-                        <dl>
-                            <dt><label for="memid">아이디</label></dt>
-                            <dd><input type="text" name="id" id="id" title="아이디" maxlength="10"/></dd>
-                        </dl>
-
-                        <dl>
-                            <dt><label for="pwd">비밀번호</label></dt>
-                            <dd>
-                                <input type="password" name="password" id="password" title="비밀번호" onKeyDown="javascript:if (event.keyCode == 13) { actionLogin(); }"/>
-                                <label for="chk" class="f_chk">
-                                    <input type="checkbox" name="checkId" id="chk" title="ID 저장" onClick="javascript:saveid(document.loginForm);" />
-                                    <span>ID 저장</span>
-                                </label>
-                            </dd>
-                        </dl>
-
-                        <div class="btn_a">
-                            <a href="#LINK" class="btn" onClick="actionLogin()">로그인</a>
+                    <div class="form-list-con">
+                        <div class="form-list">
+                            <div class="form-title">아이디</div>
+                            <div class="form-input">
+                                <input name="id" id="id" type="text" placeholder="아이디(사번)를 입력해주세요.">
+                            </div>
+                            <div class="form-error-text" style="display: none;"></div>
                         </div>
-                    </fieldset>
-
-                    <input name="userSe" type="hidden" value="GNR"/>
-                    <input name="j_username" type="hidden"/>
-
+                        <div class="form-list">
+                            <div class="form-title">비밀번호</div>
+                            <div class="form-input">
+                                <input name="password" id="password" type="password" placeholder="비밀번호를 입력해주세요." autocomplete="current-password">
+                            </div>
+                            <div class="form-error-text" style="display: none;"></div>
+                        </div>
+                    </div>
+                    <div class="login-checkbox-con">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" id="saveIdCheckbox" />
+                            <span class="custom-checkbox"></span>
+                            <span class="checkbox-label">아이디 저장</span>
+                        </label>
+                    </div>
+                    <div class="form-btn-con">
+                        <button type="submit" class="submit-btn">로그인</button>
+                    </div>
+                    <div class="login-form-desc">
+                        <span>초기 비밀 번호</span>는 <span>주민등록번호 앞6자리</span>입니다.<br/>
+                        안전한 비밀번호 사용을 권장합니다.
+                    </div>
                 </form>
             </div>
         </div>
     </div>
+    <!-- #content end -->
 
-</div>
+    <!-- footer 시작 -->
+    <c:import url="/sym/mms/ContFooter.do" />
+    <!-- //footer 끝 -->
+
+</div><!-- #wrapper end -->
+
+<!-- Go To Top
+============================================= -->
+<div id="gotoTop" class="icon-angle-up"></div>
+
+<!-- External JavaScripts
+============================================= -->
+<script type="text/javascript" src="<c:url value='/'/>js/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="<c:url value='/'/>js/plugins.js"></script>
+
+<script type="text/javascript" src="<c:url value='/'/>js/include.js"></script>
+
+<!-- Footer Scripts
+============================================= -->
+<script type="text/javascript" src="<c:url value='/'/>js/functions.js"></script>
+
+<script>
+    $(document).ready(function() {
+        const $idInput =$('.form-list input[name="id"]');
+        const $pwInput =$('.form-list input[name="password"]');
+        const $saveCheckbox = $('#saveIdCheckbox');
+
+        const savedId = localStorage.getItem('savedId');
+        if (savedId) {
+            $idInput.val(savedId);
+            $saveCheckbox.prop('checked', true);
+        }
+
+        // 1. input 포커스 시 스타일 변경
+        $('.form-input input').on('focus', function() {
+            const $input = $(this);
+            const $parent = $input.closest('.form-list');
+
+            // 에러 초기화
+            parent.removeClass('input-error');
+            parent.find('.form-error-text').hide();
+
+            $parent.addClass('focused');
+        });
+
+        // focus 해제 시 초기화
+        $('.form-input input').on('blur', function() {
+            const $input = $(this);
+            const $parent = $input.closest('.form-list');
+
+            $parent.removeClass('focused');
+        });
+
+        // 2. submit 시 유효성 검사
+        $('#loginForm').on('submit', function(e) {
+            e.preventDefault();
+
+            let isValid = true;
+
+            // 초기화
+            function resetField($wrapper){
+                $wrapper.removeClass('input-error');
+                $wrapper.find('.form-error-text').hide();
+            }
+
+            // 오류 처리
+            function setError($wrapper, message) {
+                $wrapper.addClass('input-error');
+                $wrapper.find('.form-error-text').text(message).show();
+                isValid = false;
+            }
+
+
+            // id
+            const $idWrapper = $idInput.closest('.form-list');
+            const idVal = $idInput.val().trim();
+            resetField($idWrapper);
+            if (idVal === '') {
+                setError($idWrapper, '아이디를 입력해주세요.');
+            //} else if (!/^\d+$/.test(idVal)) {
+            //    setError($idWrapper, '숫자만 입력 가능합니다.');
+            }
+
+            // password
+            const $pwWrapper = $pwInput.closest('.form-list');
+            const pwVal = $pwInput.val().trim();
+            resetField($pwWrapper);
+            if (pwVal === '') {
+                setError($pwWrapper, '비밀번호를 입력해주세요.');
+            //} else if (pwVal.length < 6) {
+            //    setError($pwWrapper, '6자 이상 입력해주세요.');
+            }
+
+            if (isValid) {
+                // 아이디 저장
+                if ($saveCheckbox.is(':checked')) {
+                    localStorage.setItem('savedId', idVal);
+                } else {
+                    localStorage.removeItem('savedId');
+                }
+
+                this.submit();
+            }
+        });
+    });
+</script>
 
 </body>
 </html>

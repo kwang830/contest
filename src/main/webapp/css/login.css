@@ -1,0 +1,156 @@
+@charset "UTF-8";
+
+#content {
+	background-color: #F0F0F3;
+}
+
+.login-layout {
+	position: relative;
+	background-image: url('../images/main-banner-bg.png');
+	background-size: cover;
+	background-position: center center;
+	padding: 90px 0 160px;
+}
+
+.login-layout:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+.login-layout .login-title {
+	font-family: 'NEXONFootballGothicBA1', sans-serif;
+	font-size: 55px;
+	line-height: 100%;
+	font-weight: 300;
+	text-align: center;
+	color: #fff;
+	margin-bottom: 25px;
+}
+
+.login-layout .login-desc {
+	font-size: 20px;
+	line-height: 130%;
+	font-weight: 300;
+	text-align: center;
+	color: #fff;
+}
+
+.login-form-wrap {
+	position: relative;
+	margin-top: -116px;
+	padding-bottom: 60px;
+}
+
+.login-form-wrap .login-form-con {
+	max-width: 630px;
+	padding: 60px 40px 47px;
+	background-color: #fff;
+	border-radius: 40px;
+	margin: 0 auto;
+}
+
+.login-checkbox-con {
+	display: flex;
+	gap: 30px;
+	margin-bottom: 20px;
+}
+
+.checkbox-wrapper {
+	position: relative;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	margin-bottom: 0;
+}
+
+.checkbox-wrapper input[type="checkbox"] {
+	display: none;
+}
+
+.custom-checkbox {
+	width: 20px;
+	height: 20px;
+	border: 1px solid #D0D5DD;
+	border-radius: 4px;
+	margin-right: 8px;
+	position: relative;
+}
+
+.custom-checkbox::after {
+	content: '';
+	position: absolute;
+	left: 6px;
+	top: 2px;
+	width: 6px;
+	height: 12px;
+	border: solid #fff;
+	border-width: 0 2px 2px 0;
+	transform: rotate(45deg);
+	opacity: 0;
+	transition: opacity 0.2s ease-in-out;
+}
+
+.checkbox-wrapper input[type="checkbox"]:checked + .custom-checkbox {
+	background-color: #2A96FB;
+	border-color: #2A96FB;
+}
+.checkbox-wrapper input[type="checkbox"]:checked + .custom-checkbox::after {
+	opacity: 1;
+}
+
+.checkbox-label {
+	font-size: 14px;
+	line-height: 100%;
+	font-weight: 500;
+	letter-spacing: 0;
+	color: #454545;
+	user-select: none;
+}
+
+.login-form-con .login-form-desc {
+	position: relative;
+	font-size: 16px;
+	line-height: 20px;
+	font-weight: 400;
+	padding-left: 20px;
+}
+
+.login-form-con .login-form-desc:before {
+	content: '';
+	position: absolute;
+	top: 6px;
+	left: 8px;
+	width: 5px;
+	height: 5px;
+	border-radius: 50%;
+	background-color: #000;
+}
+
+.login-form-con .login-form-desc > span {
+	font-weight: 600;
+}
+
+@media all and (min-width: 768px) {
+	.login-layout{
+		padding: 150px 0 245px;
+	}
+	.login-layout .login-title{
+		font-size: 75px;
+		margin-bottom: 35px;
+	}
+	.login-layout .login-desc{
+		font-size: 40px;
+	}
+
+	.login-form-wrap{
+		padding-bottom: 150px;
+	}
+	.login-form-wrap .login-form-con{
+		padding: 80px 80px 67px;
+	}
+}

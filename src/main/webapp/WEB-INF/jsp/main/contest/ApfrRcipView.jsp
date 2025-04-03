@@ -19,7 +19,7 @@
 	<link rel="preload" href="<c:url value='/'/>css/bootstrap.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/responsive.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-	<link rel="preload" href="<c:url value='/'/>css/coming-soon.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="preload" href="<c:url value='/'/>css/form.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
 	<!-- 비동기
 	============================================= -->
@@ -76,19 +76,36 @@
 	<c:import url="/sym/mms/ContHeader.do" />
 	<!-- //header end -->
 
-	<!-- Page Title
+	<!-- Content
     ============================================= -->
-	<section id="page-title">
-
-		<div class="container clearfix">
-			<h1>2025년 AI 아이디어 공모전</h1>
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item" aria-current="page">Home</li>
-				<li class="breadcrumb-item active" aria-current="page">신청서 접수</li>
-			</ol>
+	<div id="content" style="padding-top:100px;">
+		<div class="form-wrap">
+			<div class="container">
+				<form action="" class="form-con" id="form">
+					<div class="form-list-con">
+						<div class="form-list">
+							<div class="form-title">이름</div>
+							<div class="form-input">
+								<input name="name" type="text" placeholder="이름을 입력해주세요.">
+							</div>
+							<div class="form-error-text" style="display: none;"></div>
+						</div>
+						<div class="form-list">
+							<div class="form-title">제목</div>
+							<div class="form-input">
+								<input name="title" type="text" placeholder="제목을 입력해주세요.">
+							</div>
+							<div class="form-error-text" style="display: none;"></div>
+						</div>
+					</div>
+					<div class="form-btn-con">
+						<button type="submit" class="submit-btn">제출</button>
+					</div>
+				</form>
+			</div>
 		</div>
-
-	</section><!-- #page-title end -->
+	</div>
+	<!-- #content end -->
 
 
 
@@ -112,6 +129,79 @@
 <!-- Footer Scripts
 ============================================= -->
 <script type="text/javascript" src="<c:url value='/'/>js/functions.js"></script>
+
+<script>
+	$(document).ready(function() {
+		const $nameInput =$('.form-list input[name="name"]');
+		const $titleInput =$('.form-list input[name="title"]');
+
+		// 1. input 포커스 시 스타일 변경
+		$('.form-input input').on('focus', function() {
+			const $parent = $(this).closest('.form-list');
+
+			// 에러 초기화
+			$parent.removeClass('input-error');
+			$parent.find('.form-error-text').hide();
+
+			$parent.addClass('focused');
+		});
+
+		// focus 해제 시 초기화
+		$('.form-input input').on('blur', function() {
+			const $input = $(this);
+			const $parent = $input.closest('.form-list');
+
+			$parent.removeClass('focused');
+		});
+
+		// 2. submit 시 유효성 검사
+		$('#form').on('submit', function(e) {
+			e.preventDefault();
+
+			let isValid = true;
+
+			// 초기화
+			function resetField($wrapper){
+				$wrapper.removeClass('input-error');
+				$wrapper.find('.form-error-text').hide();
+			}
+
+			// 오류 처리
+			function setError($wrapper, message) {
+				$wrapper.addClass('input-error');
+				$wrapper.find('.form-error-text').text(message).show();
+				isValid = false;
+			}
+
+
+			// id
+			const $nameWrapper = $nameInput.closest('.form-list');
+			const nameVal = $nameInput.val().trim();
+			resetField($nameWrapper);
+			if (nameVal === '') {
+				setError($nameWrapper, '이름을 입력해주세요.');
+			} else if (nameVal.length < 6) {
+				setError($nameWrapper, '6자 이상 입력해주세요.');
+			}
+
+			// password
+			const $titleWrapper = $titleInput.closest('.form-list');
+			const titleVal = $titleInput.val().trim();
+			resetField($titleWrapper);
+			if (titleVal === '') {
+				setError($titleWrapper, '제목을 입력해주세요.');
+			} else if (titleVal.length < 6) {
+				setError($titleWrapper, '6자 이상 입력해주세요.');
+			}
+
+			if (isValid) {
+				// 이곳에서 실제 로그인 요청 등 진행
+				alert('로그인!!');
+				// this.submit(); // 실제 전송 시 주석 해제
+			}
+		});
+	});
+</script>
 
 </body>
 </html>
