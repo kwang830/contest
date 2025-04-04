@@ -152,6 +152,7 @@ public class EgovBBSManageController {
 		
 		boardVO.setPageUnit(propertyService.getInt("pageUnit"));
 		boardVO.setPageSize(propertyService.getInt("pageSize"));
+		boardVO.setUseAt("Y");
 
 		PaginationInfo paginationInfo = new PaginationInfo();
 

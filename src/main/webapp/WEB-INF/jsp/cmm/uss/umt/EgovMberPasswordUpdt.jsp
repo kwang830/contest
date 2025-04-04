@@ -19,7 +19,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
     <!-- preload -->
-    <link rel="preload" href="<c:url value='/'/>css/bootstrap.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="<c:url value='/'/>css/reset.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="<c:url value='/'/>css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="<c:url value='/'/>css/responsive.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="<c:url value='/'/>css/coming-soon.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -34,7 +34,7 @@
     <link rel="stylesheet" href="<c:url value='/'/>css/coming-soon.css" type="text/css">
 
     <noscript>
-        <link rel="stylesheet" href="<c:url value='/'/>css/bootstrap.css">
+        <link rel="stylesheet" href="<c:url value='/'/>css/reset.css">
         <link rel="stylesheet" href="<c:url value='/'/>css/styles.css">
         <link rel="stylesheet" href="<c:url value='/'/>css/swiper.css">
         <link rel="stylesheet" href="<c:url value='/'/>css/font-icons.css">
@@ -66,6 +66,11 @@ function fnUpdate(){
         document.passwordChgVO.submit();
     }
 }
+function fnPwReset(){
+    document.passwordChgVO.action = "<c:url value='/uss/umt/mber/EgovMberPasswordReset.do'/>";
+    document.passwordChgVO.submit();
+}
+
 <c:if test="${!empty resultMsg}">alert("<spring:message code='${resultMsg}' />");</c:if>
 //-->
 </script>
@@ -164,6 +169,7 @@ function fnUpdate(){
                                 <!-- 목록/저장버튼  시작-->
                                 <input type="button" name="btn_cancel" id="btn_cancel" class="s_btn" value="취소" title="취소버튼" onclick="javascript:document.passwordChgVO.reset();" />
                                 <input type="button" name="btn_save" id="btn_save" class="s_btn" value="저장" title="저장버튼" onclick="fnUpdate(); return false;" />
+                                <input type="button" name="btn_save" id="btn_pw_reset" class="s_btn" value="비밀번호 초기화" title="초기화버튼" onclick="fnPwReset(); return false;" />
                                 <input type="button" name="btn_list" id="btn_list" class="s_btn" value="목록" title="목록버튼" onclick="fnListPage(); return false;" />
                                 <!-- 목록/저장버튼  끝-->
 
@@ -190,7 +196,7 @@ function fnUpdate(){
     <script type="text/javascript" src="<c:url value='/'/>js/jquery-3.3.1.js"></script>
     <script type="text/javascript" src="<c:url value='/'/>js/plugins.js"></script>
 
-    <script type="text/javascript" src="<c:url value='/'/>js/include.js"></script>
+    <script type="text/javascript" src="<c:url value='/'/>js/common.js"></script>
 
     <!-- Footer Scripts
     ============================================= -->

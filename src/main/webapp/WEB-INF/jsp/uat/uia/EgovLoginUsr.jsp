@@ -20,7 +20,7 @@
 
     <!-- Stylesheets
     ============================================= -->
-    <link rel="stylesheet" href="<c:url value='/'/>css/bootstrap.css" type="text/css"/>
+    <link rel="stylesheet" href="<c:url value='/'/>css/reset.css" type="text/css"/>
     <link rel="stylesheet" href="<c:url value='/'/>css/styles.css" type="text/css"/>
     <link rel="stylesheet" href="<c:url value='/'/>css/font-icons.css" type="text/css"/>
 
@@ -172,7 +172,7 @@
 <script type="text/javascript" src="<c:url value='/'/>js/jquery-3.3.1.js"></script>
 <script type="text/javascript" src="<c:url value='/'/>js/plugins.js"></script>
 
-<script type="text/javascript" src="<c:url value='/'/>js/include.js"></script>
+<script type="text/javascript" src="<c:url value='/'/>js/common.js"></script>
 
 <!-- Footer Scripts
 ============================================= -->

@@ -170,6 +170,8 @@
 }
 
 .banner-wrap .date-counter {
+	display: flex;
+	align-items: center;
 	font-size: 0;
 	line-height: 0;
 	margin-bottom: 35px;
@@ -544,6 +546,10 @@
 	padding: 10px;
 }
 
+.swiper-btn-con .swiper-btn > svg{
+	width: 100%;
+}
+
 .swiper-btn-con .swiper-button-prev > svg {
 	margin-left: -3px;
 }
@@ -683,24 +689,33 @@
 }
 
 .notice-wrap .notice-list-con .swiper-slide-inner {
+	position: relative;
 	height: 100%;
-	padding: 40px 45px;
+	padding: 40px 45px 70px;
 	border-radius: 80px 40px 40px;
 	background-color: #fff;
 	box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.25);
 }
 
-.notice-wrap .notice-list-con .notice-list-year {
-	font-size: 24px;
+.notice-wrap .notice-list-con .notice-list-date {
+	position: absolute;
+	bottom: 30px;
+	font-size: 20px;
 	line-height: 132%;
-	font-weight: 600;
+	font-weight: 500;
 }
 
-.notice-wrap .notice-list-con .notice-list-date {
+.notice-wrap .notice-list-con .notice-list-title {
 	font-size: 30px;
 	line-height: 132%;
 	font-weight: 800;
-	margin-bottom: 20px;
+	padding-right: 20px;
+	margin-bottom: 15px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
 }
 
 .notice-wrap .notice-list-con .notice-list-desc {
@@ -893,7 +908,7 @@
 	}
 
 	.notice-wrap .notice-list-con .swiper-slide {
-		max-width: 380px;
+		max-width: 550px;
 		padding-bottom: 10px;
 	}
 }

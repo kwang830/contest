@@ -21,7 +21,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
     <!-- preload -->
-    <link rel="preload" href="<c:url value='/'/>css/bootstrap.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="<c:url value='/'/>css/reset.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="<c:url value='/'/>css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="<c:url value='/'/>css/responsive.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="<c:url value='/'/>css/coming-soon.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -36,7 +36,7 @@
     <link rel="stylesheet" href="<c:url value='/'/>css/coming-soon.css" type="text/css">
 
     <noscript>
-        <link rel="stylesheet" href="<c:url value='/'/>css/bootstrap.css">
+        <link rel="stylesheet" href="<c:url value='/'/>css/reset.css">
         <link rel="stylesheet" href="<c:url value='/'/>css/styles.css">
         <link rel="stylesheet" href="<c:url value='/'/>css/swiper.css">
         <link rel="stylesheet" href="<c:url value='/'/>css/font-icons.css">
@@ -51,6 +51,9 @@
     <!-- Document Title
     ============================================= -->
     <title>IBK시스템, AI 아이디어 챌린지 - 공지사항</title>
+
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="<c:url value='/'/>images/favicon.ico">
 
     <script type="text/javascript" src="<c:url value='/js/EgovBBSMng.js' />"></script>
     <!-- script type="text/javascript" src="<c:url value='/html/egovframework/cmm/utl/htmlarea/EgovWebEditor.js'/>" ></script-->
@@ -139,7 +142,7 @@
     </style>
 </head>
 
-<body class="no-transition stretched" onLoad="document.board.nttSj.focus(); fn_egov_init_date();">
+<body class="stretched" onLoad="document.board.nttSj.focus(); fn_egov_init_date();">
 
 <!-- Document Wrapper
 ============================================= -->
@@ -148,20 +151,6 @@
     <!-- header start -->
     <c:import url="/sym/mms/ContHeader.do" />
     <!-- //header end -->
-
-    <!-- Page Title
-    ============================================= -->
-    <section id="page-title">
-
-        <div class="container clearfix">
-            <h1>2025년 AI 아이디어 공모전</h1>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item" aria-current="page">Home</li>
-                <li class="breadcrumb-item active" aria-current="page">공지사항 수정</li>
-            </ol>
-        </div>
-
-    </section><!-- #page-title end -->
 
     <!-- Content
     ============================================= -->
@@ -358,7 +347,7 @@
 <script type="text/javascript" src="<c:url value='/'/>js/jquery-3.3.1.js"></script>
 <script type="text/javascript" src="<c:url value='/'/>js/plugins.js"></script>
 
-<script type="text/javascript" src="<c:url value='/'/>js/include.js"></script>
+<script type="text/javascript" src="<c:url value='/'/>js/common.js"></script>
 
 <!-- Footer Scripts
 ============================================= -->

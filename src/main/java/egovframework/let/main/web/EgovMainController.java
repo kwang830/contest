@@ -111,6 +111,39 @@ public class EgovMainController {
 		LoginVO user =
 				EgovUserDetailsHelper.isAuthenticated()? (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser():null;
 		if(EgovUserDetailsHelper.isAuthenticated() && user!=null){
+			// 공모전 접수 카운트 조회 시작 ---------------------------------
+			BoardVO vo = new BoardVO();
+			vo.setBbsId("BBSMSTR_BBBBBBBBBBBB");
+
+			Map<String, Object> map = egovArticleService.selectGuestArticleList(vo);
+			int contestBbsTotCnt = Integer.parseInt((String)map.get("resultCnt"));
+			model.addAttribute("contestBbsTotCnt", contestBbsTotCnt);
+			// 공모전 접수 카운트 조회 끝 -----------------------------------
+
+			// 공지사항 메인 컨텐츠 조회 시작 ---------------------------------
+			BoardVO boardVO = new BoardVO();
+			boardVO.setUseAt("Y");
+			boardVO.setPageUnit(10);
+			boardVO.setPageSize(10);
+			boardVO.setBbsId("BBSMSTR_AAAAAAAAAAAA");
+
+			PaginationInfo paginationInfo = new PaginationInfo();
+
+			paginationInfo.setCurrentPageNo(boardVO.getPageIndex());
+			paginationInfo.setRecordCountPerPage(boardVO.getPageUnit());
+			paginationInfo.setPageSize(boardVO.getPageSize());
+
+			boardVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
+			boardVO.setLastIndex(paginationInfo.getLastRecordIndex());
+			boardVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+
+			System.out.println("boardVO.getUseAt():"+boardVO.getUseAt());
+
+			model.addAttribute("notiList", bbsMngService.selectBoardArticles(boardVO, "BBSA02").get("resultList"));
+
+
+			// 공지사항 메인컨텐츠 조회 끝 -----------------------------------
+
 			return "main/EgovMainView";
 		}else{
 			return "main/contest/ContIntroView";

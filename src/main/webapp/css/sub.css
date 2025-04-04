@@ -1,0 +1,140 @@
+@charset "UTF-8";
+
+.sub-layout{
+	position: relative;
+	z-index: 2;
+}
+
+.sub-banner{
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 90px 0;
+	background-image: url('../images/banner-bg.png');
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+.sub-banner:before{
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.2);
+}
+.sub-banner .sub-banner-title{
+	font-family: 'NEXONFootballGothicBA1', sans-serif;
+	font-size: 60px;
+	line-height: 100%;
+	font-weight: 500;
+	letter-spacing: 0;
+	text-align: center;
+	color: #fff;
+}
+
+.nav-menu {
+	position: relative;
+	background: #fff;
+	border-bottom: 1px solid #E4E4E4;
+}
+.nav-menu > .container{
+	display: flex;
+	padding-left: 0; padding-right: 0;
+}
+
+.nav-item {
+	position: relative;
+	height: 60px;
+}
+.nav-item:after{
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -1px;
+	width: calc(100% + 1px);
+	height: 100%;
+	border-left: 1px solid #E4E4E4;
+	pointer-events: none;
+}
+.nav-item:last-child:after{
+	border-right: 1px solid #E4E4E4;
+}
+.nav-item.home {
+
+}
+.nav-item.home a {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 60px;
+	height: 100%;
+	padding: 14px;
+}
+.nav-item.home a > img{
+	width: 22px;
+}
+
+.nav-button {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 172px;
+	height: 100%;
+	font-size: 18px;
+	line-height: 100%;
+	font-weight: 600;
+	cursor: pointer;
+	padding: 20px 30px;
+	gap: 4px;
+}
+.nav-button .nav-toggle{
+	font-size: 0;
+	line-height: 0;
+}
+.nav-button .nav-toggle > img{
+	width: 16px;
+}
+
+.dropdown-menu {
+	display: none;
+	position: absolute;
+	top: 100%;
+	left: -1px;
+	right: -1px;
+	width: calc(100% + 1px);
+	background: #fff;
+	border: 1px solid #e4e4e4;
+	z-index: 100;
+}
+
+.nav-item.open > .dropdown-menu {
+	display: block;
+}
+
+.dropdown-menu li {
+
+}
+
+.dropdown-menu li a {
+	display: block;
+	font-size: 16px;
+	line-height: 22px;
+	color: #000;
+	font-weight: 500;
+	padding: 15px 30px;
+	background-color: #fff;
+}
+.dropdown-menu li.active a{
+	color: #fff;
+	background-color: #77baf7;
+	font-weight: 600;
+}
+
+@media all and (min-width: 768px){
+	.nav-menu > .container{padding-left:20px; padding-right:20px;}
+	.nav-button{width: 242px; padding: 20px 40px;}
+	.dropdown-menu li a{padding: 15px 40px;}
+}

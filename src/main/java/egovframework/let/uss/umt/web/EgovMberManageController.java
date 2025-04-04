@@ -464,6 +464,46 @@ public class EgovMberManageController {
 	}
 
 	/**
+	 * @param model 화면모델
+	 * @param commandMap 파라메터전달용 commandMap
+	 * @param userSearchVO 검색조건
+	 * @param mberManageVO 일반회원수정정보(비밀번호)
+	 * @return cmm/uss/umt/EgovMberPasswordReset
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/uss/umt/mber/EgovMberPasswordReset.do")
+	public String updatePasswordReset(ModelMap model, @RequestParam Map<String, Object> commandMap, @ModelAttribute("searchVO") UserDefaultVO userSearchVO,
+								 @ModelAttribute("mberManageVO") MberManageVO mberManageVO) throws Exception {
+
+		// 미인증 사용자에 대한 보안처리
+		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+		if(!isAuthenticated) {
+			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
+			return "uat/uia/EgovLoginUsr";
+		}
+
+		String resultMsg = "";
+		String uniqId = (String) commandMap.get("uniqId");
+
+		mberManageVO = mberManageService.selectMber(uniqId);
+		mberManageVO.setPassword(EgovFileScrty.encryptPassword(mberManageVO.getPasswordCnsr(), mberManageVO.getMberId()));
+
+		if (!mberManageVO.getPasswordCnsr().isEmpty()) {
+			mberManageService.updatePassword(mberManageVO);
+			model.addAttribute("mberManageVO", mberManageVO);
+			resultMsg = "success.common.update";
+		}else{
+			model.addAttribute("mberManageVO", mberManageVO);
+			resultMsg = "fail.common.update";
+		}
+
+		model.addAttribute("userSearchVO", userSearchVO);
+		model.addAttribute("resultMsg", resultMsg);
+
+		return "cmm/uss/umt/EgovMberPasswordUpdt";
+	}
+
+	/**
 	 * 일반회원 암호 수정 화면 이동
 	 * @param model 화면모델
 	 * @param commandMap 파라메터전달용 commandMap

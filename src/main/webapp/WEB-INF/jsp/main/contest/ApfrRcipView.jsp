@@ -16,7 +16,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
 	<!-- preload -->
-	<link rel="preload" href="<c:url value='/'/>css/bootstrap.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="preload" href="<c:url value='/'/>css/reset.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/responsive.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/form.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -31,7 +31,7 @@
 	<link rel="stylesheet" href="<c:url value='/'/>css/coming-soon.css" type="text/css">
 
 	<noscript>
-		<link rel="stylesheet" href="<c:url value='/'/>css/bootstrap.css">
+		<link rel="stylesheet" href="<c:url value='/'/>css/reset.css">
 		<link rel="stylesheet" href="<c:url value='/'/>css/styles.css">
 		<link rel="stylesheet" href="<c:url value='/'/>css/swiper.css">
 		<link rel="stylesheet" href="<c:url value='/'/>css/font-icons.css">
@@ -124,7 +124,7 @@
 <script type="text/javascript" src="<c:url value='/'/>js/jquery-3.3.1.js"></script>
 <script type="text/javascript" src="<c:url value='/'/>js/plugins.js"></script>
 
-<script type="text/javascript" src="<c:url value='/'/>js/include.js"></script>
+<script type="text/javascript" src="<c:url value='/'/>js/common.js"></script>
 
 <!-- Footer Scripts
 ============================================= -->

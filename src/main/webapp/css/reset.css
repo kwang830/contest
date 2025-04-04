@@ -73,6 +73,11 @@ img {
 	border: 0;
 }
 
+svg {
+	overflow: hidden;
+	vertical-align: middle;
+}
+
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;

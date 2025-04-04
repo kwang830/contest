@@ -18,7 +18,7 @@
 		  rel="stylesheet">
 
 	<!-- preload -->
-	<link rel="preload" href="<c:url value='/'/>css/bootstrap.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="preload" href="<c:url value='/'/>css/reset.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/responsive.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -33,7 +33,7 @@
 
 	<noscript>
 		<link rel="stylesheet" href="<c:url value='/'/>css/main.css">
-		<link rel="stylesheet" href="<c:url value='/'/>css/bootstrap.css">
+		<link rel="stylesheet" href="<c:url value='/'/>css/reset.css">
 		<link rel="stylesheet" href="<c:url value='/'/>css/styles.css">
 		<link rel="stylesheet" href="<c:url value='/'/>css/font-icons.css">
 		<link rel="stylesheet" href="<c:url value='/'/>css/animate.css">
@@ -126,7 +126,7 @@
 							<span>전체 신청건 수</span> 입니다.
 						</div>
 						<div class="counter schedule-counter">
-							<span data-from="0" data-to="10" data-refresh-interval="80" data-speed="800" data-comma="true">10</span>
+							<span data-from="0" data-to="<c:out value="${empty contestBbsTotCnt ? 0 : contestBbsTotCnt}" />" data-refresh-interval="15" data-speed="4000" data-comma="true"><c:out value="${empty contestBbsTotCnt ? 0 : contestBbsTotCnt}" /></span>
 							건
 						</div>
 					</div>
@@ -215,7 +215,7 @@
 									  fill="#1F1F1F"/>
 							</svg>
 						</div>
-						<div class="swiper-btn plus-btn">
+						<div class="swiper-btn plus-btn" onClick="window.location.href='/cmm/contest/contestOtcm.do';">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 								<path d="M10.591 13.3887H0.60022V10.6112H10.591V0.333252H13.2908V10.6112H23.2816V13.3887H13.2908V23.6666H10.591V13.3887Z"
 									  fill="white"/>
@@ -254,7 +254,7 @@
 							<span>이진석 대리</span>
 						</div>
 						<div class="info-tel">
-							02-3407-6600
+							02-3407-6074
 						</div>
 						<div class="info-icon">
 							<img src="<c:url value='/'/>images/inquiry-icon.png" alt="">
@@ -282,7 +282,7 @@
 										  fill="#1F1F1F"/>
 								</svg>
 							</div>
-							<div class="swiper-btn plus-btn">
+							<div class="swiper-btn plus-btn" onClick="window.location.href='/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_AAAAAAAAAAAA';">
 								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
 									 fill="none">
 									<path d="M10.591 13.3887H0.60022V10.6112H10.591V0.333252H13.2908V10.6112H23.2816V13.3887H13.2908V23.6666H10.591V13.3887Z"
@@ -292,33 +292,39 @@
 						</div>
 						<div class="notice-list-con" id="noticeSwiper">
 							<div class="swiper-wrapper">
-								<div class="swiper-slide">
-									<div class="swiper-slide-inner">
-										<div class="notice-list-year">2025</div>
-										<div class="notice-list-date">04.02</div>
-										<div class="notice-list-desc">
-											2025 AI공모전 공지사항 게시판입니다.
+
+								<c:forEach var="result" items="${notiList}" begin="0" end="2" step="1" varStatus="status">
+									<c:if test="${!(result.isExpired=='Y' || result.useAt == 'N')}">
+									<div class="swiper-slide">
+										<div class="swiper-slide-inner">
+											<div class="notice-list-title">
+												<c:choose>
+													<c:when test="${fn:length(result.nttSj) > 51 }">
+														<c:out value="${fn:substring(result.nttSj, 0, 50)}" escapeXml="false" />...
+													</c:when>
+													<c:otherwise>
+														<c:out value="${result.nttSj }" escapeXml="false" />
+													</c:otherwise>
+												</c:choose>
+											</div>
+											<div class="notice-list-desc">
+												<c:choose>
+													<c:when test="${fn:length(result.nttCn) > 151 }">
+														<c:out value="${fn:substring(result.nttCn, 0, 150)}" escapeXml="false" />...
+													</c:when>
+													<c:otherwise>
+														<c:out value="${result.nttCn }" escapeXml="false" />
+													</c:otherwise>
+												</c:choose>
+											</div>
+											<div class="notice-list-date">
+												<c:out value="${fn:substring(result.frstRegisterPnttm,2,4)}.${fn:substring(result.frstRegisterPnttm,5,7)}.${fn:substring(result.frstRegisterPnttm,8,10)}"/>
+											</div>
 										</div>
 									</div>
-								</div>
-								<div class="swiper-slide">
-									<div class="swiper-slide-inner">
-										<div class="notice-list-year">2025</div>
-										<div class="notice-list-date">04.02</div>
-										<div class="notice-list-desc">
-											2025 AI공모전 공지사항 게시판입니다.2025 AI공모전 공지사항 게시판입니다.
-										</div>
-									</div>
-								</div>
-								<div class="swiper-slide">
-									<div class="swiper-slide-inner">
-										<div class="notice-list-year">2025</div>
-										<div class="notice-list-date">04.02</div>
-										<div class="notice-list-desc">
-											2025 AI공모전 공지사항 게시판입니다.2025 AI공모전 공지사항 게시판입니다.2025 AI공모전 공지사항 게시판입니다.
-										</div>
-									</div>
-								</div>
+									</c:if>
+								</c:forEach>
+
 							</div>
 						</div>
 					</div>
@@ -355,7 +361,7 @@
 	<script type="text/javascript" src="<c:url value='/'/>js/jquery-3.3.1.js"></script>
 	<script type="text/javascript" src="<c:url value='/'/>js/plugins.js"></script>
 
-	<script type="text/javascript" src="<c:url value='/'/>js/include.js"></script>
+	<script type="text/javascript" src="<c:url value='/'/>js/common.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
