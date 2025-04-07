@@ -76,9 +76,9 @@ function fn_contest_init_date(){
 }
 
 /*********************************************************
- * 페이징 처리 함수
+ * 초기화
  ******************************************************** */
-function fn_egov_select_reset(){
+function fn_select_reset(){
 	let form = document.forms["LoginLogForm"];
 	if(form){
 		//form.reset();
@@ -105,9 +105,6 @@ function fn_egov_select_linkPage(pageNo){
 	} else {
 		console.log("LoginLogForm을 찾을 수 없습니다.");
 	}
-	//document.LoginLogForm.pageIndex.value = pageNo;
-	//document.LoginLogForm.action = "<c:url value='/sym/log/clg/userLgnHsty.do'/>";
-	//document.LoginLogForm.submit();
 }
 /*********************************************************
  * 조회 처리 함수
@@ -215,7 +212,7 @@ function fn_egov_search_loginLog(){
                             <button class="btn" type="submit">조회</button>
                         </span>
 
-						<a href="#" class="item btn btn_black_46 w_100" onclick="javascript:fn_egov_select_reset(); return false;">초기화</a>
+						<a href="#" class="item btn btn_black_46 w_100" onclick="javascript:fn_select_reset(); return false;">초기화</a>
 
 					</form>
 
