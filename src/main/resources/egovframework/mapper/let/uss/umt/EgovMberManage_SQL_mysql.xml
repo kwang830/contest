@@ -31,10 +31,10 @@ FROM(
     ) A
         WHERE 1=1
         <if test='sbscrbSttus != "0"'>
-            AND sttus LIKE  #{sbscrbSttus}
+            AND sttus = #{sbscrbSttus}
         </if>
         <if test='searchCondition == "0"'>
-            AND userId LIKE #{searchKeyword}
+            AND userId LIKE '%' #{searchKeyword} '%'
         </if>
         <if test='searchCondition == "1"'>
             AND userNm LIKE '%' #{searchKeyword} '%'

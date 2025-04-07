@@ -483,16 +483,29 @@ public class EgovMberManageController {
 		}
 
 		String resultMsg = "";
+		String password = "1";
 		String uniqId = (String) commandMap.get("uniqId");
 
+		System.out.println("uniqId:" + uniqId);
+		System.out.println("mberManageVO.getMberId():"+mberManageVO.getMberId());
+
+
 		mberManageVO = mberManageService.selectMber(uniqId);
-		mberManageVO.setPassword(EgovFileScrty.encryptPassword(mberManageVO.getPasswordCnsr(), mberManageVO.getMberId()));
+		String passwordCnsr = mberManageVO.getPasswordCnsr();
+		if (passwordCnsr != null && !passwordCnsr.trim().isEmpty()) {
+			password = passwordCnsr;
+		}
+		System.out.println("password:" + password);
+
+		mberManageVO.setPassword(EgovFileScrty.encryptPassword(password, mberManageVO.getMberId()));
 
 		if (!mberManageVO.getPasswordCnsr().isEmpty()) {
+			System.out.println("1");
 			mberManageService.updatePassword(mberManageVO);
 			model.addAttribute("mberManageVO", mberManageVO);
 			resultMsg = "success.common.update";
 		}else{
+			System.out.println("2");
 			model.addAttribute("mberManageVO", mberManageVO);
 			resultMsg = "fail.common.update";
 		}

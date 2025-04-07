@@ -28,7 +28,7 @@
 
     <!-- Document Title
     ============================================= -->
-    <title>IBK시스템 AI 아이디어 챌린지</title>
+    <title>IBK시스템 AI 아이디어 챌린지 - 사용자 정보 관리</title>
 
     <!-- favicon -->
     <link rel="icon" type="image/x-icon" href="<c:url value='/'/>images/favicon.ico">
@@ -199,7 +199,7 @@ function fnSearch(){
                         <label class="item f_select" for="searchCondition">
                             <select name="searchCondition" id="searchCondition" title="조회조건2">
                                 <option value="0" <c:if test="${userSearchVO.searchCondition == '0'}">selected="selected"</c:if> >ID</option>
-                                <option value="1" <c:if test="${empty userSearchVO.searchCondition || userSearchVO.searchCondition == '1'}">selected="selected"</c:if> >Name</option>
+                                <option value="1" <c:if test="${empty userSearchVO.searchCondition || userSearchVO.searchCondition == '1'}">selected="selected"</c:if> >이름</option>
                             </select>
                         </label>
 

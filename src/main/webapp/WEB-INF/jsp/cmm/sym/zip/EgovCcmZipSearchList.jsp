@@ -54,7 +54,7 @@ function fn_egov_search_Zip(){
 function fn_egov_return_Zip(zip,addr){
 	var retVal   = new Object();
 	var sZip     = zip;
-	var vZip     = zip.substring(0,3)+"-"+zip.substring(3,6);
+	var vZip     = zip;
 	var sAddr    = addr.replace("/^\s+|\s+$/g","");
 	retVal.sZip  = sZip;
 	retVal.vZip  = vZip;
@@ -118,7 +118,7 @@ function fn_egov_cancel_popup() {
                         <tbody>
                         	<c:forEach items="${resultList}" var="resultInfo" varStatus="status">
                             <tr>
-                                <td><c:out value='${fn:substring(resultInfo.zip, 0,3)}'/>-<c:out value='${fn:substring(resultInfo.zip, 3,6)}'/></td>
+                                <td><c:out value='${resultInfo.zip}'/></td>
                                 <td class="al_l">${resultInfo.ctprvnNm} ${resultInfo.signguNm} ${resultInfo.emdNm} ${resultInfo.liBuldNm} ${resultInfo.lnbrDongHo}</td>
                                 <td>
                                 	<a href="#LINK" class="btn btn_blue_30 w_80" onclick="javascript:fn_egov_return_Zip( '${resultInfo.zip}', '${resultInfo.ctprvnNm} ${resultInfo.signguNm} ${resultInfo.emdNm} ${resultInfo.liBuldNm}');">

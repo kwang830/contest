@@ -22,33 +22,20 @@
     <link rel="preload" href="<c:url value='/'/>css/reset.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="<c:url value='/'/>css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="<c:url value='/'/>css/responsive.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="<c:url value='/'/>css/coming-soon.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="<c:url value='/'/>css/font-icons.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="<c:url value='/'/>css/sub.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="<c:url value='/'/>css/board.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
-    <!-- 비동기
-    ============================================= -->
-    <link rel="stylesheet" href="<c:url value='/'/>css/swiper.css" type="text/css" media="print" onload="this.media='all'" />
-    <link rel="stylesheet" href="<c:url value='/'/>css/font-icons.css" type="text/css" media="print" onload="this.media='all'" />
-    <link rel="stylesheet" href="<c:url value='/'/>css/animate.css" type="text/css" media="print" onload="this.media='all'" />
-    <link rel="stylesheet" href="<c:url value='/'/>css/magnific-popup.css" type="text/css" media="print" onload="this.media='all'" />
-
-    <link rel="stylesheet" href="<c:url value='/'/>css/coming-soon.css" type="text/css">
-
-    <noscript>
-        <link rel="stylesheet" href="<c:url value='/'/>css/reset.css">
-        <link rel="stylesheet" href="<c:url value='/'/>css/styles.css">
-        <link rel="stylesheet" href="<c:url value='/'/>css/swiper.css">
-        <link rel="stylesheet" href="<c:url value='/'/>css/font-icons.css">
-        <link rel="stylesheet" href="<c:url value='/'/>css/animate.css">
-        <link rel="stylesheet" href="<c:url value='/'/>css/magnific-popup.css">
-        <link rel="stylesheet" href="<c:url value='/'/>css/responsive.css">
-        <link rel="stylesheet" href="<c:url value='/'/>css/coming-soon.css">
-    </noscript>
-
-    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+    <link rel="stylesheet" href="<c:url value='/'/>css/jqueryui.css" type="text/css">
 
     <!-- Document Title
     ============================================= -->
-    <title>IBK시스템 AI 아이디어 챌린지 - 회원관리</title>
+    <title>IBK시스템 AI 아이디어 챌린지 - 사용자 정보 관리</title>
+
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="<c:url value='/'/>images/favicon.ico">
+
+
 <script type="text/javascript" src="<c:url value="/validator.do"/>"></script>
 <validator:javascript formName="passwordChgVO" staticJavascript="false" xhtml="true" cdata="false"/>
 <script type="text/javaScript" language="javascript" defer="defer">
@@ -75,7 +62,7 @@ function fnPwReset(){
 //-->
 </script>
 </head>
-<body class="no-transition stretched">
+<body class="stretched">
 
     <!-- Document Wrapper
     ============================================= -->
@@ -84,103 +71,117 @@ function fnPwReset(){
         <c:import url="/sym/mms/ContHeader.do" />
         <!-- //header end -->
 
-        <!-- Page Title
+        <!-- Content
 ============================================= -->
-        <section id="page-title">
-
-            <div class="container clearfix">
-                <h1>2025년 AI 아이디어 공모전</h1>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item" aria-current="page">Home</li>
-                    <li class="breadcrumb-item active" aria-current="page">사용자관리</li>
-                </ol>
-            </div>
-
-        </section><!-- #page-title end -->
-
-        <div class="container">
-            <div class="sub_layout">
-                <div class="sub_in">
-                    <div class="layout">
-                        <div class="content_wrap">
-                            <div id="contents" class="content">
-
-								<form name="passwordChgVO" method="post" action="<c:url value="${'/uss/umt/mber/EgovMberPasswordUpdt.do'}"/>" >
-						        <!-- 상세정보 사용자 삭제시 prameter 전달용 input -->
-						        <input name="checkedIdForDel" type="hidden" />
-						        <!-- 검색조건 유지 -->
-						        <input type="hidden" name="searchCondition" value="<c:out value='${userSearchVO.searchCondition}'/>"/>
-						        <input type="hidden" name="searchKeyword" value="<c:out value='${userSearchVO.searchKeyword}'/>"/>
-						        <input type="hidden" name="sbscrbSttus" value="<c:out value='${userSearchVO.sbscrbSttus}'/>"/>
-						        <input type="hidden" name="pageIndex" value="<c:out value='${userSearchVO.pageIndex}'/>"/>
-						        <!-- 우편번호검색 -->
-						        <input type="hidden" name="url" value="<c:url value='/sym/ccm/zip/EgovCcmZipSearchPopup.do'/>" />
-
-                                <h2>사용자관리</h2>
-
-                                <div class="board_view2">
-                                    <table>
-                                        <colgroup>
-                                            <col style="width: 190px;">
-                                            <col style="width: auto;">
-                                        </colgroup>
-                                        <tr>
-                                            <td class="lb">
-                                                <label for="">일반회원아이디</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <input name="mberId" id="mberId" class="f_txt" type="text" value="<c:out value='${mberManageVO.mberId}'/>" maxlength="20" readonly />
-							                    <input name="uniqId" id="uniqId" type="hidden" value="<c:out value='${mberManageVO.uniqId}'/>" />
-							                    <input name="userTy" id="userTy" type="hidden" value="<c:out value='${mberManageVO.userTy}'/>" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="lb">
-                                                <label for="">기존 비밀번호</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <input name="oldPassword" id="oldPassword" class="f_txt" type="password" value="" maxlength="100" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="lb">
-                                                <label for="">비밀번호</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <input name="newPassword" id="newPassword" class="f_txt" type="password" value="" maxlength="100" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="lb">
-                                                <label for="">비밀번호 확인</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <input name="newPassword2" id="newPassword2" class="f_txt" type="password" value="" maxlength="100" />
-                                            </td>
-                                        </tr>
-
-                                    </table>
-                                </div>
-
-                                <!-- 목록/저장버튼  시작-->
-                                <input type="button" name="btn_cancel" id="btn_cancel" class="s_btn" value="취소" title="취소버튼" onclick="javascript:document.passwordChgVO.reset();" />
-                                <input type="button" name="btn_save" id="btn_save" class="s_btn" value="저장" title="저장버튼" onclick="fnUpdate(); return false;" />
-                                <input type="button" name="btn_save" id="btn_pw_reset" class="s_btn" value="비밀번호 초기화" title="초기화버튼" onclick="fnPwReset(); return false;" />
-                                <input type="button" name="btn_list" id="btn_list" class="s_btn" value="목록" title="목록버튼" onclick="fnListPage(); return false;" />
-                                <!-- 목록/저장버튼  끝-->
-
-                                </form>
-                                
-                            </div>
+        <section id="content">
+            <div class="sub-layout">
+                <div class="sub-banner">
+                    <div class="container">
+                        <div class="sub-banner-title">
+                            사용자 정보 관리
                         </div>
                     </div>
                 </div>
+                <nav class="nav-menu">
+                    <div class="container">
+                        <!-- 홈 아이콘 -->
+                        <div class="nav-item home">
+                            <a href="/"><img src="/images/icon-home.png" alt="홈"/></a>
+                        </div>
+
+                        <!-- 1depth 메뉴 항목 -->
+                        <div class="nav-item has-dropdown">
+                            <button class="nav-button">시스템관리 <span class="nav-toggle"></span></button>
+                        </div>
+                        <div class="nav-item has-dropdown">
+                            <button class="nav-button">사용자 정보 관리 <span class="nav-toggle"><img
+                                    src="/images/icon-nav-arrow.png" alt=""></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">접수게시판</a></li>
+                                <li><a href="#">로그인 이력</a></li>
+                                <li><a href="#">부서 통계 현황</a></li>
+                                <li class="active"><a href="#">사용자 정보 관리</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
             </div>
-        </div>
+            <div class="content-wrap">
+                <div class="container clearfix">
+
+                    <form name="passwordChgVO" method="post" action="<c:url value="${'/uss/umt/mber/EgovMberPasswordUpdt.do'}"/>" >
+                        <!-- 상세정보 사용자 삭제시 prameter 전달용 input -->
+                        <input name="checkedIdForDel" type="hidden" />
+                        <!-- 검색조건 유지 -->
+                        <input type="hidden" name="searchCondition" value="<c:out value='${userSearchVO.searchCondition}'/>"/>
+                        <input type="hidden" name="searchKeyword" value="<c:out value='${userSearchVO.searchKeyword}'/>"/>
+                        <input type="hidden" name="sbscrbSttus" value="<c:out value='${userSearchVO.sbscrbSttus}'/>"/>
+                        <input type="hidden" name="pageIndex" value="<c:out value='${userSearchVO.pageIndex}'/>"/>
+                        <!-- 우편번호검색 -->
+                        <input type="hidden" name="url" value="<c:url value='/sym/ccm/zip/EgovCcmZipSearchPopup.do'/>" />
+
+                        <div class="board_form">
+                            <div>
+                                <div class="board_form_row">
+                                    <div class="title">
+                                        <label for="mberId">일반회원아이디</label><span style="color:red;">*</span>
+                                    </div>
+                                    <div class="input">
+                                        <input name="mberId" id="mberId" class="f_txt" type="text" value="<c:out value='${mberManageVO.mberId}'/>" maxlength="20" readonly />
+                                        <input name="uniqId" id="uniqId" type="hidden" value="<c:out value='${mberManageVO.uniqId}'/>" />
+                                        <input name="userTy" id="userTy" type="hidden" value="<c:out value='${mberManageVO.userTy}'/>" />
+                                    </div>
+                                </div>
+
+                                <div class="board_form_row">
+                                    <div class="title">
+                                        <label for="oldPassword">이전 비밀번호</label><span style="color:red;">*</span>
+                                    </div>
+                                    <div class="input">
+                                        <input name="oldPassword" id="oldPassword" class="f_txt" type="password" value="" maxlength="100" />
+                                    </div>
+                                </div>
+
+                                <div class="board_form_row">
+                                    <div class="title">
+                                        <label for="newPassword">비밀번호</label><span style="color:red;">*</span>
+                                    </div>
+                                    <div class="input">
+                                        <input name="newPassword" id="newPassword" class="f_txt" type="password" value="" maxlength="100" />
+                                    </div>
+                                </div>
+
+                                <div class="board_form_row">
+                                    <div class="title">
+                                        <label for="newPassword2">비밀번호 확인</label><span style="color:red;">*</span>
+                                    </div>
+                                    <div class="input">
+                                        <input name="newPassword2" id="newPassword2" class="f_txt" type="password" value="" maxlength="100" />
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <!-- 목록/저장버튼  시작-->
+                        <div class="board_view_bot">
+                            <div class="left_col">
+                                <a href="#" class="btn btn_gray_46" onclick="fnListPage(); return false;">목록</a>
+                            </div>
+                            <div class="center_col">
+                                <a href="#" class="btn btn_white_46" onclick="javascript:document.passwordChgVO.reset();">취소</a>
+                                <a href="#" class="btn btn_white_46" onclick="fnUpdate(); return false;">저장</a>
+                                <a href="#" class="btn btn_white_46" onclick="fnPwReset(); return false;">비밀번호 초기화</a>
+                            </div>
+                            <div class="right_col"></div>
+                        </div>
+                        <!-- 목록/저장버튼  끝-->
+
+                    </form>
+                </div>
+            </div>
+        </section>
 
         <!-- footer 시작 -->
         <c:import url="/sym/mms/ContFooter.do" />
