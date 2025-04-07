@@ -72,7 +72,7 @@
 			<div class="sub-banner">
 				<div class="container">
 					<div class="sub-banner-title">
-						공지사항
+						<c:out value="${brdMstrVO.bbsNm}" />
 					</div>
 				</div>
 			</div>
@@ -98,8 +98,8 @@
 								src="/images/icon-nav-arrow.png" alt=""></span></button>
 						<ul class="dropdown-menu">
 							<li class="active"><a href="#">공지사항</a></li>
-							<li><a href="#">FAQ</a></li>
-							<li><a href="#">QNA</a></li>
+							<li><a href="/uss/olh/faq/FaqListInqire.do">FAQ</a></li>
+							<li><a href="/uss/olh/qna/QnaListInqire.do">QNA</a></li>
 						</ul>
 					</div>
 				</div>
@@ -127,7 +127,7 @@
 						</label>
 
 						<span class="item f_search">
-                            <input class="f_input w_500" name="searchKeyword" type="text" value='<c:out value="${searchVO.searchWrd}"/>'
+                            <input class="f_input w_500" name="searchWrd" type="text" value='<c:out value="${searchVO.searchWrd}"/>'
 								   maxlength="35" title="검색어 입력">
                             <button class="btn" type="submit"
 									onclick="fn_egov_select_noticeList('1'); return false;">조회</button>
@@ -144,11 +144,12 @@
 
 				<!-- 게시판 -->
 				<div class="board_list">
-					<table summary="게시글에 대한 목록을 제공합니다.">
-						<caption>약관목록</caption>
+					<table>
+						<caption>목록</caption>
 						<colgroup>
 							<col style="width: 80px;">
 							<col style="width: auto; min-width: 330px;">
+							<col style="width: 100px;">
 							<col style="width: 100px;">
 							<col style="width: 180px;">
 						</colgroup>
@@ -156,6 +157,7 @@
 						<tr>
 							<th scope="col">순번</th>
 							<th scope="col">제목</th>
+							<th scope="col">작성자</th>
 							<th scope="col">조회수</th>
 							<th scope="col">등록일자</th>
 						</tr>
@@ -168,6 +170,7 @@
 								<td class="al">
 									등록된 글이 존재하지 않습니다.
 								</td>
+								<td>-</td>
 								<td>-</td>
 								<td>-</td>
 							</tr>
@@ -196,6 +199,7 @@
 
 									</form>
 								</td>
+								<td>${result.frstRegisterNm}</td>
 								<td>${result.inqireCo}</td>
 								<td>${result.frstRegisterPnttm}</td>
 							</tr>

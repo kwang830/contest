@@ -293,7 +293,7 @@
 						<div class="notice-list-con" id="noticeSwiper">
 							<div class="swiper-wrapper">
 
-								<c:forEach var="result" items="${notiList}" begin="0" end="2" step="1" varStatus="status">
+								<c:forEach var="result" items="${notiList}" begin="0" end="10" step="1" varStatus="status">
 									<c:if test="${!(result.isExpired=='Y' || result.useAt == 'N')}">
 									<div class="swiper-slide">
 										<div class="swiper-slide-inner">

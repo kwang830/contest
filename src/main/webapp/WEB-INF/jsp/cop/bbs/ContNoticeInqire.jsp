@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -21,33 +21,16 @@
     <link rel="preload" href="<c:url value='/'/>css/reset.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="<c:url value='/'/>css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="<c:url value='/'/>css/responsive.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="<c:url value='/'/>css/coming-soon.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-
-    <!-- 비동기
-    ============================================= -->
-    <link rel="stylesheet" href="<c:url value='/'/>css/swiper.css" type="text/css" media="print" onload="this.media='all'" />
-    <link rel="stylesheet" href="<c:url value='/'/>css/font-icons.css" type="text/css" media="print" onload="this.media='all'" />
-    <link rel="stylesheet" href="<c:url value='/'/>css/animate.css" type="text/css" media="print" onload="this.media='all'" />
-    <link rel="stylesheet" href="<c:url value='/'/>css/magnific-popup.css" type="text/css" media="print" onload="this.media='all'" />
-
-    <link rel="stylesheet" href="<c:url value='/'/>css/coming-soon.css" type="text/css">
-
-    <noscript>
-        <link rel="stylesheet" href="<c:url value='/'/>css/reset.css">
-        <link rel="stylesheet" href="<c:url value='/'/>css/styles.css">
-        <link rel="stylesheet" href="<c:url value='/'/>css/swiper.css">
-        <link rel="stylesheet" href="<c:url value='/'/>css/font-icons.css">
-        <link rel="stylesheet" href="<c:url value='/'/>css/animate.css">
-        <link rel="stylesheet" href="<c:url value='/'/>css/magnific-popup.css">
-        <link rel="stylesheet" href="<c:url value='/'/>css/responsive.css">
-        <link rel="stylesheet" href="<c:url value='/'/>css/coming-soon.css">
-    </noscript>
-
-    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+    <link rel="preload" href="<c:url value='/'/>css/font-icons.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="<c:url value='/'/>css/sub.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="<c:url value='/'/>css/board.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
     <!-- Document Title
     ============================================= -->
     <title>IBK시스템, AI 아이디어 챌린지 - 공지사항</title>
+
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="<c:url value='/'/>images/favicon.ico">
 
     <script type="text/javascript" src="<c:url value='/js/EgovBBSMng.js' />"></script>
     <c:if test="${anonymous == 'true'}"><c:set var="prefix" value="/anonymous"/></c:if>
@@ -113,7 +96,7 @@
     </c:if>
 </head>
 
-<body class="no-transition stretched">
+<body class="stretched">
 
 <!-- Document Wrapper
 ============================================= -->
@@ -123,120 +106,116 @@
     <c:import url="/sym/mms/ContHeader.do" />
     <!-- //header end -->
 
-    <!-- Page Title
-    ============================================= -->
-    <section id="page-title">
-
-        <div class="container clearfix">
-            <h1>2025년 AI 아이디어 공모전</h1>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item" aria-current="page">Home</li>
-                <li class="breadcrumb-item active" aria-current="page">공지사항 조회</li>
-            </ol>
-        </div>
-
-    </section><!-- #page-title end -->
-
     <!-- Content
     ============================================= -->
     <section id="content">
-
-        <div class="content-wrap">
-
-            <div class="container clearfix">
-
-                <h2><c:out value="${brdMstrVO.bbsNm}" /></h2>
-
-                <form name="frm" method="post" action="<c:url value='/cop/bbs${prefix}/selectBoardList.do'/>">
-                    <input type="hidden" name="pageIndex" value="<c:out value='${searchVO.pageIndex}'/>">
-                    <input type="hidden" name="bbsId" value="<c:out value='${result.bbsId}'/>" >
-                    <input type="hidden" name="nttId" value="<c:out value='${result.nttId}'/>" >
-                    <input type="hidden" name="parnts" value="<c:out value='${result.parnts}'/>" >
-                    <input type="hidden" name="sortOrdr" value="<c:out value='${result.sortOrdr}'/>" >
-                    <input type="hidden" name="replyLc" value="<c:out value='${result.replyLc}'/>" >
-                    <input type="hidden" name="nttSj" value="<c:out value='${result.nttSj}'/>" >
-
-                    <!-- 게시판 상세보기 -->
-                    <div class="board_view">
-                        <div class="board_view_top">
-                            <div class="tit"><c:out value="${result.nttSj}" escapeXml="false" /></div>
-                            <div class="info">
-                                <dl>
-                                    <dt>작성자##</dt>
-                                    <dd><c:out value="${result.frstRegisterNm}" /></dd>
-                                </dl>
-                                <dl>
-                                    <dt>작성일</dt>
-                                    <dd><c:out value="${result.frstRegisterPnttm}" escapeXml="false" /></dd>
-                                </dl>
-                                <dl>
-                                    <dt>조회수</dt>
-                                    <dd><c:out value="${result.inqireCo}" /></dd>
-                                </dl>
-                            </div>
-                        </div>
-
-                        <div class="board_article">
-                            <textarea id="nttCn" name="nttCn" class="textarea" cols="30" rows="10" readonly="readonly" title="글내용"><c:out value="${result.nttCn}" escapeXml="true" /></textarea>
-                        </div>
-
-
-                        <!-- 파일 첨부 시작 -->
-                        <div class="board_attach">
-
-                            <c:if test="${not empty result.atchFileId}">
-
-                                <c:if test="${result.bbsAttrbCode == 'BBSA02'}">
-                                    <dl>
-                                        <dt style="display: inline;">첨부<br>이미지</dt>
-                                        <dd>
-                                            <c:import url="/cmm/fms/selectImageFileInfs.do" charEncoding="utf-8">
-                                                <c:param name="atchFileId" value="${egovc:encryptSession(result.atchFileId, pageContext.session.id)}" />
-                                            </c:import>
-                                        </dd>
-                                    </dl>
-                                </c:if>
-
-                                <dl>
-                                    <dt>첨부파일</dt>
-                                    <dd>
-                                        <c:import url="/cmm/fms/selectFileInfs.do" charEncoding="utf-8">
-                                            <c:param name="param_atchFileId" value="${egovc:encrypt(result.atchFileId)}" />
-                                        </c:import>
-                                    </dd>
-                                </dl>
-
-                            </c:if>
-
-                        </div>
-                        <!-- /파일 첨부 끝 -->
-
-                        <!-- 버튼 시작 -->
-                        <div class="board_view_bot">
-                            <div class="left_col btn3">
-                                <c:if test="${result.frstRegisterId == sessionUniqId}">
-                                    <input type="button" class="s_btn" value="수정" title="수정 버튼" onclick="javascript:fn_egov_moveUpdt_notice(); return false;" />
-                                    <input type="button" class="s_btn" value="삭제" title="삭제 버튼" onclick="javascript:fn_egov_delete_notice(); return false;" />
-                                </c:if>
-                                <c:if test="${result.replyPosblAt == 'Y'}">
-                                    <input type="button" class="s_btn" value="답글작성" title="답글작성 버튼" onclick="javascript:fn_egov_addReply(); return false;" />
-                                </c:if>
-                            </div>
-
-                            <div class="right_col btn1">
-                                <input type="button" class="s_btn" value="목록" title="목록 버튼" onclick="javascript:fn_egov_select_noticeList('1'); return false;" />
-                            </div>
-                        </div>
-                        <!-- /버튼 끝 -->
+        <div class="sub-layout">
+            <div class="sub-banner">
+                <div class="container">
+                    <div class="sub-banner-title">
+                        <c:out value='${result.bbsNm}'/>
                     </div>
-                    <!-- 게시판 상세보기 -->
-                </form>
-
+                </div>
             </div>
+            <nav class="nav-menu">
+                <div class="container">
+                    <!-- 홈 아이콘 -->
+                    <div class="nav-item home">
+                        <a href="/"><img src="/images/icon-home.png" alt="홈"/></a>
+                    </div>
 
+                    <!-- 1depth 메뉴 항목 -->
+                    <div class="nav-item has-dropdown">
+                        <button class="nav-button">커뮤니티 <span class="nav-toggle"></span></button>
+                        <%--						<ul class="dropdown-menu">--%>
+                        <%--							<li><a href="#">소개</a></li>--%>
+                        <%--							<li><a href="#">접수</a></li>--%>
+                        <%--							<li class="active"><a href="#">커뮤니티</a></li>--%>
+                        <%--							<li><a href="#">성과</a></li>--%>
+                        <%--						</ul>--%>
+                    </div>
+                    <div class="nav-item has-dropdown">
+                        <button class="nav-button">공지사항 <span class="nav-toggle"><img
+                                src="/images/icon-nav-arrow.png" alt=""></span></button>
+                        <ul class="dropdown-menu">
+                            <li class="active"><a href="#">공지사항</a></li>
+                            <li><a href="/uss/olh/faq/FaqListInqire.do">FAQ</a></li>
+                            <li><a href="/uss/olh/qna/QnaListInqire.do">QNA</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
         </div>
+        <div class="content-wrap">
+            <div class="container clearfix">
+                <form name="frm" method="post" action="<c:url value='/cop/bbs${prefix}/selectBoardList.do'/>">
+                <input type="hidden" name="pageIndex" value="<c:out value='${searchVO.pageIndex}'/>">
+                <input type="hidden" name="bbsId" value="<c:out value='${result.bbsId}'/>" >
+                <input type="hidden" name="nttId" value="<c:out value='${result.nttId}'/>" >
+                <input type="hidden" name="parnts" value="<c:out value='${result.parnts}'/>" >
+                <input type="hidden" name="sortOrdr" value="<c:out value='${result.sortOrdr}'/>" >
+                <input type="hidden" name="replyLc" value="<c:out value='${result.replyLc}'/>" >
+                <input type="hidden" name="nttSj" value="<c:out value='${result.nttSj}'/>" >
 
-    </section><!-- #content end -->
+                <div class="board_view">
+                    <div class="board_view_top_con">
+                        <!-- 관리자가 작성한 경우 writer_img display:none 처리 -->
+                        <div class="board_view_writer_img"></div>
+                        <div>
+                            <div class="board_view_title">
+                                <c:out value="${result.nttSj}" escapeXml="false" />
+                            </div>
+                            <div class="board_view_info_con">
+                                <div class="board_view_info">
+                                    <div class="view_info_title">작성자</div>
+                                    <div class="view_info_desc"><c:out value="${result.frstRegisterNm}" /></div>
+                                </div>
+                                <div class="board_view_info">
+                                    <div class="view_info_title">등록일</div>
+                                    <div class="view_info_desc"><c:out value="${result.frstRegisterPnttm}" escapeXml="false" /></div>
+                                </div>
+                                <div class="board_view_info">
+                                    <div class="view_info_title">조회수</div>
+                                    <div class="view_info_desc"><c:out value="${result.inqireCo}" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="board_view_content_con">
+                        <pre><c:out value="${result.nttCn}" escapeXml="false" /></pre>
+                    </div>
+                    <div class="board_view_file_con">
+                        <img src="/images/icon-attachment.png" alt="" style="width: 24px;">
+<%--                        <a href="#" class="board_view_file">--%>
+<%--                            신청서 양식.ppt--%>
+<%--                        </a>--%>
+                        <c:import url="/cmm/fms/selectFileInfs.do" charEncoding="utf-8">
+                            <c:param name="param_atchFileId" value="${egovc:encrypt(result.atchFileId)}" />
+                        </c:import>
+                    </div>
+
+                </div>
+
+                <div class="board_view_bot">
+                    <div class="left_col">
+                        <a href="#" class="btn btn_gray_46" onclick="javascript:fn_egov_select_noticeList('1'); return false;">목록</a>
+                    </div>
+                    <div class="center_col"></div>
+                    <div class="right_col">
+                        <c:if test="${result.frstRegisterId == sessionUniqId}">
+                            <a href="#" class="btn btn_white_46" onclick="javascript:fn_egov_moveUpdt_notice(); return false;">수정</a>
+                            <a href="#" class="btn btn_black_46" onclick="javascript:fn_egov_delete_notice(); return false;">삭제</a>
+                        </c:if>
+                        <c:if test="${result.replyPosblAt == 'Y'}">
+                            <a href="#" class="btn btn_black_46" onclick="javascript:fn_egov_addReply(); return false;">답글작성</a>
+                        </c:if>
+                    </div>
+                </div>
+                <!--// 게시판 -->
+                </form>
+            </div>
+        </div>
+    </section>
 
     <!-- footer 시작 -->
     <c:import url="/sym/mms/ContFooter.do" />

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -20,32 +20,11 @@
 	<link rel="preload" href="<c:url value='/'/>css/reset.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/responsive.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-	<link rel="preload" href="<c:url value='/'/>css/coming-soon.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-
-	<!-- 비동기
-	============================================= -->
-	<link rel="stylesheet" href="<c:url value='/'/>css/swiper.css" type="text/css" media="print" onload="this.media='all'" />
-	<link rel="stylesheet" href="<c:url value='/'/>css/font-icons.css" type="text/css" media="print" onload="this.media='all'" />
-	<link rel="stylesheet" href="<c:url value='/'/>css/animate.css" type="text/css" media="print" onload="this.media='all'" />
-	<link rel="stylesheet" href="<c:url value='/'/>css/magnific-popup.css" type="text/css" media="print" onload="this.media='all'" />
-
-	<link rel="stylesheet" href="<c:url value='/'/>css/coming-soon.css" type="text/css">
+	<link rel="preload" href="<c:url value='/'/>css/font-icons.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="preload" href="<c:url value='/'/>css/sub.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="preload" href="<c:url value='/'/>css/board.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
 	<link rel="stylesheet" href="<c:url value='/'/>css/jqueryui.css" type="text/css">
-
-	<noscript>
-		<link rel="stylesheet" href="<c:url value='/'/>css/reset.css">
-		<link rel="stylesheet" href="<c:url value='/'/>css/styles.css">
-		<link rel="stylesheet" href="<c:url value='/'/>css/swiper.css">
-		<link rel="stylesheet" href="<c:url value='/'/>css/font-icons.css">
-		<link rel="stylesheet" href="<c:url value='/'/>css/animate.css">
-		<link rel="stylesheet" href="<c:url value='/'/>css/magnific-popup.css">
-		<link rel="stylesheet" href="<c:url value='/'/>css/responsive.css">
-		<link rel="stylesheet" href="<c:url value='/'/>css/coming-soon.css">
-	</noscript>
-
-	<script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
-
 
 	<!-- Document Title
 	============================================= -->
@@ -53,19 +32,6 @@
 
 	<!-- favicon -->
 	<link rel="icon" type="image/x-icon" href="<c:url value='/'/>images/favicon.ico">
-
-	<script type="text/javascript">
-		<!--
-		function fn_egov_downFile(atchFileId, fileSn) {
-			window.open("/cmm/fms/FileDown.do?atchFileId="+atchFileId+"&fileSn="+fileSn+"&authPass=yes");
-		}
-
-		function fn_contest_attach_file_down() {
-			// 공모전 참가 신청서
-			fn_egov_downFile('EcqfhYxRcnWG52hkOGYp/F3suq/5SFOvAnxJUaQhI01X9dgmJjJ+3mWoSYu1PsdTs4dfuDM2VdFX2fN3C0X4iQ==','0');
-		}
-		//-->
-	</script>
 
 </head>
 
@@ -107,23 +73,24 @@ function fn_contest_init_date(){
 			, showButtonPanel: true // 하단 today, done  버튼기능 추가 표시 (기본은 false)
 		});
 
-	$('#btn_reset').click(function(){
-		let form = document.forms["LoginLogForm"];
-		if(form){
-			//form.reset();
-			form.pageIndex.value = 1;
-			form.searchBgnDe.value = '';
-			form.searchEndDe.value = '';
-			form.searchCnd.value = 0;
-			form.searchWrd.value = '';
-		} else {
-			console.log("LoginLogForm을 찾을 수 없습니다.");
-		}
-	});
-
 }
 
-
+/*********************************************************
+ * 페이징 처리 함수
+ ******************************************************** */
+function fn_egov_select_reset(){
+	let form = document.forms["LoginLogForm"];
+	if(form){
+		//form.reset();
+		form.pageIndex.value = 1;
+		form.searchBgnDe.value = '';
+		form.searchEndDe.value = '';
+		form.searchCnd.value = 0;
+		form.searchWrd.value = '';
+	} else {
+		console.log("LoginLogForm을 찾을 수 없습니다.");
+	}
+}
 
 /*********************************************************
  * 페이징 처리 함수
@@ -163,7 +130,7 @@ function fn_egov_search_loginLog(){
 }
 </script>
 
-<body class="no-transition stretched" onload="fn_contest_init_date()">
+<body class="stretched" onload="fn_contest_init_date()">
 
 <!-- Document Wrapper
 ============================================= -->
@@ -173,42 +140,58 @@ function fn_egov_search_loginLog(){
 	<c:import url="/sym/mms/ContHeader.do" />
 	<!-- //header end -->
 
-	<!-- Page Title
-    ============================================= -->
-	<section id="page-title">
-
-		<div class="container clearfix">
-			<h1>2025년 AI 아이디어 챌린지</h1>
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item" aria-current="page">Home</li>
-				<li class="breadcrumb-item active" aria-current="page">로그인 이력 조회</li>
-			</ol>
-		</div>
-
-	</section><!-- #page-title end -->
-
 	<!-- Content
     ============================================= -->
 	<section id="content">
+		<div class="sub-layout">
+			<div class="sub-banner">
+				<div class="container">
+					<div class="sub-banner-title">
+						로그인 이력 목록
+					</div>
+				</div>
+			</div>
+			<nav class="nav-menu">
+				<div class="container">
+					<!-- 홈 아이콘 -->
+					<div class="nav-item home">
+						<a href="/"><img src="/images/icon-home.png" alt="홈"/></a>
+					</div>
 
+					<!-- 1depth 메뉴 항목 -->
+					<div class="nav-item has-dropdown">
+						<button class="nav-button">시스템관리 <span class="nav-toggle"></span></button>
+					</div>
+					<div class="nav-item has-dropdown">
+						<button class="nav-button">접수게시판 <span class="nav-toggle"><img
+								src="/images/icon-nav-arrow.png" alt=""></span></button>
+						<ul class="dropdown-menu">
+							<li class="active"><a href="#">접수게시판</a></li>
+							<li><a href="#">로그인 이력</a></li>
+							<li><a href="#">부서 통계 현황</a></li>
+							<li><a href="#">사용자 정보 관리</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
 		<div class="content-wrap">
-
 			<div class="container clearfix">
+				<!-- 검색조건 -->
+				<div class="condition">
+					<form name="LoginLogForm" action="<c:url value='/sym/log/clg/userLgnHsty.do'/>" method="post" onSubmit="fn_egov_search_loginLog(); return false;">
 
-				<h3>로그인 이력 목록</h3>
-				<form name="LoginLogForm" action="<c:url value='/sym/log/clg/userLgnHsty.do'/>" method="post" onSubmit="fn_egov_search_loginLog(); return false;">
-				<!-- 검색영역 -->
-				<!-- 발생일자 선택 -->
-				<div class="search_box" title="">
-					<ul>
-						<li>
-							발생일자&nbsp;:&nbsp;<!-- 발생일자 -->
+						<input type="hidden" name="pageIndex" id="pageIndex" class="" value="1"  />
+
+						<label class="item f_date" for="searchBgnDe">
 							<input type="text" name="searchBgnDe" id="searchBgnDe" size="15" maxlength="10" value="${searchVO.searchBgnDe}" title="검색시작일" > ~ <!-- 검색시작일  -->
+						</label>
+						<label class="item f_date" for="searchEndDe">
 							<input type="text" name="searchEndDe" id="searchEndDe" size="15" maxlength="10" value="${searchVO.searchEndDe}" title="검색종료일" >&nbsp;&nbsp;&nbsp;<!-- 검색종료일  -->
-						</li>
-						<!-- 검색키워드 및 조회버튼 -->
-						<li>
-							<select name="searchCnd" class="select" title="선택">
+						</label>
+
+						<label class="item f_select" for="searchCnd">
+							<select name="searchCnd" id="searchCnd" title="검색조건 선택">
 								<c:choose>
 									<c:when test="${empty searchVO.searchCnd}">
 										<option value="0" selected="selected">사용자ID</option>
@@ -224,50 +207,86 @@ function fn_egov_search_loginLog(){
 									</c:otherwise>
 								</c:choose>
 							</select>
-							<input class="s_input" name="searchWrd" type="text"  size="15" title="검색키워드" value='<c:out value="${searchVO.searchWrd}"/>'  maxlength="15" >
-						</li>
-						<input type="hidden" name="pageIndex" id="pageIndex" class="" value="1"  />
-						<input type="submit" class="s_btn" value="조회" title="조회버튼" />
-						<input type="button" name="btn_reset" id="btn_reset" class="s_btn" value="초기화" title="초기화버튼" />
-					</ul>
+						</label>
+
+						<span class="item f_search">
+                            <input class="f_input w_500" name="searchWrd" type="text" value='<c:out value="${searchVO.searchWrd}"/>'
+								   maxlength="35" title="검색어 입력">
+                            <button class="btn" type="submit">조회</button>
+                        </span>
+
+						<a href="#" class="item btn btn_black_46 w_100" onclick="javascript:fn_egov_select_reset(); return false;">초기화</a>
+
+					</form>
+
 				</div>
-				</form>
 				<!--// 검색조건 -->
 
-				<div class="row show-grid">
-					<div class="col-lg-1">번호</div>
-					<div class="col-lg-2">로그ID</div>
-					<div class="col-lg-2">발생일자</div>
-					<div class="col-lg-1">로그유형</div>
-					<div class="col-lg-1">사용자</div>
-					<div class="col-lg-1">사용자ID</div>
-					<div class="col-lg-2">접속IP</div>
-					<div class="col-lg-1">PC정보</div>
-					<div class="col-lg-1">브라우저</div>
+				<!-- 게시판 -->
+				<div class="board_list">
+					<table>
+						<caption>목록</caption>
+						<colgroup>
+							<col style="width: 80px;">
+							<col style="width: auto; min-width: 120px;">
+							<col style="width: 120px;">
+							<col style="width: 120px;">
+							<col style="width: 120px;">
+							<col style="width: 120px;">
+							<col style="width: 150px;">
+							<col style="width: 120px;">
+							<col style="width: 120px;">
+						</colgroup>
+						<thead>
+						<tr>
+							<th scope="col">순번</th>
+							<th scope="col">로그ID</th>
+							<th scope="col">발생일자</th>
+							<th scope="col">로그유형</th>
+							<th scope="col">사용자</th>
+							<th scope="col">사용자ID</th>
+							<th scope="col">접속IP</th>
+							<th scope="col">PC정보</th>
+							<th scope="col">브라우저</th>
+						</tr>
+						</thead>
+						<tbody>
+
+						<c:if test="${fn:length(resultList) == 0}">
+							<tr>
+								<td>1</td>
+								<td class="al">
+									등록된 글이 존재하지 않습니다.
+								</td>
+								<td>-</td>
+								<td>-</td>
+								<td>-</td>
+								<td>-</td>
+								<td>-</td>
+								<td>-</td>
+								<td>-</td>
+							</tr>
+						</c:if>
+
+						<c:forEach var="result" items="${resultList}" varStatus="status">
+							<tr>
+								<td><c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageSize + status.count)}" /></td>
+								<td class="al"><c:out value='${result.logId}'/></td>
+								<td><c:out value='${fn:substring(result.creatDt,0,10)}'/></td>
+								<td><c:out value='${result.loginMthd}'/></td>
+								<td><c:out value='${result.loginNm}'/></td>
+								<td><c:out value='${result.loginId}'/></td>
+								<td><c:out value='${result.loginIp}'/></td>
+								<td><c:out value='${result.pcInfo}'/></td>
+								<td><c:out value='${result.browserInfo}'/></td>
+							</tr>
+						</c:forEach>
+
+						</tbody>
+					</table>
 				</div>
 
-				<c:if test="${fn:length(resultList) == 0}">
-					<div class="row show-grid">
-						<div class="col-lg-1"></div>
-						<div class="col-lg-8">데이터가 존재하지 않습니다.</div>
-						<div class="col-lg-3"></div>
-					</div>
-				</c:if>
-
-				<c:forEach var="result" items="${resultList}" varStatus="status">
-					<div class="row show-grid">
-						<div class="col-lg-1"><c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageSize + status.count)}" /></div>
-						<div class="col-lg-2"><c:out value='${result.logId}'/></div>
-						<div class="col-lg-2"><c:out value='${fn:substring(result.creatDt,0,10)}'/></div>
-						<div class="col-lg-1"><c:out value='${result.loginMthd}'/></div>
-						<div class="col-lg-1"><c:out value='${result.loginNm}'/></div>
-						<div class="col-lg-1"><c:out value='${result.loginId}'/></div>
-						<div class="col-lg-2"><c:out value='${result.loginIp}'/></div>
-						<div class="col-lg-1"><c:out value='${result.pcInfo}'/></div>
-						<div class="col-lg-1"><c:out value='${result.browserInfo}'/></div>
-					</div>
-				</c:forEach>
-
+				<!-- 페이징 -->
 				<div class="board_list_bot">
 					<div class="paging" id="paging_div">
 						<ul>
@@ -275,12 +294,12 @@ function fn_egov_search_loginLog(){
 						</ul>
 					</div>
 				</div>
+				<!-- // 페이징 끝 -->
 
+				<!--// 게시판 -->
 			</div>
-
 		</div>
-
-	</section><!-- #content end -->
+	</section>
 
 
 	<!-- footer 시작 -->

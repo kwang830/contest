@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -18,40 +18,24 @@
 	<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
+	<link rel="stylesheet" href="<c:url value='/'/>css/jqueryui.css" type="text/css">
+
 	<!-- preload -->
 	<link rel="preload" href="<c:url value='/'/>css/reset.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/responsive.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-	<link rel="preload" href="<c:url value='/'/>css/coming-soon.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-
-	<!-- 비동기
-	============================================= -->
-	<link rel="stylesheet" href="<c:url value='/'/>css/swiper.css" type="text/css" media="print" onload="this.media='all'" />
-	<link rel="stylesheet" href="<c:url value='/'/>css/font-icons.css" type="text/css" media="print" onload="this.media='all'" />
-	<link rel="stylesheet" href="<c:url value='/'/>css/animate.css" type="text/css" media="print" onload="this.media='all'" />
-	<link rel="stylesheet" href="<c:url value='/'/>css/magnific-popup.css" type="text/css" media="print" onload="this.media='all'" />
-
-	<link rel="stylesheet" href="<c:url value='/'/>css/coming-soon.css" type="text/css">
-
-	<noscript>
-		<link rel="stylesheet" href="<c:url value='/'/>css/reset.css">
-		<link rel="stylesheet" href="<c:url value='/'/>css/styles.css">
-		<link rel="stylesheet" href="<c:url value='/'/>css/swiper.css">
-		<link rel="stylesheet" href="<c:url value='/'/>css/font-icons.css">
-		<link rel="stylesheet" href="<c:url value='/'/>css/animate.css">
-		<link rel="stylesheet" href="<c:url value='/'/>css/magnific-popup.css">
-		<link rel="stylesheet" href="<c:url value='/'/>css/responsive.css">
-		<link rel="stylesheet" href="<c:url value='/'/>css/coming-soon.css">
-	</noscript>
-
-	<script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+	<link rel="preload" href="<c:url value='/'/>css/font-icons.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="preload" href="<c:url value='/'/>css/sub.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="preload" href="<c:url value='/'/>css/board.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
 	<!-- Document Title
     ============================================= -->
 	<title>IBK시스템, AI 아이디어 챌린지 - 공지사항</title>
 
+	<!-- favicon -->
+	<link rel="icon" type="image/x-icon" href="<c:url value='/'/>images/favicon.ico">
+
 	<script type="text/javascript" src="<c:url value='/js/EgovBBSMng.js' />"></script>
-	<!-- script type="text/javascript" src="<c:url value='/html/egovframework/cmm/utl/htmlarea/EgovWebEditor.js'/>" ></script-->
 	<script type="text/javascript" src="<c:url value='/js/EgovMultiFile.js'/>" ></script>
 	<script type="text/javascript" src="<c:url value='/js/EgovCalPopup.js'/>" ></script>
 	<script type="text/javascript" src="<c:url value="/validator.do"/>"></script>
@@ -129,7 +113,7 @@
 
 </head>
 
-<body class="no-transition stretched" onLoad="document.board.nttSj.focus(); fn_egov_init_date();">
+<body class="stretched" onLoad="document.board.nttSj.focus(); fn_egov_init_date();">
 
 <!-- Document Wrapper
 ============================================= -->
@@ -139,30 +123,49 @@
 	<c:import url="/sym/mms/ContHeader.do" />
 	<!-- //header end -->
 
-	<!-- Page Title
-    ============================================= -->
-	<section id="page-title">
-
-		<div class="container clearfix">
-			<h1>2025년 AI 아이디어 공모전</h1>
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item" aria-current="page">Home</li>
-				<li class="breadcrumb-item active" aria-current="page">공지사항 수정</li>
-			</ol>
-		</div>
-
-	</section><!-- #page-title end -->
-
 	<!-- Content
-    ============================================= -->
+============================================= -->
 	<section id="content">
+		<div class="sub-layout">
+			<div class="sub-banner">
+				<div class="container">
+					<div class="sub-banner-title">
+						<c:out value='${bdMstr.bbsNm}'/>
+					</div>
+				</div>
+			</div>
+			<nav class="nav-menu">
+				<div class="container">
+					<!-- 홈 아이콘 -->
+					<div class="nav-item home">
+						<a href="/"><img src="/images/icon-home.png" alt="홈"/></a>
+					</div>
 
+					<!-- 1depth 메뉴 항목 -->
+					<div class="nav-item has-dropdown">
+						<button class="nav-button">커뮤니티 <span class="nav-toggle"></span></button>
+						<%--						<ul class="dropdown-menu">--%>
+						<%--							<li><a href="#">소개</a></li>--%>
+						<%--							<li><a href="#">접수</a></li>--%>
+						<%--							<li class="active"><a href="#">커뮤니티</a></li>--%>
+						<%--							<li><a href="#">성과</a></li>--%>
+						<%--						</ul>--%>
+					</div>
+					<div class="nav-item has-dropdown">
+						<button class="nav-button">공지사항 <span class="nav-toggle"><img
+								src="/images/icon-nav-arrow.png" alt=""></span></button>
+						<ul class="dropdown-menu">
+							<li class="active"><a href="#">공지사항</a></li>
+							<li><a href="/uss/olh/faq/FaqListInqire.do">FAQ</a></li>
+							<li><a href="/uss/olh/qna/QnaListInqire.do">QNA</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
 		<div class="content-wrap">
-
 			<div class="container clearfix">
-
 				<form:form modelAttribute="board" name="board" method="post" enctype="multipart/form-data" >
-
 					<input name="pageIndex" type="hidden" value="<c:out value='${searchVO.pageIndex}'/>"/>
 					<input type="hidden" name="bbsId" value="<c:out value='${bdMstr.bbsId}'/>" />
 					<input type="hidden" name="bbsAttrbCode" value="<c:out value='${bdMstr.bbsAttrbCode}'/>" />
@@ -186,117 +189,86 @@
 						<input name="ntceEndde" type="hidden" value="99991231">
 					</c:if>
 
-					<h2><c:out value='${bdMstr.bbsNm}'/></h2>
-
-					<div class="board_view2">
-						<table>
-							<colgroup>
-								<col style="width: 190px;">
-								<col style="width: auto;">
-							</colgroup>
-							<tr>
-								<td class="lb">
-									<label for="nttSj"><spring:message code="cop.nttSj" /></label>
-									<span class="req">필수</span>
-								</td>
-								<td>
-									<input id="nttSj" name="nttSj" type="text" size="60" value=""  maxlength="60" class="f_txt w_full">
-									<br/><form:errors path="nttSj" />
-								</td>
-							</tr>
-							<tr>
-								<td class="lb">
-									<label for="nttCn"><spring:message code="cop.nttCn" /></label>
-									<span class="req">필수</span>
-								</td>
-								<td>
-									<textarea id="nttCn" name="nttCn" class="textarea f_txtar w_full h_200" cols="30" rows="10" ></textarea>
-									<form:errors path="nttCn" />
-								</td>
-							</tr>
-
-
+					<div class="board_form">
+						<div>
+							<div class="board_form_row">
+								<div class="title"><label for="nttSj">제목</label></div>
+								<div class="input">
+									<input id="nttSj" name="nttSj" title="제목" class="f_txt" type="text"
+										   value="" size="60" maxlength="60">
+								</div>
+							</div>
 							<c:choose>
 								<c:when test="${bdMstr.bbsAttrbCode == 'BBSA01'}">
-									<tr>
-										<td class="lb">
-											<spring:message code="cop.noticeTerm" />
-											<span class="req">필수</span>
-										</td>
-										<td>
+									<!-- 게시 기간 시작 -->
+									<div class="board_form_row">
+										<div class="title"><label for="searchBgnDe">일자</label></div>
+										<div class="input">
 											<input name="ntceBgnde" type="hidden" >
-											<input type="text" name="searchBgnDe" id="searchBgnDe" class="f_date" maxlength="10" value="<c:out value='${searchVO.searchBgnDe}'/>" title="시작일자입력" />
-											~
+											<input id="searchBgnDe" name="searchBgnDe" title="시작일자" class="f_txt" type="text"
+												   value="<c:out value='${searchVO.searchBgnDe}'/>" size="10" maxlength="10">~
 											<input name="ntceEndde" type="hidden" />
-											<input type="text" name="searchEndDe" id="searchEndDe" class="f_date" maxlength="10" value="<c:out value='${searchVO.searchEndDe}'/>" title="종료일자입력" >
-											<br/><form:errors path="ntceBgnde" />
-											<br/><form:errors path="ntceEndde" />
-										</td>
-									</tr>
+											<input id="searchEndDe" name="searchEndDe" title="종료일자" class="f_txt" type="text"
+												   value="<c:out value='${searchVO.searchEndDe}'/>" size="10" maxlength="10">
+										</div>
+									</div>
+									<!-- /게시 기간 끝 -->
 								</c:when>
 								<c:otherwise>
 
 								</c:otherwise>
 							</c:choose>
-
+							<div class="board_form_row">
+								<div class="title">
+									<label for="nttCn">내용</label>
+								</div>
+								<div class="input">
+                                    <textarea id="nttCn" name="nttCn" title="내용" class="f_txtar w_full h_200"
+											  rows="10" cols="30"></textarea>
+								</div>
+							</div>
 							<!-- 파일첨부 시작 -->
 							<c:if test="${bdMstr.fileAtchPosblAt == 'Y'}">
-								<tr>
-									<td class="lb">
-										<label for="egovComFileUploader" ><spring:message code="cop.atchFile" /></label>
-									</td>
-									<td>
-										<div class="board_attach2" id="file_upload_posbl">
-											<input name="file_1" id="egovComFileUploader" type="file" />
-											<div id="egovComFileList"></div>
-										</div>
-										<div class="board_attach2" id="file_upload_imposbl">
-										</div>
-										<c:if test="${empty result.atchFileId}">
-											<input type="hidden" id="fileListCnt" name="fileListCnt" value="0" />
-										</c:if>
-									</td>
-								</tr>
+							<div class="board_form_row">
+								<div class="title">
+									<label for="egovComFileUploader">파일첨부</label>
+								</div>
+								<div class="input f_file_wrap">
+									<div class="board_attach2" id="file_upload_posbl">
+										<input name="file_1" id="egovComFileUploader" type="file" />
+										<div id="egovComFileList"></div>
+									</div>
+									<div class="board_attach2" id="file_upload_imposbl">
+									</div>
+									<c:if test="${empty result.atchFileId}">
+										<input type="hidden" id="fileListCnt" name="fileListCnt" value="0" />
+									</c:if>
+								</div>
+							</div>
 							</c:if>
-							<!-- /파일첨부 끝 -->
-
-						</table>
-
-
-						<c:if test="${bdMstr.fileAtchPosblAt == 'Y'}">
-							<script type="text/javascript">
-								var maxFileNum = document.board.posblAtchFileNumber.value;
-								if(maxFileNum==null || maxFileNum==""){
-									maxFileNum = 3;
-								}
-								var multi_selector = new MultiSelector( document.getElementById( 'egovComFileList' ), maxFileNum );
-								multi_selector.addElement( document.getElementById( 'egovComFileUploader' ) );
-							</script>
-						</c:if>
-
+						</div>
 					</div>
 
+					<!-- 목록/저장버튼  시작-->
 					<div class="board_view_bot">
-						<div class="left_col btn3">
+						<div class="left_col">
+							<a href="#" class="btn btn_gray_46" onclick="javascript:fn_egov_select_noticeList(); return false;">목록</a>
 						</div>
-
-						<div class="right_col btn1">
+						<div class="center_col">
 							<c:if test="${bdMstr.authFlag == 'Y'}">
-								<input type="button" class="s_btn" value="저장" title="저장 버튼" onclick="javascript:fn_egov_regist_notice(); return false;" />
+								<a href="#" class="btn btn_white_46" onclick="javascript:fn_egov_regist_notice(); return false;">저장</a>
 							</c:if>
-							<input type="button" class="s_btn" value="목록" title="목록 버튼" onclick="javascript:fn_egov_select_noticeList(); return false;" />
 						</div>
+						<div class="right_col"></div>
 					</div>
-
-					<!--// 게시판 -->
+					<!-- 목록/저장버튼  끝-->
 
 				</form:form>
 
+				<!--// 게시판 -->
 			</div>
-
 		</div>
-
-	</section><!-- #content end -->
+	</section>
 
 	<!-- footer 시작 -->
 	<c:import url="/sym/mms/ContFooter.do" />
@@ -315,9 +287,22 @@
 
 <script type="text/javascript" src="<c:url value='/'/>js/common.js"></script>
 
+<script type="text/javascript" src="<c:url value='/'/>js/jqueryui.js"></script>
+
 <!-- Footer Scripts
 ============================================= -->
 <script type="text/javascript" src="<c:url value='/'/>js/functions.js"></script>
+
+<c:if test="${bdMstr.fileAtchPosblAt == 'Y'}">
+	<script type="text/javascript">
+		var maxFileNum = document.board.posblAtchFileNumber.value;
+		if(maxFileNum==null || maxFileNum==""){
+			maxFileNum = 3;
+		}
+		var multi_selector = new MultiSelector( document.getElementById( 'egovComFileList' ), maxFileNum );
+		multi_selector.addElement( document.getElementById( 'egovComFileUploader' ) );
+	</script>
+</c:if>
 
 </body>
 </html>
