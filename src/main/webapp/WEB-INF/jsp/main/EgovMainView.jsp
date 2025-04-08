@@ -102,7 +102,7 @@
 						<span id="dDayCounter"></span>
 					</div>
 					<div class="banner-btn-con">
-						<a href="javascript:openPopup('posterPop');" class="banner-btn">공모개요</a>
+						<a href="/cmm/contest/contestOvrv.do" class="banner-btn">공모개요</a>
 						<a href="/cmm/contest/apfrRcip.do" class="banner-btn type2">작품접수하기</a>
 					</div>
 				</div>
@@ -203,19 +203,19 @@
 						AI공모전 History를 확인해보세요!
 					</div>
 					<div class="swiper-btn-con">
-						<div class="swiper-btn swiper-button-prev">
+						<div class="swiper-btn swiper-button-prev" title="이전으로">
 							<svg xmlns="http://www.w3.org/2000/svg" width="12" height="21" viewBox="0 0 12 21" fill="none">
 								<path d="M4.06117 10.9721L11.8915 2.91666L9.97453 0.94458L0.226808 10.9721L9.97453 21L11.8915 19.0279L4.06117 10.9721Z"
 									  fill="#1F1F1F"/>
 							</svg>
 						</div>
-						<div class="swiper-btn swiper-button-next">
+						<div class="swiper-btn swiper-button-next" title="다음으로">
 							<svg xmlns="http://www.w3.org/2000/svg" width="12" height="21" viewBox="0 0 12 21" fill="none">
 								<path d="M8.01195 10.9721L0.18161 2.91666L2.09859 0.94458L11.8463 10.9721L2.09859 21L0.18161 19.0279L8.01195 10.9721Z"
 									  fill="#1F1F1F"/>
 							</svg>
 						</div>
-						<div class="swiper-btn plus-btn" onClick="window.location.href='/cmm/contest/contestOtcm.do';">
+						<div class="swiper-btn plus-btn" title="상세보기" onClick="window.location.href='/cmm/contest/contestOtcm.do';">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 								<path d="M10.591 13.3887H0.60022V10.6112H10.591V0.333252H13.2908V10.6112H23.2816V13.3887H13.2908V23.6666H10.591V13.3887Z"
 									  fill="white"/>
@@ -268,21 +268,21 @@
 							AI공모전 <span>공지사항</span>을 확인해보세요!
 						</div>
 						<div class="swiper-btn-con">
-							<div class="swiper-btn swiper-button-prev">
+							<div class="swiper-btn swiper-button-prev" title="이전으로">
 								<svg xmlns="http://www.w3.org/2000/svg" width="12" height="21" viewBox="0 0 12 21"
 									 fill="none">
 									<path d="M4.06117 10.9721L11.8915 2.91666L9.97453 0.94458L0.226808 10.9721L9.97453 21L11.8915 19.0279L4.06117 10.9721Z"
 										  fill="#1F1F1F"/>
 								</svg>
 							</div>
-							<div class="swiper-btn swiper-button-next">
+							<div class="swiper-btn swiper-button-next" title="다음으로">
 								<svg xmlns="http://www.w3.org/2000/svg" width="12" height="21" viewBox="0 0 12 21"
 									 fill="none">
 									<path d="M8.01195 10.9721L0.18161 2.91666L2.09859 0.94458L11.8463 10.9721L2.09859 21L0.18161 19.0279L8.01195 10.9721Z"
 										  fill="#1F1F1F"/>
 								</svg>
 							</div>
-							<div class="swiper-btn plus-btn" onClick="window.location.href='/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_AAAAAAAAAAAA';">
+							<div class="swiper-btn plus-btn" title="상세보기" onClick="window.location.href='/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_AAAAAAAAAAAA';">
 								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
 									 fill="none">
 									<path d="M10.591 13.3887H0.60022V10.6112H10.591V0.333252H13.2908V10.6112H23.2816V13.3887H13.2908V23.6666H10.591V13.3887Z"

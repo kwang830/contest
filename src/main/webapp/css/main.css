@@ -544,6 +544,7 @@
 	border-radius: 50%;
 	border: 1px solid #000;
 	padding: 10px;
+	cursor: pointer;
 }
 
 .swiper-btn-con .swiper-btn > svg{

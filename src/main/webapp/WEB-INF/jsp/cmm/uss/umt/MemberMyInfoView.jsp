@@ -57,7 +57,7 @@
 
     <!-- Content
             ============================================= -->
-    <section id="content">
+    <section id="content" >
         <div class="sub-layout">
             <div class="sub-banner">
                 <div class="container">
@@ -80,11 +80,29 @@
                 </div>
             </nav>
         </div>
-        <div class="content-wrap">
-            <div class="container clearfix">
-
-
-                <!--// 게시판 -->
+        <div class="form-wrap" style="padding-top:50px;">
+            <div class="container">
+                <form action="" class="form-con" id="form">
+                    <div class="form-list-con">
+                        <div class="form-list">
+                            <div class="form-title">이름</div>
+                            <div class="form-input">
+                                <input name="name" type="text" placeholder="이름을 입력해주세요.">
+                            </div>
+                            <div class="form-error-text" style="display: none;"></div>
+                        </div>
+                        <div class="form-list">
+                            <div class="form-title">제목</div>
+                            <div class="form-input">
+                                <input name="title" type="text" placeholder="제목을 입력해주세요.">
+                            </div>
+                            <div class="form-error-text" style="display: none;"></div>
+                        </div>
+                    </div>
+                    <div class="form-btn-con">
+                        <button type="submit" class="submit-btn">제출</button>
+                    </div>
+                </form>
             </div>
         </div>
     </section>

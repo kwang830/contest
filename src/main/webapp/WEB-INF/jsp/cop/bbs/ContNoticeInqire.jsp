@@ -127,12 +127,6 @@
                     <!-- 1depth 메뉴 항목 -->
                     <div class="nav-item has-dropdown">
                         <button class="nav-button">커뮤니티 <span class="nav-toggle"></span></button>
-                        <%--						<ul class="dropdown-menu">--%>
-                        <%--							<li><a href="#">소개</a></li>--%>
-                        <%--							<li><a href="#">접수</a></li>--%>
-                        <%--							<li class="active"><a href="#">커뮤니티</a></li>--%>
-                        <%--							<li><a href="#">성과</a></li>--%>
-                        <%--						</ul>--%>
                     </div>
                     <div class="nav-item has-dropdown">
                         <button class="nav-button">공지사항 <span class="nav-toggle"><img
@@ -184,16 +178,14 @@
                     <div class="board_view_content_con">
                         <pre><c:out value="${result.nttCn}" escapeXml="false" /></pre>
                     </div>
+                    <c:if test="${result.atchFileId != ''}">
                     <div class="board_view_file_con">
                         <img src="/images/icon-attachment.png" alt="" style="width: 24px;">
-<%--                        <a href="#" class="board_view_file">--%>
-<%--                            신청서 양식.ppt--%>
-<%--                        </a>--%>
                         <c:import url="/cmm/fms/selectFileInfs.do" charEncoding="utf-8">
                             <c:param name="param_atchFileId" value="${egovc:encrypt(result.atchFileId)}" />
                         </c:import>
                     </div>
-
+                    </c:if>
                 </div>
 
                 <div class="board_view_bot">
