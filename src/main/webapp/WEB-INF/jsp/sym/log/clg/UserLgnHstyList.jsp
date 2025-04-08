@@ -160,13 +160,13 @@ function fn_egov_search_loginLog(){
 						<button class="nav-button">시스템관리 <span class="nav-toggle"></span></button>
 					</div>
 					<div class="nav-item has-dropdown">
-						<button class="nav-button">접수게시판 <span class="nav-toggle"><img
+						<button class="nav-button">로그인 이력 <span class="nav-toggle"><img
 								src="/images/icon-nav-arrow.png" alt=""></span></button>
 						<ul class="dropdown-menu">
-							<li class="active"><a href="#">접수게시판</a></li>
-							<li><a href="#">로그인 이력</a></li>
+							<li class="active"><a href="#">로그인 이력</a></li>
 							<li><a href="#">부서 통계 현황</a></li>
 							<li><a href="#">사용자 정보 관리</a></li>
+							<li><a href="#">사용자 권한 관리</a></li>
 						</ul>
 					</div>
 				</div>

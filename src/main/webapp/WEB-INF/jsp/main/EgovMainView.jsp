@@ -297,6 +297,8 @@
 									<c:if test="${!(result.isExpired=='Y' || result.useAt == 'N')}">
 									<div class="swiper-slide">
 										<div class="swiper-slide-inner">
+											<div class="notice-list-year"><c:out value="${fn:substring(result.frstRegisterPnttm,0,4)}"/></div>
+											<div class="notice-list-date"><c:out value="${fn:substring(result.frstRegisterPnttm,5,7)}.${fn:substring(result.frstRegisterPnttm,8,10)}"/></div>
 											<div class="notice-list-title">
 												<c:choose>
 													<c:when test="${fn:length(result.nttSj) > 51 }">
@@ -306,19 +308,6 @@
 														<c:out value="${result.nttSj }" escapeXml="false" />
 													</c:otherwise>
 												</c:choose>
-											</div>
-											<div class="notice-list-desc">
-												<c:choose>
-													<c:when test="${fn:length(result.nttCn) > 151 }">
-														<c:out value="${fn:substring(result.nttCn, 0, 150)}" escapeXml="false" />...
-													</c:when>
-													<c:otherwise>
-														<c:out value="${result.nttCn }" escapeXml="false" />
-													</c:otherwise>
-												</c:choose>
-											</div>
-											<div class="notice-list-date">
-												<c:out value="${fn:substring(result.frstRegisterPnttm,2,4)}.${fn:substring(result.frstRegisterPnttm,5,7)}.${fn:substring(result.frstRegisterPnttm,8,10)}"/>
 											</div>
 										</div>
 									</div>

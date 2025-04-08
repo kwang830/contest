@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+/*===공통===*/
 .sub-layout{
 	position: relative;
 	z-index: 2;
@@ -132,9 +133,192 @@
 	background-color: #77baf7;
 	font-weight: 600;
 }
+.dropdown-menu li:hover a{
+	font-weight: 600;
+}
+/*===공통===*/
+
+/*===공모개요===*/
+.intro-con{
+	margin-bottom: 40px;
+}
+.intro-con:last-child{
+	margin-bottom: 0;
+}
+.intro-title{
+	flex-shrink: 0;
+	display: inline-block;
+	font-size: 22px;
+	line-height: 28px;
+	font-weight: 700;
+	text-align: center;
+	color: #fff;
+	vertical-align: middle;
+	padding: 7px 20px;
+	background-color: #000;
+	border-radius: 30px;
+	margin-bottom: 16px;
+}
+.intro-sub-title{
+	position: relative;
+	font-size: 20px;
+	line-height: 24px;
+	font-weight: 700;
+	color: #454545;
+	vertical-align: middle;
+	padding-left: 25px;
+	margin-top: 20px;
+	margin-bottom: 16px;
+}
+.intro-title + .intro-sub-title{
+	margin-top: 0;
+}
+.intro-sub-title:before{
+	content: '';
+	position: absolute;
+	top: 3px;
+	left: 0;
+	display: block;
+	width: 18px;
+	height: 18px;
+	background-color: #fff;
+	border: 4px solid #000;
+	border-radius: 50%;
+}
+.intro-desc{
+	font-weight: 500;
+	font-size: 18px;
+	line-height: 26px;
+	vertical-align: middle;
+	word-break: keep-all;
+}
+.intro-small-desc{
+	font-size: 15px;
+	line-height: 24px;
+	font-weight: 500;
+	color: #454545;
+	vertical-align: middle;
+}
+.intro-link{
+	font-size: 17px;
+	line-height: 24px;
+	font-weight: 500;
+	vertical-align: middle;
+	color: #2A45CC;
+}
+.intro-link > a{
+	text-decoration: underline;
+}
+.intro-table{}
+.intro-table th, .intro-table td{
+	height: 55px;
+	font-size: 16px;
+	line-height: 26px;
+	font-weight: 500;
+	text-align: center;
+	color: #000;
+	vertical-align: middle;
+	border: 1px solid #C9D1F8;
+	padding: 10px 10px;
+}
+.intro-table th{
+	font-weight: 700;
+	color: #3A4CA8;
+}
+.intro-table th:first-child{
+	border-left: none;
+}
+.intro-table td:last-child{
+	border-right: none;
+}
+.intro-table thead th{
+	border-top: 2px solid #3A4CA8;
+	border-bottom: 1px solid #3A4CA8;
+	background-color: #EFF1FF;
+}
+.intro-table tfoot th, .intro-table tfoot td{
+	border-top: 2px solid #3A4CA8;
+	border-bottom: 1px solid #3A4CA8;
+	border-right-color: #3A4CA8;
+	background-color: #EFF1FF;
+}
+.intro-table-desc{
+	font-size: 15px;
+	line-height: 27px;
+	font-weight: 500;
+	color: #454545;
+	margin-top: 10px;
+}
+#scoreTable tr > th:nth-child(2), #scoreTable tr > td:nth-child(2){
+	border-right-color: #3A4CA8;
+}
+#scoreTable tr > th:last-child, #scoreTable tr > td:last-child{
+	border-left-color: #3A4CA8;
+}
+/*===공모개요===*/
 
 @media all and (min-width: 768px){
+	/*===공통===*/
 	.nav-menu > .container{padding-left:20px; padding-right:20px;}
 	.nav-button{width: 242px; padding: 20px 40px;}
 	.dropdown-menu li a{padding: 15px 40px;}
+
+	/*===공모개요===*/
+	.intro-con.type2 {
+		display: flex;
+		align-items: center;
+		gap: 40px;
+	}
+	.intro-con.type2 .intro-title{
+		margin-bottom: 0;
+	}
+
+	.intro-title{
+		font-size: 24px;
+		line-height: 30px;
+		margin-bottom: 20px;
+	}
+	.intro-sub-title{
+		font-size: 22px;
+		line-height: 26px;
+		padding-left: 33px;
+		margin-bottom: 20px;
+	}
+	.intro-sub-title:before{
+		top: 1px;
+		width: 23px;
+		height: 23px;
+		border-width: 5px;
+	}
+	.intro-desc{
+		font-size: 20px;
+	}
+
+	.intro-table th, .intro-table td{
+		font-size: 18px;
+		line-height: 28px;
+	}
+
+	.intro-table-desc{
+		font-size: 18px;
+		line-height: 30px;
+	}
+}
+
+@media all and (min-width: 992px){
+	/*===공모개요===*/
+	.intro-con.type3{
+		float:left;
+		width: calc(50% - 20px);
+	}
+	.intro-con.type3:last-child{
+		float: right;
+	}
+
+	#scheduleTable{
+		max-width: 818px;
+	}
+	#scoreTable{
+		max-width: 818px;
+	}
 }
