@@ -147,11 +147,11 @@
 									<c:set var="score_A" value="${result.scoreA }"/>
 								</c:if>
 								<c:if test="${result.deptNmS == '경영전략본부' || result.deptNmS == '전체' }" >
-									<c:set var="score_A" value="${result.scoreA-18 }"/>
+									<c:set var="score_A" value="${result.scoreA-13 }"/>
 								</c:if>
 								<c:if test="${result.scoreS == '소계' && result.deptNmS != '임원' }" >
 								<tr>
-									<td class="al"><a href="#" title="${result.deptNmS}">${result.deptNmS}</a></td>
+									<td class="al"><a href="#" title="${result.deptNmS}" onclick="javascript:setSearchByTitle(this); return false;">${result.deptNmS}</a></td>
 									<td>${score_A}</td>
 									<td>
 										<c:if test="${result.deptNmS != '전체' }" >${dept_sum}</c:if>
@@ -183,16 +183,17 @@
 					</div>
 
 					<br>
-					* 경영전략본부 - 휴직자(17명), 장기휴가자(1명) 제외 ('25.00.00 기준) - 수정필요
+					* 경영전략본부 - 휴직자(13명) 제외 ('25.04.08 기준)
 					<br>
 					* 임원(4명) 미포함
 
 					<div class="clear"></div><div class="line bottommargin-lg"></div>
 
 					<h3>상세 현황</h3>
+					<input type="text" id="searchInput" placeholder="검색어를 입력하세요" onkeyup="filterTable()">
 
 					<div class="board_list">
-						<table>
+						<table id="detailTable">
 							<caption>목록</caption>
 							<colgroup>
 								<col style="width: auto; min-width: 200px;">
@@ -303,6 +304,37 @@
 			}
 		});
 	});</script>
+	<script>
+		function filterTable() {
+			const input = document.getElementById("searchInput");
+			const filter = input.value.toLowerCase();
+			const table = document.getElementById("detailTable");
+			const trs = table.getElementsByTagName("tr");
 
+			for (let i = 1; i < trs.length; i++) { // 첫 행은 헤더니까 제외
+				const tds = trs[i].getElementsByTagName("td");
+				let match = false;
+
+				for (let j = 0; j < tds.length; j++) {
+					const text = tds[j].textContent || tds[j].innerText;
+					if (text.toLowerCase().includes(filter)) {
+						match = true;
+						break;
+					}
+				}
+
+				trs[i].style.display = match ? "" : "none";
+			}
+		}
+		function setSearchByTitle(button) {
+			let titleValue = button.title;
+
+			if(titleValue=='전체'){
+				titleValue = '';
+			}
+			document.getElementById("searchInput").value = titleValue;
+			filterTable(); // 자동으로 필터링도 실행
+		}
+	</script>
 </body>
 </html>
