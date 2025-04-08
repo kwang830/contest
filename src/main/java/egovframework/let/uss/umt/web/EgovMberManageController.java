@@ -4,6 +4,7 @@ import java.util.Map;
 
 import egovframework.com.cmm.ComDefaultCodeVO;
 import egovframework.com.cmm.EgovMessageSource;
+import egovframework.com.cmm.LoginVO;
 import egovframework.com.cmm.service.EgovCmmUseService;
 import egovframework.let.uss.umt.service.EgovMberManageService;
 import egovframework.let.uss.umt.service.MberManageVO;
@@ -649,19 +650,21 @@ public class EgovMberManageController {
 									 @ModelAttribute("mberManageVO") MberManageVO mberManageVO) throws Exception {
 
 		System.out.println("memberMyInfoView >> ");
+		LoginVO user;
 
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
-		System.out.println("memberMyInfoView isAuthenticated: "+isAuthenticated);
 		if(!isAuthenticated) {
 			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
 			return "uat/uia/EgovLoginUsr";
+		}else{
+			user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		}
 
-		String userTyForPassword = (String) commandMap.get("userTyForPassword");
-		mberManageVO.setUserTy(userTyForPassword);
+//		String userTyForPassword = (String) commandMap.get("userTyForPassword");
+//		mberManageVO.setUserTy(userTyForPassword);
 
-		System.out.println("memberMyInfoView userTyForPassword: "+userTyForPassword);
+		mberManageVO = mberManageService.selectMber(user.getUniqId());
 
 		model.addAttribute("userSearchVO", userSearchVO);
 		model.addAttribute("mberManageVO", mberManageVO);
@@ -689,5 +692,73 @@ public class EgovMberManageController {
 		model.addAttribute("userSearchVO", userSearchVO);
 		model.addAttribute("mberManageVO", mberManageVO);
 		return "cmm/uss/umt/MemberUserMngmView";
+	}
+
+	/**
+	 * @param model 화면모델
+	 * @param commandMap 파라메터전달용 commandMap
+	 * @param userSearchVO 검색조건
+	 * @param mberManageVO 내정보관리(비밀번호)
+	 * @return cmm/uss/edit/MyInfoPasswordUpdt
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/uss/umt/edit/MyInfoPasswordUpdt.do")
+	public String updateMyPassword(ModelMap model, @RequestParam Map<String, Object> commandMap, @ModelAttribute("searchVO") UserDefaultVO userSearchVO,
+								 @ModelAttribute("mberManageVO") MberManageVO mberManageVO) throws Exception {
+
+		System.out.println("updateMyPassword >> ");
+
+		// 미인증 사용자에 대한 보안처리
+		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+		if(!isAuthenticated) {
+			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
+			return "uat/uia/EgovLoginUsr";
+		}
+
+		String oldPassword = (String) commandMap.get("oldPassword");
+		String newPassword = (String) commandMap.get("newPassword");
+		String newPassword2 = (String) commandMap.get("newPassword2");
+		String uniqId = (String) commandMap.get("uniqId");
+
+		System.out.println("oldPassword: "+oldPassword);
+		System.out.println("newPassword: "+newPassword);
+		System.out.println("newPassword2: "+newPassword2);
+		System.out.println("uniqId: "+uniqId);
+		System.out.println("mberManageVO.getMberId(): "+mberManageVO.getMberId());
+
+		boolean isCorrectPassword = false;
+		MberManageVO resultVO = new MberManageVO();
+		mberManageVO.setPassword(newPassword);
+		mberManageVO.setOldPassword(oldPassword);
+		mberManageVO.setUniqId(uniqId);
+
+		String resultMsg = "";
+		resultVO = mberManageService.selectPassword(mberManageVO);
+		//패스워드 암호화
+		String encryptPass = EgovFileScrty.encryptPassword(oldPassword, mberManageVO.getMberId());
+		if (encryptPass.equals(resultVO.getPassword())) {
+			if (newPassword.equals(newPassword2)) {
+				isCorrectPassword = true;
+			} else {
+				isCorrectPassword = false;
+				resultMsg = "fail.user.passwordUpdate2";
+			}
+		} else {
+			isCorrectPassword = false;
+			resultMsg = "fail.user.passwordUpdate1";
+		}
+
+		if (isCorrectPassword) {
+			mberManageVO.setPassword(EgovFileScrty.encryptPassword(newPassword, mberManageVO.getMberId()));
+			mberManageService.updatePassword(mberManageVO);
+			model.addAttribute("mberManageVO", mberManageVO);
+			resultMsg = "success.common.update";
+		} else {
+			model.addAttribute("mberManageVO", mberManageVO);
+		}
+		model.addAttribute("userSearchVO", userSearchVO);
+		model.addAttribute("resultMsg", resultMsg);
+
+		return "cmm/uss/umt/MemberMyInfoView";
 	}
 }

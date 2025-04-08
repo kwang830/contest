@@ -130,30 +130,42 @@ FROM(
     </delete>
     
     <select id="selectMber_S" resultType="egovframework.let.uss.umt.service.MberManageVO">
-        
+
             SELECT
-                ESNTL_ID          uniqId,
+                a.ESNTL_ID          uniqId,
                 'USR01'          userTy,
-                MBER_ID          mberId,
-                MBER_NM          mberNm,
-                PASSWORD         password,
-                PASSWORD_HINT    passwordHint,
-                PASSWORD_CNSR    passwordCnsr,
-                IHIDNUM          ihidnum,
-                SEXDSTN_CODE     sexdstnCode,
-                ZIP              zip,
-                ADRES            adres,
-                AREA_NO          areaNo,
-                MBER_STTUS       mberSttus,
-                DETAIL_ADRES     detailAdres,
-                END_TELNO        endTelno,
-                MBTLNUM      moblphonNo,
-                GROUP_ID         groupId,
-                MBER_FXNUM       mberFxnum,
-                MBER_EMAIL_ADRES mberEmailAdres,
-                MIDDLE_TELNO     middleTelno,
-                DATE_FORMAT(SBSCRB_DE,'%Y-%m-%d') sbscrbDe
-            FROM LETTNGNRLMBER
+                a.MBER_ID          mberId,
+                a.MBER_NM          mberNm,
+                a.PASSWORD         password,
+                a.PASSWORD_HINT    passwordHint,
+                a.PASSWORD_CNSR    passwordCnsr,
+                a.IHIDNUM          ihidnum,
+                a.SEXDSTN_CODE     sexdstnCode,
+                a.ZIP              zip,
+                a.ADRES            adres,
+                a.AREA_NO          areaNo,
+                a.MBER_STTUS       mberSttus,
+                a.DETAIL_ADRES     detailAdres,
+                a.END_TELNO        endTelno,
+                a.MBTLNUM          moblphonNo,
+                a.GROUP_ID         groupId,
+                a.MBER_FXNUM       mberFxnum,
+                a.MBER_EMAIL_ADRES mberEmailAdres,
+                a.MIDDLE_TELNO     middleTelno,
+                DATE_FORMAT(a.SBSCRB_DE,'%Y-%m-%d') sbscrbDe,
+                a.DEPT_CODE        deptCode,
+                a.TITLE_CODE       titleCode,
+                a.POSITION_CODE    positionCode,
+                a.RANK_CODE        rankCode,
+                b.CODE_NM          deptNmF,
+                c.CODE_NM          titleNm
+            FROM LETTNGNRLMBER a
+            LEFT OUTER JOIN
+                lettccmmndetailcode b
+                ON a.DEPT_CODE = b.code and b.CODE_ID = 'IBK001'
+            LEFT OUTER JOIN
+                lettccmmndetailcode c
+                ON a.TITLE_CODE = c.code and c.CODE_ID = 'IBK002'
             WHERE ESNTL_ID=#{uniqId}
         
     </select>

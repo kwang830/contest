@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ page import ="egovframework.com.cmm.LoginVO" %>
 <!DOCTYPE html>
 <html dir="ltr" lang="ko">
@@ -40,6 +41,8 @@
             // 공모전 참가 신청서
             fn_egov_downFile('EcqfhYxRcnWG52hkOGYp/F3suq/5SFOvAnxJUaQhI01X9dgmJjJ+3mWoSYu1PsdTs4dfuDM2VdFX2fN3C0X4iQ==','0');
         }
+
+        <c:if test="${!empty resultMsg}">alert("<spring:message code='${resultMsg}' />");</c:if>
         //-->
     </script>
 
@@ -82,25 +85,57 @@
         </div>
         <div class="form-wrap" style="padding-top:50px;">
             <div class="container">
-                <form action="" class="form-con" id="form">
+                <form class="form-con" id="form" name="passwordChgVO" method="post" action="<c:url value="${'/uss/umt/edit/MyInfoPasswordUpdt.do'}"/>">
+                    <input name="mberId" id="mberId" type="hidden" value="<c:out value='${mberManageVO.mberId}'/>" />
+                    <input name="uniqId" id="uniqId" type="hidden" value="<c:out value='${mberManageVO.uniqId}'/>" />
+                    <input name="userTy" id="userTy" type="hidden" value="<c:out value='${mberManageVO.userTy}'/>" />
+
                     <div class="form-list-con">
                         <div class="form-list">
                             <div class="form-title">이름</div>
                             <div class="form-input">
-                                <input name="name" type="text" placeholder="이름을 입력해주세요.">
+                                <input name="mberNm" type="text" value="<c:out value='${mberManageVO.mberNm}'/>" readonly />
                             </div>
                             <div class="form-error-text" style="display: none;"></div>
                         </div>
                         <div class="form-list">
-                            <div class="form-title">제목</div>
+                            <div class="form-title">직책</div>
                             <div class="form-input">
-                                <input name="title" type="text" placeholder="제목을 입력해주세요.">
+                                <input name="titleNm" type="text" value="<c:out value='${mberManageVO.titleNm}'/>" readonly />
+                            </div>
+                            <div class="form-error-text" style="display: none;"></div>
+                        </div>
+                        <div class="form-list">
+                            <div class="form-title">소속</div>
+                            <div class="form-input">
+                                <input name="deptNmF" type="text" value="<c:out value='${mberManageVO.deptNmF}' escapeXml="false"/>" readonly />
+                            </div>
+                            <div class="form-error-text" style="display: none;"></div>
+                        </div>
+                        <div class="form-list">
+                            <div class="form-title">이전 비밀번호<span style="color:red;">*</span></div>
+                            <div class="form-input">
+                                <input name="oldPassword" id="oldPassword" class="f_txt" type="password" value="" maxlength="100" />
+                            </div>
+                            <div class="form-error-text" style="display: none;"></div>
+                        </div>
+                        <div class="form-list">
+                            <div class="form-title">신규 비밀번호<span style="color:red;">*</span></div>
+                            <div class="form-input">
+                                <input name="newPassword" id="newPassword" class="f_txt" type="password" value="" maxlength="100" />
+                            </div>
+                            <div class="form-error-text" style="display: none;"></div>
+                        </div>
+                        <div class="form-list">
+                            <div class="form-title">비밀번호 확인<span style="color:red;">*</span></div>
+                            <div class="form-input">
+                                <input name="newPassword2" id="newPassword2" class="f_txt" type="password" value="" maxlength="100" />
                             </div>
                             <div class="form-error-text" style="display: none;"></div>
                         </div>
                     </div>
                     <div class="form-btn-con">
-                        <button type="submit" class="submit-btn">제출</button>
+                        <button type="submit" class="submit-btn">저장</button>
                     </div>
                 </form>
             </div>

@@ -111,10 +111,7 @@ public class MberManageVO extends UserDefaultVO{
 	 * 이메일주소
 	 */
 	private String mberEmailAdres;
-	/**
-	 * oldPassword attribute 값을  리턴한다.
-	 * @return String
-	 */
+
 	/**
 	 * 부서코드
 	 */
@@ -154,7 +151,10 @@ public class MberManageVO extends UserDefaultVO{
 
 
 
-
+	/**
+	 * oldPassword attribute 값을  리턴한다.
+	 * @return String
+	 */
 	public String getOldPassword() {
 		return oldPassword;
 	}
