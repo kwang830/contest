@@ -516,6 +516,49 @@ public class EgovMberManageController {
 		return "cmm/uss/umt/EgovMberPasswordUpdt";
 	}
 
+	@RequestMapping(value = "/uss/umt/mber/EgovMberPasswordResetList.do")
+	public String updatePasswordResetList(@RequestParam("selectedId") String mberIds, ModelMap model) throws Exception {
+
+
+		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+		if(!isAuthenticated) {
+			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
+			return "uat/uia/EgovLoginUsr";
+		}
+
+		String[] ids = mberIds.split(",");
+		int count = 0;
+		for (String id : ids) {
+			String password = "1";
+			String uniqId = id.trim().split(":")[1];
+
+			System.out.println("uniqId:" + uniqId);
+
+			MberManageVO mberManageVO = mberManageService.selectMber(uniqId);
+			String passwordCnsr = mberManageVO.getPasswordCnsr();
+			if (passwordCnsr != null && !passwordCnsr.trim().isEmpty()) {
+				password = passwordCnsr;
+			}
+			System.out.println("password:" + password);
+			mberManageVO.setPassword(EgovFileScrty.encryptPassword(password, mberManageVO.getMberId()));
+
+			if (!mberManageVO.getPasswordCnsr().isEmpty()) {
+				System.out.println("1");
+				mberManageService.updatePassword(mberManageVO);
+				count++;
+			}else{
+				System.out.println("2");
+			}
+		}
+		if (count == ids.length) {
+			model.addAttribute("resultMsg", "success.common.reset");
+		} else {
+			model.addAttribute("resultMsg", "fail.common.reset");
+		}
+
+		return "forward:/uss/umt/mber/EgovMberManage.do";
+	}
+
 	/**
 	 * 일반회원 암호 수정 화면 이동
 	 * @param model 화면모델

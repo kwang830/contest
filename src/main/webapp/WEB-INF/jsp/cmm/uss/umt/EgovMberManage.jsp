@@ -129,6 +129,36 @@ function fnSearch(){
 	document.listForm.action = "<c:url value='/uss/umt/mber/EgovMberManage.do'/>";
     document.listForm.submit();
 }
+
+function fncUpdatePasswordReset() {
+    var checkField = document.listForm.checkField;
+    var id = document.listForm.checkId;
+    var checkedIds = "";
+    var checkedCount = 0;
+    if(checkField) {
+        if(checkField.length > 1) {
+            for(var i=0; i < checkField.length; i++) {
+                if(checkField[i].checked) {
+                    checkedIds += ((checkedCount==0? "" : ",") + id[i].value);
+                    checkedCount++;
+                }
+            }
+        } else {
+            if(checkField.checked) {
+                checkedIds = id.value;
+            }
+        }
+    }
+    if(checkedIds.length > 0) {
+        // alert(checkedIds);
+        if(confirm('<spring:message code="common.reset.msg" />')) {
+            document.listForm.selectedId.value=checkedIds;
+            document.listForm.action = "<c:url value='/uss/umt/mber/EgovMberPasswordResetList.do'/>";
+            document.listForm.submit();
+        }
+    }
+}
+
 <c:if test="${!empty resultMsg}">alert("<spring:message code="${resultMsg}" />");</c:if>
 //-->
 </script>
@@ -215,7 +245,11 @@ function fnSearch(){
 
                     </div>
                     <!--// 검색조건 -->
-
+                        <div class="board_list_top">
+                            <div class="right_col">
+                                <a href="#LINK" class="btn btn_blue_46 w_150" onclick="fncUpdatePasswordReset()" style="selector-dummy:expression(this.hideFocus=false);">비밀번호 초기화</a><!-- 초기화 -->
+                            </div>
+                        </div>
                     <!-- 게시판 -->
                     <div class="board_list">
                         <table>
@@ -322,6 +356,6 @@ function fnSearch(){
     <!-- Footer Scripts
     ============================================= -->
     <script type="text/javascript" src="<c:url value='/'/>js/functions.js"></script>
-    
+    <script src="<c:url value='/'/>js/ui.js"></script>
 </body>
 </html>
