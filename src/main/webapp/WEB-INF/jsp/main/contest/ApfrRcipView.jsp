@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page import ="egovframework.com.cmm.LoginVO" %>
@@ -19,30 +19,9 @@
 	<link rel="preload" href="<c:url value='/'/>css/reset.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/responsive.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="preload" href="<c:url value='/'/>css/font-icons.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="preload" href="<c:url value='/'/>css/sub.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/form.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-
-	<!-- 비동기
-	============================================= -->
-	<link rel="stylesheet" href="<c:url value='/'/>css/swiper.css" type="text/css" media="print" onload="this.media='all'" />
-	<link rel="stylesheet" href="<c:url value='/'/>css/font-icons.css" type="text/css" media="print" onload="this.media='all'" />
-	<link rel="stylesheet" href="<c:url value='/'/>css/animate.css" type="text/css" media="print" onload="this.media='all'" />
-	<link rel="stylesheet" href="<c:url value='/'/>css/magnific-popup.css" type="text/css" media="print" onload="this.media='all'" />
-
-	<link rel="stylesheet" href="<c:url value='/'/>css/coming-soon.css" type="text/css">
-
-	<noscript>
-		<link rel="stylesheet" href="<c:url value='/'/>css/reset.css">
-		<link rel="stylesheet" href="<c:url value='/'/>css/styles.css">
-		<link rel="stylesheet" href="<c:url value='/'/>css/swiper.css">
-		<link rel="stylesheet" href="<c:url value='/'/>css/font-icons.css">
-		<link rel="stylesheet" href="<c:url value='/'/>css/animate.css">
-		<link rel="stylesheet" href="<c:url value='/'/>css/magnific-popup.css">
-		<link rel="stylesheet" href="<c:url value='/'/>css/responsive.css">
-		<link rel="stylesheet" href="<c:url value='/'/>css/coming-soon.css">
-	</noscript>
-
-	<script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
-
 
 	<!-- Document Title
 	============================================= -->
@@ -66,7 +45,7 @@
 
 </head>
 
-<body class="no-transition stretched">
+<body class="stretched">
 
 <!-- Document Wrapper
 ============================================= -->
@@ -77,37 +56,38 @@
 	<!-- //header end -->
 
 	<!-- Content
-    ============================================= -->
-	<div id="content" style="padding-top:100px;">
-		<div class="form-wrap">
-			<div class="container">
-				<form action="" class="form-con" id="form">
-					<div class="form-list-con">
-						<div class="form-list">
-							<div class="form-title">이름</div>
-							<div class="form-input">
-								<input name="name" type="text" placeholder="이름을 입력해주세요.">
-							</div>
-							<div class="form-error-text" style="display: none;"></div>
-						</div>
-						<div class="form-list">
-							<div class="form-title">제목</div>
-							<div class="form-input">
-								<input name="title" type="text" placeholder="제목을 입력해주세요.">
-							</div>
-							<div class="form-error-text" style="display: none;"></div>
-						</div>
+            ============================================= -->
+	<section id="content">
+		<div class="sub-layout">
+			<div class="sub-banner">
+				<div class="container">
+					<div class="sub-banner-title">
+						작품접수
 					</div>
-					<div class="form-btn-con">
-						<button type="submit" class="submit-btn">제출</button>
+				</div>
+			</div>
+			<nav class="nav-menu">
+				<div class="container">
+					<!-- 홈 아이콘 -->
+					<div class="nav-item home">
+						<a href="/"><img src="/images/icon-home.png" alt="홈"/></a>
 					</div>
-				</form>
+
+					<!-- 1depth 메뉴 항목 -->
+					<div class="nav-item has-dropdown">
+						<button class="nav-button">작품접수 <span class="nav-toggle"></span></button>
+					</div>
+				</div>
+			</nav>
+		</div>
+		<div class="content-wrap">
+			<div class="container clearfix">
+
+
+				<!--// 게시판 -->
 			</div>
 		</div>
-	</div>
-	<!-- #content end -->
-
-
+	</section>
 
 	<!-- footer 시작 -->
 	<c:import url="/sym/mms/ContFooter.do" />

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page import ="egovframework.com.cmm.LoginVO" %>
@@ -19,30 +19,9 @@
     <link rel="preload" href="<c:url value='/'/>css/reset.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="<c:url value='/'/>css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="<c:url value='/'/>css/responsive.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="<c:url value='/'/>css/font-icons.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="<c:url value='/'/>css/sub.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="<c:url value='/'/>css/form.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-
-    <!-- 비동기
-    ============================================= -->
-    <link rel="stylesheet" href="<c:url value='/'/>css/swiper.css" type="text/css" media="print" onload="this.media='all'" />
-    <link rel="stylesheet" href="<c:url value='/'/>css/font-icons.css" type="text/css" media="print" onload="this.media='all'" />
-    <link rel="stylesheet" href="<c:url value='/'/>css/animate.css" type="text/css" media="print" onload="this.media='all'" />
-    <link rel="stylesheet" href="<c:url value='/'/>css/magnific-popup.css" type="text/css" media="print" onload="this.media='all'" />
-
-    <link rel="stylesheet" href="<c:url value='/'/>css/coming-soon.css" type="text/css">
-
-    <noscript>
-        <link rel="stylesheet" href="<c:url value='/'/>css/reset.css">
-        <link rel="stylesheet" href="<c:url value='/'/>css/styles.css">
-        <link rel="stylesheet" href="<c:url value='/'/>css/swiper.css">
-        <link rel="stylesheet" href="<c:url value='/'/>css/font-icons.css">
-        <link rel="stylesheet" href="<c:url value='/'/>css/animate.css">
-        <link rel="stylesheet" href="<c:url value='/'/>css/magnific-popup.css">
-        <link rel="stylesheet" href="<c:url value='/'/>css/responsive.css">
-        <link rel="stylesheet" href="<c:url value='/'/>css/coming-soon.css">
-    </noscript>
-
-    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
-
 
     <!-- Document Title
     ============================================= -->
@@ -66,7 +45,7 @@
 
 </head>
 
-<body class="no-transition stretched">
+<body class="stretched">
 
 <!-- Document Wrapper
 ============================================= -->
@@ -77,59 +56,38 @@
     <!-- //header end -->
 
     <!-- Content
-    ============================================= -->
-    <div id="content" style="padding-top:100px;">
-        <div class="form-wrap">
-            <div class="container">
-
-                <h2>내정보</h2>
-
-                <form action="" class="form-con" id="form">
-                    <div class="form-list-con">
-                        <div class="form-list">
-                            <div class="form-title">이름</div>
-                            <div class="form-input">
-                                <input name="name" type="text">
-                            </div>
-                        </div>
-                        <div class="form-list">
-                            <div class="form-title">소속</div>
-                            <div class="form-input">
-                                <input name="title" type="text">
-                            </div>
-                        </div>
+            ============================================= -->
+    <section id="content">
+        <div class="sub-layout">
+            <div class="sub-banner">
+                <div class="container">
+                    <div class="sub-banner-title">
+                        내정보관리
+                    </div>
+                </div>
+            </div>
+            <nav class="nav-menu">
+                <div class="container">
+                    <!-- 홈 아이콘 -->
+                    <div class="nav-item home">
+                        <a href="/"><img src="/images/icon-home.png" alt="홈"/></a>
                     </div>
 
-                    <div class="form-list-con">
-                        <div class="form-list">
-                            <div class="form-title">이전 비밀번호</div>
-                            <div class="form-input">
-                                <input name="name" type="text">
-                            </div>
-                        </div>
-                        <div class="form-list">
-                            <div class="form-title">신규 비밀번호</div>
-                            <div class="form-input">
-                                <input name="title" type="text">
-                            </div>
-                        </div>
-                        <div class="form-list">
-                            <div class="form-title">신규 비밀번호 확인</div>
-                            <div class="form-input">
-                                <input name="title" type="text">
-                            </div>
-                        </div>
+                    <!-- 1depth 메뉴 항목 -->
+                    <div class="nav-item has-dropdown">
+                        <button class="nav-button">내정보관리 <span class="nav-toggle"></span></button>
                     </div>
-                    <div class="form-btn-con">
-                        <button type="submit" class="submit-btn">저장</button>
-                    </div>
-                </form>
+                </div>
+            </nav>
+        </div>
+        <div class="content-wrap">
+            <div class="container clearfix">
+
+
+                <!--// 게시판 -->
             </div>
         </div>
-    </div>
-    <!-- #content end -->
-
-
+    </section>
 
     <!-- footer 시작 -->
     <c:import url="/sym/mms/ContFooter.do" />
@@ -151,79 +109,6 @@
 <!-- Footer Scripts
 ============================================= -->
 <script type="text/javascript" src="<c:url value='/'/>js/functions.js"></script>
-
-<script>
-    $(document).ready(function() {
-        const $nameInput =$('.form-list input[name="name"]');
-        const $titleInput =$('.form-list input[name="title"]');
-
-        // 1. input 포커스 시 스타일 변경
-        $('.form-input input').on('focus', function() {
-            const $parent = $(this).closest('.form-list');
-
-            // 에러 초기화
-            $parent.removeClass('input-error');
-            $parent.find('.form-error-text').hide();
-
-            $parent.addClass('focused');
-        });
-
-        // focus 해제 시 초기화
-        $('.form-input input').on('blur', function() {
-            const $input = $(this);
-            const $parent = $input.closest('.form-list');
-
-            $parent.removeClass('focused');
-        });
-
-        // 2. submit 시 유효성 검사
-        $('#form').on('submit', function(e) {
-            e.preventDefault();
-
-            let isValid = true;
-
-            // 초기화
-            function resetField($wrapper){
-                $wrapper.removeClass('input-error');
-                $wrapper.find('.form-error-text').hide();
-            }
-
-            // 오류 처리
-            function setError($wrapper, message) {
-                $wrapper.addClass('input-error');
-                $wrapper.find('.form-error-text').text(message).show();
-                isValid = false;
-            }
-
-
-            // id
-            const $nameWrapper = $nameInput.closest('.form-list');
-            const nameVal = $nameInput.val().trim();
-            resetField($nameWrapper);
-            if (nameVal === '') {
-                setError($nameWrapper, '이름을 입력해주세요.');
-            } else if (nameVal.length < 6) {
-                setError($nameWrapper, '6자 이상 입력해주세요.');
-            }
-
-            // password
-            const $titleWrapper = $titleInput.closest('.form-list');
-            const titleVal = $titleInput.val().trim();
-            resetField($titleWrapper);
-            if (titleVal === '') {
-                setError($titleWrapper, '제목을 입력해주세요.');
-            } else if (titleVal.length < 6) {
-                setError($titleWrapper, '6자 이상 입력해주세요.');
-            }
-
-            if (isValid) {
-                // 이곳에서 실제 로그인 요청 등 진행
-                alert('로그인!!');
-                // this.submit(); // 실제 전송 시 주석 해제
-            }
-        });
-    });
-</script>
 
 </body>
 </html>

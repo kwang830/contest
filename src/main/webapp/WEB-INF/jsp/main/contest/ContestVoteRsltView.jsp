@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page import ="egovframework.com.cmm.LoginVO" %>
@@ -19,33 +19,12 @@
 	<link rel="preload" href="<c:url value='/'/>css/reset.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/responsive.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-	<link rel="preload" href="<c:url value='/'/>css/coming-soon.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-
-	<!-- 비동기
-	============================================= -->
-	<link rel="stylesheet" href="<c:url value='/'/>css/swiper.css" type="text/css" media="print" onload="this.media='all'" />
-	<link rel="stylesheet" href="<c:url value='/'/>css/font-icons.css" type="text/css" media="print" onload="this.media='all'" />
-	<link rel="stylesheet" href="<c:url value='/'/>css/animate.css" type="text/css" media="print" onload="this.media='all'" />
-	<link rel="stylesheet" href="<c:url value='/'/>css/magnific-popup.css" type="text/css" media="print" onload="this.media='all'" />
-
-	<link rel="stylesheet" href="<c:url value='/'/>css/coming-soon.css" type="text/css">
-
-	<noscript>
-		<link rel="stylesheet" href="<c:url value='/'/>css/reset.css">
-		<link rel="stylesheet" href="<c:url value='/'/>css/styles.css">
-		<link rel="stylesheet" href="<c:url value='/'/>css/swiper.css">
-		<link rel="stylesheet" href="<c:url value='/'/>css/font-icons.css">
-		<link rel="stylesheet" href="<c:url value='/'/>css/animate.css">
-		<link rel="stylesheet" href="<c:url value='/'/>css/magnific-popup.css">
-		<link rel="stylesheet" href="<c:url value='/'/>css/responsive.css">
-		<link rel="stylesheet" href="<c:url value='/'/>css/coming-soon.css">
-	</noscript>
-
-	<script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
-
+	<link rel="preload" href="<c:url value='/'/>css/font-icons.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="preload" href="<c:url value='/'/>css/sub.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="preload" href="<c:url value='/'/>css/form.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
 	<!-- Document Title
-	============================================= -->
+    ============================================= -->
 	<title>IBK시스템 AI 아이디어 챌린지</title>
 
 	<!-- favicon -->
@@ -66,52 +45,80 @@
 
 </head>
 
-<body class="no-transition stretched">
+<body class="stretched">
 
-	<!-- Document Wrapper
-	============================================= -->
-	<div id="wrapper" class="clearfix">
+<!-- Document Wrapper
+============================================= -->
+<div id="wrapper" class="clearfix">
 
-        <!-- header start -->
-	    <c:import url="/sym/mms/ContHeader.do" />
-	    <!-- //header end -->
+	<!-- header start -->
+	<c:import url="/sym/mms/ContHeader.do" />
+	<!-- //header end -->
 
-		<!-- Page Title
-		============================================= -->
-		<section id="page-title">
-
-			<div class="container clearfix">
-				<h1>2025년 AI 아이디어 공모전</h1>
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item" aria-current="page">Home</li>
-					<li class="breadcrumb-item active" aria-current="page">공모전 투표결과</li>
-				</ol>
+	<!-- Content
+            ============================================= -->
+	<section id="content">
+		<div class="sub-layout">
+			<div class="sub-banner">
+				<div class="container">
+					<div class="sub-banner-title">
+						공모전 투표 결과
+					</div>
+				</div>
 			</div>
+			<nav class="nav-menu">
+				<div class="container">
+					<!-- 홈 아이콘 -->
+					<div class="nav-item home">
+						<a href="/"><img src="/images/icon-home.png" alt="홈"/></a>
+					</div>
 
-		</section><!-- #page-title end -->
+					<!-- 1depth 메뉴 항목 -->
+					<div class="nav-item has-dropdown">
+						<button class="nav-button">공모전 투표 <span class="nav-toggle"></span></button>
+					</div>
+					<div class="nav-item has-dropdown">
+						<button class="nav-button">공모전 투표 결과<span class="nav-toggle"><img
+								src="/images/icon-nav-arrow.png" alt=""></span></button>
+						<ul class="dropdown-menu">
+							<li><a href="/cmm/contest/contestVote.do">공모전 투표</a></li>
+							<li class="active"><a href="/cmm/contest/contestVoteRslt.do">공모전 투표 결과</a></li>
+							<li><a href="/cmm/contest/contestAdminVote.do">공모전 심사</a></li>
+							<li><a href="/cmm/contest/contestAdminVoteRslt.do">공모전 심사 결과</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
+		<div class="content-wrap">
+			<div class="container clearfix">
 
 
+				<!--// 게시판 -->
+			</div>
+		</div>
+	</section>
 
-		<!-- footer 시작 -->
-	    <c:import url="/sym/mms/ContFooter.do" />
-	    <!-- //footer 끝 -->
+	<!-- footer 시작 -->
+	<c:import url="/sym/mms/ContFooter.do" />
+	<!-- //footer 끝 -->
 
-	</div><!-- #wrapper end -->
+</div><!-- #wrapper end -->
 
-	<!-- Go To Top
-	============================================= -->
-	<div id="gotoTop" class="icon-angle-up"></div>
+<!-- Go To Top
+============================================= -->
+<div id="gotoTop" class="icon-angle-up"></div>
 
-	<!-- External JavaScripts
-	============================================= -->
-	<script type="text/javascript" src="<c:url value='/'/>js/jquery-3.3.1.js"></script>
-	<script type="text/javascript" src="<c:url value='/'/>js/plugins.js"></script>
+<!-- External JavaScripts
+============================================= -->
+<script type="text/javascript" src="<c:url value='/'/>js/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="<c:url value='/'/>js/plugins.js"></script>
 
-	<script type="text/javascript" src="<c:url value='/'/>js/common.js"></script>
+<script type="text/javascript" src="<c:url value='/'/>js/common.js"></script>
 
-	<!-- Footer Scripts
-	============================================= -->
-	<script type="text/javascript" src="<c:url value='/'/>js/functions.js"></script>
+<!-- Footer Scripts
+============================================= -->
+<script type="text/javascript" src="<c:url value='/'/>js/functions.js"></script>
 
 </body>
 </html>
