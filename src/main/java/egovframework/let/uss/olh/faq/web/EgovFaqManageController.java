@@ -152,7 +152,7 @@ public class EgovFaqManageController {
     }
 
     /**
-     * FAQ 조회수를  수정처리
+     * FAQ 조회 / 수정처리
      * @param faqManageVO
      * @param searchVO
      * @return	"forward:/uss/olh/faq/FaqListDetailInqire.do"
