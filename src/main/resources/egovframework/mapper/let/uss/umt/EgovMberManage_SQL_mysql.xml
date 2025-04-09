@@ -67,7 +67,7 @@ FROM(
                 AND sttus LIKE  #{sbscrbSttus}
             </if>
             <if test='searchCondition == "0"'>
-                AND userId LIKE #{searchKeyword}
+                AND userId LIKE '%' #{searchKeyword} '%'
             </if>
             <if test='searchCondition == "1"'>
                 AND userNm LIKE '%' #{searchKeyword} '%'

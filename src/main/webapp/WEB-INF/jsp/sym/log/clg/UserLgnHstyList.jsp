@@ -176,43 +176,46 @@ function fn_egov_search_loginLog(){
 			<div class="container clearfix">
 				<!-- 검색조건 -->
 				<div class="condition">
-					<form name="LoginLogForm" action="<c:url value='/sym/log/clg/userLgnHsty.do'/>" method="post" onSubmit="fn_egov_search_loginLog(); return false;">
+					<form name="LoginLogForm" action="<c:url value='/sym/log/clg/userLgnHsty.do'/>" method="post" >
 
 						<input type="hidden" name="pageIndex" id="pageIndex" class="" value="1"  />
 
-						<label class="item f_date" for="searchBgnDe">
-							<input type="text" name="searchBgnDe" id="searchBgnDe" size="15" maxlength="10" value="${searchVO.searchBgnDe}" title="검색시작일" > ~ <!-- 검색시작일  -->
-						</label>
-						<label class="item f_date" for="searchEndDe">
-							<input type="text" name="searchEndDe" id="searchEndDe" size="15" maxlength="10" value="${searchVO.searchEndDe}" title="검색종료일" >&nbsp;&nbsp;&nbsp;<!-- 검색종료일  -->
-						</label>
+						<div class="condition_inner">
+							<span class="item condition_title">검색기간</span>
+							<span class="item f_search_date">
+                                    <input class="f_input" name="searchBgnDe" type="date" value="" maxlength="35" title="검색시작일">
+                                </span>
+							<span class="item condition_title">-</span>
+							<span class="item f_search_date">
+                                    <input class="f_input" name="searchEndDe" type="date" value="" maxlength="35" title="검색종료일">
+                                </span>
+						</div>
+						<div class="condition_inner">
+							<label class="item f_select" for="searchCnd">
+								<select name="searchCnd" id="searchCnd" title="검색조건 선택">
+									<c:choose>
+										<c:when test="${empty searchVO.searchCnd}">
+											<option value="0" selected="selected">사용자ID</option>
+											<option value="1">사용자</option>
+											<option value="2">PC 정보</option>
+											<option value="3">브라우저</option>
+										</c:when>
+										<c:otherwise>
+											<option value="0" ${searchVO.searchCnd eq '0' ? 'selected="selected"' : ''}>사용자ID</option>
+											<option value="1" ${searchVO.searchCnd eq '1' ? 'selected="selected"' : ''}>사용자</option>
+											<option value="2" ${searchVO.searchCnd eq '2' ? 'selected="selected"' : ''}>PC 정보</option>
+											<option value="3" ${searchVO.searchCnd eq '3' ? 'selected="selected"' : ''}>브라우저</option>
+										</c:otherwise>
+									</c:choose>
+								</select>
+							</label>
+							<span class="item f_search">
+								<input class="f_input" name="searchWrd" type="text" value="<c:out value="${searchVO.searchWrd}"/>" maxlength="35" title="검색어 입력" style="max-width: 285px;">
+								<button class="btn" type="submit" onclick="fn_egov_search_loginLog(); return false;">조회</button>
+							</span>
 
-						<label class="item f_select" for="searchCnd">
-							<select name="searchCnd" id="searchCnd" title="검색조건 선택">
-								<c:choose>
-									<c:when test="${empty searchVO.searchCnd}">
-										<option value="0" selected="selected">사용자ID</option>
-										<option value="1">사용자</option>
-										<option value="2">PC 정보</option>
-										<option value="3">브라우저</option>
-									</c:when>
-									<c:otherwise>
-										<option value="0" ${searchVO.searchCnd eq '0' ? 'selected="selected"' : ''}>사용자ID</option>
-										<option value="1" ${searchVO.searchCnd eq '1' ? 'selected="selected"' : ''}>사용자</option>
-										<option value="2" ${searchVO.searchCnd eq '2' ? 'selected="selected"' : ''}>PC 정보</option>
-										<option value="3" ${searchVO.searchCnd eq '3' ? 'selected="selected"' : ''}>브라우저</option>
-									</c:otherwise>
-								</c:choose>
-							</select>
-						</label>
-
-						<span class="item f_search">
-                            <input class="f_input w_500" name="searchWrd" type="text" value='<c:out value="${searchVO.searchWrd}"/>'
-								   maxlength="35" title="검색어 입력">
-                            <button class="btn" type="submit">조회</button>
-                        </span>
-
-						<a href="#" class="item btn btn_black_46 w_100" onclick="javascript:fn_select_reset(); return false;">초기화</a>
+							<a href="#" class="item btn btn_black_46 w_100" onclick="javascript:fn_select_reset(); return false;">초기화</a>
+						</div>
 
 					</form>
 
@@ -251,17 +254,9 @@ function fn_egov_search_loginLog(){
 
 						<c:if test="${fn:length(resultList) == 0}">
 							<tr>
-								<td>1</td>
-								<td class="al">
+								<td class="al" colspan="9">
 									등록된 글이 존재하지 않습니다.
 								</td>
-								<td>-</td>
-								<td>-</td>
-								<td>-</td>
-								<td>-</td>
-								<td>-</td>
-								<td>-</td>
-								<td>-</td>
 							</tr>
 						</c:if>
 

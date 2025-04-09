@@ -313,7 +313,7 @@
                     </div>
                     <!--// 검색조건 -->
 
-                    <div class="board_list_top">
+                    <div class="board_list_top topmargin">
                         <div class="left_col">
                             <a href="#LINK" class="btn btn_skyblue_h46 w_100" onclick="javascript:fncSelectAuthorGroupPop()">팝업조회</a><!-- 팝업조회 -->
                         </div>
@@ -331,14 +331,16 @@
                             <caption>목록</caption>
                             <colgroup>
                                 <col style="width: 70px;">
-                                <col style="width: auto; min-width: 220px;">
-                                <col style="width: 200px;">
-                                <col style="width: 200px;">
-                                <col style="width: 200px;">
-                                <col style="width: 200px;">
+                                <col style="width: 70px;">
+                                <col style="width: auto; min-width: 250px;">
+                                <col style="width: 250px;">
+                                <col style="width: 250px;">
+                                <col style="width: 250px;">
+                                <col style="width: 250px;">
                             </colgroup>
                             <thead>
                             <tr>
+                                <th scope="col">No.</th>
                                 <th scope="col">
                                     <span class="f_chk_only chkAll">
                                         <input type="checkbox" name="checkAll" title="선택여부" onclick="javascript:fncCheckAll()">
@@ -355,17 +357,18 @@
 
                             <c:if test="${fn:length(authorGroupList) == 0}">
                                 <tr>
-                                    <td colspan="6"><spring:message code="common.nodata.msg" /></td>
+                                    <td colspan="7"><spring:message code="common.nodata.msg" /></td>
                                 </tr>
                             </c:if>
 
                             <c:forEach var="authorGroup" items="${authorGroupList}" varStatus="status">
                                 <tr>
+                                    <td><c:out value="${(paginationInfo.currentPageNo-1) * paginationInfo.pageSize + status.count}" /></td>
                                     <td>
-                                                    <span class="f_chk_only">
-                                                        <input type="checkbox" name="delYn" class="check2" title="선택">
-                                                        <input type="hidden" name="checkId" value="<c:out value="${authorGroup.uniqId}"/>"/>
-                                                    </span>
+                                        <span class="f_chk_only">
+                                            <input type="checkbox" name="delYn" class="check2" title="선택">
+                                            <input type="hidden" name="checkId" value="<c:out value="${authorGroup.uniqId}"/>"/>
+                                        </span>
                                     </td>
                                     <td><a href="" class="lnk"><c:out value="${authorGroup.userId}"/></a></td>
                                     <td><c:out value="${authorGroup.userNm}"/></td>

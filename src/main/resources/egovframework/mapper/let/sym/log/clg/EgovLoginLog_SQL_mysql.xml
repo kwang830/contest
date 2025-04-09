@@ -116,12 +116,12 @@
 			FROM
 				LETTNLOGINLOG a
 			LEFT OUTER JOIN COMVNUSERMASTER b
-				ON a.CONECT_ID = b.ESNTL_ID
+				ON a.CONECT_ID = b.USER_ID
 			WHERE 
 				1 = 1
 		]]>
 
-		<if test="searchWrd != null and searchWrd != ''">
+		<if test="searchWrd != null and searchWrd.trim() != ''">
 			<choose>
 				<when test="searchCnd == 0">
 					<![CDATA[ AND a.CONECT_ID LIKE CONCAT('%', #{searchWrd}, '%') ]]>
@@ -138,9 +138,9 @@
 			</choose>
 		</if>
 
-		<if test="searchBgnDe != null and searchBgnDe != ''">	<![CDATA[	AND
-					a.CREAT_DT BETWEEN STR_TO_DATE(CONCAT(#{searchBgnDe},' 00:00:00'), '%Y-%m-%d %H:%i:%s') 
-														AND STR_TO_DATE(CONCAT(#{searchEndDe},' 23:59:59'), '%Y-%m-%d %H:%i:%s') ]]>
+		<if test="searchBgnDe != null and searchBgnDe != ''">
+			<![CDATA[ AND a.CREAT_DT BETWEEN STR_TO_DATE(CONCAT(#{searchBgnDe},' 00:00:00'), '%Y-%m-%d %H:%i:%s')
+									AND STR_TO_DATE(CONCAT(#{searchEndDe},' 23:59:59'), '%Y-%m-%d %H:%i:%s') ]]>
 		</if>
 	</select>
 

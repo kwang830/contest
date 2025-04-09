@@ -245,11 +245,11 @@ function fncUpdatePasswordReset() {
 
                     </div>
                     <!--// 검색조건 -->
-                        <div class="board_list_top">
-                            <div class="right_col">
-                                <a href="#LINK" class="btn btn_blue_46 w_150" onclick="fncUpdatePasswordReset()" style="selector-dummy:expression(this.hideFocus=false);">비밀번호 초기화</a><!-- 초기화 -->
-                            </div>
+                    <div class="board_list_top topmargin">
+                        <div class="right_col">
+                            <a href="#LINK" class="btn btn_blue_46 w_150" onclick="fncUpdatePasswordReset()" style="selector-dummy:expression(this.hideFocus=false);">비밀번호 초기화</a><!-- 초기화 -->
                         </div>
+                    </div>
                     <!-- 게시판 -->
                     <div class="board_list">
                         <table>
@@ -290,12 +290,12 @@ function fncUpdatePasswordReset() {
 
                             <c:forEach var="result" items="${resultList}" varStatus="status">
                                 <tr>
-                                    <td><c:out value="${status.count}"/></td>
+                                    <td><c:out value="${(paginationInfo.currentPageNo-1) * paginationInfo.pageSize + status.count}" /></td>
                                     <td>
-                                                    <span class="f_chk_only">
-                                                        <input name="checkField" title="checkField <c:out value="${status.count}"/>" type="checkbox"/>
-                                                        <input name="checkId" type="hidden" value="<c:out value='${result.userTy}'/>:<c:out value='${result.uniqId}'/>"/>
-                                                    </span>
+                                        <span class="f_chk_only">
+                                            <input name="checkField" title="checkField <c:out value="${status.count}"/>" type="checkbox"/>
+                                            <input name="checkId" type="hidden" value="<c:out value='${result.userTy}'/>:<c:out value='${result.uniqId}'/>"/>
+                                        </span>
                                     </td>
                                     <td>
                                         <a href="<c:url value='/uss/umt/mber/EgovMberSelectUpdtView.do'/>?selectedId=<c:out value="${result.uniqId}"/>" class="lnk" onclick="javascript:fnSelectUser('<c:out value="${result.userTy}"/>:<c:out value="${result.uniqId}"/>'); return false;">
