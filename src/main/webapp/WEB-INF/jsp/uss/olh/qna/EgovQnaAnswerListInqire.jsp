@@ -1,35 +1,37 @@
-<%--
-  Class Name : EgovQnaAnswerListInqire.jsp
-  Description : EgovQnaAnswerListInqire 화면
-  Modification Information
- 
-      수정일         수정자                   수정내용
-    -------    --------    ---------------------------
-     2009.02.01   박정규          최초 생성
-     2011.08.31  JJY       경량환경 버전 생성
- 
-    author   : 공통서비스개발팀 박정규
-    since    : 2009.02.01
---%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html dir="ltr" lang="ko">
 <head>
 <title>샘플 포털 > 포털서비스관리 > 서비스관리 > QnA답변관리</title>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="<c:url value='/'/>css/base.css">
-	<link rel="stylesheet" href="<c:url value='/'/>css/layout.css">
-	<link rel="stylesheet" href="<c:url value='/'/>css/component.css">
-	<link rel="stylesheet" href="<c:url value='/'/>css/page.css">
-	<script src="<c:url value='/'/>js/jquery-1.11.2.min.js"></script>
-	<script src="<c:url value='/'/>js/ui.js"></script>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="SemiColonWeb" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <!-- preload -->
+    <link rel="preload" href="<c:url value='/'/>css/reset.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="<c:url value='/'/>css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="<c:url value='/'/>css/responsive.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="<c:url value='/'/>css/font-icons.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="<c:url value='/'/>css/sub.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="<c:url value='/'/>css/board.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+    <!-- Document Title
+    ============================================= -->
+    <title>IBK시스템, AI 아이디어 챌린지 - QnA</title>
+
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="<c:url value='/'/>images/favicon.ico">
 
 <script type="text/javaScript" language="javascript">
 
@@ -88,141 +90,165 @@ function fn_egov_inquire_qnaanswerdetail(qaId) {
 
 </script>
 </head>
-<body>
+<body class="stretched">
 
-    <!-- Skip navigation -->
-    <a href="#contents" class="skip_navi">본문 바로가기</a>
+    <!-- Document Wrapper
+    ============================================= -->
+    <div id="wrapper" class="clearfix">
 
-    <div class="wrap">
         <!-- header start -->
-	    <c:import url="/sym/mms/EgovHeader.do" />
+        <c:import url="/sym/mms/ContHeader.do" />
 	    <!-- //header end -->
 
-        <div class="container">
-            <div class="sub_layout">
-                <div class="sub_in">
-                    <div class="layout">
-                        <!-- Left menu -->
-	                    <c:import url="/sym/mms/EgovMenuLeft.do" />
-	                    <!--// Left menu -->
-        
-                        <div class="content_wrap">
-                            <div id="contents" class="content">
-                                 <!-- Location -->
-                                <div class="location">
-                                    <ul>
-                                        <li><a class="home" href="">Home</a></li>
-                                        <li><a href="">포털서비스관리</a></li>
-                                        <li><a href="">서비스관리</a></li>
-                                        <li>QnA답변관리</li>
-                                    </ul>
-                                </div>
-                                <!--// Location -->
-
-                                <h1 class="tit_1">포털서비스관리</h1>
-
-                                <p class="txt_1">포털시스템에서 제공되는 서비스들에 대한 컨텐츠를 관리합니다.</p>
-
-                                <h2 class="tit_2">서비스관리</h2>
-
-                                <h3 class="tit_3">QnA답변관리</h3>
-
-                                <!-- 검색조건 -->
-                                <div class="condition">
-                                
-                                	<form name="QnaAnswerListForm" action="<c:url value='/uss/olh/qnm/QnaAnswerListInqire.do'/>" method="post">
-                                
-                                    <label class="item f_select" for="sel1">
-                                        <select id="sel1" name="searchCondition" class="select" title="조회조건 선택">
-                                            <option selected value=''>선택하세요</option>
-                                            <option value="wrterNm" <c:if test="${searchVO.searchCondition == 'wrterNm'}">selected="selected"</c:if> >작성자명</option>
-                                            <option value="qnaProcessSttusCodeNm" <c:if test="${searchVO.searchCondition == 'qnaProcessSttusCodeNm'}">selected="selected"</c:if> >진행상태</option>
-                                        </select>
-                                    </label>
-
-                                    <span class="item f_search">
-                                        <input class="f_input w_500" name="searchKeyword" type="text" value='<c:out value="${searchVO.searchKeyword}"/>' maxlength="35" title="검색어 입력">
-                                        <button class="btn" type="submit" onclick="fn_egov_search_qnacnanswer(); return false;">조회</button><!-- 조회 -->
-                                    </span>
-                                    
-                                    <input name="qaId" type="hidden" value="">
-									<input name="passwordConfirmAt" type="hidden" value="">
-									<input name="pageIndex" type="hidden" value="<c:out value='${searchVO.pageIndex}'/>"/>
-									</form>
-                                    
-                                </div>
-                                <!--// 검색조건 -->
-
-                                <!-- 게시판 -->
-                                <div class="board_list">
-                                    <table summary="Q&amp;A에 대한 답변목록을 제공합니다.">
-                                    	<caption>답변목록</caption>
-                                        <colgroup>
-                                            <col style="width: 70px;">
-                                            <col style="width: auto;">
-                                            <col style="width: 120px;">
-                                            <col style="width: 120px;">
-                                            <col style="width: 120px;">
-                                            <col style="width: 120px;">
-                                        </colgroup>
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">순번</th>
-                                                <th scope="col">질문제목</th>
-                                                <th scope="col">작성자</th>
-                                                <th scope="col">진행상태</th>
-                                                <th scope="col">조회수</th>
-                                                <th scope="col">작성일자</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        	
-                                        	<c:if test="${fn:length(resultList) == 0}">
-                                        	<tr>
-                                        		<td colspan="6"><spring:message code="common.nodata.msg" /></td>
-                                        	</tr>
-                                        	</c:if>
-                                        	
-                                        	<c:forEach items="${resultList}" var="resultInfo" varStatus="status">
-                                            <tr>
-                                                <td><c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageSize + status.count)}"/></td>
-                                                <td class="al">
-                                                	<a href="<c:url value='/uss/olh/qnm/QnaAnswerDetailInqire.do'/>?qaId=${resultInfo.qaId}&amp;pageIndex=${searchVO.pageIndex}" class="lnk" onclick="fn_egov_inquire_qnaanswerdetail('<c:out value="${resultInfo.qaId}"/>'); return false;">
-                                                		<c:out value="${resultInfo.qestnSj}"/>
-                                                	</a>
-                                                </td>
-                                                <td><c:out value="${resultInfo.wrterNm}"/></td>
-                                                <td><c:out value="${resultInfo.qnaProcessSttusCodeNm}"/></td>
-                                                <td><c:out value="${resultInfo.rdcnt}"/></td>
-                                                <td><c:out value='${fn:substring(resultInfo.writngDe, 0,4)}'/>-<c:out value='${fn:substring(resultInfo.writngDe, 4,6)}'/>-<c:out value='${fn:substring(resultInfo.writngDe, 6,8)}'/></td>
-                                            </tr>
-                                            </c:forEach>
-                                            
-                                        </tbody>
-                                    </table>
-                                </div>
-
-								<!-- 페이징 -->
-                                <div class="board_list_bot">
-                                    <div class="paging" id="paging_div">
-                                        <ul>
-                                            <ui:pagination paginationInfo = "${paginationInfo}" type="renew" jsFunction="fn_egov_select_linkPage" />
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- // 페이징 끝 -->
-                                <!--// 게시판 -->
-                            </div>
+        <!-- Content
+    ============================================= -->
+        <section id="content">
+            <div class="sub-layout">
+                <div class="sub-banner">
+                    <div class="container">
+                        <div class="sub-banner-title">
+                            QnA 답변관리
                         </div>
                     </div>
                 </div>
+                <nav class="nav-menu">
+                    <div class="container">
+                        <!-- 홈 아이콘 -->
+                        <div class="nav-item home">
+                            <a href="/"><img src="/images/icon-home.png" alt="홈"/></a>
+                        </div>
+
+                        <!-- 1depth 메뉴 항목 -->
+                        <div class="nav-item has-dropdown">
+                            <button class="nav-button">커뮤니티 <span class="nav-toggle"></span></button>
+                        </div>
+                        <div class="nav-item has-dropdown">
+                            <button class="nav-button">QNA <span class="nav-toggle"><img
+                                    src="/images/icon-nav-arrow.png" alt=""></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_AAAAAAAAAAAA">공지사항</a></li>
+                                <li><a href="/uss/olh/faq/FaqListInqire.do">FAQ</a></li>
+                                <li class="active"><a href="/uss/olh/qna/QnaListInqire.do">QNA</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
             </div>
-        </div>
+            <div class="content-wrap">
+                <div class="container clearfix">
+                    <!-- 검색조건 -->
+                    <div class="condition">
+                        <form name="QnaAnswerListForm" action="<c:url value='/uss/olh/qnm/QnaAnswerListInqire.do'/>" method="post">
+
+                            <label class="item f_select" for="searchCondition">
+                                <select name="searchCondition" id="searchCondition" title="검색조건 선택">
+                                    <option value="wrterNm" <c:if test="${searchVO.searchCondition == 'wrterNm'}">selected="selected"</c:if> >작성자명</option>
+                                    <option value="qnaProcessSttusCodeNm" <c:if test="${searchVO.searchCondition == 'qnaProcessSttusCodeNm'}">selected="selected"</c:if> >진행상태</option>
+                                </select>
+                            </label>
+
+                            <span class="item f_search">
+                                <input class="f_input w_500" name="searchKeyword" type="text" value='<c:out value="${searchVO.searchKeyword}"/>'
+                                       maxlength="35" title="검색어 입력">
+                                <button class="btn" type="submit"
+                                        onclick="fn_egov_search_qnacnanswer(); return false;">조회</button>
+                            </span>
+
+                            <input name="qaId" type="hidden" value="">
+                            <input name="passwordConfirmAt" type="hidden" value="">
+                            <input name="pageIndex" type="hidden" value="<c:out value='${searchVO.pageIndex}'/>"/>
+                        </form>
+
+                    </div>
+                    <!--// 검색조건 -->
+
+                    <!-- 게시판 -->
+                    <div class="board_list">
+                        <table>
+                            <caption>목록</caption>
+                            <colgroup>
+                                <col style="width: 70px;">
+                                <col style="width: auto; min-width: 330px;">
+                                <col style="width: 120px;">
+                                <col style="width: 120px;">
+                                <col style="width: 120px;">
+                                <col style="width: 120px;">
+                            </colgroup>
+                            <thead>
+                            <tr>
+                                <th scope="col">순번</th>
+                                <th scope="col">질문제목</th>
+                                <th scope="col">작성자</th>
+                                <th scope="col">진행상태</th>
+                                <th scope="col">조회수</th>
+                                <th scope="col">작성일자</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <c:if test="${fn:length(resultList) == 0}">
+                                <tr>
+                                    <td class="al" colspan="6">
+                                        등록된 글이 존재하지 않습니다.
+                                    </td>
+                                </tr>
+                            </c:if>
+
+                            <c:forEach items="${resultList}" var="resultInfo" varStatus="status">
+                                <tr>
+                                    <td><c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageSize + status.count)}"/></td>
+                                    <td class="al">
+                                        <a href="<c:url value='/uss/olh/qnm/QnaAnswerDetailInqire.do'/>?qaId=${resultInfo.qaId}&amp;pageIndex=${searchVO.pageIndex}" class="lnk" onclick="fn_egov_inquire_qnaanswerdetail('<c:out value="${resultInfo.qaId}"/>'); return false;">
+                                            <c:out value="${resultInfo.qestnSj}"/>
+                                        </a>
+                                    </td>
+                                    <td><c:out value="${resultInfo.wrterNm}"/></td>
+                                    <td><c:out value="${resultInfo.qnaProcessSttusCodeNm}"/></td>
+                                    <td><c:out value="${resultInfo.rdcnt}"/></td>
+                                    <td><c:out value='${fn:substring(resultInfo.writngDe, 0,4)}'/>-<c:out value='${fn:substring(resultInfo.writngDe, 4,6)}'/>-<c:out value='${fn:substring(resultInfo.writngDe, 6,8)}'/></td>
+                                </tr>
+                            </c:forEach>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- 페이징 -->
+                    <div class="board_list_bot">
+                        <div class="paging" id="paging_div">
+                            <ul>
+                                <ui:pagination paginationInfo="${paginationInfo}" type="renew" jsFunction="fn_egov_select_linkPage" />
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- // 페이징 끝 -->
+
+                    <!--// 게시판 -->
+                </div>
+            </div>
+        </section>
 
         <!-- footer 시작 -->
-	    <c:import url="/sym/mms/EgovFooter.do" />
+        <c:import url="/sym/mms/ContFooter.do" />
 	    <!-- //footer 끝 -->
     </div>
-    
+
+    <!-- Go To Top
+    ============================================= -->
+    <div id="gotoTop" class="icon-angle-up"></div>
+
+    <!-- External JavaScripts
+    ============================================= -->
+    <script type="text/javascript" src="<c:url value='/'/>js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="<c:url value='/'/>js/plugins.js"></script>
+
+    <script type="text/javascript" src="<c:url value='/'/>js/common.js"></script>
+
+    <!-- Footer Scripts
+    ============================================= -->
+    <script type="text/javascript" src="<c:url value='/'/>js/functions.js"></script>
+
+    <script type="text/javascript" src="<c:url value='/'/>js/ui.js"></script>
+
 </body>
 </html>

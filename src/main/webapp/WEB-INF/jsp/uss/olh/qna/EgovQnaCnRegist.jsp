@@ -1,38 +1,39 @@
-<%--
-  Class Name : EgovQnaCnRegist.jsp
-  Description : EgovQnaCnRegist 화면
-  Modification Information
- 
-      수정일         수정자                   수정내용
-    -------    --------    ---------------------------
-     2009.02.01   박정규          최초 생성
-     2011.08.31  JJY       경량환경 버전 생성
- 
-    author   : 공통서비스개발팀 박정규
-    since    : 2009.02.01
---%>
 <%@ page contentType="text/html; charset=utf-8"%>
-
 <%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="validator" uri="http://www.springmodules.org/tags/commons-validator" %>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html dir="ltr" lang="ko">
 <head>
-<title>샘플 포털 > 정보마당 > QnA</title>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="<c:url value='/'/>css/base.css">
-	<link rel="stylesheet" href="<c:url value='/'/>css/layout.css">
-	<link rel="stylesheet" href="<c:url value='/'/>css/component.css">
-	<link rel="stylesheet" href="<c:url value='/'/>css/page.css">
-	<script src="<c:url value='/'/>js/jquery-1.11.2.min.js"></script>
-	<script src="<c:url value='/'/>js/ui.js"></script>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="SemiColonWeb" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <!-- preload -->
+    <link rel="preload" href="<c:url value='/'/>css/reset.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="<c:url value='/'/>css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="<c:url value='/'/>css/responsive.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="<c:url value='/'/>css/font-icons.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="<c:url value='/'/>css/sub.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="<c:url value='/'/>css/board.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+    <link rel="stylesheet" href="<c:url value='/'/>css/jqueryui.css">
+
+    <!-- Document Title
+    ============================================= -->
+    <title>IBK시스템, AI 아이디어 챌린지 - QnA</title>
+
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="<c:url value='/'/>images/favicon.ico">
 
 <validator:javascript formName="qnaManageVO" staticJavascript="false" xhtml="true" cdata="false"/>
 <script type="text/javascript" src="<c:url value="/validator.do"/>"></script>
@@ -76,144 +77,149 @@ function fn_egov_inqire_qnalist() {
 </script>
 
 </head>
-<body onLoad="fn_egov_initl_qnacn();">
+<body class="stretched" onLoad="fn_egov_initl_qnacn();">
 
-    <!-- Skip navigation -->
-    <a href="#contents" class="skip_navi">본문 바로가기</a>
+    <!-- Document Wrapper
+    ============================================= -->
+    <div id="wrapper" class="clearfix">
 
-    <div class="wrap">
         <!-- header start -->
-	    <c:import url="/sym/mms/EgovHeader.do" />
+        <c:import url="/sym/mms/ContHeader.do" />
 	    <!-- //header end -->
 
-        <div class="container">
-            <div class="sub_layout">
-                <div class="sub_in">
-                    <div class="layout">
-                        <!-- Left menu -->
-	                    <c:import url="/sym/mms/EgovMenuLeft.do" />
-	                    <!--// Left menu -->
-        
-                        <div class="content_wrap">
-                            <div id="contents" class="content">
-                                 <!-- Location -->
-                                <div class="location">
-                                    <ul>
-                                        <li><a class="home" href="">Home</a></li>
-                                        <li><a href="">정보마당</a></li>
-                                        <li>QnA</li>
-                                    </ul>
-                                </div>
-                                <!--// Location -->
-
-								<form:form modelAttribute="qnaManageVO" name="qnaManageVO" action="${pageContext.request.contextPath}/uss/olh/qna/QnaCnRegist.do" method="post" >
-								<input name="answerCn" type="hidden" value="Testing...">
-
-                                <h1 class="tit_1">정보마당</h1>
-
-                                <p class="txt_1">포털시스템에서 제공되는 서비스들에 대한 컨텐츠를 관리합니다.</p>
-
-                                <h2 class="tit_2">QnA</h2>
-
-                                <div class="board_view2">
-                                    <table summary="Q&amp;A에 대한 정보를 등록합니다.">
-                                    	<caption>Q&amp;A내용등록</caption>
-                                        <colgroup>
-                                            <col style="width: 190px;">
-                                            <col style="width: auto;">
-                                        </colgroup>
-                                        <tr>
-                                            <td class="lb">
-                                                <label for="wrterNm">작성자명</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <form:input id="wrterNm" class="f_txt" path="wrterNm" size="20" maxlength="20" title="작성자명"/>
-                                                <form:errors path="wrterNm"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="lb">
-                                                <label for="writngPassword">작성 비밀번호</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <form:password id="writngPassword" class="f_txt" path="writngPassword" size="20" maxlength="20"  title="작성 비밀번호"/>
-                                                <form:errors path="writngPassword"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="lb">
-                                                <label for="areaNo">전화번호</label>
-                                            </td>
-                                            <td>
-                                                <form:input id="areaNo" class="f_txt w_80" path="areaNo" size="4" maxlength="4" title="전화번호(지역)"/>
-                                                <span class="f_txt_inner mr5 ml5">-</span>
-                                                <form:input class="f_txt w_80" path="middleTelno" size="4" maxlength="4"  title="전화번호(국번)"/>
-                                                <span class="f_txt_inner mr5 ml5">-</span>
-                                                <form:input class="f_txt w_80" path="endTelno" size="4" maxlength="4"  title="전화번호(지번)"/>
-                                                <form:errors path="areaNo"/>
-                                                <form:errors path="middleTelno"/>
-                                                <form:errors path="endTelno"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="lb">
-                                                <label for="emailAdres">이메일</label>
-                                            </td>
-                                            <td>
-                                                <input id="emailAdres" class="f_txt w_half" name="emailAdres" type="text" size="30" value="<c:out value='${result.emailAdres}'/>" maxlength="30" title="이메일">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <input type="hidden" name = "emailAnswerAt" id ="emailAnswerAt" value="N"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="lb">
-                                                <label for="qestnSj">질문제목</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <form:input id="qestnSj" class="f_txt w_full" path="qestnSj" size="70" maxlength="70" title="질문제목"/>
-                                                <form:errors path="qestnSj"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="lb">
-                                                <label for="qestnCn">질문내용</label>
-                                                <span class="req">필수</span>
-                                            </td>
-                                            <td>
-                                                <form:textarea id="qestnCn" class="f_txtar w_full h_200" path="qestnCn" cols="30" rows="10" title="질문내용"/>
-                                                <form:errors path="qestnCn"/>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-
-								<!-- 목록/저장버튼  시작-->
-                                <div class="board_view_bot">
-                                    <div class="left_col btn3">
-                                    </div>
-
-                                    <div class="right_col btn1">
-                                        <a href="#LINK" class="btn btn_blue_46 w_100" onclick="fn_egov_regist_qnacn(document.qnaManageVO); return false;"><spring:message code="button.save" /></a><!-- 저장 -->
-                                        <a href="<c:url value='/uss/olh/qna/QnaListInqire.do'/>" class="btn btn_blue_46 w_100" onclick="fn_egov_inqire_qnalist(); return false;"><spring:message code="button.list" /></a><!-- 목록 -->
-                                    </div>
-                                </div>
-                                <!-- 목록/저장버튼  끝-->
-                                
-                                </form:form>
-                                
-                            </div>
+        <!-- Content
+    ============================================= -->
+        <section id="content">
+            <div class="sub-layout">
+                <div class="sub-banner">
+                    <div class="container">
+                        <div class="sub-banner-title">
+                            QnA
                         </div>
                     </div>
                 </div>
+                <nav class="nav-menu">
+                    <div class="container">
+                        <!-- 홈 아이콘 -->
+                        <div class="nav-item home">
+                            <a href="/"><img src="/images/icon-home.png" alt="홈"/></a>
+                        </div>
+
+                        <!-- 1depth 메뉴 항목 -->
+                        <div class="nav-item has-dropdown">
+                            <button class="nav-button">커뮤니티 <span class="nav-toggle"></span></button>
+                        </div>
+                        <div class="nav-item has-dropdown">
+                            <button class="nav-button">QNA <span class="nav-toggle"><img
+                                    src="/images/icon-nav-arrow.png" alt=""></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_AAAAAAAAAAAA">공지사항</a></li>
+                                <li><a href="/uss/olh/faq/FaqListInqire.do">FAQ</a></li>
+                                <li class="active"><a href="/uss/olh/qna/QnaListInqire.do">QNA</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
             </div>
-        </div>
+            <div class="content-wrap">
+                <div class="container clearfix">
+                    <form:form modelAttribute="qnaManageVO" name="qnaManageVO" action="${pageContext.request.contextPath}/uss/olh/qna/QnaCnRegist.do" method="post" >
+                        <input name="answerCn" type="hidden" value="Testing...">
+
+                        <div class="board_form">
+                            <div>
+                                <div class="board_form_row">
+                                    <div class="title"><label for="wrterNm">작성자명</label><span style="color:red;">*</span></div>
+                                    <div class="input">
+                                        <form:input id="wrterNm" class="f_txt" path="wrterNm" size="20" maxlength="20" title="작성자명"/>
+                                        <form:errors path="wrterNm"/>
+                                    </div>
+                                </div>
+                                <div class="board_form_row">
+                                    <div class="title"><label for="writngPassword">작성 비밀번호</label><span style="color:red;">*</span></div>
+                                    <div class="input">
+                                        <form:password id="writngPassword" class="f_txt" path="writngPassword" size="20" maxlength="20"  title="작성 비밀번호"/>
+                                        <form:errors path="writngPassword"/>
+                                    </div>
+                                </div>
+                                <div class="board_form_row">
+                                    <div class="title"><label for="areaNo">전화번호</label></div>
+                                    <div class="input">
+                                        <form:input id="areaNo" class="f_txt w_80" path="areaNo" size="4" maxlength="4" title="전화번호(지역)"/>
+                                        <span class="f_txt_inner mr5 ml5">-</span>
+                                        <form:input class="f_txt w_80" path="middleTelno" size="4" maxlength="4"  title="전화번호(국번)"/>
+                                        <span class="f_txt_inner mr5 ml5">-</span>
+                                        <form:input class="f_txt w_80" path="endTelno" size="4" maxlength="4"  title="전화번호(지번)"/>
+                                        <form:errors path="areaNo"/>
+                                        <form:errors path="middleTelno"/>
+                                        <form:errors path="endTelno"/>
+                                    </div>
+                                </div>
+                                <div class="board_form_row">
+                                    <div class="title"><label for="emailAdres">이메일</label></div>
+                                    <div class="input">
+                                        <form:input id="emailAdres" class="f_txt w_half" path="emailAdres" size="30" maxlength="30" title="이메일"/>
+                                        <form:errors path="emailAdres"/>
+                                        <input type="hidden" name = "emailAnswerAt" id ="emailAnswerAt" value="N"/>
+                                    </div>
+                                </div>
+                                <div class="board_form_row">
+                                    <div class="title"><label for="qestnSj">질문제목</label><span style="color:red;">*</span></div>
+                                    <div class="input">
+                                        <form:input id="qestnSj" class="f_txt w_full" path="qestnSj" size="70" maxlength="70" title="질문제목"/>
+                                        <form:errors path="qestnSj"/>
+                                    </div>
+                                </div>
+                                <div class="board_form_row">
+                                    <div class="title"><label for="qestnCn">질문내용</label><span style="color:red;">*</span></div>
+                                    <div class="input">
+                                        <form:textarea id="qestnCn" class="f_txtar w_full h_200" path="qestnCn" cols="30" rows="10" title="질문내용"/>
+                                        <form:errors path="qestnCn"/>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- 목록/저장버튼  시작-->
+                        <div class="board_view_bot">
+                            <div class="left_col">
+                                <a href="#" class="btn btn_gray_46" onclick="fn_egov_inqire_qnalist(); return false;">목록</a>
+                            </div>
+                            <div class="center_col">
+                                <a href="#" class="btn btn_white_46" onclick="fn_egov_regist_qnacn(document.qnaManageVO); return false;">저장</a>
+                            </div>
+                            <div class="right_col"></div>
+                        </div>
+                        <!-- 목록/저장버튼  끝-->
+
+                    </form:form>
+                </div>
+            </div>
+        </section>
 
         <!-- footer 시작 -->
-	    <c:import url="/sym/mms/EgovFooter.do" />
+        <c:import url="/sym/mms/ContFooter.do" />
 	    <!-- //footer 끝 -->
     </div>
-    
+
+    <!-- Go To Top
+    ============================================= -->
+    <div id="gotoTop" class="icon-angle-up"></div>
+
+    <!-- External JavaScripts
+    ============================================= -->
+    <script type="text/javascript" src="<c:url value='/'/>js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="<c:url value='/'/>js/plugins.js"></script>
+
+    <script type="text/javascript" src="<c:url value='/'/>js/common.js"></script>
+
+    <!-- Footer Scripts
+    ============================================= -->
+    <script type="text/javascript" src="<c:url value='/'/>js/functions.js"></script>
+
+    <script type="text/javascript" src="<c:url value='/'/>js/ui.js"></script>
+    <script type="text/javascript" src="<c:url value='/'/>js/jqueryui.js"></script>
+
 </body>
 </html>

@@ -460,6 +460,7 @@ public class EgovQnaManageController {
 		QnaManageVO vo = qnaManageService.selectQnaListDetail(qnaManageVO);
 
 		model.addAttribute("result", vo);
+		model.addAttribute("qnaManageVO", vo);
 
 		return "/uss/olh/qna/EgovQnaAnswerDetailInqire";
 	}

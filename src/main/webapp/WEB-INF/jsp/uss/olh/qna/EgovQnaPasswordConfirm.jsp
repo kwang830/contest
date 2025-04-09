@@ -1,16 +1,3 @@
-<%--
-  Class Name : EgovQnaPasswordConfirm.jsp
-  Description : EgovQnaPasswordConfirm 화면
-  Modification Information
- 
-      수정일         수정자                   수정내용
-    -------    --------    ---------------------------
-     2009.02.01   박정규          최초 생성
-     2011.08.31  JJY       경량환경 버전 생성
- 
-    author   : 공통서비스개발팀 박정규
-    since    : 2009.02.01
---%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"  %>
