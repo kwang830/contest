@@ -34,7 +34,7 @@
 
     <!-- Document Title
     ============================================= -->
-    <title>IBK시스템, AI 아이디어 챌린지 - 공지사항</title>
+    <title>IBK시스템, AI 아이디어 챌린지 - FAQ</title>
 
     <!-- favicon -->
     <link rel="icon" type="image/x-icon" href="<c:url value='/'/>images/favicon.ico">

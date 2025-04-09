@@ -4,7 +4,8 @@
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<html>
+<!DOCTYPE html>
+<html dir="ltr" lang="ko">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="author" content="SemiColonWeb" />
@@ -26,7 +27,7 @@
 
     <!-- Document Title
     ============================================= -->
-    <title>IBK시스템, AI 아이디어 챌린지 - 공지사항</title>
+    <title>IBK시스템, AI 아이디어 챌린지 - FAQ</title>
 
     <!-- favicon -->
     <link rel="icon" type="image/x-icon" href="<c:url value='/'/>images/favicon.ico">
@@ -149,9 +150,8 @@ function fn_egov_inquire_faqlistdetail(faqId) {
                             <input name="faqId" type="hidden" value="">
                             <input name="pageIndex" type="hidden" value="<c:out value='${searchVO.pageIndex}'/>"/>
 
-                            <label class="item f_select" for="searchCnd">
-                                <select name="searchCnd" id="searchCnd" title="검색조건 선택">
-                                    <option value="">선택</option>
+                            <label class="item f_select" for="searchCondition">
+                                <select name="searchCondition" id="searchCondition" title="검색조건 선택">
                                     <option value="qestnSj" <c:if test="${searchVO.searchCondition == 'qestnSj'}"> selected="selected"</c:if> >질문제목</option>
                                 </select>
                             </label>
