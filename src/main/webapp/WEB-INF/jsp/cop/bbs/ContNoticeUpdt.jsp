@@ -154,12 +154,6 @@
                     <!-- 1depth 메뉴 항목 -->
                     <div class="nav-item has-dropdown">
                         <button class="nav-button">커뮤니티 <span class="nav-toggle"></span></button>
-                        <%--						<ul class="dropdown-menu">--%>
-                        <%--							<li><a href="#">소개</a></li>--%>
-                        <%--							<li><a href="#">접수</a></li>--%>
-                        <%--							<li class="active"><a href="#">커뮤니티</a></li>--%>
-                        <%--							<li><a href="#">성과</a></li>--%>
-                        <%--						</ul>--%>
                     </div>
                     <div class="nav-item has-dropdown">
                         <button class="nav-button">공지사항 <span class="nav-toggle"><img
@@ -215,7 +209,7 @@
                                 <div class="title"><label for="wrterNm">작성자명</label></div>
                                 <div class="input">
                                     <input id="wrterNm" name="wrterNm" title="작성자명" class="f_txt" type="text"
-                                           value="관리자" size="20" maxlength="20">
+                                           value="<c:out value="${result.frstRegisterNm}" escapeXml="false" />" size="20" maxlength="20" readonly="readonly">
                                 </div>
                             </div>
                             <c:if test="${bdMstr.bbsAttrbCode == 'BBSA01'}">

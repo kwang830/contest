@@ -113,7 +113,6 @@ public class EgovBBSManageController {
 	 * 게시물에 대한 목록을 조회한다.
 	 *
 	 * @param boardVO
-	 * @param sessionVO
 	 * @param model
 	 * @return
 	 * @throws Exception
@@ -191,7 +190,6 @@ public class EgovBBSManageController {
 	 * 게시물에 대한 상세 정보를 조회한다.
 	 *
 	 * @param boardVO
-	 * @param sessionVO
 	 * @param model
 	 * @return
 	 * @throws Exception
@@ -243,7 +241,6 @@ public class EgovBBSManageController {
 	 * 게시물 등록을 위한 등록페이지로 이동한다.
 	 *
 	 * @param boardVO
-	 * @param sessionVO
 	 * @param model
 	 * @return
 	 * @throws Exception
@@ -286,7 +283,6 @@ public class EgovBBSManageController {
 	 *
 	 * @param boardVO
 	 * @param board
-	 * @param sessionVO
 	 * @param model
 	 * @return
 	 * @throws Exception
@@ -355,7 +351,6 @@ public class EgovBBSManageController {
 	 * 게시물에 대한 답변 등록을 위한 등록페이지로 이동한다.
 	 *
 	 * @param boardVO
-	 * @param sessionVO
 	 * @param model
 	 * @return
 	 * @throws Exception
@@ -399,7 +394,6 @@ public class EgovBBSManageController {
 	 *
 	 * @param boardVO
 	 * @param board
-	 * @param sessionVO
 	 * @param model
 	 * @return
 	 * @throws Exception
@@ -470,7 +464,6 @@ public class EgovBBSManageController {
 	 *
 	 * @param boardVO
 	 * @param vo
-	 * @param sessionVO
 	 * @param model
 	 * @return
 	 * @throws Exception
@@ -519,7 +512,6 @@ public class EgovBBSManageController {
 	 *
 	 * @param boardVO
 	 * @param board
-	 * @param sessionVO
 	 * @param model
 	 * @return
 	 * @throws Exception
@@ -588,7 +580,6 @@ public class EgovBBSManageController {
 	 *
 	 * @param boardVO
 	 * @param board
-	 * @param sessionVO
 	 * @param model
 	 * @return
 	 * @throws Exception
@@ -613,7 +604,6 @@ public class EgovBBSManageController {
 	 * 방명록에 대한 목록을 조회한다.
 	 *
 	 * @param boardVO
-	 * @param sessionVO
 	 * @param model
 	 * @return
 	 * @throws Exception
@@ -672,7 +662,6 @@ public class EgovBBSManageController {
 	 * 방명록 수정을 위한 특정 내용을 조회한다.
 	 *
 	 * @param boardVO
-	 * @param sessionVO
 	 * @param model
 	 * @return
 	 * @throws Exception
@@ -720,7 +709,6 @@ public class EgovBBSManageController {
 	 * 방명록에 대한 내용을 삭제한다.
 	 *
 	 * @param boardVO
-	 * @param sessionVO
 	 * @param model
 	 * @return
 	 * @throws Exception
@@ -742,7 +730,6 @@ public class EgovBBSManageController {
 	 * 방명록 수정의 위한 목록을 조회한다.
 	 *
 	 * @param boardVO
-	 * @param sessionVO
 	 * @param model
 	 * @return
 	 * @throws Exception
@@ -813,7 +800,6 @@ public class EgovBBSManageController {
 	 *
 	 * @param boardVO
 	 * @param board
-	 * @param sessionVO
 	 * @param model
 	 * @return
 	 * @throws Exception
@@ -889,7 +875,6 @@ public class EgovBBSManageController {
 	 * 익명게시물에 대한 목록을 조회한다.
 	 *
 	 * @param boardVO
-	 * @param sessionVO
 	 * @param model
 	 * @return
 	 * @throws Exception
@@ -956,7 +941,6 @@ public class EgovBBSManageController {
 	 * 익명게시물 등록을 위한 등록페이지로 이동한다.
 	 *
 	 * @param boardVO
-	 * @param sessionVO
 	 * @param model
 	 * @return
 	 * @throws Exception
@@ -1005,7 +989,6 @@ public class EgovBBSManageController {
 	 *
 	 * @param boardVO
 	 * @param board
-	 * @param sessionVO
 	 * @param model
 	 * @return
 	 * @throws Exception
@@ -1081,7 +1064,6 @@ public class EgovBBSManageController {
 	 * 익명게시물에 대한 상세 정보를 조회한다.
 	 *
 	 * @param boardVO
-	 * @param sessionVO
 	 * @param model
 	 * @return
 	 * @throws Exception
@@ -1137,7 +1119,6 @@ public class EgovBBSManageController {
 	 *
 	 * @param boardVO
 	 * @param board
-	 * @param sessionVO
 	 * @param model
 	 * @return
 	 * @throws Exception
@@ -1194,7 +1175,6 @@ public class EgovBBSManageController {
 	 *
 	 * @param boardVO
 	 * @param vo
-	 * @param sessionVO
 	 * @param model
 	 * @return
 	 * @throws Exception
@@ -1266,7 +1246,6 @@ public class EgovBBSManageController {
 	 *
 	 * @param boardVO
 	 * @param board
-	 * @param sessionVO
 	 * @param model
 	 * @return
 	 * @throws Exception
@@ -1345,7 +1324,6 @@ public class EgovBBSManageController {
 	 * 익명게시물에 대한 답변 등록을 위한 등록페이지로 이동한다.
 	 *
 	 * @param boardVO
-	 * @param sessionVO
 	 * @param model
 	 * @return
 	 * @throws Exception
@@ -1392,7 +1370,6 @@ public class EgovBBSManageController {
 	 *
 	 * @param boardVO
 	 * @param board
-	 * @param sessionVO
 	 * @param model
 	 * @return
 	 * @throws Exception
@@ -1472,7 +1449,6 @@ public class EgovBBSManageController {
 	 * 템플릿에 대한 미리보기용 게시물 목록을 조회한다.
 	 *
 	 * @param boardVO
-	 * @param sessionVO
 	 * @param model
 	 * @return
 	 * @throws Exception
@@ -1551,7 +1527,6 @@ public class EgovBBSManageController {
 	 * 게시물에 대한 목록을 조회한다.
 	 *
 	 * @param boardVO
-	 * @param sessionVO
 	 * @param model
 	 * @return
 	 * @throws Exception

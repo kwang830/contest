@@ -13,7 +13,7 @@
  <select id="selectMberList" parameterType="egovframework.let.uss.umt.service.UserDefaultVO" resultType="egovMap">
 SELECT * FROM ( SELECT rownum rn, TB.* FROM (
     SELECT 
-        ESNTL_ID               as "uniqId",
+        ESNTL_ID              as "uniqId",
         'USR01'               as "userTy",
         MBER_ID               as "userId",
         MBER_NM               as "userNm",
@@ -21,7 +21,7 @@ SELECT * FROM ( SELECT rownum rn, TB.* FROM (
         AREA_NO               as "areaNo",
         MIDDLE_TELNO          as "middleTelno",
         END_TELNO             as "endTelno",
-        MBTLNUM           as "moblphonNo",
+        MBTLNUM               as "moblphonNo",
         GROUP_ID              as "groupId",
         MBER_STTUS            as "sttus",
         SBSCRB_DE             as "sbscrbDe"
