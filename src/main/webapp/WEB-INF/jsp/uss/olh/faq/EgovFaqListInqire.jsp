@@ -163,7 +163,9 @@ function fn_egov_inquire_faqlistdetail(faqId) {
                                         onclick="fn_egov_search_faq(); return false;">조회</button>
                             </span>
 
-                            <a href="#" class="item btn btn_black_46 w_100" onclick="fn_egov_regist_faq(); return false;">등록</a>
+                            <c:if test="${authFlag == 'Y'}">
+                                <a href="#" class="item btn btn_black_46 w_100" onclick="fn_egov_regist_faq(); return false;">등록</a>
+                            </c:if>
 
                         </form>
 
