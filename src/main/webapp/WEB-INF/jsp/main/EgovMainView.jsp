@@ -21,7 +21,15 @@
 	<link rel="preload" href="<c:url value='/'/>css/reset.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/responsive.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-	<link rel="preload" href="<c:url value='/'/>css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+	<c:choose>
+		<c:when test="${paramDev == 'dev'}">
+			<link rel="preload" href="<c:url value='/'/>css/main-temp.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+		</c:when>
+		<c:otherwise>
+			<link rel="preload" href="<c:url value='/'/>css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+		</c:otherwise>
+	</c:choose>
 
 	<!-- 비동기
 	============================================= -->

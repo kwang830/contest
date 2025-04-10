@@ -137,11 +137,9 @@ public class EgovMainController {
 			boardVO.setLastIndex(paginationInfo.getLastRecordIndex());
 			boardVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 
-			System.out.println("boardVO.getUseAt():"+boardVO.getUseAt());
+			//System.out.println("boardVO.getUseAt():"+boardVO.getUseAt());
 
 			model.addAttribute("notiList", bbsMngService.selectBoardArticles(boardVO, "BBSA02").get("resultList"));
-
-
 			// 공지사항 메인컨텐츠 조회 끝 -----------------------------------
 
 			return "main/EgovMainView";
@@ -346,8 +344,8 @@ public class EgovMainController {
 	 * @param model
 	 * @exception Exception Exception
 	 */
-	@RequestMapping(value = "/cmm/main/mainPage2.do")
-	public String getMgtMainPage2(HttpServletRequest request, ModelMap model)
+	@RequestMapping(value = "/cmm/main/mainPage99.do")
+	public String getMgtMainPage99(HttpServletRequest request, ModelMap model)
 	  throws Exception{
 
 		// 공지사항 메인 컨텐츠 조회 시작 ---------------------------------
@@ -598,10 +596,53 @@ public class EgovMainController {
 	 * @param model
 	 * @exception Exception Exception
 	 */
-	@RequestMapping(value = "/cmm/main/mainPage3.do")
-	public String getMgtMainPage3(HttpServletRequest request, ModelMap model)
+	@RequestMapping(value = "/cmm/main/mainPage2.do")
+	public String getMgtMainPage2(HttpServletRequest request, ModelMap model)
 			throws Exception{
 
-		return "main/EgovMainView";
+		// 방문수 확인용
+		BigDecimal visit_count = egovVisitCountLogIdGnrService.getNextBigDecimalId();
+		System.out.println("visit_count:"+visit_count);
+
+		LoginVO user =
+				EgovUserDetailsHelper.isAuthenticated()? (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser():null;
+		if(EgovUserDetailsHelper.isAuthenticated() && user!=null){
+			// 공모전 접수 카운트 조회 시작 ---------------------------------
+			BoardVO vo = new BoardVO();
+			vo.setBbsId("BBSMSTR_BBBBBBBBBBBB");
+
+			Map<String, Object> map = egovArticleService.selectGuestArticleList(vo);
+			int contestBbsTotCnt = Integer.parseInt((String)map.get("resultCnt"));
+			model.addAttribute("contestBbsTotCnt", contestBbsTotCnt);
+			// 공모전 접수 카운트 조회 끝 -----------------------------------
+
+			// 공지사항 메인 컨텐츠 조회 시작 ---------------------------------
+			BoardVO boardVO = new BoardVO();
+			boardVO.setUseAt("Y");
+			boardVO.setPageUnit(10);
+			boardVO.setPageSize(10);
+			boardVO.setBbsId("BBSMSTR_AAAAAAAAAAAA");
+
+			PaginationInfo paginationInfo = new PaginationInfo();
+
+			paginationInfo.setCurrentPageNo(boardVO.getPageIndex());
+			paginationInfo.setRecordCountPerPage(boardVO.getPageUnit());
+			paginationInfo.setPageSize(boardVO.getPageSize());
+
+			boardVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
+			boardVO.setLastIndex(paginationInfo.getLastRecordIndex());
+			boardVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+
+			System.out.println("boardVO.getUseAt():"+boardVO.getUseAt());
+
+			model.addAttribute("notiList", bbsMngService.selectBoardArticles(boardVO, "BBSA02").get("resultList"));
+
+
+			// 공지사항 메인컨텐츠 조회 끝 -----------------------------------
+
+			return "main/EgovMainView2";
+		}else{
+			return "main/contest/ContIntroView";
+		}
 	}
 }
