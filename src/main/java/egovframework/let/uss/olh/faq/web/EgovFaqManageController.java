@@ -151,6 +151,12 @@ public class EgovFaqManageController {
             @ModelAttribute("searchVO") FaqManageDefaultVO searchVO,
             ModelMap model) throws Exception {
 
+		if(EgovUserDetailsHelper.getAuthorities().contains("ROLE_ADMIN")) {
+			model.addAttribute("authFlag", "Y");
+		} else {
+			model.addAttribute("authFlag", "N");
+		}
+
 		FaqManageVO vo = faqManageService.selectFaqListDetail(faqManageVO);
 
 		model.addAttribute("result", vo);
@@ -174,7 +180,7 @@ public class EgovFaqManageController {
     	Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
     	if(!isAuthenticated) {
     		loginVO  = new LoginVO();
-    		loginVO.setUniqId("_aunonymous");
+    		loginVO.setUniqId("anonymous");
     	}else{
     		loginVO  = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
     	}
@@ -207,6 +213,12 @@ public class EgovFaqManageController {
     		model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
         	return "uat/uia/EgovLoginUsr";
     	}
+		if (!EgovUserDetailsHelper.getAuthorities().contains("ROLE_ADMIN")) {
+			model.addAttribute("message", egovMessageSource.getMessage("fail.request.message"));
+			return "/uss/olh/faq/FaqListInqire.do";
+		} else {
+			model.addAttribute("authFlag", "Y");
+		}
         model.addAttribute("faqManageVO", new FaqManageVO());
 
         return "/uss/olh/faq/EgovFaqCnRegist";
@@ -227,8 +239,18 @@ public class EgovFaqManageController {
     		final MultipartHttpServletRequest multiRequest,		// 첨부파일을 위한...
             @ModelAttribute("searchVO") FaqManageDefaultVO searchVO,
             @ModelAttribute("faqManageVO") FaqManageVO faqManageVO,
-            BindingResult bindingResult)
+            BindingResult bindingResult,
+			ModelMap model)
             throws Exception {
+
+		if(!EgovUserDetailsHelper.isAuthenticated()) {
+			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
+			return "uat/uia/EgovLoginUsr";
+		}
+		if (!EgovUserDetailsHelper.getAuthorities().contains("ROLE_ADMIN")) {
+			model.addAttribute("message", egovMessageSource.getMessage("fail.request.message"));
+			return "/uss/olh/faq/FaqListInqire.do";
+		}
 
     	beanValidator.validate(faqManageVO, bindingResult);
 
@@ -284,6 +306,10 @@ public class EgovFaqManageController {
 			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
 			return "uat/uia/EgovLoginUsr";
 		}
+		if (!EgovUserDetailsHelper.getAuthorities().contains("ROLE_ADMIN")) {
+			model.addAttribute("message", egovMessageSource.getMessage("fail.request.message"));
+			return "/uss/olh/faq/FaqListInqire.do";
+		}
 
         FaqManageVO faqManageVO = new FaqManageVO();
 
@@ -318,6 +344,15 @@ public class EgovFaqManageController {
             BindingResult bindingResult,
             ModelMap model)
             throws Exception {
+
+		if(!EgovUserDetailsHelper.isAuthenticated()) {
+			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
+			return "uat/uia/EgovLoginUsr";
+		}
+		if (!EgovUserDetailsHelper.getAuthorities().contains("ROLE_ADMIN")) {
+			model.addAttribute("message", egovMessageSource.getMessage("fail.request.message"));
+			return "/uss/olh/faq/FaqListInqire.do";
+		}
 
     	// Validation
     	beanValidator.validate(faqManageVO, bindingResult);
@@ -376,9 +411,18 @@ public class EgovFaqManageController {
     @RequestMapping("/uss/olh/faq/FaqCnDelete.do")
     public String deleteFaqCn(
             FaqManageVO faqManageVO,
-            @ModelAttribute("searchVO") FaqManageDefaultVO searchVO)
+            @ModelAttribute("searchVO") FaqManageDefaultVO searchVO,
+			ModelMap model)
             throws Exception {
 
+		if(!EgovUserDetailsHelper.isAuthenticated()) {
+			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
+			return "uat/uia/EgovLoginUsr";
+		}
+		if (!EgovUserDetailsHelper.getAuthorities().contains("ROLE_ADMIN")) {
+			model.addAttribute("message", egovMessageSource.getMessage("fail.request.message"));
+			return "/uss/olh/faq/FaqListInqire.do";
+		}
 
     	// 첨부파일 삭제를 위한 ID 생성 start....
 		String _atchFileId = faqManageVO.getAtchFileId();

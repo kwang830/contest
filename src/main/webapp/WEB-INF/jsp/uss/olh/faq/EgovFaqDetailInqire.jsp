@@ -180,8 +180,10 @@ function fn_egov_delete_faq(faqId){
                             </div>
                             <div class="center_col"></div>
                             <div class="right_col">
-                                <a href="#" class="btn btn_white_46" onclick="fn_egov_updt_faq('<c:out value="${result.faqId}"/>'); return false;">수정</a>
-                                <a href="#" class="btn btn_black_46" onclick="fn_egov_delete_faq('<c:out value="${result.faqId}"/>'); return false;">삭제</a>
+                                <c:if test="${authFlag == 'Y'}">
+                                    <a href="#" class="btn btn_white_46" onclick="fn_egov_updt_faq('<c:out value="${result.faqId}"/>'); return false;">수정</a>
+                                    <a href="#" class="btn btn_black_46" onclick="fn_egov_delete_faq('<c:out value="${result.faqId}"/>'); return false;">삭제</a>
+                                </c:if>
                             </div>
                         </div>
                         <!--// 게시판 -->

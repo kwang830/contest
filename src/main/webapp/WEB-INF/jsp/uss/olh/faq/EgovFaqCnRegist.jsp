@@ -208,7 +208,9 @@ function fn_egov_check_file(flag) {
                                 <a href="#" class="btn btn_gray_46" onclick="javascript:fn_egov_inqire_faqcnlist(); return false;">목록</a>
                             </div>
                             <div class="center_col">
-                                <a href="#" class="btn btn_white_46" onclick="fn_egov_regist_faqcn(document.faqManageVO); return false;">저장</a>
+                                <c:if test="${authFlag == 'Y'}">
+                                    <a href="#" class="btn btn_white_46" onclick="fn_egov_regist_faqcn(document.faqManageVO); return false;">저장</a>
+                                </c:if>
                             </div>
                             <div class="right_col"></div>
                         </div>
