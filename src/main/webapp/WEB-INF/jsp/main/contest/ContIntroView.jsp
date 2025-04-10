@@ -41,21 +41,6 @@
 
 	<script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
 
-	<style>
-		#primary-menu{display: flex !important; margin-right: 0 !important;}
-		#primary-menu > ul{display: block !important; padding-right: 0 !important; margin-right: 0 !important;}
-		#primary-menu > ul > li {display: none; border: none !important;}
-		#primary-menu > ul > li:first-child {display: block !important;}
-		#primary-menu > ul > li > a{font-size: 20px; padding-left: 0 !important; padding-right: 0 !important;}
-		#primary-menu-trigger{display: none !important}
-
-		/*#header .login-menu{display: none !important;}*/
-
-		@media all and (min-width: 992px){
-			#primary-menu > ul > li > a{font-size: 24px;}
-		}
-	</style>
-
 	<!-- Document Title
 	============================================= -->
 	<title>IBK시스템 AI 아이디어 챌린지</title>

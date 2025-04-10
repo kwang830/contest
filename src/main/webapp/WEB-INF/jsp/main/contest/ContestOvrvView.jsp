@@ -108,7 +108,7 @@
 						<colgroup>
 							<col style="width:20%; min-width: 110px;"/>
 							<col style="width:auto"/>
-							<col style="width:25%"/>
+							<col style="width:25%; min-width: 135px;"/>
 						</colgroup>
 						<thead>
 						<tr>
@@ -126,21 +126,21 @@
 						<tr>
 							<th>예선 평가</th>
 							<td>2025.06.09~06.20</td>
-							<td>2025.06.23</td>
+							<td>2025.06.23(월)</td>
 						</tr>
 						<tr>
 							<th>본선 1차 평가</th>
 							<td>2025.07.14~07.25</td>
-							<td>2025.07.28</td>
+							<td>2025.07.28(월)</td>
 						</tr>
 						<tr>
 							<th>본선 2차 평가</th>
 							<td>2025.08.04~08.07</td>
-							<td>2025.08.11</td>
+							<td>2025.08.11(월)</td>
 						</tr>
 						<tr>
 							<th>시상식</th>
-							<td colspan="2">2025.08.21</td>
+							<td colspan="2">2025.08.21(목)</td>
 						</tr>
 						</tbody>
 					</table>
