@@ -5,7 +5,7 @@
 <%
 	// 현재 페이지 URL 가져오기
 	String currentPage = request.getRequestURI();
-	System.out.println("currentPage:"+currentPage);
+	//System.out.println("currentPage:"+currentPage);
 %>
 <script type="text/javascript">
 	<!--
@@ -100,7 +100,16 @@
 							LoginVO loginVO = (LoginVO)session.getAttribute("LoginVO");
 							if (loginVO == null){
 						%>
-						<a href="/uat/uia/egovLoginUsr.do" class="login-menu">로그인</a>
+
+						<c:choose>
+							<c:when test="${param.v == 'dev'}">
+								<a href="/uat/uia/egovLoginUsr.do" class="login-menu">로그인</a>
+							</c:when>
+							<c:otherwise>
+								<%--<a href="/uat/uia/egovLoginUsr.do" class="login-menu">로그인</a>--%>
+							</c:otherwise>
+						</c:choose>
+
 						<%  }else{ %>
 						<a href="/uat/uia/actionLogout.do" class="login-menu">로그아웃</a>
 						<%  } %>

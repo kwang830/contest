@@ -19,17 +19,7 @@
 	<link rel="preload" href="<c:url value='/'/>css/reset.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/responsive.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-
-	<c:choose>
-		<c:when test="${param.v == 'dev'}">
-			<!-- 1 -->
-			<link rel="preload" href="<c:url value='/'/>css/coming-soon-temp.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-		</c:when>
-		<c:otherwise>
-			<!-- 2 -->
-			<link rel="preload" href="<c:url value='/'/>css/coming-soon.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-		</c:otherwise>
-	</c:choose>
+	<link rel="preload" href="<c:url value='/'/>css/coming-soon.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
 	<!-- 비동기
 	============================================= -->
@@ -51,6 +41,20 @@
 
 	<script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
 
+	<style>
+		#primary-menu{display: flex !important; margin-right: 0 !important;}
+		#primary-menu > ul{display: block !important; padding-right: 0 !important; margin-right: 0 !important;}
+		#primary-menu > ul > li {display: none; border: none !important;}
+		#primary-menu > ul > li:first-child {display: block !important;}
+		#primary-menu > ul > li > a{font-size: 20px; padding-left: 0 !important; padding-right: 0 !important;}
+		#primary-menu-trigger{display: none !important}
+
+		/*#header .login-menu{display: none !important;}*/
+
+		@media all and (min-width: 992px){
+			#primary-menu > ul > li > a{font-size: 24px;}
+		}
+	</style>
 
 	<!-- Document Title
 	============================================= -->
