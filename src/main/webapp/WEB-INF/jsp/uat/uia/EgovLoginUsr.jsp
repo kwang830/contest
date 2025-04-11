@@ -125,14 +125,14 @@
                         <div class="form-list">
                             <div class="form-title">아이디</div>
                             <div class="form-input">
-                                <input name="id" id="id" type="text" placeholder="아이디(사번)를 입력해주세요.">
+                                <input name="id" id="id" type="text" placeholder="아이디(사번)를 입력해주세요." maxlength="20" />
                             </div>
                             <div class="form-error-text" style="display: none;"></div>
                         </div>
                         <div class="form-list">
                             <div class="form-title">비밀번호</div>
                             <div class="form-input">
-                                <input name="password" id="password" type="password" placeholder="비밀번호를 입력해주세요." autocomplete="current-password">
+                                <input name="password" id="password" type="password" placeholder="비밀번호를 입력해주세요." autocomplete="current-password" maxlength="100" />
                             </div>
                             <div class="form-error-text" style="display: none;"></div>
                         </div>
