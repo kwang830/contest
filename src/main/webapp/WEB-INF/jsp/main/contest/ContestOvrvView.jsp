@@ -27,7 +27,7 @@
 		#primary-menu > ul{display: block !important; padding-right: 0 !important; margin-right: 0 !important;}
 		#primary-menu > ul > li {display: none; border: none !important;}
 		#primary-menu > ul > li:first-child {display: block !important;}
-		#primary-menu > ul > li > a{font-size: 20px; padding-left: 0 !important; padding-right: 0 !important;}
+		#primary-menu > ul > li > a{font-size: 18px; padding-left: 0 !important; padding-right: 0 !important;}
 		#primary-menu-trigger{display: none !important}
 
 		/*#header .login-menu{display: none !important;}*/

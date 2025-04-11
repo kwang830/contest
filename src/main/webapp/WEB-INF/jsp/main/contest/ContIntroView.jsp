@@ -107,12 +107,12 @@
 		</section>
 		<section class="info-wrap">
 			<div class="container">
-				<div class="info-box" onClick="openPopup('posterPop')">
+				<div class="info-box" onClick="location.href='/cmm/contest/contestOvrv.do'">
 					<div class="info-img">
 						<dotlottie-player src="https://lottie.host/df93cec7-8ffa-4cbc-bd77-e4aa3732f340/gYudwl74Ca.lottie" background="transparent" speed="1" autoplay></dotlottie-player>
 					</div>
 					<div class="info-text">
-						<div class="info-title">공모전 포스터</div>
+						<div class="info-title">공모개요</div>
 						<div class="info-desc">
 							공모전의 자세한 정보를
 							확인하려면 여기를 클릭하세요.
@@ -145,7 +145,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="info-box" style="background-color: #EDF3FF">
+				<div class="info-box" style="background-color: #EDF3FF; cursor: default;">
 					<div class="info-img">
 						<dotlottie-player src="https://lottie.host/9082124a-6e07-4b75-a607-776f501789fa/CSnjSWTPhY.lottie" background="transparent" speed="1" autoplay></dotlottie-player>
 					</div>

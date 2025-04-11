@@ -10,8 +10,8 @@
 		height: auto !important;
 	}
 
-	#logo img{
-		max-width: 260px;
+	#header #logo img{
+		max-width: 232px;
 	}
 	#header.sticky-header:not(.static-sticky) #logo a > img{max-width: 240px;}
 

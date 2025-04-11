@@ -21,7 +21,59 @@
 	<link rel="preload" href="<c:url value='/'/>css/responsive.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/font-icons.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/sub.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-	<link rel="preload" href="<c:url value='/'/>css/form.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="preload" href="<c:url value='/'/>css/board.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+	<style>
+		* {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			font-family: Arial, sans-serif;
+		}
+
+		.layout-wrapper {
+			display: flex;
+			flex-direction: row;
+			height: 100vh;
+		}
+
+		.left {
+			/*background-color: #0074D9;*/
+			color: #999;
+			width: 20%;
+			padding: 20px;
+		}
+
+		.divider {
+			width: 1px;
+			background-color: #999;
+		}
+
+		.right {
+			/*background-color: #cce6ff;*/
+			width: 80%;
+			padding: 20px;
+		}
+
+		@media (max-width: 768px) {
+			.layout-wrapper {
+				flex-direction: column;
+			}
+
+			.left,
+			.right {
+				width: 100%;
+				height: auto;
+			}
+
+			.divider {
+				display: none; /* 모바일에서는 구분선 숨기기 */
+			}
+		}
+	</style>
 
 	<!-- Document Title
     ============================================= -->
@@ -93,8 +145,70 @@
 		<div class="content-wrap">
 			<div class="container clearfix">
 
+				<div class="layout-wrapper">
+					<div class="left">평가 대상 목록</div>
+					<div class="divider"></div>
+					<div class="right">
 
-				<!--// 게시판 -->
+						<div class="condition">
+							<h2>평가기준 및 평가</h2>
+
+							<div class="board_list">
+								<table>
+									<caption>목록</caption>
+									<colgroup>
+										<col style="width: 250px;">
+										<col style="width: 250px;">
+										<col style="width: auto; min-width: 250px;">
+										<col style="width: 250px;">
+									</colgroup>
+									<thead>
+										<tr>
+											<th scope="col" colspan="3">항목</th>
+											<th scope="col">설명</th>
+											<th scope="col">비고</th>
+											<th scope="col">평가</th>
+										</tr>
+									</thead>
+									<tbody>
+									<c:if test="${empty resultList}">
+										<tr>
+											<td class="al" colspan="4">등록된 정보가 존재하지 않습니다.</td>
+										</tr>
+									</c:if>
+
+									<tr>
+										<td rowspan="4">사업측면<br>40</td>
+										<td>시장성</td>
+										<td>15</td>
+										<td>실용성, 상업화 가능성</td>
+										<td>- 아이디어의 시장성<br>
+											- 기존 사업과의 연계성</td>
+										<td><select id="test01"><option>0</option><option>5</option><option>10</option><option>15</option></select></td>
+									</tr>
+									<tr>
+										<td>수익성</td>
+										<td>10</td>
+										<td>적정한 수익모델 제시</td>
+										<td>- 수익모델 및 수익구조 분석</td>
+										<td>[]</td>
+									</tr>
+									<tr>
+										<td>효율성</td>
+										<td>10</td>
+										<td>당사인력 및 포지션 활용</td>
+										<td>- 자사 자원의 효과적 활용과 시너지 효과<br>
+											- 자사 경쟁우위요소 활용 여부</td>
+										<td>[]</td>
+									</tr>
+
+									</tbody>
+								</table>
+							</div>
+
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>
