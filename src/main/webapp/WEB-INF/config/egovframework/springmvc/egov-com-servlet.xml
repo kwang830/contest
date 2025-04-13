@@ -26,10 +26,27 @@
             </props>
         </property> -->
     </bean>
-    
+
+    <!-- JSON 메시지 컨버터를 포함한 RequestMappingHandlerAdapter 설정 -->
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
         <property name="webBindingInitializer">
             <bean class="egovframework.com.cmm.web.EgovBindingInitializer"/>
+        </property>
+        <property name="messageConverters">
+            <list>
+                <!-- 문자열 처리 -->
+                <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+
+                <!-- JSON 처리 (Jackson 기반) -->
+                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                    <property name="supportedMediaTypes">
+                        <list>
+                            <value>application/json</value>
+                            <value>application/json;charset=UTF-8</value>
+                        </list>
+                    </property>
+                </bean>
+            </list>
         </property>
     </bean>
 

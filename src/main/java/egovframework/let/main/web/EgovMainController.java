@@ -489,21 +489,6 @@ public class EgovMainController {
 	}
 
 	/**
-	 * 공모전 심사
-	 * @return 메인페이지 정보 Map [key : 항목명]
-	 *
-	 * @param request
-	 * @param model
-	 * @exception Exception Exception
-	 */
-	@RequestMapping(value = "/cmm/contest/contestAdminVote.do")
-	public String getContestAdminVotePage(HttpServletRequest request, ModelMap model)
-			throws Exception{
-
-		return "main/contest/ContestAdminVoteView";
-	}
-
-	/**
 	 * 공모전 투표결과
 	 * @return 메인페이지 정보 Map [key : 항목명]
 	 *

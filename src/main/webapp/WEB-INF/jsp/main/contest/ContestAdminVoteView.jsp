@@ -88,6 +88,16 @@
 			padding-left: 15px;
 		}
 
+		table tr.selected td {
+			background-color: #d0ebff; /* 모든 td에 하늘색 배경 */
+			font-weight: bold;         /* 글씨 굵게 */
+		}
+
+		/* 첫 번째 td는 배경 제거 */
+		table tr.selected td:first-child {
+			background-color: transparent !important;
+		}
+
 		@media screen and (max-width: 768px) {
 			td.hid, th.hid {
 				width: 0 !important;
@@ -100,6 +110,19 @@
 				width: 0 !important;
 				display: none;
 			}
+		}
+
+		.groupList {
+			display: flex;
+			align-items: center;     /* 세로 중앙 정렬 */
+			justify-content: center; /* 가로 중앙 정렬 (필요 시) */
+			height: 70px;            /* 원하는 높이 */
+			border: 1px solid #ccc;   /* 영역 확인용 */
+		}
+		.groupList span {
+			font-size: 19px;
+			color: #000;
+			padding-right: 10px;
 		}
 	</style>
 
@@ -178,8 +201,23 @@
 						<div class="condition">
 							<h3>평가 대상 목록</h3>
 
-							<div class="board_list">
-								<table>
+							<form name="bbsSearchVo">
+								<input type="hidden" name="bbsId" >
+								<input type="hidden" name="userId" >
+							</form>
+
+							<div class="board_list selectable-table">
+								<div class="groupList">
+									<label class="item f_select" for="sel_group">
+										<select name="sel_group" id="sel_group" title="평가 선택">
+											<c:forEach var="result" items="${contVoteAdminGroupList}" begin="0" end="10" step="1" varStatus="status">
+												<option value="${result.valtMngmNo}" >${result.valtMngmTtl}</option>
+											</c:forEach>
+										</select>
+									</label>
+								</div>
+
+								<table id="userList">
 									<caption>목록</caption>
 									<colgroup>
 										<col style="width: 70px;">
@@ -193,46 +231,14 @@
 									</tr>
 									</thead>
 									<tbody>
-									<tr>
-										<td>1</td>
-										<td>김대광</td>
-									</tr>
-									<tr>
-										<td>2</td>
-										<td>이진석</td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td>김용주</td>
-									</tr>
-									<tr>
-										<td>4</td>
-										<td>손영주</td>
-									</tr>
-									<tr>
-										<td>5</td>
-										<td>오명진</td>
-									</tr>
-									<tr>
-										<td>6</td>
-										<td>백단비</td>
-									</tr>
-									<tr>
-										<td>7</td>
-										<td>권승주</td>
-									</tr>
-									<tr>
-										<td>8</td>
-										<td>황수정</td>
-									</tr>
-									<tr>
-										<td>9</td>
-										<td>정수민</td>
-									</tr>
-									<tr>
-										<td>10</td>
-										<td>홍길동</td>
-									</tr>
+
+									<c:forEach var="result" items="${contVoteAdminBBSList}" begin="0" end="20" step="1" varStatus="status">
+										<tr data-bbsid="${result.bbsId}" data-nttid="${result.nttId}" data-valtmngmno="${result.valtMngmNo}">
+											<td>${status.count} </td>
+											<td>${result.ntcrNm}</td>
+										</tr>
+									</c:forEach>
+
 									</tbody>
 								</table>
 							</div>
@@ -246,7 +252,7 @@
 							<h2>평가기준 및 평가</h2>
 
 							<div class="board_list">
-								<table>
+								<table class="selectable-table">
 									<caption>목록</caption>
 									<colgroup>
 										<col style="width: 120px;">
@@ -562,5 +568,79 @@
 ============================================= -->
 <script type="text/javascript" src="<c:url value='/'/>js/functions.js"></script>
 
+<script>
+	$(function () {
+		$('.selectable-table').each(function () {
+			$(this).find('tr').click(function () {
+				$(this).siblings().removeClass('selected');
+				$(this).addClass('selected');
+			});
+		});
+	});
+</script>
+<script>
+	function handleRowClick(bbsId, nttId, valtMngmNo) {
+		//alert("bbsId: " + bbsId + ", nttId: " + nttId + ",valtMngmNo:" + valtMngmNo);
+		$('[id^="sel_"]').each(function () {
+			$(this).val('');
+		});
+
+		fn_select_votes(bbsId, nttId, valtMngmNo);
+	}
+
+	$(function () {
+		$('#userList tr').on('click', function () {
+			const bbsId = $(this).data('bbsid');
+			const nttId = $(this).data('nttid');
+			const valtMngmNo = $(this).data('valtmngmno');
+			console.log('bbsId:'+bbsId);
+			console.log('nttId:'+nttId);
+			console.log('valtMngmNo:'+valtMngmNo);
+
+			handleRowClick(bbsId, nttId, valtMngmNo);
+		});
+	});
+
+	function fn_select_votes(bbsId, nttId, valtMngmNo){
+		$.ajax({
+			type: "POST",
+			url: "${pageContext.request.contextPath}/api/cont/vote/selectAdminVotesAjax.do",
+			data: JSON.stringify({
+				bbsId: bbsId,
+				nttId: nttId,
+				valtMngmNo: valtMngmNo
+			}),
+			contentType: "application/json; charset=UTF-8",
+			dataType: 'json',
+			success: function(returnData) {
+				console.log(returnData);
+
+				// returnData에서 contVoteAdminGroupList 추출
+				const dataList = returnData.contVoteAdminGroupList;
+
+				dataList.forEach(item => {
+					const qsitNo = item.qsitNo;
+					const valtScr = item.valtScr;
+					console.log('qsitNo:' + qsitNo + ', valtScr:' + valtScr);
+
+					const $select = $('#sel_' + qsitNo);  // 문자열 연결로 변경
+					if ($select.length) {
+						$select.val(valtScr);
+						console.log('#sel_' + qsitNo + ' 값을 ' + valtScr + '로 설정');  // 템플릿 리터럴 안 써도 안전
+					} else {
+						console.warn('#sel_' + qsitNo + ' 셀렉터를 찾을 수 없습니다');
+					}
+
+				});
+
+				//
+			},
+			error: function(xhr) {
+				console.error("에러:", xhr.status, xhr.responseText);
+			}
+		});
+
+	}
+</script>
 </body>
 </html>
