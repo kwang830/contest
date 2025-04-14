@@ -291,8 +291,10 @@
 											<label class="item f_select" for="sel_101">
 												<select name="sel_101" id="sel_101" title="평가 선택">
 													<option value="">-선택-</option>
-													<c:forTokens var="count" items="15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0" delims=",">
-														<option value="${count}">${count}</option>
+													<c:forTokens var="item" items="매우우수(15점)|15,우수(12점)|12,보통(9점)|9,미흡(6점)|6,매우미흡(3점)|3" delims=",">
+														<c:set var="label" value="${fn:split(item, '|')[0]}" />
+														<c:set var="value" value="${fn:split(item, '|')[1]}" />
+														<option value="${value}">${label}</option>
 													</c:forTokens>
 												</select>
 											</label>
@@ -307,8 +309,10 @@
 											<label class="item f_select" for="sel_102">
 												<select name="sel_102" id="sel_102" title="평가 선택">
 													<option value="">-선택-</option>
-													<c:forTokens var="count" items="10,9,8,7,6,5,4,3,2,1,0" delims=",">
-														<option value="${count}">${count}</option>
+													<c:forTokens var="item" items="매우우수(10점)|10,우수(8점)|8,보통(6점)|6,미흡(4점)|4,매우미흡(2점)|2" delims=",">
+														<c:set var="label" value="${fn:split(item, '|')[0]}" />
+														<c:set var="value" value="${fn:split(item, '|')[1]}" />
+														<option value="${value}">${label}</option>
 													</c:forTokens>
 												</select>
 											</label>
@@ -325,8 +329,10 @@
 											<label class="item f_select" for="sel_103">
 												<select name="sel_103" id="sel_103" title="평가 선택">
 													<option value="">-선택-</option>
-													<c:forTokens var="count" items="10,9,8,7,6,5,4,3,2,1,0" delims=",">
-														<option value="${count}">${count}</option>
+													<c:forTokens var="item" items="매우우수(10점)|10,우수(8점)|8,보통(6점)|6,미흡(4점)|4,매우미흡(2점)|2" delims=",">
+														<c:set var="label" value="${fn:split(item, '|')[0]}" />
+														<c:set var="value" value="${fn:split(item, '|')[1]}" />
+														<option value="${value}">${label}</option>
 													</c:forTokens>
 												</select>
 											</label>
@@ -344,8 +350,10 @@
 											<label class="item f_select" for="sel_104">
 												<select name="sel_104" id="sel_104" title="평가 선택">
 													<option value="">-선택-</option>
-													<c:forTokens var="count" items="5,4,3,2,1,0" delims=",">
-														<option value="${count}">${count}</option>
+													<c:forTokens var="item" items="매우우수(5점)|5,우수(4점)|4,보통(3점)|3,미흡(2점)|2,매우미흡(1점)|1" delims=",">
+														<c:set var="label" value="${fn:split(item, '|')[0]}" />
+														<c:set var="value" value="${fn:split(item, '|')[1]}" />
+														<option value="${value}">${label}</option>
 													</c:forTokens>
 												</select>
 											</label>
@@ -365,8 +373,10 @@
 											<label class="item f_select" for="sel_201">
 												<select name="sel_201" id="sel_201" title="평가 선택">
 													<option value="">-선택-</option>
-													<c:forTokens var="count" items="10,9,8,7,6,5,4,3,2,1,0" delims=",">
-														<option value="${count}">${count}</option>
+													<c:forTokens var="item" items="매우우수(10점)|10,우수(8점)|8,보통(6점)|6,미흡(4점)|4,매우미흡(2점)|2" delims=",">
+														<c:set var="label" value="${fn:split(item, '|')[0]}" />
+														<c:set var="value" value="${fn:split(item, '|')[1]}" />
+														<option value="${value}">${label}</option>
 													</c:forTokens>
 												</select>
 											</label>
@@ -381,8 +391,10 @@
 											<label class="item f_select" for="sel_202">
 												<select name="sel_202" id="sel_202" title="평가 선택">
 													<option value="">-선택-</option>
-													<c:forTokens var="count" items="10,9,8,7,6,5,4,3,2,1,0" delims=",">
-														<option value="${count}">${count}</option>
+													<c:forTokens var="item" items="매우우수(10점)|10,우수(8점)|8,보통(6점)|6,미흡(4점)|4,매우미흡(2점)|2" delims=",">
+														<c:set var="label" value="${fn:split(item, '|')[0]}" />
+														<c:set var="value" value="${fn:split(item, '|')[1]}" />
+														<option value="${value}">${label}</option>
 													</c:forTokens>
 												</select>
 											</label>
@@ -398,8 +410,10 @@
 											<label class="item f_select" for="sel_203">
 												<select name="sel_203" id="sel_203" title="평가 선택">
 													<option value="">-선택-</option>
-													<c:forTokens var="count" items="10,9,8,7,6,5,4,3,2,1,0" delims=",">
-														<option value="${count}">${count}</option>
+													<c:forTokens var="item" items="매우우수(10점)|10,우수(8점)|8,보통(6점)|6,미흡(4점)|4,매우미흡(2점)|2" delims=",">
+														<c:set var="label" value="${fn:split(item, '|')[0]}" />
+														<c:set var="value" value="${fn:split(item, '|')[1]}" />
+														<option value="${value}">${label}</option>
 													</c:forTokens>
 												</select>
 											</label>
@@ -418,8 +432,10 @@
 											<label class="item f_select" for="sel_301">
 												<select name="sel_301" id="sel_301" title="평가 선택">
 													<option value="">-선택-</option>
-													<c:forTokens var="count" items="10,9,8,7,6,5,4,3,2,1,0" delims=",">
-														<option value="${count}">${count}</option>
+													<c:forTokens var="item" items="매우우수(10점)|10,우수(8점)|8,보통(6점)|6,미흡(4점)|4,매우미흡(2점)|2" delims=",">
+														<c:set var="label" value="${fn:split(item, '|')[0]}" />
+														<c:set var="value" value="${fn:split(item, '|')[1]}" />
+														<option value="${value}">${label}</option>
 													</c:forTokens>
 												</select>
 											</label>
@@ -436,8 +452,10 @@
 											<label class="item f_select" for="sel_302">
 												<select name="sel_302" id="sel_302" title="평가 선택">
 													<option value="">-선택-</option>
-													<c:forTokens var="count" items="5,4,3,2,1,0" delims=",">
-														<option value="${count}">${count}</option>
+													<c:forTokens var="item" items="매우우수(5점)|5,우수(4점)|4,보통(3점)|3,미흡(2점)|2,매우미흡(1점)|1" delims=",">
+														<c:set var="label" value="${fn:split(item, '|')[0]}" />
+														<c:set var="value" value="${fn:split(item, '|')[1]}" />
+														<option value="${value}">${label}</option>
 													</c:forTokens>
 												</select>
 											</label>
@@ -453,8 +471,10 @@
 											<label class="item f_select" for="sel_303">
 												<select name="sel_303" id="sel_303" title="평가 선택">
 													<option value="">-선택-</option>
-													<c:forTokens var="count" items="5,4,3,2,1,0" delims=",">
-														<option value="${count}">${count}</option>
+													<c:forTokens var="item" items="매우우수(5점)|5,우수(4점)|4,보통(3점)|3,미흡(2점)|2,매우미흡(1점)|1" delims=",">
+														<c:set var="label" value="${fn:split(item, '|')[0]}" />
+														<c:set var="value" value="${fn:split(item, '|')[1]}" />
+														<option value="${value}">${label}</option>
 													</c:forTokens>
 												</select>
 											</label>
@@ -474,8 +494,10 @@
 											<label class="item f_select" for="sel_401">
 												<select name="sel_401" id="sel_401" title="평가 선택">
 													<option value="">-선택-</option>
-													<c:forTokens var="count" items="5,4,3,2,1,0" delims=",">
-														<option value="${count}">${count}</option>
+													<c:forTokens var="item" items="매우우수(5점)|5,우수(4점)|4,보통(3점)|3,미흡(2점)|2,매우미흡(1점)|1" delims=",">
+														<c:set var="label" value="${fn:split(item, '|')[0]}" />
+														<c:set var="value" value="${fn:split(item, '|')[1]}" />
+														<option value="${value}">${label}</option>
 													</c:forTokens>
 												</select>
 											</label>
@@ -493,8 +515,10 @@
 											<label class="item f_select" for="sel_402">
 												<select name="sel_402" id="sel_402" title="평가 선택">
 													<option value="">-선택-</option>
-													<c:forTokens var="count" items="5,4,3,2,1,0" delims=",">
-														<option value="${count}">${count}</option>
+													<c:forTokens var="item" items="매우우수(5점)|5,우수(4점)|4,보통(3점)|3,미흡(2점)|2,매우미흡(1점)|1" delims=",">
+														<c:set var="label" value="${fn:split(item, '|')[0]}" />
+														<c:set var="value" value="${fn:split(item, '|')[1]}" />
+														<option value="${value}">${label}</option>
 													</c:forTokens>
 												</select>
 											</label>
@@ -514,8 +538,10 @@
 											<label class="item f_select" for="sel_501">
 												<select name="sel_501" id="sel_501" title="평가 선택">
 													<option value="">-선택-</option>
-													<c:forTokens var="count" items="10,9,8,7,6,5,4,3,2,1,0" delims=",">
-														<option value="${count}">${count}</option>
+													<c:forTokens var="item" items="매우우수(10점)|10,우수(8점)|8,보통(6점)|6,미흡(4점)|4,매우미흡(2점)|2" delims=",">
+														<c:set var="label" value="${fn:split(item, '|')[0]}" />
+														<c:set var="value" value="${fn:split(item, '|')[1]}" />
+														<option value="${value}">${label}</option>
 													</c:forTokens>
 												</select>
 											</label>
@@ -524,7 +550,9 @@
 									<tr style="background: #EAEAEA;">
 										<td colspan="2" class="center-cell">&nbsp;</td>
 										<td colspan="3" class="center-cell hid">합계</td>
-										<td>99점</td>
+										<td>
+											<input class="f_input" style="width:30px;" name="tot_sel_point" type="text" value="0" maxlength="3" title="검색어 입력" readonly="readonly">점
+										</td>
 									</tr>
 									</tbody>
 								</table>
@@ -641,6 +669,25 @@
 		});
 
 	}
+
+	function calculateTotalPoints() {
+		let total = 0;
+
+		// name이 sel_로 시작하는 select 요소들을 순회
+		$('select[name^="sel_"]').each(function () {
+			let val = parseFloat($(this).val());
+			if (!isNaN(val)) {
+				total += val;
+			}
+		});
+
+		// name이 tot_sel_point인 요소에 합계 설정
+		$('[name="tot_sel_point"]').val(total);
+	}
+
+	$(document).ready(function () {
+		$('select[name^="sel_"]').on('change', calculateTotalPoints);
+	});
 </script>
 </body>
 </html>
