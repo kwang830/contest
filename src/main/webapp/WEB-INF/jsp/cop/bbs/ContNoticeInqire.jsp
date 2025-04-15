@@ -153,8 +153,10 @@
 
                 <div class="board_view">
                     <div class="board_view_top_con">
-                        <!-- 관리자가 작성한 경우 writer_img display:none 처리 -->
-                        <div class="board_view_writer_img"></div>
+                        <!-- 관리자가 작성한 경우 mem-info-img display:none 처리 or src 안넣으면 기본이미지로 노출 -->
+                        <div class="mem-info-img">
+                            <img src="" alt=""> <!--작성자 이미지-->
+                        </div>
                         <div>
                             <div class="board_view_title">
                                 <c:out value="${result.nttSj}" escapeXml="false" />

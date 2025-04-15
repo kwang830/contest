@@ -191,19 +191,19 @@
         }
 
         // 1. input 포커스 시 스타일 변경
-        $('.form-input input').on('focus', function() {
+        $('.form-input input:not([type="file"])').on('focus', function() {
             const $input = $(this);
             const $parent = $input.closest('.form-list');
 
             // 에러 초기화
-            parent.removeClass('input-error');
-            parent.find('.form-error-text').hide();
+            $parent.removeClass('input-error');
+            $parent.find('.form-error-text').hide();
 
             $parent.addClass('focused');
         });
 
         // focus 해제 시 초기화
-        $('.form-input input').on('blur', function() {
+        $('.form-input input:not([type="file"])').on('blur', function() {
             const $input = $(this);
             const $parent = $input.closest('.form-list');
 

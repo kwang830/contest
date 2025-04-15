@@ -30,7 +30,8 @@
 		#primary-menu > ul > li > a{font-size: 18px; padding-left: 0 !important; padding-right: 0 !important;}
 		#primary-menu-trigger{display: none !important}
 
-		/*#header .login-menu{display: none !important;}*/
+		#header .login-info-con{display: none !important;}
+		#header #primary-menu-con > .login-menu{display: block;} /*v=dev일때만*/
 
 		@media all and (min-width: 992px){
 			#primary-menu > ul > li > a{font-size: 24px;}

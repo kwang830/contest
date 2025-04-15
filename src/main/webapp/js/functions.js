@@ -878,8 +878,8 @@ var SEMICOLON = SEMICOLON || {};
 
 				$('body:not(.side-header) #primary-menu:not(.on-click) > ul, body:not(.side-header) #primary-menu:not(.on-click) > div > ul:not(.dropdown-menu), .top-links:not(.on-click) > ul').superfish({
 					popUpSelector: 'ul,.mega-menu-content,.top-link-section',
-					delay: 250,
-					speed: 350,
+					delay: 100,
+					speed: 300,
 					animation: {opacity:'show'},
 					animationOut:  {opacity:'hide'},
 					cssArrows: false,
@@ -903,6 +903,20 @@ var SEMICOLON = SEMICOLON || {};
 					animationOut:  {opacity:'hide',height:'hide'},
 					cssArrows: false
 				});
+
+
+				$('#primary-menu-con > .login-menu-con').hover(
+					function () {
+						const $menu = $(this).find('.mem-menu');
+						$menu.stop(true, true).css('display', 'block').animate({ opacity: 1 }, 200);
+					},
+					function () {
+						const $menu = $(this).find('.mem-menu');
+						$menu.stop(true, true).animate({ opacity: 0 }, 200, function () {
+							$menu.css('display', 'none');
+						});
+					}
+				);
 			}
 
 		},

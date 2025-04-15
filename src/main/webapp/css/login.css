@@ -135,6 +135,11 @@
 	font-weight: 600;
 }
 
+.login-form-con .form-btn-con {
+	margin-top: 0;
+	margin-bottom: 20px;
+}
+
 @media all and (min-width: 768px) {
 	.login-layout{
 		padding: 150px 0 245px;

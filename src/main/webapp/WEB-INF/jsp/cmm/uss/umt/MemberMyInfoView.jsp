@@ -83,61 +83,63 @@
                 </div>
             </nav>
         </div>
-        <div class="form-wrap" style="padding-top:50px;">
-            <div class="container">
-                <form class="form-con" id="form" name="passwordChgVO" method="post" action="<c:url value="${'/uss/umt/edit/MyInfoPasswordUpdt.do'}"/>">
-                    <input name="mberId" id="mberId" type="hidden" value="<c:out value='${mberManageVO.mberId}'/>" />
-                    <input name="uniqId" id="uniqId" type="hidden" value="<c:out value='${mberManageVO.uniqId}'/>" />
-                    <input name="userTy" id="userTy" type="hidden" value="<c:out value='${mberManageVO.userTy}'/>" />
+        <div class="content-wrap">
+            <div class="form-wrap">
+                <div class="container">
+                    <form class="form-con" id="form" name="passwordChgVO" method="post" action="<c:url value="${'/uss/umt/edit/MyInfoPasswordUpdt.do'}"/>">
+                        <input name="mberId" id="mberId" type="hidden" value="<c:out value='${mberManageVO.mberId}'/>" />
+                        <input name="uniqId" id="uniqId" type="hidden" value="<c:out value='${mberManageVO.uniqId}'/>" />
+                        <input name="userTy" id="userTy" type="hidden" value="<c:out value='${mberManageVO.userTy}'/>" />
 
-                    <div class="form-list-con">
-                        <div class="form-list">
-                            <div class="form-title">이름</div>
-                            <div class="form-input">
-                                <input name="mberNm" type="text" value="<c:out value='${mberManageVO.mberNm}'/>" readonly />
+                        <div class="form-list-con">
+                            <div class="form-list">
+                                <div class="form-title">이름</div>
+                                <div class="form-input">
+                                    <input name="mberNm" type="text" value="<c:out value='${mberManageVO.mberNm}'/>" readonly />
+                                </div>
+                                <div class="form-error-text" style="display: none;"></div>
                             </div>
-                            <div class="form-error-text" style="display: none;"></div>
-                        </div>
-                        <div class="form-list">
-                            <div class="form-title">직책</div>
-                            <div class="form-input">
-                                <input name="titleNm" type="text" value="<c:out value='${mberManageVO.titleNm}'/>" readonly />
+                            <div class="form-list">
+                                <div class="form-title">직책</div>
+                                <div class="form-input">
+                                    <input name="titleNm" type="text" value="<c:out value='${mberManageVO.titleNm}'/>" readonly />
+                                </div>
+                                <div class="form-error-text" style="display: none;"></div>
                             </div>
-                            <div class="form-error-text" style="display: none;"></div>
-                        </div>
-                        <div class="form-list">
-                            <div class="form-title">소속</div>
-                            <div class="form-input">
-                                <input name="deptNmF" type="text" value="<c:out value='${mberManageVO.deptNmF}' escapeXml="false"/>" readonly />
+                            <div class="form-list">
+                                <div class="form-title">소속</div>
+                                <div class="form-input">
+                                    <input name="deptNmF" type="text" value="<c:out value='${mberManageVO.deptNmF}' escapeXml="false"/>" readonly />
+                                </div>
+                                <div class="form-error-text" style="display: none;"></div>
                             </div>
-                            <div class="form-error-text" style="display: none;"></div>
-                        </div>
-                        <div class="form-list">
-                            <div class="form-title">이전 비밀번호<span style="color:red;">*</span></div>
-                            <div class="form-input">
-                                <input name="oldPassword" id="oldPassword" class="f_txt" type="password" value="" maxlength="100" />
+                            <div class="form-list">
+                                <div class="form-title">이전 비밀번호<span style="color:red;">*</span></div>
+                                <div class="form-input">
+                                    <input name="oldPassword" id="oldPassword" class="f_txt" type="password" value="" maxlength="100" />
+                                </div>
+                                <div class="form-error-text" style="display: none;"></div>
                             </div>
-                            <div class="form-error-text" style="display: none;"></div>
-                        </div>
-                        <div class="form-list">
-                            <div class="form-title">신규 비밀번호<span style="color:red;">*</span></div>
-                            <div class="form-input">
-                                <input name="newPassword" id="newPassword" class="f_txt" type="password" value="" maxlength="100" />
+                            <div class="form-list">
+                                <div class="form-title">신규 비밀번호<span style="color:red;">*</span></div>
+                                <div class="form-input">
+                                    <input name="newPassword" id="newPassword" class="f_txt" type="password" value="" maxlength="100" />
+                                </div>
+                                <div class="form-error-text" style="display: none;"></div>
                             </div>
-                            <div class="form-error-text" style="display: none;"></div>
-                        </div>
-                        <div class="form-list">
-                            <div class="form-title">비밀번호 확인<span style="color:red;">*</span></div>
-                            <div class="form-input">
-                                <input name="newPassword2" id="newPassword2" class="f_txt" type="password" value="" maxlength="100" />
+                            <div class="form-list">
+                                <div class="form-title">비밀번호 확인<span style="color:red;">*</span></div>
+                                <div class="form-input">
+                                    <input name="newPassword2" id="newPassword2" class="f_txt" type="password" value="" maxlength="100" />
+                                </div>
+                                <div class="form-error-text" style="display: none;"></div>
                             </div>
-                            <div class="form-error-text" style="display: none;"></div>
                         </div>
-                    </div>
-                    <div class="form-btn-con">
-                        <button type="submit" class="submit-btn">저장</button>
-                    </div>
-                </form>
+                        <div class="form-btn-con">
+                            <button type="submit" class="submit-btn">저장</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
