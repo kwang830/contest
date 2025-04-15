@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import ="egovframework.com.cmm.LoginVO" %>
 <!DOCTYPE html>
 <html dir="ltr" lang="ko">
@@ -208,8 +208,8 @@
 
 							<div class="board_list selectable-table">
 								<div class="groupList">
-									<label class="item f_select" for="sel_group">
-										<select name="sel_group" id="sel_group" title="평가 선택">
+									<label class="item f_select" for="cmb_group">
+										<select name="cmb_group" id="cmb_group" title="평가 선택">
 											<c:forEach var="result" items="${contVoteAdminGroupList}" begin="0" end="10" step="1" varStatus="status">
 												<option value="${result.valtMngmNo}" >${result.valtMngmTtl}</option>
 											</c:forEach>
@@ -233,7 +233,7 @@
 									<tbody>
 
 									<c:forEach var="result" items="${contVoteAdminBBSList}" begin="0" end="20" step="1" varStatus="status">
-										<tr data-bbsid="${result.bbsId}" data-nttid="${result.nttId}" data-valtmngmno="${result.valtMngmNo}">
+										<tr data-bbsid="${result.bbsId}" data-nttid="${result.nttId}" data-valtmngmno="${result.valtMngmNo}" data-ntcrnm="${result.ntcrNm}">
 											<td>${status.count} </td>
 											<td>${result.ntcrNm}</td>
 										</tr>
@@ -250,17 +250,37 @@
 
 						<div class="condition">
 							<h2>평가기준 및 평가</h2>
+							<%
+								LoginVO loginVO = (LoginVO)session.getAttribute("LoginVO");
+								if(loginVO == null){
+							%>
+							<c:set var="exmnNm" value=""/>
+							<%
+								}else{
+							%>
+							<c:set var="exmnNm" value="<%= loginVO.getName()%>"/>
+							<%
+								}
+							%>
+
+							<form:form modelAttribute="board" name="board" method="post" enctype="multipart/form-data" >
+								<input type="hidden" name="valtQsitMnno" value="" />
+								<input type="hidden" name="bbsId" value="" />
+								<input type="hidden" name="nttId" value="" />
+								<input type="hidden" name="ntcrNm" value="" />
+								<input type="hidden" name="exmnId" value="" />
+								<input type="hidden" name="exmnNm" value="<c:out value="${exmnNm}" />" />
 
 							<div class="board_list">
 								<table class="selectable-table">
 									<caption>목록</caption>
 									<colgroup>
-										<col style="width: 120px;">
-										<col style="width: 120px;">
-										<col style="width: 120px;" class="hid">
-										<col style="width: auto; min-width: 250px;" class="hid">
-										<col style="width: 300px;" class="hid">
-										<col style="width: 120px;">
+										<col style="width: 110px;">
+										<col style="width: 110px;">
+										<col style="width: 90px;" class="hid">
+										<col style="width: auto; min-width: 220px;" class="hid">
+										<col style="width: 310px;" class="hid">
+										<col style="width: 170px;">
 									</colgroup>
 									<thead>
 									<tr>
@@ -538,7 +558,7 @@
 											<label class="item f_select" for="sel_501">
 												<select name="sel_501" id="sel_501" title="평가 선택">
 													<option value="">-선택-</option>
-													<c:forTokens var="item" items="매우우수(10점)|10,우수(8점)|8,보통(6점)|6,미흡(4점)|4,매우미흡(2점)|2" delims=",">
+													<c:forTokens var="item" items="매우우수(10점)|10,우수(8점)|8,보통(6점)|6,미흡(4점)|4,매우미흡(2점)|2,해당없음(0점)|0" delims=",">
 														<c:set var="label" value="${fn:split(item, '|')[0]}" />
 														<c:set var="value" value="${fn:split(item, '|')[1]}" />
 														<option value="${value}">${label}</option>
@@ -562,11 +582,14 @@
 								<div class="left_col">
 								</div>
 								<div class="center_col">
+ 									<span style="font-size: 17px; color: #747474;" id="outputMsg">-</span>
 								</div>
 								<div class="right_col">
-									<a href="#" class="btn btn_white_46" onclick="javascript:alert('준비중'); return false;">저장</a>
+									<a href="#" class="btn btn_white_46" id="btnCheck" style="display: none;">저장</a>
 								</div>
 							</div>
+
+							</form:form>
 
 						</div>
 					</div>
@@ -621,9 +644,21 @@
 			const bbsId = $(this).data('bbsid');
 			const nttId = $(this).data('nttid');
 			const valtMngmNo = $(this).data('valtmngmno');
+			const ntcrNm = $(this).data('ntcrnm');
+
 			console.log('bbsId:'+bbsId);
 			console.log('nttId:'+nttId);
 			console.log('valtMngmNo:'+valtMngmNo);
+			console.log('ntcrNm:'+ntcrNm);
+
+			$('input[name="bbsId"]').val(bbsId);
+			$('input[name="nttId"]').val(nttId);
+			$('input[name="valtQsitMnno"]').val(valtMngmNo);
+			$('input[name="ntcrNm"]').val(ntcrNm);
+
+			const displayText = '발표자 : ' + $('input[name="ntcrNm"]').val() + ',    평가자 : ' + $('input[name="exmnNm"]').val();
+			$('#outputMsg').html(displayText);
+			$('#btnCheck').css('display', 'block');
 
 			handleRowClick(bbsId, nttId, valtMngmNo);
 		});
@@ -685,9 +720,49 @@
 		$('[name="tot_sel_point"]').val(total);
 	}
 
+	$(function() {
+		$('#btnCheck').on('click', function(e) {
+			e.preventDefault();
+
+			// 값이 없을 경우 안내 메시지 출력
+			if ($('input[name="nttId"]').val() === '') {
+				$('#outputMsg').html('평가 목록을 선택하세요');
+				alert('평가 목록을 선택하세요');
+				return false;
+			}
+
+			// sel_ 로 시작하는 select 중 value가 ''인 첫 번째 요소 찾기
+			var $empty = $('select[name^="sel_"]').filter(function() {
+				return $(this).val() === '';
+			}).first();
+
+			// 값이 ''인 select가 있으면 포커스 이동
+			if ($empty.length) {
+				$empty.focus();
+				$empty.closest('td').click(); // 상위 td 클릭 트리거
+				alert('평가 하지 않은 항목이 존재합니다');
+			}
+
+			// 저장 로직 추가 필요
+		});
+	});
+
+	function fn_vote_admin_update() {
+		let sNtcrNm = $('[name="ntcrNm"]').val();
+		let sMsg = "발표자("+sNtcrNm+")에 대한 평가를 저장하시겠습니까?"
+
+		if (confirm(sMsg)) {
+			alert('구현중!')
+			//document.board.action = "<c:url value='/cmm/contest/updateContestAdminVote.do'/>";
+			//document.board.submit();
+		}
+	}
+
 	$(document).ready(function () {
 		$('select[name^="sel_"]').on('change', calculateTotalPoints);
 	});
+
+
 </script>
 </body>
 </html>
