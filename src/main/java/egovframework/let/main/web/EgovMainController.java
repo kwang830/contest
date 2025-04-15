@@ -459,6 +459,36 @@ public class EgovMainController {
 	}
 
 	/**
+	 * 공모전 신청서 등록 및 수정
+	 * @return 메인페이지 정보 Map [key : 항목명]
+	 *
+	 * @param request
+	 * @param model
+	 * @exception Exception Exception
+	 */
+	@RequestMapping(value = "/cmm/contest/apfrRcipUpdt.do")
+	public String getContestApfrRcipUpdtPage(HttpServletRequest request, ModelMap model)
+			throws Exception{
+
+		return "main/contest/ApfrRcipUpdtView";
+	}
+
+	/**
+	 * 공모전 신청서 상세
+	 * @return 메인페이지 정보 Map [key : 항목명]
+	 *
+	 * @param request
+	 * @param model
+	 * @exception Exception Exception
+	 */
+	@RequestMapping(value = "/cmm/contest/apfrRcipDetail.do")
+	public String getContestApfrRcipDetailPage(HttpServletRequest request, ModelMap model)
+			throws Exception{
+
+		return "main/contest/ApfrRcipDetailView";
+	}
+
+	/**
 	 * 공모전 성과
 	 * @return 메인페이지 정보 Map [key : 항목명]
 	 *

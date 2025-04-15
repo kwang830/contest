@@ -81,84 +81,89 @@
 			</nav>
 		</div>
 		<div class="content-wrap">
-			<div class="sub-container clearfix">
-				<div class="receipt-info-con">
-					<div class="receipt-info-text">신청서를 다운로드하여 작성 후 제출해 주세요.</div>
-					<div class="receipt-info-btn-con">
-						<a href="#" class="receipt-info-btn download" onClick="fn_contest_attach_file_down(); return false;">신청서 다운로드</a>
-						<a href="/cmm/contest/apfrRcipUpdt.do" class="receipt-info-btn">작품 접수하기</a>
-					</div>
-				</div>
-				<div class="work-list-con">
-					<div class="work-list" onclick="window.location.href='/cmm/contest/apfrRcipDetail.do'">
-						<div class="work-list-top-con">
-							<div class="mem-info-img">
-								<img src="" alt=""> <!--작성자 이미지-->
-							</div>
-							<div class="work-title-info">
-								<div class="work-title">공모전 제목입니다</div>
-								<div class="work-date-info">
-									<div class="work-mem-name">AI 완전 전문가</div>
-									<div class="work-date">2025.06.07</div>
+			<div class="form-wrap">
+				<div class="container" style="max-width: 800px;">
+					<form action="" class="form-con" id="form">
+						<div class="form-list-con">
+							<div class="form-list">
+								<div class="form-title essential">팀명</div>
+								<div class="form-input">
+									<input name="name" type="text" placeholder="팀명을 입력해주세요.">
 								</div>
+								<div class="form-error-text" style="display: none;"></div>
 							</div>
+							<div class="form-list">
+								<div class="form-title essential">제목</div>
+								<div class="form-input">
+									<input name="title" type="text" placeholder="제목을 입력해주세요.">
+								</div>
+								<div class="form-error-text" style="display: none;"></div>
+							</div>
+							<div class="form-list">
+								<div class="form-title">접수자</div>
+								<div class="form-input">
+									<input name="writer" type="text" placeholder="접수자를 입력해주세요.">
+								</div>
+								<div class="form-error-text" style="display: none;"></div>
+							</div>
+							<div class="form-list">
+								<div class="form-title essential">내용</div>
+								<div class="form-input">
+									<textarea name="content" cols="30" rows="10" placeholder="내용을 입력해주세요."></textarea>
+								</div>
+								<div class="form-error-text" style="display: none;"></div>
+							</div>
+							<div class="form-list">
+								<div class="form-title essential">첨부파일</div>
 
-						</div>
-						<div class="work-desc">
-							공모전 내용입니다. 공모전 내용입니다.
-						</div>
-					</div>
-					<div class="work-list" onclick="window.location.href='/cmm/contest/apfrRcipDetail.do'">
-						<div class="work-list-top-con">
-							<div class="mem-info-img">
-								<img src="" alt=""> <!--작성자 이미지-->
+								<div class="form-input f_file_wrap">
+									<div class="board_attach2" id="file_upload_posbl">
+										<input type="file" name="file_2" >
+										<input type="file" name="file_1" style="position: absolute; left: -1000px; top: -1000px; display: none; visibility: hidden; width: 0px; height: 0px; overflow: hidden;">
+										<input name="file_0" id="egovComFileUploader" type="file" style="position: absolute; left: -1000px; top: -1000px; display: none; visibility: hidden; width: 0px; height: 0px; overflow: hidden;">
+										<div id="egovComFileList">
+											<div>
+												C:\fakepath\icon-logout.png
+												<input type="button" value="Delete">
+											</div>
+											<div>C:\fakepath\default-mem-img.jpg
+												<input type="button" value="Delete">
+											</div>
+										</div>
+									</div>
+									<div class="board_attach2" id="file_upload_imposbl">
+									</div>
+
+									<input type="hidden" id="fileListCnt" name="fileListCnt" value="0">
+
+								</div>
 							</div>
-							<div class="work-title-info">
-								<div class="work-title">공모전 제목입니다. 아주아주 긴 공모전 제목</div>
-								<div class="work-date-info">
-									<div class="work-mem-name">AI 완전 전문가</div>
-									<div class="work-date">2025.06.07</div>
+							<div class="form-list">
+								<div class="form-title">프로필 이미지 <span>(개인신상을 알아볼 수 있는 사진은 첨부 불가, 100*100px 정사각형 사이즈 )</span></div>
+								<div class="form-input f_file_wrap">
+									<div class="board_attach2" id="file_upload_posbl">
+										<input type="file" name="file_2" >
+										<input type="file" name="file_1" style="position: absolute; left: -1000px; top: -1000px; display: none; visibility: hidden; width: 0px; height: 0px; overflow: hidden;">
+										<input name="file_0" id="egovComFileUploader" type="file" style="position: absolute; left: -1000px; top: -1000px; display: none; visibility: hidden; width: 0px; height: 0px; overflow: hidden;">
+										<div id="egovComFileList">
+											<div>
+												C:\fakepath\icon-logout.png
+												<input type="button" value="Delete">
+											</div>
+										</div>
+									</div>
+									<div class="board_attach2" id="file_upload_imposbl">
+									</div>
+
+									<input type="hidden" id="fileListCnt" name="fileListCnt" value="0">
+
 								</div>
 							</div>
 						</div>
-						<div class="work-desc">
-							공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다.
+						<div class="form-btn-con">
+							<button type="submit" class="submit-btn">제출</button>
 						</div>
-					</div>
-					<div class="work-list" onclick="window.location.href='/cmm/contest/apfrRcipDetail.do'">
-						<div class="work-list-top-con">
-							<div class="mem-info-img">
-								<img src="" alt=""> <!--작성자 이미지-->
-							</div>
-							<div class="work-title-info">
-								<div class="work-title">공모전 제목입니다</div>
-								<div class="work-date-info">
-									<div class="work-mem-name">AI 완전 전문가</div>
-									<div class="work-date">2025.06.07</div>
-								</div>
-							</div>
-						</div>
-						<div class="work-desc">
-							공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다.
-						</div>
-					</div>
-					<div class="work-list" onclick="window.location.href='/cmm/contest/apfrRcipDetail.do'">
-						<div class="work-list-top-con">
-							<div class="mem-info-img">
-								<img src="" alt=""> <!--작성자 이미지-->
-							</div>
-							<div class="work-title-info">
-								<div class="work-title">공모전 제목입니다</div>
-								<div class="work-date-info">
-									<div class="work-mem-name">AI 완전 전문가</div>
-									<div class="work-date">2025.06.07</div>
-								</div>
-							</div>
-						</div>
-						<div class="work-desc">
-							공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다.
-						</div>
-					</div>
+					</form>
 				</div>
 			</div>
 		</div>
