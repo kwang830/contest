@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ page import ="egovframework.com.cmm.LoginVO" %>
 <!DOCTYPE html>
 <html dir="ltr" lang="ko">
@@ -143,6 +145,8 @@
 			// 공모전 참가 신청서
 			fn_egov_downFile('EcqfhYxRcnWG52hkOGYp/F3suq/5SFOvAnxJUaQhI01X9dgmJjJ+3mWoSYu1PsdTs4dfuDM2VdFX2fN3C0X4iQ==','0');
 		}
+
+		<c:if test="${!empty resultMsg}">alert("<spring:message code='${resultMsg}' />");</c:if>
 		//-->
 	</script>
 
@@ -233,7 +237,7 @@
 									<tbody>
 
 									<c:forEach var="result" items="${contVoteAdminBBSList}" begin="0" end="20" step="1" varStatus="status">
-										<tr data-bbsid="${result.bbsId}" data-nttid="${result.nttId}" data-valtmngmno="${result.valtMngmNo}" data-ntcrnm="${result.ntcrNm}">
+										<tr data-bbsid="${result.bbsId}" data-nttid="${result.nttId}" data-valtmngmno="${result.valtMngmNo}" data-valtqsitmnno="${result.valtQsitMnno}" data-ntcrnm="${result.ntcrNm}">
 											<td>${status.count} </td>
 											<td>${result.ntcrNm}</td>
 										</tr>
@@ -263,333 +267,334 @@
 								}
 							%>
 
-							<form:form modelAttribute="board" name="board" method="post" enctype="multipart/form-data" >
+							<form:form modelAttribute="vote" name="vote" method="post" enctype="multipart/form-data" >
+								<input type="hidden" name="valtMngmNo" value="" />
 								<input type="hidden" name="valtQsitMnno" value="" />
 								<input type="hidden" name="bbsId" value="" />
 								<input type="hidden" name="nttId" value="" />
 								<input type="hidden" name="ntcrNm" value="" />
 								<input type="hidden" name="exmnId" value="" />
 								<input type="hidden" name="exmnNm" value="<c:out value="${exmnNm}" />" />
+								<input type="hidden" name="valtQsitSendStr" value="" />
 
-							<div class="board_list">
-								<table class="selectable-table">
-									<caption>목록</caption>
-									<colgroup>
-										<col style="width: 110px;">
-										<col style="width: 110px;">
-										<col style="width: 90px;" class="hid">
-										<col style="width: auto; min-width: 220px;" class="hid">
-										<col style="width: 310px;" class="hid">
-										<col style="width: 170px;">
-									</colgroup>
-									<thead>
-									<tr>
-										<th scope="col" colspan="2">항목</th>
-										<th scope="col" class="hid">기준<br>점수</th>
-										<th scope="col" class="hid">설명</th>
-										<th scope="col" class="hid">비고</th>
-										<th scope="col">평가<br>점수</th>
-									</tr>
-									</thead>
-									<tbody>
-									<%--									<c:if test="${empty resultList}">--%>
-									<%--										<tr>--%>
-									<%--											<td class="al" colspan="6">등록된 정보가 존재하지 않습니다.</td>--%>
-									<%--										</tr>--%>
-									<%--									</c:if>--%>
+								<div class="board_list">
+									<table class="selectable-table">
+										<caption>목록</caption>
+										<colgroup>
+											<col style="width: 110px;">
+											<col style="width: 110px;">
+											<col style="width: 90px;" class="hid">
+											<col style="width: auto; min-width: 220px;" class="hid">
+											<col style="width: 310px;" class="hid">
+											<col style="width: 170px;">
+										</colgroup>
+										<thead>
+										<tr>
+											<th scope="col" colspan="2">항목</th>
+											<th scope="col" class="hid">기준<br>점수</th>
+											<th scope="col" class="hid">설명</th>
+											<th scope="col" class="hid">비고</th>
+											<th scope="col">평가<br>점수</th>
+										</tr>
+										</thead>
+										<tbody>
+										<%--									<c:if test="${empty resultList}">--%>
+										<%--										<tr>--%>
+										<%--											<td class="al" colspan="6">등록된 정보가 존재하지 않습니다.</td>--%>
+										<%--										</tr>--%>
+										<%--									</c:if>--%>
 
-									<!-- 사업측면 -->
-									<tr>
-										<td rowspan="4" >사업측면<br>40</td>
-										<td>시장성</td>
-										<td class="hid">15</td>
-										<td class="hid">실용성, 상업화 가능성</td>
-										<td class="left-center-cell hid">
-											- 아이디어의 시장성<br>
-											- 기존 사업과의 연계성</td>
-										<td>
-											<label class="item f_select" for="sel_101">
-												<select name="sel_101" id="sel_101" title="평가 선택">
-													<option value="">-선택-</option>
-													<c:forTokens var="item" items="매우우수(15점)|15,우수(12점)|12,보통(9점)|9,미흡(6점)|6,매우미흡(3점)|3" delims=",">
-														<c:set var="label" value="${fn:split(item, '|')[0]}" />
-														<c:set var="value" value="${fn:split(item, '|')[1]}" />
-														<option value="${value}">${label}</option>
-													</c:forTokens>
-												</select>
-											</label>
-										</td>
-									</tr>
-									<tr>
-										<td>수익성</td>
-										<td class="hid">10</td>
-										<td class="hid">적정한 수익모델 제시</td>
-										<td class="left-center-cell hid">- 수익모델 및 수익구조 분석</td>
-										<td>
-											<label class="item f_select" for="sel_102">
-												<select name="sel_102" id="sel_102" title="평가 선택">
-													<option value="">-선택-</option>
-													<c:forTokens var="item" items="매우우수(10점)|10,우수(8점)|8,보통(6점)|6,미흡(4점)|4,매우미흡(2점)|2" delims=",">
-														<c:set var="label" value="${fn:split(item, '|')[0]}" />
-														<c:set var="value" value="${fn:split(item, '|')[1]}" />
-														<option value="${value}">${label}</option>
-													</c:forTokens>
-												</select>
-											</label>
-										</td>
-									</tr>
-									<tr>
-										<td>효율성</td>
-										<td class="hid">10</td>
-										<td class="hid">당사인력 및 포지션 활용</td>
-										<td class="left-center-cell hid">
-											- 자사 자원의 효과적 활용과 시너지 효과<br>
-											- 자사 경쟁우위요소 활용 여부</td>
-										<td>
-											<label class="item f_select" for="sel_103">
-												<select name="sel_103" id="sel_103" title="평가 선택">
-													<option value="">-선택-</option>
-													<c:forTokens var="item" items="매우우수(10점)|10,우수(8점)|8,보통(6점)|6,미흡(4점)|4,매우미흡(2점)|2" delims=",">
-														<c:set var="label" value="${fn:split(item, '|')[0]}" />
-														<c:set var="value" value="${fn:split(item, '|')[1]}" />
-														<option value="${value}">${label}</option>
-													</c:forTokens>
-												</select>
-											</label>
-										</td>
-									</tr>
-									<tr>
-										<td>투자 안전성</td>
-										<td class="hid">5</td>
-										<td class="hid">투자비용 최적화(최소화)</td>
-										<td class="left-center-cell hid">
-											- 사업 타당성 분석<br>
-											- 투자유치 가능성<br>
-											- 비용/리스크 최소화 방법</td>
-										<td>
-											<label class="item f_select" for="sel_104">
-												<select name="sel_104" id="sel_104" title="평가 선택">
-													<option value="">-선택-</option>
-													<c:forTokens var="item" items="매우우수(5점)|5,우수(4점)|4,보통(3점)|3,미흡(2점)|2,매우미흡(1점)|1" delims=",">
-														<c:set var="label" value="${fn:split(item, '|')[0]}" />
-														<c:set var="value" value="${fn:split(item, '|')[1]}" />
-														<option value="${value}">${label}</option>
-													</c:forTokens>
-												</select>
-											</label>
-										</td>
-									</tr>
+										<!-- 사업측면 -->
+										<tr>
+											<td rowspan="4" >사업측면<br>40</td>
+											<td>시장성</td>
+											<td class="hid">15</td>
+											<td class="hid">실용성, 상업화 가능성</td>
+											<td class="left-center-cell hid">
+												- 아이디어의 시장성<br>
+												- 기존 사업과의 연계성</td>
+											<td>
+												<label class="item f_select" for="sel_101">
+													<select name="sel_101" id="sel_101" title="평가 선택">
+														<option value="">-선택-</option>
+														<c:forTokens var="item" items="매우우수(15점)|15,우수(12점)|12,보통(9점)|9,미흡(6점)|6,매우미흡(3점)|3" delims=",">
+															<c:set var="label" value="${fn:split(item, '|')[0]}" />
+															<c:set var="value" value="${fn:split(item, '|')[1]}" />
+															<option value="${value}">${label}</option>
+														</c:forTokens>
+													</select>
+												</label>
+											</td>
+										</tr>
+										<tr>
+											<td>수익성</td>
+											<td class="hid">10</td>
+											<td class="hid">적정한 수익모델 제시</td>
+											<td class="left-center-cell hid">- 수익모델 및 수익구조 분석</td>
+											<td>
+												<label class="item f_select" for="sel_102">
+													<select name="sel_102" id="sel_102" title="평가 선택">
+														<option value="">-선택-</option>
+														<c:forTokens var="item" items="매우우수(10점)|10,우수(8점)|8,보통(6점)|6,미흡(4점)|4,매우미흡(2점)|2" delims=",">
+															<c:set var="label" value="${fn:split(item, '|')[0]}" />
+															<c:set var="value" value="${fn:split(item, '|')[1]}" />
+															<option value="${value}">${label}</option>
+														</c:forTokens>
+													</select>
+												</label>
+											</td>
+										</tr>
+										<tr>
+											<td>효율성</td>
+											<td class="hid">10</td>
+											<td class="hid">당사인력 및 포지션 활용</td>
+											<td class="left-center-cell hid">
+												- 자사 자원의 효과적 활용과 시너지 효과<br>
+												- 자사 경쟁우위요소 활용 여부</td>
+											<td>
+												<label class="item f_select" for="sel_103">
+													<select name="sel_103" id="sel_103" title="평가 선택">
+														<option value="">-선택-</option>
+														<c:forTokens var="item" items="매우우수(10점)|10,우수(8점)|8,보통(6점)|6,미흡(4점)|4,매우미흡(2점)|2" delims=",">
+															<c:set var="label" value="${fn:split(item, '|')[0]}" />
+															<c:set var="value" value="${fn:split(item, '|')[1]}" />
+															<option value="${value}">${label}</option>
+														</c:forTokens>
+													</select>
+												</label>
+											</td>
+										</tr>
+										<tr>
+											<td>투자 안전성</td>
+											<td class="hid">5</td>
+											<td class="hid">투자비용 최적화(최소화)</td>
+											<td class="left-center-cell hid">
+												- 사업 타당성 분석<br>
+												- 투자유치 가능성<br>
+												- 비용/리스크 최소화 방법</td>
+											<td>
+												<label class="item f_select" for="sel_104">
+													<select name="sel_104" id="sel_104" title="평가 선택">
+														<option value="">-선택-</option>
+														<c:forTokens var="item" items="매우우수(5점)|5,우수(4점)|4,보통(3점)|3,미흡(2점)|2,매우미흡(1점)|1" delims=",">
+															<c:set var="label" value="${fn:split(item, '|')[0]}" />
+															<c:set var="value" value="${fn:split(item, '|')[1]}" />
+															<option value="${value}">${label}</option>
+														</c:forTokens>
+													</select>
+												</label>
+											</td>
+										</tr>
 
-									<!-- 창의측면 -->
-									<tr>
-										<td rowspan="3" class="center-cell">창의측면<br>30</td>
-										<td>독창성</td>
-										<td class="hid">10</td>
-										<td class="hid">타서비스와 차별성/혁신성</td>
-										<td class="left-center-cell hid">
-											- 독창적인 아이디어 여부<br>
-											- 기존 비즈니스와의 차별성</td>
-										<td>
-											<label class="item f_select" for="sel_201">
-												<select name="sel_201" id="sel_201" title="평가 선택">
-													<option value="">-선택-</option>
-													<c:forTokens var="item" items="매우우수(10점)|10,우수(8점)|8,보통(6점)|6,미흡(4점)|4,매우미흡(2점)|2" delims=",">
-														<c:set var="label" value="${fn:split(item, '|')[0]}" />
-														<c:set var="value" value="${fn:split(item, '|')[1]}" />
-														<option value="${value}">${label}</option>
-													</c:forTokens>
-												</select>
-											</label>
-										</td>
-									</tr>
-									<tr>
-										<td>완전성</td>
-										<td class="hid">10</td>
-										<td class="hid">서비스 완성도</td>
-										<td class="left-center-cell hid">- 단순 아이디어가 아닌 구체적 서비스 여부</td>
-										<td>
-											<label class="item f_select" for="sel_202">
-												<select name="sel_202" id="sel_202" title="평가 선택">
-													<option value="">-선택-</option>
-													<c:forTokens var="item" items="매우우수(10점)|10,우수(8점)|8,보통(6점)|6,미흡(4점)|4,매우미흡(2점)|2" delims=",">
-														<c:set var="label" value="${fn:split(item, '|')[0]}" />
-														<c:set var="value" value="${fn:split(item, '|')[1]}" />
-														<option value="${value}">${label}</option>
-													</c:forTokens>
-												</select>
-											</label>
-										</td>
-									</tr>
-									<tr>
-										<td>계속성</td>
-										<td class="hid">10</td>
-										<td class="hid">추가 서비스로 확장 여부</td>
-										<td class="left-center-cell hid">- 추가적인 확장성 및 파급효과<br>
-											- 신시장 창출 가능성</td>
-										<td>
-											<label class="item f_select" for="sel_203">
-												<select name="sel_203" id="sel_203" title="평가 선택">
-													<option value="">-선택-</option>
-													<c:forTokens var="item" items="매우우수(10점)|10,우수(8점)|8,보통(6점)|6,미흡(4점)|4,매우미흡(2점)|2" delims=",">
-														<c:set var="label" value="${fn:split(item, '|')[0]}" />
-														<c:set var="value" value="${fn:split(item, '|')[1]}" />
-														<option value="${value}">${label}</option>
-													</c:forTokens>
-												</select>
-											</label>
-										</td>
-									</tr>
+										<!-- 창의측면 -->
+										<tr>
+											<td rowspan="3" class="center-cell">창의측면<br>30</td>
+											<td>독창성</td>
+											<td class="hid">10</td>
+											<td class="hid">타서비스와 차별성/혁신성</td>
+											<td class="left-center-cell hid">
+												- 독창적인 아이디어 여부<br>
+												- 기존 비즈니스와의 차별성</td>
+											<td>
+												<label class="item f_select" for="sel_201">
+													<select name="sel_201" id="sel_201" title="평가 선택">
+														<option value="">-선택-</option>
+														<c:forTokens var="item" items="매우우수(10점)|10,우수(8점)|8,보통(6점)|6,미흡(4점)|4,매우미흡(2점)|2" delims=",">
+															<c:set var="label" value="${fn:split(item, '|')[0]}" />
+															<c:set var="value" value="${fn:split(item, '|')[1]}" />
+															<option value="${value}">${label}</option>
+														</c:forTokens>
+													</select>
+												</label>
+											</td>
+										</tr>
+										<tr>
+											<td>완전성</td>
+											<td class="hid">10</td>
+											<td class="hid">서비스 완성도</td>
+											<td class="left-center-cell hid">- 단순 아이디어가 아닌 구체적 서비스 여부</td>
+											<td>
+												<label class="item f_select" for="sel_202">
+													<select name="sel_202" id="sel_202" title="평가 선택">
+														<option value="">-선택-</option>
+														<c:forTokens var="item" items="매우우수(10점)|10,우수(8점)|8,보통(6점)|6,미흡(4점)|4,매우미흡(2점)|2" delims=",">
+															<c:set var="label" value="${fn:split(item, '|')[0]}" />
+															<c:set var="value" value="${fn:split(item, '|')[1]}" />
+															<option value="${value}">${label}</option>
+														</c:forTokens>
+													</select>
+												</label>
+											</td>
+										</tr>
+										<tr>
+											<td>계속성</td>
+											<td class="hid">10</td>
+											<td class="hid">추가 서비스로 확장 여부</td>
+											<td class="left-center-cell hid">- 추가적인 확장성 및 파급효과<br>
+												- 신시장 창출 가능성</td>
+											<td>
+												<label class="item f_select" for="sel_203">
+													<select name="sel_203" id="sel_203" title="평가 선택">
+														<option value="">-선택-</option>
+														<c:forTokens var="item" items="매우우수(10점)|10,우수(8점)|8,보통(6점)|6,미흡(4점)|4,매우미흡(2점)|2" delims=",">
+															<c:set var="label" value="${fn:split(item, '|')[0]}" />
+															<c:set var="value" value="${fn:split(item, '|')[1]}" />
+															<option value="${value}">${label}</option>
+														</c:forTokens>
+													</select>
+												</label>
+											</td>
+										</tr>
 
-									<!-- 기술측면 -->
-									<tr>
-										<td rowspan="3" class="center-cell">기술측면<br>20</td>
-										<td>구현 가능성</td>
-										<td class="hid">10</td>
-										<td class="hid">현재 기술로 가능 여부</td>
-										<td class="left-center-cell hid">- 실제 기술 구현 가능성<br>
-											- 기술적 솔루션 제시 여부</td>
-										<td>
-											<label class="item f_select" for="sel_301">
-												<select name="sel_301" id="sel_301" title="평가 선택">
-													<option value="">-선택-</option>
-													<c:forTokens var="item" items="매우우수(10점)|10,우수(8점)|8,보통(6점)|6,미흡(4점)|4,매우미흡(2점)|2" delims=",">
-														<c:set var="label" value="${fn:split(item, '|')[0]}" />
-														<c:set var="value" value="${fn:split(item, '|')[1]}" />
-														<option value="${value}">${label}</option>
-													</c:forTokens>
-												</select>
-											</label>
-										</td>
-									</tr>
-									<tr>
-										<td>독자 가능성</td>
-										<td class="hid">5</td>
-										<td class="hid">독자적 방어요소</td>
-										<td class="left-center-cell hid">- 시장 진입 용이성 수준<br>
-											- 배타적 권리의 안정성 또는 확보 가능성<br>
-											(특허, 프로세스 등)</td>
-										<td>
-											<label class="item f_select" for="sel_302">
-												<select name="sel_302" id="sel_302" title="평가 선택">
-													<option value="">-선택-</option>
-													<c:forTokens var="item" items="매우우수(5점)|5,우수(4점)|4,보통(3점)|3,미흡(2점)|2,매우미흡(1점)|1" delims=",">
-														<c:set var="label" value="${fn:split(item, '|')[0]}" />
-														<c:set var="value" value="${fn:split(item, '|')[1]}" />
-														<option value="${value}">${label}</option>
-													</c:forTokens>
-												</select>
-											</label>
-										</td>
-									</tr>
-									<tr>
-										<td>구현 복잡성</td>
-										<td class="hid">5</td>
-										<td class="hid">구현 단순성 지향</td>
-										<td class="left-center-cell hid">- 이해관계자 단순 여부<br>
-											- 단순 개발 환경과 적은 유지비용</td>
-										<td>
-											<label class="item f_select" for="sel_303">
-												<select name="sel_303" id="sel_303" title="평가 선택">
-													<option value="">-선택-</option>
-													<c:forTokens var="item" items="매우우수(5점)|5,우수(4점)|4,보통(3점)|3,미흡(2점)|2,매우미흡(1점)|1" delims=",">
-														<c:set var="label" value="${fn:split(item, '|')[0]}" />
-														<c:set var="value" value="${fn:split(item, '|')[1]}" />
-														<option value="${value}">${label}</option>
-													</c:forTokens>
-												</select>
-											</label>
-										</td>
-									</tr>
+										<!-- 기술측면 -->
+										<tr>
+											<td rowspan="3" class="center-cell">기술측면<br>20</td>
+											<td>구현 가능성</td>
+											<td class="hid">10</td>
+											<td class="hid">현재 기술로 가능 여부</td>
+											<td class="left-center-cell hid">- 실제 기술 구현 가능성<br>
+												- 기술적 솔루션 제시 여부</td>
+											<td>
+												<label class="item f_select" for="sel_301">
+													<select name="sel_301" id="sel_301" title="평가 선택">
+														<option value="">-선택-</option>
+														<c:forTokens var="item" items="매우우수(10점)|10,우수(8점)|8,보통(6점)|6,미흡(4점)|4,매우미흡(2점)|2" delims=",">
+															<c:set var="label" value="${fn:split(item, '|')[0]}" />
+															<c:set var="value" value="${fn:split(item, '|')[1]}" />
+															<option value="${value}">${label}</option>
+														</c:forTokens>
+													</select>
+												</label>
+											</td>
+										</tr>
+										<tr>
+											<td>독자 가능성</td>
+											<td class="hid">5</td>
+											<td class="hid">독자적 방어요소</td>
+											<td class="left-center-cell hid">- 시장 진입 용이성 수준<br>
+												- 배타적 권리의 안정성 또는 확보 가능성<br>
+												(특허, 프로세스 등)</td>
+											<td>
+												<label class="item f_select" for="sel_302">
+													<select name="sel_302" id="sel_302" title="평가 선택">
+														<option value="">-선택-</option>
+														<c:forTokens var="item" items="매우우수(5점)|5,우수(4점)|4,보통(3점)|3,미흡(2점)|2,매우미흡(1점)|1" delims=",">
+															<c:set var="label" value="${fn:split(item, '|')[0]}" />
+															<c:set var="value" value="${fn:split(item, '|')[1]}" />
+															<option value="${value}">${label}</option>
+														</c:forTokens>
+													</select>
+												</label>
+											</td>
+										</tr>
+										<tr>
+											<td>구현 복잡성</td>
+											<td class="hid">5</td>
+											<td class="hid">구현 단순성 지향</td>
+											<td class="left-center-cell hid">- 이해관계자 단순 여부<br>
+												- 단순 개발 환경과 적은 유지비용</td>
+											<td>
+												<label class="item f_select" for="sel_303">
+													<select name="sel_303" id="sel_303" title="평가 선택">
+														<option value="">-선택-</option>
+														<c:forTokens var="item" items="매우우수(5점)|5,우수(4점)|4,보통(3점)|3,미흡(2점)|2,매우미흡(1점)|1" delims=",">
+															<c:set var="label" value="${fn:split(item, '|')[0]}" />
+															<c:set var="value" value="${fn:split(item, '|')[1]}" />
+															<option value="${value}">${label}</option>
+														</c:forTokens>
+													</select>
+												</label>
+											</td>
+										</tr>
 
-									<!-- 기타사항 -->
-									<tr>
-										<td rowspan="2" class="center-cell">기타사항<br>10</td>
-										<td>공익성</td>
-										<td class="hid">5</td>
-										<td class="hid">그룹 정책 적합성</td>
-										<td class="left-center-cell hid">- 중소기업 상생 등<br>
-											- 법적(인허가, 지적재산권 등) 적합성<br>
-											- 사회적 용인성(도박/사기 금지 등)</td>
-										<td>
-											<label class="item f_select" for="sel_401">
-												<select name="sel_401" id="sel_401" title="평가 선택">
-													<option value="">-선택-</option>
-													<c:forTokens var="item" items="매우우수(5점)|5,우수(4점)|4,보통(3점)|3,미흡(2점)|2,매우미흡(1점)|1" delims=",">
-														<c:set var="label" value="${fn:split(item, '|')[0]}" />
-														<c:set var="value" value="${fn:split(item, '|')[1]}" />
-														<option value="${value}">${label}</option>
-													</c:forTokens>
-												</select>
-											</label>
-										</td>
-									</tr>
-									<tr>
-										<td>성실성</td>
-										<td class="hid">5</td>
-										<td class="hid">참가 규칙 준용 여부<br>
-											내용 구성능력, 전달력</td>
-										<td class="left-center-cell hid">- 정해진 양식과 주제 준수<br>
-											- 적절한 논리성과 체계성<br>
-											- 제안 내용의 구성, 참신성, 함축성 등</td>
-										<td>
-											<label class="item f_select" for="sel_402">
-												<select name="sel_402" id="sel_402" title="평가 선택">
-													<option value="">-선택-</option>
-													<c:forTokens var="item" items="매우우수(5점)|5,우수(4점)|4,보통(3점)|3,미흡(2점)|2,매우미흡(1점)|1" delims=",">
-														<c:set var="label" value="${fn:split(item, '|')[0]}" />
-														<c:set var="value" value="${fn:split(item, '|')[1]}" />
-														<option value="${value}">${label}</option>
-													</c:forTokens>
-												</select>
-											</label>
-										</td>
-									</tr>
+										<!-- 기타사항 -->
+										<tr>
+											<td rowspan="2" class="center-cell">기타사항<br>10</td>
+											<td>공익성</td>
+											<td class="hid">5</td>
+											<td class="hid">그룹 정책 적합성</td>
+											<td class="left-center-cell hid">- 중소기업 상생 등<br>
+												- 법적(인허가, 지적재산권 등) 적합성<br>
+												- 사회적 용인성(도박/사기 금지 등)</td>
+											<td>
+												<label class="item f_select" for="sel_401">
+													<select name="sel_401" id="sel_401" title="평가 선택">
+														<option value="">-선택-</option>
+														<c:forTokens var="item" items="매우우수(5점)|5,우수(4점)|4,보통(3점)|3,미흡(2점)|2,매우미흡(1점)|1" delims=",">
+															<c:set var="label" value="${fn:split(item, '|')[0]}" />
+															<c:set var="value" value="${fn:split(item, '|')[1]}" />
+															<option value="${value}">${label}</option>
+														</c:forTokens>
+													</select>
+												</label>
+											</td>
+										</tr>
+										<tr>
+											<td>성실성</td>
+											<td class="hid">5</td>
+											<td class="hid">참가 규칙 준용 여부<br>
+												내용 구성능력, 전달력</td>
+											<td class="left-center-cell hid">- 정해진 양식과 주제 준수<br>
+												- 적절한 논리성과 체계성<br>
+												- 제안 내용의 구성, 참신성, 함축성 등</td>
+											<td>
+												<label class="item f_select" for="sel_402">
+													<select name="sel_402" id="sel_402" title="평가 선택">
+														<option value="">-선택-</option>
+														<c:forTokens var="item" items="매우우수(5점)|5,우수(4점)|4,보통(3점)|3,미흡(2점)|2,매우미흡(1점)|1" delims=",">
+															<c:set var="label" value="${fn:split(item, '|')[0]}" />
+															<c:set var="value" value="${fn:split(item, '|')[1]}" />
+															<option value="${value}">${label}</option>
+														</c:forTokens>
+													</select>
+												</label>
+											</td>
+										</tr>
 
-									<!-- 가산점 -->
-									<tr>
-										<td rowspan="1" class="center-cell">가산점<br>(10)</td>
-										<td>아이디어 구현</td>
-										<td class="hid">10</td>
-										<td class="hid">구현 완성도</td>
-										<td class="left-center-cell hid">- 구현결과에 대한 아이디어 부합 여부<br>
-											- 시스템 정상 작동 여부<br>
-											- 디지털기술 적용 여부 등</td>
-										<td>
-											<label class="item f_select" for="sel_501">
-												<select name="sel_501" id="sel_501" title="평가 선택">
-													<option value="">-선택-</option>
-													<c:forTokens var="item" items="매우우수(10점)|10,우수(8점)|8,보통(6점)|6,미흡(4점)|4,매우미흡(2점)|2,해당없음(0점)|0" delims=",">
-														<c:set var="label" value="${fn:split(item, '|')[0]}" />
-														<c:set var="value" value="${fn:split(item, '|')[1]}" />
-														<option value="${value}">${label}</option>
-													</c:forTokens>
-												</select>
-											</label>
-										</td>
-									</tr>
-									<tr style="background: #EAEAEA;">
-										<td colspan="2" class="center-cell">&nbsp;</td>
-										<td colspan="3" class="center-cell hid">합계</td>
-										<td>
-											<input class="f_input" style="width:30px;" name="tot_sel_point" type="text" value="0" maxlength="3" title="검색어 입력" readonly="readonly">점
-										</td>
-									</tr>
-									</tbody>
-								</table>
-							</div>
+										<!-- 가산점 -->
+										<tr>
+											<td rowspan="1" class="center-cell">가산점<br>(10)</td>
+											<td>아이디어 구현</td>
+											<td class="hid">10</td>
+											<td class="hid">구현 완성도</td>
+											<td class="left-center-cell hid">- 구현결과에 대한 아이디어 부합 여부<br>
+												- 시스템 정상 작동 여부<br>
+												- 디지털기술 적용 여부 등</td>
+											<td>
+												<label class="item f_select" for="sel_501">
+													<select name="sel_501" id="sel_501" title="평가 선택">
+														<option value="">-선택-</option>
+														<c:forTokens var="item" items="매우우수(10점)|10,우수(8점)|8,보통(6점)|6,미흡(4점)|4,매우미흡(2점)|2,해당없음(0점)|0" delims=",">
+															<c:set var="label" value="${fn:split(item, '|')[0]}" />
+															<c:set var="value" value="${fn:split(item, '|')[1]}" />
+															<option value="${value}">${label}</option>
+														</c:forTokens>
+													</select>
+												</label>
+											</td>
+										</tr>
+										<tr style="background: #EAEAEA;">
+											<td colspan="2" class="center-cell">&nbsp;</td>
+											<td colspan="3" class="center-cell hid">합계</td>
+											<td>
+												<input class="f_input" style="width:30px;" name="tot_sel_point" type="text" value="0" maxlength="3" title="검색어 입력" readonly="readonly">점
+											</td>
+										</tr>
+										</tbody>
+									</table>
+								</div>
+							</form:form>
 
-							<div class="board_view_bot board_list_bot">
+							<div class="board_view_bot topmargin-sm">
 								<div class="left_col">
 								</div>
 								<div class="center_col">
- 									<span style="font-size: 17px; color: #747474;" id="outputMsg">-</span>
+									<span style="font-size: 17px; color: #747474;" id="outputMsg">-</span>
 								</div>
 								<div class="right_col">
 									<a href="#" class="btn btn_white_46" id="btnCheck" style="display: none;">저장</a>
 								</div>
 							</div>
-
-							</form:form>
 
 						</div>
 					</div>
@@ -631,7 +636,6 @@
 </script>
 <script>
 	function handleRowClick(bbsId, nttId, valtMngmNo) {
-		//alert("bbsId: " + bbsId + ", nttId: " + nttId + ",valtMngmNo:" + valtMngmNo);
 		$('[id^="sel_"]').each(function () {
 			$(this).val('');
 		});
@@ -644,16 +648,19 @@
 			const bbsId = $(this).data('bbsid');
 			const nttId = $(this).data('nttid');
 			const valtMngmNo = $(this).data('valtmngmno');
+			const valtQsitMnno = $(this).data('valtqsitmnno');
 			const ntcrNm = $(this).data('ntcrnm');
 
-			console.log('bbsId:'+bbsId);
-			console.log('nttId:'+nttId);
-			console.log('valtMngmNo:'+valtMngmNo);
-			console.log('ntcrNm:'+ntcrNm);
+			// console.log('bbsId:'+bbsId);
+			// console.log('nttId:'+nttId);
+			// console.log('valtMngmNo:'+valtMngmNo);
+			// console.log('valtQsitMnno:'+valtQsitMnno);
+			// console.log('ntcrNm:'+ntcrNm);
 
 			$('input[name="bbsId"]').val(bbsId);
 			$('input[name="nttId"]').val(nttId);
-			$('input[name="valtQsitMnno"]').val(valtMngmNo);
+			$('input[name="valtMngmNo"]').val(valtMngmNo);
+			$('input[name="valtQsitMnno"]').val(valtQsitMnno);
 			$('input[name="ntcrNm"]').val(ntcrNm);
 
 			const displayText = '발표자 : ' + $('input[name="ntcrNm"]').val() + ',    평가자 : ' + $('input[name="exmnNm"]').val();
@@ -676,7 +683,7 @@
 			contentType: "application/json; charset=UTF-8",
 			dataType: 'json',
 			success: function(returnData) {
-				console.log(returnData);
+				//console.log(returnData);
 
 				// returnData에서 contVoteAdminGroupList 추출
 				const dataList = returnData.contVoteAdminGroupList;
@@ -684,19 +691,19 @@
 				dataList.forEach(item => {
 					const qsitNo = item.qsitNo;
 					const valtScr = item.valtScr;
-					console.log('qsitNo:' + qsitNo + ', valtScr:' + valtScr);
+					//console.log('qsitNo:' + qsitNo + ', valtScr:' + valtScr);
 
 					const $select = $('#sel_' + qsitNo);  // 문자열 연결로 변경
 					if ($select.length) {
 						$select.val(valtScr);
-						console.log('#sel_' + qsitNo + ' 값을 ' + valtScr + '로 설정');  // 템플릿 리터럴 안 써도 안전
+						//console.log('#sel_' + qsitNo + ' 값을 ' + valtScr + '로 설정');
 					} else {
 						console.warn('#sel_' + qsitNo + ' 셀렉터를 찾을 수 없습니다');
 					}
 
 				});
 
-				//
+				calculateTotalPoints();
 			},
 			error: function(xhr) {
 				console.error("에러:", xhr.status, xhr.responseText);
@@ -741,6 +748,7 @@
 				$empty.focus();
 				$empty.closest('td').click(); // 상위 td 클릭 트리거
 				alert('평가 하지 않은 항목이 존재합니다');
+				return false;
 			}
 
 			fn_vote_admin_update();
@@ -751,10 +759,19 @@
 		let sNtcrNm = $('[name="ntcrNm"]').val();
 		let sMsg = "발표자("+sNtcrNm+")에 대한 평가를 저장하시겠습니까?"
 
+		let result = [];
+
+		$('select[name^="sel_"]').each(function () {
+			const id = $(this).attr('id');
+			const value = $(this).val();
+			result.push(id + '|' + value);
+		});
+
+		$('input[name="valtQsitSendStr"]').val(result.join('@'));
+
 		if (confirm(sMsg)) {
-			alert('구현중!')
-			//document.board.action = "<c:url value='/cmm/contest/updateContestAdminVote.do'/>";
-			//document.board.submit();
+			document.vote.action = "<c:url value='/cmm/contest/updateContestAdminVote.do'/>";
+			document.vote.submit();
 		}
 	}
 

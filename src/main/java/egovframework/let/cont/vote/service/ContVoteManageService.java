@@ -35,4 +35,13 @@ public interface ContVoteManageService {
 	 */
 	public Map<String, Object> selectAdminVotesAjax(ContVoteVO contVoteVO)
 			throws Exception;
+
+	/**
+	 * 평가항목을 등록 한다.
+	 *
+	 * @param contVoteVO
+	 * @exception Exception Exception
+	 */
+	public int insertAdminVotes(ContVoteVO contVoteVO)
+			throws Exception;
 }

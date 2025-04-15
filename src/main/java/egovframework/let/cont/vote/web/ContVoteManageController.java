@@ -97,4 +97,74 @@ public class ContVoteManageController {
 
 		return "main/contest/ContestAdminVoteView";
 	}
+
+	/**
+	 * 게시물에 대한 내용을 수정한다.
+	 *
+	 * @param contVoteVO
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/cmm/contest/updateContestAdminVote.do")
+	public String updateContestAdminVote(@ModelAttribute("vote") ContVoteVO contVoteVO, ModelMap model) throws Exception {
+
+		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+		if (!isAuthenticated) {
+			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
+			return "uat/uia/EgovLoginUsr";
+		}
+
+		LoginVO user;
+		if (EgovUserDetailsHelper.isAuthenticated()) {
+			user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+			System.out.println("user.getId():"+user.getId());
+		} else {
+			user = new LoginVO();
+			user.setId("anonymous");
+		}
+
+//		System.out.println("contVoteVO:"+contVoteVO);
+//		System.out.println("contVoteVO.getValtMngmNo():"+contVoteVO.getValtMngmNo());
+//		System.out.println("contVoteVO.getValtQsitMnno():"+contVoteVO.getValtQsitMnno());
+//		System.out.println("contVoteVO.getBbsId():"+contVoteVO.getBbsId());
+//		System.out.println("contVoteVO.getNttId():"+contVoteVO.getNttId());
+		contVoteVO.setExmnId(user.getId());
+//		System.out.println("contVoteVO.getExmnId():"+contVoteVO.getExmnId());
+//		System.out.println("contVoteVO.getValtQsitSendStr():"+contVoteVO.getValtQsitSendStr());
+		contVoteVO.setFrstRegisterId(user.getId());
+
+		String resultMsg = "";
+		try {
+
+			String valtQsitSendStr = contVoteVO.getValtQsitSendStr(); // 예: "sel_101|6@sel_102|8@sel_103|10..."
+			String[] pairs = valtQsitSendStr.split("@");
+
+			for (String pair : pairs) {
+				String[] parts = pair.split("\\|"); // |는 정규식에서 특수문자이므로 \\로 escape 필요
+				if (parts.length == 2) {
+					String sel_name = parts[0].replace("sel_", "");
+					String sel_value = parts[1];
+
+					System.out.println("sel_name: " + sel_name + ", sel_value: " + sel_value);
+
+					contVoteVO.setUseAt("Y");
+					contVoteVO.setQsitNo(sel_name);
+					contVoteVO.setValtScr(sel_value);
+
+					int chkCnt = contVoteManageService.insertAdminVotes(contVoteVO);
+					System.out.println("chkCnt:" + chkCnt);
+				} else {
+					System.out.println("잘못된 형식의 데이터: " + pair);
+				}
+			}
+			resultMsg = "success.common.insert";
+		}catch (Exception e) {
+			resultMsg = "fail.request.msg";
+		}
+
+		model.addAttribute("resultMsg", resultMsg);
+
+		return "forward:/cmm/contest/contestAdminVote.do";
+	}
 }

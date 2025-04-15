@@ -189,6 +189,11 @@ public class Vote implements Serializable {
 	private String valtScr = "";
 
 	/**
+	 * 평가문항전송문자열
+	 */
+	private String valtQsitSendStr = "";
+
+	/**
 	 * atchFileId attribute를 리턴한다.
 	 * @return the atchFileId
 	 */
@@ -900,5 +905,22 @@ public class Vote implements Serializable {
 	public void setValtScr(String valtScr) {
 		this.valtScr = valtScr;
 	}
+
+	/**
+	 * valtQsitSendStr attribute를 리턴한다.
+	 * @return the valtQsitSendStr
+	 */
+	public String getValtQsitSendStr() {
+		return valtQsitSendStr;
+	}
+
+	/**
+	 * valtQsitSendStr attribute 값을 설정한다.
+	 * @param valtQsitSendStr the valtQsitSendStr to set
+	 */
+	public void setValtQsitSendStr(String valtQsitSendStr) {
+		this.valtQsitSendStr = valtQsitSendStr;
+	}
+
 
 }

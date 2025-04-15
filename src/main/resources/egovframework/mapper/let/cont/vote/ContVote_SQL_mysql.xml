@@ -89,6 +89,7 @@
 
 	<resultMap id="voteList" type="egovframework.let.cont.vote.service.ContVoteVO">
 		<result property="valtQsitMnno" column="VALT_QSIT_MNNO"/>
+		<result property="valtQsitMnno" column="VALT_QSIT_MNNO"/>
 		<result property="qsitNo" column="QSIT_NO"/>
 		<result property="bbsId" column="BBS_ID"/>
 		<result property="nttId" column="NTT_ID"/>
@@ -133,7 +134,7 @@
 
 	<select id="selectContVoteAdminBBSList" parameterType="egovframework.let.cont.vote.service.ContVoteVO" resultMap="bbsList">
 
-		select a.VALT_MNGM_NO as VALT_MNGM_NO, a.TTL as VALT_MNGM_TTL, c.NTT_ID as NTT_ID, c.BBS_ID as BBS_ID, user.USER_NM AS NTCR_NM
+		select a.VALT_MNGM_NO as VALT_MNGM_NO, a.VALT_QSIT_MNNO as VALT_QSIT_MNNO, a.TTL as VALT_MNGM_TTL, c.NTT_ID as NTT_ID, c.BBS_ID as BBS_ID, user.USER_NM AS NTCR_NM
 		FROM tb_valt_mngm_master a
 				 LEFT JOIN tb_exmn_mngm b ON a.VALT_MNGM_NO = b.VALT_MNGM_NO
 				 LEFT JOIN tb_valt_tar_mngm c ON a.VALT_MNGM_NO = c.VALT_MNGM_NO
@@ -197,4 +198,28 @@
 		  and a.EXMN_ID = #{exmnId}
 
 	</select>
+
+	<select id="selectAdminVoteCnt" parameterType="egovframework.let.cont.vote.service.ContVoteVO" resultType="java.lang.Integer">
+
+		SELECT count(1) as cnt
+		FROM pst.tb_valt_scr a
+				 LEFT JOIN tb_valt_mngm_master b ON a.VALT_QSIT_MNNO = b.VALT_QSIT_MNNO
+		where b.VALT_MNGM_NO = #{valtMngmNo}
+		  and a.NTT_ID = #{nttId}
+		  and a.BBS_ID = #{bbsId}
+		  and a.EXMN_ID = #{exmnId}
+		  and a.QSIT_NO = #{qsitNo}
+
+	</select>
+
+	<insert id="insertAdminVote" parameterType="egovframework.let.cont.vote.service.ContVoteVO">
+
+		INSERT INTO tb_valt_scr (VALT_QSIT_MNNO, QSIT_NO, NTT_ID, BBS_ID, EXMN_ID, VALT_SCR, USE_AT, FRST_REGIST_PNTTM, FRST_REGISTER_ID)
+		VALUES (#{valtQsitMnno}, #{qsitNo}, #{nttId}, #{bbsId}, #{exmnId}, #{valtScr}, #{useAt}, SYSDATE(), #{frstRegisterId})
+			ON DUPLICATE KEY UPDATE
+			VALT_SCR = VALUES(VALT_SCR),
+			LAST_UPDT_PNTTM = SYSDATE(),
+			LAST_UPDUSR_ID = VALUES(EXMN_ID)
+
+	</insert>
 </mapper>

@@ -82,4 +82,21 @@ public class ContVoteManageServiceImpl extends EgovAbstractServiceImpl implement
 
         return map;
     }
+
+    /**
+     * 평가항목을 등록 한다.
+     */
+    public int insertAdminVotes(ContVoteVO contVoteVO) throws Exception {
+
+        System.out.println("insertAdminVotes >>> ");
+
+//        int result = contVoteManageDAO.selectAdminVoteCnt(contVoteVO);
+//        if(result > 0){
+//            return contVoteManageDAO.updateAdminVote(contVoteVO);
+//        }else{
+//            return contVoteManageDAO.insertAdminVote(contVoteVO);
+//        }
+
+        return contVoteManageDAO.insertAdminVote(contVoteVO);
+    }
 }

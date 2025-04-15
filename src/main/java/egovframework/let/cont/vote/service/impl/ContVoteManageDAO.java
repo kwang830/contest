@@ -21,7 +21,7 @@ public class ContVoteManageDAO extends EgovAbstractMapper {
      */
     @SuppressWarnings("unchecked")
     public List<ContVoteVO> selectContVoteAdminGroupList(ContVoteVO contVoteVO) throws Exception {
-	return (List<ContVoteVO>) list("ContVoteManageDAO.selectContVoteAdminGroupList", contVoteVO);
+	    return (List<ContVoteVO>) list("ContVoteManageDAO.selectContVoteAdminGroupList", contVoteVO);
     }
 
     /**
@@ -80,4 +80,35 @@ public class ContVoteManageDAO extends EgovAbstractMapper {
     public int selectAdminVotesCnt(ContVoteVO contVoteVO) throws Exception {
         return (Integer)selectOne("ContVoteManageDAO.selectAdminVotesCnt", contVoteVO);
     }
+
+    /**
+     * 평가항목 카운트를 조회한다.
+     *
+     * @param contVoteVO
+     * @throws Exception
+     */
+    public int selectAdminVoteCnt(ContVoteVO contVoteVO) throws Exception {
+        return (Integer)selectOne("ContVoteManageDAO.selectAdminVoteCnt", contVoteVO);
+    }
+
+    /**
+     * 평가항목을 등록 한다.
+     *
+     * @param contVoteVO
+     * @throws Exception
+     */
+    public int insertAdminVote(ContVoteVO contVoteVO) throws Exception {
+        return insert("ContVoteManageDAO.insertAdminVote", contVoteVO);
+    }
+
+    /**
+     * 평가항목을 수정 한다.
+     *
+     * @param contVoteVO
+     * @throws Exception
+     */
+    public int updateAdminVote(ContVoteVO contVoteVO) throws Exception {
+        return update("ContVoteManageDAO.updateAdminVote", contVoteVO);
+    }
+    
 }
