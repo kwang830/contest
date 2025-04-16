@@ -342,6 +342,26 @@
 				</svg>
 			</div>
 		</div>
+
+<%--		<div class="center">--%>
+<%--			<a href="#myModal1" data-lightbox="inline" class="button button-large button-rounded">팝업창</a>--%>
+<%--		</div>--%>
+
+		<div class="modal-on-load enable-cookie" data-target="#myModal1"></div>
+
+		<!-- Modal -->
+		<div class="modal1 mfp-hide" id="myModal1">
+			<div class="block divcenter" style="background-color: #FFF; max-width: 700px;">
+				<div class="center" style="padding: 50px;">
+					<h3>비밀번호를 변경하세요!</h3>
+					<p class="nobottommargin">임시 비밀번호를 사용하고 계십니다. 비밀번호 변경이 필요합니다.</p>
+				</div>
+				<div class="section center nomargin" style="padding: 30px;">
+					<a href="/uss/umt/edit/MyInfo.do" class="button">비밀번호 변경</a>
+					<a href="#" class="button" onClick="$.magnificPopup.close();return false;">창 닫기</a>
+				</div>
+			</div>
+		</div>
 		
 		<!-- footer 시작 -->
 	    <c:import url="/sym/mms/ContFooter.do" />
@@ -506,5 +526,19 @@
 			if ($(e.target).closest('.popup-wrap')) $(e.target).closest('.popup-wrap').hide();
 		})
 	</script>
+
+	<%
+		LoginVO loginVO = (LoginVO)session.getAttribute("LoginVO");
+		if (loginVO != null){
+	%>
+	<c:set var="tempPwdYn" value="<%= loginVO.getTempPwdYn()%>"/>
+	<c:if test="${tempPwdYn == 'Y'}">
+		<script type="text/javascript">
+			$(document).ready(function () {
+				$('[href="#myModal1"]').trigger('click');
+			});
+		</script>
+	</c:if>
+	<%  } %>
 </body>
 </html>

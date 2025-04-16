@@ -115,7 +115,6 @@
 								LoginVO loginVO = (LoginVO)session.getAttribute("LoginVO");
 								if (loginVO == null){
 							%>
-
 								<c:choose>
 									<c:when test="${param.v == 'dev'}">
 										<a href="/uat/uia/egovLoginUsr.do" class="login-menu">로그인</a>
@@ -126,13 +125,16 @@
 								</c:choose>
 
 							<%  }else{ %>
+								<c:set var="deptNm" value="<%= loginVO.getDeptNm()%>"/>
+								<c:set var="titleNm" value="<%= loginVO.getTitleNm()%>"/>
 								<c:set var="loginName" value="<%= loginVO.getName()%>"/>
+								<c:set var="tempPwdYn" value="<%= loginVO.getTempPwdYn()%>"/>
 									<div class="mem-info-con">
 										<div class="mem-info-img">
 											<img src="" alt=""> <!--그룹웨어 이미지-->
 										</div>
 										<div>
-											<div class="mem-info-text">디지털사업운영팀 차장 <c:out value="${loginName}" /></div>
+											<div class="mem-info-text"><c:out value="${deptNm}" /> <c:out value="${titleNm}" /> <c:out value="${loginName}" /> , <c:out value="${tempPwdYn}" /></div>
 											<a href="/uss/umt/edit/MyInfo.do" class="mem-info-btn">회원정보관리</a>
 										</div>
 									</div>

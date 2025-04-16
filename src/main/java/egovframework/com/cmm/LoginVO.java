@@ -57,6 +57,19 @@ public class LoginVO implements Serializable{
 	/** 사용자 Browser정보 */
 	private String browserInfo;
 
+	/** 부서정보(팀명) */
+	private String deptNm;
+	/** 부서정보(전체) */
+	private String deptNmF;
+	/** 직책 */
+	private String titleNm;
+
+	/** 임시비밀번호여부 */
+	private String tempPwdYn;
+	/** 최종비밀번호변경시점 */
+	private String chgPwdLastPnttm;
+
+
 	/**
 	 * id attribute 를 리턴한다.
 	 * @return String
@@ -275,4 +288,68 @@ public class LoginVO implements Serializable{
 	public void setBrowserInfo(String browserInfo) {
 		this.browserInfo = browserInfo;
 	}
+
+
+	/**
+	 * @return the deptNm
+	 */
+	public String getDeptNm() {
+		return deptNm;
+	}
+	/**
+	 * @param deptNm the deptNm to set
+	 */
+	public void setDeptNm(String deptNm) {
+		this.deptNm = deptNm;
+	}
+	/**
+	 * @return the deptNmF
+	 */
+	public String getDeptNmF() {
+		return deptNmF;
+	}
+	/**
+	 * @param deptNmF the deptNmF to set
+	 */
+	public void setDeptNmF(String deptNmF) {
+		this.deptNmF = deptNmF;
+	}
+	/**
+	 * @return the titleNm
+	 */
+	public String getTitleNm() {
+		return titleNm;
+	}
+	/**
+	 * @param titleNm the titleNm to set
+	 */
+	public void setTitleNm(String titleNm) {
+		this.titleNm = titleNm;
+	}
+
+	/**
+	 * @return the tempPwdYn
+	 */
+	public String getTempPwdYn() {
+		return tempPwdYn;
+	}
+	/**
+	 * @param tempPwdYn the tempPwdYn to set
+	 */
+	public void setTempPwdYn(String tempPwdYn) {
+		this.tempPwdYn = tempPwdYn;
+	}
+	/**
+	 * @return the chgPwdLastPnttm
+	 */
+	public String getChgPwdLastPnttm() {
+		return chgPwdLastPnttm;
+	}
+	/**
+	 * @param chgPwdLastPnttm the chgPwdLastPnttm to set
+	 */
+	public void setChgPwdLastPnttm(String chgPwdLastPnttm) {
+		this.chgPwdLastPnttm = chgPwdLastPnttm;
+	}
+
 }

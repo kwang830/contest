@@ -209,7 +209,9 @@ FROM(
         
             UPDATE LETTNGNRLMBER 
             SET 
-                   PASSWORD   =  #{password}
+                   PASSWORD   =  #{password},
+                   TEMP_PWD_YN = #{tempPwdYn},
+                   LOCK_CNT = 0
             WHERE  ESNTL_ID  = #{uniqId}
         
     </update>

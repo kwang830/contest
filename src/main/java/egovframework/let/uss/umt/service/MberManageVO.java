@@ -148,7 +148,10 @@ public class MberManageVO extends UserDefaultVO{
 	 * 직급
 	 */
 	private String rankNm = "";
-
+	/**
+	 * 임시비밀번호여부
+	 */
+	private String tempPwdYn = "";
 
 
 	/**
@@ -602,5 +605,21 @@ public class MberManageVO extends UserDefaultVO{
 	 */
 	public void setRankNm(String rankNm) {
 		this.rankNm = rankNm;
+	}
+
+	/**
+	 * tempPwdYn attribute를 리턴한다.
+	 * @return the tempPwdYn
+	 */
+	public String getTempPwdYn() {
+		return tempPwdYn;
+	}
+
+	/**
+	 * tempPwdYn attribute 값을 설정한다.
+	 * @param tempPwdYn the tempPwdYn to set
+	 */
+	public void setTempPwdYn(String tempPwdYn) {
+		this.tempPwdYn = tempPwdYn;
 	}
 }

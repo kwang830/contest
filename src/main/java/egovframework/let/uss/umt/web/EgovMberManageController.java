@@ -452,6 +452,7 @@ public class EgovMberManageController {
 
 		if (isCorrectPassword) {
 			mberManageVO.setPassword(EgovFileScrty.encryptPassword(newPassword, mberManageVO.getMberId()));
+			mberManageVO.setTempPwdYn("N");
 			mberManageService.updatePassword(mberManageVO);
 			model.addAttribute("mberManageVO", mberManageVO);
 			resultMsg = "success.common.update";
@@ -545,6 +546,7 @@ public class EgovMberManageController {
 
 			if (!mberManageVO.getPasswordCnsr().isEmpty()) {
 				System.out.println("1");
+				mberManageVO.setTempPwdYn("Y");
 				mberManageService.updatePassword(mberManageVO);
 				count++;
 			}else{
@@ -750,6 +752,7 @@ public class EgovMberManageController {
 
 		if (isCorrectPassword) {
 			mberManageVO.setPassword(EgovFileScrty.encryptPassword(newPassword, mberManageVO.getMberId()));
+			mberManageVO.setTempPwdYn("N");
 			mberManageService.updatePassword(mberManageVO);
 			model.addAttribute("mberManageVO", mberManageVO);
 			resultMsg = "success.common.update";

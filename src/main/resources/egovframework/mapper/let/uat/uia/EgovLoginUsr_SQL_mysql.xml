@@ -31,35 +31,49 @@
 	<select id="actionLogin" resultMap="login">
         <!-- 일반회원 -->
         <if test="userSe == &quot;GNR&quot;">
-            SELECT mber_id AS id
-                 , mber_nm AS name
-                 , ihidNum AS ihidNum
-                 , password AS password
-                 , mber_email_adres AS email
+            SELECT a.mber_id AS id
+                 , a.mber_nm AS name
+                 , a.ihidNum AS ihidNum
+                 , a.password AS password
+                 , a.mber_email_adres AS email
                  , 'GNR' AS userSe
                  , '-' AS orgnztId
-                 , esntl_id AS uniqId
-              FROM LETTNGNRLMBER
-             WHERE mber_id = #{id}
+                 , a.esntl_id AS uniqId
+                 , SUBSTRING_INDEX(b.CODE_NM, '>', -1) AS deptNm
+                 , b.CODE_NM AS deptNmF
+                 , c.CODE_NM AS titleNm
+                 , a.TEMP_PWD_YN AS tempPwdYn
+                 , a.CHG_PWD_LAST_PNTTM AS chgPwdLastPnttm
+              FROM LETTNGNRLMBER a
+              LEFT OUTER JOIN lettccmmndetailcode b
+              ON a.DEPT_CODE = b.code AND b.CODE_ID = 'IBK001'
+              LEFT OUTER JOIN lettccmmndetailcode c
+              ON a.TITLE_CODE = c.code AND c.CODE_ID = 'IBK002'
+              WHERE a.mber_id = #{id}
             <if test="url != &quot;PASS&quot;">
-                AND password = #{password}
+                AND a.password = #{password}
             </if>
-               AND mber_sttus = 'P'
+               AND a.mber_sttus = 'P'
         </if>
         <!-- 대상없을 때 -->
         <if test="userSe == null or userSe == &quot;&quot;">
-            SELECT mber_id AS id
-            , mber_nm AS name
-            , ihidNum AS ihidNum
-            , password AS password
-            , mber_email_adres AS email
+            SELECT a.mber_id AS id
+            , a.mber_nm AS name
+            , a.ihidNum AS ihidNum
+            , a.password AS password
+            , a.mber_email_adres AS email
             , 'GNR' AS userSe
             , '-' AS orgnztId
-            , esntl_id AS uniqId
-            FROM LETTNGNRLMBER
-            WHERE mber_id = 'test'
-            AND password = '1'
-            AND mber_sttus = 'P'
+            , a.esntl_id AS uniqId
+            , '-' AS deptNm
+            , '-' AS deptNmF
+            , '-' AS titleNm
+            , '-' AS tempPwdYn
+            , '-' AS chgPwdLastPnttm
+            FROM LETTNGNRLMBER a
+            WHERE a.mber_id = 'test'
+            AND a.password = '1'
+            AND a.mber_sttus = 'P'
         </if>
 
 	</select>

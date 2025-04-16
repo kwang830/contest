@@ -220,10 +220,6 @@ public class EgovLoginController {
 									  ModelMap model, Locale locale)
             throws Exception {
 
-		System.out.println("loginVO.getUserSe:"+loginVO.getUserSe());
-		System.out.println("loginVO.getUserSe:"+loginVO.getUserSe());
-		System.out.println("loginVO.getUserSe:"+loginVO.getUserSe());
-
     	// 1. 일반 로그인 처리
         LoginVO resultVO = loginService.actionLogin(loginVO);
 
