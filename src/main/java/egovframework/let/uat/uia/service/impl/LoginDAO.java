@@ -73,4 +73,25 @@ public class LoginDAO extends EgovAbstractMapper {
 	public void updateLoginFailCount(LoginVO vo) throws Exception {
 		update("loginDAO.updateLoginFailCount", vo);
 	}
+
+	/**
+	 * 아이디 잠김여부를 조회한다.
+	 * @param vo LoginVO
+	 * @return LoginVO
+	 * @exception Exception
+	 */
+	public LoginVO actionLoginLockYn(LoginVO vo) throws Exception {
+
+		return (LoginVO)selectOne("loginDAO.actionLoginLockYn", vo);
+	}
+
+	/**
+	 * Lock_cnt 를 초기화 한다.
+	 * @param vo LoginVO
+	 * @exception Exception
+	 */
+	public void actionLoginLockCntReset(LoginVO vo) throws Exception {
+
+		update("loginDAO.updateLoginLockCntReset", vo);
+	}
 }

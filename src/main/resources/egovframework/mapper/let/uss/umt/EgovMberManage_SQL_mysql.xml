@@ -208,7 +208,10 @@ FROM(
     <update id="updatePassword_S">
         
             UPDATE LETTNGNRLMBER 
-            SET 
+            SET
+        <if test='tempPwdYn == "N"'>
+                   CHG_PWD_LAST_PNTTM = SYSDATE(),
+        </if>
                    PASSWORD   =  #{password},
                    TEMP_PWD_YN = #{tempPwdYn},
                    LOCK_CNT = 0,

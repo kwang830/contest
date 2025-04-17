@@ -122,4 +122,40 @@ public class EgovLoginServiceImpl extends EgovAbstractServiceImpl implements
 
     	return result;
     }
+
+	/**
+	 * 아이디 잠김여부를 조회한다.
+	 * @param vo LoginVO
+	 * @return LoginVO
+	 * @exception Exception
+	 */
+	@Override
+	public LoginVO actionLoginLockYn(LoginVO vo) throws Exception {
+
+		// 1. 이름, 이메일주소가 DB와 일치하는 사용자 ID를 조회한다.
+		LoginVO loginVO = loginDAO.actionLoginLockYn(vo);
+
+		// 2. 결과를 리턴한다.
+		if (loginVO != null && !loginVO.getId().equals("")) {
+			return loginVO;
+		} else {
+			loginVO = new LoginVO();
+		}
+
+		return loginVO;
+	}
+
+	/**
+	 * Lock_cnt 를 초기화 한다.
+	 * @param vo LoginVO
+	 * @return Void
+	 * @exception Exception
+	 */
+	@Override
+	public void actionLoginLockCntReset(LoginVO vo) throws Exception {
+
+		loginDAO.actionLoginLockCntReset(vo);
+
+	}
+
 }

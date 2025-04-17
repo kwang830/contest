@@ -15,6 +15,7 @@
 		<result property="orgnztId" column="orgnztId"/>
 		<result property="uniqId" column="uniqId"/>
         <result property="url" column="url"/>
+        <result property="lockYn" column="lockYn"/>
 	</resultMap>
 	
 	<!-- 아이디 찾기를 위한 resultMap 
@@ -197,10 +198,27 @@
         SET
             LOCK_CNT = IFNULL(LOCK_CNT, 0) + 1,
             LOCK_YN = CASE
-                          WHEN IFNULL(LOCK_CNT, 0) + 1 >= 5 THEN 'Y'
+                          WHEN IFNULL(LOCK_CNT, 0) >= 5 THEN 'Y'
                           ELSE LOCK_YN
                 END,
-            LOCK_LAST_PNTTM = NOW()
+            LOCK_LAST_PNTTM = SYSDATE()
+        WHERE MBER_ID = #{id}
+
+    </update>
+
+    <select id="actionLoginLockYn" resultMap="login">
+		<![CDATA[
+        select MBER_ID as id, LOCK_YN as lockYn from LETTNGNRLMBER
+        where MBER_ID = #{id}
+        ]]>
+	</select>
+
+    <update id="updateLoginLockCntReset">
+        UPDATE lettngnrlmber
+        SET
+            LOCK_CNT = 0,
+            LOCK_YN = 'N',
+            LOCK_LAST_PNTTM = SYSDATE()
         WHERE MBER_ID = #{id}
 
     </update>

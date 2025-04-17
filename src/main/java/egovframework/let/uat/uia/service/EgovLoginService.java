@@ -50,4 +50,23 @@ public interface EgovLoginService {
 	public boolean searchPassword(LoginVO vo)
 	  throws Exception;
 
+	/**
+	 * 아이디 잠김여부를 조회한다.
+	 * @return LoginVO
+	 *
+	 * @param vo    LoginVO
+	 * @exception Exception Exception
+	 */
+	public LoginVO actionLoginLockYn(LoginVO vo)
+			throws Exception;
+
+	/**
+	 * Lock_cnt 를 초기화 한다.
+	 * @return LoginVO
+	 *
+	 * @param vo    LoginVO
+	 * @exception Exception Exception
+	 */
+	public void actionLoginLockCntReset(LoginVO vo)
+			throws Exception;
 }

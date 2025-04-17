@@ -220,6 +220,15 @@ public class EgovLoginController {
 									  ModelMap model, Locale locale)
             throws Exception {
 
+		// 0. 잠긴 계정여부 확인
+		LoginVO chkLockVO = loginService.actionLoginLockYn(loginVO);
+		if (chkLockVO != null ) {
+			if( chkLockVO.getLockYn() != null && chkLockVO.getLockYn().equals("Y") ){
+				model.addAttribute("message", egovMessageSource.getMessage("fail.common.loginCount"));
+				return "uat/uia/EgovLoginUsr";
+			}
+		}
+
     	// 1. 일반 로그인 처리
         LoginVO resultVO = loginService.actionLogin(loginVO);
 
@@ -227,11 +236,8 @@ public class EgovLoginController {
 
         if (resultVO != null && resultVO.getId() != null && !resultVO.getId().equals("") && loginPolicyYn) {
 
-			// 1. 비밀번호 잠긴 계정이면 메시지 출력
-			if( resultVO.getLockYn() != null && resultVO.getLockYn().equals("Y") ){
-				model.addAttribute("message", egovMessageSource.getMessage("fail.common.loginCount"));
-				return "uat/uia/EgovLoginUsr";
-			}
+			// 1. 로그인 성공시 Lock_cnt = 0
+			loginService.actionLoginLockCntReset(loginVO);
 
             // 2. spring security 연동
         	request.getSession().setAttribute("LoginVO", resultVO);
@@ -289,11 +295,11 @@ public class EgovLoginController {
 	public String actionMain(ModelMap model)
 			throws Exception {
 
-		System.out.println("# /uat/uia/actionMain.do ; actionMain >> ");
+		//System.out.println("# /uat/uia/actionMain.do ; actionMain >> ");
     	
     	// 1. Spring Security 사용자권한 처리
     	Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
-		System.out.println("isAuthenticated:"+isAuthenticated);
+		//System.out.println("isAuthenticated:"+isAuthenticated);
     	if(!isAuthenticated) {
     		model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
         	return "uat/uia/EgovLoginUsr";
