@@ -64,4 +64,13 @@ public class LoginDAO extends EgovAbstractMapper {
     public void updatePassword(LoginVO vo) throws Exception {
     	update("loginDAO.updatePassword", vo);
     }
+
+	/**
+	 * 비밀번호 실패시 카운트를 저장한다. 5회 이상시 계정을 잠금한다.
+	 * @param vo LoginVO
+	 * @exception Exception
+	 */
+	public void updateLoginFailCount(LoginVO vo) throws Exception {
+		update("loginDAO.updateLoginFailCount", vo);
+	}
 }

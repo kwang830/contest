@@ -227,6 +227,12 @@ public class EgovLoginController {
 
         if (resultVO != null && resultVO.getId() != null && !resultVO.getId().equals("") && loginPolicyYn) {
 
+			// 1. 비밀번호 잠긴 계정이면 메시지 출력
+			if( resultVO.getLockYn() != null && resultVO.getLockYn().equals("Y") ){
+				model.addAttribute("message", egovMessageSource.getMessage("fail.common.loginCount"));
+				return "uat/uia/EgovLoginUsr";
+			}
+
             // 2. spring security 연동
         	request.getSession().setAttribute("LoginVO", resultVO);
 

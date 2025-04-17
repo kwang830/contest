@@ -44,6 +44,7 @@
                  , c.CODE_NM AS titleNm
                  , a.TEMP_PWD_YN AS tempPwdYn
                  , a.CHG_PWD_LAST_PNTTM AS chgPwdLastPnttm
+                 , a.LOCK_YN as lockYn
               FROM LETTNGNRLMBER a
               LEFT OUTER JOIN lettccmmndetailcode b
               ON a.DEPT_CODE = b.code AND b.CODE_ID = 'IBK001'
@@ -70,6 +71,7 @@
             , '-' AS titleNm
             , '-' AS tempPwdYn
             , '-' AS chgPwdLastPnttm
+            , '-' As lockYn
             FROM LETTNGNRLMBER a
             WHERE a.mber_id = 'test'
             AND a.password = '1'
@@ -190,4 +192,16 @@
 		</isEqual>
 	</update>
 	-->
+    <update id="updateLoginFailCount">
+        UPDATE lettngnrlmber
+        SET
+            LOCK_CNT = IFNULL(LOCK_CNT, 0) + 1,
+            LOCK_YN = CASE
+                          WHEN IFNULL(LOCK_CNT, 0) + 1 >= 5 THEN 'Y'
+                          ELSE LOCK_YN
+                END,
+            LOCK_LAST_PNTTM = NOW()
+        WHERE MBER_ID = #{id}
+
+    </update>
 </mapper>

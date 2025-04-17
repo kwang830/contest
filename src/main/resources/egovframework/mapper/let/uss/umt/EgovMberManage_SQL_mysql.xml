@@ -211,7 +211,8 @@ FROM(
             SET 
                    PASSWORD   =  #{password},
                    TEMP_PWD_YN = #{tempPwdYn},
-                   LOCK_CNT = 0
+                   LOCK_CNT = 0,
+                   LOCK_YN = 'N'
             WHERE  ESNTL_ID  = #{uniqId}
         
     </update>

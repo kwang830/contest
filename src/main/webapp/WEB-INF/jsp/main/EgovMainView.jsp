@@ -343,10 +343,13 @@
 			</div>
 		</div>
 
-<%--		<div class="center">--%>
-<%--			<a href="#myModal1" data-lightbox="inline" class="button button-large button-rounded">팝업창</a>--%>
-<%--		</div>--%>
-
+		<%
+			LoginVO loginVO = (LoginVO)session.getAttribute("LoginVO");
+			if (loginVO != null){
+		%>
+		<c:set var="tempPwdYn" value="<%= loginVO.getTempPwdYn()%>"/>
+		<c:set var="chkId" value="<%= loginVO.getId()%>"/>
+		<c:if test="${tempPwdYn == 'Y'}">
 		<div class="modal-on-load enable-cookie" data-target="#myModal1"></div>
 
 		<!-- Modal -->
@@ -362,6 +365,8 @@
 				</div>
 			</div>
 		</div>
+		</c:if>
+		<%  } %>
 		
 		<!-- footer 시작 -->
 	    <c:import url="/sym/mms/ContFooter.do" />
@@ -528,12 +533,12 @@
 	</script>
 
 	<%
-		LoginVO loginVO = (LoginVO)session.getAttribute("LoginVO");
 		if (loginVO != null){
 	%>
-	<c:set var="tempPwdYn" value="<%= loginVO.getTempPwdYn()%>"/>
 	<c:if test="${tempPwdYn == 'Y'}">
 		<script type="text/javascript">
+			console.log('tempPwdYn:<c:out value='${tempPwdYn}'/>');
+			console.log('chkId:<c:out value='${chkId}'/>');
 			$(document).ready(function () {
 				$('[href="#myModal1"]').trigger('click');
 			});

@@ -68,6 +68,8 @@ public class LoginVO implements Serializable{
 	private String tempPwdYn;
 	/** 최종비밀번호변경시점 */
 	private String chgPwdLastPnttm;
+	/** 계정잠김여부 */
+	private String lockYn;
 
 
 	/**
@@ -352,4 +354,16 @@ public class LoginVO implements Serializable{
 		this.chgPwdLastPnttm = chgPwdLastPnttm;
 	}
 
+	/**
+	 * @return the lockYn
+	 */
+	public String getLockYn() {
+		return lockYn;
+	}
+	/**
+	 * @param lockYn the lockYn to set
+	 */
+	public void setLockYn(String lockYn) {
+		this.lockYn = lockYn;
+	}
 }

@@ -54,6 +54,7 @@ public class EgovLoginServiceImpl extends EgovAbstractServiceImpl implements
     	if (loginVO != null && !loginVO.getId().equals("") && !loginVO.getPassword().equals("")) {
     		return loginVO;
     	} else {
+			loginDAO.updateLoginFailCount(vo);
     		loginVO = new LoginVO();
     	}
 
