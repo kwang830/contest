@@ -90,75 +90,36 @@
 					</div>
 				</div>
 				<div class="work-list-con">
-					<div class="work-list" onclick="window.location.href='/cmm/contest/apfrRcipDetail.do'">
-						<div class="work-list-top-con">
-							<div class="mem-info-img">
-								<img src="" alt=""> <!--작성자 이미지-->
-							</div>
-							<div class="work-title-info">
-								<div class="work-title">공모전 제목입니다</div>
-								<div class="work-date-info">
-									<div class="work-mem-name">AI 완전 전문가</div>
-									<div class="work-date">2025.06.07</div>
-								</div>
-							</div>
 
-						</div>
-						<div class="work-desc">
-							공모전 내용입니다. 공모전 내용입니다.
-						</div>
-					</div>
-					<div class="work-list" onclick="window.location.href='/cmm/contest/apfrRcipDetail.do'">
-						<div class="work-list-top-con">
-							<div class="mem-info-img">
-								<img src="" alt=""> <!--작성자 이미지-->
-							</div>
-							<div class="work-title-info">
-								<div class="work-title">공모전 제목입니다. 아주아주 긴 공모전 제목</div>
-								<div class="work-date-info">
-									<div class="work-mem-name">AI 완전 전문가</div>
-									<div class="work-date">2025.06.07</div>
+					<c:forEach var="result" items="${resultList}" varStatus="status">
+						<form name="subForm" method="post" action="<c:url value='/cmm/contest/apfrRcipDetail.do'/>">
+							<input type="hidden" name="bbsId" value="<c:out value='${result.bbsId}'/>" />
+							<input type="hidden" name="nttId" value="<c:out value="${result.nttId}"/>" />
+							<input type="hidden" name="bbsTyCode" value="<c:out value='${brdMstrVO.bbsTyCode}'/>" />
+							<input type="hidden" name="bbsAttrbCode" value="<c:out value='${brdMstrVO.bbsAttrbCode}'/>" />
+							<input type="hidden" name="authFlag" value="<c:out value='${brdMstrVO.authFlag}'/>" />
+							<input name="pageIndex" type="hidden" value="<c:out value='${searchVO.pageIndex}'/>" />
+						<div class="work-list" onclick="parentNode.submit();">
+							<div class="work-list-top-con">
+								<div class="mem-info-img">
+									<img src="<c:out value="${result.imgUrl}" escapeXml="false" />" alt=""> <!--작성자 이미지-->
 								</div>
-							</div>
-						</div>
-						<div class="work-desc">
-							공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다.
-						</div>
-					</div>
-					<div class="work-list" onclick="window.location.href='/cmm/contest/apfrRcipDetail.do'">
-						<div class="work-list-top-con">
-							<div class="mem-info-img">
-								<img src="" alt=""> <!--작성자 이미지-->
-							</div>
-							<div class="work-title-info">
-								<div class="work-title">공모전 제목입니다</div>
-								<div class="work-date-info">
-									<div class="work-mem-name">AI 완전 전문가</div>
-									<div class="work-date">2025.06.07</div>
+								<div class="work-title-info">
+									<div class="work-title"><c:out value="${result.nttSj}" escapeXml="false" /></div>
+									<div class="work-date-info">
+										<div class="work-mem-name"><c:out value="${result.teamNm}" escapeXml="false" /></div>
+										<div class="work-date"><c:out value="${fn:replace(result.frstRegisterPnttm, '-', '.')}" escapeXml="false" /></div>
+									</div>
 								</div>
+
+							</div>
+							<div class="work-desc">
+								<c:out value="${result.nttCn}" escapeXml="false" />
 							</div>
 						</div>
-						<div class="work-desc">
-							공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다.
-						</div>
-					</div>
-					<div class="work-list" onclick="window.location.href='/cmm/contest/apfrRcipDetail.do'">
-						<div class="work-list-top-con">
-							<div class="mem-info-img">
-								<img src="" alt=""> <!--작성자 이미지-->
-							</div>
-							<div class="work-title-info">
-								<div class="work-title">공모전 제목입니다</div>
-								<div class="work-date-info">
-									<div class="work-mem-name">AI 완전 전문가</div>
-									<div class="work-date">2025.06.07</div>
-								</div>
-							</div>
-						</div>
-						<div class="work-desc">
-							공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다.
-						</div>
-					</div>
+						</form>
+					</c:forEach>
+
 				</div>
 			</div>
 		</div>

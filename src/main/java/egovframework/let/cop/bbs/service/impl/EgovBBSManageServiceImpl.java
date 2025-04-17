@@ -118,7 +118,6 @@ public class EgovBBSManageServiceImpl extends EgovAbstractServiceImpl implements
      */
     public Map<String, Object> selectBoardArticles(BoardVO boardVO, String attrbFlag) throws Exception {
 
-	System.out.println("boardVO.getUseAt()2:"+boardVO.getUseAt());
 	List<BoardVO> list = bbsMngDAO.selectBoardArticleList(boardVO);
 	List<BoardVO> result = new ArrayList<BoardVO>();
 

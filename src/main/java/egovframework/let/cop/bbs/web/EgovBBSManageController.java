@@ -296,6 +296,12 @@ public class EgovBBSManageController {
 
 		System.out.println("/cop/bbs/insertBoardArticle.do >> ");
 		System.out.println("isAuthenticated:"+isAuthenticated);
+		System.out.println("getCallbackUrl:"+boardVO.getCallbackUrl());
+
+		String callbackUrl = "/cop/bbs/selectBoardList.do";
+		if(!boardVO.getCallbackUrl().equals("")) {
+			callbackUrl = boardVO.getCallbackUrl();
+		}
 
 		beanValidator.validate(board, bindingResult);
 		if (bindingResult.hasErrors()) {
@@ -344,7 +350,9 @@ public class EgovBBSManageController {
 			bbsMngService.insertBoardArticle(board);
 		}
 		System.out.println("/cop/bbs/insertBoardArticle.do >> chk 2 ");
-		return "forward:/cop/bbs/selectBoardList.do";
+
+		//return "forward:/cop/bbs/selectBoardList.do";
+		return "forward:"+callbackUrl;
 	}
 
 	/**
@@ -1596,5 +1604,174 @@ public class EgovBBSManageController {
 		model.addAttribute("paginationInfo", paginationInfo);
 		
 		return "cop/bbs/EgovNoticeList";
+	}
+
+	/**
+	 * 공모전 신청서접수
+	 * @return 메인페이지 정보 Map [key : 항목명]
+	 *
+	 * @param request
+	 * @param model
+	 * @exception Exception Exception
+	 */
+	@RequestMapping(value = "/cmm/contest/apfrRcip.do")
+	public String getContestApfrRcipPage(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model, HttpServletRequest request) throws Exception {
+
+		// 메인화면에서 넘어온 경우 메뉴 갱신을 위해 추가
+		request.getSession().setAttribute("menuNo", "3000000");
+
+		LoginVO user;
+		if (EgovUserDetailsHelper.isAuthenticated()) {
+			user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+		} else {
+			user = new LoginVO();
+			user.setUniqId("anonymous");
+		}
+
+		//boardVO.setBbsId(boardVO.getBbsId());
+		boardVO.setBbsId("BBSMSTR_BBBBBBBBBBBB");
+		boardVO.setFrstRegisterId(user.getUniqId());
+		//boardVO.setBbsNm(boardVO.getBbsNm());
+
+		BoardMasterVO vo = new BoardMasterVO();
+
+		vo.setBbsId(boardVO.getBbsId());
+		vo.setUniqId(user.getUniqId());
+
+		BoardMasterVO master = bbsAttrbService.selectBBSMasterInf(vo);
+
+		//-------------------------------
+		// 방명록이면 방명록 URL로 forward
+		//-------------------------------
+		if (master.getBbsTyCode().equals("BBST04")) {
+			return "forward:/cop/bbs/selectGuestList.do";
+		}
+		////-----------------------------
+
+		boardVO.setPageUnit(propertyService.getInt("pageUnit"));
+		boardVO.setPageSize(propertyService.getInt("pageSize"));
+		boardVO.setUseAt("Y");
+
+		PaginationInfo paginationInfo = new PaginationInfo();
+
+		paginationInfo.setCurrentPageNo(boardVO.getPageIndex());
+		paginationInfo.setRecordCountPerPage(boardVO.getPageUnit());
+		paginationInfo.setPageSize(boardVO.getPageSize());
+
+		boardVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
+		boardVO.setLastIndex(paginationInfo.getLastRecordIndex());
+		boardVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+
+		Map<String, Object> map = bbsMngService.selectBoardArticles(boardVO, vo.getBbsAttrbCode());
+		int totCnt = Integer.parseInt((String) map.get("resultCnt"));
+
+		paginationInfo.setTotalRecordCount(totCnt);
+
+		//-------------------------------
+		// 기본 BBS template 지정
+		//-------------------------------
+		if (master.getTmplatCours() == null || master.getTmplatCours().equals("")) {
+			master.setTmplatCours("/css/egovframework/cop/bbs/egovBaseTemplate.css");
+		}
+		////-----------------------------
+
+		model.addAttribute("resultList", map.get("resultList"));
+		model.addAttribute("resultCnt", map.get("resultCnt"));
+		model.addAttribute("boardVO", boardVO);
+		model.addAttribute("brdMstrVO", master);
+		model.addAttribute("paginationInfo", paginationInfo);
+
+		return "main/contest/ApfrRcipView";
+	}
+
+	/**
+	 * 공모전 신청서 등록 및 수정
+	 * @return 메인페이지 정보 Map [key : 항목명]
+	 *
+	 * @param boardVO
+	 * @param model
+	 * @exception Exception Exception
+	 */
+	@RequestMapping(value = "/cmm/contest/apfrRcipUpdt.do")
+	public String getContestApfrRcipUpdtPage(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model) throws Exception {
+		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+		if (!isAuthenticated) {
+			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
+			return "uat/uia/EgovLoginUsr";
+		}
+		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+		BoardMasterVO bdMstr = new BoardMasterVO();
+
+		if (isAuthenticated) {
+
+			BoardMasterVO vo = new BoardMasterVO();
+			//vo.setBbsId(boardVO.getBbsId());
+			vo.setBbsId("BBSMSTR_BBBBBBBBBBBB");
+			vo.setUniqId(user.getUniqId());
+			bdMstr = bbsAttrbService.selectBBSMasterInf(vo);
+			model.addAttribute("bdMstr", bdMstr);
+		}
+
+		//----------------------------
+		// 기본 BBS template 지정
+		//----------------------------
+		if (bdMstr.getTmplatCours() == null || bdMstr.getTmplatCours().equals("")) {
+			bdMstr.setTmplatCours("/css/egovframework/cop/bbs/egovBaseTemplate.css");
+		}
+
+		model.addAttribute("brdMstrVO", bdMstr);
+		////-----------------------------
+
+		return "main/contest/ApfrRcipUpdtView";
+	}
+
+	/**
+	 * 공모전 신청서 상세
+	 * @return 메인페이지 정보 Map [key : 항목명]
+	 *
+	 * @param boardVO
+	 * @param model
+	 * @exception Exception Exception
+	 */
+	@RequestMapping(value = "/cmm/contest/apfrRcipDetail.do")
+	public String getContestApfrRcipDetailPage(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model) throws Exception {
+
+		System.out.println("------------ getContestApfrRcipDetailPage start -------------");
+		LoginVO user = new LoginVO();
+		if (EgovUserDetailsHelper.isAuthenticated()) {
+			user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+		}
+		// 조회수 증가 여부 지정
+		boardVO.setPlusCount(true);
+
+		if (!boardVO.getSubPageIndex().equals("")) {
+			boardVO.setPlusCount(false);
+		}
+
+		boardVO.setLastUpdusrId(user.getUniqId());
+		BoardVO vo = bbsMngService.selectBoardArticle(boardVO);
+
+		model.addAttribute("result", vo);
+
+		model.addAttribute("sessionUniqId", user.getUniqId());
+		//----------------------------
+		// template 처리 (기본 BBS template 지정  포함)
+		//----------------------------
+		BoardMasterVO master = new BoardMasterVO();
+
+		master.setBbsId(boardVO.getBbsId());
+		master.setUniqId(user.getUniqId());
+
+		BoardMasterVO masterVo = bbsAttrbService.selectBBSMasterInf(master);
+
+		if (masterVo.getTmplatCours() == null || masterVo.getTmplatCours().equals("")) {
+			masterVo.setTmplatCours("/css/egovframework/cop/bbs/egovBaseTemplate.css");
+		}
+
+		model.addAttribute("brdMstrVO", masterVo);
+
+		System.out.println("------------ selectBoardArticle end -------------");
+
+		return "main/contest/ApfrRcipDetailView";
 	}
 }

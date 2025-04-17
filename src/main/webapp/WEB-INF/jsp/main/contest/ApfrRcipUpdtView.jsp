@@ -39,7 +39,7 @@
 	<script type="text/javascript" src="<c:url value='/js/EgovMultiFile.js'/>" ></script>
 	<script type="text/javascript" src="<c:url value='/js/EgovCalPopup.js'/>" ></script>
 	<script type="text/javascript" src="<c:url value="/validator.do"/>"></script>
-	<validator:javascript formName="board" staticJavascript="false" xhtml="true" cdata="false"/>
+	<validator:javascript formName="contboard" staticJavascript="false" xhtml="true" cdata="false"/>
 	<script type="text/javascript">
 		function fn_egov_validateForm(obj) {
 			return true;
@@ -48,13 +48,13 @@
 		function fn_egov_regist_notice() {
 			//document.board.onsubmit();
 
-			if (!validateBoard(document.board)){
+			if (!validateContboard(document.board)){
 				return;
 			}
 			if (confirm('<spring:message code="common.regist.msg" />')) {
 				//document.board.onsubmit();
 				document.board.action = "<c:url value='/cop/bbs/insertBoardArticle.do'/>";
-				//document.board.submit();
+				document.board.submit();
 			}
 		}
 
@@ -117,6 +117,7 @@
 						<input type="hidden" name="posblAtchFileNumber" value="<c:out value='${bdMstr.posblAtchFileNumber}'/>" />
 						<input type="hidden" name="posblAtchFileSize" value="<c:out value='${bdMstr.posblAtchFileSize}'/>" />
 						<input type="hidden" name="tmplatId" value="<c:out value='${bdMstr.tmplatId}'/>" />
+						<input type="hidden" name="callbackUrl" value="/cmm/contest/apfrRcip.do" />
 
 						<input type="hidden" name="cal_url" value="<c:url value='/sym/cmm/EgovNormalCalPopup.do'/>" />
 						<input type="hidden" name="authFlag" value="<c:out value='${bdMstr.authFlag}'/>" />
@@ -194,6 +195,10 @@
 						<div class="form-btn-con">
 							<button type="submit" class="submit-btn" onclick="javascript:fn_egov_regist_notice(); return false;">제출</button>
 						</div>
+						<div class="form-btn-con">
+							<button type="button" class="submit-btn" onclick="location.href='/cmm/contest/apfrRcip.do';">목록</button>
+						</div>
+
 					</form:form>
 				</div>
 			</div>

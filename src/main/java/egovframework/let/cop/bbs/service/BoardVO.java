@@ -115,6 +115,9 @@ public class BoardVO extends Board implements Serializable {
     /** 평가등록여부 */
     private String testRegCo = "";
 
+    /** callbackURL */
+    private String callbackUrl = "";
+
     //---------------------------------
     // 2009.06.29 : 2단계 기능 추가
     //---------------------------------
@@ -696,4 +699,21 @@ public class BoardVO extends Board implements Serializable {
     public void setTestRegCo(String testRegCo) {
         this.testRegCo = testRegCo;
     }
+
+    /**
+     * callbackUrl attribute를 리턴한다.
+     * @return the callbackUrl
+     */
+    public String getCallbackUrl() {
+        return callbackUrl;
+    }
+
+    /**
+     * callbackUrl attribute 값을 설정한다.
+     * @param callbackUrl the callbackUrl to set
+     */
+    public void setCallbackUrl(String callbackUrl) {
+        this.callbackUrl = callbackUrl;
+    }
+
 }

@@ -1,7 +1,9 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ page import ="egovframework.com.cmm.LoginVO" %>
+<%@ taglib prefix="egovc" uri="/WEB-INF/tlds/egovc.tld" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html dir="ltr" lang="ko">
 <head>
@@ -30,15 +32,19 @@
 	<!-- favicon -->
 	<link rel="icon" type="image/x-icon" href="<c:url value='/'/>images/favicon.ico">
 
+	<script type="text/javascript" src="<c:url value='/js/EgovBBSMng.js' />"></script>
+
 	<script type="text/javascript">
 		<!--
-		function fn_egov_downFile(atchFileId, fileSn) {
-			window.open("/cmm/fms/FileDown.do?atchFileId="+atchFileId+"&fileSn="+fileSn+"&authPass=yes");
+		function onloading() {
+			if ("<c:out value='${msg}'/>" != "") {
+				alert("<c:out value='${msg}'/>");
+			}
 		}
 
-		function fn_contest_attach_file_down() {
-			// 공모전 참가 신청서
-			fn_egov_downFile('EcqfhYxRcnWG52hkOGYp/F3suq/5SFOvAnxJUaQhI01X9dgmJjJ+3mWoSYu1PsdTs4dfuDM2VdFX2fN3C0X4iQ==','0');
+		function fn_egov_moveUpdt_notice() {
+			document.frm.action = "<c:url value='/cmm/contest/apfrRcipUpdt.do'/>";
+			document.frm.submit();
 		}
 		//-->
 	</script>
@@ -82,64 +88,64 @@
 		</div>
 		<div class="content-wrap">
 			<div class="container clearfix">
-				<div class="board_view">
-					<div class="board_view_top_con">
-						<!-- 관리자가 작성한 경우 mem-info-img display:none 처리 or src 안넣으면 기본이미지로 노출 -->
-						<div class="mem-info-img">
-							<img src="" alt=""> <!--작성자 이미지-->
-						</div>
-						<div>
-							<div class="board_view_title">
-								공지사항 제목입니다.
+				<form name="frm" method="post" action="<c:url value='/cop/bbs/selectBoardList.do'/>">
+					<input type="hidden" name="pageIndex" value="<c:out value='${searchVO.pageIndex}'/>">
+					<input type="hidden" name="bbsId" value="<c:out value='${result.bbsId}'/>" >
+					<input type="hidden" name="nttId" value="<c:out value='${result.nttId}'/>" >
+					<input type="hidden" name="parnts" value="<c:out value='${result.parnts}'/>" >
+					<input type="hidden" name="sortOrdr" value="<c:out value='${result.sortOrdr}'/>" >
+					<input type="hidden" name="replyLc" value="<c:out value='${result.replyLc}'/>" >
+					<input type="hidden" name="nttSj" value="<c:out value='${result.nttSj}'/>" >
+					<div class="board_view">
+						<div class="board_view_top_con">
+							<!-- 관리자가 작성한 경우 mem-info-img display:none 처리 or src 안넣으면 기본이미지로 노출 -->
+							<div class="mem-info-img">
+								<img src="" alt=""> <!--작성자 이미지-->
 							</div>
-							<div class="board_view_info_con">
-								<div class="board_view_info">
-									<div class="view_info_title">팀명</div>
-									<div class="view_info_desc">AI 완전 전문가</div>
-								</div>
-								<div class="board_view_info">
-									<div class="view_info_title">등록일</div>
-									<div class="view_info_desc">2025.06.07</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="board_view_file_con">
-						<img src="../images/icon-attachment.png" alt="" style="width: 24px;">
-						<div class="board_view_file_list">
 							<div>
-								<a href="#" class="board_view_file">
-									첨부파일.pdf
-								</a>
-								[140355 byte]
+								<div class="board_view_title">
+									<c:out value="${result.nttSj}" escapeXml="false" />
+								</div>
+								<div class="board_view_info_con">
+									<div class="board_view_info">
+										<div class="view_info_title">팀명</div>
+										<div class="view_info_desc"><c:out value="${result.teamNm}" escapeXml="false" /></div>
+									</div>
+									<div class="board_view_info">
+										<div class="view_info_title">등록일</div>
+										<div class="view_info_desc"><c:out value="${fn:replace(result.frstRegisterPnttm, '-', '.')}" escapeXml="false" /></div>
+									</div>
+								</div>
 							</div>
-							<!--<div>
-                                <a href="#" class="board_view_file">
-                                    첨부파일2.pdf
-                                </a>
-                                [140355 byte]
-                            </div>-->
+						</div>
+						<div class="board_view_file_con">
+							<img src="../images/icon-attachment.png" alt="" style="width: 24px;">
+							<c:if test="${result.atchFileId != ''}">
+								<div class="board_view_file_con">
+									<img src="/images/icon-attachment.png" alt="" style="width: 24px;">
+									<c:import url="/cmm/fms/selectFileInfs.do" charEncoding="utf-8">
+										<c:param name="param_atchFileId" value="${egovc:encrypt(result.atchFileId)}" />
+									</c:import>
+								</div>
+							</c:if>
+						</div>
+						<div class="board_view_content_con">
+							<c:out value="${result.nttCn}" escapeXml="false" />
 						</div>
 					</div>
-					<div class="board_view_content_con">
-						공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다.
-						공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 .<br/><br/>
-						공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 . 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 . 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 . 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 .<br/><br/>
-						공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 . 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 . 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 내용입니다. 공모전 .
-					</div>
-				</div>
 
-				<div class="board_view_bot">
-					<div class="left_col">
-						<a href="../html/apfrRcip.html" class="btn btn_gray_46">목록</a><!-- 목록 -->
+					<div class="board_view_bot">
+						<div class="left_col">
+							<a href="/cmm/contest/apfrRcip.do" class="btn btn_gray_46">목록</a><!-- 목록 -->
+						</div>
+						<div class="center_col"></div>
+						<div class="right_col">
+							<a href="#" class="btn btn_white_46" onclick="javascript:fn_egov_moveUpdt_notice(); return false;">수정</a>
+							<a href="#" class="btn btn_black_46">삭제</a><!-- 삭제 -->
+						</div>
 					</div>
-					<div class="center_col"></div>
-					<div class="right_col">
-						<a href="../html/apfrRcipForm.html" class="btn btn_white_46">수정</a><!-- 수정 -->
-						<a href="#" class="btn btn_black_46">삭제</a><!-- 삭제 -->
-					</div>
-				</div>
-				<!--// 게시판 -->
+					<!--// 게시판 -->
+				</form>
 			</div>
 		</div>
 	</section>
