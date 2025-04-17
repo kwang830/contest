@@ -177,6 +177,15 @@ public class Board implements Serializable {
 	 * 평점점수
 	 */
 	private String scoreA = "";
+	/**
+	 * 팀명
+	 */
+	private String teamNm = "";
+	/**
+	 * 이미지경로
+	 */
+	private String imgUrl = "";
+
 
 	/**
 	 * atchFileId attribute를 리턴한다.
@@ -792,5 +801,37 @@ public class Board implements Serializable {
 	 */
 	public void setScoreA(String scoreA) {
 		this.scoreA = scoreA;
+	}
+
+	/**
+	 * teamNm attribute를 리턴한다.
+	 * @return the teamNm
+	 */
+	public String getTeamNm() {
+		return teamNm;
+	}
+
+	/**
+	 * teamNm attribute 값을 설정한다.
+	 * @param teamNm the teamNm to set
+	 */
+	public void setTeamNm(String teamNm) {
+		this.teamNm = teamNm;
+	}
+
+	/**
+	 * imgUrl attribute를 리턴한다.
+	 * @return the imgUrl
+	 */
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	/**
+	 * imgUrl attribute 값을 설정한다.
+	 * @param imgUrl the imgUrl to set
+	 */
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 }

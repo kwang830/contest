@@ -1,7 +1,10 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ page import ="egovframework.com.cmm.LoginVO" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="validator" uri="http://www.springmodules.org/tags/commons-validator" %>
 <!DOCTYPE html>
 <html dir="ltr" lang="ko">
 <head>
@@ -14,6 +17,8 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="<c:url value='/'/>css/jqueryui.css" type="text/css">
 
 	<!-- preload -->
 	<link rel="preload" href="<c:url value='/'/>css/reset.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -30,22 +35,41 @@
 	<!-- favicon -->
 	<link rel="icon" type="image/x-icon" href="<c:url value='/'/>images/favicon.ico">
 
+	<script type="text/javascript" src="<c:url value='/js/EgovBBSMng.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/EgovMultiFile.js'/>" ></script>
+	<script type="text/javascript" src="<c:url value='/js/EgovCalPopup.js'/>" ></script>
+	<script type="text/javascript" src="<c:url value="/validator.do"/>"></script>
+	<validator:javascript formName="board" staticJavascript="false" xhtml="true" cdata="false"/>
 	<script type="text/javascript">
-		<!--
-		function fn_egov_downFile(atchFileId, fileSn) {
-			window.open("/cmm/fms/FileDown.do?atchFileId="+atchFileId+"&fileSn="+fileSn+"&authPass=yes");
+		function fn_egov_validateForm(obj) {
+			return true;
 		}
 
-		function fn_contest_attach_file_down() {
-			// 공모전 참가 신청서
-			fn_egov_downFile('EcqfhYxRcnWG52hkOGYp/F3suq/5SFOvAnxJUaQhI01X9dgmJjJ+3mWoSYu1PsdTs4dfuDM2VdFX2fN3C0X4iQ==','0');
+		function fn_egov_regist_notice() {
+			//document.board.onsubmit();
+
+			if (!validateBoard(document.board)){
+				return;
+			}
+			if (confirm('<spring:message code="common.regist.msg" />')) {
+				//document.board.onsubmit();
+				document.board.action = "<c:url value='/cop/bbs/insertBoardArticle.do'/>";
+				//document.board.submit();
+			}
 		}
-		//-->
+
+		function fn_egov_select_noticeList() {
+			document.board.action = "<c:url value='/cop/bbs/selectBoardList.do'/>";
+			document.board.submit();
+		}
+
+
+
 	</script>
 
 </head>
 
-<body class="stretched">
+<body class="stretched" onLoad="document.board.teamNm.focus();">
 
 <!-- Document Wrapper
 ============================================= -->
@@ -83,87 +107,94 @@
 		<div class="content-wrap">
 			<div class="form-wrap">
 				<div class="container" style="max-width: 800px;">
-					<form action="" class="form-con" id="form">
+					<form:form modelAttribute="board" name="board" method="post" enctype="multipart/form-data" class="form-con">
+						<input name="pageIndex" type="hidden" value="<c:out value='${searchVO.pageIndex}'/>"/>
+						<input type="hidden" name="bbsId" value="<c:out value='${bdMstr.bbsId}'/>" />
+						<input type="hidden" name="bbsAttrbCode" value="<c:out value='${bdMstr.bbsAttrbCode}'/>" />
+						<input type="hidden" name="bbsTyCode" value="<c:out value='${bdMstr.bbsTyCode}'/>" />
+						<input type="hidden" name="replyPosblAt" value="<c:out value='${bdMstr.replyPosblAt}'/>" />
+						<input type="hidden" name="fileAtchPosblAt" value="<c:out value='${bdMstr.fileAtchPosblAt}'/>" />
+						<input type="hidden" name="posblAtchFileNumber" value="<c:out value='${bdMstr.posblAtchFileNumber}'/>" />
+						<input type="hidden" name="posblAtchFileSize" value="<c:out value='${bdMstr.posblAtchFileSize}'/>" />
+						<input type="hidden" name="tmplatId" value="<c:out value='${bdMstr.tmplatId}'/>" />
+
+						<input type="hidden" name="cal_url" value="<c:url value='/sym/cmm/EgovNormalCalPopup.do'/>" />
+						<input type="hidden" name="authFlag" value="<c:out value='${bdMstr.authFlag}'/>" />
+
+						<c:if test="${anonymous != 'true'}">
+							<input type="hidden" name="ntcrNm" value="dummy">   <!-- validator 처리를 위해 지정 -->
+							<input type="hidden" name="password" value="dummy"> <!-- validator 처리를 위해 지정 -->
+						</c:if>
+
+						<c:if test="${bdMstr.bbsAttrbCode != 'BBSA01'}">
+							<input name="ntceBgnde" type="hidden" value="10000101">
+							<input name="ntceEndde" type="hidden" value="99991231">
+						</c:if>
+
+
 						<div class="form-list-con">
 							<div class="form-list">
 								<div class="form-title essential">팀명</div>
 								<div class="form-input">
-									<input name="name" type="text" placeholder="팀명을 입력해주세요.">
+									<input name="teamNm" id="teamNm" type="text" placeholder="팀명을 입력해주세요." maxlength="30">
 								</div>
 								<div class="form-error-text" style="display: none;"></div>
 							</div>
 							<div class="form-list">
 								<div class="form-title essential">제목</div>
 								<div class="form-input">
-									<input name="title" type="text" placeholder="제목을 입력해주세요.">
+									<input name="nttSj" id="nttSj" type="text" placeholder="제목을 입력해주세요." size="60" maxlength="60">
 								</div>
 								<div class="form-error-text" style="display: none;"></div>
 							</div>
-							<div class="form-list">
-								<div class="form-title">접수자</div>
-								<div class="form-input">
-									<input name="writer" type="text" placeholder="접수자를 입력해주세요.">
-								</div>
-								<div class="form-error-text" style="display: none;"></div>
-							</div>
+<%--							<div class="form-list">--%>
+<%--								<div class="form-title">접수자</div>--%>
+<%--								<div class="form-input">--%>
+<%--									<input name="wrterNm" type="text" readonly="readonly">--%>
+<%--								</div>--%>
+<%--								<div class="form-error-text" style="display: none;"></div>--%>
+<%--							</div>--%>
 							<div class="form-list">
 								<div class="form-title essential">내용</div>
 								<div class="form-input">
-									<textarea name="content" cols="30" rows="10" placeholder="내용을 입력해주세요."></textarea>
+									<textarea id="nttCn" name="nttCn" cols="30" rows="10" placeholder="내용을 입력해주세요."></textarea>
 								</div>
 								<div class="form-error-text" style="display: none;"></div>
 							</div>
 							<div class="form-list">
-								<div class="form-title essential">첨부파일</div>
+								<div class="form-title essential">
+									파일첨부
+								</div>
 
 								<div class="form-input f_file_wrap">
 									<div class="board_attach2" id="file_upload_posbl">
-										<input type="file" name="file_2" >
-										<input type="file" name="file_1" style="position: absolute; left: -1000px; top: -1000px; display: none; visibility: hidden; width: 0px; height: 0px; overflow: hidden;">
-										<input name="file_0" id="egovComFileUploader" type="file" style="position: absolute; left: -1000px; top: -1000px; display: none; visibility: hidden; width: 0px; height: 0px; overflow: hidden;">
-										<div id="egovComFileList">
-											<div>
-												C:\fakepath\icon-logout.png
-												<input type="button" value="Delete">
-											</div>
-											<div>C:\fakepath\default-mem-img.jpg
-												<input type="button" value="Delete">
-											</div>
-										</div>
+										<input name="file_1" id="egovComFileUploader" type="file" />
+										<div id="egovComFileList"></div>
 									</div>
 									<div class="board_attach2" id="file_upload_imposbl">
 									</div>
-
-									<input type="hidden" id="fileListCnt" name="fileListCnt" value="0">
-
+									<c:if test="${empty result.atchFileId}">
+										<input type="hidden" id="fileListCnt" name="fileListCnt" value="0" />
+									</c:if>
 								</div>
 							</div>
 							<div class="form-list">
 								<div class="form-title">프로필 이미지 <span>(개인신상을 알아볼 수 있는 사진은 첨부 불가, 100*100px 정사각형 사이즈 )</span></div>
 								<div class="form-input f_file_wrap">
-									<div class="board_attach2" id="file_upload_posbl">
-										<input type="file" name="file_2" >
-										<input type="file" name="file_1" style="position: absolute; left: -1000px; top: -1000px; display: none; visibility: hidden; width: 0px; height: 0px; overflow: hidden;">
-										<input name="file_0" id="egovComFileUploader" type="file" style="position: absolute; left: -1000px; top: -1000px; display: none; visibility: hidden; width: 0px; height: 0px; overflow: hidden;">
-										<div id="egovComFileList">
-											<div>
-												C:\fakepath\icon-logout.png
-												<input type="button" value="Delete">
-											</div>
-										</div>
-									</div>
-									<div class="board_attach2" id="file_upload_imposbl">
+									<div class="board_attach2" id="file_upload_posbl2">
+										<input type="file" name="file2_0" >
+<%--										<input type="file" name="file_1" style="position: absolute; left: -1000px; top: -1000px; display: none; visibility: hidden; width: 0px; height: 0px; overflow: hidden;">--%>
+<%--										<input name="file_0" id="egovComFileUploader" type="file" style="position: absolute; left: -1000px; top: -1000px; display: none; visibility: hidden; width: 0px; height: 0px; overflow: hidden;">--%>
 									</div>
 
-									<input type="hidden" id="fileListCnt" name="fileListCnt" value="0">
 
 								</div>
 							</div>
 						</div>
 						<div class="form-btn-con">
-							<button type="submit" class="submit-btn">제출</button>
+							<button type="submit" class="submit-btn" onclick="javascript:fn_egov_regist_notice(); return false;">제출</button>
 						</div>
-					</form>
+					</form:form>
 				</div>
 			</div>
 		</div>
@@ -186,9 +217,19 @@
 
 <script type="text/javascript" src="<c:url value='/'/>js/common.js"></script>
 
+<script type="text/javascript" src="<c:url value='/'/>js/jqueryui.js"></script>
+
 <!-- Footer Scripts
 ============================================= -->
 <script type="text/javascript" src="<c:url value='/'/>js/functions.js"></script>
 
+<script type="text/javascript">
+	var maxFileNum = document.board.posblAtchFileNumber.value;
+	if(maxFileNum==null || maxFileNum==""){
+		maxFileNum = 3;
+	}
+	var multi_selector = new MultiSelector( document.getElementById( 'egovComFileList' ), maxFileNum );
+	multi_selector.addElement( document.getElementById( 'egovComFileUploader' ) );
+</script>
 </body>
 </html>
