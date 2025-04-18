@@ -45,8 +45,7 @@
 			return true;
 		}
 
-		function fn_egov_regist_notice() {
-			//document.board.onsubmit();
+		function fn_egov_insert_bbs() {
 
 			if (!validateContboard(document.board)){
 				return;
@@ -54,6 +53,17 @@
 			if (confirm('<spring:message code="common.regist.msg" />')) {
 				//document.board.onsubmit();
 				document.board.action = "<c:url value='/cop/bbs/insertBoardArticle.do'/>";
+				document.board.submit();
+			}
+		}
+		function fn_egov_update_bbs(){
+
+			if (!validateContboard(document.board)){
+				return;
+			}
+
+			if (confirm('<spring:message code="common.update.msg" />')) {
+				document.board.action = "<c:url value='/cop/bbs/updateBoardArticle.do'/>";
 				document.board.submit();
 			}
 		}
@@ -108,6 +118,7 @@
 					<form:form modelAttribute="board" name="board" method="post" enctype="multipart/form-data" class="form-con">
 						<input name="pageIndex" type="hidden" value="<c:out value='${searchVO.pageIndex}'/>"/>
 						<input type="hidden" name="bbsId" value="<c:out value='${bdMstr.bbsId}'/>" />
+						<input type="hidden" name="nttId" value="<c:out value='${result.nttId}'/>" />
 						<input type="hidden" name="bbsAttrbCode" value="<c:out value='${bdMstr.bbsAttrbCode}'/>" />
 						<input type="hidden" name="bbsTyCode" value="<c:out value='${bdMstr.bbsTyCode}'/>" />
 						<input type="hidden" name="replyPosblAt" value="<c:out value='${bdMstr.replyPosblAt}'/>" />
@@ -191,7 +202,8 @@
 								<div class="form-title">대표 이미지 <span>(개인신상을 알아볼 수 있는 사진은 첨부 불가, 100*100px 정사각형 사이즈 )</span></div>
 								<div class="form-input f_file_wrap">
 									<div class="board_attach2" id="file_upload_posbl2">
-										<input type="file" name="file_99" id="egovComFileUploader2" accept=".jpg,.jpeg,.png"/>
+										<input name="file2_1" id="egovComFileUploader2" type="file" accept=".jpg,.jpeg,.png"/>
+										<div id="egovComFileList2"></div>
 									</div>
 								</div>
 							</div>
@@ -203,7 +215,13 @@
 							</div>
 						</div>
 						<div class="form-btn-con">
-							<button type="submit" class="submit-btn" onclick="javascript:fn_egov_regist_notice(); return false;">제출</button>
+							<c:if test="${empty result.nttId}">
+								<button type="submit" class="submit-btn" onclick="javascript:fn_egov_insert_bbs(); return false;">저장</button>
+							</c:if>
+							<c:if test="${not empty result.nttId}">
+								<button type="submit" class="submit-btn" onclick="javascript:fn_egov_update_bbs(); return false;">수정</button>
+							</c:if>
+
 						</div>
 
 					</form:form>
@@ -238,10 +256,15 @@
 <script type="text/javascript">
 	var maxFileNum = document.board.posblAtchFileNumber.value;
 	if(maxFileNum==null || maxFileNum==""){
-		maxFileNum = 3;
+		maxFileNum = 2;
 	}
 	var multi_selector = new MultiSelector( document.getElementById( 'egovComFileList' ), maxFileNum );
 	multi_selector.addElement( document.getElementById( 'egovComFileUploader' ) );
+</script>
+<script type="text/javascript">
+	var maxFileNum2 = 1;
+	var multi_selector2 = new MultiSelector( document.getElementById( 'egovComFileList2' ), maxFileNum2 );
+	multi_selector2.addElement( document.getElementById( 'egovComFileUploader2' ) );
 </script>
 </body>
 </html>

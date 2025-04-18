@@ -93,14 +93,14 @@
 			 NTCR_ID, NTCR_NM, PASSWORD, RDCNT, 
 			 NTCE_BGNDE, NTCE_ENDDE, ANSWER_AT,  			   
 			 PARNTSCTT_NO, NTT_NO, ANSWER_LC, ATCH_FILE_ID,
-			 FRST_REGISTER_ID, FRST_REGIST_PNTTM, USE_AT
+			 FRST_REGISTER_ID, FRST_REGIST_PNTTM, USE_AT, TEAM_NM, IMG_URL
 			 )
 			VALUES
 			( #{nttId}, #{bbsId}, #{nttSj}, #{nttCn}, #{nttNo}, 
 			  #{ntcrId}, #{ntcrNm}, #{password}, #{inqireCo}, 
 			  #{ntceBgnde}, #{ntceEndde}, #{replyAt}, 
 			  #{parnts}, 1, #{replyLc}, #{atchFileId},
-			  #{frstRegisterId}, SYSDATE(), 'Y'
+			  #{frstRegisterId}, SYSDATE(), 'Y', #{teamNm}, #{imgUrl}
 			 )			
 		
 	</insert>

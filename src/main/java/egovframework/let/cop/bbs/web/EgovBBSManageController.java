@@ -530,6 +530,12 @@ public class EgovBBSManageController {
 
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+		System.out.println("getCallbackUrl:"+boardVO.getCallbackUrl());
+
+		String callbackUrl = "/cop/bbs/selectBoardList.do";
+		if(!boardVO.getCallbackUrl().equals("")) {
+			callbackUrl = boardVO.getCallbackUrl();
+		}
 
 		String atchFileId = boardVO.getAtchFileId();
 
@@ -580,7 +586,9 @@ public class EgovBBSManageController {
 			bbsMngService.updateBoardArticle(board);
 		}
 
-		return "forward:/cop/bbs/selectBoardList.do";
+
+		//return "forward:/cop/bbs/selectBoardList.do";
+		return "forward:"+callbackUrl;
 	}
 
 	/**

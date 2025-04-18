@@ -13024,3 +13024,12 @@ label.checkbox { padding-left: 20px; }
 
 #egovComFileList > div > input[type="button"]{width: 26px; height: 26px; font-size: 0; background-color: transparent;
 	background-image: url('../images/icon-delete.png'); background-position: center center; background-repeat: no-repeat; background-size: contain; cursor: pointer;}
+
+/*첨부파일 추가*/
+#egovComFileList2{margin-top: 6px;}
+#egovComFileList2 > div{display: flex; align-items: center; gap: 7px; font-size: 17px; line-height: 24px; font-weight: 500; color: #2A45CC;
+	vertical-align: middle; text-decoration: underline; margin-bottom: 3px;}
+#egovComFileList2 > div:last-child{margin-bottom: 0;}
+
+#egovComFileList2 > div > input[type="button"]{width: 26px; height: 26px; font-size: 0; background-color: transparent;
+	background-image: url('../images/icon-delete.png'); background-position: center center; background-repeat: no-repeat; background-size: contain; cursor: pointer;}
