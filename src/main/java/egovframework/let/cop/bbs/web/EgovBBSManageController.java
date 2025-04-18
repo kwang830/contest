@@ -1704,12 +1704,19 @@ public class EgovBBSManageController {
 
 		if (isAuthenticated) {
 
+			boardVO.setFrstRegisterId(user.getUniqId());
+
 			BoardMasterVO vo = new BoardMasterVO();
+			BoardVO bdvo = new BoardVO();
+
 			//vo.setBbsId(boardVO.getBbsId());
 			vo.setBbsId("BBSMSTR_BBBBBBBBBBBB");
 			vo.setUniqId(user.getUniqId());
 			bdMstr = bbsAttrbService.selectBBSMasterInf(vo);
 			model.addAttribute("bdMstr", bdMstr);
+
+			bdvo = bbsMngService.selectBoardArticle(boardVO);
+			model.addAttribute("result", bdvo);
 		}
 
 		//----------------------------
@@ -1736,7 +1743,6 @@ public class EgovBBSManageController {
 	@RequestMapping(value = "/cmm/contest/apfrRcipDetail.do")
 	public String getContestApfrRcipDetailPage(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model) throws Exception {
 
-		System.out.println("------------ getContestApfrRcipDetailPage start -------------");
 		LoginVO user = new LoginVO();
 		if (EgovUserDetailsHelper.isAuthenticated()) {
 			user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
@@ -1752,7 +1758,6 @@ public class EgovBBSManageController {
 		BoardVO vo = bbsMngService.selectBoardArticle(boardVO);
 
 		model.addAttribute("result", vo);
-
 		model.addAttribute("sessionUniqId", user.getUniqId());
 		//----------------------------
 		// template 처리 (기본 BBS template 지정  포함)

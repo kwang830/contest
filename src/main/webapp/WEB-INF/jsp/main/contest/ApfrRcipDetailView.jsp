@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="egovc" uri="/WEB-INF/tlds/egovc.tld" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
@@ -88,7 +88,7 @@
 		</div>
 		<div class="content-wrap">
 			<div class="container clearfix">
-				<form name="frm" method="post" action="<c:url value='/cop/bbs/selectBoardList.do'/>">
+				<form name="frm" method="post" action="<c:url value='/cmm/contest/apfrRcipUpdt.do'/>">
 					<input type="hidden" name="pageIndex" value="<c:out value='${searchVO.pageIndex}'/>">
 					<input type="hidden" name="bbsId" value="<c:out value='${result.bbsId}'/>" >
 					<input type="hidden" name="nttId" value="<c:out value='${result.nttId}'/>" >
@@ -130,7 +130,9 @@
 							</c:if>
 						</div>
 						<div class="board_view_content_con">
-							<c:out value="${result.nttCn}" escapeXml="false" />
+							<textarea id="nttCn2" name="nttCn2" title="내용" class="f_txtar w_full h_200"
+									  rows="10" cols="30" readonly="readonly"><c:out value="${result.nttCn}" escapeXml="false" />
+							</textarea>
 						</div>
 					</div>
 

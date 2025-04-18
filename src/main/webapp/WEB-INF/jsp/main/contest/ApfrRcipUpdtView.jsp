@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="validator" uri="http://www.springmodules.org/tags/commons-validator" %>
@@ -62,8 +62,6 @@
 			document.board.action = "<c:url value='/cop/bbs/selectBoardList.do'/>";
 			document.board.submit();
 		}
-
-
 
 	</script>
 
@@ -137,28 +135,31 @@
 							<div class="form-list">
 								<div class="form-title essential">팀명</div>
 								<div class="form-input">
-									<input name="teamNm" id="teamNm" type="text" placeholder="팀명을 입력해주세요." maxlength="30">
+									<input name="teamNm" id="teamNm" type="text" placeholder="팀명을 입력해주세요." maxlength="30" value="<c:out value="${result.teamNm}" escapeXml="false" />">
 								</div>
 								<div class="form-error-text" style="display: none;"></div>
 							</div>
 							<div class="form-list">
 								<div class="form-title essential">제목</div>
 								<div class="form-input">
-									<input name="nttSj" id="nttSj" type="text" placeholder="제목을 입력해주세요." size="60" maxlength="60">
+									<input name="nttSj" id="nttSj" type="text" placeholder="제목을 입력해주세요." size="60" maxlength="60" value="<c:out value="${result.nttSj}" escapeXml="false" />">
 								</div>
 								<div class="form-error-text" style="display: none;"></div>
 							</div>
-<%--							<div class="form-list">--%>
-<%--								<div class="form-title">접수자</div>--%>
-<%--								<div class="form-input">--%>
-<%--									<input name="wrterNm" type="text" readonly="readonly">--%>
-<%--								</div>--%>
-<%--								<div class="form-error-text" style="display: none;"></div>--%>
-<%--							</div>--%>
+							<c:if test="${not empty result.frstRegisterNm}">
+							<div class="form-list">
+								<div class="form-title">접수자</div>
+								<div class="form-input">
+									<input name="wrterNm" type="text" readonly="readonly" value="<c:out value="${result.frstRegisterNm}" escapeXml="false" />">
+								</div>
+								<div class="form-error-text" style="display: none;"></div>
+							</div>
+							</c:if>
 							<div class="form-list">
 								<div class="form-title essential">내용</div>
 								<div class="form-input">
-									<textarea id="nttCn" name="nttCn" cols="30" rows="10" placeholder="내용을 입력해주세요."></textarea>
+									<textarea id="nttCn" name="nttCn" title="내용" class="f_txtar w_full h_200"
+											  rows="10" cols="30" placeholder="내용을 입력해주세요.">${result.nttCn}</textarea>
 								</div>
 								<div class="form-error-text" style="display: none;"></div>
 							</div>
@@ -169,7 +170,7 @@
 
 								<div class="form-input f_file_wrap">
 									<div class="board_attach2" id="file_upload_posbl">
-										<input name="file_1" id="egovComFileUploader" type="file" />
+										<input name="file_1" id="egovComFileUploader" type="file" accept=".ppt,.pptx,.hwp,.hwpx,.doc,.docx,.pdf,.xls,.xlsx,.zip"/>
 										<div id="egovComFileList"></div>
 									</div>
 									<div class="board_attach2" id="file_upload_imposbl">
@@ -179,24 +180,30 @@
 									</c:if>
 								</div>
 							</div>
-							<div class="form-list">
-								<div class="form-title">프로필 이미지 <span>(개인신상을 알아볼 수 있는 사진은 첨부 불가, 100*100px 정사각형 사이즈 )</span></div>
+							<div class="form-info-text">
+								<div style="float:left; margin-right: 5px;">※</div>
+								<div style="overflow: hidden;">
+									첨부파일은 최대 2개까지 등록할 수 있으며, 파일당 30MB 이하만 가능합니다.<br/>
+									허용 확장자: ppt, pptx, pdf, doc, docx, hwp, hwpx, xls, xlsx, zip
+								</div>
+							</div>
+							<div class="form-list topmargin-sm">
+								<div class="form-title">대표 이미지 <span>(개인신상을 알아볼 수 있는 사진은 첨부 불가, 100*100px 정사각형 사이즈 )</span></div>
 								<div class="form-input f_file_wrap">
 									<div class="board_attach2" id="file_upload_posbl2">
-										<input type="file" name="file2_0" >
-<%--										<input type="file" name="file_1" style="position: absolute; left: -1000px; top: -1000px; display: none; visibility: hidden; width: 0px; height: 0px; overflow: hidden;">--%>
-<%--										<input name="file_0" id="egovComFileUploader" type="file" style="position: absolute; left: -1000px; top: -1000px; display: none; visibility: hidden; width: 0px; height: 0px; overflow: hidden;">--%>
+										<input type="file" name="file_99" id="egovComFileUploader2" accept=".jpg,.jpeg,.png"/>
 									</div>
-
-
+								</div>
+							</div>
+							<div class="form-info-text">
+								<div style="float:left; margin-right: 5px;">※</div>
+								<div style="overflow: hidden;">
+									허용 확장자: jpg, jpeg, png
 								</div>
 							</div>
 						</div>
 						<div class="form-btn-con">
 							<button type="submit" class="submit-btn" onclick="javascript:fn_egov_regist_notice(); return false;">제출</button>
-						</div>
-						<div class="form-btn-con">
-							<button type="button" class="submit-btn" onclick="location.href='/cmm/contest/apfrRcip.do';">목록</button>
 						</div>
 
 					</form:form>

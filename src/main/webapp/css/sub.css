@@ -1,12 +1,12 @@
 @charset "UTF-8";
 
 /*===공통===*/
-.sub-layout{
+.sub-layout {
 	position: relative;
 	z-index: 2;
 }
 
-.sub-banner{
+.sub-banner {
 	position: relative;
 	display: flex;
 	align-items: center;
@@ -17,16 +17,18 @@
 	background-position: center center;
 	background-repeat: no-repeat;
 }
-.sub-banner:before{
+
+.sub-banner:before {
 	content: '';
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background-color: rgba(0,0,0,0.2);
+	background-color: rgba(0, 0, 0, 0.2);
 }
-.sub-banner .sub-banner-title{
+
+.sub-banner .sub-banner-title {
 	font-family: 'NEXONFootballGothicBA1', sans-serif;
 	font-size: 60px;
 	line-height: 100%;
@@ -41,16 +43,19 @@
 	background: #fff;
 	border-bottom: 1px solid #E4E4E4;
 }
-.nav-menu > .container{
+
+.nav-menu > .container {
 	display: flex;
-	padding-left: 0; padding-right: 0;
+	padding-left: 0;
+	padding-right: 0;
 }
 
 .nav-item {
 	position: relative;
 	height: 60px;
 }
-.nav-item:after{
+
+.nav-item:after {
 	content: '';
 	position: absolute;
 	top: 0;
@@ -60,12 +65,15 @@
 	border-left: 1px solid #E4E4E4;
 	pointer-events: none;
 }
-.nav-item:last-child:after{
+
+.nav-item:last-child:after {
 	border-right: 1px solid #E4E4E4;
 }
+
 .nav-item.home {
 
 }
+
 .nav-item.home a {
 	display: flex;
 	justify-content: center;
@@ -74,7 +82,8 @@
 	height: 100%;
 	padding: 14px;
 }
-.nav-item.home a > img{
+
+.nav-item.home a > img {
 	width: 22px;
 }
 
@@ -92,11 +101,13 @@
 	padding: 20px 30px;
 	gap: 4px;
 }
-.nav-button .nav-toggle{
+
+.nav-button .nav-toggle {
 	font-size: 0;
 	line-height: 0;
 }
-.nav-button .nav-toggle > img{
+
+.nav-button .nav-toggle > img {
 	width: 16px;
 }
 
@@ -129,24 +140,29 @@
 	padding: 15px 30px;
 	background-color: #fff;
 }
-.dropdown-menu li.active a{
+
+.dropdown-menu li.active a {
 	color: #fff;
 	background-color: #77baf7;
 	font-weight: 600;
 }
-.dropdown-menu li:hover a{
+
+.dropdown-menu li:hover a {
 	font-weight: 600;
 }
+
 /*===공통===*/
 
 /*===공모개요===*/
-.intro-con{
+.intro-con {
 	margin-bottom: 40px;
 }
-.intro-con:last-child{
+
+.intro-con:last-child {
 	margin-bottom: 0;
 }
-.intro-title{
+
+.intro-title {
 	flex-shrink: 0;
 	display: inline-block;
 	font-size: 22px;
@@ -160,7 +176,8 @@
 	border-radius: 30px;
 	margin-bottom: 16px;
 }
-.intro-sub-title{
+
+.intro-sub-title {
 	position: relative;
 	font-size: 20px;
 	line-height: 24px;
@@ -171,10 +188,12 @@
 	margin-top: 20px;
 	margin-bottom: 16px;
 }
-.intro-title + .intro-sub-title{
+
+.intro-title + .intro-sub-title {
 	margin-top: 0;
 }
-.intro-sub-title:before{
+
+.intro-sub-title:before {
 	content: '';
 	position: absolute;
 	top: 3px;
@@ -186,32 +205,39 @@
 	border: 4px solid #000;
 	border-radius: 50%;
 }
-.intro-desc{
+
+.intro-desc {
 	font-weight: 500;
 	font-size: 18px;
 	line-height: 26px;
 	vertical-align: middle;
 	word-break: keep-all;
 }
-.intro-small-desc{
+
+.intro-small-desc {
 	font-size: 15px;
 	line-height: 24px;
 	font-weight: 500;
 	color: #454545;
 	vertical-align: middle;
 }
-.intro-link{
+
+.intro-link {
 	font-size: 17px;
 	line-height: 24px;
 	font-weight: 500;
 	vertical-align: middle;
 	color: #2A45CC;
 }
-.intro-link > a{
+
+.intro-link > a {
 	text-decoration: underline;
 }
-.intro-table{}
-.intro-table th, .intro-table td{
+
+.intro-table {
+}
+
+.intro-table th, .intro-table td {
 	height: 55px;
 	font-size: 16px;
 	line-height: 26px;
@@ -222,44 +248,53 @@
 	border: 1px solid #C9D1F8;
 	padding: 10px 10px;
 }
-.intro-table th{
+
+.intro-table th {
 	font-weight: 700;
 	color: #3A4CA8;
 }
-.intro-table th:first-child{
+
+.intro-table th:first-child {
 	border-left: none;
 }
-.intro-table td:last-child{
+
+.intro-table td:last-child {
 	border-right: none;
 }
-.intro-table thead th{
+
+.intro-table thead th {
 	border-top: 2px solid #3A4CA8;
 	border-bottom: 1px solid #3A4CA8;
 	background-color: #EFF1FF;
 }
-.intro-table tfoot th, .intro-table tfoot td{
+
+.intro-table tfoot th, .intro-table tfoot td {
 	border-top: 2px solid #3A4CA8;
 	border-bottom: 1px solid #3A4CA8;
 	border-right-color: #3A4CA8;
 	background-color: #EFF1FF;
 }
-.intro-table-desc{
+
+.intro-table-desc {
 	font-size: 15px;
 	line-height: 27px;
 	font-weight: 500;
 	color: #454545;
 	margin-top: 10px;
 }
-#scoreTable tr > th:nth-child(2), #scoreTable tr > td:nth-child(2){
+
+#scoreTable tr > th:nth-child(2), #scoreTable tr > td:nth-child(2) {
 	border-right-color: #3A4CA8;
 }
-#scoreTable tr > th:last-child, #scoreTable tr > td:last-child{
+
+#scoreTable tr > th:last-child, #scoreTable tr > td:last-child {
 	border-left-color: #3A4CA8;
 }
+
 /*===공모개요===*/
 
 /*===작품접수===*/
-.receipt-info-con{
+.receipt-info-con {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -270,18 +305,21 @@
 	border-radius: 10px;
 	margin-bottom: 60px;
 }
-.receipt-info-con .receipt-info-text{
+
+.receipt-info-con .receipt-info-text {
 	font-size: 20px;
 	line-height: 124%;
 	font-weight: 300;
 	color: #000;
 }
-.receipt-info-con .receipt-info-btn-con{
+
+.receipt-info-con .receipt-info-btn-con {
 	display: flex;
 	align-items: center;
 	gap: 10px;
 }
-.receipt-info-con .receipt-info-btn-con .receipt-info-btn{
+
+.receipt-info-con .receipt-info-btn-con .receipt-info-btn {
 	font-size: 18px;
 	line-height: 40px;
 	font-weight: 600;
@@ -292,18 +330,21 @@
 	border-radius: 5px;
 	padding: 0 20px;
 }
-.receipt-info-con .receipt-info-btn-con .receipt-info-btn.download{
+
+.receipt-info-con .receipt-info-btn-con .receipt-info-btn.download {
 	color: #000;
 	background-color: #fff;
 }
-.work-list-con{
+
+.work-list-con {
 	display: grid;
 	gap: 30px;
 	max-width: 1260px;
 	margin: 0 auto;
 	padding-bottom: 15px;
 }
-.work-list-con .work-list{
+
+.work-list-con .work-list {
 	padding: 30px;
 	background-color: #fff;
 	border: 1px solid #DDE2E5;
@@ -313,10 +354,12 @@
 	cursor: pointer;
 	overflow: hidden;
 }
-.work-list-con .work-list:hover{
+
+.work-list-con .work-list:hover {
 	background-color: #F2F9FF;
 }
-.work-list-con .work-list-top-con{
+
+.work-list-con .work-list-top-con {
 	display: flex;
 	align-items: center;
 	gap: 10px;
@@ -325,16 +368,19 @@
 	border-bottom: 1px solid #EDEDED;
 	margin-bottom: 20px;
 }
-.work-list-con .mem-info-img{
+
+.work-list-con .mem-info-img {
 	flex: 0 0 auto;
 }
+
 .work-list-con .work-title-info {
 	flex: 1;
 	display: flex;
 	flex-direction: column;
 	min-width: 0;
 }
-.work-list-con .work-title{
+
+.work-list-con .work-title {
 	max-width: 100%;
 	font-size: 24px;
 	line-height: 100%;
@@ -346,18 +392,21 @@
 	padding-right: 30px;
 	margin-bottom: 8px;
 }
+
 .work-list-con .work-date-info {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 }
-.work-list-con .work-mem-name{
+
+.work-list-con .work-mem-name {
 	font-size: 18px;
 	line-height: 24px;
 	font-weight: 400;
 	color: #000;
 }
-.work-list-con .work-desc{
+
+.work-list-con .work-desc {
 	min-height: 96px;
 	font-size: 16px;
 	line-height: 24px;
@@ -370,11 +419,106 @@
 	-webkit-box-orient: vertical;
 }
 
-@media all and (min-width: 768px){
+/*===역대수상작===*/
+.prize-list-con {
+	display: grid;
+	gap: 40px;
+	padding-bottom: 10px;
+}
+
+.prize-list-con .prize-list {
+	padding: 30px;
+	background-color: #fff;
+	border: 1px solid #DDE2E5;
+	border-radius: 40px;
+	box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.25);
+}
+
+.prize-list-con .prize-info {
+	border-bottom: 1px solid #EDEDED;
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+}
+
+.prize-list-con .prize-info-top {
+	display: flex;
+	flex-direction: column-reverse;
+	gap: 20px;
+	margin-bottom: 20px;
+}
+
+.prize-list-con .prize-info .prize-ranking {
+	font-size: 24px;
+	line-height: 100%;
+	font-weight: 700;
+	color: #000;
+	margin-bottom: 20px;
+}
+
+.prize-list-con .prize-info .prize-title {
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 30px;
+	color: #000;
+}
+
+.prize-list-con .prize-info .prize-winner {
+	font-weight: 500;
+	font-size: 17px;
+	line-height: 30px;
+	color: #000;
+}
+
+.prize-list-con .prize-info .prize-icon {
+	text-align: center;
+}
+
+.prize-list-con .prize-info .prize-icon > img {
+	width: 114px;
+}
+
+.prize-list-con .prize-info .prize-desc {
+	font-size: 18px;
+	line-height: 26px;
+	font-weight: 300;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 6;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.prize-list-con .download-btn {
+	text-align: right;
+}
+
+.prize-list-con .download-btn > a {
+	display: inline-block;
+	font-size: 16px;
+	line-height: 26px;
+	font-weight: 600;
+	color: #fff;
+	padding: 6px 20px;
+	border-radius: 35px;
+	background-color: #4881DE;
+}
+
+
+@media all and (min-width: 768px) {
 	/*===공통===*/
-	.nav-menu > .container{padding-left:20px; padding-right:20px;}
-	.nav-button{width: 242px; padding: 20px 40px;}
-	.dropdown-menu li a{padding: 15px 40px;}
+	.nav-menu > .container {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
+	.nav-button {
+		width: 242px;
+		padding: 20px 40px;
+	}
+
+	.dropdown-menu li a {
+		padding: 15px 40px;
+	}
 
 	/*===공모개요===*/
 	.intro-con.type2 {
@@ -382,61 +526,101 @@
 		align-items: center;
 		gap: 40px;
 	}
-	.intro-con.type2 .intro-title{
+
+	.intro-con.type2 .intro-title {
 		margin-bottom: 0;
 	}
 
-	.intro-title{
+	.intro-title {
 		font-size: 24px;
 		line-height: 30px;
 		margin-bottom: 20px;
 	}
-	.intro-sub-title{
+
+	.intro-sub-title {
 		font-size: 22px;
 		line-height: 26px;
 		padding-left: 33px;
 		margin-bottom: 20px;
 	}
-	.intro-sub-title:before{
+
+	.intro-sub-title:before {
 		top: 1px;
 		width: 23px;
 		height: 23px;
 		border-width: 5px;
 	}
-	.intro-desc{
+
+	.intro-desc {
 		font-size: 20px;
 	}
 
-	.intro-table th, .intro-table td{
+	.intro-table th, .intro-table td {
 		font-size: 18px;
 		line-height: 28px;
 	}
 
-	.intro-table-desc{
+	.intro-table-desc {
 		font-size: 18px;
 		line-height: 30px;
 	}
 
 	/*===작품접수===*/
-	.work-list-con .work-title{
+	.work-list-con .work-title {
 		font-size: 30px;
+	}
+
+	/*===역대수상작===*/
+	.prize-list-con .prize-info-top {
+		flex-direction: row;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 10px;
+	}
+
+	.prize-list-con .prize-list {
+		padding: 40px;
+	}
+
+	.prize-list-con .prize-info .prize-ranking{
+		font-size: 30px;
+	}
+
+	.prize-list-con .prize-info .prize-title {
+		font-size: 24px;
+	}
+
+	.prize-list-con .prize-info .prize-winner{
+		font-size: 20px;
+	}
+
+	.prize-list-con .prize-info .prize-icon {
+		margin-top: -10px;
+	}
+
+	.prize-list-con .download-btn > a{
+		font-size: 20px;
+		line-height: 28px;
+		padding: 9px 28px;
 	}
 }
 
-@media all and (min-width: 992px){
+@media all and (min-width: 992px) {
 	/*===공모개요===*/
-	.intro-con.type3{
-		float:left;
+	.intro-con.type3 {
+		float: left;
 		width: calc(50% - 20px);
 	}
-	.intro-con.type3:last-child{
+
+	.intro-con.type3:last-child {
 		float: right;
 	}
 
-	#scheduleTable{
+	#scheduleTable {
 		max-width: 818px;
 	}
-	#scoreTable{
+
+	#scoreTable {
 		max-width: 818px;
 	}
 
@@ -446,18 +630,30 @@
 		gap: 40px;
 		padding: 40px;
 	}
-	.receipt-info-con .receipt-info-text{
+
+	.receipt-info-con .receipt-info-text {
 		font-size: 24px;
 	}
-	.receipt-info-con .receipt-info-btn-con .receipt-info-btn{
+
+	.receipt-info-con .receipt-info-btn-con .receipt-info-btn {
 		font-size: 20px;
 		line-height: 46px;
 	}
-	.work-list-con{
+
+	.work-list-con {
 		grid-template-columns: repeat(2, 1fr);
 		gap: 60px;
 	}
-	.work-list-con .work-list{
+
+	.work-list-con .work-list {
 		padding: 40px;
+	}
+}
+
+@media all and (min-width: 1440px) {
+	.prize-list-con {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 82px 40px;
 	}
 }

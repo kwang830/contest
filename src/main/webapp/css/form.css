@@ -60,6 +60,14 @@
 	resize: none;
 }
 
+
+.form-con .form-info-text{
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: 400;
+	margin-top: 10px;
+}
+
 .form-con .form-error-text{
 	font-size: 14px;
 	line-height: 100%;

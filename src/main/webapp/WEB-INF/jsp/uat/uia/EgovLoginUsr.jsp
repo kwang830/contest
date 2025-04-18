@@ -130,7 +130,7 @@
                             <div class="form-error-text" style="display: none;"></div>
                         </div>
                         <div class="form-list">
-                            <div class="form-title">비밀번호</div>
+                            <div class="form-title">비밀번호 <span style="font-size: 16px;">(초기 비밀번호 : 주민등록번호 앞 6자리)</span></div>
                             <div class="form-input">
                                 <input name="password" id="password" type="password" placeholder="비밀번호를 입력해주세요." autocomplete="current-password" maxlength="100" />
                             </div>
@@ -148,8 +148,8 @@
                         <button type="submit" class="submit-btn">로그인</button>
                     </div>
                     <div class="login-form-desc">
-                        <span>초기 비밀 번호</span>는 <span>주민등록번호 앞6자리</span>입니다.<br/>
-                        안전한 비밀번호 사용을 권장합니다.
+                        변경한 비밀번호를 잊으신 경우,<br/>
+                        이진석 대리 (☎ 02-3407-6074)에게 문의해주시기 바랍니다.<br/>
                     </div>
                 </form>
             </div>

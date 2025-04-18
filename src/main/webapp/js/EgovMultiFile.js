@@ -15,6 +15,31 @@
  *      eg. multi_selector.addElement( document.getElementById( 'first_file_element' ) );
  */
 
+function isValidExtension(fileName, acceptAttr) {
+	// 기본 확장자 목록
+	const defaultAccept = ".ppt,.pptx,.hwp,.hwpx,.doc,.docx,.pdf,.xls,.xlsx,.zip";
+
+	const extensions = (acceptAttr || defaultAccept)
+		.split(',')
+		.map(ext => ext.trim().toLowerCase());
+
+	const ext = fileName.substring(fileName.lastIndexOf('.')).toLowerCase();
+	return extensions.includes(ext);
+}
+
+function getAcceptMessage(acceptAttr) {
+	const defaultAccept = ".ppt,.pptx,.hwp,.hwpx,.doc,.docx,.pdf,.xls,.xlsx,.zip";
+	const acceptVal = acceptAttr || defaultAccept;
+
+	if (acceptVal.includes(".jpg") || acceptVal.includes(".png") || acceptVal.includes(".gif")) {
+		return "이미지 파일만 업로드 가능합니다.\n\n허용된 확장자: " + acceptVal;
+	} else if (acceptVal.includes(".hwp") || acceptVal.includes(".doc") || acceptVal.includes(".pdf")) {
+		return "문서 파일만 업로드 가능합니다.\n\n허용된 확장자:\n" + acceptVal;
+	} else {
+		return "허용되지 않은 파일 형식입니다.\n\n허용된 확장자:\n" + acceptVal;
+	}
+}
+
 function MultiSelector( list_target, max ){
 
 	// Where to write the list
@@ -46,6 +71,15 @@ function MultiSelector( list_target, max ){
 
 			// What to do when a file is selected
 			element.onchange = function(){
+
+				const fileName = this.value;
+				const acceptAttr = this.getAttribute("accept");
+
+				if (!isValidExtension(fileName, acceptAttr)) {
+					alert(getAcceptMessage(acceptAttr));
+					this.value = "";
+					return;
+				}
 
 				// New file input
 				var new_element = document.createElement( 'input' );
