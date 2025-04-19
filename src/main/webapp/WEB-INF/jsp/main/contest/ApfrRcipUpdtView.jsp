@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="egovc" uri="/WEB-INF/tlds/egovc.tld" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="validator" uri="http://www.springmodules.org/tags/commons-validator" %>
@@ -69,8 +70,18 @@
 		}
 
 		function fn_egov_select_noticeList() {
-			document.board.action = "<c:url value='/cop/bbs/selectBoardList.do'/>";
+			document.board.action = "<c:url value='/cmm/contest/apfrRcip.do'/>";
 			document.board.submit();
+		}
+
+		function fn_egov_check_file(flag) {
+			if (flag=='Y') {
+				document.getElementById('file_upload_posbl').style.display = "block";
+				document.getElementById('file_upload_imposbl').style.display = "none";
+			} else {
+				document.getElementById('file_upload_posbl').style.display = "none";
+				document.getElementById('file_upload_imposbl').style.display = "block";
+			}
 		}
 
 	</script>
@@ -118,7 +129,9 @@
 					<form:form modelAttribute="board" name="board" method="post" enctype="multipart/form-data" class="form-con">
 						<input name="pageIndex" type="hidden" value="<c:out value='${searchVO.pageIndex}'/>"/>
 						<input type="hidden" name="bbsId" value="<c:out value='${bdMstr.bbsId}'/>" />
-						<input type="hidden" name="nttId" value="<c:out value='${result.nttId}'/>" />
+						<c:if test="${not empty result.nttId}">
+							<input type="hidden" name="nttId" value="<c:out value='${result.nttId}'/>" />
+						</c:if>
 						<input type="hidden" name="bbsAttrbCode" value="<c:out value='${bdMstr.bbsAttrbCode}'/>" />
 						<input type="hidden" name="bbsTyCode" value="<c:out value='${bdMstr.bbsTyCode}'/>" />
 						<input type="hidden" name="replyPosblAt" value="<c:out value='${bdMstr.replyPosblAt}'/>" />
@@ -158,13 +171,13 @@
 								<div class="form-error-text" style="display: none;"></div>
 							</div>
 							<c:if test="${not empty result.frstRegisterNm}">
-							<div class="form-list">
-								<div class="form-title">접수자</div>
-								<div class="form-input">
-									<input name="wrterNm" type="text" readonly="readonly" value="<c:out value="${result.frstRegisterNm}" escapeXml="false" />">
+								<div class="form-list">
+									<div class="form-title">접수자</div>
+									<div class="form-input">
+										<input name="wrterNm" type="text" readonly="readonly" value="<c:out value="${result.frstRegisterNm}" escapeXml="false" />">
+									</div>
+									<div class="form-error-text" style="display: none;"></div>
 								</div>
-								<div class="form-error-text" style="display: none;"></div>
-							</div>
 							</c:if>
 							<div class="form-list">
 								<div class="form-title essential">내용</div>
@@ -178,13 +191,24 @@
 								<div class="form-title essential">
 									파일첨부
 								</div>
-
 								<div class="form-input f_file_wrap">
+									<!-- 첨부파일목록 시작 -->
+									<c:if test="${not empty result.atchFileId}">
+										<div class="board_attach2">
+                                            <span>
+                                                <c:import url="/cmm/fms/selectFileInfsForUpdate.do" charEncoding="utf-8">
+													<c:param name="param_atchFileId" value="${egovc:encrypt(result.atchFileId)}" />
+												</c:import>
+                                            </span>
+										</div>
+									</c:if>
+									<!-- /첨부파일목록 끝 -->
 									<div class="board_attach2" id="file_upload_posbl">
 										<input name="file_1" id="egovComFileUploader" type="file" accept=".ppt,.pptx,.hwp,.hwpx,.doc,.docx,.pdf,.xls,.xlsx,.zip"/>
 										<div id="egovComFileList"></div>
 									</div>
 									<div class="board_attach2" id="file_upload_imposbl">
+										<spring:message code="common.imposbl.fileupload" />
 									</div>
 									<c:if test="${empty result.atchFileId}">
 										<input type="hidden" id="fileListCnt" name="fileListCnt" value="0" />
@@ -253,17 +277,35 @@
 ============================================= -->
 <script type="text/javascript" src="<c:url value='/'/>js/functions.js"></script>
 
-<script type="text/javascript">
-	var maxFileNum = document.board.posblAtchFileNumber.value;
-	if(maxFileNum==null || maxFileNum==""){
-		maxFileNum = 2;
-	}
-	var multi_selector = new MultiSelector( document.getElementById( 'egovComFileList' ), maxFileNum );
-	multi_selector.addElement( document.getElementById( 'egovComFileUploader' ) );
-</script>
+<!-- 파일첨부 스크립트 시작 -->
+<c:if test="${bdMstr.fileAtchPosblAt == 'Y'}">
+	<script type="text/javascript">
+		var existFileNum = document.board.fileListCnt.value;
+		var maxFileNum = document.board.posblAtchFileNumber.value;
+
+		if (existFileNum=="undefined" || existFileNum ==null) {
+			existFileNum = 0;
+		}
+		if (maxFileNum=="undefined" || maxFileNum ==null) {
+			maxFileNum = 0;
+		}
+		var uploadableFileNum = maxFileNum - existFileNum;
+		if (uploadableFileNum<0) {
+			uploadableFileNum = 0;
+		}
+		if (uploadableFileNum != 0) {
+			fn_egov_check_file('Y');
+			var multi_selector = new MultiSelector( document.getElementById( 'egovComFileList' ), uploadableFileNum );
+			multi_selector.addElement( document.getElementById( 'egovComFileUploader' ) );
+		} else {
+			fn_egov_check_file('N');
+		}
+	</script>
+</c:if>
+<!-- /파일첨부 스크립트 끝 -->
 <script type="text/javascript">
 	var maxFileNum2 = 1;
-	var multi_selector2 = new MultiSelector( document.getElementById( 'egovComFileList2' ), maxFileNum2 );
+	var multi_selector2 = new MultiSelector2( document.getElementById( 'egovComFileList2' ), maxFileNum2 );
 	multi_selector2.addElement( document.getElementById( 'egovComFileUploader2' ) );
 </script>
 </body>

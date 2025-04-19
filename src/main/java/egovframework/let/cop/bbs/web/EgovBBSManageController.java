@@ -1,6 +1,7 @@
 package egovframework.let.cop.bbs.web;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -289,7 +290,7 @@ public class EgovBBSManageController {
 	 */
 	@RequestMapping("/cop/bbs/insertBoardArticle.do")
 	public String insertBoardArticle(final MultipartHttpServletRequest multiRequest, @ModelAttribute("searchVO") BoardVO boardVO, @ModelAttribute("bdMstr") BoardMaster bdMstr,
-			@ModelAttribute("board") Board board, BindingResult bindingResult, SessionStatus status, ModelMap model) throws Exception {
+									 @ModelAttribute("board") Board board, BindingResult bindingResult, SessionStatus status, ModelMap model) throws Exception {
 
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
@@ -330,14 +331,52 @@ public class EgovBBSManageController {
 		}
 		System.out.println("/cop/bbs/insertBoardArticle.do >> chk 1 ");
 		if (isAuthenticated) {
-			List<FileVO> result = null;
+			//List<FileVO> result = null;
 			String atchFileId = "";
 
 			final Map<String, MultipartFile> files = multiRequest.getFileMap();
 			if (!files.isEmpty()) {
-				result = fileUtil.parseFileInf(files, "BBS_", 0, "", "");
-				atchFileId = fileMngService.insertFileInfs(result);
+				Map<String, MultipartFile> fileGroup1 = new HashMap<>();
+				Map<String, MultipartFile> fileGroup2 = new HashMap<>();
+
+				// 파일 이름에 따라 그룹 분리
+				for (Map.Entry<String, MultipartFile> entry : files.entrySet()) {
+					String name = entry.getKey(); // form input의 name 속성 (예: file_1, file2_1)
+					if (name.startsWith("file_")) {
+						fileGroup1.put(name, entry.getValue());
+					} else if (name.startsWith("file2_")) {
+						fileGroup2.put(name, entry.getValue());
+					}
+				}
+
+				// 그룹1 처리
+				if (!fileGroup1.isEmpty()) {
+					System.out.println("fileGroup1 not isEmpty !");
+					List<FileVO> result1 = fileUtil.parseFileInf(fileGroup1, "BBS_", 0, "", "");
+					String atchFileId1 = fileMngService.insertFileInfs(result1);
+					// 필요한 로직 추가
+					System.out.println("file_ 그룹의 파일 ID: " + atchFileId1);
+					atchFileId = atchFileId1;
+				}else{
+					System.out.println("fileGroup1 isEmpty !");
+				}
+
+				// 그룹2 처리
+				if (!fileGroup2.isEmpty()) {
+					System.out.println("fileGroup2 not isEmpty !");
+					//List<FileVO> result2 = fileUtil.parseFileInf(fileGroup2, "BBS2_", 0, "", "");
+					//String atchFileId2 = fileMngService.insertFileInfs(result2);
+					// 필요한 로직 추가
+					//System.out.println("fileGroup2 result2: " + result2);
+				}else{
+					System.out.println("fileGroup2 isEmpty !");
+				}
 			}
+
+//			if (!files.isEmpty()) {
+//				result = fileUtil.parseFileInf(files, "BBS_", 0, "", "");
+//				atchFileId = fileMngService.insertFileInfs(result);
+//			}
 			board.setAtchFileId(atchFileId);
 			board.setFrstRegisterId(user.getUniqId());
 			board.setBbsId(board.getBbsId());

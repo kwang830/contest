@@ -246,7 +246,9 @@
 				NTCE_ENDDE = #{ntceEndde},
 				LAST_UPDUSR_ID = #{lastUpdusrId},
 				ATCH_FILE_ID = #{atchFileId},
-				LAST_UPDT_PNTTM = SYSDATE()
+				LAST_UPDT_PNTTM = SYSDATE(),
+				TEAM_NM = #{teamNm},
+				IMG_URL = #{imgUrl}
 			WHERE BBS_ID = #{bbsId}
 			AND NTT_ID = #{nttId}
  		

@@ -42,7 +42,7 @@
 			}
 		}
 
-		function fn_egov_moveUpdt_notice() {
+		function fn_egov_moveUpdt_bbs() {
 			document.frm.action = "<c:url value='/cmm/contest/apfrRcipUpdt.do'/>";
 			document.frm.submit();
 		}
@@ -118,22 +118,19 @@
 								</div>
 							</div>
 						</div>
-						<div class="board_view_file_con">
-							<img src="../images/icon-attachment.png" alt="" style="width: 24px;">
-							<c:if test="${result.atchFileId != ''}">
-								<div class="board_view_file_con">
-									<img src="/images/icon-attachment.png" alt="" style="width: 24px;">
-									<c:import url="/cmm/fms/selectFileInfs.do" charEncoding="utf-8">
-										<c:param name="param_atchFileId" value="${egovc:encrypt(result.atchFileId)}" />
-									</c:import>
-								</div>
-							</c:if>
-						</div>
 						<div class="board_view_content_con">
 							<textarea id="nttCn2" name="nttCn2" title="내용" class="f_txtar w_full h_200"
 									  rows="10" cols="30" readonly="readonly"><c:out value="${result.nttCn}" escapeXml="false" />
 							</textarea>
 						</div>
+						<c:if test="${result.atchFileId != ''}">
+							<div class="board_view_file_con">
+								<img src="/images/icon-attachment.png" alt="" style="width: 24px;">
+								<c:import url="/cmm/fms/selectFileInfs.do" charEncoding="utf-8">
+									<c:param name="param_atchFileId" value="${egovc:encrypt(result.atchFileId)}" />
+								</c:import>
+							</div>
+						</c:if>
 					</div>
 
 					<div class="board_view_bot">
@@ -142,7 +139,7 @@
 						</div>
 						<div class="center_col"></div>
 						<div class="right_col">
-							<a href="#" class="btn btn_white_46" onclick="javascript:fn_egov_moveUpdt_notice(); return false;">수정</a>
+							<a href="#" class="btn btn_white_46" onclick="javascript:fn_egov_moveUpdt_bbs(); return false;">수정</a>
 							<a href="#" class="btn btn_black_46">삭제</a><!-- 삭제 -->
 						</div>
 					</div>
