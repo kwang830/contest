@@ -1,7 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="egovc" uri="/WEB-INF/tlds/egovc.tld" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html dir="ltr" lang="ko">
@@ -148,8 +149,11 @@
 						<caption>목록</caption>
 						<colgroup>
 							<col style="width: 80px;">
-							<col style="width: auto; min-width: 330px;">
-							<col style="width: 100px;">
+							<col style="width: auto; min-width: 220px;">
+							<col style="width: 180px;">
+							<c:if test='${boardVO.bbsId == "BBSMSTR_BBBBBBBBBBBB"}'>
+							<col style="width: 180px;">
+							</c:if>
 							<col style="width: 100px;">
 							<col style="width: 180px;">
 						</colgroup>
@@ -158,6 +162,9 @@
 							<th scope="col">순번</th>
 							<th scope="col">제목</th>
 							<th scope="col">작성자</th>
+							<c:if test='${boardVO.bbsId == "BBSMSTR_BBBBBBBBBBBB"}'>
+							<th scope="col">팀명</th>
+							</c:if>
 							<th scope="col">조회수</th>
 							<th scope="col">등록일자</th>
 						</tr>
@@ -166,13 +173,12 @@
 
 						<c:if test="${empty resultList}">
 							<tr>
-								<td>1</td>
-								<td class="al">
-									등록된 글이 존재하지 않습니다.
-								</td>
-								<td>-</td>
-								<td>-</td>
-								<td>-</td>
+								<c:if test='${boardVO.bbsId == "BBSMSTR_BBBBBBBBBBBB"}'>
+								<td colspan="6">등록된 글이 존재하지 않습니다.</td>
+								</c:if>
+								<c:if test='${boardVO.bbsId != "BBSMSTR_BBBBBBBBBBBB"}'>
+								<td colspan="5">등록된 글이 존재하지 않습니다.</td>
+								</c:if>
 							</tr>
 						</c:if>
 
@@ -199,6 +205,9 @@
 
 									</form>
 								</td>
+								<c:if test='${boardVO.bbsId == "BBSMSTR_BBBBBBBBBBBB"}'>
+									<td>${result.teamNm}</td>
+								</c:if>
 								<td>${result.frstRegisterNm}</td>
 								<td>${result.inqireCo}</td>
 								<td>${result.frstRegisterPnttm}</td>

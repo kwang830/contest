@@ -155,13 +155,24 @@
                     <div class="board_view_top_con">
                         <!-- 관리자가 작성한 경우 mem-info-img display:none 처리 or src 안넣으면 기본이미지로 노출 -->
                         <div class="mem-info-img">
-                            <img src="" alt=""> <!--작성자 이미지-->
+                            <c:if test="${empty result.imgUrl}">
+                                <img src="" alt=""><!-- 대표 이미지 -->
+                            </c:if>
+                            <c:if test="${not empty result.imgUrl}">
+                                <img src="<c:url value='/cmm/fms/getImage.do?atchFileId=${egovc:encrypt(result.imgUrl)}&fileSn=0'/>" alt=""><!-- 대표 이미지 -->
+                            </c:if>
                         </div>
                         <div>
                             <div class="board_view_title">
                                 <c:out value="${result.nttSj}" escapeXml="false" />
                             </div>
                             <div class="board_view_info_con">
+                                <c:if test='${result.bbsId == "BBSMSTR_BBBBBBBBBBBB"}'>
+                                    <div class="board_view_info">
+                                        <div class="view_info_title">팀명</div>
+                                        <div class="view_info_desc"><c:out value="${result.teamNm}" /></div>
+                                    </div>
+                                </c:if>
                                 <div class="board_view_info">
                                     <div class="view_info_title">작성자</div>
                                     <div class="view_info_desc"><c:out value="${result.frstRegisterNm}" /></div>
