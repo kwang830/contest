@@ -333,6 +333,7 @@ public class EgovBBSManageController {
 		if (isAuthenticated) {
 			//List<FileVO> result = null;
 			String atchFileId = "";
+			String atchFileImgUrl = "";
 
 			final Map<String, MultipartFile> files = multiRequest.getFileMap();
 			if (!files.isEmpty()) {
@@ -357,19 +358,16 @@ public class EgovBBSManageController {
 					// 필요한 로직 추가
 					System.out.println("file_ 그룹의 파일 ID: " + atchFileId1);
 					atchFileId = atchFileId1;
-				}else{
-					System.out.println("fileGroup1 isEmpty !");
 				}
 
 				// 그룹2 처리
 				if (!fileGroup2.isEmpty()) {
 					System.out.println("fileGroup2 not isEmpty !");
-					//List<FileVO> result2 = fileUtil.parseFileInf(fileGroup2, "BBS2_", 0, "", "");
-					//String atchFileId2 = fileMngService.insertFileInfs(result2);
+					List<FileVO> result2 = fileUtil.parseFileInf(fileGroup2, "BBS2_", 0, "", "Globals.imgFileStorePath");
+					String atchFileId2 = fileMngService.insertFileInfs(result2);
 					// 필요한 로직 추가
-					//System.out.println("fileGroup2 result2: " + result2);
-				}else{
-					System.out.println("fileGroup2 isEmpty !");
+					System.out.println("file2_ 그룹의 파일 ID: " + atchFileId2);
+					atchFileImgUrl = atchFileId2;
 				}
 			}
 
@@ -378,6 +376,7 @@ public class EgovBBSManageController {
 //				atchFileId = fileMngService.insertFileInfs(result);
 //			}
 			board.setAtchFileId(atchFileId);
+			board.setImgUrl(atchFileImgUrl);
 			board.setFrstRegisterId(user.getUniqId());
 			board.setBbsId(board.getBbsId());
 
@@ -577,6 +576,7 @@ public class EgovBBSManageController {
 		}
 
 		String atchFileId = boardVO.getAtchFileId();
+		String imgUrl = boardVO.getImgUrl();
 
 		beanValidator.validate(board, bindingResult);
 		if (bindingResult.hasErrors()) {
@@ -602,16 +602,48 @@ public class EgovBBSManageController {
 		if (isAuthenticated) {
 			final Map<String, MultipartFile> files = multiRequest.getFileMap();
 			if (!files.isEmpty()) {
-				if ("".equals(atchFileId)) {
-					List<FileVO> result = fileUtil.parseFileInf(files, "BBS_", 0, atchFileId, "");
-					atchFileId = fileMngService.insertFileInfs(result);
-					board.setAtchFileId(atchFileId);
-				} else {
-					FileVO fvo = new FileVO();
-					fvo.setAtchFileId(atchFileId);
-					int cnt = fileMngService.getMaxFileSN(fvo);
-					List<FileVO> _result = fileUtil.parseFileInf(files, "BBS_", cnt, atchFileId, "");
-					fileMngService.updateFileInfs(_result);
+				Map<String, MultipartFile> fileGroup1 = new HashMap<>();
+				Map<String, MultipartFile> fileGroup2 = new HashMap<>();
+
+				// 파일 이름에 따라 그룹 분리
+				for (Map.Entry<String, MultipartFile> entry : files.entrySet()) {
+					String name = entry.getKey(); // form input의 name 속성 (예: file_1, file2_1)
+					if (name.startsWith("file_")) {
+						System.out.println("file_ >>> " + name);
+						fileGroup1.put(name, entry.getValue());
+					} else if (name.startsWith("file2_")) {
+						System.out.println("file2_ >>> " + name);
+						fileGroup2.put(name, entry.getValue());
+					}
+				}
+
+				// 그룹1 처리
+				if (!fileGroup1.isEmpty()) {
+					if ("".equals(atchFileId)) {
+						List<FileVO> result = fileUtil.parseFileInf(fileGroup1, "BBS_", 0, atchFileId, "");
+						atchFileId = fileMngService.insertFileInfs(result);
+						board.setAtchFileId(atchFileId);
+					} else {
+						FileVO fvo = new FileVO();
+						fvo.setAtchFileId(atchFileId);
+						int cnt = fileMngService.getMaxFileSN(fvo);
+						List<FileVO> _result = fileUtil.parseFileInf(fileGroup1, "BBS_", cnt, atchFileId, "");
+						fileMngService.updateFileInfs(_result);
+					}
+				}
+				// 그룹2 처리
+				if (!fileGroup2.isEmpty()) {
+					if ("".equals(imgUrl)) {
+						List<FileVO> result = fileUtil.parseFileInf(fileGroup2, "BBS2_", 0, imgUrl, "Globals.imgFileStorePath");
+						imgUrl = fileMngService.insertFileInfs(result);
+						board.setImgUrl(imgUrl);
+					} else {
+						FileVO fvo = new FileVO();
+						fvo.setAtchFileId(imgUrl);
+						int cnt = fileMngService.getMaxFileSN(fvo);
+						List<FileVO> _result = fileUtil.parseFileInf(fileGroup2, "BBS2_", cnt, imgUrl, "Globals.imgFileStorePath");
+						fileMngService.updateFileInfs(_result);
+					}
 				}
 			}
 

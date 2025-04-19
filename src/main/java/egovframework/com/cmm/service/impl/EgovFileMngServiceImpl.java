@@ -174,4 +174,14 @@ public class EgovFileMngServiceImpl extends EgovAbstractServiceImpl implements E
 	public void updateFileInfRdcnt(FileVO fvo) throws Exception {
 		fileMngDAO.updateFileInfRdcnt(fvo);
 	}
+
+	/**
+	 * IMG_URL을 삭제한다.
+	 *
+	 * @see egovframework.com.cmm.service.EgovFileMngService#deleteImgUrl(egovframework.com.cmm.service.FileVO)
+	 */
+	@Override
+	public void deleteImgUrl(FileVO fvo) throws Exception {
+		fileMngDAO.deleteImgUrl(fvo);
+	}
 }

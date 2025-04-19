@@ -155,7 +155,7 @@
 								<a href="/uat/uia/egovLoginUsr.do" class="login-menu">로그인</a>
 							</c:when>
 							<c:otherwise>
-								<%--<a href="/uat/uia/egovLoginUsr.do" class="login-menu">로그인</a>--%>
+								<a href="/uat/uia/egovLoginUsr.do" class="login-menu">로그인</a>
 							</c:otherwise>
 						</c:choose>
 

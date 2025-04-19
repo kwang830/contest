@@ -176,4 +176,13 @@
 			FILE_SN = #{fileSn}
 
 	</update>
+
+	<update id="deleteImgUrl" parameterType="FileVO">
+		UPDATE LETTNBBS
+		SET IMG_URL = NULL
+		WHERE
+			BBS_ID = #{bbsId}
+		  AND
+			NTT_ID = #{nttId}
+	</update>
 </mapper>

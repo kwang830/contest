@@ -128,6 +128,8 @@
 				<div class="container" style="max-width: 800px;">
 					<form:form modelAttribute="board" name="board" method="post" enctype="multipart/form-data" class="form-con">
 						<input name="pageIndex" type="hidden" value="<c:out value='${searchVO.pageIndex}'/>"/>
+						<input type="hidden" name="returnUrl" value="<c:url value='/cmm/contest/apfrRcipUpdt.do'/>"/>
+
 						<input type="hidden" name="bbsId" value="<c:out value='${bdMstr.bbsId}'/>" />
 						<c:if test="${not empty result.nttId}">
 							<input type="hidden" name="nttId" value="<c:out value='${result.nttId}'/>" />
@@ -225,10 +227,25 @@
 							<div class="form-list topmargin-sm">
 								<div class="form-title">대표 이미지 <span>(개인신상을 알아볼 수 있는 사진은 첨부 불가, 100*100px 정사각형 사이즈 )</span></div>
 								<div class="form-input f_file_wrap">
+									<!-- 첨부파일목록 시작 -->
+									<c:if test="${not empty result.imgUrl}">
+										<div class="board_attach2">
+                                            <span>
+                                                <c:import url="/cmm/fms/selectFileInfsForUpdateAdd.do" charEncoding="utf-8">
+													<c:param name="param_atchFileId" value="${egovc:encrypt(result.imgUrl)}" />
+													<c:param name="param_nttId" value="${result.nttId}" />
+													<c:param name="param_bbsId" value="${result.bbsId}" />
+												</c:import>
+                                            </span>
+										</div>
+									</c:if>
+									<!-- /첨부파일목록 끝 -->
+									<c:if test="${empty result.imgUrl}">
 									<div class="board_attach2" id="file_upload_posbl2">
 										<input name="file2_1" id="egovComFileUploader2" type="file" accept=".jpg,.jpeg,.png"/>
 										<div id="egovComFileList2"></div>
 									</div>
+									</c:if>
 								</div>
 							</div>
 							<div class="form-info-text">

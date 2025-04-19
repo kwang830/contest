@@ -58,6 +58,15 @@ public class FileVO implements Serializable {
      * 저장파일명
      */
     public String streFileNm = "";
+    /**
+     * 게시물 아이디
+     */
+    public String nttId = "";
+    /**
+     * 게시판 아이디
+     */
+    public String bbsId = "";
+    
 
     /**
      * atchFileId attribute를 리턴한다.
@@ -228,6 +237,44 @@ public class FileVO implements Serializable {
      */
     public void setStreFileNm(String streFileNm) {
 	this.streFileNm = streFileNm;
+    }
+
+    /**
+     * bbsId attribute를 리턴한다.
+     *
+     * @return the bbsId
+     */
+    public String getBbsId() {
+        return bbsId;
+    }
+
+    /**
+     * bbsId attribute 값을 설정한다.
+     *
+     * @param bbsId
+     *            the bbsId to set
+     */
+    public void setBbsId(String bbsId) {
+        this.bbsId = bbsId;
+    }
+
+    /**
+     * nttId attribute를 리턴한다.
+     *
+     * @return the nttId
+     */
+    public String getNttId() {
+        return nttId;
+    }
+
+    /**
+     * nttId attribute 값을 설정한다.
+     *
+     * @param nttId
+     *            the nttId to set
+     */
+    public void setNttId(String nttId) {
+        this.nttId = nttId;
     }
 
     /**

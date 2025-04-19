@@ -146,6 +146,55 @@ public class EgovFileMngController {
 	}
 
 	/**
+	 * 첨부파일 변경을 위한 수정페이지로 이동한다.
+	 *
+	 * @param fileVO
+	 * @param atchFileId
+	 * @param sessionVO
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/cmm/fms/selectFileInfsForUpdateAdd.do")
+	public String selectFileInfsForUpdateAdd(@ModelAttribute("searchVO") FileVO fileVO,
+										  @RequestParam Map<String, Object> commandMap,
+										  HttpServletRequest request,
+										  ModelMap model) throws Exception {
+
+		String param_atchFileId = (String) commandMap.get("param_atchFileId");
+		String param_nttId = (String) commandMap.get("param_nttId");
+		String param_bbsId = (String) commandMap.get("param_bbsId");
+
+		byte[] encrypted_atchFileId = Base64.getDecoder().decode(param_atchFileId);
+		String decodedAtchFileId = "";
+		if (param_atchFileId != null && !"".equals(param_atchFileId) ) {
+			decodedAtchFileId = new String(cryptoService.decrypt(encrypted_atchFileId, ALGORITHM_KEY));
+		}
+
+		fileVO.setAtchFileId(decodedAtchFileId);
+
+		List<FileVO> result = fileService.selectFileInfs(fileVO);
+
+		// FileId를 유추하지 못하도록 세션ID와 함께 암호화하여 표시한다. (2022.12.06 추가) - 파일아이디가 유추 불가능하도록 조치
+		for (FileVO file : result) {
+			String sessionId = request.getSession().getId();
+			String toEncrypt = sessionId + "|" + file.atchFileId;
+			file.setAtchFileId(Base64.getEncoder().encodeToString(
+					cryptoService.encrypt(toEncrypt.getBytes(), ALGORITHM_KEY)));
+		}
+
+		model.addAttribute("fileList", result);
+		model.addAttribute("updateFlag", "Y");
+		model.addAttribute("fileListCnt", result.size());
+		model.addAttribute("atchFileId", param_atchFileId);
+		model.addAttribute("imgUrl", decodedAtchFileId);
+		model.addAttribute("nttId", param_nttId);
+		model.addAttribute("bbsId", param_bbsId);
+
+		return "cmm/fms/EgovFileListAdd";
+	}
+
+	/**
 	 * 첨부파일에 대한 삭제를 처리한다.
 	 *
 	 * @param fileVO
@@ -159,11 +208,62 @@ public class EgovFileMngController {
 	public String deleteFileInf(@ModelAttribute("searchVO") FileVO fileVO, @RequestParam("returnUrl") String returnUrl, HttpServletRequest request, ModelMap model)
 			throws Exception {
 
+		//System.out.println("deleteFileInfs.do >>>");
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
-
 		if (isAuthenticated) {
 			fileService.deleteFileInf(fileVO);
 		}
+
+		//System.out.println("returnUrl : " + returnUrl);
+
+		//--------------------------------------------
+		// contextRoot가 있는 경우 제외 시켜야 함
+		//--------------------------------------------
+		////return "forward:/cmm/fms/selectFileInfs.do";
+		//return "forward:" + returnUrl;
+
+		if ("".equals(request.getContextPath()) || "/".equals(request.getContextPath())) {
+			return "forward:" + returnUrl;
+		}
+
+		if (returnUrl.startsWith(request.getContextPath())) {
+			return "forward:" + returnUrl.substring(returnUrl.indexOf("/", 1));
+		} else {
+			return "forward:" + returnUrl;
+		}
+		////------------------------------------------
+	}
+
+	/**
+	 * 첨부파일에 대한 삭제를 처리한다.
+	 *
+	 * @param fileVO
+	 * @param returnUrl
+	 * @param sessionVO
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/cmm/fms/deleteImgUrlFileInfs.do")
+	public String deleteImgUrlFileInf(@ModelAttribute("searchVO") FileVO fileVO,
+									  @RequestParam("returnUrl") String returnUrl,
+									  @RequestParam("nttId") String nttId,
+									  @RequestParam("bbsId") String bbsId,
+									  HttpServletRequest request, ModelMap model)
+			throws Exception {
+
+		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+		if (isAuthenticated) {
+			fileService.deleteFileInf(fileVO);
+
+			//System.out.println("deleteImgUrlFileInf >>>");
+			//System.out.println("nttId:"+nttId);
+			//System.out.println("bbsId:"+bbsId);
+			// 업데이트 필요
+			fileService.deleteImgUrl(fileVO);
+		}
+
+		//System.out.println("returnUrl : " + returnUrl);
 
 		//--------------------------------------------
 		// contextRoot가 있는 경우 제외 시켜야 함

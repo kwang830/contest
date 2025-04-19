@@ -98,9 +98,13 @@
 					<input type="hidden" name="nttSj" value="<c:out value='${result.nttSj}'/>" >
 					<div class="board_view">
 						<div class="board_view_top_con">
-							<!-- 관리자가 작성한 경우 mem-info-img display:none 처리 or src 안넣으면 기본이미지로 노출 -->
 							<div class="mem-info-img">
-								<img src="" alt=""> <!--작성자 이미지-->
+								<c:if test="${empty result.imgUrl}">
+									<img src="" alt=""><!-- 대표 이미지 -->
+								</c:if>
+								<c:if test="${not empty result.imgUrl}">
+									<img src="<c:url value='/cmm/fms/getImage.do?atchFileId=${egovc:encrypt(result.imgUrl)}&fileSn=0'/>" alt=""><!-- 대표 이미지 -->
+								</c:if>
 							</div>
 							<div>
 								<div class="board_view_title">

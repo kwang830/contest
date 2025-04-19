@@ -183,6 +183,8 @@
                 <input type="hidden" name="posblAtchFileNumber" value="<c:out value='${bdMstr.posblAtchFileNumber}'/>" />
                 <input type="hidden" name="posblAtchFileSize" value="<c:out value='${bdMstr.posblAtchFileSize}'/>" />
                 <input type="hidden" name="tmplatId" value="<c:out value='${bdMstr.tmplatId}'/>" />
+                <input type="hidden" name="teamNm" value="<c:out value='${result.teamNm}'/>" />
+                <input type="hidden" name="imgUrl" value="<c:out value='${result.imgUrl}'/>" />
 
                 <input type="hidden" name="cal_url" value="<c:url value='/sym/cmm/EgovNormalCalPopup.do'/>" />
 
@@ -241,9 +243,6 @@
                                     <label for="egovComFileUploader">파일첨부</label>
                                 </div>
                                 <div class="input f_file_wrap">
-<%--                                    <input type="file" id="file" hidden>--%>
-<%--                                    <label for="file" class="f_file_btn">파일 선택</label>--%>
-<%--                                    <span class="f_file_name">선택된 파일 없음</span>--%>
                                     <!-- 첨부파일목록 시작 -->
                                     <c:if test="${not empty result.atchFileId}">
                                         <div class="board_attach2">

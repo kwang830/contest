@@ -27,133 +27,104 @@ import egovframework.com.cmm.service.EgovFileMngService;
 import egovframework.com.cmm.service.EgovProperties;
 import egovframework.com.cmm.service.FileVO;
 
-/**
- * @Class Name : EgovImageProcessController.java
- * @Description :
- * @Modification Information
- *
- *    수정일       수정자         수정내용
- *    -------        -------     -------------------
- *    2009. 4. 2.     이삼섭
- *    2011.08.31.     JJY        경량환경 템플릿 커스터마이징버전 생성
- *
- * @author 공통 서비스 개발팀 이삼섭
- * @since 2009. 4. 2.
- * @version
- * @see
- *
- */
 @Controller
 public class EgovImageProcessController extends HttpServlet {
 
-	/**
-	 *  serialVersion UID
-	 */
 	private static final long serialVersionUID = -6339945210971171173L;
-	
 	private static final Logger LOGGER = LoggerFactory.getLogger(EgovImageProcessController.class);
 
 	@Resource(name = "EgovFileMngService")
 	private EgovFileMngService fileService;
-	
-	/** 암호화서비스 */
+
 	@Resource(name = "egovARIACryptoService")
 	EgovCryptoService cryptoService;
-	
-	// 주의 : 반드시 기본값 "egovframe"을 다른것으로 변경하여 사용하시기 바랍니다.
+
 	public static final String ALGORITHM_KEY = EgovProperties.getProperty("Globals.File.algorithmKey");
 
-	/**
-	 * 첨부된 이미지에 대한 미리보기 기능을 제공한다.
-	 *
-	 * @param atchFileId
-	 * @param fileSn
-	 * @param sessionVO
-	 * @param model
-	 * @param response
-	 * @throws Exception
-	 */
-	@SuppressWarnings("resource")
 	@RequestMapping("/cmm/fms/getImage.do")
-	public void getImageInf(SessionVO sessionVO, ModelMap model, @RequestParam Map<String, Object> commandMap, HttpServletResponse response) throws Exception {
+	public void getImageInf(SessionVO sessionVO, ModelMap model,
+							@RequestParam Map<String, Object> commandMap,
+							HttpServletResponse response) throws Exception {
 
 		String param_atchFileId = (String) commandMap.get("atchFileId");
 		param_atchFileId = param_atchFileId.replaceAll(" ", "+");
+
+		// 복호화
 		byte[] decodedBytes = Base64.getDecoder().decode(param_atchFileId);
 		String decodedString = new String(cryptoService.decrypt(decodedBytes, ALGORITHM_KEY));
-		String decodedFileId = StringUtils.substringAfter(decodedString, "|");
+
+		// 분리 (ex: "anyPrefix|atchFileId" 형태라면 아래처럼 파싱)
+//		String decodedFileId = StringUtils.substringAfter(decodedString, "|");
+//		if (StringUtils.isBlank(decodedFileId)) {
+//			LOGGER.error("복호화된 파일 ID가 유효하지 않습니다. decodedString: {}", decodedString);
+//			response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+//			return;
+//		}
+
+		LOGGER.debug("decodedString: {}", decodedString);
+//		LOGGER.debug("decodedFileId: {}", decodedFileId);
 
 		String fileSn = (String) commandMap.get("fileSn");
 
 		FileVO vo = new FileVO();
-
-		vo.setAtchFileId(decodedFileId);
+		vo.setAtchFileId(decodedString);
 		vo.setFileSn(fileSn);
 
 		FileVO fvo = fileService.selectFileInf(vo);
-		
+		if (fvo == null) {
+			LOGGER.error("파일 정보가 존재하지 않습니다. atchFileId={}, fileSn={}", decodedString, fileSn);
+			response.sendError(HttpServletResponse.SC_NOT_FOUND);
+			return;
+		}
+
 		String fileStreCours = EgovWebUtil.filePathBlackList(fvo.getFileStreCours());
 		String streFileNm = EgovWebUtil.filePathBlackList(fvo.getStreFileNm());
-		
-		File file = new File(fileStreCours, streFileNm);
-		FileInputStream fis = null;
-//		new FileInputStream(file);
 
-		BufferedInputStream in = null;
-		ByteArrayOutputStream bStream = null;
-		try {
-			fis = new FileInputStream(file);
-			in = new BufferedInputStream(fis);
-			bStream = new ByteArrayOutputStream();
+		File file = new File(fileStreCours, streFileNm);
+		if (!file.exists()) {
+			LOGGER.error("실제 파일이 존재하지 않습니다. 경로: {}", file.getAbsolutePath());
+			response.sendError(HttpServletResponse.SC_NOT_FOUND);
+			return;
+		}
+
+		try (
+				FileInputStream fis = new FileInputStream(file);
+				BufferedInputStream in = new BufferedInputStream(fis);
+				ByteArrayOutputStream bStream = new ByteArrayOutputStream()
+		) {
 			int imgByte;
 			while ((imgByte = in.read()) != -1) {
 				bStream.write(imgByte);
 			}
 
-			String type = "";
-
-			if (fvo.getFileExtsn() != null && !"".equals(fvo.getFileExtsn())) {
-				if ("jpg".equals(fvo.getFileExtsn().toLowerCase())) {
+			// Content-Type 설정
+			String ext = fvo.getFileExtsn() != null ? fvo.getFileExtsn().toLowerCase() : "";
+			String type;
+			switch (ext) {
+				case "jpg":
+				case "jpeg":
 					type = "image/jpeg";
-				} else {
-					type = "image/" + fvo.getFileExtsn().toLowerCase();
-				}
-				type = "image/" + fvo.getFileExtsn().toLowerCase();
-
-			} else {
-				LOGGER.debug("Image fileType is null.");
+					break;
+				case "png":
+					type = "image/png";
+					break;
+				case "gif":
+					type = "image/gif";
+					break;
+				case "bmp":
+					type = "image/bmp";
+					break;
+				default:
+					type = "application/octet-stream";
 			}
-
-			response.setHeader("Content-Type", type);
+			response.setContentType(type);
 			response.setContentLength(bStream.size());
 			bStream.writeTo(response.getOutputStream());
 			response.getOutputStream().flush();
-			response.getOutputStream().close();
 
 		} catch (IOException e) {
-			LOGGER.debug("{}", e);
-		} finally {
-			if (bStream != null) {
-				try {
-					bStream.close();
-				} catch (IOException est) {
-					LOGGER.debug("IGNORED: {}", est.getMessage());
-				}
-			}
-			if (in != null) {
-				try {
-					in.close();
-				} catch (IOException ei) {
-					LOGGER.debug("IGNORED: {}", ei.getMessage());
-				}
-			}
-			if (fis != null) {
-				try {
-					fis.close();
-				} catch (IOException efis) {
-					LOGGER.debug("IGNORED: {}", efis.getMessage());
-				}
-			}
+			LOGGER.error("이미지 출력 중 예외 발생", e);
+			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 		}
 	}
 }

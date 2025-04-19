@@ -121,4 +121,13 @@ public interface EgovFileMngService {
      * @throws Exception
      */
     public void updateFileInfRdcnt(FileVO fvo) throws Exception;
+
+    /**
+     * IMG_URL을 삭제한다.
+     *
+     * @param fvo
+     * @throws Exception
+     */
+    public void deleteImgUrl(FileVO fvo) throws Exception;
+
 }

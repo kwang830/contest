@@ -10,6 +10,7 @@
                 <entry key="pageSize" value="10"/>
                 <entry key="posblAtchFileSize" value="31457280"/><!-- 5242880(5M), 10485760(10M), 31457280(30M) -->
                 <entry key="Globals.fileStorePath" value="/egovframework/contest_upload/"/>
+                <entry key="Globals.imgFileStorePath" value="/egovframework/contest_upload/images/"/>
                 <entry key="Globals.addedOptions" value="false"/>
             </map>
         </property>

@@ -189,4 +189,14 @@ public class FileManageDAO extends EgovComAbstractDAO {
 	public void updateFileInfRdcnt(FileVO fvo) throws Exception {
 		update("FileManageDAO.updateFileInfRdcnt", fvo);
 	}
+
+	/**
+	 * IMG_URL을 삭제한다.
+	 *
+	 * @param fvo
+	 * @throws Exception
+	 */
+	public void deleteImgUrl(FileVO fvo) throws Exception {
+		update("FileManageDAO.deleteImgUrl", fvo);
+	}
 }
