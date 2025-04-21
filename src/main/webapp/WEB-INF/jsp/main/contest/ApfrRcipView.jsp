@@ -70,15 +70,9 @@
 			</div>
 			<nav class="nav-menu">
 				<div class="container">
-					<!-- 홈 아이콘 -->
-					<div class="nav-item home">
-						<a href="/"><img src="/images/icon-home.png" alt="홈"/></a>
-					</div>
-
-					<!-- 1depth 메뉴 항목 -->
-					<div class="nav-item has-dropdown">
-						<button class="nav-button">작품접수 <span class="nav-toggle"></span></button>
-					</div>
+					<!-- Left menu -->
+					<c:import url="/sym/mms/ContMenuLeft.do" />
+					<!--// Left menu -->
 				</div>
 			</nav>
 		</div>
@@ -94,15 +88,14 @@
 				<div class="work-list-con">
 
 					<c:forEach var="result" items="${resultList}" varStatus="status">
-						<form name="subForm" method="post" action="<c:url value='/cmm/contest/apfrRcipDetail.do'/>">
+						<form name="subForm" method="post" action="<c:url value='/cmm/contest/apfrRcipDetail.do'/>" class="work-list">
 							<input type="hidden" name="bbsId" value="<c:out value='${result.bbsId}'/>" />
 							<input type="hidden" name="nttId" value="<c:out value="${result.nttId}"/>" />
 							<input type="hidden" name="bbsTyCode" value="<c:out value='${brdMstrVO.bbsTyCode}'/>" />
 							<input type="hidden" name="bbsAttrbCode" value="<c:out value='${brdMstrVO.bbsAttrbCode}'/>" />
 							<input type="hidden" name="authFlag" value="<c:out value='${brdMstrVO.authFlag}'/>" />
 							<input name="pageIndex" type="hidden" value="<c:out value='${searchVO.pageIndex}'/>" />
-						<div class="work-list" onclick="parentNode.submit();">
-							<div class="work-list-top-con">
+							<div class="work-list-top-con" onclick="parentNode.submit();">
 								<div class="mem-info-img">
 									<c:if test="${empty result.imgUrl}">
 										<img src="" alt=""><!-- 대표 이미지 -->
@@ -118,12 +111,10 @@
 										<div class="work-date"><c:out value="${fn:replace(result.frstRegisterPnttm, '-', '.')}" escapeXml="false" /></div>
 									</div>
 								</div>
-
 							</div>
-							<div class="work-desc">
+							<div class="work-desc" onclick="parentNode.submit();">
 								<c:out value="${result.nttCn}" escapeXml="false" />
 							</div>
-						</div>
 						</form>
 					</c:forEach>
 

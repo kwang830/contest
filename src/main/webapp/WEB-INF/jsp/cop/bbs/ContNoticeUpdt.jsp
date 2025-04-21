@@ -48,22 +48,22 @@
             return true;
         }
 
-        function fn_egov_regist_notice(){
-            //document.board.onsubmit();
-
-            if (!validateBoard(document.board)){
-                return;
-            }
-
-            if (confirm('<spring:message code="common.update.msg" />')) {
-                document.board.action = "<c:url value='/cop/bbs${prefix}/updateBoardArticle.do'/>";
-                document.board.submit();
-            }
-        }
-
         function fn_egov_select_noticeList() {
             document.board.action = "<c:url value='/cop/bbs${prefix}/selectBoardList.do'/>";
             document.board.submit();
+        }
+
+        function fn_egov_delete_notice() {
+            if ("<c:out value='${anonymous}'/>" == "true" && document.frm.password.value == '') {
+                alert('등록시 사용한 패스워드를 입력해 주세요.');
+                document.frm.password.focus();
+                return;
+            }
+
+            if (confirm('<spring:message code="common.delete.msg" />')) {
+                document.frm.action = "<c:url value='/cop/bbs${prefix}/deleteBoardArticle.do'/>";
+                document.frm.submit();
+            }
         }
 
         function fn_egov_check_file(flag) {
@@ -146,24 +146,9 @@
             </div>
             <nav class="nav-menu">
                 <div class="container">
-                    <!-- 홈 아이콘 -->
-                    <div class="nav-item home">
-                        <a href="/"><img src="/images/icon-home.png" alt="홈"/></a>
-                    </div>
-
-                    <!-- 1depth 메뉴 항목 -->
-                    <div class="nav-item has-dropdown">
-                        <button class="nav-button">커뮤니티 <span class="nav-toggle"></span></button>
-                    </div>
-                    <div class="nav-item has-dropdown">
-                        <button class="nav-button">공지사항 <span class="nav-toggle"><img
-                                src="/images/icon-nav-arrow.png" alt=""></span></button>
-                        <ul class="dropdown-menu">
-                            <li class="active"><a href="#">공지사항</a></li>
-                            <li><a href="/uss/olh/faq/FaqListInqire.do">FAQ</a></li>
-                            <li><a href="/uss/olh/qna/QnaListInqire.do">QNA</a></li>
-                        </ul>
-                    </div>
+                    <!-- Left menu -->
+                    <c:import url="/sym/mms/ContMenuLeft.do" />
+                    <!--// Left menu -->
                 </div>
             </nav>
         </div>

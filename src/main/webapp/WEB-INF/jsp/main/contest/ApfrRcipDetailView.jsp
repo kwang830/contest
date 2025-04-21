@@ -46,6 +46,13 @@
 			document.frm.action = "<c:url value='/cmm/contest/apfrRcipUpdt.do'/>";
 			document.frm.submit();
 		}
+
+		function fn_egov_delete_bbs() {
+			if (confirm('<spring:message code="common.delete.msg" />')) {
+				document.frm.action = "<c:url value='/cop/bbs/deleteContBoard.do'/>";
+				document.frm.submit();
+			}
+		}
 		//-->
 	</script>
 
@@ -74,21 +81,16 @@
 			</div>
 			<nav class="nav-menu">
 				<div class="container">
-					<!-- 홈 아이콘 -->
-					<div class="nav-item home">
-						<a href="/"><img src="/images/icon-home.png" alt="홈"/></a>
-					</div>
-
-					<!-- 1depth 메뉴 항목 -->
-					<div class="nav-item has-dropdown">
-						<button class="nav-button">작품접수 <span class="nav-toggle"></span></button>
-					</div>
+					<!-- Left menu -->
+					<c:import url="/sym/mms/ContMenuLeft.do" />
+					<!--// Left menu -->
 				</div>
 			</nav>
 		</div>
 		<div class="content-wrap">
 			<div class="container clearfix">
 				<form name="frm" method="post" action="<c:url value='/cmm/contest/apfrRcipUpdt.do'/>">
+					<input type="hidden" name="returnUrl" value="<c:url value='/cmm/contest/apfrRcip.do'/>"/>
 					<input type="hidden" name="pageIndex" value="<c:out value='${searchVO.pageIndex}'/>">
 					<input type="hidden" name="bbsId" value="<c:out value='${result.bbsId}'/>" >
 					<input type="hidden" name="nttId" value="<c:out value='${result.nttId}'/>" >
@@ -144,7 +146,7 @@
 						<div class="center_col"></div>
 						<div class="right_col">
 							<a href="#" class="btn btn_white_46" onclick="javascript:fn_egov_moveUpdt_bbs(); return false;">수정</a>
-							<a href="#" class="btn btn_black_46">삭제</a><!-- 삭제 -->
+							<a href="#" class="btn btn_black_46" onclick="javascript:fn_egov_delete_bbs(); return false;">삭제</a>
 						</div>
 					</div>
 					<!--// 게시판 -->

@@ -42,6 +42,44 @@ public class ContVoteManageController {
 	EgovMessageSource egovMessageSource;
 
 	/**
+	 * 공모전 투표
+	 * @return 메인페이지 정보 Map [key : 항목명]
+	 *
+	 * @param request
+	 * @param model
+	 * @exception Exception Exception
+	 */
+	@RequestMapping(value = "/cmm/contest/contestVote.do")
+	public String getContestVotePage(HttpServletRequest request, ModelMap model)
+			throws Exception{
+
+		// 메뉴 갱신
+		request.getSession().setAttribute("menuNo", "3000000");
+		request.getSession().setAttribute("activeMenuNo", "3010000");
+
+		return "main/contest/ContestVoteView";
+	}
+
+	/**
+	 * 공모전 투표결과
+	 * @return 메인페이지 정보 Map [key : 항목명]
+	 *
+	 * @param request
+	 * @param model
+	 * @exception Exception Exception
+	 */
+	@RequestMapping(value = "/cmm/contest/contestVoteRslt.do")
+	public String getContestVoteRsltPage(HttpServletRequest request, ModelMap model)
+			throws Exception{
+
+		// 메뉴 갱신
+		request.getSession().setAttribute("menuNo", "3000000");
+		request.getSession().setAttribute("activeMenuNo", "3011000");
+
+		return "main/contest/ContestVoteRsltView";
+	}
+
+	/**
 	 * 공모전 심사
 	 * @return 메인페이지 정보 Map [key : 항목명]
 	 *
@@ -93,13 +131,17 @@ public class ContVoteManageController {
 		model.addAttribute("contVoteAdminBBSList", map2.get("resultList"));
 		model.addAttribute("contVoteAdminBBSListCnt", map2.get("resultCnt"));
 
+		// 메뉴 갱신
+		request.getSession().setAttribute("menuNo", "3000000");
+		request.getSession().setAttribute("activeMenuNo", "3020000");
+
 		// 평가기준 및 평가 항목 조회 (현재 하드코딩)
 
 		return "main/contest/ContestAdminVoteView";
 	}
 
 	/**
-	 * 게시물에 대한 내용을 수정한다.
+	 * 공모전 심사에 대한 내용을 수정한다.
 	 *
 	 * @param contVoteVO
 	 * @param model
@@ -166,5 +208,25 @@ public class ContVoteManageController {
 		model.addAttribute("resultMsg", resultMsg);
 
 		return "forward:/cmm/contest/contestAdminVote.do";
+	}
+
+	/**
+	 * 공모전 심사결과
+	 * @return 메인페이지 정보 Map [key : 항목명]
+	 *
+	 * @param request
+	 * @param model
+	 * @exception Exception Exception
+	 */
+	@RequestMapping(value = "/cmm/contest/contestAdminVoteRslt.do")
+	public String getContestAdminVoteRsltPage(HttpServletRequest request, ModelMap model)
+			throws Exception{
+
+		// 메뉴 갱신
+		request.getSession().setAttribute("menuNo", "3000000");
+		request.getSession().setAttribute("activeMenuNo", "3021000");
+
+
+		return "main/contest/ContestAdminVoteRsltView";
 	}
 }

@@ -120,24 +120,9 @@ function fn_egov_inquire_faqlistdetail(faqId) {
                 </div>
                 <nav class="nav-menu">
                     <div class="container">
-                        <!-- 홈 아이콘 -->
-                        <div class="nav-item home">
-                            <a href="/"><img src="/images/icon-home.png" alt="홈"/></a>
-                        </div>
-
-                        <!-- 1depth 메뉴 항목 -->
-                        <div class="nav-item has-dropdown">
-                            <button class="nav-button">커뮤니티 <span class="nav-toggle"></span></button>
-                        </div>
-                        <div class="nav-item has-dropdown">
-                            <button class="nav-button">FAQ <span class="nav-toggle"><img
-                                    src="/images/icon-nav-arrow.png" alt=""></span></button>
-                            <ul class="dropdown-menu">
-                                <li><a href="/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_AAAAAAAAAAAA">공지사항</a></li>
-                                <li class="active"><a href="/uss/olh/faq/FaqListInqire.do">FAQ</a></li>
-                                <li><a href="/uss/olh/qna/QnaListInqire.do">QNA</a></li>
-                            </ul>
-                        </div>
+                        <!-- Left menu -->
+                        <c:import url="/sym/mms/ContMenuLeft.do" />
+                        <!--// Left menu -->
                     </div>
                 </nav>
             </div>

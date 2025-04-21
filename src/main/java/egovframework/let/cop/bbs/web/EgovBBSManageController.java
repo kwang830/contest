@@ -120,10 +120,15 @@ public class EgovBBSManageController {
 	 */
 	@RequestMapping("/cop/bbs/selectBoardList.do")
 	public String selectBoardArticles(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model, HttpServletRequest request) throws Exception {
-		System.out.println(boardVO.getBbsId());
-		// 메인화면에서 넘어온 경우 메뉴 갱신을 위해 추가
-		request.getSession().setAttribute("menuNo", "3000000");
-		
+
+		// 메뉴 갱신
+		request.getSession().setAttribute("menuNo", "5000000");
+		if(boardVO.getBbsId().equals("BBSMSTR_BBBBBBBBBBBB")){
+			request.getSession().setAttribute("activeMenuNo", "5040000");
+		}else{
+			request.getSession().setAttribute("activeMenuNo", "5010000");
+		}
+
 		LoginVO user;
 		if (EgovUserDetailsHelper.isAuthenticated()) {
 			user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
@@ -196,9 +201,8 @@ public class EgovBBSManageController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/cop/bbs/selectBoardArticle.do")
-	public String selectBoardArticle(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model) throws Exception {
+	public String selectBoardArticle(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model, HttpServletRequest request) throws Exception {
 
-		System.out.println("------------ selectBoardArticle start -------------");
 		LoginVO user = new LoginVO();
 		if (EgovUserDetailsHelper.isAuthenticated()) {
 			user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
@@ -231,8 +235,6 @@ public class EgovBBSManageController {
 		}
 
 		model.addAttribute("brdMstrVO", masterVo);
-
-		System.out.println("------------ selectBoardArticle end -------------");
 
 		//return "cop/bbs/EgovNoticeInqire";
 		return "cop/bbs/ContNoticeInqire";
@@ -295,10 +297,6 @@ public class EgovBBSManageController {
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 
-		System.out.println("/cop/bbs/insertBoardArticle.do >> ");
-		System.out.println("isAuthenticated:"+isAuthenticated);
-		System.out.println("getCallbackUrl:"+boardVO.getCallbackUrl());
-
 		String callbackUrl = "/cop/bbs/selectBoardList.do";
 		if(!boardVO.getCallbackUrl().equals("")) {
 			callbackUrl = boardVO.getCallbackUrl();
@@ -329,7 +327,7 @@ public class EgovBBSManageController {
 
 			return "cop/bbs/EgovNoticeRegist";
 		}
-		System.out.println("/cop/bbs/insertBoardArticle.do >> chk 1 ");
+
 		if (isAuthenticated) {
 			//List<FileVO> result = null;
 			String atchFileId = "";
@@ -352,29 +350,21 @@ public class EgovBBSManageController {
 
 				// 그룹1 처리
 				if (!fileGroup1.isEmpty()) {
-					System.out.println("fileGroup1 not isEmpty !");
 					List<FileVO> result1 = fileUtil.parseFileInf(fileGroup1, "BBS_", 0, "", "");
 					String atchFileId1 = fileMngService.insertFileInfs(result1);
 					// 필요한 로직 추가
-					System.out.println("file_ 그룹의 파일 ID: " + atchFileId1);
 					atchFileId = atchFileId1;
 				}
 
 				// 그룹2 처리
 				if (!fileGroup2.isEmpty()) {
-					System.out.println("fileGroup2 not isEmpty !");
 					List<FileVO> result2 = fileUtil.parseFileInf(fileGroup2, "BBS2_", 0, "", "Globals.imgFileStorePath");
 					String atchFileId2 = fileMngService.insertFileInfs(result2);
 					// 필요한 로직 추가
-					System.out.println("file2_ 그룹의 파일 ID: " + atchFileId2);
 					atchFileImgUrl = atchFileId2;
 				}
 			}
 
-//			if (!files.isEmpty()) {
-//				result = fileUtil.parseFileInf(files, "BBS_", 0, "", "");
-//				atchFileId = fileMngService.insertFileInfs(result);
-//			}
 			board.setAtchFileId(atchFileId);
 			board.setImgUrl(atchFileImgUrl);
 			board.setFrstRegisterId(user.getUniqId());
@@ -387,7 +377,6 @@ public class EgovBBSManageController {
 
 			bbsMngService.insertBoardArticle(board);
 		}
-		System.out.println("/cop/bbs/insertBoardArticle.do >> chk 2 ");
 
 		//return "forward:/cop/bbs/selectBoardList.do";
 		return "forward:"+callbackUrl;
@@ -568,7 +557,6 @@ public class EgovBBSManageController {
 
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
-		System.out.println("getCallbackUrl:"+boardVO.getCallbackUrl());
 
 		String callbackUrl = "/cop/bbs/selectBoardList.do";
 		if(!boardVO.getCallbackUrl().equals("")) {
@@ -609,10 +597,8 @@ public class EgovBBSManageController {
 				for (Map.Entry<String, MultipartFile> entry : files.entrySet()) {
 					String name = entry.getKey(); // form input의 name 속성 (예: file_1, file2_1)
 					if (name.startsWith("file_")) {
-						System.out.println("file_ >>> " + name);
 						fileGroup1.put(name, entry.getValue());
 					} else if (name.startsWith("file2_")) {
-						System.out.println("file2_ >>> " + name);
 						fileGroup2.put(name, entry.getValue());
 					}
 				}
@@ -685,6 +671,31 @@ public class EgovBBSManageController {
 		}
 
 		return "forward:/cop/bbs/selectBoardList.do";
+	}
+
+	/**
+	 * 게시물에 대한 내용을 삭제한다.
+	 *
+	 * @param boardVO
+	 * @param board
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/cop/bbs/deleteContBoard.do")
+	public String deleteContBoard(@ModelAttribute("searchVO") BoardVO boardVO, @ModelAttribute("board") Board board, @ModelAttribute("bdMstr") BoardMaster bdMstr, ModelMap model)
+			throws Exception {
+
+		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+
+		if (isAuthenticated) {
+			board.setLastUpdusrId(user.getUniqId());
+
+			bbsMngService.deleteBoardArticle(board);
+		}
+
+		return "forward:/cmm/contest/apfrRcip.do";
 	}
 
 	/**
@@ -1620,7 +1631,6 @@ public class EgovBBSManageController {
 	 */
 	@RequestMapping("/cop/bbs/cont/selectBoardList.do")
 	public String selectContBoardArticles(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model, HttpServletRequest request) throws Exception {
-		System.out.println(boardVO.getBbsId());
 		// 메인화면에서 넘어온 경우 메뉴 갱신을 위해 추가
 		request.getSession().setAttribute("menuNo", "3000000");
 		
@@ -1696,8 +1706,9 @@ public class EgovBBSManageController {
 	@RequestMapping(value = "/cmm/contest/apfrRcip.do")
 	public String getContestApfrRcipPage(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model, HttpServletRequest request) throws Exception {
 
-		// 메인화면에서 넘어온 경우 메뉴 갱신을 위해 추가
-		request.getSession().setAttribute("menuNo", "3000000");
+		// 메뉴 갱신
+		request.getSession().setAttribute("menuNo", "2000000");
+		request.getSession().setAttribute("activeMenuNo", "2010000");
 
 		LoginVO user;
 		if (EgovUserDetailsHelper.isAuthenticated()) {
@@ -1854,8 +1865,8 @@ public class EgovBBSManageController {
 
 		model.addAttribute("brdMstrVO", masterVo);
 
-		System.out.println("------------ selectBoardArticle end -------------");
-
 		return "main/contest/ApfrRcipDetailView";
 	}
+
+
 }

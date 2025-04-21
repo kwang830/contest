@@ -77,9 +77,10 @@ public class EgovMberManageController {
 	 */
 	@RequestMapping(value = "/uss/umt/mber/EgovMberManage.do")
 	public String selectMberList(@ModelAttribute("userSearchVO") UserDefaultVO userSearchVO, ModelMap model, HttpServletRequest request) throws Exception {
-		
-			// 메인화면에서 넘어온 경우 메뉴 갱신을 위해 추가
-			request.getSession().setAttribute("menuNo", "6000000");
+
+		// 메뉴 갱신
+		request.getSession().setAttribute("menuNo", "6000000");
+		request.getSession().setAttribute("activeMenuNo", "6040000");
 
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();

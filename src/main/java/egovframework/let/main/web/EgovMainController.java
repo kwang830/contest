@@ -273,6 +273,27 @@ public class EgovMainController {
     }
 
 	/**
+	 * 좌측메뉴를 조회한다.
+	 * @param
+	 * @return 출력페이지정보 "EgovIncLeftmenu"
+	 * @exception Exception
+	 */
+	@RequestMapping(value="/sym/mms/ContMenuLeft.do")
+	public String selectContMenuLeft(ModelMap model) throws Exception {
+
+		//LoginVO user = EgovUserDetailsHelper.isAuthenticated()? (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser():null;
+
+		//LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
+		if(EgovUserDetailsHelper.isAuthenticated()){
+			//인증된 경우 처리할 사항 추가 ...
+			model.addAttribute("lastLogoutDateTime", "로그아웃 타임: 2021-08-12 11:30");
+			//최근 로그아웃 시간 등에 대한 확보 후 메인 컨텐츠로 활용
+		}
+
+		return "main/inc/ContIncLeftmenu";
+	}
+
+	/**
      * Head메뉴를 조회한다.
      * @param menuManageVO MenuManageVO
      * @return 출력페이지정보 "main_headG", "main_head"
@@ -444,7 +465,7 @@ public class EgovMainController {
 	}
 
 	/**
-	 * 공모전 성과
+	 * 공모전 성과 (역대수상작)
 	 * @return 메인페이지 정보 Map [key : 항목명]
 	 *
 	 * @param request
@@ -455,53 +476,13 @@ public class EgovMainController {
 	public String getContestOtcmPage(HttpServletRequest request, ModelMap model)
 			throws Exception{
 
+		// 메뉴 갱신
+		request.getSession().setAttribute("menuNo", "4000000");
+		request.getSession().setAttribute("activeMenuNo", "4010000");
+
 		return "main/contest/ContestOtcmView";
 	}
 
-	/**
-	 * 공모전 투표
-	 * @return 메인페이지 정보 Map [key : 항목명]
-	 *
-	 * @param request
-	 * @param model
-	 * @exception Exception Exception
-	 */
-	@RequestMapping(value = "/cmm/contest/contestVote.do")
-	public String getContestVotePage(HttpServletRequest request, ModelMap model)
-			throws Exception{
-
-		return "main/contest/ContestVoteView";
-	}
-
-	/**
-	 * 공모전 투표결과
-	 * @return 메인페이지 정보 Map [key : 항목명]
-	 *
-	 * @param request
-	 * @param model
-	 * @exception Exception Exception
-	 */
-	@RequestMapping(value = "/cmm/contest/contestVoteRslt.do")
-	public String getContestVoteRsltPage(HttpServletRequest request, ModelMap model)
-			throws Exception{
-
-		return "main/contest/ContestVoteRsltView";
-	}
-
-	/**
-	 * 공모전 심사결과
-	 * @return 메인페이지 정보 Map [key : 항목명]
-	 *
-	 * @param request
-	 * @param model
-	 * @exception Exception Exception
-	 */
-	@RequestMapping(value = "/cmm/contest/contestAdminVoteRslt.do")
-	public String getContestAdminVoteRsltPage(HttpServletRequest request, ModelMap model)
-			throws Exception{
-
-		return "main/contest/ContestAdminVoteRsltView";
-	}
 
 	/**
 	 * 공모전 부서 통계 현황
@@ -514,6 +495,10 @@ public class EgovMainController {
 	@RequestMapping(value = "/cmm/contest/deptSttcPsst.do")
 	public String getContestDeptSttcPsstPage(HttpServletRequest request, ModelMap model)
 			throws Exception{
+
+		// 메뉴 갱신
+		request.getSession().setAttribute("menuNo", "6000000");
+		request.getSession().setAttribute("activeMenuNo", "6030000");
 
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
@@ -532,13 +517,57 @@ public class EgovMainController {
 		boardVO.setBbsId("BBSMSTR_BBBBBBBBBBBB");
 
 		model.addAttribute("bbsDeptBbsList", egovArticleService.selectDeptBbsList(boardVO).get("resultList"));
-		System.out.println("chk :"+egovArticleService.selectDeptBbsList(boardVO).get("resultList"));
+//		System.out.println("chk :"+egovArticleService.selectDeptBbsList(boardVO).get("resultList"));
 
 		model.addAttribute("bbsDeptLoginList", egovArticleService.selectDeptLoginList(boardVO).get("resultList"));
-		System.out.println("chk :"+egovArticleService.selectDeptLoginList(boardVO).get("resultList"));
+//		System.out.println("chk :"+egovArticleService.selectDeptLoginList(boardVO).get("resultList"));
 
 		model.addAttribute("bbsUserLoginList", egovArticleService.selectUserLoginList(boardVO).get("resultList"));
-		System.out.println("chk :"+egovArticleService.selectUserLoginList(boardVO).get("resultList"));
+//		System.out.println("chk :"+egovArticleService.selectUserLoginList(boardVO).get("resultList"));
+
+		return "main/contest/DeptSttcPsstView";
+	}
+
+	/**
+	 * 공모전 부서 통계 현황 (임원용)
+	 * @return 메인페이지 정보 Map [key : 항목명]
+	 *
+	 * @param request
+	 * @param model
+	 * @exception Exception Exception
+	 */
+	@RequestMapping(value = "/cmm/contest/deptSttcPsst2.do")
+	public String getContestDeptSttcPsstPage2(HttpServletRequest request, ModelMap model)
+			throws Exception{
+
+		// 메뉴 갱신
+		request.getSession().setAttribute("menuNo", "8000000");
+		request.getSession().setAttribute("activeMenuNo", "8010000");
+
+		// 미인증 사용자에 대한 보안처리
+		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+		if(!isAuthenticated) {
+			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
+			return "uat/uia/EgovLoginUsr";
+		}
+
+		BoardVO boardVO = new BoardVO();
+		boardVO.setPageUnit(9);
+		boardVO.setPageSize(10);
+
+		// 게시물 검색 기준
+		boardVO.setSearchBgnDe("2023-01-01");
+		boardVO.setSearchEndDe("2025-12-31");
+		boardVO.setBbsId("BBSMSTR_BBBBBBBBBBBB");
+
+		model.addAttribute("bbsDeptBbsList", egovArticleService.selectDeptBbsList(boardVO).get("resultList"));
+//		System.out.println("chk :"+egovArticleService.selectDeptBbsList(boardVO).get("resultList"));
+
+		model.addAttribute("bbsDeptLoginList", egovArticleService.selectDeptLoginList(boardVO).get("resultList"));
+//		System.out.println("chk :"+egovArticleService.selectDeptLoginList(boardVO).get("resultList"));
+
+		model.addAttribute("bbsUserLoginList", egovArticleService.selectUserLoginList(boardVO).get("resultList"));
+//		System.out.println("chk :"+egovArticleService.selectUserLoginList(boardVO).get("resultList"));
 
 		return "main/contest/DeptSttcPsstView";
 	}
@@ -554,6 +583,10 @@ public class EgovMainController {
 	@RequestMapping(value = "/cmm/contest/contestOvrv.do")
 	public String getContestOvrvPage(HttpServletRequest request, ModelMap model)
 			throws Exception{
+
+		// 메뉴 갱신
+		request.getSession().setAttribute("menuNo", "1000000");
+		request.getSession().setAttribute("activeMenuNo", "1010000");
 
 		return "main/contest/ContestOvrvView";
 	}

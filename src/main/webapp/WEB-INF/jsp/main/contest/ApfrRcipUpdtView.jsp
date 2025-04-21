@@ -111,15 +111,9 @@
 			</div>
 			<nav class="nav-menu">
 				<div class="container">
-					<!-- 홈 아이콘 -->
-					<div class="nav-item home">
-						<a href="/"><img src="/images/icon-home.png" alt="홈"/></a>
-					</div>
-
-					<!-- 1depth 메뉴 항목 -->
-					<div class="nav-item has-dropdown">
-						<button class="nav-button">작품접수 <span class="nav-toggle"></span></button>
-					</div>
+					<!-- Left menu -->
+					<c:import url="/sym/mms/ContMenuLeft.do" />
+					<!--// Left menu -->
 				</div>
 			</nav>
 		</div>
@@ -320,10 +314,12 @@
 	</script>
 </c:if>
 <!-- /파일첨부 스크립트 끝 -->
+<c:if test="${empty result.imgUrl}">
 <script type="text/javascript">
 	var maxFileNum2 = 1;
 	var multi_selector2 = new MultiSelector2( document.getElementById( 'egovComFileList2' ), maxFileNum2 );
 	multi_selector2.addElement( document.getElementById( 'egovComFileUploader2' ) );
 </script>
+</c:if>
 </body>
 </html>

@@ -175,25 +175,9 @@
 			</div>
 			<nav class="nav-menu">
 				<div class="container">
-					<!-- 홈 아이콘 -->
-					<div class="nav-item home">
-						<a href="/"><img src="/images/icon-home.png" alt="홈"/></a>
-					</div>
-
-					<!-- 1depth 메뉴 항목 -->
-					<div class="nav-item has-dropdown">
-						<button class="nav-button">공모전 투표 <span class="nav-toggle"></span></button>
-					</div>
-					<div class="nav-item has-dropdown">
-						<button class="nav-button">공모전 심사 <span class="nav-toggle"><img
-								src="/images/icon-nav-arrow.png" alt=""></span></button>
-						<ul class="dropdown-menu">
-							<li><a href="/cmm/contest/contestVote.do">공모전 투표</a></li>
-							<li><a href="/cmm/contest/contestVoteRslt.do">공모전 투표 결과</a></li>
-							<li class="active"><a href="/cmm/contest/contestAdminVote.do">공모전 심사</a></li>
-							<li><a href="/cmm/contest/contestAdminVoteRslt.do">공모전 심사 결과</a></li>
-						</ul>
-					</div>
+					<!-- Left menu -->
+					<c:import url="/sym/mms/ContMenuLeft.do" />
+					<!--// Left menu -->
 				</div>
 			</nav>
 		</div>

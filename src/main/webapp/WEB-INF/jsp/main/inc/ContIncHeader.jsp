@@ -182,6 +182,7 @@
 
 			<form name="menuListForm" action ="" method="post">
 				<input type="hidden" id="menuNo" name="menuNo" value="<%=session.getAttribute("menuNo")%>" />
+				<input type="hidden" id="activeMenuNo" name="activeMenuNo" value="<%=session.getAttribute("activeMenuNo")%>" />
 				<input type="hidden" id="link" name="link" value="" />
 				<div style="width:0; height:0;">
 					<c:forEach var="result" items="${list_menulist}" varStatus="status" >

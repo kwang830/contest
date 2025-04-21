@@ -74,15 +74,9 @@
 			</div>
 			<nav class="nav-menu">
 				<div class="container">
-					<!-- 홈 아이콘 -->
-					<div class="nav-item home">
-						<a href="/"><img src="/images/icon-home.png" alt="홈"/></a>
-					</div>
-
-					<!-- 1depth 메뉴 항목 -->
-					<div class="nav-item has-dropdown">
-						<button class="nav-button">역대수상작 <span class="nav-toggle"></span></button>
-					</div>
+					<!-- Left menu -->
+					<c:import url="/sym/mms/ContMenuLeft.do" />
+					<!--// Left menu -->
 				</div>
 			</nav>
 		</div>

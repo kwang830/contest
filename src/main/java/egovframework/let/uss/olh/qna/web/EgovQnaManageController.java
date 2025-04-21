@@ -14,6 +14,7 @@ import org.egovframe.rte.fdl.security.userdetails.util.EgovUserDetailsHelper;
 import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -94,7 +95,11 @@ public class EgovQnaManageController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/olh/qna/QnaListInqire.do")
-	public String selectQnaList(@ModelAttribute("searchVO") QnaManageDefaultVO searchVO, ModelMap model) throws Exception {
+	public String selectQnaList(@ModelAttribute("searchVO") QnaManageDefaultVO searchVO, ModelMap model, HttpServletRequest request) throws Exception {
+
+		// 메뉴 갱신
+		request.getSession().setAttribute("menuNo", "5000000");
+		request.getSession().setAttribute("activeMenuNo", "5030000");
 
 		/** EgovPropertyService.SiteList */
 		searchVO.setPageUnit(propertiesService.getInt("pageUnit"));
@@ -421,7 +426,11 @@ public class EgovQnaManageController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/olh/qnm/QnaAnswerListInqire.do")
-	public String selectQnaAnswerList(@ModelAttribute("searchVO") QnaManageDefaultVO searchVO, ModelMap model) throws Exception {
+	public String selectQnaAnswerList(@ModelAttribute("searchVO") QnaManageDefaultVO searchVO, ModelMap model, HttpServletRequest request) throws Exception {
+
+		// 메뉴 갱신
+		request.getSession().setAttribute("menuNo", "5000000");
+		request.getSession().setAttribute("activeMenuNo", "5035000");
 
 		/** EgovPropertyService.SiteList */
 		searchVO.setPageUnit(propertiesService.getInt("pageUnit"));

@@ -13,6 +13,7 @@ import org.egovframe.rte.fdl.property.EgovPropertyService;
 import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -119,7 +120,10 @@ public class EgovLoginLogController {
 	@IncludedInfo(name="접속로그관리", order = 1080 ,gid = 60)
 	@RequestMapping(value="/sym/log/clg/userLgnHsty.do")
 	public String selectUserLgnHstyInf(@ModelAttribute("searchVO") LoginLog loginLog,
-									ModelMap model) throws Exception{
+									ModelMap model, HttpServletRequest request) throws Exception{
+		// 메뉴 갱신
+		request.getSession().setAttribute("menuNo", "6000000");
+		request.getSession().setAttribute("activeMenuNo", "6020000");
 
 		loginLog.setPageUnit(propertyService.getInt("pageUnit"));
 		loginLog.setPageSize(propertyService.getInt("pageSize"));
@@ -133,12 +137,12 @@ public class EgovLoginLogController {
 		loginLog.setLastIndex(paginationInfo.getLastRecordIndex());
 		loginLog.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 
-		System.out.println("-----------------------------");
-		System.out.println(loginLog.getSearchBgnDe()+"//");
-		System.out.println(loginLog.getSearchEndDe()+"//");
-		System.out.println(loginLog.getSearchCnd()+"//");
-		System.out.println(loginLog.getSearchWrd()+"//");
-		System.out.println("-----------------------------");
+//		System.out.println("-----------------------------");
+//		System.out.println(loginLog.getSearchBgnDe()+"//");
+//		System.out.println(loginLog.getSearchEndDe()+"//");
+//		System.out.println(loginLog.getSearchCnd()+"//");
+//		System.out.println(loginLog.getSearchWrd()+"//");
+//		System.out.println("-----------------------------");
 
 		HashMap<?, ?> _map = (HashMap<?, ?>)loginLogService.selectLoginLogInf(loginLog);
 		int totCnt = Integer.parseInt((String)_map.get("resultCnt"));

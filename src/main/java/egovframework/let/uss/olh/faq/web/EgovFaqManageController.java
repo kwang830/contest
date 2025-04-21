@@ -105,8 +105,10 @@ public class EgovFaqManageController {
      */
     @RequestMapping(value="/uss/olh/faq/FaqListInqire.do")
     public String selectFaqList(@ModelAttribute("searchVO") FaqManageDefaultVO searchVO, ModelMap model, HttpServletRequest request) throws Exception {
-    		// 메인화면에서 넘어온 경우 메뉴 갱신을 위해 추가
-    		request.getSession().setAttribute("menuNo", "4000000");
+
+		// 메뉴 갱신
+		request.getSession().setAttribute("menuNo", "5000000");
+		request.getSession().setAttribute("activeMenuNo", "5020000");
 
 		if(EgovUserDetailsHelper.getAuthorities().contains("ROLE_ADMIN")) {
 			model.addAttribute("authFlag", "Y");

@@ -11,6 +11,7 @@ import org.egovframe.rte.fdl.property.EgovPropertyService;
 import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -59,7 +60,11 @@ public class EgovAuthorGroupController {
 	 * @exception Exception
 	 */
     @RequestMapping("/sec/rgm/EgovAuthorGroupListView.do")
-    public String selectAuthorGroupListView() throws Exception {
+    public String selectAuthorGroupListView(HttpServletRequest request) throws Exception {
+
+		// 메뉴 갱신
+		request.getSession().setAttribute("menuNo", "6000000");
+		request.getSession().setAttribute("activeMenuNo", "6050000");
 
         return "/sec/rgm/EgovAuthorGroupManage";
     }    
