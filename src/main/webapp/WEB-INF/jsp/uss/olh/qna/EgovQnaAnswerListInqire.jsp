@@ -184,7 +184,7 @@ function fn_egov_inquire_qnaanswerdetail(qaId) {
                                     <td><c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageSize + status.count)}"/></td>
                                     <td class="al">
                                         <a href="<c:url value='/uss/olh/qnm/QnaAnswerDetailInqire.do'/>?qaId=${resultInfo.qaId}&amp;pageIndex=${searchVO.pageIndex}" class="lnk" onclick="fn_egov_inquire_qnaanswerdetail('<c:out value="${resultInfo.qaId}"/>'); return false;">
-                                            <c:out value="${resultInfo.qestnSj}"/>
+                                            <c:out value="${resultInfo.qestnSj}" escapeXml="false"/>
                                         </a>
                                     </td>
                                     <td><c:out value="${resultInfo.wrterNm}"/></td>

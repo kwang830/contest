@@ -156,7 +156,7 @@ function fn_egov_check_file(flag) {
                                 <div class="board_form_row">
                                     <div class="title"><label for="qestnSj">질문제목</label></div>
                                     <div class="input">
-                                        <form:input id="" class="f_txt w_full" path="qestnSj" maxlength="70" title="질문제목" />
+                                        <form:input id="" class="f_txt w_full" path="qestnSj" maxlength="70" title="질문제목" htmlEscape="false" />
                                         <form:errors path="qestnSj" />
                                     </div>
                                 </div>
@@ -165,7 +165,7 @@ function fn_egov_check_file(flag) {
                                         <label for="qestnCn">질문내용</label>
                                     </div>
                                     <div class="input">
-                                        <form:textarea path="qestnCn" cols="30" rows="10" title="질문내용" class="f_txtar w_full h_200" />
+                                        <form:textarea path="qestnCn" cols="30" rows="10" title="질문내용" class="f_txtar w_full h_200" htmlEscape="false"/>
                                         <form:errors path="qestnCn" />
                                     </div>
                                 </div>
@@ -174,7 +174,7 @@ function fn_egov_check_file(flag) {
                                         <label for="answerCn">답변내용</label>
                                     </div>
                                     <div class="input">
-                                        <form:textarea path="answerCn" cols="30" rows="10" title="답변내용" class="f_txtar w_full h_200" />
+                                        <form:textarea path="answerCn" cols="30" rows="10" title="답변내용" class="f_txtar w_full h_200" htmlEscape="false" />
                                         <form:errors path="answerCn" />
                                     </div>
                                 </div>

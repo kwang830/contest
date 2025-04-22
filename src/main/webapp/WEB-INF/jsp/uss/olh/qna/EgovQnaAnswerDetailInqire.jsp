@@ -141,20 +141,20 @@ function fn_egov_updt_qnacnanswer(qaId){
                                 <div class="board_form_row">
                                     <div class="title">질문제목</div>
                                     <div class="input">
-                                        <c:out value="${result.qestnSj}"/>
+                                        <c:out value="${result.qestnSj}" escapeXml="false"/>
                                     </div>
                                 </div>
                                 <div class="board_form_row">
                                     <div class="title">질문내용</div>
                                     <div class="input">
-                                        <textarea id="qestnCn" name="qestnCn" class="f_txtar w_full h_200" cols="30" rows="10" readonly title="질문내용"><c:out value="${result.qestnCn}"/></textarea>
+                                        <textarea id="qestnCn" name="qestnCn" class="f_txtar w_full h_200" cols="30" rows="10" readonly title="질문내용"><c:out value="${result.qestnCn}" escapeXml="false"/></textarea>
                                     </div>
                                 </div>
                                 <c:if test="${result.qnaProcessSttusCode == '3'}">
                                     <div class="board_form_row">
                                         <div class="title">답변내용</div>
                                         <div class="input">
-                                            <textarea name="answerCn" class="f_txtar w_full h_200" cols="30" rows="10" readonly title="답변내용"><c:out value="${result.answerCn}"/></textarea>
+                                            <textarea name="answerCn" class="f_txtar w_full h_200" cols="30" rows="10" readonly title="답변내용"><c:out value="${result.answerCn}" escapeXml="false"/></textarea>
                                         </div>
                                     </div>
                                     <div class="board_form_row">

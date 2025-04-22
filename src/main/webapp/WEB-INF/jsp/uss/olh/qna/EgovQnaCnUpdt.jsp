@@ -120,7 +120,7 @@ function fn_egov_updt_qnacn(form, qaId){
                                 <div class="board_form_row">
                                     <div class="title"><label for="wrterNm">작성자명</label><span style="color:red;">*</span></div>
                                     <div class="input">
-                                        <form:input id="wrterNm" class="f_txt" path="wrterNm" size="20" maxlength="20" title="작성자명"/>
+                                        <form:input id="wrterNm" class="f_txt" path="wrterNm" size="20" maxlength="20" title="작성자명" htmlEscape="false"/>
                                         <form:errors path="wrterNm"/>
                                     </div>
                                 </div>
@@ -154,14 +154,14 @@ function fn_egov_updt_qnacn(form, qaId){
                                 <div class="board_form_row">
                                     <div class="title"><label for="qestnSj">질문제목</label><span style="color:red;">*</span></div>
                                     <div class="input">
-                                        <form:input id="qestnSj" class="f_txt w_full" path="qestnSj" size="70" maxlength="70" title="질문제목"/>
+                                        <form:input id="qestnSj" class="f_txt w_full" path="qestnSj" size="70" maxlength="70" title="질문제목" htmlEscape="false"/>
                                         <form:errors path="qestnSj"/>
                                     </div>
                                 </div>
                                 <div class="board_form_row">
                                     <div class="title"><label for="qestnCn">질문내용</label><span style="color:red;">*</span></div>
                                     <div class="input">
-                                        <form:textarea id="qestnCn" class="f_txtar w_full h_200" path="qestnCn" cols="30" rows="10" title="질문내용"/>
+                                        <form:textarea id="qestnCn" class="f_txtar w_full h_200" path="qestnCn" cols="30" rows="10" title="질문내용" htmlEscape="false"/>
                                         <form:errors path="qestnCn"/>
                                     </div>
                                 </div>

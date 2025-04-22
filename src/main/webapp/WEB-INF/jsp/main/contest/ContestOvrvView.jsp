@@ -22,21 +22,21 @@
 	<link rel="preload" href="<c:url value='/'/>css/font-icons.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/sub.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
-	<style>
-		#primary-menu{display: flex !important; margin-right: 0 !important;}
-		#primary-menu > ul{display: block !important; padding-right: 0 !important; margin-right: 0 !important;}
-		#primary-menu > ul > li {display: none; border: none !important;}
-		#primary-menu > ul > li:first-child {display: block !important;}
-		#primary-menu > ul > li > a{font-size: 18px; padding-left: 0 !important; padding-right: 0 !important;}
-		#primary-menu-trigger{display: none !important}
+<%--	<style>--%>
+<%--		#primary-menu{display: flex !important; margin-right: 0 !important;}--%>
+<%--		#primary-menu > ul{display: block !important; padding-right: 0 !important; margin-right: 0 !important;}--%>
+<%--		#primary-menu > ul > li {display: none; border: none !important;}--%>
+<%--		#primary-menu > ul > li:first-child {display: block !important;}--%>
+<%--		#primary-menu > ul > li > a{font-size: 18px; padding-left: 0 !important; padding-right: 0 !important;}--%>
+<%--		#primary-menu-trigger{display: none !important}--%>
 
-		#header .login-info-con{display: none !important;}
-		#header #primary-menu-con > .login-menu{display: block;} /*v=dev일때만*/
+<%--		#header .login-info-con{display: none !important;}--%>
+<%--		#header #primary-menu-con > .login-menu{display: block;} /*v=dev일때만*/--%>
 
-		@media all and (min-width: 992px){
-			#primary-menu > ul > li > a{font-size: 24px;}
-		}
-	</style>
+<%--		@media all and (min-width: 992px){--%>
+<%--			#primary-menu > ul > li > a{font-size: 24px;}--%>
+<%--		}--%>
+<%--	</style>--%>
 
 	<!-- Document Title
 	============================================= -->

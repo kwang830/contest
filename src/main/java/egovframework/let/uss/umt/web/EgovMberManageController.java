@@ -489,8 +489,8 @@ public class EgovMberManageController {
 		String password = "1";
 		String uniqId = (String) commandMap.get("uniqId");
 
-		System.out.println("uniqId:" + uniqId);
-		System.out.println("mberManageVO.getMberId():"+mberManageVO.getMberId());
+//		System.out.println("uniqId:" + uniqId);
+//		System.out.println("mberManageVO.getMberId():"+mberManageVO.getMberId());
 
 
 		mberManageVO = mberManageService.selectMber(uniqId);
@@ -498,7 +498,7 @@ public class EgovMberManageController {
 		if (passwordCnsr != null && !passwordCnsr.trim().isEmpty()) {
 			password = passwordCnsr;
 		}
-		System.out.println("password:" + password);
+//		System.out.println("password:" + password);
 
 		mberManageVO.setPassword(EgovFileScrty.encryptPassword(password, mberManageVO.getMberId()));
 
@@ -535,23 +535,20 @@ public class EgovMberManageController {
 			String password = "1";
 			String uniqId = id.trim().split(":")[1];
 
-			System.out.println("uniqId:" + uniqId);
+//			System.out.println("uniqId:" + uniqId);
 
 			MberManageVO mberManageVO = mberManageService.selectMber(uniqId);
 			String passwordCnsr = mberManageVO.getPasswordCnsr();
 			if (passwordCnsr != null && !passwordCnsr.trim().isEmpty()) {
 				password = passwordCnsr;
 			}
-			System.out.println("password:" + password);
+//			System.out.println("password:" + password);
 			mberManageVO.setPassword(EgovFileScrty.encryptPassword(password, mberManageVO.getMberId()));
 
 			if (!mberManageVO.getPasswordCnsr().isEmpty()) {
-				System.out.println("1");
 				mberManageVO.setTempPwdYn("Y");
 				mberManageService.updatePassword(mberManageVO);
 				count++;
-			}else{
-				System.out.println("2");
 			}
 		}
 		if (count == ids.length) {

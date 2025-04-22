@@ -190,7 +190,7 @@ function fn_egov_inquire_faqlistdetail(faqId) {
                                     <td><c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageSize + status.count)}"/></td>
                                     <td class="al">
                                         <a href="<c:url value='/uss/olh/faq/FaqInqireCoUpdt.do?faqId=${resultInfo.faqId}&amp;pageIndex=${searchVO.pageIndex}'/>" class="lnk" onclick="fn_egov_inquire_faqlistdetail('<c:url value='${resultInfo.faqId}'/>'); return false;">
-                                            <c:out value="${resultInfo.qestnSj}"/>
+                                            <c:out value="${resultInfo.qestnSj}" escapeXml="false"/>
                                         </a>
                                     </td>
                                     <td><c:out value="${resultInfo.inqireCo}"/></td>
