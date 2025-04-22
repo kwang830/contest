@@ -1,5 +1,6 @@
 $(document).ready(function () {
-	loadLayout();
+	//loadLayout();
+	initFunctions();
 	setViewport();
 
 	// nav menu click event
