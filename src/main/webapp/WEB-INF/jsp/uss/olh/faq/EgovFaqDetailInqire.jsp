@@ -118,24 +118,26 @@ function fn_egov_delete_faq(faqId){
 
                         <div class="board_view">
                             <div class="board_view_top_con">
-                                <!-- 관리자가 작성한 경우 writer_img display:none 처리 -->
-                                <div class="board_view_writer_img"></div>
-                                <div>
-                                    <div class="board_view_title">
-                                        <c:out value="${result.qestnSj}" escapeXml="false" />
-                                    </div>
-                                    <div class="board_view_info_con">
-                                        <div class="board_view_info">
-                                            <div class="view_info_title">작성자</div>
-                                            <div class="view_info_desc">관리자</div>
+                                <div class="board_view_top_inner">
+                                    <!-- 관리자가 작성한 경우 writer_img display:none 처리 -->
+                                    <div class="board_view_writer_img"></div>
+                                    <div>
+                                        <div class="board_view_title">
+                                            <c:out value="${result.qestnSj}" escapeXml="false" />
                                         </div>
-                                        <div class="board_view_info">
-                                            <div class="view_info_title">등록일</div>
-                                            <div class="view_info_desc"><c:out value="${result.lastUpdusrPnttm}" escapeXml="false" /></div>
-                                        </div>
-                                        <div class="board_view_info">
-                                            <div class="view_info_title">조회수</div>
-                                            <div class="view_info_desc"><c:out value="${result.inqireCo}" /></div>
+                                        <div class="board_view_info_con">
+                                            <div class="board_view_info">
+                                                <div class="view_info_title">작성자</div>
+                                                <div class="view_info_desc">관리자</div>
+                                            </div>
+                                            <div class="board_view_info">
+                                                <div class="view_info_title">등록일</div>
+                                                <div class="view_info_desc"><c:out value="${result.lastUpdusrPnttm}" escapeXml="false" /></div>
+                                            </div>
+                                            <div class="board_view_info">
+                                                <div class="view_info_title">조회수</div>
+                                                <div class="view_info_desc"><c:out value="${result.inqireCo}" /></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

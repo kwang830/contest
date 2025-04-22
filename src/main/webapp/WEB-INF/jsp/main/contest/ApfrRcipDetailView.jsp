@@ -100,26 +100,28 @@
 					<input type="hidden" name="nttSj" value="<c:out value='${result.nttSj}'/>" >
 					<div class="board_view">
 						<div class="board_view_top_con">
-							<div class="mem-info-img">
-								<c:if test="${empty result.imgUrl}">
-									<img src="" alt=""><!-- 대표 이미지 -->
-								</c:if>
-								<c:if test="${not empty result.imgUrl}">
-									<img src="<c:url value='/cmm/fms/getImage.do?atchFileId=${egovc:encrypt(result.imgUrl)}&fileSn=0'/>" alt=""><!-- 대표 이미지 -->
-								</c:if>
-							</div>
-							<div>
-								<div class="board_view_title">
-									<c:out value="${result.nttSj}" escapeXml="false" />
+							<div class="board_view_top_inner">
+								<div class="mem-info-img">
+									<c:if test="${empty result.imgUrl}">
+										<img src="" alt=""><!-- 대표 이미지 -->
+									</c:if>
+									<c:if test="${not empty result.imgUrl}">
+										<img src="<c:url value='/cmm/fms/getImage.do?atchFileId=${egovc:encrypt(result.imgUrl)}&fileSn=0'/>" alt=""><!-- 대표 이미지 -->
+									</c:if>
 								</div>
-								<div class="board_view_info_con">
-									<div class="board_view_info">
-										<div class="view_info_title">팀명</div>
-										<div class="view_info_desc"><c:out value="${result.teamNm}" escapeXml="false" /></div>
+								<div>
+									<div class="board_view_title">
+										<c:out value="${result.nttSj}" escapeXml="false" />
 									</div>
-									<div class="board_view_info">
-										<div class="view_info_title">등록일</div>
-										<div class="view_info_desc"><c:out value="${fn:replace(result.frstRegisterPnttm, '-', '.')}" escapeXml="false" /></div>
+									<div class="board_view_info_con">
+										<div class="board_view_info">
+											<div class="view_info_title">팀명</div>
+											<div class="view_info_desc"><c:out value="${result.teamNm}" escapeXml="false" /></div>
+										</div>
+										<div class="board_view_info">
+											<div class="view_info_title">등록일</div>
+											<div class="view_info_desc"><c:out value="${fn:replace(result.frstRegisterPnttm, '-', '.')}" escapeXml="false" /></div>
+										</div>
 									</div>
 								</div>
 							</div>

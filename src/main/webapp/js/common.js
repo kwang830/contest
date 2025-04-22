@@ -1,6 +1,5 @@
 $(document).ready(function () {
-	//loadLayout();
-	initFunctions();
+	loadLayout();
 	setViewport();
 
 	// nav menu click event
@@ -19,6 +18,16 @@ $(document).ready(function () {
 	$('#file').on('change', function () {
 		const fileName = this.files.length > 0 ? this.files[0].name : '선택된 파일 없음';
 		$('.f_file_name').text(fileName);
+	});
+
+	// star rating
+	$('.star-rating .star').on('click', function () {
+		const $wrap = $(this).closest('.star-rating');
+		if ($wrap.data('editable') !== true && $wrap.data('editable') !== 'true') return;
+
+		const selected = $(this).data('value');
+		$wrap.attr('data-rating', selected);
+		$('#rating-value').text(selected);
 	});
 });
 

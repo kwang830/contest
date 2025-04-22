@@ -103,19 +103,22 @@
 
 /* view */
 .board_view {border-top: 2px solid #000;}
-.board_view_top_con{padding: 50px 20px 40px; border-bottom: 1px solid #DDE2E5;}
-.board_view_top_con .board_view_writer_img{width: 60px; height: 60px; border-radius: 50%; background: #E5E8EF; margin-bottom: 20px;}
-.board_view_top_con .board_view_title{font-size: 30px; line-height: 100%; font-weight: 600; margin-bottom: 15px;}
+.board_view_top_con{border-bottom: 1px solid #DDE2E5;}
+.board_view_top_inner{display: flex; align-items: flex-start; gap: 15px; padding: 20px 0 15px;}
+.board_view_top_con .mem-info-img{flex: 0 0 auto; width: 40px; height: 40px; margin-bottom: 10px;}
+.board_view_top_con .board_view_title{font-size: 24px; line-height: 30px; font-weight: 600; margin-top: 5px; margin-bottom: 10px;}
 .board_view_info_con{}
-.board_view_info_con .board_view_info{margin-bottom: 10px;}
+.board_view_info_con .board_view_info{margin-bottom: 4px;}
 .board_view_info_con .board_view_info:last-child{padding-right: 0; margin-right: 0; border-right: none;}
-.board_view_info_con .view_info_title{display: inline-block; font-size: 20px; line-height: 24px; font-weight: 600; margin-right: 10px;}
-.board_view_info_con .view_info_desc{display: inline-block; font-size: 20px; line-height: 24px; font-weight: 400;}
-.board_view_file_con{display: flex; align-items: flex-start; gap: 5px; font-size: 17px; line-height: 24px; font-weight: 500; padding: 15px 20px; border-bottom: 1px solid #DDE2E5;}
+.board_view_info_con .view_info_title{width: 45px; display: inline-block; font-size: 16px; line-height: 24px; font-weight: 600; margin-right: 10px;}
+.board_view_info_con .view_info_desc{display: inline-block; font-size: 16px; line-height: 24px; font-weight: 400;}
+.board_view_file_con{display: flex; align-items: flex-start; gap: 5px; font-size: 17px; line-height: 24px; font-weight: 500; padding: 15px 0; border-bottom: 1px solid #DDE2E5;}
 .board_view_file_con .board_view_file_list{display: flex; gap: 10px; flex-wrap: wrap;}
 .board_view_file_con a, .board_view_file_con .board_view_file{display: inline-block; color: #2A45CC; vertical-align: middle; text-decoration: underline;
 	white-space: nowrap; text-overflow: ellipsis; overflow: hidden; max-width: 240px;}
-.board_view_content_con{font-size: 18px; line-height: 24px; font-weight: 400; color: #454545; padding: 40px 20px; border-bottom: 1px solid #DDE2E5;}
+.board_view_content_con{font-size: 16px; line-height: 22px; font-weight: 400; color: #454545; padding: 30px 0; border-bottom: 1px solid #DDE2E5;}
+
+.board_view_avg_con{display: none; align-items: center; gap: 30px; border-left: 1px solid #DDE2E5; padding-left: 30px; padding-right: 30px;}
 
 /* form & view - (기존) 테이블 구조 */
 .board_view2 {border-top: 2px solid #222;}
@@ -220,16 +223,25 @@ select::-ms-expand {display:none;}
 	.board_form_row .title{width: 190px;}
 	.board_form_row .input{flex: 1; padding: 12px 20px;}
 
-	.board_view_top_con{display: flex; align-items: center; gap: 20px;}
-	.board_view_top_con .board_view_writer_img{width: 80px; height: 80px; margin-bottom: 0;}
-	.board_view_top_con .board_view_title{margin-bottom: 10px;}
+	.board_view_top_con{display: flex; justify-content: space-between; align-items: stretch; gap: 20px;}
+	.board_view_top_inner{align-items: center; gap: 20px; padding: 50px 20px 40px;}
+	.board_view_top_con .mem-info-img{width: 80px; height: 80px; margin-bottom: 0;}
+	.board_view_top_con .board_view_title{font-size: 30px; line-height: 36px; margin-bottom: 10px;}
 	.board_view_info_con{display: flex; align-items: center;}
 	.board_view_info_con .board_view_info{ padding-right: 20px; margin-right: 20px; margin-bottom: 0; border-right: 1px solid #DDE2E5;}
+	.board_view_info_con .view_info_title{width: auto; font-size: 20px;}
+	.board_view_info_con .view_info_desc{font-size: 20px;}
+	.board_view_file_con{padding: 15px 20px;}
 	.board_view_file_con a, .board_view_file_con .board_view_file{max-width: none;}
+	.board_view_content_con{font-size: 18px; line-height: 24px; padding: 40px 20px;}
 }
 
 @media all and (min-width: 992px){
 	.condition > form{display: flex; justify-content: center;}
 	.condition .condition_inner{margin-left: 0; margin-right: 20px; margin-bottom: 0;}
 	.condition .condition_inner:last-child{margin-right: 0;}
+}
+
+@media all and (min-width: 1200px) {
+	.board_view_avg_con{display: flex;}
 }
