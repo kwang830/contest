@@ -1,6 +1,8 @@
 $(document).ready(function () {
-	loadLayout();
+	//loadLayout(); 실서버는 html 추가 안함
+	initFunctions();
 	setViewport();
+	setUserAgent();
 
 	// nav menu click event
 	$('.nav-button').on('click', function(e) {
@@ -70,3 +72,34 @@ function setViewport() {
 		$('meta[name="viewport"]').attr( 'content', 'width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no' );
 	}
 }
+
+function setUserAgent() {
+	const ua = navigator.userAgent.toLowerCase();
+
+	const isAndroid = ua.includes('android');
+	const isIPhone = ua.includes('iphone');
+	const isIPod = ua.includes('ipod');
+
+	// 핵심 iPad 감지 로직
+	const isIPad = ua.includes('ipad') ||
+		(ua.includes('macintosh') && 'ontouchend' in document);
+
+	const isIOS = isIPhone || isIPod || isIPad;
+
+	const isWindows = ua.includes('windows nt');
+	const isMacReal = ua.includes('macintosh') && !('ontouchend' in document);
+
+	const device = (isAndroid || isIOS) ? 'mobile' : 'pc';
+
+	let os = 'etc';
+	if (isAndroid) os = 'aos';
+	else if (isIOS) os = 'ios';
+	else if (isWindows) os = 'windows';
+	else if (isMacReal) os = 'mac';
+
+	console.log(os);
+
+	$('body').attr('data-device', device).attr('data-os', os);
+}
+
+

@@ -93,17 +93,36 @@
 }
 
 .form-con .form-btn-con {
+	text-align: center;
 	margin-top: 80px;
+	margin-bottom: 30px;
 }
 
 .form-con .submit-btn {
-	width: 100%;
+	width: 400px;
 	font-size: 22px;
 	line-height: 100%;
 	font-weight: 600;
 	color: #fff;
+	text-align: center;
 	padding: 22px;
 	border: none;
 	border-radius: 35px;
 	background-color: #4881DE;
+}
+
+.form-con .form-btn {
+	display: inline-block;
+	font-size: 18px;
+	line-height: 100%;
+	font-weight: 600;
+	color: #000;
+	text-align: center;
+	border: none;
+	border-radius: 35px;
+}
+
+.form-con .form-btn > *{
+	display: inline-block;
+	vertical-align: middle;
 }

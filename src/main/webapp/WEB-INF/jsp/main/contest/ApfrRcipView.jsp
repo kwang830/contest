@@ -78,6 +78,7 @@
 		</div>
 		<div class="content-wrap">
 			<div class="sub-container clearfix">
+				<c:if test="${not empty resultList}">
 				<div class="receipt-info-con">
 					<div class="receipt-info-text">신청서를 다운로드하여 작성 후 제출해 주세요.</div>
 					<div class="receipt-info-btn-con">
@@ -86,7 +87,6 @@
 					</div>
 				</div>
 				<div class="work-list-con">
-
 					<c:forEach var="result" items="${resultList}" varStatus="status">
 						<form name="subForm" method="post" action="<c:url value='/cmm/contest/apfrRcipDetail.do'/>" class="work-list">
 							<input type="hidden" name="bbsId" value="<c:out value='${result.bbsId}'/>" />
@@ -117,8 +117,25 @@
 							</div>
 						</form>
 					</c:forEach>
-
 				</div>
+				</c:if>
+				<c:if test="${empty resultList}">
+				<div class="nodata-con">
+					<div class="nodata-icon">
+						<img src="<c:url value='/'/>images/nodata-icon.png" alt="X">
+					</div>
+					<div class="nodata-text">
+						아직 접수한 작품이 없습니다.<br/>
+						신청서를 다운로드하여 작성 후,<br/>
+						작품을 등록해 주세요.
+					</div>
+					<div class="nodata-btn-con">
+						<a href="#" class="nodata-btn download" onClick="fn_contest_attach_file_down(); return false;">신청서 다운로드</a>
+						<a href="/cmm/contest/apfrRcipUpdt.do" class="nodata-btn">작품 접수하기</a>
+					</div>
+				</div>
+				</c:if>
+
 			</div>
 		</div>
 	</section>

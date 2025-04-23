@@ -89,6 +89,9 @@
 		<div id="content">
 			<section class="banner-wrap">
 				<div class="container">
+					<div class="logo-text">
+						IBK시스템
+					</div>
 					<div class="small-title">
 						2025 AI 아이디어
 					</div>
@@ -110,8 +113,8 @@
 						<span id="dDayCounter"></span>
 					</div>
 					<div class="banner-btn-con">
-						<a href="/cmm/contest/contestOvrv.do" class="banner-btn">공모개요</a>
-						<a href="/cmm/contest/apfrRcip.do" class="banner-btn type2">작품접수하기</a>
+						<a href="/cmm/contest/contestOvrv.do" class="banner-btn active">공모개요</a>
+						<a href="/cmm/contest/apfrRcip.do" class="banner-btn type2 active">작품접수하기</a>
 					</div>
 				</div>
 				<div class="banner-bg">
@@ -258,8 +261,8 @@
 							AI공모전 문의
 						</div>
 						<div class="info-manager">
-							(주)IBK 시스템 ・AI공모전 담당자<br/>
-							<span>이진석 대리</span>
+							(주)IBK 시스템<br/>
+							<span>AI공모전 담당자</span>
 						</div>
 						<div class="info-tel">
 							02-3407-6074
@@ -330,9 +333,9 @@
 		</div>
 		<!-- #content end -->
 
-		<div class="popup-wrap" id="posterPop">
+		<div class="popup-wrap" id="historyImgPop">
 			<div class="popup-content">
-				<img src="<c:url value='/'/>images/poster-img.jpg" alt="" style="max-height: 100%;">
+				<img src="<c:url value='/'/>images/poster-img.jpg" alt="" style="max-height: 100%;" id="historyImg">
 			</div>
 			<div class="popup-close">
 				<svg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 24 24" fill="none">
@@ -490,6 +493,11 @@
 					}
 				}
 			});
+
+			$('#historySwiper .swiper-slide > img').on('click', function () {
+				openPopup('historyImgPop');
+				$('#historyImg').attr('src', $(this).attr('src'));
+			})
 
 			// 공지사항
 			new Swiper('#noticeSwiper', {

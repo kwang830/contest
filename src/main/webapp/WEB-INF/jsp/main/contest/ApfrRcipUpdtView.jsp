@@ -256,7 +256,12 @@
 							<c:if test="${not empty result.nttId}">
 								<button type="submit" class="submit-btn" onclick="javascript:fn_egov_update_bbs(); return false;">수정</button>
 							</c:if>
-
+						</div>
+						<div>
+							<a href="/cmm/contest/apfrRcip.do" class="form-btn">
+								<img src="<c:url value='/'/>images/icon-back.png" alt="<" style="width: 18px;">
+								<span>목록으로</span>
+							</a>
 						</div>
 
 					</form:form>

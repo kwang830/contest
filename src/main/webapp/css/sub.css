@@ -29,10 +29,10 @@
 }
 
 .sub-banner .sub-banner-title {
-	font-family: 'NEXONFootballGothicBA1', sans-serif;
+	font-family: 'NEXONFootballGothic', sans-serif;
 	font-size: 60px;
 	line-height: 100%;
-	font-weight: 500;
+	font-weight: 700;
 	letter-spacing: 0;
 	text-align: center;
 	color: #fff;
@@ -420,6 +420,55 @@
 	margin-bottom: 15px;
 }
 
+.nodata-con {
+	text-align: center;
+	padding-top: 20px;
+	border-radius: 10px;
+}
+
+.nodata-con .nodata-icon{
+	font-size: 0;
+	line-height: 0;
+	margin-bottom: 20px;
+}
+
+.nodata-con .nodata-icon > img{
+	width: 80px;
+}
+
+.nodata-con .nodata-text {
+	font-size: 24px;
+	line-height: 40px;
+	font-weight: 600;
+	text-align: center;
+	color: #000;
+	margin-bottom: 30px;
+}
+
+.nodata-con .nodata-btn-con {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+}
+
+.nodata-con .nodata-btn-con .nodata-btn {
+	font-size: 18px;
+	line-height: 40px;
+	font-weight: 600;
+	text-align: center;
+	color: #fff;
+	background-color: #000;
+	border: 1px solid #000;
+	border-radius: 5px;
+	padding: 0 20px;
+}
+
+.nodata-con .nodata-btn-con .nodata-btn.download {
+	color: #000;
+	background-color: #fff;
+}
+
 /*===투표===*/
 .star-rating {
 	display: inline-block;
@@ -796,11 +845,18 @@
 }
 
 .prize-list-con .prize-info .prize-ranking {
+	display: flex;
+	align-items: center;
+	gap: 6px;
 	font-size: 24px;
 	line-height: 100%;
 	font-weight: 700;
 	color: #000;
 	margin-bottom: 20px;
+}
+.prize-list-con .prize-info .prize-ranking > span{
+	font-size: 20px;
+	color: #4881DE;
 }
 
 .prize-list-con .prize-info .prize-title {
@@ -829,11 +885,6 @@
 	font-size: 18px;
 	line-height: 26px;
 	font-weight: 300;
-	text-overflow: ellipsis;
-	display: -webkit-box;
-	-webkit-line-clamp: 6;
-	-webkit-box-orient: vertical;
-	overflow: hidden;
 }
 
 .prize-list-con .download-btn {
@@ -849,6 +900,11 @@
 	padding: 6px 20px;
 	border-radius: 35px;
 	background-color: #4881DE;
+	margin-right: 10px;
+}
+
+.prize-list-con .download-btn > a:last-child{
+	margin-right: 0;
 }
 
 
@@ -927,6 +983,20 @@
 		margin-bottom: 10px;
 	}
 
+	.nodata-con {
+		padding-top: 40px;
+	}
+
+	.nodata-con .nodata-text {
+		font-size: 30px;
+		line-height: 50px;
+		margin-bottom: 40px;
+	}
+
+	.nodata-con .nodata-icon > img{
+		width: 104px;
+	}
+
 	.work-info-con {
 		gap: 30px;
 	}
@@ -979,7 +1049,7 @@
 
 	.comment-list .comment-info {
 		display: flex;
-		align-items: flex-start;
+		align-items: center;
 	}
 
 	.comment-list .comment-date {
@@ -991,7 +1061,6 @@
 		font-size: 18px;
 		line-height: 24px;
 		padding-left: 52px;
-		margin-top: -10px;
 	}
 
 	/*===역대수상작===*/
@@ -1128,5 +1197,9 @@
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		gap: 82px 40px;
+	}
+
+	.prize-list-con .prize-info .prize-desc {
+		min-height: 104px;
 	}
 }

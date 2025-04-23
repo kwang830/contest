@@ -1,12 +1,18 @@
 @charset "UTF-8";
 
 @font-face {
-	font-family: 'NEXONFootballGothicBA1';
-	src: url('https://gcore.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXONFootballGothicBA1.woff') format('woff');
-	font-weight: normal;
+	font-family: 'NEXONFootballGothic';
+	src: url('https://gcore.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXONFootballGothicLA1.woff') format('woff');
+	font-weight: 300;
 	font-style: normal;
 }
 
+@font-face {
+	font-family: 'NEXONFootballGothic';
+	src: url('https://gcore.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXONFootballGothicBA1.woff') format('woff');
+	font-weight: 700;
+	font-style: normal;
+}
 /*#primary-menu{display: flex !important; margin-right: 0 !important;}*/
 /*#primary-menu > ul{display: block !important; padding-right: 0 !important; margin-right: 0 !important;}*/
 /*#primary-menu > ul > li {display: none; border: none !important;}*/
@@ -39,19 +45,21 @@
 
 .banner-wrap .small-title{
 	position: relative;
-	font-family: 'NEXONFootballGothicBA1', sans-serif;
+	font-family: 'NEXONFootballGothic', sans-serif;
 	font-size: 42px;
 	line-height: 53px;
+	font-weight: 300;
 	color: #fff;
 	text-align: left;
 }
 
 .banner-wrap .big-title{
 	position: relative;
-	font-family: 'NEXONFootballGothicBA1', sans-serif;
+	font-family: 'NEXONFootballGothic', sans-serif;
 	font-size: 70px;
 	line-height: 76px;
 	color: #fff;
+	font-weight: 700;
 	text-align: left;
 	margin-bottom: 6px;
 }
