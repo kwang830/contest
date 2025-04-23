@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ContValtManageDAO">
+
+	<resultMap id="contValtList" type="egovframework.let.cont.valt.service.ContValtVO">
+		<result property="valtMngmNo" column="VALT_MNGM_NO"/>
+		<result property="valtMngmTtl" column="VALT_MNGM_TTL"/>
+		<result property="useAt" column="USE_AT"/>
+	</resultMap>
+
+	<resultMap id="valtqsitList" type="egovframework.let.cont.valt.service.ContValtVO">
+		<result property="valtQsitMnno" column="VALT_QSIT_MNNO"/>
+	</resultMap>
+
+	<resultMap id="valtBoardList" type="egovframework.let.cop.bbs.service.BoardVO">
+		<result property="bbsId" column="BBS_ID"/>
+		<result property="nttId" column="NTT_ID"/>
+		<result property="nttSj" column="NTT_SJ"/>
+	</resultMap>
+
+	<resultMap id="contUserList" type="egovframework.let.cont.valt.service.ContUserVO">
+		<result property="userId" column="USER_ID"/>
+		<result property="deptNmF" column="DEPT_NM_F"/>
+		<result property="userNm" column="USER_NM"/>
+		<result property="titleNm" column="TITLE_NM"/>
+	</resultMap>
+
+	<select id="selectContValtList" parameterType="egovframework.let.cont.valt.service.ContValtVO" resultMap="contValtList">
+
+		SELECT a.VALT_MNGM_NO as VALT_MNGM_NO,
+		       a.VALT_QSIT_MNNO as VALT_QSIT_MNNO,
+		       a.BASE_YY as BASE_YY,
+		       a.SQN as SQN,
+		       a.TTL as VALT_MNGM_TTL,
+			   a.DESC as VALT_MNGM_DESC
+		FROM tb_valt_mngm_master a
+		WHERE 1=1
+		<if test="searchCnd == 1">
+			AND a.VALT_MNGM_NO LIKE CONCAT ('%', #{searchWrd},'%')
+		</if>
+		<if test="searchCnd == 2">
+			AND a.VALT_QSIT_MNNO LIKE CONCAT ('%', #{searchWrd},'%')
+		</if>
+		<if test="searchCnd == 3">
+			AND a.BASE_YY LIKE CONCAT ('%', #{searchWrd},'%')
+		</if>
+		<if test="searchCnd == 4">
+			AND a.SQN LIKE CONCAT ('%', #{searchWrd},'%')
+		</if>
+		<if test="searchCnd == 5">
+			AND a.TTL LIKE CONCAT ('%', #{searchWrd},'%')
+		</if>
+		AND a.USE_AT = 'Y'
+		ORDER BY a.VALT_MNGM_NO
+						
+	</select>
+
+	<select id="selectContValtListCnt" parameterType="egovframework.let.cont.vote.service.ContVoteVO" resultType="java.lang.Integer">
+
+		SELECT COUNT(1)
+		FROM tb_valt_mngm_master a
+		WHERE 1=1
+		<if test="searchCnd == 1">
+			AND a.VALT_MNGM_NO LIKE CONCAT ('%', #{searchWrd},'%')
+		</if>
+		<if test="searchCnd == 2">
+			AND a.VALT_QSIT_MNNO LIKE CONCAT ('%', #{searchWrd},'%')
+		</if>
+		<if test="searchCnd == 3">
+			AND a.BASE_YY LIKE CONCAT ('%', #{searchWrd},'%')
+		</if>
+		<if test="searchCnd == 4">
+			AND a.SQN LIKE CONCAT ('%', #{searchWrd},'%')
+		</if>
+		<if test="searchCnd == 5">
+			AND a.TTL LIKE CONCAT ('%', #{searchWrd},'%')
+		</if>
+		AND a.USE_AT = 'Y'
+		ORDER BY a.VALT_MNGM_NO
+
+	</select>
+
+	<update id="deleteContValt" parameterType="egovframework.let.cont.valt.service.ContValtVO">
+		UPDATE TB_VALT_MNGM_MASTER SET
+		    USE_AT = 'N',
+			LAST_UPDUSR_ID = #{lastUpdusrId},
+			LAST_UPDT_PNTTM = SYSDATE()
+		WHERE VALT_MNGM_NO = #{valtMngmNo}
+	</update>
+
+	<select id="selectValtQsitMnnoList" parameterType="egovframework.let.cont.valt.service.ContValtVO" resultMap="valtqsitList">
+		SELECT DISTINCT a.VALT_QSIT_MNNO as VALT_QSIT_MNNO
+		FROM tb_valt_qsit_mnno a
+		WHERE a.USE_AT = #{useAt}
+	</select>
+
+	<insert id="insertContestValt" parameterType="egovframework.let.cont.valt.service.ContValtVO">
+		INSERT INTO tb_valt_mngm_master (VALT_MNGM_NO,
+		                                 VALT_QSIT_MNNO,
+		                                 BASE_YY,
+		                                 SQN,
+		                                 TTL,
+		                                 `DESC`,
+		                                 USE_TS,
+		                                 FRST_REGIST_PNTTM,
+		                                 FRST_REGISTER_ID,
+		                                 USE_AT)
+		VALUES (#{valtMngmNo},
+		        #{valtQsitMnno},
+		        #{baseYy},
+		        #{sqn},
+		        #{valtMngmTtl},
+		        #{valtMngmDesc},
+		        NOW(),
+		        NOW(),
+				#{frstRegisterId},
+		        #{useAt})
+
+	</insert>
+
+	<select id="selectContValtBbsList" parameterType="egovframework.let.cont.valt.service.ContValtVO" resultMap="valtBoardList">
+		SELECT A.NTT_ID AS NTT_ID,
+		       A.BBS_ID AS BBS_ID,
+		       A.NTT_SJ AS NTT_SJ
+		FROM LETTNBBS A
+		WHERE NOT EXISTS (SELECT 1
+							FROM TB_VALT_TAR_MNGM B
+							WHERE B.NTT_ID = A.NTT_ID)
+			AND A.BBS_ID = "BBSMSTR_BBBBBBBBBBBB"
+		<if test="searchWrd != null and searchWrd.trim() != ''">
+			AND A.NTT_SJ LIKE CONCAT ('%', #{searchWrd},'%')
+		</if>
+		ORDER BY A.NTT_ID
+
+	</select>
+	<select id="selectContValtBbsListTotCnt" parameterType="egovframework.let.cont.valt.service.ContValtVO" resultType="java.lang.Integer">
+		SELECT COUNT(1)
+		FROM LETTNBBS A
+		WHERE NOT EXISTS (SELECT 1
+		FROM TB_VALT_TAR_MNGM B
+		WHERE B.NTT_ID = A.NTT_ID)
+		AND A.BBS_ID = "BBSMSTR_BBBBBBBBBBBB"
+		<if test="searchWrd != null and searchWrd.trim() != ''">
+			AND A.NTT_SJ LIKE CONCAT ('%', #{searchWrd},'%')
+		</if>
+		ORDER BY A.NTT_ID
+	</select>
+
+	<delete id="deleteContValtScrBbs" parameterType="egovframework.let.cont.valt.service.ContValtVO">
+		DELETE FROM TB_VALT_SCR A
+		WHERE A.BBS_ID = "BBSMSTR_BBBBBBBBBBBB"
+		  AND A.NTT_ID = #{nttId}
+	</delete>
+
+	<delete id="deleteContValtBbs" parameterType="egovframework.let.cont.valt.service.ContValtVO">
+		DELETE FROM TB_VALT_TAR_MNGM A
+		WHERE A.VALT_MNGM_NO = #{valtMngmNo}
+			AND A.BBS_ID = "BBSMSTR_BBBBBBBBBBBB"
+			AND A.NTT_ID = #{nttId}
+	</delete>
+
+	<delete id="deleteContValtUser" parameterType="egovframework.let.cont.valt.service.ContValtVO">
+		DELETE FROM TB_EXMN_MNGM A
+		WHERE A.VALT_MNGM_NO = #{valtMngmNo}
+		  AND A.EXMN_ID = #{exmnId}
+	</delete>
+
+	<insert id="insertContValtBbs" parameterType="egovframework.let.cont.valt.service.ContValtVO">
+		INSERT INTO TB_VALT_TAR_MNGM (VALT_MNGM_NO,
+		                              NTT_ID,
+		                              BBS_ID,
+		                              USE_AT,
+		                              FRST_REGIST_PNTTM,
+		                              FRST_REGISTER_ID
+		) VALUES (#{valtMngmNo},
+		          #{nttId},
+		          "BBSMSTR_BBBBBBBBBBBB",
+		          #{useAt},
+		          NOW(),
+		          #{frstRegisterId})
+	</insert>
+
+	<select id="selectUesrByValtAjax" parameterType="egovframework.let.cont.valt.service.ContValtVO" resultMap="contUserList">
+		SELECT A.EXMN_ID AS USER_ID,
+			   C.CODE_NM AS DEPT_NM_F,
+			   B.USER_NM AS USER_NM,
+			   D.CODE_NM AS TITLE_NM
+		FROM TB_EXMN_MNGM A
+			JOIN COMVNUSERMASTER B
+				ON A.EXMN_ID = B.USER_ID
+			LEFT JOIN lettccmmndetailcode C
+				ON B.DEPT_CODE = C.CODE AND C.CODE_ID = 'IBK101'
+			LEFT JOIN lettccmmndetailcode D
+				ON B.TITLE_CODE = D.CODE AND D.CODE_ID = 'IBK002'
+		WHERE A.VALT_MNGM_NO = #{valtMngmNo}
+	</select>
+
+	<select id="selectContValtUserList" parameterType="egovframework.let.cont.valt.service.ContValtVO" resultMap="contUserList">
+		SELECT B.USER_ID AS USER_ID,
+			C.CODE_NM AS DEPT_NM_F,
+			B.USER_NM AS USER_NM,
+			D.CODE_NM AS TITLE_NM
+		FROM COMVNUSERMASTER B
+			LEFT JOIN lettccmmndetailcode C
+			ON B.DEPT_CODE = C.CODE AND C.CODE_ID = 'IBK101'
+			LEFT JOIN lettccmmndetailcode D
+			ON B.TITLE_CODE = D.CODE AND D.CODE_ID = 'IBK002'
+		WHERE NOT EXISTS (SELECT 1
+			FROM TB_EXMN_MNGM E
+			WHERE E.valt_mngm_no = #{valtMngmNo}
+			AND E.EXMN_ID = B.USER_ID)
+		<if test="searchWrd != null and searchWrd.trim() != ''">
+			AND B.USER_NM LIKE CONCAT ('%', #{searchWrd},'%')
+		</if>
+	</select>
+
+	<select id="selectContValtUserListTotCnt" parameterType="egovframework.let.cont.valt.service.ContValtVO" resultType="java.lang.Integer">
+		SELECT COUNT(1)
+		FROM COMVNUSERMASTER B
+			LEFT JOIN lettccmmndetailcode C
+			ON B.DEPT_CODE = C.CODE AND C.CODE_ID = 'IBK101'
+			LEFT JOIN lettccmmndetailcode D
+			ON B.TITLE_CODE = D.CODE AND D.CODE_ID = 'IBK002'
+		WHERE NOT EXISTS (SELECT 1
+			FROM TB_EXMN_MNGM E
+			WHERE E.valt_mngm_no = #{valtMngmNo}
+			AND E.EXMN_ID = B.USER_ID)
+		<if test="searchWrd != null and searchWrd.trim() != ''">
+			AND B.USER_NM LIKE CONCAT ('%', #{searchWrd},'%')
+		</if>
+	</select>
+
+	<insert id="insertContValtUser" parameterType="egovframework.let.cont.valt.service.ContValtVO">
+		INSERT INTO TB_EXMN_MNGM (VALT_MNGM_NO,
+									  EXMN_ID,
+									  USE_AT,
+									  FRST_REGIST_PNTTM,
+									  FRST_REGISTER_ID
+		) VALUES (#{valtMngmNo},
+				  #{exmnId},
+				  #{useAt},
+				  NOW(),
+				  #{frstRegisterId})
+	</insert>
+</mapper>

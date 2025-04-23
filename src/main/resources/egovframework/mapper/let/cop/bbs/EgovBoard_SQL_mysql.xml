@@ -76,6 +76,14 @@
 		<result property="frstRegisterId" column="FRST_REGISTER_ID"/>
 	</resultMap>
 
+	<resultMap id="valtBbsList" type="egovframework.let.cop.bbs.service.BoardVO">
+		<result property="bbsId" column="BBS_ID"/>
+		<result property="nttId" column="NTT_ID"/>
+		<result property="nttSj" column="NTT_SJ"/>
+		<result property="ntcrNm" column="NTCR_NM"/>
+		<result property="teamNm" column="TEAM_NM"/>
+	</resultMap>
+
  	<select id="selectMaxNttId" resultType="java.lang.Long">
  		
 			SELECT IFNULL(MAX(NTT_ID),0)+1 AS NTT_ID  FROM LETTNBBS
@@ -403,5 +411,35 @@
 		FROM
 			IDS
 		WHERE TABLE_NAME = 'VISIT_COUNT_ID'
+	</select>
+
+	<select id="selectBbsByValtAjax" parameterType="egovframework.let.cont.valt.service.ContValtVO" resultMap="valtBbsList">
+		SELECT B.BBS_ID AS BBS_ID,
+		       B.NTT_ID AS NTT_ID,
+		       A.NTT_SJ AS NTT_SJ,
+		       A.TEAM_NM AS TEAM_NM,
+		       C.USER_NM AS NTCR_NM
+		FROM LETTNBBS A
+		JOIN TB_VALT_TAR_MNGM B
+			ON A.BBS_ID = B.BBS_ID AND A.NTT_ID = B.NTT_ID
+		JOIN COMVNUSERMASTER C
+			ON A.FRST_REGISTER_ID = C.ESNTL_ID
+		WHERE B.VALT_MNGM_NO = #{valtMngmNo}
+			AND B.USE_AT = #{useAt}
+			AND A.USE_AT = 'Y'
+		ORDER BY B.NTT_ID
+	</select>
+
+	<select id="selectBbsByValtTotCntAjax" parameterType="egovframework.let.cont.valt.service.ContValtVO" resultType="java.lang.Integer">
+		SELECT COUNT(1)
+		FROM LETTNBBS A
+				 JOIN TB_VALT_TAR_MNGM B
+					  ON A.BBS_ID = B.BBS_ID AND A.NTT_ID = B.NTT_ID
+				 JOIN COMVNUSERMASTER C
+					  ON A.FRST_REGISTER_ID = C.ESNTL_ID
+		WHERE B.VALT_MNGM_NO = #{valtMngmNo}
+		  AND B.USE_AT = #{useAt}
+		  AND A.USE_AT = 'Y'
+		ORDER BY B.NTT_ID
 	</select>
 </mapper>

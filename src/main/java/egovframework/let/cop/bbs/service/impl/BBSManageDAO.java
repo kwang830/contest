@@ -2,6 +2,7 @@ package egovframework.let.cop.bbs.service.impl;
 import java.util.Iterator;
 import java.util.List;
 
+import egovframework.let.cont.valt.service.ContValtVO;
 import egovframework.let.cop.bbs.service.Board;
 import egovframework.let.cop.bbs.service.BoardVO;
 
@@ -246,5 +247,20 @@ public class BBSManageDAO extends EgovAbstractMapper {
      */
     public String selectBoardArticleVisitRdcnt(Board board) throws Exception {
         return (String)selectOne("BBSManageDAO.selectBoardArticleVisitRdcnt", board);
+    }
+
+    /**
+     * 평가해야하는 게시글을 조회 한다.
+     *
+     * @param contValtVO
+     * @return list
+     * @throws Exception
+     */
+    public List<BoardVO> selectBbsByValtAjax(ContValtVO contValtVO) throws Exception {
+        return (List<BoardVO>) list("BBSManageDAO.selectBbsByValtAjax", contValtVO);
+    }
+
+    public int selectBbsByValtTotCntAjax(ContValtVO contValtVO) throws Exception {
+        return (Integer) selectOne("BBSManageDAO.selectBbsByValtTotCntAjax", contValtVO);
     }
 }
