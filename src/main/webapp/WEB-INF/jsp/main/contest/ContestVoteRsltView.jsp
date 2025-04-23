@@ -21,7 +21,6 @@
 	<link rel="preload" href="<c:url value='/'/>css/responsive.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/font-icons.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/sub.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-	<link rel="preload" href="<c:url value='/'/>css/form.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
 	<!-- Document Title
     ============================================= -->
@@ -75,10 +74,8 @@
 			</nav>
 		</div>
 		<div class="content-wrap">
-			<div class="container clearfix">
-
-
-				<!--// 게시판 -->
+			<div class="sub-container clearfix">
+				<img src="<c:url value='/'/>images/vote-result-img.png" alt="">
 			</div>
 		</div>
 	</section>

@@ -161,6 +161,9 @@ public class EgovFaqManageController {
 
 		FaqManageVO vo = faqManageService.selectFaqListDetail(faqManageVO);
 
+		String answer = vo.getAnswerCn().replaceAll("(\r\n|\n)", "<br>");
+		vo.setAnswerCn(answer);
+
 		model.addAttribute("result", vo);
 
         return	"/uss/olh/faq/EgovFaqDetailInqire";
