@@ -311,6 +311,21 @@ function fn_egov_modal_remove() {
                                     </div>
                                 </div>
 
+                                <div class="board_form_row">
+                                    <div class="title">
+                                        <label for="tempPwdYn">임시비밀번호여부</label>
+                                    </div>
+                                    <div class="input">
+                                        <label class="f_select w_350" for="tempPwdYn">
+                                            <form:select path="tempPwdYn" id="tempPwdYn" name="tempPwdYn">
+                                                <form:option value="" label="--선택하세요--"/>
+                                                <form:options items="${useAt_result}" itemValue="code" itemLabel="codeNm"/>
+                                            </form:select>
+                                            <form:errors path="tempPwdYn" cssClass="error"/>
+                                        </label>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
 

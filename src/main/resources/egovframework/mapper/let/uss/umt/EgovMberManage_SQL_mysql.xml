@@ -158,7 +158,8 @@ FROM(
                 a.POSITION_CODE    positionCode,
                 a.RANK_CODE        rankCode,
                 b.CODE_NM          deptNmF,
-                c.CODE_NM          titleNm
+                c.CODE_NM          titleNm,
+                a.TEMP_PWD_YN      tempPwdYn
             FROM LETTNGNRLMBER a
             LEFT OUTER JOIN
                 lettccmmndetailcode b
@@ -189,7 +190,8 @@ FROM(
                 GROUP_ID         = #{groupId},
                 MBER_FXNUM       = #{mberFxnum},
                 MBER_EMAIL_ADRES = #{mberEmailAdres},
-                MIDDLE_TELNO     = #{middleTelno}
+                MIDDLE_TELNO     = #{middleTelno},
+                TEMP_PWD_YN      = #{tempPwdYn}
             WHERE ESNTL_ID=#{uniqId}
         
     </update>

@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ page import ="egovframework.com.cmm.LoginVO" %>
 <!DOCTYPE html>
 <html dir="ltr" lang="ko">
@@ -69,6 +70,8 @@
 			// 공모전 참가 신청서
 			fn_egov_downFile('EcqfhYxRcnWG52hkOGYp/F3suq/5SFOvAnxJUaQhI01X9dgmJjJ+3mWoSYu1PsdTs4dfuDM2VdFX2fN3C0X4iQ==','0');
 		}
+
+		<c:if test="${!empty resultMsg}">alert("<spring:message code='${resultMsg}' />");</c:if>
 		//-->
 	</script>
 
@@ -350,9 +353,16 @@
 			LoginVO loginVO = (LoginVO)session.getAttribute("LoginVO");
 			if (loginVO != null){
 		%>
-		<c:set var="tempPwdYn" value="<%= loginVO.getTempPwdYn()%>"/>
-		<c:set var="chkId" value="<%= loginVO.getId()%>"/>
-		<c:if test="${tempPwdYn == 'Y'}">
+		<c:set var="tempPwdYn" value="<%= loginVO.getTempPwdYn()%>" />
+		<c:set var="sessionTempPwdYn" value="${sessionScope.tempPwdYn}" />
+		<c:set var="chkId" value="<%= loginVO.getId()%>" />
+<%--		<script>--%>
+<%--			console.log('LoginVO > tempPwdYn:<c:out value='${tempPwdYn}'/>');--%>
+<%--			console.log('LoginVO > sessionTempPwdYn:<c:out value='${sessionTempPwdYn}'/>');--%>
+<%--			console.log('LoginVO > chkId:<c:out value='${chkId}'/>');--%>
+<%--		</script>--%>
+
+		<c:if test="${tempPwdYn == 'Y' && (sessionTempPwdYn == 'Y' || sessionTempPwdYn == null)}">
 		<div class="modal-on-load enable-cookie" data-target="#myModal1"></div>
 
 		<!-- Modal -->
@@ -543,7 +553,7 @@
 	<%
 		if (loginVO != null){
 	%>
-	<c:if test="${tempPwdYn == 'Y'}">
+	<c:if test="${tempPwdYn == 'Y' && (sessionTempPwdYn == 'Y' || sessionTempPwdYn == null)}">
 		<script type="text/javascript">
 			console.log('tempPwdYn:<c:out value='${tempPwdYn}'/>');
 			console.log('chkId:<c:out value='${chkId}'/>');

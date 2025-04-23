@@ -235,6 +235,10 @@ public class EgovMberManageController {
 		vo.setCodeId("COM013");
 		model.addAttribute("mberSttus_result", cmmUseService.selectCmmCodeDetail(vo));
 
+		//사용여부코드를 코드정보로부터 조회
+		vo.setCodeId("COM045");
+		model.addAttribute("useAt_result", cmmUseService.selectCmmCodeDetail(vo));
+
 		//그룹정보를 조회 - GROUP_ID정보
 		vo.setTableNm("LETTNORGNZTINFO");
 		model.addAttribute("groupId_result", cmmUseService.selectGroupIdDetail(vo));
@@ -704,7 +708,7 @@ public class EgovMberManageController {
 	 */
 	@RequestMapping(value = "/uss/umt/edit/MyInfoPasswordUpdt.do")
 	public String updateMyPassword(ModelMap model, @RequestParam Map<String, Object> commandMap, @ModelAttribute("searchVO") UserDefaultVO userSearchVO,
-								 @ModelAttribute("mberManageVO") MberManageVO mberManageVO) throws Exception {
+								 @ModelAttribute("mberManageVO") MberManageVO mberManageVO, HttpServletRequest request) throws Exception {
 
 		System.out.println("updateMyPassword >> ");
 
@@ -754,12 +758,13 @@ public class EgovMberManageController {
 			mberManageService.updatePassword(mberManageVO);
 			model.addAttribute("mberManageVO", mberManageVO);
 			resultMsg = "success.common.update";
+			request.getSession().setAttribute("tempPwdYn", "N");
 		} else {
 			model.addAttribute("mberManageVO", mberManageVO);
 		}
 		model.addAttribute("userSearchVO", userSearchVO);
 		model.addAttribute("resultMsg", resultMsg);
 
-		return "cmm/uss/umt/MemberMyInfoView";
+		return "main/EgovMainView";
 	}
 }

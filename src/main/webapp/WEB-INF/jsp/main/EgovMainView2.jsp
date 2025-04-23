@@ -250,8 +250,8 @@
                         AI공모전 문의
                     </div>
                     <div class="info-manager">
-                        (주)IBK 시스템 ・AI공모전 담당자<br/>
-                        <span>이진석 대리</span>
+                        (주)IBK 시스템<br/>
+                        <span>AI공모전 담당자</span>
                     </div>
                     <div class="info-tel">
                         02-3407-6074
