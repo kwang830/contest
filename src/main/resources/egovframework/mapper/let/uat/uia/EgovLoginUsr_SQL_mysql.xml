@@ -16,6 +16,7 @@
 		<result property="uniqId" column="uniqId"/>
         <result property="url" column="url"/>
         <result property="lockYn" column="lockYn"/>
+        <result property="imgUrl" column="imgUrl"/>
 	</resultMap>
 	
 	<!-- 아이디 찾기를 위한 resultMap 
@@ -46,6 +47,7 @@
                  , a.TEMP_PWD_YN AS tempPwdYn
                  , a.CHG_PWD_LAST_PNTTM AS chgPwdLastPnttm
                  , a.LOCK_YN as lockYn
+                 , a.IMG_URL as imgUrl
               FROM LETTNGNRLMBER a
               LEFT OUTER JOIN lettccmmndetailcode b
               ON a.DEPT_CODE = b.code AND b.CODE_ID = 'IBK001'
@@ -72,7 +74,8 @@
             , '-' AS titleNm
             , '-' AS tempPwdYn
             , '-' AS chgPwdLastPnttm
-            , '-' As lockYn
+            , '-' AS lockYn
+            , '-' AS imgUrl
             FROM LETTNGNRLMBER a
             WHERE a.mber_id = 'test'
             AND a.password = '1'

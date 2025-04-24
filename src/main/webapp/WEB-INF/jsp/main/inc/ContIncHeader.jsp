@@ -129,12 +129,19 @@
 								<c:set var="titleNm" value="<%= loginVO.getTitleNm()%>"/>
 								<c:set var="loginName" value="<%= loginVO.getName()%>"/>
 								<c:set var="tempPwdYn" value="<%= loginVO.getTempPwdYn()%>"/>
+								<c:set var="imgUrl" value="<%= loginVO.getImgUrl()%>"/>
+
 									<div class="mem-info-con">
 										<div class="mem-info-img">
-											<img src="" alt=""> <!--그룹웨어 이미지-->
+											<c:if test="${empty imgUrl}">
+												<img src="" alt=""><!-- 대표 이미지1 -->
+											</c:if>
+											<c:if test="${not empty imgUrl}">
+												<img src="<c:out value="${imgUrl}" />" alt=""><!-- 대표 이미지2 -->
+											</c:if>
 										</div>
 										<div>
-											<div class="mem-info-text"><c:out value="${deptNm}" /> <c:out value="${titleNm}" /> <c:out value="${loginName}" /> , <c:out value="${tempPwdYn}" /></div>
+											<div class="mem-info-text"><c:out value="${deptNm}" /> <c:out value="${titleNm}" /> <c:out value="${loginName}" /> </div>
 											<a href="/uss/umt/edit/MyInfo.do" class="mem-info-btn">회원정보관리</a>
 										</div>
 									</div>
@@ -162,7 +169,12 @@
 						<%  }else{ %>
 						<div class="login-menu-con">
 							<div class="mem-info-img">
-								<img src="" alt=""> <!--그룹웨어 이미지-->
+								<c:if test="${empty imgUrl}">
+									<img src="" alt=""><!-- 대표 이미지1 -->
+								</c:if>
+								<c:if test="${not empty imgUrl}">
+									<img src="<c:out value="${imgUrl}" />" alt=""><!-- 대표 이미지2 -->
+								</c:if>
 							</div>
 							<ul class="mem-menu">
 								<li>

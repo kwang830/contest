@@ -70,7 +70,8 @@ public class LoginVO implements Serializable{
 	private String chgPwdLastPnttm;
 	/** 계정잠김여부 */
 	private String lockYn;
-
+	/** 프로필이미지 */
+	private String imgUrl;
 
 	/**
 	 * id attribute 를 리턴한다.
@@ -365,5 +366,18 @@ public class LoginVO implements Serializable{
 	 */
 	public void setLockYn(String lockYn) {
 		this.lockYn = lockYn;
+	}
+
+	/**
+	 * @return the imgUrl
+	 */
+	public String getImgUrl() {
+		return imgUrl;
+	}
+	/**
+	 * @param imgUrl the imgUrl to set
+	 */
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 }
