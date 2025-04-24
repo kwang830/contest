@@ -140,10 +140,10 @@
 						<tr>
 							<th scope="col">순번</th>
 							<th scope="col">제목</th>
-							<th scope="col">작성자</th>
 							<c:if test='${boardVO.bbsId == "BBSMSTR_BBBBBBBBBBBB"}'>
-							<th scope="col">팀명</th>
+								<th scope="col">팀명</th>
 							</c:if>
+							<th scope="col">작성자</th>
 							<th scope="col">조회수</th>
 							<th scope="col">등록일자</th>
 						</tr>
