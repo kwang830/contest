@@ -141,11 +141,33 @@
                         <div class="board_view_top_inner">
                             <!-- 관리자가 작성한 경우 mem-info-img display:none 처리 or src 안넣으면 기본이미지로 노출 -->
                             <div class="mem-info-img">
-                                <c:if test="${empty result.imgUrl}">
+                                <c:if test="${empty result.selectImg}">
                                     <img src="" alt=""><!-- 대표 이미지 -->
                                 </c:if>
-                                <c:if test="${not empty result.imgUrl}">
-                                    <img src="<c:url value='/cmm/fms/getImage.do?atchFileId=${egovc:encrypt(result.imgUrl)}&fileSn=0'/>" alt=""><!-- 대표 이미지 -->
+                                <c:if test="${not empty result.selectImg}">
+                                    <c:choose>
+                                        <c:when test="${result.selectImg == '1'}">
+                                            <img src="<c:url value='/'/>images/profile-img-000.png" alt=""><!-- 대표 이미지 -->
+                                        </c:when>
+                                        <c:when test="${result.selectImg == '2'}">
+                                            <img src="<c:url value='/'/>images/profile-img-001.png" alt=""><!-- 대표 이미지 -->
+                                        </c:when>
+                                        <c:when test="${result.selectImg == '3'}">
+                                            <img src="<c:url value='/'/>images/profile-img-002.png" alt=""><!-- 대표 이미지 -->
+                                        </c:when>
+                                        <c:when test="${result.selectImg == '4'}">
+                                            <img src="<c:url value='/'/>images/profile-img-003.png" alt=""><!-- 대표 이미지 -->
+                                        </c:when>
+                                        <c:otherwise>
+                                            <c:if test="${empty result.imgUrl}">
+                                                <img src="" alt=""><!-- 대표 이미지 -->
+                                            </c:if>
+                                            <c:if test="${not empty result.imgUrl}">
+                                                <img src="<c:url value='/cmm/fms/getImage.do?atchFileId=${egovc:encrypt(result.imgUrl)}&fileSn=0'/>" alt=""><!-- 대표 이미지 -->
+                                            </c:if>
+                                        </c:otherwise>
+                                    </c:choose>
+
                                 </c:if>
                             </div>
                             <div>

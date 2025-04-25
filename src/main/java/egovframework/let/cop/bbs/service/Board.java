@@ -185,7 +185,10 @@ public class Board implements Serializable {
 	 * 이미지경로
 	 */
 	private String imgUrl = "";
-
+	/**
+	 * 선택이미지
+	 */
+	private String selectImg = "";
 
 	/**
 	 * atchFileId attribute를 리턴한다.
@@ -833,5 +836,21 @@ public class Board implements Serializable {
 	 */
 	public void setImgUrl(String imgUrl) {
 		this.imgUrl = imgUrl;
+	}
+
+	/**
+	 * selectImg attribute를 리턴한다.
+	 * @return the selectImg
+	 */
+	public String getSelectImg() {
+		return selectImg;
+	}
+
+	/**
+	 * selectImg attribute 값을 설정한다.
+	 * @param selectImg the selectImg to set
+	 */
+	public void setSelectImg(String selectImg) {
+		this.selectImg = selectImg;
 	}
 }

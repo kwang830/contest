@@ -7,6 +7,9 @@
 
     <formset>
 		<form name="contboard">
+			<field property="teamNm" depends="required">
+				<arg0 key="cop.teamNm" />
+			</field>
 			<field property="nttSj" depends="required, maxlength">
         		<arg0 key="cop.nttSj" />
         		<arg1 key="1200" resource="false"/>
@@ -14,9 +17,6 @@
 					<var-name>maxlength</var-name>
 					<var-value>1200</var-value>
 				</var>
-			</field>
-			<field property="teamNm" depends="required">
-				<arg0 key="cop.teamNm" />
 			</field>
 			<field property="nttCn" depends="required">
         		<arg0 key="cop.nttCn" />

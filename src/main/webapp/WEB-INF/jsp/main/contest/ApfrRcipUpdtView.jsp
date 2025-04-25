@@ -47,7 +47,11 @@
 		}
 
 		function fn_egov_insert_bbs() {
-
+			const selected = document.querySelector('input[name="imageSelect"]:checked');
+			const hiddenInput = document.getElementById("selectImg");
+			if (selected) {
+				hiddenInput.value = selected.value;
+			}
 			if (!validateContboard(document.board)){
 				return;
 			}
@@ -58,11 +62,14 @@
 			}
 		}
 		function fn_egov_update_bbs(){
-
+			const selected = document.querySelector('input[name="imageSelect"]:checked');
+			const hiddenInput = document.getElementById("selectImg");
+			if (selected) {
+				hiddenInput.value = selected.value;
+			}
 			if (!validateContboard(document.board)){
 				return;
 			}
-
 			if (confirm('<spring:message code="common.update.msg" />')) {
 				document.board.action = "<c:url value='/cop/bbs/updateBoardArticle.do'/>";
 				document.board.submit();
@@ -136,13 +143,14 @@
 						<input type="hidden" name="posblAtchFileSize" value="<c:out value='${bdMstr.posblAtchFileSize}'/>" />
 						<input type="hidden" name="tmplatId" value="<c:out value='${bdMstr.tmplatId}'/>" />
 						<input type="hidden" name="callbackUrl" value="/cmm/contest/apfrRcip.do" />
+						<input type="hidden" id="selectImg" name="selectImg" value="<c:out value='${result.selectImg}'/>" />
 
 						<input type="hidden" name="cal_url" value="<c:url value='/sym/cmm/EgovNormalCalPopup.do'/>" />
 						<input type="hidden" name="authFlag" value="<c:out value='${bdMstr.authFlag}'/>" />
 
 						<c:if test="${anonymous != 'true'}">
-							<input type="hidden" name="ntcrNm" value="dummy">   <!-- validator 처리를 위해 지정 -->
-							<input type="hidden" name="password" value="dummy"> <!-- validator 처리를 위해 지정 -->
+							<input type="hidden" name="ntcrNm" value="dummy">
+							<input type="hidden" name="password" value="dummy">
 						</c:if>
 
 						<c:if test="${bdMstr.bbsAttrbCode != 'BBSA01'}">
@@ -222,27 +230,27 @@
 								<div class="form-input">
 									<div class="image-radio-group">
 										<label class="image-option">
-											<input type="radio" name="imageSelect" value="1" />
+											<input type="radio" name="imageSelect" value="1" <c:if test="${result.selectImg == '1'}">checked="checked"</c:if>/>
 											<span class="custom-radio"></span>
 											<img src="<c:url value='/'/>images/profile-img-000.png" alt="샘플1" />
 										</label>
 										<label class="image-option">
-											<input type="radio" name="imageSelect" value="2" />
+											<input type="radio" name="imageSelect" value="2" <c:if test="${result.selectImg == '2'}">checked="checked"</c:if>/>
 											<span class="custom-radio"></span>
 											<img src="<c:url value='/'/>images/profile-img-001.png" alt="샘플2" />
 										</label>
 										<label class="image-option">
-											<input type="radio" name="imageSelect" value="3" />
+											<input type="radio" name="imageSelect" value="3" <c:if test="${result.selectImg == '3'}">checked="checked"</c:if>/>
 											<span class="custom-radio"></span>
 											<img src="<c:url value='/'/>images/profile-img-002.png" alt="샘플3" />
 										</label>
 										<label class="image-option">
-											<input type="radio" name="imageSelect" value="4" />
+											<input type="radio" name="imageSelect" value="4" <c:if test="${result.selectImg == '4'}">checked="checked"</c:if>/>
 											<span class="custom-radio"></span>
 											<img src="<c:url value='/'/>images/profile-img-003.png" alt="샘플4" />
 										</label>
 										<label class="image-option custom">
-											<input type="radio" name="imageSelect" value="custom" />
+											<input type="radio" name="imageSelect" value="0" <c:if test="${result.selectImg == '0'}">checked="checked"</c:if>/>
 											<span class="custom-radio"></span>
 											<span class="image-option-label">직접등록</span>
 										</label>
