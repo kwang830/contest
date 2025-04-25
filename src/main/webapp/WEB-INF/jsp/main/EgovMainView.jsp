@@ -312,33 +312,26 @@
 
 						<div class="notice-list-con" id="noticeSwiper">
 							<div class="swiper-wrapper">
-								<div class="swiper-slide">
-									<div class="swiper-slide-inner">
-										<div class="notice-list-year">2025.04.02</div>
-										<!--<div class="notice-list-date">04.02</div>-->
-										<div class="notice-list-title">
-											공모전 평가 안내 (6월 23일 금요일까지)
+								<c:forEach var="result" items="${notiList}" begin="0" end="10" step="1" varStatus="status">
+									<c:if test="${!(result.isExpired=='Y' || result.useAt == 'N')}">
+										<div class="swiper-slide">
+											<div class="swiper-slide-inner">
+												<div class="notice-list-year"><c:out value="${fn:substring(result.frstRegisterPnttm,0,4)}"/></div>
+												<div class="notice-list-date"><c:out value="${fn:substring(result.frstRegisterPnttm,5,7)}.${fn:substring(result.frstRegisterPnttm,8,10)}"/></div>
+												<div class="notice-list-title">
+													<c:choose>
+														<c:when test="${fn:length(result.nttSj) > 51 }">
+															<c:out value="${fn:substring(result.nttSj, 0, 50)}" escapeXml="false" />...
+														</c:when>
+														<c:otherwise>
+															<c:out value="${result.nttSj }" escapeXml="false" />
+														</c:otherwise>
+													</c:choose>
+												</div>
+											</div>
 										</div>
-									</div>
-								</div>
-								<div class="swiper-slide">
-									<div class="swiper-slide-inner">
-										<div class="notice-list-year">2025.04.02</div>
-										<!--<div class="notice-list-date">04.02</div>-->
-										<div class="notice-list-title">
-											공모전 평가 안내 (6월 23일 금요일까지) 공모전 평가 안내 (6월 23일 금요일까지)
-										</div>
-									</div>
-								</div>
-								<div class="swiper-slide">
-									<div class="swiper-slide-inner">
-										<div class="notice-list-year">2025.04.02</div>
-										<!--<div class="notice-list-date">04.02</div>-->
-										<div class="notice-list-title">
-											공모전 평가 안내 (6월 23일 금요일까지) 공모전 평가 안내 (6월 23일 금요일까지)
-										</div>
-									</div>
-								</div>
+									</c:if>
+								</c:forEach>
 							</div>
 						</div>
 					</div>
