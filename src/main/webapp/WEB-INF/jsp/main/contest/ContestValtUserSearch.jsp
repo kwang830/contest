@@ -128,7 +128,7 @@ function fncInsertContestValtUser() {
                 body: formData
             }).then(response => {
                 if (response.ok) {
-                    parent.fn_egov_returnValue("success");
+                    parent.fn_egov_returnValue("등록 완료하였습니다.");
                 } else {
                     alert("요청 처리 실패");
                 }

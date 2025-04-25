@@ -59,6 +59,8 @@ public interface ContValtManageService {
      */
     int insertContestValt(ContValtVO contValtVO) throws Exception;
 
+    int updateContValt(ContValtVO contSearchVO) throws Exception;
+
     int deleteContValtBbs(ContValtVO contValtVO) throws Exception;
 
     int deleteContValtUser(ContValtVO contValtVO) throws Exception;
@@ -76,4 +78,6 @@ public interface ContValtManageService {
     int selectContValtUserListTotCnt(ContValtVO contValtVO) throws Exception;
 
     int insertContestValtUser(ContValtVO contValtVO) throws Exception;
+
+    ContValtVO selectContValtDetail(ContValtVO contSearchVO) throws Exception;
 }

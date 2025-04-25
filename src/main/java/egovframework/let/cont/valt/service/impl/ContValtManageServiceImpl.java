@@ -99,6 +99,11 @@ public class ContValtManageServiceImpl extends EgovAbstractServiceImpl implement
     }
 
     @Override
+    public int updateContValt(ContValtVO contSearchVO) throws Exception {
+        return contValtManageDAO.updateContValt(contSearchVO);
+    }
+
+    @Override
     public int deleteContValtBbs(ContValtVO contValtVO) throws Exception {
         String[] delList = contValtVO.getNttIds().split(";");
         int count = 0;
@@ -183,5 +188,10 @@ public class ContValtManageServiceImpl extends EgovAbstractServiceImpl implement
             return count;
         }
         return 1;
+    }
+
+    @Override
+    public ContValtVO selectContValtDetail(ContValtVO contSearchVO) throws Exception {
+        return contValtManageDAO.selectContValtDetail(contSearchVO);
     }
 }

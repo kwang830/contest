@@ -39,6 +39,13 @@
 ============================================= -->
     <title>IBK시스템 AI 아이디어 챌린지 - 공모전 평가 관리</title>
 
+    <style type="text/css">
+        table tr.selected td {
+            background-color: #d0ebff; /* 모든 td에 하늘색 배경 */
+            font-weight: bold;         /* 글씨 굵게 */
+        }
+    </style>
+
     <!-- favicon -->
     <link rel="icon" type="image/x-icon" href="<c:url value='/'/>images/favicon.ico">
 
@@ -116,6 +123,10 @@
             return resultCheck;
         }
 
+        function fncSetValtMngmNo(source) {
+            document.listForm.valtMngmNo.value = source;
+        }
+
         function fncSelectContestList(pageNo) {
             //document.listForm.searchCondition.value = "1";
             document.listForm.pageIndex.value = pageNo;
@@ -167,6 +178,34 @@
                     height: 700
                 });
             $(".ui-dialog-titlebar").hide();
+            $(".ui-dialog-content").css("overflow", "hidden");
+            $dialog.dialog('open');
+        }
+
+        function fncUpdateContestValtPop() {
+            const selected = document.listForm.valtMngmNo.value;
+            if (!selected || selected.trim().length === 0) {
+                alert("선택 항목이 없습니다.")
+                return;
+            }
+            const baseUrl = "<c:url value='/cmm/contest/valt/updateContestValtPopup.do' />";
+            const action = baseUrl + "?valtMngmNo=" + selected;
+            var $dialog = $('<div id="modalPan"></div>')
+                .html('<iframe id="contestFrame3" style="border: 0px; " src="' + action + '" width="100%" height="100%"></iframe>')
+                .dialog({
+                    autoOpen: false,
+                    modal: true,
+                    width: 850,
+                    height: 700,
+                    open: function () {
+                        const iframe = document.getElementById("contestFrame3");
+                        iframe.onload = function () {
+                            iframe.contentWindow.setParentData(document.listForm.valtMngmNo.value);
+                        }
+                    }
+                });
+            $(".ui-dialog-titlebar").hide();
+            $(".ui-dialog-content").css("overflow", "hidden");
             $dialog.dialog('open');
         }
 
@@ -191,6 +230,7 @@
                     }
                 });
             $(".ui-dialog-titlebar").hide();
+            $(".ui-dialog-content").css("overflow", "hidden");
             $dialog.dialog('open');
         }
 
@@ -212,18 +252,18 @@
                     open: function () {
                         const iframe = document.getElementById("contestFrame2");
                         iframe.onload = function () {
-                            console.log("userpopup loaded")
                             iframe.contentWindow.setParentData(document.userForm.valtMngmNo.value);
                         }
                     }
                 });
             $(".ui-dialog-titlebar").hide();
+            $(".ui-dialog-content").css("overflow", "hidden");
             $dialog.dialog('open');
         }
 
         function fn_egov_returnValue(retVal) {
-            if (retVal != null) {
-                alert("등록 완료");
+            if (retVal != null && retVal.trim() != '') {
+                alert(retVal);
             }
             fn_egov_modal_remove();
         }
@@ -270,26 +310,9 @@
             </div>
             <nav class="nav-menu">
                 <div class="container">
-                    <!-- 홈 아이콘 -->
-                    <div class="nav-item home">
-                        <a href="/"><img src="/images/icon-home.png" alt="홈"/></a>
-                    </div>
-
-                    <!-- 1depth 메뉴 항목 -->
-                    <div class="nav-item has-dropdown">
-                        <button class="nav-button">시스템관리 <span class="nav-toggle"></span></button>
-                    </div>
-                    <div class="nav-item has-dropdown">
-                        <button class="nav-button">공모전 평가 관리 <span class="nav-toggle"><img
-                                src="/images/icon-nav-arrow.png" alt=""></span></button>
-                        <ul class="dropdown-menu">
-                            <li><a href="/sym/log/clg/userLgnHsty.do">로그인 이력</a></li>
-                            <li><a href="/cmm/contest/deptSttcPsst.do">부서 통계 현황</a></li>
-                            <li><a href="/uss/umt/mber/EgovMberManage.do">사용자 정보 관리</a></li>
-                            <li><a href="/sec/rgm/EgovAuthorGroupListView.do">사용자 권한 관리</a></li>
-                            <li class="active"><a href="#">공모전 평가 관리</a></li>
-                        </ul>
-                    </div>
+                    <!-- Left menu -->
+                    <c:import url="/sym/mms/ContMenuLeft.do" />
+                    <!--// Left menu -->
                 </div>
             </nav>
         </div>
@@ -336,14 +359,16 @@
                         <div class="right_col">
                             <a href="#LINK" class="btn btn_blue_46 w_130" onclick="javascript:fncRegistContestValtPop()"
                                style="selector-dummy:expression(this.hideFocus=false);">공모전 등록</a><!-- 등록 -->
+                            <a href="#LINK" class="btn btn_blue_46 w_130" onclick="javascript:fncUpdateContestValtPop()"
+                               style="selector-dummy:expression(this.hideFocus=false);">공모전 수정</a><!-- 수정 -->
                             <a href="#LINK" class="btn btn_blue_46 w_130" onclick="javascript:fncContValtDeleteList()"
-                               style="selector-dummy:expression(this.hideFocus=false);">등록 취소</a><!-- 삭제 -->
+                               style="selector-dummy:expression(this.hideFocus=false);">공모전 삭제</a><!-- 삭제 -->
                         </div>
                     </div>
 
 
                     <!-- 게시판 -->
-                    <div class="board_list">
+                    <div class="board_list selectable-table">
                         <table>
                             <caption>목록</caption>
                             <colgroup>
@@ -390,7 +415,7 @@
                                                    value="<c:out value="${contValt.valtMngmNo}"/>"/>
                                         </span>
                                     </td>
-                                    <td><a href="javascript:void(0)" class="lnk" onclick="javascript:fncSelectBbsByValt('${contValt.valtMngmNo}'); fncSelectUsrByValt('${contValt.valtMngmNo}')">
+                                    <td><a href="javascript:void(0)" class="lnk" onclick="javascript:fncSetValtMngmNo('${contValt.valtMngmNo}');  fncSelectBbsByValt('${contValt.valtMngmNo}'); fncSelectUsrByValt('${contValt.valtMngmNo}')">
                                         <c:out value="${contValt.valtMngmNo}"/></a></td>
                                     <td><c:out value="${contValt.valtQsitMnno}"/></td>
                                     <td><c:out value="${contValt.baseYy}"/></td>
@@ -595,9 +620,6 @@
                 }
 
                 dataList.forEach(item => {
-                    console.log(item)
-                    console.log(item.nttId)
-                    console.log(item.nttSj)
                     const row =
                         '<tr>' +
                             '<td>' +
@@ -610,7 +632,6 @@
                             '<td>' + item.nttSj + '</td>' +
                             '<td>' + (item.teamNm || item.ntcrNm) + '</td>' +
                         '</tr>';
-                    console.log(row)
                     $tbody.append(row);
                 });
             },
@@ -660,7 +681,6 @@
                         '<td>' + item.userNm + '</td>' +
                         '<td>' + item.titleNm + '</td>' +
                         '</tr>';
-                    console.log(row)
                     $tbody.append(row);
                 });
             },
@@ -669,6 +689,17 @@
             }
         })
     }
+</script>
+
+<script>
+    $(function () {
+        $('.selectable-table').each(function () {
+            $(this).find('tr').click(function () {
+                $(this).siblings().removeClass('selected');
+                $(this).addClass('selected');
+            });
+        });
+    });
 </script>
 
 </body>

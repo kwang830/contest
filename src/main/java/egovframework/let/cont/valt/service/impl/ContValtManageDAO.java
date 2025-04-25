@@ -45,6 +45,17 @@ public class ContValtManageDAO extends EgovAbstractMapper {
     }
 
     /**
+     * 선택된 공모전 관리를 수정한다.
+     *
+     * @param contValtVO
+     * @return int
+     * @throws Exception
+     */
+    public int updateContValt(ContValtVO contSearchVO) {
+        return (Integer)update("ContValtManageDAO.updateContValt", contSearchVO);
+    }
+
+    /**
      * 평가 문항 관리 번호 목록을 조회한다.
      *
      * @param contValtVO
@@ -102,7 +113,11 @@ public class ContValtManageDAO extends EgovAbstractMapper {
         return (Integer) selectOne("ContValtManageDAO.selectContValtUserListTotCnt", contValtVO);
     }
 
-    public int insertContValtUser(ContValtVO contValtVO) {
+    public int insertContValtUser(ContValtVO contValtVO) throws Exception {
         return (Integer) insert("ContValtManageDAO.insertContValtUser", contValtVO);
+    }
+
+    public ContValtVO selectContValtDetail(ContValtVO contSearchVO) throws  Exception {
+        return (ContValtVO) selectOne("ContValtManageDAO.selectContValtDetail", contSearchVO);
     }
 }

@@ -9,6 +9,15 @@
 		<result property="useAt" column="USE_AT"/>
 	</resultMap>
 
+	<resultMap id="contValtDetail" type="egovframework.let.cont.valt.service.ContValtVO">
+		<result property="valtMngmNo" column="VALT_MNGM_NO"/>
+		<result property="valtQsitMnno" column="VALT_QSIT_MNNO"/>
+		<result property="valtMngmTtl" column="VALT_MNGM_TTL"/>
+		<result property="valtMngmDesc" column="VALT_MNGM_DESC"/>
+		<result property="sqn" column="SQN"/>
+		<result property="baseYy" column="BASE_YY"/>
+	</resultMap>
+
 	<resultMap id="valtqsitList" type="egovframework.let.cont.valt.service.ContValtVO">
 		<result property="valtQsitMnno" column="VALT_QSIT_MNNO"/>
 	</resultMap>
@@ -89,6 +98,16 @@
 		WHERE VALT_MNGM_NO = #{valtMngmNo}
 	</update>
 
+	<update id="updateContValt" parameterType="egovframework.let.cont.valt.service.ContValtVO">
+		UPDATE TB_VALT_MNGM_MASTER SET
+			   VALT_QSIT_MNNO = #{valtQsitMnno},
+			   BASE_YY = #{baseYy},
+			   SQN = #{sqn},
+			   TTL = #{valtMngmTtl},
+			   `DESC` = #{valtMngmDesc}
+		WHERE VALT_MNGM_NO = #{valtMngmNo}
+	</update>
+
 	<select id="selectValtQsitMnnoList" parameterType="egovframework.let.cont.valt.service.ContValtVO" resultMap="valtqsitList">
 		SELECT DISTINCT a.VALT_QSIT_MNNO as VALT_QSIT_MNNO
 		FROM tb_valt_qsit_mnno a
@@ -118,6 +137,17 @@
 		        #{useAt})
 
 	</insert>
+
+	<select id="selectContValtDetail" parameterType="egovframework.let.cont.valt.service.ContValtVO" resultMap="contValtDetail">
+		SELECT A.VALT_MNGM_NO AS VALT_MNGM_NO,
+		       A.VALT_QSIT_MNNO AS VALT_MNGM_MNNO,
+			   A.BASE_YY AS BASE_YY,
+			   A.SQN AS SQN,
+			   A.TTL AS VALT_MNGM_TTL,
+			   A.`DESC` AS VALT_MNGM_DESC
+		FROM TB_VALT_MNGM_MASTER A
+		WHERE A.VALT_MNGM_NO = #{valtMngmNo}
+	</select>
 
 	<select id="selectContValtBbsList" parameterType="egovframework.let.cont.valt.service.ContValtVO" resultMap="valtBoardList">
 		SELECT A.NTT_ID AS NTT_ID,

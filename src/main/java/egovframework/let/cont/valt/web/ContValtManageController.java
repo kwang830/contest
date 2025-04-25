@@ -42,8 +42,9 @@ public class ContValtManageController {
     public String getContestValtMngmPage(@ModelAttribute("contSearchVO") ContValtVO contSearchVO, HttpServletRequest request, ModelMap model)
             throws Exception{
 
-        // 메인화면에서 넘어온 경우 메뉴 갱신을 위해 추가
+        // 메뉴 갱신
         request.getSession().setAttribute("menuNo", "6000000");
+        request.getSession().setAttribute("activeMenuNo", "6060000");
 
         // 미인증 사용자에 대한 보안처리
         Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
@@ -125,6 +126,43 @@ public class ContValtManageController {
         contSearchVO.setLastUpdusrId(user.getId());
 
         contValtManageService.deleteContValt(contSearchVO);
+
+        model.addAttribute("message", egovMessageSource.getMessage("success.common.delete"));
+        return "forward:/cmm/contest/valt/contestValtMngm.do";
+    }
+
+    @RequestMapping(value = "/cmm/contest/valt/updateContestValtPopup.do")
+    public String updateContValtPage(@ModelAttribute("contValtVO") ContValtVO contSearchVO, HttpServletRequest request, ModelMap model) throws Exception {
+        Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+        if(!isAuthenticated) {
+            model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
+            return "uat/uia/EgovLoginUsr";
+        }
+
+        String valtMngmNo = (String) request.getAttribute("valtMngmNo");
+        if (valtMngmNo != null && !valtMngmNo.isEmpty()) {
+            contSearchVO.setValtMngmNo(valtMngmNo);
+        }
+        contSearchVO.setUseAt("Y");
+        model.addAttribute("contValt",contValtManageService.selectContValtDetail(contSearchVO));
+        model.addAttribute("qsitList", contValtManageService.selectValtQsitMnnoList(contSearchVO));
+        return "main/contest/ContestValtUpdate";
+    }
+
+    @RequestMapping(value = "/cmm/contest/valt/updateContestValt.do")
+    public String updateContestValt(@ModelAttribute("contSearchVO") ContValtVO contSearchVO, HttpServletRequest request, ModelMap model)
+            throws Exception{
+
+        Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+        if(!isAuthenticated) {
+            model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
+            return "uat/uia/EgovLoginUsr";
+        }
+
+        LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+        contSearchVO.setLastUpdusrId(user.getId());
+
+        contValtManageService.updateContValt(contSearchVO);
 
         model.addAttribute("message", egovMessageSource.getMessage("success.common.delete"));
         return "forward:/cmm/contest/valt/contestValtMngm.do";
