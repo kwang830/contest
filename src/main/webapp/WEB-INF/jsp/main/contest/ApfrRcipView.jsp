@@ -23,7 +23,9 @@
 	<link rel="preload" href="<c:url value='/'/>css/responsive.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/font-icons.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/sub.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-	<link rel="preload" href="<c:url value='/'/>css/form.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+	<script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+
 
 	<!-- Document Title
 	============================================= -->
@@ -122,12 +124,11 @@
 				<c:if test="${empty resultList}">
 				<div class="nodata-con">
 					<div class="nodata-icon">
-						<img src="<c:url value='/'/>images/nodata-icon.png" alt="X">
+						<dotlottie-player src="https://lottie.host/7bbd4abc-c087-4ac9-8873-762c79c871d1/2mCoTPS66L.lottie" background="transparent" speed="1" autoplay></dotlottie-player>
 					</div>
 					<div class="nodata-text">
 						아직 접수한 작품이 없습니다.<br/>
-						신청서를 다운로드하여 작성 후,<br/>
-						작품을 등록해 주세요.
+						<span>"신청서 다운로드"</span> 하여 작성 후,<br/> 작품을 등록해주세요.
 					</div>
 					<div class="nodata-btn-con">
 						<a href="#" class="nodata-btn download" onClick="fn_contest_attach_file_down(); return false;">신청서 다운로드</a>

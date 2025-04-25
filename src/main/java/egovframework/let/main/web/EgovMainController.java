@@ -483,6 +483,24 @@ public class EgovMainController {
 		return "main/contest/ContestOtcmView";
 	}
 
+	/**
+	 * 공모전 참관기
+	 * @return 메인페이지 정보 Map [key : 항목명]
+	 *
+	 * @param request
+	 * @param model
+	 * @exception Exception Exception
+	 */
+	@RequestMapping(value = "/cmm/contest/contestPtcpRvw.do")
+	public String getContestPtcpRvwPage(HttpServletRequest request, ModelMap model)
+			throws Exception{
+
+		// 메뉴 갱신
+		request.getSession().setAttribute("menuNo", "4000000");
+		request.getSession().setAttribute("activeMenuNo", "4020000");
+
+		return "main/contest/ContestPtcpRvwView";
+	}
 
 	/**
 	 * 공모전 부서 통계 현황

@@ -85,6 +85,13 @@
 		</div>
 		<div class="content-wrap">
 			<div class="sub-container clearfix">
+				<div class="receipt-info-con">
+					<div class="receipt-info-text"><span>2023년 대상 & 최우수상</span> 수상자들이  <span>CES2024</span> 직접 참관했습니다.<br>
+						현장의 열기와 글로벌 기술 트렌드를 생생히 담은 후기를 확인해보세요!</div>
+					<div class="receipt-info-btn-con">
+						<a href="/cmm/contest/contestPtcpRvw.do" class="receipt-info-btn">참관기 보러가기</a>
+					</div>
+				</div>
 				<div class="prize-list-con">
 					<div class="prize-list">
 						<div class="prize-info">

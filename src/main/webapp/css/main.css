@@ -656,11 +656,22 @@
 	flex-wrap: wrap;
 	gap: 20px;
 }
-
+.notice-wrap .notice-con-wrap {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+}
+.notice-wrap .notice-title-wrap{
+	display: flex;
+	align-items: baseline;
+	gap: 0 10px;
+	flex-direction: column;
+}
 .notice-wrap .notice-title {
 	font-size: 35px;
 	line-height: 132%;
 	font-weight: 700;
+	margin-bottom: 10px;
 }
 
 .notice-wrap .notice-desc {
@@ -692,7 +703,7 @@
 
 .info-con .notice-desc {
 	color: #fff;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
 .info-con .info-manager {
@@ -745,8 +756,8 @@
 .notice-wrap .notice-list-con .swiper-slide-inner {
 	position: relative;
 	height: 100%;
-	padding: 40px 45px 52px;
-	border-radius: 80px 40px 40px;
+	padding: 32px 40px;
+	border-radius: 60px 30px 30px;
 	background-color: #fff;
 	box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.25);
 	cursor: pointer;
@@ -762,6 +773,7 @@
 	line-height: 132%;
 	font-weight: 600;
 	color: #000;
+	margin-bottom: 10px;
 }
 
 .notice-wrap .notice-list-con .notice-list-date {
@@ -783,7 +795,7 @@
 	-webkit-box-orient: vertical;
 }
 
-/* popup */
+/* 공통 popup */
 .popup-wrap {
 	display: none;
 	position: fixed;
@@ -810,6 +822,59 @@
 	right: 10px;
 	cursor: pointer;
 }
+
+/* 비밀번호 변경 팝업 */
+.popup-wrap .popup-box{
+	width: 500px;
+	max-width: 100%;
+	padding: 40px;
+	border-radius: 12px;
+	background-color: #fff;
+	box-shadow: 0 20px 24px -4px rgba(16, 24, 40, 0.08);
+}
+
+.popup-wrap .popup-title{
+	font-size: 24px;
+	line-height: 28px;
+	font-weight: 600;
+	text-align: center;
+	color: #101828;
+	margin-bottom: 20px;
+}
+
+.popup-wrap .popup-desc{
+	font-size: 18px;
+	line-height: 24px;
+	font-weight: 400;
+	text-align: center;
+	color: #667085;
+	margin-bottom: 40px;
+}
+
+.popup-wrap .popup-btn-con{
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.popup-wrap .popup-btn-con .popup-btn{
+	flex: 1;
+	font-size: 18px;
+	line-height: 24px;
+	font-weight: 700;
+	text-align: center;
+	color: #4881DE;
+	background-color: #fff;
+	border: 1px solid #4881DE;
+	border-radius: 5px;
+	padding: 8px 10px;
+}
+
+.popup-wrap .popup-btn-con .popup-btn.type2{
+	color: #fff;
+	background-color: #4881DE;
+}
+
 
 @media all and (min-width: 768px) {
 
@@ -947,11 +1012,7 @@
 		transform: none;
 	}
 
-	.swiper-btn-con .swiper-btn {
-		width: 40px;
-		height: 40px;
-		padding: 0;
-	}
+
 
 	.history-wrap .history-img-con {
 		padding: 0;
@@ -973,8 +1034,8 @@
 	}
 
 	.notice-wrap .notice-con {
-		padding-top: 40px;
-		padding-bottom: 40px;
+		padding-top: 37px;
+		padding-bottom: 27px;
 	}
 
 	.notice-wrap .notice-list-con {
@@ -985,6 +1046,7 @@
 		max-width: 380px;
 		padding-bottom: 10px;
 	}
+
 }
 
 @media all and (min-width: 992px) {
@@ -1015,9 +1077,10 @@
 
 	/*popup*/
 	.popup-wrap .popup-close {
-		top: 20px;
-		right: 30px;
+		top: 30px;
+		right: 20px;
 	}
+
 }
 
 @media all and (min-width: 1024px) {
@@ -1028,7 +1091,7 @@
 	.notice-wrap .info-con {
 		flex: 0 0 auto;
 		width: 480px;
-		padding: 40px 40px 0;
+		padding: 37px 40px 0;
 	}
 
 	.info-con .info-icon {
@@ -1042,8 +1105,16 @@
 	.notice-wrap .notice-con {
 		width: calc(100% - 500px);
 	}
+
 }
 
+@media all and (min-width: 1200px) {
+	/*popup*/
+	.popup-wrap .popup-close {
+		top: 30px;
+		right: 30px;
+	}
+}
 @media all and (min-width: 1300px) {
 
 	.schedule-wrap .container {
@@ -1080,6 +1151,14 @@
 	.step-con .step:before{
 		width: calc(100% + 50px);
 	}
+	.notice-wrap .notice-title-wrap{
+		flex-direction:row;
+	}
+	.swiper-btn-con .swiper-btn {
+		width: 40px;
+		height: 40px;
+		padding: 0;
+	}
 }
 
 @media all and (min-width: 1400px) {
@@ -1097,4 +1176,6 @@
 	.schedule-wrap .step-wrap {
 		margin-left: 90px;
 	}
+
+
 }

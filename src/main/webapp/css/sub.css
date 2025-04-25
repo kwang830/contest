@@ -311,8 +311,11 @@
 	line-height: 124%;
 	font-weight: 300;
 	color: #000;
+	text-align: center;
 }
-
+.receipt-info-con .receipt-info-text span {
+	font-weight: 600;
+}
 .receipt-info-con .receipt-info-btn-con {
 	display: flex;
 	align-items: center;
@@ -429,20 +432,26 @@
 .nodata-con .nodata-icon{
 	font-size: 0;
 	line-height: 0;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
-.nodata-con .nodata-icon > img{
-	width: 80px;
+.nodata-con .nodata-icon > dotlottie-player{
+	width: 140px;
+	margin: 0 auto;
+	transform: translateX(-10px);
 }
 
 .nodata-con .nodata-text {
 	font-size: 24px;
 	line-height: 40px;
-	font-weight: 600;
+	font-weight: 500;
 	text-align: center;
 	color: #000;
 	margin-bottom: 30px;
+}
+
+.nodata-con .nodata-text > span{
+	font-weight: 600;
 }
 
 .nodata-con .nodata-btn-con {
@@ -757,12 +766,23 @@
 }
 
 .comment-list .mem-info-img {
-	width: 40px;
-	height: 40px;
-	margin-bottom: 10px;
+	width: 30px;
+	height: 30px;
+	margin-right: 10px;
 }
 
 .comment-list .comment-info {
+	position: relative;
+	display: flex;
+	align-items: flex-start;
+	margin-bottom: 10px;
+}
+
+.comment-list .comment-detail-info {
+	flex: 1;
+	position: relative;
+	display: flex;
+	flex-direction: column;
 }
 
 .comment-list .comment-name {
@@ -787,13 +807,20 @@
 	font-weight: 500;
 	color: #B7C0C6;
 	margin-top: 2px;
-	margin-bottom: 4px;
 }
 
 .comment-list .comment-text {
 	font-size: 16px;
 	line-height: 22px;
 	font-weight: 400;
+	padding-left: 40px;
+}
+
+.comment-util-btn{
+
+}
+.comment-util-btn img{
+	width: 24px;
 }
 
 .more-comment-btn-con {
@@ -987,14 +1014,22 @@
 		padding-top: 40px;
 	}
 
+	.nodata-con .nodata-icon{
+		margin-bottom: 20px;
+	}
+
+	.nodata-con .nodata-icon > dotlottie-player{
+		width: 180px;
+	}
+
 	.nodata-con .nodata-text {
 		font-size: 30px;
-		line-height: 50px;
+		line-height: 46px;
 		margin-bottom: 40px;
 	}
 
-	.nodata-con .nodata-icon > img{
-		width: 104px;
+	.nodata-con .nodata-text > .hidden-br{
+		display: none;
 	}
 
 	.work-info-con {
@@ -1042,25 +1077,22 @@
 		padding: 0 20px 30px;
 	}
 
-	.comment-list .mem-info-img {
-		margin-right: 12px;
-		margin-bottom: 0;
+	.comment-list .comment-info {
+		align-items: center;
 	}
 
-	.comment-list .comment-info {
-		display: flex;
+	.comment-list .comment-detail-info {
+		flex-direction: row;
 		align-items: center;
 	}
 
 	.comment-list .comment-date {
 		margin-top: 0;
-		margin-bottom: 0;
 	}
 
 	.comment-list .comment-text {
 		font-size: 18px;
 		line-height: 24px;
-		padding-left: 52px;
 	}
 
 	/*===역대수상작===*/
@@ -1125,7 +1157,11 @@
 	}
 
 	.receipt-info-con .receipt-info-text {
-		font-size: 24px;
+		font-size: 20px;
+		line-height: 124%;
+		font-weight: 300;
+		color: #000;
+		text-align: left;
 	}
 
 	.receipt-info-con .receipt-info-btn-con .receipt-info-btn {
@@ -1189,7 +1225,10 @@
 	.vote-con .vote-right-inner{
 		padding: 40px 50px;
 	}
-
+	.receipt-info-con .receipt-info-text {
+		font-size: 24px;
+		text-align: left;
+	}
 }
 
 @media all and (min-width: 1440px) {

@@ -184,19 +184,17 @@
 								<div class="form-error-text" style="display: none;"></div>
 							</div>
 							<div class="form-list">
-								<div class="form-title essential">
-									파일첨부
-								</div>
+								<div class="form-title essential">첨부파일</div>
 								<div class="form-input f_file_wrap">
 									<!-- 첨부파일목록 시작 -->
 									<c:if test="${not empty result.atchFileId}">
-										<div class="board_attach2">
-                                            <span>
-                                                <c:import url="/cmm/fms/selectFileInfsForUpdate.do" charEncoding="utf-8">
-													<c:param name="param_atchFileId" value="${egovc:encrypt(result.atchFileId)}" />
-												</c:import>
-                                            </span>
-										</div>
+									<div class="board_attach2">
+										<span>
+											<c:import url="/cmm/fms/selectFileInfsForUpdate.do" charEncoding="utf-8">
+												<c:param name="param_atchFileId" value="${egovc:encrypt(result.atchFileId)}" />
+											</c:import>
+										</span>
+									</div>
 									</c:if>
 									<!-- /첨부파일목록 끝 -->
 									<div class="board_attach2" id="file_upload_posbl">
@@ -210,44 +208,80 @@
 										<input type="hidden" id="fileListCnt" name="fileListCnt" value="0" />
 									</c:if>
 								</div>
-							</div>
-							<div class="form-info-text">
-								<div style="float:left; margin-right: 5px;">※</div>
-								<div style="overflow: hidden;">
-									첨부파일은 최대 2개까지 등록할 수 있으며, 파일당 30MB 이하만 가능합니다.<br/>
-									허용 확장자: ppt, pptx, pdf, doc, docx, hwp, hwpx, xls, xlsx, zip
-								</div>
-							</div>
-							<div class="form-list topmargin-sm">
-								<div class="form-title">대표 이미지 <span>(개인신상을 알아볼 수 있는 사진은 첨부 불가, 100*100px 정사각형 사이즈 )</span></div>
-								<div class="form-input f_file_wrap">
-									<!-- 첨부파일목록 시작 -->
-									<c:if test="${not empty result.imgUrl}">
-										<div class="board_attach2">
-                                            <span>
-                                                <c:import url="/cmm/fms/selectFileInfsForUpdateAdd.do" charEncoding="utf-8">
-													<c:param name="param_atchFileId" value="${egovc:encrypt(result.imgUrl)}" />
-													<c:param name="param_nttId" value="${result.nttId}" />
-													<c:param name="param_bbsId" value="${result.bbsId}" />
-												</c:import>
-                                            </span>
-										</div>
-									</c:if>
-									<!-- /첨부파일목록 끝 -->
-									<c:if test="${empty result.imgUrl}">
-									<div class="board_attach2" id="file_upload_posbl2">
-										<input name="file2_1" id="egovComFileUploader2" type="file" accept=".jpg,.jpeg,.png"/>
-										<div id="egovComFileList2"></div>
+								<div class="form-info-text">
+									<div style="float:left; margin-right: 5px;">※</div>
+									<div style="overflow: hidden;">
+										첨부파일은 최대 2개까지 등록할 수 있으며, 파일당 30MB 이하만 가능합니다.<br/>
+										허용 확장자: ppt, pptx, pdf, doc, docx, hwp, hwpx, xls, xlsx, zip
 									</div>
-									</c:if>
 								</div>
 							</div>
-							<div class="form-info-text">
-								<div style="float:left; margin-right: 5px;">※</div>
-								<div style="overflow: hidden;">
-									허용 확장자: jpg, jpeg, png
+
+							<div class="form-list">
+								<div class="form-title">대표 이미지 <span>(팀의 특색을 알아볼 수 있는 사진으로 업로드해주세요. 100*100px 정사각형 사이즈)</span></div>
+								<div class="form-input">
+									<div class="image-radio-group">
+										<label class="image-option">
+											<input type="radio" name="imageSelect" value="1" />
+											<span class="custom-radio"></span>
+											<img src="<c:url value='/'/>images/profile-img-000.png" alt="샘플1" />
+										</label>
+										<label class="image-option">
+											<input type="radio" name="imageSelect" value="2" />
+											<span class="custom-radio"></span>
+											<img src="<c:url value='/'/>images/profile-img-001.png" alt="샘플2" />
+										</label>
+										<label class="image-option">
+											<input type="radio" name="imageSelect" value="3" />
+											<span class="custom-radio"></span>
+											<img src="<c:url value='/'/>images/profile-img-002.png" alt="샘플3" />
+										</label>
+										<label class="image-option">
+											<input type="radio" name="imageSelect" value="4" />
+											<span class="custom-radio"></span>
+											<img src="<c:url value='/'/>images/profile-img-003.png" alt="샘플4" />
+										</label>
+										<label class="image-option custom">
+											<input type="radio" name="imageSelect" value="custom" />
+											<span class="custom-radio"></span>
+											<span class="image-option-label">직접등록</span>
+										</label>
+									</div>
+
+									<div class="form-file-wrap" id="profileImg" style="display: none;">
+										<!-- 첨부파일목록 시작 -->
+										<c:if test="${not empty result.imgUrl}">
+											<div class="board_attach2">
+												<span>
+													<c:import url="/cmm/fms/selectFileInfsForUpdateAdd.do"
+															  charEncoding="utf-8">
+														<c:param name="param_atchFileId"
+																 value="${egovc:encrypt(result.imgUrl)}"/>
+														<c:param name="param_nttId" value="${result.nttId}"/>
+														<c:param name="param_bbsId" value="${result.bbsId}"/>
+													</c:import>
+												</span>
+											</div>
+										</c:if>
+										<!-- /첨부파일목록 끝 -->
+										<c:if test="${empty result.imgUrl}">
+											<div class="board_attach2" id="file_upload_posbl2">
+												<input name="file2_1" id="egovComFileUploader2" type="file"
+													   accept=".jpg,.jpeg,.png"/>
+												<div id="egovComFileList2"></div>
+											</div>
+										</c:if>
+										<div class="form-info-text">
+											<div style="float:left; margin-right: 5px;">※</div>
+											<div style="overflow: hidden;">
+												허용 확장자: jpg, jpeg, png
+											</div>
+										</div>
+									</div>
 								</div>
+
 							</div>
+
 						</div>
 						<div class="form-btn-con">
 							<c:if test="${empty result.nttId}">
@@ -326,5 +360,42 @@
 	multi_selector2.addElement( document.getElementById( 'egovComFileUploader2' ) );
 </script>
 </c:if>
+<script>
+	$(document).ready(function() {
+		const $nameInput =$('.form-list input[name="name"]');
+		const $titleInput =$('.form-list input[name="title"]');
+		const $contentInput =$('.form-list textarea[name="content"]');
+
+		// 1. input 포커스 시 스타일 변경
+		$('.form-input input[type="text"], .form-input textarea').on('focus', function() {
+			const $parent = $(this).closest('.form-list');
+
+			// 에러 초기화
+			$parent.removeClass('input-error');
+			$parent.find('.form-error-text').hide();
+
+			$parent.addClass('focused');
+		});
+
+		// focus 해제 시 초기화
+		$('.form-input input[type="text"], .form-input textarea').on('blur', function() {
+			const $input = $(this);
+			const $parent = $input.closest('.form-list');
+
+			$parent.removeClass('focused');
+		});
+
+		$('input[name="imageSelect"]').on('change', function () {
+			const selected = $(this).val();
+
+			if (selected === 'custom') {
+				$('#profileImg').show();
+			} else {
+				$('#profileImg').hide();
+			}
+		});
+
+	});
+</script>
 </body>
 </html>

@@ -261,7 +261,7 @@
 							공모전 문의전화
 						</div>
 						<div class="notice-desc">
-							AI공모전 문의
+							AI 아이디어 챌린지 공모전 관련 문의는 언제든지 연락주세요!
 						</div>
 						<div class="info-manager">
 							(주)IBK 시스템<br/>
@@ -270,64 +270,75 @@
 						<div class="info-tel">
 							02-3407-6074
 						</div>
-						<div class="info-icon">
-							<img src="<c:url value='/'/>images/inquiry-icon.png" alt="">
-						</div>
+<%--						<div class="info-icon">--%>
+<%--							<img src="<c:url value='/'/>images/inquiry-icon.png" alt="">--%>
+<%--						</div>--%>
 					</div>
 					<div class="notice-con">
-						<div class="notice-title">
-							공지사항
-						</div>
-						<div class="notice-desc">
-							AI공모전 <span>공지사항</span>을 확인해보세요!
-						</div>
-						<div class="swiper-btn-con">
-							<div class="swiper-btn swiper-button-prev" title="이전으로">
-								<svg xmlns="http://www.w3.org/2000/svg" width="12" height="21" viewBox="0 0 12 21"
-									 fill="none">
-									<path d="M4.06117 10.9721L11.8915 2.91666L9.97453 0.94458L0.226808 10.9721L9.97453 21L11.8915 19.0279L4.06117 10.9721Z"
-										  fill="#1F1F1F"/>
-								</svg>
+						<div class="notice-con-wrap">
+							<div class="notice-title-wrap">
+								<div class="notice-title">
+									공지사항
+								</div>
+								<div class="notice-desc">
+									AI공모전 <span>공지사항</span>을 확인해보세요!
+								</div>
 							</div>
-							<div class="swiper-btn swiper-button-next" title="다음으로">
-								<svg xmlns="http://www.w3.org/2000/svg" width="12" height="21" viewBox="0 0 12 21"
-									 fill="none">
-									<path d="M8.01195 10.9721L0.18161 2.91666L2.09859 0.94458L11.8463 10.9721L2.09859 21L0.18161 19.0279L8.01195 10.9721Z"
-										  fill="#1F1F1F"/>
-								</svg>
-							</div>
-							<div class="swiper-btn plus-btn" title="상세보기" onClick="window.location.href='/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_AAAAAAAAAAAA';">
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-									 fill="none">
-									<path d="M10.591 13.3887H0.60022V10.6112H10.591V0.333252H13.2908V10.6112H23.2816V13.3887H13.2908V23.6666H10.591V13.3887Z"
-										  fill="white"/>
-								</svg>
+							<div class="swiper-btn-con">
+								<div class="swiper-btn swiper-button-prev" title="이전으로">
+									<svg xmlns="http://www.w3.org/2000/svg" width="12" height="21" viewBox="0 0 12 21"
+										 fill="none">
+										<path d="M4.06117 10.9721L11.8915 2.91666L9.97453 0.94458L0.226808 10.9721L9.97453 21L11.8915 19.0279L4.06117 10.9721Z"
+											  fill="#1F1F1F"/>
+									</svg>
+								</div>
+								<div class="swiper-btn swiper-button-next" title="다음으로">
+									<svg xmlns="http://www.w3.org/2000/svg" width="12" height="21" viewBox="0 0 12 21"
+										 fill="none">
+										<path d="M8.01195 10.9721L0.18161 2.91666L2.09859 0.94458L11.8463 10.9721L2.09859 21L0.18161 19.0279L8.01195 10.9721Z"
+											  fill="#1F1F1F"/>
+									</svg>
+								</div>
+								<div class="swiper-btn plus-btn" title="상세보기">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+										 fill="none">
+										<path d="M10.591 13.3887H0.60022V10.6112H10.591V0.333252H13.2908V10.6112H23.2816V13.3887H13.2908V23.6666H10.591V13.3887Z"
+											  fill="white"/>
+									</svg>
+								</div>
 							</div>
 						</div>
+
+
 						<div class="notice-list-con" id="noticeSwiper">
 							<div class="swiper-wrapper">
-
-								<c:forEach var="result" items="${notiList}" begin="0" end="10" step="1" varStatus="status">
-									<c:if test="${!(result.isExpired=='Y' || result.useAt == 'N')}">
-									<div class="swiper-slide">
-										<div class="swiper-slide-inner">
-											<div class="notice-list-year"><c:out value="${fn:substring(result.frstRegisterPnttm,0,4)}"/></div>
-											<div class="notice-list-date"><c:out value="${fn:substring(result.frstRegisterPnttm,5,7)}.${fn:substring(result.frstRegisterPnttm,8,10)}"/></div>
-											<div class="notice-list-title">
-												<c:choose>
-													<c:when test="${fn:length(result.nttSj) > 51 }">
-														<c:out value="${fn:substring(result.nttSj, 0, 50)}" escapeXml="false" />...
-													</c:when>
-													<c:otherwise>
-														<c:out value="${result.nttSj }" escapeXml="false" />
-													</c:otherwise>
-												</c:choose>
-											</div>
+								<div class="swiper-slide">
+									<div class="swiper-slide-inner">
+										<div class="notice-list-year">2025.04.02</div>
+										<!--<div class="notice-list-date">04.02</div>-->
+										<div class="notice-list-title">
+											공모전 평가 안내 (6월 23일 금요일까지)
 										</div>
 									</div>
-									</c:if>
-								</c:forEach>
-
+								</div>
+								<div class="swiper-slide">
+									<div class="swiper-slide-inner">
+										<div class="notice-list-year">2025.04.02</div>
+										<!--<div class="notice-list-date">04.02</div>-->
+										<div class="notice-list-title">
+											공모전 평가 안내 (6월 23일 금요일까지) 공모전 평가 안내 (6월 23일 금요일까지)
+										</div>
+									</div>
+								</div>
+								<div class="swiper-slide">
+									<div class="swiper-slide-inner">
+										<div class="notice-list-year">2025.04.02</div>
+										<!--<div class="notice-list-date">04.02</div>-->
+										<div class="notice-list-title">
+											공모전 평가 안내 (6월 23일 금요일까지) 공모전 평가 안내 (6월 23일 금요일까지)
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -349,37 +360,30 @@
 			</div>
 		</div>
 
-		<%
-			LoginVO loginVO = (LoginVO)session.getAttribute("LoginVO");
-			if (loginVO != null){
-		%>
-		<c:set var="tempPwdYn" value="<%= loginVO.getTempPwdYn()%>" />
-		<c:set var="sessionTempPwdYn" value="${sessionScope.tempPwdYn}" />
-		<c:set var="chkId" value="<%= loginVO.getId()%>" />
-<%--		<script>--%>
-<%--			console.log('LoginVO > tempPwdYn:<c:out value='${tempPwdYn}'/>');--%>
-<%--			console.log('LoginVO > sessionTempPwdYn:<c:out value='${sessionTempPwdYn}'/>');--%>
-<%--			console.log('LoginVO > chkId:<c:out value='${chkId}'/>');--%>
-<%--		</script>--%>
-
-		<c:if test="${tempPwdYn == 'Y' && (sessionTempPwdYn == 'Y' || sessionTempPwdYn == null)}">
-		<div class="modal-on-load enable-cookie" data-target="#myModal1"></div>
-
-		<!-- Modal -->
-		<div class="modal1 mfp-hide" id="myModal1">
-			<div class="block divcenter" style="background-color: #FFF; max-width: 700px;">
-				<div class="center" style="padding: 50px;">
-					<h3>비밀번호를 변경하세요!</h3>
-					<p class="nobottommargin">임시 비밀번호를 사용하고 계십니다. 비밀번호 변경이 필요합니다.</p>
-				</div>
-				<div class="section center nomargin" style="padding: 30px;">
-					<a href="/uss/umt/edit/MyInfo.do" class="button">비밀번호 변경</a>
-					<a href="#" class="button" onClick="$.magnificPopup.close();return false;">창 닫기</a>
+		<div class="popup-wrap" id="pwChgPop">
+			<div class="popup-content">
+				<div class="popup-box">
+					<div class="popup-title">
+						비밀번호를 변경하세요!
+					</div>
+					<div class="popup-desc">
+						임시 비밀번호를 사용하고 계십니다.<br/>
+						비밀번호 변경이 필요합니다.
+					</div>
+					<div class="popup-btn-con">
+						<button class="popup-btn" onClick="closePopup('pwChgPop');">취소</button>
+						<button class="popup-btn type2" onclick="location.href='/uss/umt/edit/MyInfo.do'">비밀번호 변경</button>
+					</div>
 				</div>
 			</div>
+			<div class="popup-close">
+				<svg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 24 24" fill="none">
+					<path fill-rule="evenodd" clip-rule="evenodd"
+						  d="M5.29289 5.29289C5.68342 4.90237 6.31658 4.90237 6.70711 5.29289L12 10.5858L17.2929 5.29289C17.6834 4.90237 18.3166 4.90237 18.7071 5.29289C19.0976 5.68342 19.0976 6.31658 18.7071 6.70711L13.4142 12L18.7071 17.2929C19.0976 17.6834 19.0976 18.3166 18.7071 18.7071C18.3166 19.0976 17.6834 19.0976 17.2929 18.7071L12 13.4142L6.70711 18.7071C6.31658 19.0976 5.68342 19.0976 5.29289 18.7071C4.90237 18.3166 4.90237 17.6834 5.29289 17.2929L10.5858 12L5.29289 6.70711C4.90237 6.31658 4.90237 5.68342 5.29289 5.29289Z"
+						  fill="#fff"/>
+				</svg>
+			</div>
 		</div>
-		</c:if>
-		<%  } %>
 		
 		<!-- footer 시작 -->
 	    <c:import url="/sym/mms/ContFooter.do" />
@@ -544,6 +548,13 @@
 			}
 		}
 
+		function closePopup(id){
+			if ($('#' + id)) {
+				$('body').css('overflow', '');
+				$('#' + id).hide();
+			}
+		}
+
 		$('.popup-close').on('click', function (e) {
 			$('body').css('overflow', '');
 			if ($(e.target).closest('.popup-wrap')) $(e.target).closest('.popup-wrap').hide();
@@ -551,14 +562,19 @@
 	</script>
 
 	<%
+		LoginVO loginVO = (LoginVO)session.getAttribute("LoginVO");
 		if (loginVO != null){
 	%>
+	<c:set var="tempPwdYn" value="<%= loginVO.getTempPwdYn()%>" />
+	<c:set var="sessionTempPwdYn" value="${sessionScope.tempPwdYn}" />
+	<c:set var="chkId" value="<%= loginVO.getId()%>" />
 	<c:if test="${tempPwdYn == 'Y' && (sessionTempPwdYn == 'Y' || sessionTempPwdYn == null)}">
 		<script type="text/javascript">
 			console.log('tempPwdYn:<c:out value='${tempPwdYn}'/>');
 			console.log('chkId:<c:out value='${chkId}'/>');
 			$(document).ready(function () {
-				$('[href="#myModal1"]').trigger('click');
+				// 비밀번호 변경 팝업
+				openPopup('pwChgPop');
 			});
 		</script>
 	</c:if>
