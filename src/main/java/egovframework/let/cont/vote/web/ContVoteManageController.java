@@ -258,6 +258,9 @@ public class ContVoteManageController {
 		model.addAttribute("contVoteAdminBBSList", map2.get("resultList"));
 		model.addAttribute("contVoteAdminBBSListCnt", map2.get("resultCnt"));
 
+		model.addAttribute("valtOpnn", "평가 의견을 입력하세요!");
+
+
 		// 메뉴 갱신
 		request.getSession().setAttribute("menuNo", "3000000");
 		request.getSession().setAttribute("activeMenuNo", "3020000");

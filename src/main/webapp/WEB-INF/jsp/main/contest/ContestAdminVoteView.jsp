@@ -567,7 +567,18 @@
 										</tbody>
 									</table>
 								</div>
+
 							</form:form>
+
+							<div class="board_form_row">
+								<div class="title">
+									<label for="valtOpnn">평가 의견</label>
+								</div>
+								<div class="input">
+                                    <textarea id="valtOpnn" name="valtOpnn" title="평가 의견" class="f_txtar w_full h_200"
+											  rows="10" cols="30"><c:out value="${valtOpnn}" escapeXml="false" /></textarea>
+								</div>
+							</div>
 
 							<div class="board_view_bot topmargin-sm">
 								<div class="left_col">
