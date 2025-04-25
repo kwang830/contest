@@ -396,7 +396,7 @@
 		$('input[name="imageSelect"]').on('change', function () {
 			const selected = $(this).val();
 
-			if (selected === 'custom') {
+			if (selected === '0') {
 				$('#profileImg').show();
 			} else {
 				$('#profileImg').hide();
