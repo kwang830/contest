@@ -132,7 +132,7 @@ function fn_egov_delete_faq(faqId){
                                             </div>
                                             <div class="board_view_info">
                                                 <div class="view_info_title">등록일</div>
-                                                <div class="view_info_desc"><c:out value="${result.lastUpdusrPnttm}" escapeXml="false" /></div>
+                                                <div class="view_info_desc"><c:out value="${fn:replace(result.lastUpdusrPnttm, '-', '.')}" /></div>
                                             </div>
                                             <div class="board_view_info">
                                                 <div class="view_info_title">조회수</div>

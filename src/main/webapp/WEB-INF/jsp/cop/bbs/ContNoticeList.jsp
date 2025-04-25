@@ -189,7 +189,7 @@
 								</c:if>
 								<td>${result.frstRegisterNm}</td>
 								<td>${result.inqireCo}</td>
-								<td>${result.frstRegisterPnttm}</td>
+								<td><c:out value="${fn:replace(result.frstRegisterPnttm, '-', '.')}" /></td>
 							</tr>
 						</c:forEach>
 

@@ -201,7 +201,7 @@ function fn_egov_passwordConfirm(){
                                     <div class="title">답변일자</div>
                                     <div class="input">
                                         <c:if test="${result.answerDe != null}">
-                                            <c:out value='${fn:substring(result.answerDe, 0,4)}'/>-<c:out value='${fn:substring(result.answerDe, 4,6)}'/>-<c:out value='${fn:substring(result.answerDe, 6,8)}'/>
+                                            <c:out value='${fn:substring(result.answerDe, 0,4)}'/>.<c:out value='${fn:substring(result.answerDe, 4,6)}'/>.<c:out value='${fn:substring(result.answerDe, 6,8)}'/>
                                         </c:if>
                                     </div>
                                 </div>

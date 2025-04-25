@@ -299,7 +299,7 @@
 											  fill="#1F1F1F"/>
 									</svg>
 								</div>
-								<div class="swiper-btn plus-btn" title="상세보기">
+								<div class="swiper-btn plus-btn" title="상세보기" onClick="window.location.href='/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_AAAAAAAAAAAA';">
 									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
 										 fill="none">
 										<path d="M10.591 13.3887H0.60022V10.6112H10.591V0.333252H13.2908V10.6112H23.2816V13.3887H13.2908V23.6666H10.591V13.3887Z"
@@ -316,8 +316,7 @@
 									<c:if test="${!(result.isExpired=='Y' || result.useAt == 'N')}">
 										<div class="swiper-slide">
 											<div class="swiper-slide-inner">
-												<div class="notice-list-year"><c:out value="${fn:substring(result.frstRegisterPnttm,0,4)}"/></div>
-												<div class="notice-list-date"><c:out value="${fn:substring(result.frstRegisterPnttm,5,7)}.${fn:substring(result.frstRegisterPnttm,8,10)}"/></div>
+												<div class="notice-list-year"><c:out value="${fn:replace(result.frstRegisterPnttm, '-', '.')}" /></div>
 												<div class="notice-list-title">
 													<c:choose>
 														<c:when test="${fn:length(result.nttSj) > 51 }">

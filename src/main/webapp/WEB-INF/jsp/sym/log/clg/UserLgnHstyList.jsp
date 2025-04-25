@@ -248,7 +248,7 @@ function fn_egov_search_loginLog(){
 							<tr>
 								<td><c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageSize + status.count)}" /></td>
 								<td class="al"><c:out value='${result.logId}'/></td>
-								<td><c:out value='${fn:substring(result.creatDt,0,10)}'/></td>
+								<td><c:out value="${fn:replace(fn:substring(result.creatDt, 0, 10), '-', '.')}" /></td>
 								<td><c:out value='${result.loginMthd}'/></td>
 								<td><c:out value='${result.loginNm}'/></td>
 								<td><c:out value='${result.loginId}'/></td>

@@ -190,7 +190,7 @@ function fn_egov_inquire_qnaanswerdetail(qaId) {
                                     <td><c:out value="${resultInfo.wrterNm}"/></td>
                                     <td><c:out value="${resultInfo.qnaProcessSttusCodeNm}"/></td>
                                     <td><c:out value="${resultInfo.rdcnt}"/></td>
-                                    <td><c:out value='${fn:substring(resultInfo.writngDe, 0,4)}'/>-<c:out value='${fn:substring(resultInfo.writngDe, 4,6)}'/>-<c:out value='${fn:substring(resultInfo.writngDe, 6,8)}'/></td>
+                                    <td><c:out value='${fn:substring(resultInfo.writngDe, 0,4)}'/>.<c:out value='${fn:substring(resultInfo.writngDe, 4,6)}'/>.<c:out value='${fn:substring(resultInfo.writngDe, 6,8)}'/></td>
                                 </tr>
                             </c:forEach>
 

@@ -194,7 +194,7 @@ function fn_egov_inquire_faqlistdetail(faqId) {
                                         </a>
                                     </td>
                                     <td><c:out value="${resultInfo.inqireCo}"/></td>
-                                    <td><c:out value="${resultInfo.lastUpdtPnttm}"/></td>
+                                    <td><c:out value="${fn:replace(resultInfo.lastUpdtPnttm, '-', '.')}" /></td>
                                 </tr>
                             </c:forEach>
 
