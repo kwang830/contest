@@ -530,7 +530,7 @@ public class EgovMainController {
 		boardVO.setPageSize(10);
 
 		// 게시물 검색 기준
-		boardVO.setSearchBgnDe("2023-01-01");
+		boardVO.setSearchBgnDe("2025-04-25");
 		boardVO.setSearchEndDe("2025-12-31");
 		boardVO.setBbsId("BBSMSTR_BBBBBBBBBBBB");
 
@@ -574,7 +574,7 @@ public class EgovMainController {
 		boardVO.setPageSize(10);
 
 		// 게시물 검색 기준
-		boardVO.setSearchBgnDe("2023-01-01");
+		boardVO.setSearchBgnDe("2025-04-25");
 		boardVO.setSearchEndDe("2025-12-31");
 		boardVO.setBbsId("BBSMSTR_BBBBBBBBBBBB");
 

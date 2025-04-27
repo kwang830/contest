@@ -456,7 +456,7 @@ case when count(1) &gt; 0 and count(1) &lt; 3 then 'A'
      when count(1) &gt; 2 then 'B'
   ELSE 'X'
 END
- AS chk,  count(1) as cnt from lettnloginlog where creat_dt &gt; '2023-05-08' group by conect_id
+ AS chk,  count(1) as cnt from lettnloginlog where creat_dt &gt; #{searchBgnDe} group by conect_id
      
   ) mmb ON mmb.conect_id = mb.user_id 
   where mb.USER_SE = 'GNR' and mb.DEPT_CODE is not null and mb.POSITION_CODE not like 'A%'
@@ -491,7 +491,7 @@ from COMVNUSERMASTER mb
 LEFT OUTER JOIN lettccmmndetailcode cda ON mb.DEPT_CODE = cda.CODE AND cda.CODE_ID = 'IBK001' AND cda.USE_AT ='Y'
 LEFT OUTER JOIN lettccmmndetailcode cdb ON mb.TITLE_CODE = cdb.CODE AND cdb.CODE_ID = 'IBK002' AND cdb.USE_AT ='Y'
 LEFT OUTER JOIN lettccmmndetailcode cdc ON mb.DEPT_CODE = cdc.CODE AND cdc.CODE_ID = 'IBK101' AND cdc.USE_AT ='Y'
-LEFT OUTER JOIN (select conect_id, count(1) as cnt, max(CREAT_DT) as last_login_dt  from lettnloginlog where creat_dt > '2023-05-08' group by conect_id) mmb ON mmb.conect_id = mb.user_id where mb.USER_SE = 'GNR' and mb.DEPT_CODE is not null
+LEFT OUTER JOIN (select conect_id, count(1) as cnt, max(CREAT_DT) as last_login_dt  from lettnloginlog where creat_dt > #{searchBgnDe} group by conect_id) mmb ON mmb.conect_id = mb.user_id where mb.USER_SE = 'GNR' and mb.DEPT_CODE is not null
 order by cda.code_nm, cdb.code, user_nm
 						
 	</select>

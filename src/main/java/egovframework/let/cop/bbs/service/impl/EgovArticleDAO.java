@@ -19,7 +19,7 @@ public class EgovArticleDAO extends EgovComAbstractDAO {
 	public int selectArticleListCnt(BoardVO boardVO) {
 		return (Integer)selectOne("BBSArticle.selectArticleListCnt", boardVO);
 	}
-	
+
 	public List<?> selectArticleListPicks(BoardVO boardVO) {
 		return list("BBSArticle.selectArticleListPicks", boardVO);
 	}
@@ -27,31 +27,31 @@ public class EgovArticleDAO extends EgovComAbstractDAO {
 	public int selectArticleListPicksCnt(BoardVO boardVO) {
 		return (Integer)selectOne("BBSArticle.selectArticleListPicksCnt", boardVO);
 	}
-	
+
 	public List<?> selectArticleListScore(BoardVO boardVO) {
 		return list("BBSArticle.selectArticleListScore", boardVO);
 	}
 
 	public int selectArticleListScoreCnt(BoardVO boardVO) {
 		return (Integer)selectOne("BBSArticle.selectArticleListScoreCnt", boardVO);
-	}	
-	
+	}
+
 	public List<?> selectArticleListBoard(BoardVO boardVO) {
 		return list("BBSArticle.selectArticleListBoard", boardVO);
-	}	
-	
+	}
+
 	public List<?> selectDeptLoginList(BoardVO boardVO) {
 		return list("BBSArticle.selectDeptLoginList", boardVO);
 	}
-	
+
 	public List<?> selectDeptBbsList(BoardVO boardVO) {
 		return list("BBSArticle.selectDeptBbsList", boardVO);
-	}	
+	}
 
 	public List<?> selectUserLoginList(BoardVO boardVO) {
 		return list("BBSArticle.selectUserLoginList", boardVO);
-	}	
-	
+	}
+
 	public int selectMaxInqireCo(BoardVO boardVO) {
 		return (Integer)selectOne("BBSArticle.selectMaxInqireCo", boardVO);
 	}
@@ -71,7 +71,7 @@ public class EgovArticleDAO extends EgovComAbstractDAO {
 	public void insertArticle(Board board) {
 		insert("BBSArticle.insertArticle", board);
 	}
-	
+
 	public void insertArticleLog(Board board) {
 		insert("BBSArticle.insertArticleLog", board);
 	}
@@ -82,7 +82,7 @@ public class EgovArticleDAO extends EgovComAbstractDAO {
 
 	public void deleteArticle(Board board) {
 		update("BBSArticle.deleteArticle", board);
-		
+
 	}
 
 	public List<BoardVO> selectNoticeArticleList(BoardVO boardVO) {
