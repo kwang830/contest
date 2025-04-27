@@ -37,7 +37,6 @@
 
     <script type="text/javascript">
         <!--
-
         function getPcInfo() {
             var os;
             var mobile = (/iphone|ipad|ipod|android/i.test(navigator.userAgent.toLowerCase()));
@@ -263,7 +262,20 @@
         });
     });
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // 이전 히스토리 제거
+        history.replaceState(null, '', location.href);
+        // 현재 페이지 히스토리를 두 번 push
+        history.pushState(null, '', location.href);
+        history.pushState(null, '', location.href);
 
+        window.addEventListener('popstate', function () {
+            // 뒤로가기를 눌러도 다시 앞으로 push해서 원위치
+            history.pushState(null, '', location.href);
+        });
+    });
+</script>
 </body>
 </html>
 

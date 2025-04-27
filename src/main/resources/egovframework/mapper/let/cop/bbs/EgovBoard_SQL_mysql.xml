@@ -24,6 +24,30 @@
 		<result property="selectImg" column="SELECT_IMG"/>
 	</resultMap>
 
+	<resultMap id="boardVoteList" type="egovframework.let.cop.bbs.service.BoardVO">
+		<result property="bbsId" column="BBS_ID"/>
+		<result property="nttId" column="NTT_ID"/>
+		<result property="nttSj" column="NTT_SJ"/>
+		<result property="frstRegisterId" column="FRST_REGISTER_ID"/>
+		<result property="frstRegisterNm" column="FRST_REGISTER_NM"/>
+		<result property="frstRegisterPnttm" column="FRST_REGIST_PNTTM"/>
+		<result property="inqireCo" column="RDCNT"/>
+		<result property="parnts" column="PARNTSCTT_NO"/>
+		<result property="replyAt" column="ANSWER_AT"/>
+		<result property="replyLc" column="ANSWER_LC"/>
+		<result property="useAt" column="USE_AT"/>
+		<result property="atchFileId" column="ATCH_FILE_ID"/>
+		<result property="ntceBgnde" column="NTCE_BGNDE"/>
+		<result property="ntceEndde" column="NTCE_ENDDE"/>
+		<result property="teamNm" column="TEAM_NM"/>
+		<result property="imgUrl" column="IMG_URL"/>
+		<result property="selectImg" column="SELECT_IMG"/>
+		<result property="score" column="SCORE"/>
+		<result property="scoreA" column="SCORE_A"/>
+		<result property="scoreCnt" column="SCORE_CNT"/>
+		<result property="commentCnt" column="COMMENT_CNT"/>
+	</resultMap>
+
 	<resultMap id="boardDetail" type="egovframework.let.cop.bbs.service.BoardVO">
 		<result property="bbsId" column="BBS_ID"/>
 		<result property="nttId" column="NTT_ID"/>
@@ -56,6 +80,42 @@
 		<result property="selectImg" column="SELECT_IMG"/>
 	</resultMap>
 
+	<resultMap id="boardVoteDetail" type="egovframework.let.cop.bbs.service.BoardVO">
+		<result property="bbsId" column="BBS_ID"/>
+		<result property="nttId" column="NTT_ID"/>
+		<result property="nttSj" column="NTT_SJ"/>
+		<result property="ntcrId" column="NTCR_ID"/>
+		<result property="ntcrNm" column="NTCR_NM"/>
+		<result property="nttNo" column="NTT_NO"/>
+		<result property="nttCn" column="NTT_CN"/>
+		<result property="password" column="PASSWORD"/>
+		<result property="frstRegisterId" column="FRST_REGISTER_ID"/>
+		<result property="frstRegisterNm" column="FRST_REGISTER_NM"/>
+		<result property="frstRegisterPnttm" column="FRST_REGIST_PNTTM"/>
+		<result property="ntceBgnde" column="NTCE_BGNDE"/>
+		<result property="ntceEndde" column="NTCE_ENDDE"/>
+		<result property="inqireCo" column="RDCNT"/>
+		<result property="useAt" column="USE_AT"/>
+		<result property="atchFileId" column="ATCH_FILE_ID"/>
+		<result property="parnts" column="PARNTSCTT_NO"/>
+		<result property="replyAt" column="ANSWER_AT"/>
+		<result property="replyLc" column="ANSWER_LC"/>
+		<result property="sortOrdr" column="SORT_ORDR"/>
+		<result property="bbsTyCode" column="BBS_TY_CODE"/>
+		<result property="bbsAttrbCode" column="BBS_ATTRB_CODE"/>
+		<result property="replyPosblAt" column="REPLY_POSBL_AT"/>
+		<result property="fileAtchPosblAt" column="FILE_ATCH_POSBL_AT"/>
+		<result property="posblAtchFileNumber" column="ATCH_POSBL_FILE_NUMBER"/>
+		<result property="bbsNm" column="BBS_NM"/>
+		<result property="teamNm" column="TEAM_NM"/>
+		<result property="imgUrl" column="IMG_URL"/>
+		<result property="selectImg" column="SELECT_IMG"/>
+		<result property="score" column="SCORE"/>
+		<result property="scoreA" column="SCORE_A"/>
+		<result property="scoreCnt" column="SCORE_CNT"/>
+		<result property="commentCnt" column="COMMENT_CNT"/>
+	</resultMap>
+
 	<resultMap id="sortList" type="egovframework.let.cop.bbs.service.BoardVO">
 		<result property="bbsId" column="BBS_ID"/>
 		<result property="nttId" column="NTT_ID"/>
@@ -84,6 +144,21 @@
 		<result property="nttSj" column="NTT_SJ"/>
 		<result property="ntcrNm" column="NTCR_NM"/>
 		<result property="teamNm" column="TEAM_NM"/>
+	</resultMap>
+
+	<resultMap id="commentList" type="egovframework.let.cop.bbs.service.BoardVO">
+		<result property="nttId" column="NTT_ID"/>
+		<result property="bbsId" column="BBS_ID"/>
+		<result property="answerNo" column="ANSWER_NO"/>
+		<result property="ntcrId" column="NTCR_ID"/>
+		<result property="ntcrNm" column="NTCR_NM"/>
+		<result property="answer" column="ANSWER"/>
+		<result property="useAt" column="USE_AT"/>
+		<result property="frstRegisterPnttm" column="FRST_REGIST_PNTTM"/>
+		<result property="frstRegisterId" column="FRST_REGISTER_ID"/>
+		<result property="imgUrl" column="IMG_URL"/>
+		<result property="teamNm" column="TEAM_NM"/>
+		<result property="titleNm" column="TITLE_NM"/>
 	</resultMap>
 
  	<select id="selectMaxNttId" resultType="java.lang.Long">
@@ -187,8 +262,45 @@
 			ORDER BY a.SORT_ORDR DESC, NTT_NO ASC
 			LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 						
-	</select>	
-	
+	</select>
+
+	<select id="selectBoardVoteArticleList" parameterType="egovframework.let.cop.bbs.service.BoardVO" resultMap="boardVoteList">
+
+		SELECT
+		a.NTT_ID, a.NTT_SJ, a.NTT_CN, a.FRST_REGISTER_ID, IFNULL(b.USER_NM, a.NTCR_NM) as FRST_REGISTER_NM,
+		DATE_FORMAT(a.FRST_REGIST_PNTTM, '%Y-%m-%d') as FRST_REGIST_PNTTM,
+		a.RDCNT, a.PARNTSCTT_NO, a.ANSWER_AT, a.ANSWER_LC, a.USE_AT, a.ATCH_FILE_ID,
+		a.BBS_ID, a.NTCE_BGNDE, a.NTCE_ENDDE, a.TEAM_NM, a.IMG_URL, a.SELECT_IMG
+		, (SELECT IFNULL((SELECT c.score FROM lettnbbsscore c WHERE c.NTT_ID = a.NTT_ID AND c.BBS_ID = a.BBS_ID AND c.WRTER_ID = #{exmnId} AND c.USE_AT = 'Y' LIMIT 1), 0)) AS SCORE
+		, (SELECT IFNULL((SELECT ROUND(AVG(c.score), 1) FROM lettnbbsscore c WHERE c.NTT_ID = a.NTT_ID AND c.BBS_ID = a.BBS_ID AND c.USE_AT = 'Y' LIMIT 1), 0)) AS SCORE_A
+		, (SELECT count(1) FROM lettnbbsscore c WHERE c.NTT_ID = a.NTT_ID AND c.BBS_ID = a.BBS_ID AND c.USE_AT = 'Y' LIMIT 1) AS SCORE_CNT
+	    , (SELECT count(1) FROM lettncomment c WHERE c.NTT_ID = a.NTT_ID AND c.BBS_ID = a.BBS_ID AND c.USE_AT = 'Y' LIMIT 1) AS COMMENT_CNT
+		FROM
+		LETTNBBS a
+		LEFT OUTER JOIN
+		COMVNUSERMASTER b
+		ON a.FRST_REGISTER_ID = b.ESNTL_ID
+		WHERE
+		a.BBS_ID = #{bbsId}
+
+		<if test="useAt != ''">AND
+			a.USE_AT = #{useAt}
+		</if>
+		<if test="searchCnd == 0">AND
+			a.NTT_SJ LIKE CONCAT ('%', #{searchWrd},'%')
+		</if>
+		<if test="searchCnd == 1">AND
+			a.NTT_CN LIKE CONCAT ('%', #{searchWrd},'%')
+		</if>
+		<if test="searchCnd == 2">AND
+			b.USER_NM LIKE CONCAT ('%', #{searchWrd},'%')
+		</if>
+
+		ORDER BY a.SORT_ORDR DESC, NTT_NO ASC
+		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
+
+	</select>
+
 	<select id="selectBoardArticleListCnt" parameterType="egovframework.let.cop.bbs.service.BoardVO" resultType="java.lang.Integer">
 		
 			SELECT
@@ -242,9 +354,39 @@
 			AND
 				a.NTT_ID = #{nttId}	
 						
-	</select> 
- 
- 	<update id="updateBoardArticle" parameterType="egovframework.let.cop.bbs.service.Board">
+	</select>
+
+	<select id="selectBoardVoteArticle" parameterType="egovframework.let.cop.bbs.service.BoardVO" resultMap="boardVoteDetail">
+
+		SELECT
+			a.NTT_SJ, a.NTCR_ID, a.NTCR_NM, a.NTT_NO, a.NTT_CN,
+			a.PASSWORD, a.FRST_REGISTER_ID, b.USER_NM as FRST_REGISTER_NM,
+			DATE_FORMAT(a.FRST_REGIST_PNTTM, '%Y-%m-%d') as FRST_REGIST_PNTTM,
+			a.NTCE_BGNDE, a.NTCE_ENDDE, a.RDCNT,
+			a.USE_AT, a.ATCH_FILE_ID, a.BBS_ID, a.NTT_ID,
+			a.PARNTSCTT_NO, a.ANSWER_AT, a.ANSWER_LC, a.SORT_ORDR,
+			c.BBS_TY_CODE, c.BBS_ATTRB_CODE, c.REPLY_POSBL_AT,
+			c.FILE_ATCH_POSBL_AT, c.ATCH_POSBL_FILE_NUMBER, c.BBS_NM, a.TEAM_NM, a.IMG_URL, a.SELECT_IMG
+			, (SELECT IFNULL((SELECT d.score FROM lettnbbsscore d WHERE d.NTT_ID = a.NTT_ID AND d.BBS_ID = a.BBS_ID AND d.WRTER_ID = #{exmnId} AND d.USE_AT = 'Y' LIMIT 1), 0)) AS SCORE
+			, (SELECT IFNULL((SELECT ROUND(AVG(d.score), 1) FROM lettnbbsscore d WHERE d.NTT_ID = a.NTT_ID AND d.BBS_ID = a.BBS_ID AND d.USE_AT = 'Y' LIMIT 1), 0)) AS SCORE_A
+			, (SELECT count(1) FROM lettnbbsscore d WHERE d.NTT_ID = a.NTT_ID AND d.BBS_ID = a.BBS_ID AND d.USE_AT = 'Y' LIMIT 1) AS SCORE_CNT
+	    	, (SELECT count(1) FROM lettncomment d WHERE d.NTT_ID = a.NTT_ID AND d.BBS_ID = a.BBS_ID AND d.USE_AT = 'Y' LIMIT 1) AS COMMENT_CNT
+		FROM
+			LETTNBBS a
+				LEFT OUTER JOIN
+			COMVNUSERMASTER b
+			ON a.FRST_REGISTER_ID = b.ESNTL_ID
+				LEFT OUTER JOIN
+			LETTNBBSMASTER c
+			ON a.BBS_ID = c.BBS_ID
+		WHERE
+			a.BBS_ID = #{bbsId}
+		  AND
+			a.NTT_ID = #{nttId}
+
+	</select>
+
+	<update id="updateBoardArticle" parameterType="egovframework.let.cop.bbs.service.Board">
  		
 			UPDATE LETTNBBS SET 
 				NTT_SJ = #{nttSj},
@@ -388,7 +530,7 @@
  		
  	</update>
  	
- 	 	<update id="updateNttNo" parameterType="egovframework.let.cop.bbs.service.Board">
+	<update id="updateNttNo" parameterType="egovframework.let.cop.bbs.service.Board">
  		
 			UPDATE LETTNBBS SET 
 				NTT_NO = #{nttNo}
@@ -445,4 +587,121 @@
 		  AND A.USE_AT = 'Y'
 		ORDER BY B.NTT_ID
 	</select>
+
+	<select id="selectMaxCmtId" resultType="java.lang.Long">
+
+		SELECT IFNULL(MAX(ANSWER_NO),0)+1 AS ANSWER_NO
+		FROM LETTNCOMMENT
+		WHERE BBS_ID = #{bbsId}
+		  AND NTT_ID = #{nttId}
+
+	</select>
+
+	<insert id="insertBoardComment" parameterType="egovframework.let.cop.bbs.service.Board">
+		<selectKey keyProperty="answerNo" resultType="java.lang.Long" order="BEFORE">
+			SELECT IFNULL(MAX(ANSWER_NO),0)+1 AS ANSWER_NO  FROM LETTNCOMMENT
+			WHERE BBS_ID = #{bbsId} AND NTT_ID = #{nttId}
+		</selectKey>
+
+		INSERT INTO LETTNCOMMENT
+		(NTT_ID, BBS_ID, ANSWER_NO, WRTER_ID, WRTER_NM, ANSWER, USE_AT
+		, FRST_REGISTER_ID, FRST_REGIST_PNTTM)
+		VALUES
+		(#{nttId}, #{bbsId}, #{answerNo}, #{exmnId}, '', #{answer}, #{useAt}
+		  , #{frstRegisterId}, SYSDATE())
+
+	</insert>
+
+	<select id="selectBoardCommentList" parameterType="egovframework.let.cop.bbs.service.BoardVO" resultMap="commentList">
+
+		SELECT
+			a.NTT_ID,
+			a.BBS_ID,
+			a.ANSWER_NO,
+			a.WRTER_ID AS NTCR_ID,
+			a.ANSWER,
+			a.USE_AT,
+			a.FRST_REGIST_PNTTM,
+			a.FRST_REGISTER_ID,
+			b.IMG_URL,
+			b.MBER_NM AS NTCR_NM,
+			SUBSTRING_INDEX(c.CODE_NM, '>', -1) AS TEAM_NM,
+			d.CODE_NM AS TITLE_NM
+		FROM
+			LETTNCOMMENT a
+			INNER JOIN LETTNGNRLMBER b on a.WRTER_ID = b.MBER_ID
+			LEFT OUTER JOIN lettccmmndetailcode c on b.DEPT_CODE = c.code and c.CODE_ID = 'IBK001'
+			LEFT OUTER JOIN lettccmmndetailcode d on b.TITLE_CODE = d.code and d.CODE_ID = 'IBK002'
+		WHERE
+			a.BBS_ID = #{bbsId}
+		  AND a.NTT_ID = #{nttId}
+		  AND a.USE_AT = 'Y'
+		ORDER BY a.ANSWER_NO DESC
+			LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
+
+	</select>
+
+	<select id="selectBoardCommentCnt" parameterType="egovframework.let.cop.bbs.service.BoardVO" resultType="java.lang.Integer">
+
+		SELECT
+			COUNT(NTT_ID)
+		FROM
+			LETTNCOMMENT
+		where BBS_ID = #{bbsId} and NTT_ID = #{nttId} AND USE_AT = 'Y'
+
+	</select>
+
+	<select id="selectBoardCommentMoreList" parameterType="egovframework.let.cop.bbs.service.BoardVO" resultMap="commentList">
+
+		SELECT
+			a.NTT_ID,
+			a.BBS_ID,
+			a.ANSWER_NO,
+			a.WRTER_ID AS NTCR_ID,
+			a.ANSWER,
+			a.USE_AT,
+			a.FRST_REGIST_PNTTM,
+			a.FRST_REGISTER_ID,
+			b.IMG_URL,
+			b.MBER_NM AS NTCR_NM,
+			SUBSTRING_INDEX(c.CODE_NM, '>', -1) AS TEAM_NM,
+			d.CODE_NM AS TITLE_NM
+		FROM
+			LETTNCOMMENT a
+				INNER JOIN LETTNGNRLMBER b on a.WRTER_ID = b.MBER_ID
+				LEFT OUTER JOIN lettccmmndetailcode c on b.DEPT_CODE = c.code and c.CODE_ID = 'IBK001'
+				LEFT OUTER JOIN lettccmmndetailcode d on b.TITLE_CODE = d.code and d.CODE_ID = 'IBK002'
+		WHERE
+			a.BBS_ID = #{bbsId}
+		  AND a.NTT_ID = #{nttId}
+		  AND a.USE_AT = 'Y'
+		  AND a.ANSWER_NO &lt; #{answerNo}
+		ORDER BY a.ANSWER_NO DESC
+			LIMIT 10 OFFSET 0
+
+	</select>
+
+	<select id="selectBoardCommentMoreCnt" parameterType="egovframework.let.cop.bbs.service.BoardVO" resultType="java.lang.Integer">
+
+		SELECT
+			COUNT(NTT_ID)
+		FROM
+			LETTNCOMMENT
+		where BBS_ID = #{bbsId} and NTT_ID = #{nttId} AND USE_AT = 'Y' AND ANSWER_NO &lt; #{answerNo}
+
+	</select>
+
+	<update id="updateBoardComment" parameterType="egovframework.let.cop.bbs.service.BoardVO">
+
+		UPDATE LETTNCOMMENT SET
+			ANSWER = #{answer},
+			USE_AT = #{useAt},
+			LAST_UPDUSR_ID = #{lastUpdusrId},
+			LAST_UPDT_PNTTM = SYSDATE()
+		WHERE BBS_ID = #{bbsId}
+		  AND NTT_ID = #{nttId}
+		  AND ANSWER_NO = #{answerNo}
+		  AND WRTER_ID = #{exmnId}
+
+	</update>
 </mapper>

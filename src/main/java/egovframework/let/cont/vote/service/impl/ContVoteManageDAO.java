@@ -110,5 +110,25 @@ public class ContVoteManageDAO extends EgovAbstractMapper {
     public int updateAdminVote(ContVoteVO contVoteVO) throws Exception {
         return update("ContVoteManageDAO.updateAdminVote", contVoteVO);
     }
+
+    /**
+     * 평가점수(별점)을 등록 한다.
+     *
+     * @param contVoteVO
+     * @throws Exception
+     */
+    public int insertVoteScore(ContVoteVO contVoteVO) throws Exception {
+        return insert("ContVoteManageDAO.insertVoteScore", contVoteVO);
+    }
+
+    /**
+     * 평가점수(별점)을 조회 한다.
+     *
+     * @param contVoteVO
+     * @throws Exception
+     */
+    public int selectVoteScore(ContVoteVO contVoteVO) throws Exception {
+        return (Integer)selectOne("ContVoteManageDAO.selectVoteScore", contVoteVO);
+    }
     
 }

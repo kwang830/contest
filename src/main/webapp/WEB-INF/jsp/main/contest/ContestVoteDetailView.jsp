@@ -2,6 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="egovc" uri="/WEB-INF/tlds/egovc.tld" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ page import ="egovframework.com.cmm.LoginVO" %>
 <!DOCTYPE html>
 <html dir="ltr" lang="ko">
 <head>
@@ -29,7 +33,40 @@
 
 	<!-- favicon -->
 	<link rel="icon" type="image/x-icon" href="<c:url value='/'/>images/favicon.ico">
+	<script type="text/javascript">
+		function fn_vote_score_update(score) {
+			if(score){
+				// console.log('score:'+score);
+				let sMsg = "평가를 저장하시겠습니까?"
+				if (confirm(sMsg)) {
+					document.vote.action = "<c:url value='/cmm/contest/contestVoteScoreUpdt.do'/>";
+					document.vote.submit();
+				}
+			}
+		}
 
+		function fn_insert_cmt() {
+			const answer = document.getElementById('answer').value.trim();
+			if (answer === '') {
+				alert('응원의 댓글을 입력해 주세요!');
+				document.getElementById('answer').focus();
+				return;
+			}
+			if (confirm('<spring:message code="common.regist.msg" />')) {
+				//document.comment.onsubmit();
+				document.comment.action = "<c:url value='/cmm/contest/insertContestCmt.do'/>";
+				document.comment.submit();
+			}
+		}
+
+		function fn_delete_cmt() {
+			if (confirm('<spring:message code="common.delete.msg" />')) {
+				//document.comment.onsubmit();
+				document.comment.action = "<c:url value='/cmm/contest/insertContestCmt.do'/>";
+				document.comment.submit();
+			}
+		}
+	</script>
 </head>
 
 <body class="stretched">
@@ -97,10 +134,10 @@
 						</div>
 						<div class="board_view_avg_con">
 							<div class="rating-value">
-								<span class="rating-avg">4.5</span> /5
+								<span class="rating-avg"><c:out value="${result.scoreA}" default="0" /></span> /5
 							</div>
 							<div>
-								<div class="star-rating" data-rating="4">
+								<div class="star-rating" data-rating="<fmt:formatNumber value="${result.scoreA}" pattern="#0" />">
 									<span class="star" data-value="1">&#9733;</span>
 									<span class="star" data-value="2">&#9733;</span>
 									<span class="star" data-value="3">&#9733;</span>
@@ -108,7 +145,7 @@
 									<span class="star" data-value="5">&#9733;</span>
 								</div>
 								<div class="rating-cnt">
-									평가 100개
+									평가 <c:out value="${result.scoreCnt}" default="0" />개
 								</div>
 							</div>
 						</div>
@@ -130,7 +167,7 @@
 							<div class="vote-left-inner">
 								<div class="vote-title">평가 평점</div>
 								<div class="vote-info">
-									<div class="star-rating" data-rating="4">
+									<div class="star-rating" data-rating="<fmt:formatNumber value="${result.scoreA}" pattern="#0" />">
 										<span class="star" data-value="1">&#9733;</span>
 										<span class="star" data-value="2">&#9733;</span>
 										<span class="star" data-value="3">&#9733;</span>
@@ -139,17 +176,17 @@
 									</div>
 									<div class="vote-rating">
 										<div class="rating-value">
-											<span class="rating-avg">4.5</span> /5
+											<span class="rating-avg"><c:out value="${result.scoreA}" default="0" /></span> /5
 										</div>
 										<div class="rating-cnt">
-											(평가 100개)
+											(평가 <c:out value="${result.scoreCnt}" default="0" />개)
 										</div>
 									</div>
 								</div>
 							</div>
 							<div class="vote-right-inner">
 								<div class="vote-title">평가하기 <span>(별점을 눌러 평가해주세요.)</span></div>
-								<div class="star-rating" data-rating="0" data-editable="true">
+								<div class="star-rating" data-rating="<c:out value="${result.score}" default="0" />" data-editable="true">
 									<span class="star" data-value="1">&#9733;</span>
 									<span class="star" data-value="2">&#9733;</span>
 									<span class="star" data-value="3">&#9733;</span>
@@ -160,79 +197,84 @@
 									평가하기
 								</div>
 							</div>
+							<form:form modelAttribute="vote" name="vote" method="post" >
+								<input type="hidden" name="score" id="score" value="" />
+								<input type="hidden" name="bbsId" value="<c:out value='${result.bbsId}'/>" />
+								<input type="hidden" name="nttId" value="<c:out value='${result.nttId}'/>" />
+							</form:form>
 						</div>
 					</div>
 					<div class="comment-con">
 						<div class="comment-top-con">
 							<div class="comment-top-title">
-								댓글(000건)
+								댓글(<c:out value="${result.commentCnt}" default="0" />건)
 							</div>
-							<form class="comment-input-con">
-								<textarea name="" id="" cols="30" rows="4" placeholder="응원의 댓글을 남겨주세요!"></textarea>
-								<input type="submit" value="등록" />
+							<form class="comment-input-con" name="comment" method="post">
+								<input type="hidden" name="nttId" value="<c:out value='${result.nttId}'/>" />
+								<input type="hidden" name="bbsId" value="<c:out value='${result.bbsId}'/>" />
+								<input type="hidden" name="answerNo" value="0" />
+								<input type="hidden" name="useAt" value="Y" />
+								<textarea name="answer" id="answer" cols="30" rows="4" placeholder="응원의 댓글을 남겨주세요!"></textarea>
+								<input type="submit" value="등록" onclick="javascript:fn_insert_cmt(); return false;"/>
 							</form>
 						</div>
 						<div class="comment-list-con" id="resultArea">
-							<div class="comment-list">
-								<div class="comment-info">
-									<div class="mem-info-img">
-										<img src="" alt=""> <!--그룹웨어 이미지-->
-									</div>
-									<div>
-										<div class="comment-name">
-											권승주 과장
+							<c:forEach var="result" items="${resultList}" varStatus="status">
+								<div class="comment-list" data-comment-id="<c:out value='${result.answerNo}'/>">
+									<div class="comment-info">
+										<div class="mem-info-img">
+											<c:if test="${empty result.imgUrl}">
+												<img src="" alt=""><!-- 대표 이미지1 -->
+											</c:if>
+											<c:if test="${not empty result.imgUrl}">
+												<img src="<c:out value="${result.imgUrl}" />" alt=""><!-- 대표 이미지2 -->
+											</c:if>
 										</div>
-										<div class="comment-department">
-											(디지털사업기획팀)
+										<div class="comment-detail-info">
+											<div>
+												<div class="comment-name">
+													<c:out value='${result.ntcrNm}'/> <c:out value='${result.titleNm}'/>
+												</div>
+												<div class="comment-department">
+													<c:if test="${not empty result.teamNm}">
+														(<c:out value='${result.teamNm}'/>)
+													</c:if>
+												</div>
+											</div>
+											<div class="comment-date">
+												<c:out value="${fn:replace(result.frstRegisterPnttm, '-', '.')}" />
+											</div>
 										</div>
-
+										<div class="comment-util-btn">
+											<%
+												LoginVO loginVO = (LoginVO)session.getAttribute("LoginVO");
+												if (loginVO != null){
+											%>
+											<c:set var="chkId" value="<%= loginVO.getId()%>"/>
+											<c:if test="${chkId == result.ntcrId}">
+												<span class="btn-edit"><img src="/images/icon-edit.png" alt="수정"></span>
+												<span class="btn-delete"><img src="/images/icon-trash.png" alt="삭제"></span>
+											</c:if>
+											<%  } %>
+										</div>
 									</div>
-									<div class="comment-date">
-										2025.04.09 PM 03:00:00
+									<div class="comment-text">
+										<c:out value='${result.answer}' escapeXml="false"/>
 									</div>
 								</div>
-								<div class="comment-text">
-									공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다.
-									공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다.
-									공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다.
-									공모전 댓글 내용입니다. 공모전 댓글 내용입니다.
-								</div>
-							</div>
-							<div class="comment-list">
-								<div class="comment-info">
-									<div class="mem-info-img">
-										<img src="" alt=""> <!--그룹웨어 이미지-->
-									</div>
-									<div>
-										<div class="comment-name">
-											권승주 과장
-										</div>
-										<div class="comment-department">
-											(디지털사업기획팀)
-										</div>
-
-									</div>
-									<div class="comment-date">
-										2025.04.09 PM 03:00:00
-									</div>
-								</div>
-								<div class="comment-text">
-									공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다.
-									공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다.
-									공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다.
-									공모전 댓글 내용입니다. 공모전 댓글 내용입니다.
-								</div>
-							</div>
+							</c:forEach>
 						</div>
 						<div class="more-comment-btn-con">
-							<button class="more-comment-btn" id="moreBtn">
-								댓글 10개 더 보기
-								<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"
-									 fill="none">
-									<path d="M20 25.6664L10 15.6664L11.9721 13.6943L20 21.7218L28.0279 13.6943L30 15.6664L20 25.6664Z"
-										  fill="#4881DE"/>
-								</svg>
-							</button>
+							<c:if test="${resultCnt > 10}">
+								<button class="more-comment-btn" id="moreBtn">
+									댓글 10개 더 보기
+									<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"
+										 fill="none">
+										<path d="M20 25.6664L10 15.6664L11.9721 13.6943L20 21.7218L28.0279 13.6943L30 15.6664L20 25.6664Z"
+											  fill="#4881DE"/>
+									</svg>
+								</button>
+							</c:if>
 						</div>
 					</div>
 				</div>
@@ -277,8 +319,9 @@
 				url: '/cmm/contest/contestVoteCmt.do',
 				type: 'POST',
 				data: {
-					postId: 123,
-					lastCommentId: getLastCommentId()
+					nttId: '<c:out value='${result.nttId}'/>',
+					bbsId: '<c:out value='${result.bbsId}'/>',
+					AnswerNo: getLastCommentId()
 				},
 				success: function (response) {
 					// response를 임시 DOM에 삽입하여 파싱
@@ -305,10 +348,53 @@
 			return $('#resultArea .comment-list').last().data('comment-id') || 0;
 		}
 
+		document.querySelector('.vote-btn').addEventListener('click', function() {
+			const editableRating = document.querySelector('.star-rating[data-editable="true"]');
+			const selectedRating = editableRating.getAttribute('data-rating');  // 현재 선택된 별점 값을 가져옴
+
+			// rating-value 입력 필드에 값을 넣어줌
+			document.getElementById('score').value = selectedRating;
+			fn_vote_score_update(selectedRating);
+		});
 
 
 	});
 </script>
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		document.getElementById('content').addEventListener('click', function(e) {
+			if (e.target.closest('.btn-edit')) {
+				var btn = e.target.closest('.btn-edit');
+				var commentList = btn.closest('.comment-list');
 
+				var commentId = commentList.getAttribute('data-comment-id');
+				var commentText = commentList.querySelector('.comment-text').innerText.trim();
+
+				document.querySelector('input[name="answerNo"]').value = commentId;
+				document.querySelector('textarea[name="answer"]').value = commentText;
+				document.querySelector('textarea[name="answer"]').focus();
+
+				// 버튼 글씨를 '수정'으로 변경
+				document.querySelector('input[type="submit"]').value = '수정';
+
+			}
+
+			if (e.target.closest('.btn-delete')) {
+				var btn = e.target.closest('.btn-delete');
+				var commentList = btn.closest('.comment-list');
+
+				var commentId = commentList.getAttribute('data-comment-id');
+				var commentText = commentList.querySelector('.comment-text').innerText.trim();
+
+				document.querySelector('input[name="answerNo"]').value = commentId;
+				document.querySelector('textarea[name="answer"]').value = commentText;
+				document.querySelector('input[name="useAt"]').value = "N";
+
+				fn_delete_cmt();
+
+			}
+		});
+	});
+</script>
 </body>
 </html>

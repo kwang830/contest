@@ -191,6 +191,32 @@ public class Board implements Serializable {
 	private String selectImg = "";
 
 	/**
+	 * 평가점수
+	 */
+	private String score = "";
+	/**
+	 * 평가수
+	 */
+	private String scoreCnt = "";
+	/**
+	 * 댓글수
+	 */
+	private String commentCnt = "";
+	/**
+	 * 평가자
+	 */
+	private String exmnId = "";
+	/**
+	 * 댓글번호
+	 */
+	private long answerNo = 0L;
+	/**
+	 * 평가댓글
+	 */
+	private String answer = "";
+	
+
+	/**
 	 * atchFileId attribute를 리턴한다.
 	 * @return the atchFileId
 	 */
@@ -852,5 +878,101 @@ public class Board implements Serializable {
 	 */
 	public void setSelectImg(String selectImg) {
 		this.selectImg = selectImg;
+	}
+
+	/**
+	 * score attribute를 리턴한다.
+	 * @return the score
+	 */
+	public String getScore() {
+		return score;
+	}
+
+	/**
+	 * score attribute 값을 설정한다.
+	 * @param score the score to set
+	 */
+	public void setScore(String score) {
+		this.score = score;
+	}
+
+	/**
+	 * scoreCnt attribute를 리턴한다.
+	 * @return the scoreCnt
+	 */
+	public String getScoreCnt() {
+		return scoreCnt;
+	}
+
+	/**
+	 * scoreCnt attribute 값을 설정한다.
+	 * @param scoreCnt the scoreCnt to set
+	 */
+	public void setScoreCnt(String scoreCnt) {
+		this.scoreCnt = scoreCnt;
+	}
+
+	/**
+	 * commentCnt attribute를 리턴한다.
+	 * @return the commentCnt
+	 */
+	public String getCommentCnt() {
+		return commentCnt;
+	}
+
+	/**
+	 * commentCnt attribute 값을 설정한다.
+	 * @param commentCnt the commentCnt to set
+	 */
+	public void setCommentCnt(String commentCnt) {
+		this.commentCnt = commentCnt;
+	}
+
+	/**
+	 * exmnId attribute를 리턴한다.
+	 * @return the exmnId
+	 */
+	public String getExmnId() {
+		return exmnId;
+	}
+
+	/**
+	 * exmnId attribute 값을 설정한다.
+	 * @param exmnId the exmnId to set
+	 */
+	public void setExmnId(String exmnId) {
+		this.exmnId = exmnId;
+	}
+
+	/**
+	 * answerNo attribute를 리턴한다.
+	 * @return the answerNo
+	 */
+	public long getAnswerNo() {
+		return answerNo;
+	}
+
+	/**
+	 * answerNo attribute 값을 설정한다.
+	 * @param answerNo the answerNo to set
+	 */
+	public void setAnswerNo(long answerNo) {
+		this.answerNo = answerNo;
+	}
+
+	/**
+	 * answer attribute를 리턴한다.
+	 * @return the answer
+	 */
+	public String getAnswer() {
+		return answer;
+	}
+
+	/**
+	 * answer attribute 값을 설정한다.
+	 * @param answer the answer to set
+	 */
+	public void setAnswer(String answer) {
+		this.answer = answer;
 	}
 }

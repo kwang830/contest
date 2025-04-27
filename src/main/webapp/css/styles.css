@@ -13063,3 +13063,6 @@ label.checkbox { padding-left: 20px; }
 }
 .board_attach2 > span > input[type="button"]{width: 26px; height: 26px; font-size: 0; background-color: transparent !important;
 	background-image: url('../images/icon-delete.png'); background-position: center center; background-repeat: no-repeat; background-size: contain; cursor: pointer !important;}
+
+.btn-edit {cursor:pointer}
+.btn-delete {cursor:pointer}

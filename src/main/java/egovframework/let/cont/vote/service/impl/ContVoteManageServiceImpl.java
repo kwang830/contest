@@ -87,16 +87,21 @@ public class ContVoteManageServiceImpl extends EgovAbstractServiceImpl implement
      * 평가항목을 등록 한다.
      */
     public int insertAdminVotes(ContVoteVO contVoteVO) throws Exception {
-
-        System.out.println("insertAdminVotes >>> ");
-
-//        int result = contVoteManageDAO.selectAdminVoteCnt(contVoteVO);
-//        if(result > 0){
-//            return contVoteManageDAO.updateAdminVote(contVoteVO);
-//        }else{
-//            return contVoteManageDAO.insertAdminVote(contVoteVO);
-//        }
-
         return contVoteManageDAO.insertAdminVote(contVoteVO);
     }
+
+    /**
+     * 평가점수(별점)을 등록 한다.
+     */
+    public int insertVoteScore(ContVoteVO contVoteVO) throws Exception {
+        return contVoteManageDAO.insertVoteScore(contVoteVO);
+    }
+
+    /**
+     * 평가점수(별점)을 조회 한다.
+     */
+    public int selectVoteScore(ContVoteVO contVoteVO) throws Exception {
+        return contVoteManageDAO.selectVoteScore(contVoteVO);
+    }
+
 }

@@ -194,6 +194,16 @@ public class Vote implements Serializable {
 	private String valtQsitSendStr = "";
 
 	/**
+	 * 평가점수 (별점)
+	 */
+	private String score = "";
+
+	/**
+	 * 평가수 (별점)
+	 */
+	private String scoreCnt = "";
+
+	/**
 	 * atchFileId attribute를 리턴한다.
 	 * @return the atchFileId
 	 */
@@ -922,5 +932,35 @@ public class Vote implements Serializable {
 		this.valtQsitSendStr = valtQsitSendStr;
 	}
 
+	/**
+	 * score attribute를 리턴한다.
+	 * @return the score
+	 */
+	public String getScore() {
+		return score;
+	}
 
+	/**
+	 * score attribute 값을 설정한다.
+	 * @param score the score to set
+	 */
+	public void setScore(String score) {
+		this.score = score;
+	}
+
+	/**
+	 * scoreCnt attribute를 리턴한다.
+	 * @return the scoreCnt
+	 */
+	public String getScoreCnt() {
+		return scoreCnt;
+	}
+
+	/**
+	 * scoreCnt attribute 값을 설정한다.
+	 * @param scoreCnt the scoreCnt to set
+	 */
+	public void setScoreCnt(String scoreCnt) {
+		this.scoreCnt = scoreCnt;
+	}
 }

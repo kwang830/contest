@@ -44,4 +44,22 @@ public interface ContVoteManageService {
 	 */
 	public int insertAdminVotes(ContVoteVO contVoteVO)
 			throws Exception;
+
+	/**
+	 * 평가점수(별점)을 등록 한다.
+	 *
+	 * @param contVoteVO
+	 * @exception Exception Exception
+	 */
+	public int insertVoteScore(ContVoteVO contVoteVO)
+			throws Exception;
+
+	/**
+	 * 평가점수(별점)을 조회 한다.
+	 *
+	 * @param contVoteVO
+	 * @exception Exception Exception
+	 */
+	public int selectVoteScore(ContVoteVO contVoteVO)
+			throws Exception;
 }

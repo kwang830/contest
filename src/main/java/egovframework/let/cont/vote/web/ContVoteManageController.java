@@ -73,6 +73,7 @@ public class ContVoteManageController {
 
 		boardVO.setBbsId("BBSMSTR_BBBBBBBBBBBB");
 		boardVO.setFrstRegisterId(user.getUniqId());
+		boardVO.setExmnId(user.getId());
 
 		BoardMasterVO vo = new BoardMasterVO();
 
@@ -103,7 +104,7 @@ public class ContVoteManageController {
 		boardVO.setLastIndex(paginationInfo.getLastRecordIndex());
 		boardVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 
-		Map<String, Object> map = bbsMngService.selectBoardArticles(boardVO, vo.getBbsAttrbCode());
+		Map<String, Object> map = bbsMngService.selectBoardVoteArticles(boardVO, vo.getBbsAttrbCode());
 		int totCnt = Integer.parseInt((String) map.get("resultCnt"));
 
 		paginationInfo.setTotalRecordCount(totCnt);
@@ -149,7 +150,9 @@ public class ContVoteManageController {
 		}
 
 		boardVO.setLastUpdusrId(user.getUniqId());
-		BoardVO vo = bbsMngService.selectBoardArticle(boardVO);
+		boardVO.setExmnId(user.getId());
+
+		BoardVO vo = bbsMngService.selectBoardVoteArticle(boardVO);
 
 		model.addAttribute("result", vo);
 		model.addAttribute("sessionUniqId", user.getUniqId());
@@ -168,12 +171,98 @@ public class ContVoteManageController {
 		}
 
 		model.addAttribute("brdMstrVO", masterVo);
+		
+		// 댓글 10개 가져오기
+
+		boardVO.setPageUnit(propertyService.getInt("pageUnit"));
+		boardVO.setPageSize(propertyService.getInt("pageSize"));
+		boardVO.setUseAt("Y");
+
+		PaginationInfo paginationInfo = new PaginationInfo();
+
+		paginationInfo.setCurrentPageNo(boardVO.getPageIndex());
+		paginationInfo.setRecordCountPerPage(boardVO.getPageUnit());
+		paginationInfo.setPageSize(boardVO.getPageSize());
+
+		boardVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
+		boardVO.setLastIndex(paginationInfo.getLastRecordIndex());
+		boardVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+
+		Map<String, Object> map = bbsMngService.selectBoardComments(boardVO);
+		model.addAttribute("resultList", map.get("resultList"));
+		model.addAttribute("resultCnt", map.get("resultCnt"));
+
 
 		return "main/contest/ContestVoteDetailView";
 	}
 
 	/**
-	 * 공모전 투표 댓글
+	 * 공모전 투표 점수 업데이트
+	 * @return 메인페이지 정보 Map [key : 항목명]
+	 *
+	 * @param request
+	 * @param model
+	 * @exception Exception Exception
+	 */
+	@RequestMapping(value = "/cmm/contest/contestVoteScoreUpdt.do")
+	public String getContestVoteScoreUpdt(@ModelAttribute("searchVO") ContVoteVO contVoteVO, ModelMap model, HttpServletRequest request)
+			throws Exception{
+		System.out.println("/cmm/contest/contestVoteScoreUpdt.do >>>>");
+
+		LoginVO user = new LoginVO();
+		if (EgovUserDetailsHelper.isAuthenticated()) {
+			user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+		}
+
+		String aaa = contVoteVO.getScore();
+		System.out.println("score:" + aaa);
+
+
+		contVoteVO.setExmnId(user.getId());
+		contVoteVO.setUseAt("Y");
+		contVoteVO.setFrstRegisterId(user.getUniqId());
+		contVoteVO.setLastUpdusrId(user.getUniqId());
+		contVoteManageService.insertVoteScore(contVoteVO);
+
+		//return "forward:/cmm/contest/contestVote.do";
+		return "forward:/cmm/contest/contestVoteDetail.do";
+	}
+
+	/**
+	 * 공모전 댓글 등록
+	 * @return 메인페이지 정보 Map [key : 항목명]
+	 *
+	 * @param request
+	 * @param model
+	 * @exception Exception Exception
+	 */
+	@RequestMapping(value = "/cmm/contest/insertContestCmt.do")
+	public String insertContestCmt(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model, HttpServletRequest request)
+			throws Exception{
+		System.out.println("/cmm/contest/insertContestCmt.do >>>>");
+
+		LoginVO user = new LoginVO();
+		if (EgovUserDetailsHelper.isAuthenticated()) {
+			user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+		}
+
+		boardVO.setExmnId(user.getId());
+		boardVO.setFrstRegisterId(user.getUniqId());
+		boardVO.setLastUpdusrId(user.getUniqId());
+
+		if (boardVO.getAnswerNo() != 0L) {
+			bbsMngService.updateBoardComment(boardVO);
+		}else{
+			boardVO.setUseAt("Y");
+			bbsMngService.insertBoardComment(boardVO);
+		}
+
+		//return "forward:/cmm/contest/contestVote.do";
+		return "forward:/cmm/contest/contestVoteDetail.do";
+	}
+
+	/**
+	 * 공모전 투표 댓글 불러오기
 	 * @return 메인페이지 정보 Map [key : 항목명]
 	 *
 	 * @param request
@@ -183,6 +272,15 @@ public class ContVoteManageController {
 	@RequestMapping(value = "/cmm/contest/contestVoteCmt.do")
 	public String getContestVoteCmtPage(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model, HttpServletRequest request)
 			throws Exception{
+
+		System.out.println("/cmm/contest/contestVoteCmt.do >>>>");
+		System.out.println("boardVO.getNttId():" + boardVO.getNttId());
+		System.out.println("boardVO.getBbsId():" + boardVO.getBbsId());
+		System.out.println("boardVO.getAnswerNo():" + boardVO.getAnswerNo());
+
+		Map<String, Object> map = bbsMngService.selectBoardCommentMore(boardVO);
+		model.addAttribute("resultList", map.get("resultList"));
+		model.addAttribute("resultCnt", map.get("resultCnt"));
 
 		return "main/contest/ContestVoteCmtView";
 	}

@@ -222,4 +222,30 @@
 			LAST_UPDUSR_ID = VALUES(EXMN_ID)
 
 	</insert>
+
+	<insert id="insertVoteScore" parameterType="egovframework.let.cont.vote.service.ContVoteVO">
+
+		INSERT INTO lettnbbsscore (NTT_ID, BBS_ID, WRTER_ID, SCORE, USE_AT, FRST_REGIST_PNTTM, FRST_REGISTER_ID)
+		VALUES (#{nttId}, #{bbsId}, #{exmnId}, #{score}, #{useAt}, SYSDATE(), #{frstRegisterId})
+			ON DUPLICATE KEY UPDATE
+            SCORE = VALUES(SCORE),
+            LAST_UPDT_PNTTM = SYSDATE(),
+            LAST_UPDUSR_ID = VALUES(FRST_REGISTER_ID)
+
+	</insert>
+
+	<select id="selectVoteScore" parameterType="egovframework.let.cont.vote.service.ContVoteVO" resultType="java.lang.Integer">
+
+		SELECT IFNULL((
+			SELECT score
+			FROM lettnbbsscore
+			WHERE NTT_ID = #{nttId}
+			  AND BBS_ID = #{bbsId}
+			  AND WRTER_ID = #{exmnId}
+			  AND USE_AT = 'Y'
+			LIMIT 1
+				   ), 0) AS score
+
+	</select>
+
 </mapper>

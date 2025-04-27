@@ -69,6 +69,16 @@ public interface EgovBBSManageService {
 	  throws Exception;
 
 	/**
+	 * 게시물 대하여 상세 내용을 조회 한다.
+	 * @return
+	 *
+	 * @param boardVO
+	 * @exception Exception Exception
+	 */
+	public BoardVO selectBoardVoteArticle(BoardVO boardVO)
+			throws Exception;
+
+	/**
 	 * 조건에 맞는 게시물 목록을 조회 한다.
 	 * @return
 	 * 
@@ -78,6 +88,17 @@ public interface EgovBBSManageService {
 	 */
 	public Map<String, Object> selectBoardArticles(BoardVO boardVO, String attrbFlag)
 	  throws Exception;
+
+	/**
+	 * 조건에 맞는 게시물 목록을 조회 한다.
+	 * @return
+	 *
+	 * @param boardVO
+	 * @param attrbFlag
+	 * @exception Exception Exception
+	 */
+	public Map<String, Object> selectBoardVoteArticles(BoardVO boardVO, String attrbFlag)
+			throws Exception;
 
 	/**
 	 * 방명록에 대한 목록을 조회 한다.
@@ -117,4 +138,44 @@ public interface EgovBBSManageService {
 	 */
 	public String selectBoardArticleVisitRdcnt(Board Board)
 			throws Exception;
+
+	/**
+	 * 게시판에 댓글을 등록 한다.
+	 *
+	 * @param Board
+	 * @exception Exception Exception
+	 */
+	public void insertBoardComment(Board Board)
+			throws Exception;
+
+	/**
+	 * 게시판에 댓글을 수정 한다.
+	 *
+	 * @param Board
+	 * @exception Exception Exception
+	 */
+	public void updateBoardComment(Board Board)
+			throws Exception;
+
+	/**
+	 * 댓글 목록을 조회 한다.
+	 * @return
+	 *
+	 * @param boardVO
+	 * @exception Exception Exception
+	 */
+	public Map<String, Object> selectBoardComments(BoardVO boardVO)
+			throws Exception;
+
+	/**
+	 * 댓글 목록을 조회 한다.
+	 * @return
+	 *
+	 * @param boardVO
+	 * @exception Exception Exception
+	 */
+	public Map<String, Object> selectBoardCommentMore(BoardVO boardVO)
+			throws Exception;
+	
+	
 }

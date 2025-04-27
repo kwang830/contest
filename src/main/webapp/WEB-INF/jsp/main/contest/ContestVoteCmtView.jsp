@@ -1,66 +1,56 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div id="flag">200</div>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page import ="egovframework.com.cmm.LoginVO" %>
+<c:if test="${resultCnt > 0}">
+	<div id="flag">200</div>
+</c:if>
+<c:if test="${resultCnt < 1}">
+	<div id="flag">400</div>
+</c:if>
 <div id="content">
-	<div class="comment-list" data-comment-id="12">
+	<c:forEach var="result" items="${resultList}" varStatus="status">
+	<div class="comment-list" data-comment-id="<c:out value='${result.answerNo}'/>">
 		<div class="comment-info">
 			<div class="mem-info-img">
-				<img src="" alt=""> <!--그룹웨어 이미지-->
+				<c:if test="${empty result.imgUrl}">
+					<img src="" alt=""><!-- 대표 이미지1 -->
+				</c:if>
+				<c:if test="${not empty result.imgUrl}">
+					<img src="<c:out value="${result.imgUrl}" />" alt=""><!-- 대표 이미지2 -->
+				</c:if>
 			</div>
 			<div class="comment-detail-info">
 				<div>
 					<div class="comment-name">
-						김대광 차장
+						<c:out value='${result.ntcrNm}'/> <c:out value='${result.titleNm}'/>
 					</div>
 					<div class="comment-department">
-						(디지털사업운영팀)
+						<c:if test="${not empty result.teamNm}">
+							(<c:out value='${result.teamNm}'/>)
+						</c:if>
 					</div>
 				</div>
 				<div class="comment-date">
-					2025.04.09 PM 03:00:00
-				</div>
-			</div>
-			<!--본인이 쓴 글일때만 노출-->
-			<div class="comment-util-btn">
-                <span><img src="<c:url value='/'/>images/icon-edit.png" alt=""></span>
-				<span><img src="<c:url value='/'/>images/icon-trash.png" alt=""></span>
-			</div>
-		</div>
-		<div class="comment-text">
-			공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다.
-			공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다.
-			공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다.
-			공모전 댓글 내용입니다. 공모전 댓글 내용입니다.
-		</div>
-	</div>
-	<div class="comment-list" data-comment-id="13">
-		<div class="comment-info">
-			<div class="mem-info-img">
-				<img src="" alt=""> <!--그룹웨어 이미지-->
-			</div>
-			<div class="comment-detail-info">
-				<div>
-					<div class="comment-name">
-						권승주 과장
-					</div>
-					<div class="comment-department">
-						(디지털사업기획팀)
-					</div>
-				</div>
-				<div class="comment-date">
-					2025.04.09 PM 03:00:00
+					<c:out value="${fn:replace(result.frstRegisterPnttm, '-', '.')}" />
 				</div>
 			</div>
 			<div class="comment-util-btn">
-				<span><img src="<c:url value='/'/>images/icon-edit.png" alt=""></span>
-				<span><img src="<c:url value='/'/>images/icon-trash.png" alt=""></span>
+				<%
+					LoginVO loginVO = (LoginVO)session.getAttribute("LoginVO");
+					if (loginVO != null){
+				%>
+				<c:set var="chkId" value="<%= loginVO.getId()%>"/>
+				<c:if test="${chkId == result.ntcrId}">
+				<span class="btn-edit"><img src="/images/icon-edit.png" alt="수정"></span>
+				<span class="btn-delete"><img src="/images/icon-trash.png" alt="삭제"></span>
+				</c:if>
+				<%  } %>
 			</div>
 		</div>
 		<div class="comment-text">
-			공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다.
-			공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다.
-			공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다. 공모전 댓글 내용입니다.
-			공모전 댓글 내용입니다. 공모전 댓글 내용입니다.
+			<c:out value='${result.answer}' escapeXml="false"/>
 		</div>
 	</div>
+	</c:forEach>
 </div>
