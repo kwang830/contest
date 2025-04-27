@@ -113,7 +113,7 @@
                                 <div class="form-error-text" style="display: none;"></div>
                             </div>
                             <div class="form-list">
-                                <div class="form-title">이전 비밀번호<span style="color:red;">*</span></div>
+                                <div class="form-title">이전 비밀번호<span style="color:red;">*</span> (초기 비밀번호 : 주민등록번호 앞 6자리)</div>
                                 <div class="form-input">
                                     <input name="oldPassword" id="oldPassword" class="f_txt" type="password" value="" maxlength="100" />
                                 </div>
