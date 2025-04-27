@@ -108,9 +108,9 @@ public class EgovMainController {
 		BigDecimal visit_count = egovVisitCountLogIdGnrService.getNextBigDecimalId();
 		System.out.println("visit_count:"+visit_count);
 
-		LoginVO user =
-				EgovUserDetailsHelper.isAuthenticated()? (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser():null;
-		if(EgovUserDetailsHelper.isAuthenticated() && user!=null){
+		//LoginVO user =
+		//		EgovUserDetailsHelper.isAuthenticated()? (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser():null;
+		//if(EgovUserDetailsHelper.isAuthenticated() && user!=null){
 			// 공모전 접수 카운트 조회 시작 ---------------------------------
 			BoardVO vo = new BoardVO();
 			vo.setBbsId("BBSMSTR_BBBBBBBBBBBB");
@@ -143,9 +143,9 @@ public class EgovMainController {
 			// 공지사항 메인컨텐츠 조회 끝 -----------------------------------
 
 			return "main/EgovMainView";
-		}else{
-			return "main/contest/ContIntroView";
-		}
+		//}else{
+		//	return "main/contest/ContIntroView";
+		//}
 	}
 
 	/**
