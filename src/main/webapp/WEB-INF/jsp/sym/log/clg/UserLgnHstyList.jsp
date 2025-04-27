@@ -213,7 +213,7 @@ function fn_egov_search_loginLog(){
 						<colgroup>
 							<col style="width: 80px;">
 							<col style="width: auto; min-width: 120px;">
-							<col style="width: 120px;">
+							<col style="width: 220px;">
 							<col style="width: 120px;">
 							<col style="width: 120px;">
 							<col style="width: 120px;">
@@ -225,7 +225,7 @@ function fn_egov_search_loginLog(){
 						<tr>
 							<th scope="col">순번</th>
 							<th scope="col">로그ID</th>
-							<th scope="col">발생일자</th>
+							<th scope="col">발생일시</th>
 							<th scope="col">로그유형</th>
 							<th scope="col">사용자</th>
 							<th scope="col">사용자ID</th>
@@ -248,7 +248,8 @@ function fn_egov_search_loginLog(){
 							<tr>
 								<td><c:out value="${paginationInfo.totalRecordCount+1 - ((searchVO.pageIndex-1) * searchVO.pageSize + status.count)}" /></td>
 								<td class="al"><c:out value='${result.logId}'/></td>
-								<td><c:out value="${fn:replace(fn:substring(result.creatDt, 0, 10), '-', '.')}" /></td>
+<%--								<td><c:out value="${fn:replace(fn:substring(result.creatDt, 0, 10), '-', '.')}" /></td>--%>
+								<td><c:out value="${fn:replace(result.creatDt, '-', '.')}" /></td>
 								<td><c:out value='${result.loginMthd}'/></td>
 								<td><c:out value='${result.loginNm}'/></td>
 								<td><c:out value='${result.loginId}'/></td>
