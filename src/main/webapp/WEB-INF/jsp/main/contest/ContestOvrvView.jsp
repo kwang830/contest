@@ -21,6 +21,7 @@
 	<link rel="preload" href="<c:url value='/'/>css/responsive.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/font-icons.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/sub.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="stylesheet" href="<c:url value='/'/>css/sub-ios.css" type="text/css" media="all" />
 
 <%--	<style>--%>
 <%--		#primary-menu{display: flex !important; margin-right: 0 !important;}--%>
@@ -163,7 +164,7 @@
 					<div class="intro-sub-title">
 						심사절차
 					</div>
-					<table class="intro-table">
+					<table class="intro-table" id="processTable">
 						<colgroup>
 							<col style="width: 7%; min-width: 55px;">
 							<col style="width: 7%; min-width: 55px;">
@@ -210,7 +211,7 @@
 					<div class="intro-sub-title">
 						심사기준
 					</div>
-					<table class="intro-table">
+					<table class="intro-table" id="standardTable">
 						<colgroup>
 							<col style="width: 10%; min-width: 50px">
 							<col style="width: 22%;">
@@ -309,7 +310,7 @@
 				</div>
 				<div class="intro-con type3">
 					<div class="intro-title">상금 및 부상</div>
-					<table class="intro-table">
+					<table class="intro-table" id="awardTable">
 						<colgroup>
 							<col style="width: 33.33%;">
 							<col style="width: 30%;">
@@ -352,7 +353,7 @@
 				</div>
 				<div class="intro-con type3">
 					<div class="intro-title">참여 독려를 위한 지원 사항</div>
-					<table class="intro-table">
+					<table class="intro-table" id="prizeTable">
 						<colgroup>
 							<col style="width: auto;">
 							<col style="width: 16%;">

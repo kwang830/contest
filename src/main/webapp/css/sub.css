@@ -402,7 +402,7 @@
 	justify-content: space-between;
 }
 
-.work-list-con .work-mem-name {
+.work-list-con .work-mem-name, .work-list-con .work-date {
 	font-size: 18px;
 	line-height: 24px;
 	font-weight: 400;
@@ -432,11 +432,11 @@
 .nodata-con .nodata-icon{
 	font-size: 0;
 	line-height: 0;
-	margin-bottom: 10px;
 }
 
 .nodata-con .nodata-icon > dotlottie-player{
 	width: 140px;
+	height: 140px;
 	margin: 0 auto;
 	transform: translateX(-10px);
 }
@@ -1015,11 +1015,13 @@
 	}
 
 	.nodata-con .nodata-icon{
-		margin-bottom: 20px;
+
 	}
 
 	.nodata-con .nodata-icon > dotlottie-player{
 		width: 180px;
+		height: 180px;
+		transform: translateX(-20px);
 	}
 
 	.nodata-con .nodata-text {

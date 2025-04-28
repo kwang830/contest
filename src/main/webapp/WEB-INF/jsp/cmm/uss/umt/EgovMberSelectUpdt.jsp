@@ -283,6 +283,101 @@ function fn_egov_modal_remove() {
 
                                 <div class="board_form_row">
                                     <div class="title">
+                                        <label for="deptCode">소속</label>
+                                    </div>
+                                    <div class="input">
+                                        <label class="f_select w_350" for="deptCode">
+                                            <form:select path="deptCode" id="deptCode" name="deptCode">
+                                                <form:option value="" label="--선택하세요--"/>
+                                                <form:options items="${deptCode_result}" itemValue="code" itemLabel="codeNm"/>
+                                            </form:select>
+                                            <form:errors path="deptCode" cssClass="error"/>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="board_form_row">
+                                    <div class="title">
+                                        <label for="titleCode">호칭</label>
+                                    </div>
+                                    <div class="input">
+                                        <label class="f_select w_350" for="titleCode">
+                                            <form:select path="titleCode" id="titleCode" name="titleCode">
+                                                <form:option value="" label="--선택하세요--"/>
+                                                <form:options items="${titleCode_result}" itemValue="code" itemLabel="codeNm"/>
+                                            </form:select>
+                                            <form:errors path="titleCode" cssClass="error"/>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="board_form_row">
+                                    <div class="title">
+                                        <label for="positionCode">직책</label>
+                                    </div>
+                                    <div class="input">
+                                        <label class="f_select w_350" for="positionCode">
+                                            <form:select path="positionCode" id="positionCode" name="positionCode">
+                                                <form:option value="" label="--선택하세요--"/>
+                                                <form:options items="${positionCode_result}" itemValue="code" itemLabel="codeNm"/>
+                                            </form:select>
+                                            <form:errors path="positionCode" cssClass="error"/>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="board_form_row">
+                                    <div class="title">
+                                        <label for="rankCode">직급</label>
+                                    </div>
+                                    <div class="input">
+                                        <label class="f_select w_350" for="rankCode">
+                                            <form:select path="rankCode" id="rankCode" name="rankCode">
+                                                <form:option value="" label="--선택하세요--"/>
+                                                <form:options items="${rankCode_result}" itemValue="code" itemLabel="codeNm"/>
+                                            </form:select>
+                                            <form:errors path="rankCode" cssClass="error"/>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="board_form_row">
+                                    <div class="title">
+                                        <label for="imgUrl">프로필이미지경로</label>
+                                    </div>
+                                    <div class="input">
+                                        <form:input path="imgUrl" id="imgUrl" class="f_txt w_full" maxlength="100" />
+                                        <form:errors path="imgUrl" cssClass="error" />
+                                    </div>
+                                </div>
+
+                                <div class="board_form_row">
+                                    <div class="title">
+                                        <label for="lockYn">잠김여부</label>
+                                    </div>
+                                    <div class="input">
+                                        <label class="f_select w_350" for="lockYn">
+                                            <form:select path="lockYn" id="lockYn" name="lockYn">
+                                                <form:option value="" label="--선택하세요--"/>
+                                                <form:options items="${lockYn_result}" itemValue="code" itemLabel="codeNm"/>
+                                            </form:select>
+                                            <form:errors path="lockYn" cssClass="error"/>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="board_form_row">
+                                    <div class="title">
+                                        <label for="lockCnt">잠김횟수</label>
+                                    </div>
+                                    <div class="input">
+                                        <form:input path="lockCnt" id="lockCnt" class="f_txt w_350" maxlength="15" />
+                                        <form:errors path="lockCnt" cssClass="error" />
+                                    </div>
+                                </div>
+
+                                <div class="board_form_row">
+                                    <div class="title">
                                         <label for="groupId">그룹아이디</label>
                                     </div>
                                     <div class="input">

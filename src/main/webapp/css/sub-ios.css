@@ -1,0 +1,140 @@
+@charset "utf-8";
+
+@media all and (max-width: 479px) {
+	.sub-banner{
+		padding: 70px 0;
+	}
+	.sub-banner .sub-banner-title{
+		font-size: 40px;
+	}
+
+	.nav-item{
+		height: 40px;
+	}
+	.nav-item.home a{
+		width: 40px;
+	}
+	.nav-button{
+		width: 152px;
+		font-size: 14px;
+		padding: 10px 20px;
+	}
+	.dropdown-menu li a{
+		font-size: 13px;
+		padding: 8px 20px;
+	}
+
+	.intro-title{
+		font-size: 18px;
+		padding: 4px 15px;
+	}
+	.intro-desc{
+		font-size: 16px;
+	}
+	.intro-sub-title{
+		font-size: 18px;
+	}
+
+	.intro-table th, .intro-table td{
+		font-size: 13px;
+		line-height: 19px;
+	}
+	.intro-table-desc{
+		font-size: 13px;
+	}
+
+	#scheduleTable colgroup col:nth-child(1) {
+		min-width: 92px !important;
+	}
+	#scheduleTable colgroup col:nth-child(3) {
+		min-width: 110px !important;
+	}
+
+	#processTable colgroup col:nth-child(1) {
+		min-width: 43px !important;
+	}
+	#processTable colgroup col:nth-child(2) {
+		min-width: 43px !important;
+	}
+	#processTable colgroup col:nth-child(3) {
+		width: 50px !important;
+		min-width: auto !important;
+	}
+	#processTable colgroup col:nth-child(5) {
+		width: 74px !important;
+	}
+	#standardTable colgroup col:nth-child(1) {
+		min-width: 44px !important;
+	}
+	#standardTable colgroup col:nth-child(2) {
+		width: 85px !important;
+	}
+	#scoreTable colgroup col:nth-child(1) {
+		width: 66px !important;
+		min-width: auto !important;
+	}
+
+
+	.receipt-info-con .receipt-info-text{
+		font-size: 14px;
+	}
+	.receipt-info-con .receipt-info-btn-con .receipt-info-btn{
+		font-size: 14px;
+		line-height: 36px;
+		padding: 0 15px;
+	}
+
+	.work-list-con .work-list{
+		padding: 25px 20px;
+	}
+	.work-list-con .work-list-top-con{
+		padding-bottom: 15px;
+		margin-bottom: 15px;
+	}
+	.work-list-con .mem-info-img{
+		width: 40px;
+		height: 40px;
+	}
+	.work-list-con .work-title{
+		font-size: 20px;
+		margin-bottom: 4px;
+	}
+	.work-list-con .work-mem-name, .work-list-con .work-date{
+		font-size: 14px;
+		line-height: 20px;
+	}
+	.work-list-con .work-desc{
+		font-size: 14px;
+		line-height: 20px;
+		margin-bottom: 0;
+	}
+
+	.prize-list-con .prize-list{
+		padding: 30px 20px;
+	}
+	.prize-list-con .prize-info .prize-icon > img{
+		width: 90px;
+	}
+	.prize-list-con .prize-info .prize-ranking{
+		font-size: 20px;
+	}
+	.prize-list-con .prize-info .prize-ranking > span{
+		font-size: 16px;
+	}
+	.prize-list-con .prize-info .prize-winner{
+		font-size: 13px;
+		line-height: 19px;
+	}
+	.prize-list-con .prize-info .prize-title{
+		font-size: 17px;
+	}
+	.prize-list-con .prize-info .prize-desc{
+		font-size: 14px;
+		line-height: 22px;
+	}
+	.prize-list-con .download-btn > a{
+		font-size: 13px;
+		padding: 2px 14px;
+		margin-right: 5px;
+	}
+}

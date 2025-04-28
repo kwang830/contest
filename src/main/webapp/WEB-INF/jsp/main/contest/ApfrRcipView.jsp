@@ -23,6 +23,7 @@
 	<link rel="preload" href="<c:url value='/'/>css/responsive.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/font-icons.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/sub.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="stylesheet" href="<c:url value='/'/>css/sub-ios.css" type="text/css" media="all" />
 
 	<script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
 
@@ -146,7 +147,7 @@
 				<c:if test="${empty resultList}">
 				<div class="nodata-con">
 					<div class="nodata-icon">
-						<dotlottie-player src="https://lottie.host/7bbd4abc-c087-4ac9-8873-762c79c871d1/2mCoTPS66L.lottie" background="transparent" speed="1" autoplay></dotlottie-player>
+						<dotlottie-player src="https://lottie.host/ea44d526-733e-4052-ab78-4e286d00daef/JjUPPtEsTL.lottie" background="transparent" speed="1" autoplay></dotlottie-player>
 					</div>
 					<div class="nodata-text">
 						아직 접수한 작품이 없습니다.<br/>

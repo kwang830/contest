@@ -152,6 +152,18 @@ public class MberManageVO extends UserDefaultVO{
 	 * 임시비밀번호여부
 	 */
 	private String tempPwdYn = "";
+	/**
+	 * 프로필경로
+	 */
+	private String imgUrl = "";
+	/**
+	 * 잠김여부
+	 */
+	private String lockYn = "";
+	/**
+	 * 잠김횟수
+	 */
+	private long lockCnt = 0L;
 
 
 	/**
@@ -621,5 +633,53 @@ public class MberManageVO extends UserDefaultVO{
 	 */
 	public void setTempPwdYn(String tempPwdYn) {
 		this.tempPwdYn = tempPwdYn;
+	}
+
+	/**
+	 * imgUrl attribute를 리턴한다.
+	 * @return the imgUrl
+	 */
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	/**
+	 * imgUrl attribute 값을 설정한다.
+	 * @param imgUrl the imgUrl to set
+	 */
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
+
+	/**
+	 * lockYn attribute를 리턴한다.
+	 * @return the lockYn
+	 */
+	public String getLockYn() {
+		return lockYn;
+	}
+
+	/**
+	 * lockYn attribute 값을 설정한다.
+	 * @param lockYn the lockYn to set
+	 */
+	public void setLockYn(String lockYn) {
+		this.lockYn = lockYn;
+	}
+
+	/**
+	 * lockCnt attribute를 리턴한다.
+	 * @return the lockCnt
+	 */
+	public long getLockCnt() {
+		return lockCnt;
+	}
+
+	/**
+	 * lockCnt attribute 값을 설정한다.
+	 * @param lockCnt the lockCnt to set
+	 */
+	public void setLockCnt(long lockCnt) {
+		this.lockCnt = lockCnt;
 	}
 }

@@ -1023,7 +1023,8 @@ html[xmlns] .slider-wrap {display: block;}
 
 #header.full-header { border-bottom-color: #EEE; }
 
-body.stretched #header.full-header .container {
+#header.full-header .container {
+	z-index: 1;
 	width: 100% !important;
 	height: 100%;
 	padding: 0 30px;
@@ -1033,7 +1034,6 @@ body.stretched #header.full-header .container {
 	background-color: #fff;
 	border-bottom: 1px solid #F2F4F7;
 }
-
 #header.transparent-header.full-header #header-wrap { border-bottom: 1px solid rgba(0,0,0,0.1); }
 
 #slider + #header.transparent-header.full-header #header-wrap {
@@ -1126,7 +1126,7 @@ body.stretched #header.full-header .container {
 #header.full-header #primary-menu > ul {}
 
 #header.sticky-header #primary-menu > ul.d-block{
-	top: 60px;
+	top: 59px;
 }
 
 #header.transparent-header.full-header #primary-menu > ul { border-right-color: rgba(0,0,0,0.1); }
@@ -1134,7 +1134,6 @@ body.stretched #header.full-header .container {
 #primary-menu-trigger,
 #page-submenu-trigger {
 	opacity: 0;
-	pointer-events: none;
 	cursor: pointer;
 	position: absolute;
 	top: 50%;

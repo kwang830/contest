@@ -1,7 +1,7 @@
 $(document).ready(function () {
-	//loadLayout(); 실서버는 html 추가 안함
+	//loadLayout();
+	//setViewport();
 	initFunctions();
-	setViewport();
 	setUserAgent();
 
 	// nav menu click event
@@ -54,11 +54,78 @@ function loadLayout(){
 
 /* 공통 기능 초기화 */
 function initFunctions() {
-	if(typeof SEMICOLON !== "undefined"){
-		SEMICOLON.documentOnReady.init();
-		SEMICOLON.documentOnLoad.init();
-		$(window).on("resize", SEMICOLON.documentOnResize.init);
-	}
+	initGnb();
+	initCounter();
+}
+
+function initGnb(){
+	const $header = $('#header');
+	$header.find('#primary-menu-trigger').on('click', function(){
+		$header.toggleClass("primary-menu-open");
+		$( '#primary-menu > ul, #primary-menu > div > ul' ).toggleClass('d-block');
+	})
+
+	/* 하위 메뉴 */
+	$( '#primary-menu ul li:has(ul)' ).addClass('sub-menu');
+
+	$('#primary-menu li:has(ul)').hover(function(){
+		const $menu = $(this).find('ul');
+		$menu.stop(true, true).css('display', 'block').animate({ opacity: 1 }, 200);
+	}, function(){
+		const $menu = $(this).find('ul');
+		$menu.stop(true, true).animate({ opacity: 0 }, 200, function () {
+			$menu.css('display', 'none');
+		});
+	})
+
+	$('#primary-menu li:has(ul) > a').on( 'click touchend', function(e){
+		$(this).parents('.sub-menu').siblings().find('ul,.mega-menu-content').removeClass('d-block');
+		$(this).parent('li').children('ul,.mega-menu-content').toggleClass('d-block');
+		e.preventDefault();
+	});
+
+	/* 로그인 메뉴 */
+	$('#primary-menu-con > .login-menu-con').hover(
+		function () {
+			const $menu = $(this).find('.mem-menu');
+			$menu.stop(true, true).css('display', 'block').animate({ opacity: 1 }, 200);
+		},
+		function () {
+			const $menu = $(this).find('.mem-menu');
+			$menu.stop(true, true).animate({ opacity: 0 }, 200, function () {
+				$menu.css('display', 'none');
+			});
+		}
+	);
+}
+
+function initCounter(){
+	$('.counter').each(function() {
+		var $counter = $(this),
+			$countEl = $counter.find('span'),
+			counterSpeed = $countEl.data('speed') || 3000,
+			refreshInterval = $countEl.data('refresh-interval') || 50,
+			useComma = $countEl.data('comma') === true || $countEl.data('comma') === 'true';
+
+		$counter.appear(function() {
+			if (!$counter.hasClass('counted')) {
+				$countEl.countTo({
+					from: $countEl.data('from') || 0,
+					to: $countEl.data('to') || 0,
+					speed: parseInt(counterSpeed),
+					refreshInterval: parseInt(refreshInterval),
+					formatter: function (value, options) {
+						if (useComma) {
+							return value.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+						} else {
+							return value.toFixed(0);
+						}
+					}
+				});
+				$counter.addClass('counted');
+			}
+		}, {accX: 0, accY: -120}, 'easeInCubic');
+	});
 }
 
 /* 뷰포트 설정 */
@@ -96,8 +163,6 @@ function setUserAgent() {
 	else if (isIOS) os = 'ios';
 	else if (isWindows) os = 'windows';
 	else if (isMacReal) os = 'mac';
-
-	console.log(os);
 
 	$('body').attr('data-device', device).attr('data-os', os);
 }

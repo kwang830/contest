@@ -41,6 +41,20 @@
 	#logo a.standard-logo { display: inline-block; }
 	#header.sticky-header:not(.static-sticky) #logo a > img{max-width: 200px;}
 
+	#header.full-header .container:before{
+		content:'';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: #fff;
+		border-bottom: 1px solid #eee;
+		z-index: 0;
+		pointer-events: none;
+	}
+
+
 	#primary-menu {
 		display: block;
 		float: none;
@@ -49,11 +63,10 @@
 
 	#primary-menu-trigger {
 		opacity: 1;
-		pointer-events: auto;
 		top: 25px;
 		margin-top: 0;
 		right: 15px;
-		z-index: 1;
+		z-index: 10;
 	}
 
 	.sticky-header #primary-menu-trigger {
@@ -79,7 +92,7 @@
 
 	#header.full-header #primary-menu > ul.d-block{
 		position: absolute;
-		top: 80px;
+		top: 79px;
 		left: 0;
 		width: 100%;
 		background-color: #fff;
@@ -97,7 +110,7 @@
 	}
 
 	#header.sticky-header #primary-menu > ul.d-block{
-		top: 60px;
+		top: 59px;
 	}
 
 	#primary-menu > div > ul { padding-top: 60px !important; }
@@ -182,6 +195,9 @@
 	}
 
 	/* login */
+	#primary-menu-con{
+		width: 0;
+	}
 	#primary-menu-con .login-menu-con{
 		display: none;
 	}
@@ -460,10 +476,10 @@
 	}
 
 	#header.full-header #primary-menu > ul.d-block{
-		top: 100px;
+		top: 99px;
 	}
 	#header.sticky-header #primary-menu > ul.d-block{
-		top: 60px;
+		top: 59px;
 	}
 
 	#primary-menu.sub-title ul > li > a {
@@ -590,9 +606,9 @@
 
 	#header.full-header .container,
 	.container-fullwidth {
-		padding: 16px 12px 16px 16px !important;
+		padding: 16px 12px 16px 16px;
 		margin: 0 auto;
-		width: 750px !important;
+		width: 750px;
 	}
 
 	.container.vertical-middle { width: 100% !important; }
@@ -1189,7 +1205,7 @@
 
 @media (max-width: 767.98px) {
 
-	body { padding: 0 !important; }
+	body { min-width: 360px; padding: 0 !important; }
 
 	#wrapper { width: 100% !important; }
 
@@ -1562,8 +1578,6 @@
 
 @media (min-width: 576px) and (max-width: 767.98px) {
 
-	#header.full-header .container,
-	.container-fullwidth { width: 540px !important; }
 
 	.container.vertical-middle { width: 100% !important; }
 
@@ -1814,6 +1828,31 @@
 
 }
 
+@media all and (max-width: 479px) {
+	#header, #header-wrap{
+		height: 60px;
+	}
+
+	#logo img{
+		max-width: 180px;
+	}
+
+	#primary-menu-trigger{
+		top: 7px;
+	}
+
+	#header.full-header #primary-menu > ul.d-block{
+		top: 59px;
+	}
+
+	.content-wrap {
+		padding: 60px 0 100px;
+	}
+
+	#footer .footer-text{
+		font-size: 11px;
+	}
+}
 
 /* ----------------------------------------------------------------
 	Retina CSS

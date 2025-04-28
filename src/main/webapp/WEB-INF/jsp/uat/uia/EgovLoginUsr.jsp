@@ -129,7 +129,7 @@
                             <div class="form-error-text" style="display: none;"></div>
                         </div>
                         <div class="form-list">
-                            <div class="form-title">비밀번호 <span style="font-size: 16px;">(초기 비밀번호 : 주민등록번호 앞 6자리)</span></div>
+                            <div class="form-title">비밀번호 <span>(초기 비밀번호 : <span style="color: #E22B2B;">주민등록번호 앞 6자리</span>)</span></div>
                             <div class="form-input">
                                 <input name="password" id="password" type="password" placeholder="비밀번호를 입력해주세요." autocomplete="current-password" maxlength="100" />
                             </div>

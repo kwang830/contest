@@ -20,6 +20,8 @@
 	<link rel="preload" href="<c:url value='/'/>css/responsive.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/font-icons.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/sub.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="stylesheet" href="<c:url value='/'/>css/sub-ios.css" type="text/css" media="all" />
+
 
 	<!-- Document Title
 	============================================= -->
@@ -53,7 +55,7 @@
 			<div class="sub-banner">
 				<div class="container">
 					<div class="sub-banner-title">
-						역대수상작
+						CES 참관기
 					</div>
 				</div>
 			</div>

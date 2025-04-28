@@ -26,6 +26,7 @@
 	color: #E22B2B;
 }
 .form-con .form-title > span{
+	font-size: 16px;
 	font-weight: 400;
 }
 
@@ -99,7 +100,8 @@
 }
 
 .form-con .submit-btn {
-	width: 400px;
+	width: 100%;
+	max-width: 400px;
 	font-size: 22px;
 	line-height: 100%;
 	font-weight: 600;
@@ -243,4 +245,39 @@
 		height: 100px;
 	}
 
+}
+
+@media all and (max-width: 479px){
+	.form-con .form-title{
+		font-size: 16px;
+	}
+	.form-con .form-title > span{
+		font-size: 13px;
+	}
+	.form-con .form-input input[type="text"],
+	.form-con .form-input input[type="password"],
+	.form-con .form-input textarea{
+		font-size: 16px;
+		padding: 14px;
+	}
+	.image-option{
+		gap: 5px;
+	}
+	.image-option img{
+		width: 56px;
+		height: 56px;
+	}
+	.image-option .image-option-label{
+		font-size: 16px;
+	}
+
+	.form-con .form-info-text{
+		font-size: 13px;
+		line-height: 19px;
+	}
+
+	.form-con .submit-btn{
+		font-size: 20px;
+		padding: 16px;
+	}
 }

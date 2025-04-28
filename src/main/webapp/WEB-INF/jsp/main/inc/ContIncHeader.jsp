@@ -48,18 +48,6 @@
 
 				<div class="container">
 
-					<div id="primary-menu-trigger">
-						<!-- 햄버거 아이콘 -->
-						<div class="icon-menu">
-							<img src="<c:url value='/'/>images/icon-menu.png" alt="">
-						</div>
-
-						<!-- X 아이콘 -->
-						<div class="icon-close">
-							<img src="<c:url value='/'/>images/icon-close.png" alt="">
-						</div>
-					</div>
-
 					<!-- Logo
 					============================================= -->
 					<div id="logo">
@@ -188,6 +176,18 @@
 						<%  } %>
 					</div>
 
+				</div>
+
+				<div id="primary-menu-trigger">
+					<!-- 햄버거 아이콘 -->
+					<div class="icon-menu">
+						<img src="<c:url value='/'/>images/icon-menu.png" alt="">
+					</div>
+
+					<!-- X 아이콘 -->
+					<div class="icon-close">
+						<img src="<c:url value='/'/>images/icon-close.png" alt="">
+					</div>
 				</div>
 
 			</div>

@@ -239,6 +239,26 @@ public class EgovMberManageController {
 		vo.setCodeId("COM045");
 		model.addAttribute("useAt_result", cmmUseService.selectCmmCodeDetail(vo));
 
+		// 소속
+		vo.setCodeId("IBK001");
+		model.addAttribute("deptCode_result", cmmUseService.selectCmmCodeDetail(vo));
+
+		// 호칭
+		vo.setCodeId("IBK002");
+		model.addAttribute("titleCode_result", cmmUseService.selectCmmCodeDetail(vo));
+
+		// 직책
+		vo.setCodeId("IBK003");
+		model.addAttribute("positionCode_result", cmmUseService.selectCmmCodeDetail(vo));
+
+		// 직급
+		vo.setCodeId("IBK004");
+		model.addAttribute("rankCode_result", cmmUseService.selectCmmCodeDetail(vo));
+
+		// 잠김여부
+		vo.setCodeId("COM045");
+		model.addAttribute("lockYn_result", cmmUseService.selectCmmCodeDetail(vo));
+
 		//그룹정보를 조회 - GROUP_ID정보
 		vo.setTableNm("LETTNORGNZTINFO");
 		model.addAttribute("groupId_result", cmmUseService.selectGroupIdDetail(vo));
@@ -283,6 +303,30 @@ public class EgovMberManageController {
 			//사용자상태코드를 코드정보로부터 조회
 			vo.setCodeId("COM013");
 			model.addAttribute("mberSttus_result", cmmUseService.selectCmmCodeDetail(vo));
+
+			//사용여부코드를 코드정보로부터 조회
+			vo.setCodeId("COM045");
+			model.addAttribute("useAt_result", cmmUseService.selectCmmCodeDetail(vo));
+
+			// 소속
+			vo.setCodeId("IBK001");
+			model.addAttribute("deptCode_result", cmmUseService.selectCmmCodeDetail(vo));
+
+			// 호칭
+			vo.setCodeId("IBK002");
+			model.addAttribute("titleCode_result", cmmUseService.selectCmmCodeDetail(vo));
+
+			// 직책
+			vo.setCodeId("IBK003");
+			model.addAttribute("positionCode_result", cmmUseService.selectCmmCodeDetail(vo));
+
+			// 직급
+			vo.setCodeId("IBK004");
+			model.addAttribute("rankCode_result", cmmUseService.selectCmmCodeDetail(vo));
+
+			// 잠김여부
+			vo.setCodeId("COM045");
+			model.addAttribute("lockYn_result", cmmUseService.selectCmmCodeDetail(vo));
 
 			//그룹정보를 조회 - GROUP_ID정보
 			vo.setTableNm("LETTNORGNZTINFO");

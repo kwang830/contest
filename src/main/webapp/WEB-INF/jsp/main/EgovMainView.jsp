@@ -22,15 +22,9 @@
 	<link rel="preload" href="<c:url value='/'/>css/reset.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 	<link rel="preload" href="<c:url value='/'/>css/responsive.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="preload" href="<c:url value='/'/>css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<link rel="stylesheet" href="<c:url value='/'/>css/main-ios.css" type="text/css" media="all" />
 
-	<c:choose>
-		<c:when test="${paramDev == 'dev'}">
-			<link rel="preload" href="<c:url value='/'/>css/main-temp.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-		</c:when>
-		<c:otherwise>
-			<link rel="preload" href="<c:url value='/'/>css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-		</c:otherwise>
-	</c:choose>
 
 	<!-- 비동기
 	============================================= -->
@@ -140,7 +134,7 @@
 							<span>전체 신청건 수</span> 입니다.
 						</div>
 						<div class="counter schedule-counter">
-							<span data-from="0" data-to="<c:out value="${empty contestBbsTotCnt ? 0 : contestBbsTotCnt}" />" data-refresh-interval="15" data-speed="4000" data-comma="true"><c:out value="${empty contestBbsTotCnt ? 0 : contestBbsTotCnt}" /></span>
+							<span data-from="0" data-to="<c:out value="${empty contestBbsTotCnt ? 0 : contestBbsTotCnt}" />" data-refresh-interval="15" data-speed="1000" data-comma="true"><c:out value="${empty contestBbsTotCnt ? 0 : contestBbsTotCnt}" /></span>
 							건
 						</div>
 					</div>
