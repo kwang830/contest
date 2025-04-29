@@ -216,10 +216,11 @@ function fn_egov_passwordConfirm(){
                                 <a href="#" class="btn btn_gray_46" onclick="javascript:fn_egov_inqire_qnalist(); return false;">목록</a>
                             </div>
                             <div class="center_col">
+                            </div>
+                            <div class="right_col">
                                 <a href="#" class="btn btn_white_46" onclick="fn_egov_updt_qnacn('<c:out value="${result.qaId}"/>'); return false;">수정</a>
                                 <a href="#" class="btn btn_white_46" onclick="fn_egov_delete_qnacn('<c:out value="${result.qaId}"/>'); return false;">삭제</a>
                             </div>
-                            <div class="right_col"></div>
                         </div>
                         <!-- 목록/저장버튼  끝-->
 

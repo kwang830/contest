@@ -209,9 +209,10 @@ function fn_egov_pop_mailform() {
                                 <a href="#" class="btn btn_gray_46" onclick="fn_egov_inqire_qnaanswerlist(); return false;">목록</a>
                             </div>
                             <div class="center_col">
+                            </div>
+                            <div class="right_col">
                                 <a href="#" class="btn btn_white_46" onclick="fn_egov_updt_qnacnanswer(document.qnaManageVO,'<c:out value="${result.qaId}"/>'); return false;">저장</a>
                             </div>
-                            <div class="right_col"></div>
                         </div>
                         <!-- 목록/저장버튼  끝-->
 

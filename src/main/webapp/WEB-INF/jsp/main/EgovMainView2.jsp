@@ -254,7 +254,7 @@
                         <span>AI공모전 담당자</span>
                     </div>
                     <div class="info-tel">
-                        02-3407-6074
+                        02-3407-6076
                     </div>
                     <div class="info-icon">
                         <img src="<c:url value='/'/>images/inquiry-icon.png" alt="">

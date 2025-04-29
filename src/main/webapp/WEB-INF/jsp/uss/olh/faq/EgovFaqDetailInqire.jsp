@@ -27,10 +27,17 @@
     <link rel="preload" href="<c:url value='/'/>css/board.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
     <style>
-        .board_article_faq {position: relative; padding-left: 74px; border-bottom: 1px solid #dde2e5;}
-        .board_article_faq .a {display: block; position: absolute; left: 30px; top: 30px; width: 32px; height: 32px; font-size: 0; background: url(/images/ico_a.png) no-repeat;}
-        .board_article_faq .q {display: block; position: absolute; left: 30px; top: 30px; width: 32px; height: 32px; font-size: 0; background: url(/images/ico_q.png) no-repeat;}
-        .board_article_faq textarea {width: 100%; min-height: 350px; padding: 30px 29px 30px 0; border: 0; color: #666; font-size: 16px; font-weight: 300; line-height: 30px; resize: none;}
+        .board_article_faq {position: relative; padding: 30px 20px 30px 50px; border-bottom: 1px solid #dde2e5;}
+        .board_article_faq .a {display: block; position: absolute; left: 10px; top: 30px; width: 32px; height: 32px; font-size: 0; background: url(/images/ico_a.png) no-repeat;}
+        .board_article_faq .q {display: block; position: absolute; left: 10px; top: 30px; width: 32px; height: 32px; font-size: 0; background: url(/images/ico_q.png) no-repeat;}
+        .board_article_faq textarea {width: 100%; padding: 0; border: 0; font-size: 18px; font-weight: 300; line-height: 30px; color: #000; resize: none;}
+        .board_article_faq .textarea {width: 100%; padding: 0; border: 0; font-size: 18px; font-weight: 300; line-height: 30px; color: #000; resize: none;}
+
+        @media all and (min-width: 768px){
+            .board_article_faq{padding: 40px 20px 40px 74px; }
+            .board_article_faq .a {left: 30px; top: 40px;}
+            .board_article_faq .q {left: 30px; top: 40px;}
+        }
     </style>
 
     <!-- Document Title

@@ -223,12 +223,12 @@
 									  fill="#1F1F1F"/>
 							</svg>
 						</div>
-						<div class="swiper-btn plus-btn" title="상세보기" onClick="window.location.href='/cmm/contest/contestOtcm.do';">
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-								<path d="M10.591 13.3887H0.60022V10.6112H10.591V0.333252H13.2908V10.6112H23.2816V13.3887H13.2908V23.6666H10.591V13.3887Z"
-									  fill="white"/>
-							</svg>
-						</div>
+<%--						<div class="swiper-btn plus-btn" title="상세보기" onClick="window.location.href='/cmm/contest/contestOtcm.do';">--%>
+<%--							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">--%>
+<%--								<path d="M10.591 13.3887H0.60022V10.6112H10.591V0.333252H13.2908V10.6112H23.2816V13.3887H13.2908V23.6666H10.591V13.3887Z"--%>
+<%--									  fill="white"/>--%>
+<%--							</svg>--%>
+<%--						</div>--%>
 					</div>
 				</div>
 				<div class="history-img-con" id="historySwiper">
@@ -262,7 +262,7 @@
 							<span>AI공모전 담당자</span>
 						</div>
 						<div class="info-tel">
-							02-3407-6074
+							02-3407-6076
 						</div>
 <%--						<div class="info-icon">--%>
 <%--							<img src="<c:url value='/'/>images/inquiry-icon.png" alt="">--%>
@@ -309,19 +309,27 @@
 								<c:forEach var="result" items="${notiList}" begin="0" end="10" step="1" varStatus="status">
 									<c:if test="${!(result.isExpired=='Y' || result.useAt == 'N')}">
 										<div class="swiper-slide">
-											<div class="swiper-slide-inner">
-												<div class="notice-list-year"><c:out value="${fn:replace(result.frstRegisterPnttm, '-', '.')}" /></div>
-												<div class="notice-list-title">
-													<c:choose>
-														<c:when test="${fn:length(result.nttSj) > 51 }">
-															<c:out value="${fn:substring(result.nttSj, 0, 50)}" escapeXml="false" />...
-														</c:when>
-														<c:otherwise>
-															<c:out value="${result.nttSj }" escapeXml="false" />
-														</c:otherwise>
-													</c:choose>
+											<form name="subForm" method="post" action="<c:url value='/cop/bbs/selectBoardArticle.do'/>">
+												<input type="hidden" name="bbsId" value="<c:out value='${result.bbsId}'/>" />
+												<input type="hidden" name="nttId" value="<c:out value="${result.nttId}"/>" />
+<%--												<input type="hidden" name="bbsTyCode" value="" />--%>
+<%--												<input type="hidden" name="bbsAttrbCode" value="" />--%>
+<%--												<input type="hidden" name="authFlag" value="" />--%>
+<%--												<input name="pageIndex" type="hidden" value="1" />--%>
+												<div class="swiper-slide-inner" onclick="parentNode.submit();">
+													<div class="notice-list-year"><c:out value="${fn:replace(result.frstRegisterPnttm, '-', '.')}" /></div>
+													<div class="notice-list-title">
+														<c:choose>
+															<c:when test="${fn:length(result.nttSj) > 51 }">
+																<c:out value="${fn:substring(result.nttSj, 0, 50)}" escapeXml="false" />...
+															</c:when>
+															<c:otherwise>
+																<c:out value="${result.nttSj }" escapeXml="false" />
+															</c:otherwise>
+														</c:choose>
+													</div>
 												</div>
-											</div>
+											</form>
 										</div>
 									</c:if>
 								</c:forEach>

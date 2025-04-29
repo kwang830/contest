@@ -54,6 +54,18 @@
             document.board.submit();
         }
 
+        function fn_egov_regist_notice() {
+            //document.board.onsubmit();
+
+            if (!validateBoard(document.board)){
+                return;
+            }
+            if (confirm('<spring:message code="common.update.msg" />')) {
+                document.board.action = "<c:url value='/cop/bbs${prefix}/updateBoardArticle.do'/>";
+                document.board.submit();
+            }
+        }
+
         function fn_egov_delete_notice() {
             if ("<c:out value='${anonymous}'/>" == "true" && document.frm.password.value == '') {
                 alert('등록시 사용한 패스워드를 입력해 주세요.');
@@ -267,7 +279,7 @@
                         <div class="center_col">
                             <c:if test="${bdMstr.authFlag == 'Y'}">
                                 <c:if test="${result.frstRegisterId == searchVO.frstRegisterId}">
-                                    <a href="#" class="btn btn_white_46" onclick="javascript:fn_egov_regist_notice(); return false;">저장</a>
+                                    <a href="#" class="btn btn_white_46" onclick="javascript:fn_egov_regist_notice(); return false;">수정</a>
                                 </c:if>
                             </c:if>
                         </div>

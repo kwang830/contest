@@ -141,6 +141,7 @@
                     <div class="board_view_top_con">
                         <div class="board_view_top_inner">
                             <!-- 관리자가 작성한 경우 mem-info-img display:none 처리 or src 안넣으면 기본이미지로 노출 -->
+                            <c:if test='${result.bbsId == "BBSMSTR_BBBBBBBBBBBB"}'>
                             <div class="mem-info-img">
                                 <c:if test="${empty result.selectImg}">
                                     <img src="" alt=""><!-- 대표 이미지 -->
@@ -171,6 +172,7 @@
 
                                 </c:if>
                             </div>
+                            </c:if>
                             <div>
                                 <div class="board_view_title">
                                     <c:out value="${result.nttSj}" escapeXml="false" />
@@ -198,6 +200,11 @@
                             </div>
                         </div>
                     </div>
+                    <c:if test="${result.nttId == '29' && result.bbsId == 'BBSMSTR_AAAAAAAAAAAA'}">
+                    <div class="board_view_content_con">
+                        □ 설명회 신청 : <a href="https://forms.gle/8P9oJ9e92dGFtux18" target="_blank" rel="noopener noreferrer" style="color: blue;">https://forms.gle/8P9oJ9e92dGFtux18</a>
+                    </div>
+                    </c:if>
                     <div class="board_view_content_con">
                         <textarea id="nttCn" name="nttCn" title="내용" class="f_txtar w_full h_200"
                                   rows="10" cols="30" readonly="readonly"><c:out value="${result.nttCn}" escapeXml="false" />
