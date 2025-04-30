@@ -42,7 +42,7 @@
 		       a.BASE_YY as BASE_YY,
 		       a.SQN as SQN,
 		       a.TTL as VALT_MNGM_TTL,
-			   a.DESC as VALT_MNGM_DESC
+			   a.VALT_DESC as VALT_MNGM_DESC
 		FROM tb_valt_mngm_master a
 		WHERE 1=1
 		<if test="searchCnd == 1">
@@ -62,6 +62,7 @@
 		</if>
 		AND a.USE_AT = 'Y'
 		ORDER BY a.VALT_MNGM_NO
+		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 						
 	</select>
 
@@ -104,7 +105,9 @@
 			   BASE_YY = #{baseYy},
 			   SQN = #{sqn},
 			   TTL = #{valtMngmTtl},
-			   `DESC` = #{valtMngmDesc}
+			   VALT_DESC = #{valtMngmDesc},
+			   LAST_UPDUSR_ID = #{lastUpdusrId},
+			   LAST_UPDT_PNTTM = SYSDATE()
 		WHERE VALT_MNGM_NO = #{valtMngmNo}
 	</update>
 
@@ -120,7 +123,7 @@
 		                                 BASE_YY,
 		                                 SQN,
 		                                 TTL,
-		                                 `DESC`,
+										 VALT_DESC,
 		                                 USE_TS,
 		                                 FRST_REGIST_PNTTM,
 		                                 FRST_REGISTER_ID,
@@ -144,7 +147,7 @@
 			   A.BASE_YY AS BASE_YY,
 			   A.SQN AS SQN,
 			   A.TTL AS VALT_MNGM_TTL,
-			   A.`DESC` AS VALT_MNGM_DESC
+			   A.VALT_DESC AS VALT_MNGM_DESC
 		FROM TB_VALT_MNGM_MASTER A
 		WHERE A.VALT_MNGM_NO = #{valtMngmNo}
 	</select>

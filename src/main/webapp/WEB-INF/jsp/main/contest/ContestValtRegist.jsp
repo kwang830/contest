@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -119,15 +119,15 @@
     <div class="popup EgovGroupSearch" style="background-color: white;">
         <div class="pop_inner">
             <div class="pop_header">
-                <h1>공모전 등록 팝업</h1>
+                <h1>평가 관리 등록 팝업</h1>
                 <button type="button" class="close" onclick="fn_egov_cancel_popup(); return false;">닫기</button>
             </div>
             <div class="pop_container" style="display: flex; flex-direction: column">
-                <div class="tit_3">공모전 제목</div>
+                <div class="tit_3">평가 제목</div>
                 <div class="f_search">
                     <input name="valtMngmTtl" id="valtMngmTtl" type="text" maxlength="100" />
                 </div>
-                <div class="tit_3">문항 번호</div>
+                <div class="tit_3">문항 관리번호</div>
                 <div class="f_select">
 <%--                    <input name="valtQsitMnno" id="valtQsitMnno" type="text" maxlength="50" />--%>
                     <select name="valtQsitMnno" id="valtQsitMnno">
@@ -136,15 +136,15 @@
                         </c:forEach>
                     </select>
                 </div>
-                <div class="tit_3">기준년</div>
+                <div class="tit_3">기준 년도</div>
                 <div class="f_search">
-                    <input name="baseYy" id="baseYy" type="number" maxlength="4" oninput="fncCheckMaxLength(this)" />
+                    <input name="baseYy" id="baseYy" type="text" maxlength="4" oninput="fncCheckMaxLength(this)" />
                 </div>
                 <div class="tit_3">차수</div>
                 <div class="f_search">
-                    <input name="sqn" id="sqn" type="number" maxlength="4" oninput="fncCheckMaxLength(this)" />
+                    <input name="sqn" id="sqn" type="text" maxlength="4" oninput="fncCheckMaxLength(this)" />
                 </div>
-                <div class="tit_3">공모전 설명</div>
+                <div class="tit_3">평가 설명</div>
                 <div class="f_txtar">
                     <textarea id="valtMngmDesc" name="valtMngmDesc" rows="10" style="width: 100%; box-sizing: border-box"></textarea>
                 </div>

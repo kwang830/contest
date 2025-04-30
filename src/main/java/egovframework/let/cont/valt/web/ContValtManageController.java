@@ -54,9 +54,10 @@ public class ContValtManageController {
         }
 
         /** EgovPropertyService */
-        // TODO 평가
-        contSearchVO.setPageUnit(propertyService.getInt("pageUnit"));
-        contSearchVO.setPageSize(propertyService.getInt("pageSize"));
+        //contSearchVO.setPageUnit(propertyService.getInt("pageUnit"));
+        //contSearchVO.setPageSize(propertyService.getInt("pageSize"));
+        contSearchVO.setPageUnit(5);
+        contSearchVO.setPageSize(5);
 
         /** pageing */
         PaginationInfo paginationInfo = new PaginationInfo();
@@ -68,41 +69,6 @@ public class ContValtManageController {
         contSearchVO.setLastIndex(paginationInfo.getLastRecordIndex());
         contSearchVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 
-        model.addAttribute("contValtList", contValtManageService.selectContValtList(contSearchVO));
-
-        int totCnt = contValtManageService.selectContValtListTotCnt(contSearchVO);
-        paginationInfo.setTotalRecordCount(totCnt);
-        model.addAttribute("paginationInfo", paginationInfo);
-
-        return "main/contest/ContestValtMngmView";
-    }
-
-    @RequestMapping(value = "/cmm/contest/valt/contestValtSearch.do")
-    public String getContestSearch(@ModelAttribute("contSearchVO") ContValtVO contSearchVO, HttpServletRequest request, ModelMap model)
-            throws Exception{
-        // 미인증 사용자에 대한 보안처리
-        Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
-        if(!isAuthenticated) {
-            model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
-            return "uat/uia/EgovLoginUsr";
-        }
-
-        /** EgovPropertyService */
-        // TODO 평가
-        contSearchVO.setPageUnit(propertyService.getInt("pageUnit"));
-        contSearchVO.setPageSize(propertyService.getInt("pageSize"));
-
-        /** pageing */
-        PaginationInfo paginationInfo = new PaginationInfo();
-        paginationInfo.setCurrentPageNo(contSearchVO.getPageIndex());
-        paginationInfo.setRecordCountPerPage(contSearchVO.getPageUnit());
-        paginationInfo.setPageSize(contSearchVO.getPageSize());
-
-        contSearchVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
-        contSearchVO.setLastIndex(paginationInfo.getLastRecordIndex());
-        contSearchVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
-
-        System.out.println(contSearchVO.getSearchWrd());
         model.addAttribute("contValtList", contValtManageService.selectContValtList(contSearchVO));
 
         int totCnt = contValtManageService.selectContValtListTotCnt(contSearchVO);
@@ -123,7 +89,7 @@ public class ContValtManageController {
         }
 
         LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-        contSearchVO.setLastUpdusrId(user.getId());
+        contSearchVO.setLastUpdusrId(user.getUniqId());
 
         contValtManageService.deleteContValt(contSearchVO);
 
@@ -160,7 +126,7 @@ public class ContValtManageController {
         }
 
         LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-        contSearchVO.setLastUpdusrId(user.getId());
+        contSearchVO.setLastUpdusrId(user.getUniqId());
 
         contValtManageService.updateContValt(contSearchVO);
 
@@ -189,7 +155,7 @@ public class ContValtManageController {
         }
         LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
         contValtVO.setValtMngmNo(egovContValtIdGnrService.getNextStringId());
-        contValtVO.setFrstRegisterId(user.getId());
+        contValtVO.setFrstRegisterId(user.getUniqId());
         contValtVO.setUseAt("Y");
 
         contValtManageService.insertContestValt(contValtVO);
@@ -260,7 +226,7 @@ public class ContValtManageController {
             return "uat/uia/EgovLoginUsr";
         }
         LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-        contValtVO.setFrstRegisterId(user.getId());
+        contValtVO.setFrstRegisterId(user.getUniqId());
         contValtVO.setUseAt("Y");
 
         contValtManageService.insertContestValtBbs(contValtVO);
@@ -303,7 +269,7 @@ public class ContValtManageController {
             return "uat/uia/EgovLoginUsr";
         }
         LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-        contValtVO.setFrstRegisterId(user.getId());
+        contValtVO.setFrstRegisterId(user.getUniqId());
         contValtVO.setUseAt("Y");
 
         contValtManageService.insertContestValtUser(contValtVO);

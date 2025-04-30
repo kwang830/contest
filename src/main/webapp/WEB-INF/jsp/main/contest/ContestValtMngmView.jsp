@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
@@ -29,6 +29,7 @@
     <link rel="preload" href="<c:url value='/'/>css/font-icons.css" as="style"
           onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="<c:url value='/'/>css/sub.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="<c:url value='/'/>css/sub-ios.css" type="text/css" media="all" />
     <link rel="preload" href="<c:url value='/'/>css/board.css" as="style"
           onload="this.onload=null;this.rel='stylesheet'">
 
@@ -37,13 +38,15 @@
 
     <!-- Document Title
 ============================================= -->
-    <title>IBK시스템 AI 아이디어 챌린지 - 공모전 평가 관리</title>
+    <title>IBK시스템 AI 아이디어 챌린지</title>
 
     <style type="text/css">
         table tr.selected td {
             background-color: #d0ebff; /* 모든 td에 하늘색 배경 */
             font-weight: bold;         /* 글씨 굵게 */
         }
+
+        .marginTop5 { margin-top: 5px; }
     </style>
 
     <!-- favicon -->
@@ -104,12 +107,12 @@
                     if (checkedCount > 0)
                         resultCheck = true;
                     else {
-                        alert("선택된  항목이 없습니다.");
+                        alert("선택한 항목이 없습니다.");
                         resultCheck = false;
                     }
                 } else {
                     if (form.delYn.checked == false) {
-                        alert("선택 항목이 없습니다.");
+                        alert("선택한 항목이 없습니다.");
                         resultCheck = false;
                     } else {
                         returnId = checkId.value;
@@ -117,7 +120,7 @@
                     }
                 }
             } else {
-                alert("조회된 결과가 없습니다.");
+                alert("선택한 항목이 없습니다.");
             }
             form[target].value = returnId;
             return resultCheck;
@@ -130,7 +133,7 @@
         function fncSelectContestList(pageNo) {
             //document.listForm.searchCondition.value = "1";
             document.listForm.pageIndex.value = pageNo;
-            document.listForm.action = "<c:url value='/cmm/contest/valt/contestValtSearch.do'/>";
+            document.listForm.action = "<c:url value='/cmm/contest/valt/contestValtMngm.do'/>";
             document.listForm.submit();
         }
 
@@ -164,7 +167,7 @@
         function linkPage(pageNo) {
             //document.listForm.searchCondition.value = "1";
             document.listForm.pageIndex.value = pageNo;
-            document.listForm.action = "<c:url value='/cmm/contest/valt/contestValtSearch.do'/>";
+            document.listForm.action = "<c:url value='/cmm/contest/valt/contestValtMngm.do'/>";
             document.listForm.submit();
         }
 
@@ -212,7 +215,7 @@
         function fncRegistContestValtBbsPop() {
             const selected = document.bbsForm.valtMngmNo.value;
             if (!selected || selected.trim().length === 0) {
-                alert("선택 항목이 없습니다.")
+                alert("평가 관리 정보를 먼저 선택하세요!")
                 return;
             }
             var $dialog = $('<div id="modalPan"></div>')
@@ -276,8 +279,8 @@
             location.reload();
         }
 
-        function press() {
-            if (event.keyCode == 13) {
+        function press(e) {
+            if (e.key === 'Enter') {
                 fncSelectAuthorGroupList('1');
             }
         }
@@ -319,108 +322,97 @@
         <div class="content-wrap">
             <div class="container clearfix">
 
-                <form:form name="listForm" action="<c:url value='/cmm/contest/valt/contestValtSearch.do'/>" method="post">
+                <form:form name="listForm" action="<c:url value='/cmm/contest/valt/contestValtMngm.do'/>" method="post">
                     <!-- 검색조건 -->
                     <div class="condition">
 
                         <label class="item f_select" for="sel1">
                             <select id="sel1" name="searchCnd" title="조회조건">
-                                <option value="1"
-                                        <c:if test="${contSearchVO.searchCnd == '1'}">selected</c:if> >평가관리번호
-                                </option>
-                                <option value="2"
-                                        <c:if test="${contSearchVO.searchCnd == '2'}">selected</c:if> >문항관리번호
-                                </option>
-                                <option value="3"
-                                        <c:if test="${contSearchVO.searchCnd == '3'}">selected</c:if> >기준년
-                                </option>
-                                <option value="4"
-                                        <c:if test="${contSearchVO.searchCnd == '4'}">selected</c:if> >차수
-                                </option>
-                                <option value="5"
-                                        <c:if test="${contSearchVO.searchCnd == '5'}">selected</c:if> >제목
-                                </option>
-
+                                <option value="1" <c:if test="${contSearchVO.searchCnd == '1'}">selected</c:if> >평가관리번호</option>
+                                <option value="2" <c:if test="${contSearchVO.searchCnd == '2'}">selected</c:if> >문항관리번호</option>
+                                <option value="3" <c:if test="${contSearchVO.searchCnd == '3'}">selected</c:if> >년도</option>
+                                <option value="4" <c:if test="${contSearchVO.searchCnd == '4'}">selected</c:if> >차수</option>
+                                <option value="5" <c:if test="${contSearchVO.searchCnd == '5'}">selected</c:if> >제목</option>
                             </select>
                         </label>
 
                         <span class="item f_search">
                             <input id="searchWord" class="f_input w_500" name="searchWrd" type="text"
-                                   value="<c:out value='${contSearchVO.searchWrd}'/>" title="검색" onkeypress="press();"/>
-                            <button class="btn" type="submit" onclick="javascript:fncSelectContestList('1')"
-                                    style="selector-dummy:expression(this.hideFocus=false);">조회</button><!-- 조회 -->
+                                   value="<c:out value='${contSearchVO.searchWrd}'/>" title="검색" onkeydown="press(event);"/>
+                            <button class="btn" type="submit" onclick="javascript:fncSelectContestList('1')">조회</button><!-- 조회 -->
                         </span>
 
+                        <a href="#" class="item btn btn_black_46 w_100" onclick="javascript:fncRegistContestValtPop(); return false;">등록</a>
+                        <a href="#" class="item btn btn_black_46 w_100" onclick="javascript:fncUpdateContestValtPop(); return false;">수정</a>
+                        <a href="#" class="item btn btn_black_46 w_100" onclick="javascript:fncContValtDeleteList(); return false;">삭제</a>
 
                     </div>
                     <!--// 검색조건 -->
 
-                    <div class="board_list_top topmargin">
-                        <div class="right_col">
-                            <a href="#LINK" class="btn btn_blue_46 w_130" onclick="javascript:fncRegistContestValtPop()"
-                               style="selector-dummy:expression(this.hideFocus=false);">공모전 등록</a><!-- 등록 -->
-                            <a href="#LINK" class="btn btn_blue_46 w_130" onclick="javascript:fncUpdateContestValtPop()"
-                               style="selector-dummy:expression(this.hideFocus=false);">공모전 수정</a><!-- 수정 -->
-                            <a href="#LINK" class="btn btn_blue_46 w_130" onclick="javascript:fncContValtDeleteList()"
-                               style="selector-dummy:expression(this.hideFocus=false);">공모전 삭제</a><!-- 삭제 -->
-                        </div>
-                    </div>
-
-
-                    <!-- 게시판 -->
-                    <div class="board_list selectable-table">
+                    <!-- 평가 관리 정보 -->
+                    <div class="board_list selectable-table" >
                         <table>
                             <caption>목록</caption>
                             <colgroup>
                                 <col style="width: 70px;">
                                 <col style="width: 70px;">
-                                <col style="width: auto; min-width: 250px;">
-                                <col style="width: 250px;">
-                                <col style="width: 250px;">
-                                <col style="width: 250px;">
-                                <col style="width: 250px;">
+                                <col style="width: 120px;">
+                                <col style="width: 120px;">
+                                <col style="width: 120px;">
+                                <col style="width: 70px;">
+                                <col style="width: 220px;">
+                                <col style="width: auto; min-width: 300px;">
                             </colgroup>
                             <thead>
-                            <tr>
-                                <th scope="col">No.</th>
-                                <th scope="col">
-                                    <span class="f_chk_only chkAll">
-                                        <input type="checkbox" name="checkAll" title="선택여부"
-                                               onclick="javascript:fncCheckAll('listForm')">
-                                    </span>
-                                </th>
-                                <th scope="col">평가 관리키</th>
-                                <th scope="col">문항 관리키</th>
-                                <th scope="col">년도</th>
-                                <th scope="col">차수</th>
-                                <th scope="col">제목</th>
-                            </tr>
+                                <tr>
+                                    <th scope="col">No.</th>
+                                    <th scope="col">
+                                        <span class="f_chk_only chkAll">
+                                            <input type="checkbox" name="checkAll" title="선택여부" onclick="javascript:fncCheckAll('listForm')">
+                                        </span>
+                                    </th>
+                                    <th scope="col">평가 관리번호</th>
+                                    <th scope="col">문항 관리번호</th>
+                                    <th scope="col">년도</th>
+                                    <th scope="col">차수</th>
+                                    <th scope="col">시작일자</th>
+                                    <th scope="col">제목</th>
+                                    <th scope="col">내용</th>
+                                </tr>
                             </thead>
                             <tbody>
 
                             <c:if test="${fn:length(contValtList) == 0}">
                                 <tr>
-                                    <td colspan="7"><spring:message code="common.nodata.msg"/></td>
+                                    <td colspan="9"><spring:message code="common.nodata.msg"/></td>
                                 </tr>
                             </c:if>
 
                             <c:forEach var="contValt" items="${contValtList}" varStatus="status">
-                                <tr>
-                                    <td><c:out
-                                            value="${(paginationInfo.currentPageNo-1) * paginationInfo.pageSize + status.count}"/></td>
+                                <tr onclick="javascript:fncSetValtMngmNo('${contValt.valtMngmNo}');  fncSelectBbsByValt('${contValt.valtMngmNo}'); fncSelectUsrByValt('${contValt.valtMngmNo}')">
+                                    <td><c:out value="${(paginationInfo.currentPageNo-1) * paginationInfo.pageSize + status.count}"/></td>
                                     <td>
                                         <span class="f_chk_only">
                                             <input type="checkbox" name="delYn" class="check2" title="선택">
-                                            <input type="hidden" name="checkId"
-                                                   value="<c:out value="${contValt.valtMngmNo}"/>"/>
+                                            <input type="hidden" name="checkId" value="<c:out value="${contValt.valtMngmNo}"/>"/>
                                         </span>
                                     </td>
-                                    <td><a href="javascript:void(0)" class="lnk" onclick="javascript:fncSetValtMngmNo('${contValt.valtMngmNo}');  fncSelectBbsByValt('${contValt.valtMngmNo}'); fncSelectUsrByValt('${contValt.valtMngmNo}')">
-                                        <c:out value="${contValt.valtMngmNo}"/></a></td>
+                                    <td><c:out value="${contValt.valtMngmNo}"/></td>
                                     <td><c:out value="${contValt.valtQsitMnno}"/></td>
                                     <td><c:out value="${contValt.baseYy}"/></td>
                                     <td><c:out value="${contValt.sqn}"/></td>
+                                    <td>-수정필요-</td>
                                     <td><c:out value="${contValt.valtMngmTtl}"/></td>
+                                    <td>
+                                        <c:choose>
+                                            <c:when test="${fn:length(contValt.valtMngmDesc) > 25}">
+                                                <c:out value="${fn:substring(contValt.valtMngmDesc, 0, 25)}"/>...
+                                            </c:when>
+                                            <c:otherwise>
+                                                <c:out value="${contValt.valtMngmDesc}"/>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </td>
                                 </tr>
                             </c:forEach>
 
@@ -433,8 +425,7 @@
                         <div class="board_list_bot">
                             <div class="paging" id="paging_div">
                                 <ul>
-                                    <ui:pagination paginationInfo="${paginationInfo}" type="renew"
-                                                   jsFunction="linkPage"/>
+                                    <ui:pagination paginationInfo="${paginationInfo}" type="renew" jsFunction="linkPage"/>
                                 </ul>
                             </div>
                         </div>
@@ -446,43 +437,43 @@
                     <input type="hidden" name="pageIndex" value="<c:out value='${contSearchVO.pageIndex}'/>"/>
 
                 </form:form>
-                <!--// 게시판 -->
+                <!--// 평가 관리 정보 -->
             </div>
-        </div>
-        <!-- 평가 관리 설정 영역 -->
-        <div class="content-wrap">
+
+            <!-- 평가 관리 설정 영역 -->
             <div class="container clearfix" style="display: flex; flex-direction: row">
                 <form:form name="bbsForm" action="#" method="post" cssStyle="margin-right: 10px" >
                     <input type="hidden" name="valtMngmNo"/>
                     <div class="board_list_top topmargin">
+                        <div class="left_col">
+                            <span style="color:#3474b8; font-size: 22px; font-weight: 600;">평가 대상</span>
+                        </div>
                         <div class="right_col">
-                            <a href="#LINK" class="btn btn_blue_46 w_130" onclick="javascript:fncRegistContestValtBbsPop()"
-                               style="selector-dummy:expression(this.hideFocus=false);">대상 추가</a><!-- 등록 -->
-                            <a href="#LINK" class="btn btn_blue_46 w_130" onclick="javascript:fncContValtDeleteBbsList()"
-                               style="selector-dummy:expression(this.hideFocus=false);">대상 삭제</a><!-- 삭제 -->
+                            <a href="#LINK" class="btn btn_blue_46 w_100" onclick="javascript:fncRegistContestValtBbsPop()">추가</a>
+                            <a href="#LINK" class="btn btn_blue_46 w_100" onclick="javascript:fncContValtDeleteBbsList()">삭제</a>
                         </div>
                     </div>
-                    <!-- 평가할 게시판 선택 영역 -->
-                    <div class="board_list">
+                    <!-- 평가 대상 선택 영역 -->
+                    <div class="board_list marginTop5">
                         <table id="valtBbs">
                             <caption>목록</caption>
                             <colgroup>
                                 <col style="width: 40px;">
-                                <col style="width: 70px;">
-                                <col style="width: auto; min-width: 250px;">
-                                <col style="width: 250px;">
+                                <col style="width: auto; min-width: 200px;">
+                                <col style="width: 120px;">
+                                <col style="width: 120px;">
                             </colgroup>
                             <thead>
                             <tr>
                                 <th scope="col">
-                                            <span class="f_chk_only chkAll">
-                                                <input type="checkbox" name="CheckAll" title="선택여부"
-                                                       onclick="javascript:fncCheckAll('bbsForm')">
-                                            </span>
+                                    <span class="f_chk_only chkAll">
+                                        <input type="checkbox" name="CheckAll" title="선택여부"
+                                               onclick="javascript:fncCheckAll('bbsForm')">
+                                    </span>
                                 </th>
-                                <th scope="col">글 번호</th>
+                                <th scope="col">팀명</th>
+                                <th scope="col">작성자</th>
                                 <th scope="col">제목</th>
-                                <th scope="col">작성자(팀)</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -496,11 +487,11 @@
                             <c:forEach var="bd" items="${boardList}" varStatus="status">
                                 <tr>
                                     <td>
-                                                <span class="f_chk_only">
-                                                    <input type="checkbox" name="delYn" class="check2" title="선택">
-                                                    <input type="hidden" name="checkId"
-                                                           value="<c:out value="${bd.nttId}"/>"/>
-                                                </span>
+                                        <span class="f_chk_only">
+                                            <input type="checkbox" name="delYn" class="check2" title="선택">
+                                            <input type="hidden" name="checkId"
+                                                   value="<c:out value="${bd.nttId}"/>"/>
+                                        </span>
                                     </td>
                                     <td><c:out value="${bd.nttId}"/></td>
                                     <td><c:out value="${bd.nttSj}"/></td>
@@ -514,46 +505,49 @@
 
                     <input type="hidden" name="nttId"/>
                     <input type="hidden" name="nttIds"/>
-    <%--                <input type="hidden" name="pageIndex" value="<c:out value='${contValtVO.pageIndex}'/>"/>--%>
+
                 </form:form>
                 <!-- 평가자 선택 영역 -->
                 <form:form name="userForm" action="#" method="post">
                     <input type="hidden" name="valtMngmNo"/>
                     <div class="board_list_top topmargin">
+                        <div class="left_col">
+                            <span style="color:#3474b8; font-size: 22px; font-weight: 600;">평가 위원</span>
+                        </div>
                         <div class="right_col">
-                            <a href="#LINK" class="btn btn_blue_46 w_130" onclick="javascript:fncRegistContestValtUserPop()"
-                               style="selector-dummy:expression(this.hideFocus=false);">대상 추가</a><!-- 등록 -->
-                            <a href="#LINK" class="btn btn_blue_46 w_130" onclick="javascript:fncContValtDeleteUserList()"
-                               style="selector-dummy:expression(this.hideFocus=false);">대상 삭제</a><!-- 삭제 -->
+                            <a href="#LINK" class="btn btn_blue_46 w_100" onclick="javascript:fncRegistContestValtUserPop()" >추가</a>
+                            <a href="#LINK" class="btn btn_blue_46 w_100" onclick="javascript:fncContValtDeleteUserList()" >삭제</a>
                         </div>
                     </div>
                     <!-- 평가할 게시판 선택 영역 -->
-                    <div class="board_list">
+                    <div class="board_list marginTop5">
                         <table id="valtUser">
                             <caption>목록</caption>
                             <colgroup>
                                 <col style="width: 40px;">
-                                <col style="width: auto; min-width: 250px;">
-                                <col style="width: 250px;">
-                                <col style="width: 70px;">
+                                <col style="width: 160px;">
+                                <col style="width: auto; min-width: 160px;">
+                                <col style="width: 80px;">
+                                <col style="width: 80px;">
                             </colgroup>
                             <thead>
                             <tr>
                                 <th scope="col">
-                                            <span class="f_chk_only chkAll">
-                                                <input type="checkbox" name="CheckAll" title="선택여부"
-                                                       onclick="javascript:fncCheckAll('userForm')">
-                                            </span>
+                                    <span class="f_chk_only chkAll">
+                                        <input type="checkbox" name="CheckAll" title="선택여부"
+                                               onclick="javascript:fncCheckAll('userForm')">
+                                    </span>
                                 </th>
-                                <th scope="col">소속</th>
+                                <th scope="col">본부</th>
+                                <th scope="col">소속팀</th>
                                 <th scope="col">이름</th>
-                                <th scope="col">직책</th>
+                                <th scope="col">호칭</th>
                             </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td colspan="4"><spring:message code="common.nodata.msg"/></td>
-                                </tr>
+                            <tr>
+                                <td colspan="5"><spring:message code="common.nodata.msg"/></td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -563,6 +557,11 @@
                     <%--                <input type="hidden" name="pageIndex" value="<c:out value='${contValtVO.pageIndex}'/>"/>--%>
                 </form:form>
             </div>
+        </div>
+
+        <div class="content-wrap">
+
+
         </div>
     </section>
 
