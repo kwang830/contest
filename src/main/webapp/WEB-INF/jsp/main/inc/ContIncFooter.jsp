@@ -9,7 +9,7 @@
 		<div class="row">
 			<div class="footer-text">
 				서울시 중구 퇴계로 141-7 뉴서울빌딩 10F (주)IBK 시스템<br/>
-				· AI공모전 담당자 · <span class="footer-email">contest_admin@ibksystem.co.kr</span> · 02-3407-6076<br/>
+				· AI공모전 담당자 · <span class="footer-email">contest_admin@ibksystem.co.kr</span> · 02-3407-6074<br/>
 				<div id="copyright">Copyright © 2025 IBK System Co. Ltd. All Rights Reserved.</div>
 			</div>
 
