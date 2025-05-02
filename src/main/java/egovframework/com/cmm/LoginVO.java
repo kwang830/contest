@@ -57,10 +57,12 @@ public class LoginVO implements Serializable{
 	/** 사용자 Browser정보 */
 	private String browserInfo;
 
-	/** 부서정보(팀명) */
+	/** 부서명 */
 	private String deptNm;
 	/** 부서정보(전체) */
 	private String deptNmF;
+	/** 팀명 */
+	private String teamNm;
 	/** 직책 */
 	private String titleNm;
 
@@ -317,6 +319,20 @@ public class LoginVO implements Serializable{
 	public void setDeptNmF(String deptNmF) {
 		this.deptNmF = deptNmF;
 	}
+
+	/**
+	 * @return the teamNm
+	 */
+	public String getTeamNm() {
+		return teamNm;
+	}
+	/**
+	 * @param teamNm the teamNm to set
+	 */
+	public void setTeamNm(String teamNm) {
+		this.teamNm = teamNm;
+	}
+
 	/**
 	 * @return the titleNm
 	 */

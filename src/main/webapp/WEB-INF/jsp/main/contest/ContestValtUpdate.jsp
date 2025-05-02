@@ -14,12 +14,12 @@
     <link rel="stylesheet" href="<c:url value='/'/>css/layout.css">
     <link rel="stylesheet" href="<c:url value='/'/>css/board.css">
     <link rel="stylesheet" href="<c:url value='/'/>css/page.css">
-    <script src="<c:url value='/'/>js/jquery-1.11.2.min.js"></script>
-    <script src="<c:url value='/'/>js/ui.js"></script>
+    <script type="text/javascript" src="<c:url value='/js/EgovCalPopup.js'/>" ></script>
+    <link rel="stylesheet" href="<c:url value='/'/>css/jqueryui.css">
 
     <!-- Document Title
     ============================================= -->
-    <title>IBK시스템, AI 아이디어 챌린지 - 평가 관리 수정</title>
+    <title>IBK시스템 AI 아이디어 챌린지</title>
 
     <style type="text/css">
         .f_search input[type=number] {width: 100%; height: 46px; padding: 0 50px 0 20px; border: 0; border-radius: 5px; color: #222; font-size: 16px; background: #f7f7f7;}
@@ -111,15 +111,37 @@
             console.log(data);
             document.board.valtMngmNo.value = data;
         }
+
+        /* ********************************************************
+         * 달력
+         ******************************************************** */
+        function fn_egov_init_date(){
+            $("#useTs").datepicker(
+                {dateFormat:'yy-mm-dd'
+                    , showOn: 'button'
+                    , buttonImage: '<c:url value='/images/ico_calendar.png'/>'
+                    , buttonImageOnly: true
+
+                    , showMonthAfterYear: true
+                    , showOtherMonths: true
+                    , selectOtherMonths: true
+                    , monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월']
+
+                    , changeMonth: true // 월선택 select box 표시 (기본은 false)
+                    , changeYear: true  // 년선택 selectbox 표시 (기본은 false)
+                    , showButtonPanel: true // 하단 today, done  버튼기능 추가 표시 (기본은 false)
+                }
+            );
+        }
     </script>
 </head>
 
-<body onLoad="document.board.valtMngmTtl.focus();">
+<body onLoad="document.board.valtMngmTtl.focus(); fn_egov_init_date();">
 <form name="board" method="post">
     <div class="popup EgovGroupSearch" style="background-color: white;">
         <div class="pop_inner">
             <div class="pop_header">
-                <h1>공모전 수정 팝업</h1>
+                <h1>평가 관리 수정 팝업</h1>
                 <button type="button" class="close" onclick="fn_egov_cancel_popup(); return false;">닫기</button>
             </div>
             <div class="pop_container" style="display: flex; flex-direction: column">
@@ -129,7 +151,6 @@
                 </div>
                 <div class="tit_3">문항 번호</div>
                 <div class="f_select">
-<%--                    <input name="valtQsitMnno" id="valtQsitMnno" type="text" maxlength="50" />--%>
                     <select name="valtQsitMnno" id="valtQsitMnno">
                         <c:forEach var="qsit" items="${qsitList}">
                             <option value="${qsit.valtQsitMnno}"
@@ -139,15 +160,19 @@
                         </c:forEach>
                     </select>
                 </div>
-                <div class="tit_3">기준년</div>
+                <div class="tit_3">기준 년도</div>
                 <div class="f_search">
-                    <input name="baseYy" id="baseYy" type="number" maxlength="4" oninput="fncCheckMaxLength(this)" value="${contValt.baseYy}" />
+                    <input name="baseYy" id="baseYy" type="text" maxlength="4" oninput="fncCheckMaxLength(this)" value="${contValt.baseYy}" />
                 </div>
                 <div class="tit_3">차수</div>
                 <div class="f_search">
-                    <input name="sqn" id="sqn" type="number" maxlength="4" oninput="fncCheckMaxLength(this)" value="${contValt.sqn}" />
+                    <input name="sqn" id="sqn" type="text" maxlength="4" oninput="fncCheckMaxLength(this)" value="${contValt.sqn}" />
                 </div>
-                <div class="tit_3">공모전 설명</div>
+                <div class="tit_3">시작일자</div>
+                <div class="f_search">
+                    <input type="text" name="useTs" id="useTs" class="f_date" maxlength="10" value="${contValt.useTs}" title="시작일자입력" />
+                </div>
+                <div class="tit_3">평가 설명</div>
                 <div class="f_txtar">
                     <textarea id="valtMngmDesc" name="valtMngmDesc" rows="10" style="width: 100%; box-sizing: border-box">${contValt.valtMngmDesc}</textarea>
                 </div>

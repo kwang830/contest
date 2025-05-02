@@ -131,7 +131,6 @@
         }
 
         function fncSelectContestList(pageNo) {
-            //document.listForm.searchCondition.value = "1";
             document.listForm.pageIndex.value = pageNo;
             document.listForm.action = "<c:url value='/cmm/contest/valt/contestValtMngm.do'/>";
             document.listForm.submit();
@@ -218,8 +217,10 @@
                 alert("평가 관리 정보를 먼저 선택하세요!")
                 return;
             }
+            const iframeUrl = "<c:url value='/cmm/contest/valt/selectContValtBbsList.do'/>?valtMngmNo=" + encodeURIComponent(selected);
+
             var $dialog = $('<div id="modalPan"></div>')
-                .html('<iframe id="contestFrame" style="border: 0px; " src="' + "<c:url value='/cmm/contest/valt/selectContValtBbsList.do'/>" + '" width="100%" height="100%"></iframe>')
+                .html('<iframe id="contestFrame" style="border: 0px; " src="' + iframeUrl  + '" width="100%" height="100%"></iframe>')
                 .dialog({
                     autoOpen: false,
                     modal: true,
@@ -401,7 +402,7 @@
                                     <td><c:out value="${contValt.valtQsitMnno}"/></td>
                                     <td><c:out value="${contValt.baseYy}"/></td>
                                     <td><c:out value="${contValt.sqn}"/></td>
-                                    <td>-수정필요-</td>
+                                    <td><c:out value="${contValt.useTs}"/></td>
                                     <td><c:out value="${contValt.valtMngmTtl}"/></td>
                                     <td>
                                         <c:choose>
@@ -440,7 +441,7 @@
                 <!--// 평가 관리 정보 -->
             </div>
 
-            <!-- 평가 관리 설정 영역 -->
+            <!-- 평가 대상 선택 영역 -->
             <div class="container clearfix" style="display: flex; flex-direction: row">
                 <form:form name="bbsForm" action="#" method="post" cssStyle="margin-right: 10px" >
                     <input type="hidden" name="valtMngmNo"/>
@@ -453,14 +454,14 @@
                             <a href="#LINK" class="btn btn_blue_46 w_100" onclick="javascript:fncContValtDeleteBbsList()">삭제</a>
                         </div>
                     </div>
-                    <!-- 평가 대상 선택 영역 -->
+
                     <div class="board_list marginTop5">
                         <table id="valtBbs">
                             <caption>목록</caption>
                             <colgroup>
                                 <col style="width: 40px;">
                                 <col style="width: auto; min-width: 200px;">
-                                <col style="width: 120px;">
+                                <col style="width: 150px;">
                                 <col style="width: 120px;">
                             </colgroup>
                             <thead>
@@ -471,9 +472,9 @@
                                                onclick="javascript:fncCheckAll('bbsForm')">
                                     </span>
                                 </th>
+                                <th scope="col">제목</th>
                                 <th scope="col">팀명</th>
                                 <th scope="col">작성자</th>
-                                <th scope="col">제목</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -484,6 +485,19 @@
                                 </tr>
                             </c:if>
 
+                            <tr>
+                                <td>
+                                        <span class="f_chk_only">
+                                            <input type="checkbox" name="delYn" class="check2" title="선택">
+                                            <input type="hidden" name="checkId"
+                                                   value=""/>
+                                        </span>
+                                </td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                            </tr>
+
                             <c:forEach var="bd" items="${boardList}" varStatus="status">
                                 <tr>
                                     <td>
@@ -493,9 +507,9 @@
                                                    value="<c:out value="${bd.nttId}"/>"/>
                                         </span>
                                     </td>
-                                    <td><c:out value="${bd.nttId}"/></td>
                                     <td><c:out value="${bd.nttSj}"/></td>
                                     <td><c:out value="${bd.teamNm}"/></td>
+                                    <td><c:out value="${bd.ntcrNm}"/></td>
                                 </tr>
                             </c:forEach>
 
@@ -507,7 +521,7 @@
                     <input type="hidden" name="nttIds"/>
 
                 </form:form>
-                <!-- 평가자 선택 영역 -->
+                <!-- 평가 위원 선택 영역 -->
                 <form:form name="userForm" action="#" method="post">
                     <input type="hidden" name="valtMngmNo"/>
                     <div class="board_list_top topmargin">
@@ -519,16 +533,15 @@
                             <a href="#LINK" class="btn btn_blue_46 w_100" onclick="javascript:fncContValtDeleteUserList()" >삭제</a>
                         </div>
                     </div>
-                    <!-- 평가할 게시판 선택 영역 -->
                     <div class="board_list marginTop5">
                         <table id="valtUser">
                             <caption>목록</caption>
                             <colgroup>
                                 <col style="width: 40px;">
-                                <col style="width: 160px;">
-                                <col style="width: auto; min-width: 160px;">
-                                <col style="width: 80px;">
-                                <col style="width: 80px;">
+                                <col style="width: auto; min-width: 150px;">
+                                <col style="width: 150px;">
+                                <col style="width: 150px;">
+                                <col style="width: 120px;">
                             </colgroup>
                             <thead>
                             <tr>
@@ -539,7 +552,7 @@
                                     </span>
                                 </th>
                                 <th scope="col">본부</th>
-                                <th scope="col">소속팀</th>
+                                <th scope="col">소속</th>
                                 <th scope="col">이름</th>
                                 <th scope="col">호칭</th>
                             </tr>
@@ -554,7 +567,6 @@
 
                     <input type="hidden" name="exmnId"/>
                     <input type="hidden" name="exmnIds"/>
-                    <%--                <input type="hidden" name="pageIndex" value="<c:out value='${contValtVO.pageIndex}'/>"/>--%>
                 </form:form>
             </div>
         </div>
@@ -587,7 +599,6 @@
 <script type="text/javascript" src="<c:url value='/'/>js/functions.js"></script>
 
 <script src="<c:url value='/'/>js/ui.js"></script>
-<%--<script src="<c:url value='/'/>js/jquery.js"></script>--%>
 <script src="<c:url value='/'/>js/jqueryui.js"></script>
 
 <script>
@@ -627,9 +638,9 @@
                                     '<input type="hidden" name="checkId" value="' + item.nttId + '">' +
                                 '</span>' +
                             '</td>' +
-                            '<td>' + item.nttId + '</td>' +
                             '<td>' + item.nttSj + '</td>' +
-                            '<td>' + (item.teamNm || item.ntcrNm) + '</td>' +
+                            '<td>' + item.teamNm + '</td>' +
+                            '<td>' + item.ntcrNm + '</td>' +
                         '</tr>';
                     $tbody.append(row);
                 });
@@ -659,7 +670,7 @@
 
                     $tbody.append(
                         "<tr>" +
-                        "<td colspan='4'>" + noDataMsg + "</td>" +
+                        "<td colspan='5'>" + noDataMsg + "</td>" +
                         "</tr>"
                     );
                     return;
@@ -668,6 +679,8 @@
                 dataList.forEach(item => {
                     item.deptNmF = item.deptNmF ? item.deptNmF.split('>').pop().trim() : "";
                     item.titleNm = item.titleNm || "";
+                    item.deptNm = item.deptNm || "";
+                    item.teamNm = item.teamNm || "";
                     const row =
                         '<tr>' +
                         '<td>' +
@@ -676,7 +689,8 @@
                         '<input type="hidden" name="checkId" value="' + item.userId + '">' +
                         '</span>' +
                         '</td>' +
-                        '<td>' + item.deptNmF + '</td>' +
+                        '<td>' + item.deptNm + '</td>' +
+                        '<td>' + item.teamNm + '</td>' +
                         '<td>' + item.userNm + '</td>' +
                         '<td>' + item.titleNm + '</td>' +
                         '</tr>';

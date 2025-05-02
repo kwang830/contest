@@ -1,24 +1,11 @@
-<%--
-  Class Name : govGroupSearch.jsp
-  Description : govGroupSearch Search 화면
-  Modification Information
- 
-      수정일         수정자                   수정내용
-    -------    --------    ---------------------------
-     2009.03.23    lee.m.j          최초 생성
-     2011.08.31  JJY       경량환경 버전 생성
- 
-    author   : 공통서비스개발팀 lee.m.j
-    since    : 2009.03.23
---%>
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html dir="ltr" lang="ko">
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,11 +17,10 @@
 	<script src="<c:url value='/'/>js/jquery-1.11.2.min.js"></script>
 	<script src="<c:url value='/'/>js/ui.js"></script>
 
-<title>게시판 정보</title>
+    <title>IBK시스템 AI 아이디어 챌린지</title>
 
 <script type="text/javaScript" language="javascript" defer="defer">
 <!--
-
 function fncCheckAll() {
     var checkField = document.listForm.delYn;
     if (document.listForm.checkAll.checked) {
@@ -111,7 +97,6 @@ function fncSelectContValtBbsList(pageNo){
 }
 
 function fncSelectGroup(groupId) {
- // window.returnValue = groupId;
     opener.listForm.searchWrd.value = groupId;
     window.close();
 }
@@ -164,6 +149,8 @@ function setParentData(data) {
     console.log(data);
     document.listForm.valtMngmNo.value = data;
 }
+
+
 //-->
 </script>
 
@@ -187,8 +174,8 @@ function setParentData(data) {
                     <span class="lb mr15">게시글 명 : </span>
 
                     <span class="item f_search">
-                        <input class="f_input w_500" name="searchWrd" type="text" title="검색" onkeypress="press();" />
-                        <button class="btn" type="submit" onclick="javascript:fncSelectContValtBbsList('1')"><spring:message code='button.inquire' /></button><!-- 조회 -->
+                        <input class="f_input w_500" name="searchWrd" type="text" title="검색" onkeydown="press();" />
+                        <button class="btn" type="submit" onclick="javascript:fncSelectContValtBbsList('1')">조회</button>
                     </span>
                 </div>
                 <!--// 검색조건 -->
@@ -198,7 +185,7 @@ function setParentData(data) {
                     </div>
 
                     <div class="right_col">
-                        <a href="#LINK" class="btn btn_blue_46 w_100" onclick="javascript:fncInsertContestValtBbs()"><spring:message code='button.create' /></a><!-- 확인 -->
+                        <a href="#LINK" class="btn btn_blue_46 w_100" onclick="javascript:fncInsertContestValtBbs()">등록</a>
                     </div>
                 </div>
 
@@ -207,9 +194,10 @@ function setParentData(data) {
                     <table summary="게시물을 보여주는 테이블입니다.게시글 아이디, 게시글 제목 정보를 담고 있습니다.">
                     	<caption>게시글목록</caption>
                         <colgroup>
-                            <col style="width: 80px;">
-                            <col style="width: 200px;">
-                            <col style="width: auto;">
+                            <col style="width: 40px;">
+                            <col style="width: auto; min-width: 200px;">
+                            <col style="width: 150px;">
+                            <col style="width: 120px;">
                         </colgroup>
                         <thead>
                             <tr>
@@ -219,8 +207,9 @@ function setParentData(data) {
                                                onclick="javascript:fncCheckAll()">
                                     </span>
                                 </th>
-                                <th scope="col">게시글ID</th>
                                 <th scope="col">제목</th>
+                                <th scope="col">팀명</th>
+                                <th scope="col">작성자</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -239,8 +228,9 @@ function setParentData(data) {
                                         <input type="hidden" name="checkId" value="<c:out value="${board.nttId}"/>" />
                                     </span>
                                 </td>
-                                <td><c:out value="${board.nttId}"/></td>
-                                <td><c:out value="${board.nttSj}"/></td>
+                                <td><c:out value="${board.nttSj}" escapeXml="false" /></td>
+                                <td><c:out value="${board.teamNm}" escapeXml="false"/></td>
+                                <td><c:out value="${board.ntcrNm}"/></td>
                             </tr>
                             </c:forEach>
                             

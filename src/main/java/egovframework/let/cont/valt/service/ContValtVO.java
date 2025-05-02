@@ -90,9 +90,13 @@ public class ContValtVO implements Serializable {
      * 사용여부
      */
     private String useAt = "";
-
+    /**
+     * 심사자ID
+     */
     private String exmnId = "";
-
+    /**
+     * 심사자IDS
+     */
     private String exmnIds = "";
 
     /**
@@ -104,6 +108,12 @@ public class ContValtVO implements Serializable {
      * 게시글 아이디
      */
     private String nttIds = "";
+
+    /**
+     * 사용일시
+     */
+    private String useTs = "";
+
 
     /**
      * nttId attribute를 리턴한다.
@@ -626,4 +636,23 @@ public class ContValtVO implements Serializable {
     public void setExmnIds(String exmnIds) {
         this.exmnIds = exmnIds;
     }
+
+    /**
+     * useTs attribute를 리턴한다.
+     *
+     * @return the useTs
+     */
+    public String getUseTs() {
+        return useTs;
+    }
+
+    /**
+     * useTs attribute를 설정한다.
+     *
+     * @param useTs the useTs to set
+     */
+    public void setUseTs(String useTs) {
+        this.useTs = useTs;
+    }
+
 }

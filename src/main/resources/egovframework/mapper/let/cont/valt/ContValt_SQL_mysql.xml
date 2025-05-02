@@ -5,7 +5,12 @@
 
 	<resultMap id="contValtList" type="egovframework.let.cont.valt.service.ContValtVO">
 		<result property="valtMngmNo" column="VALT_MNGM_NO"/>
+		<result property="valtQsitMnno" column="VALT_QSIT_MNNO"/>
+		<result property="baseYy" column="BASE_YY"/>
+		<result property="sqn" column="SQN"/>
 		<result property="valtMngmTtl" column="VALT_MNGM_TTL"/>
+		<result property="valtMngmDesc" column="VALT_MNGM_DESC"/>
+		<result property="useTs" column="USE_TS"/>
 		<result property="useAt" column="USE_AT"/>
 	</resultMap>
 
@@ -26,23 +31,28 @@
 		<result property="bbsId" column="BBS_ID"/>
 		<result property="nttId" column="NTT_ID"/>
 		<result property="nttSj" column="NTT_SJ"/>
+		<result property="teamNm" column="TEAM_NM"/>
+		<result property="ntcrNm" column="NTCR_NM"/>
 	</resultMap>
 
 	<resultMap id="contUserList" type="egovframework.let.cont.valt.service.ContUserVO">
 		<result property="userId" column="USER_ID"/>
+		<result property="deptNm" column="DEPT_NM"/>
 		<result property="deptNmF" column="DEPT_NM_F"/>
+		<result property="teamNm" column="TEAM_NM"/>
 		<result property="userNm" column="USER_NM"/>
 		<result property="titleNm" column="TITLE_NM"/>
 	</resultMap>
 
 	<select id="selectContValtList" parameterType="egovframework.let.cont.valt.service.ContValtVO" resultMap="contValtList">
 
-		SELECT a.VALT_MNGM_NO as VALT_MNGM_NO,
-		       a.VALT_QSIT_MNNO as VALT_QSIT_MNNO,
-		       a.BASE_YY as BASE_YY,
-		       a.SQN as SQN,
-		       a.TTL as VALT_MNGM_TTL,
-			   a.VALT_DESC as VALT_MNGM_DESC
+		SELECT a.VALT_MNGM_NO AS VALT_MNGM_NO,
+		       a.VALT_QSIT_MNNO AS VALT_QSIT_MNNO,
+		       a.BASE_YY AS BASE_YY,
+		       a.SQN AS SQN,
+		       a.TTL AS VALT_MNGM_TTL,
+			   a.VALT_DESC AS VALT_MNGM_DESC,
+		       DATE_FORMAT(a.USE_TS, '%Y-%m-%d') AS USE_TS
 		FROM tb_valt_mngm_master a
 		WHERE 1=1
 		<if test="searchCnd == 1">
@@ -106,6 +116,7 @@
 			   SQN = #{sqn},
 			   TTL = #{valtMngmTtl},
 			   VALT_DESC = #{valtMngmDesc},
+			   USE_TS = #{useTs},
 			   LAST_UPDUSR_ID = #{lastUpdusrId},
 			   LAST_UPDT_PNTTM = SYSDATE()
 		WHERE VALT_MNGM_NO = #{valtMngmNo}
@@ -134,7 +145,7 @@
 		        #{sqn},
 		        #{valtMngmTtl},
 		        #{valtMngmDesc},
-		        NOW(),
+				#{useTs},
 		        NOW(),
 				#{frstRegisterId},
 		        #{useAt})
@@ -147,7 +158,8 @@
 			   A.BASE_YY AS BASE_YY,
 			   A.SQN AS SQN,
 			   A.TTL AS VALT_MNGM_TTL,
-			   A.VALT_DESC AS VALT_MNGM_DESC
+			   A.VALT_DESC AS VALT_MNGM_DESC,
+			   DATE_FORMAT(A.USE_TS, '%Y-%m-%d') AS USE_TS
 		FROM TB_VALT_MNGM_MASTER A
 		WHERE A.VALT_MNGM_NO = #{valtMngmNo}
 	</select>
@@ -155,25 +167,29 @@
 	<select id="selectContValtBbsList" parameterType="egovframework.let.cont.valt.service.ContValtVO" resultMap="valtBoardList">
 		SELECT A.NTT_ID AS NTT_ID,
 		       A.BBS_ID AS BBS_ID,
-		       A.NTT_SJ AS NTT_SJ
+		       A.NTT_SJ AS NTT_SJ,
+		       A.TEAM_NM AS TEAM_NM,
+		       B.USER_NM AS NTCR_NM
 		FROM LETTNBBS A
+		LEFT JOIN COMVNUSERMASTER B ON A.FRST_REGISTER_ID = B.ESNTL_ID
 		WHERE NOT EXISTS (SELECT 1
 							FROM TB_VALT_TAR_MNGM B
-							WHERE B.NTT_ID = A.NTT_ID)
-			AND A.BBS_ID = "BBSMSTR_BBBBBBBBBBBB"
+							WHERE B.NTT_ID = A.NTT_ID AND B.VALT_MNGM_NO = #{valtMngmNo}  )
+			AND A.BBS_ID = 'BBSMSTR_BBBBBBBBBBBB'
+		    AND A.USE_AT = 'Y'
 		<if test="searchWrd != null and searchWrd.trim() != ''">
 			AND A.NTT_SJ LIKE CONCAT ('%', #{searchWrd},'%')
 		</if>
 		ORDER BY A.NTT_ID
-
 	</select>
+
 	<select id="selectContValtBbsListTotCnt" parameterType="egovframework.let.cont.valt.service.ContValtVO" resultType="java.lang.Integer">
 		SELECT COUNT(1)
 		FROM LETTNBBS A
 		WHERE NOT EXISTS (SELECT 1
 		FROM TB_VALT_TAR_MNGM B
 		WHERE B.NTT_ID = A.NTT_ID)
-		AND A.BBS_ID = "BBSMSTR_BBBBBBBBBBBB"
+		AND A.BBS_ID = 'BBSMSTR_BBBBBBBBBBBB'
 		<if test="searchWrd != null and searchWrd.trim() != ''">
 			AND A.NTT_SJ LIKE CONCAT ('%', #{searchWrd},'%')
 		</if>
@@ -182,14 +198,14 @@
 
 	<delete id="deleteContValtScrBbs" parameterType="egovframework.let.cont.valt.service.ContValtVO">
 		DELETE FROM TB_VALT_SCR A
-		WHERE A.BBS_ID = "BBSMSTR_BBBBBBBBBBBB"
+		WHERE A.BBS_ID = 'BBSMSTR_BBBBBBBBBBBB'
 		  AND A.NTT_ID = #{nttId}
 	</delete>
 
 	<delete id="deleteContValtBbs" parameterType="egovframework.let.cont.valt.service.ContValtVO">
 		DELETE FROM TB_VALT_TAR_MNGM A
 		WHERE A.VALT_MNGM_NO = #{valtMngmNo}
-			AND A.BBS_ID = "BBSMSTR_BBBBBBBBBBBB"
+			AND A.BBS_ID = 'BBSMSTR_BBBBBBBBBBBB'
 			AND A.NTT_ID = #{nttId}
 	</delete>
 
@@ -208,7 +224,7 @@
 		                              FRST_REGISTER_ID
 		) VALUES (#{valtMngmNo},
 		          #{nttId},
-		          "BBSMSTR_BBBBBBBBBBBB",
+				  'BBSMSTR_BBBBBBBBBBBB',
 		          #{useAt},
 		          NOW(),
 		          #{frstRegisterId})
@@ -216,7 +232,9 @@
 
 	<select id="selectUesrByValtAjax" parameterType="egovframework.let.cont.valt.service.ContValtVO" resultMap="contUserList">
 		SELECT A.EXMN_ID AS USER_ID,
+			   C.CODE_DC AS DEPT_NM,
 			   C.CODE_NM AS DEPT_NM_F,
+			   SUBSTRING_INDEX(C.CODE_NM, '>', -1) AS TEAM_NM,
 			   B.USER_NM AS USER_NM,
 			   D.CODE_NM AS TITLE_NM
 		FROM TB_EXMN_MNGM A
@@ -231,7 +249,9 @@
 
 	<select id="selectContValtUserList" parameterType="egovframework.let.cont.valt.service.ContValtVO" resultMap="contUserList">
 		SELECT B.USER_ID AS USER_ID,
-			C.CODE_NM AS DEPT_NM_F,
+			C.CODE_DC AS DEPT_NM,
+		    C.CODE_NM AS DEPT_NM_F,
+		    SUBSTRING_INDEX(C.CODE_NM, '>', -1) AS TEAM_NM,
 			B.USER_NM AS USER_NM,
 			D.CODE_NM AS TITLE_NM
 		FROM COMVNUSERMASTER B

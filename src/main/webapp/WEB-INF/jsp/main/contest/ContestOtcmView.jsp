@@ -105,7 +105,7 @@
 										개인/기업의 정부 지원 정책 매칭
 									</div>
 									<div class="prize-winner">
-										강성용 팀장(SI영업본부), 김희중 차장(IT혁신사업본부)
+										강성용 부장(SI영업본부), 김희중 팀장(IT혁신사업본부)
 									</div>
 								</div>
 								<div class="prize-icon">
@@ -158,7 +158,7 @@
 										기업 정보 스마트 스크래핑 서비스
 									</div>
 									<div class="prize-winner">
-										안지호 팀장(은행사업2본부)
+										안지호 팀장(은행사업디지털본부)
 									</div>
 								</div>
 								<div class="prize-icon">
@@ -184,7 +184,7 @@
 										i-ONE Bank App '계좌 정보 스캔' 서비스
 									</div>
 									<div class="prize-winner">
-										홍성일 과장(인프라사업본부)
+										홍성일 과장(경영전략본부)
 									</div>
 								</div>
 								<div class="prize-icon">
