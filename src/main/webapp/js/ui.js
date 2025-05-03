@@ -42,45 +42,45 @@ $(function() {
             $(this).parent().toggleClass('on');
         });
 
-        var chkOnly = {
-            init: function() {
-                this.$tartet = $('.f_chk_only');
-                this.addEvent();
-            },
-            addEvent: function() {
-                this.$tartet.on('click', function() {
-                    if ($(this).hasClass('on')) {
-                        $(this).removeClass('on');
-                        $(this).find('input').prop('checked', false);
-                    } else {
-                        $(this).addClass('on');
-                        $(this).find('input').prop('checked', true);
-                    }
-                });
-            }
+    var chkOnly = {
+        init: function() {
+            this.addEvent();
+        },
+        addEvent: function() {
+            // 이벤트 위임 방식으로 수정
+            $(document).on('click', '.f_chk_only', function() {
+                if ($(this).hasClass('on')) {
+                    $(this).removeClass('on');
+                    $(this).find('input[type="checkbox"]').prop('checked', false);
+                } else {
+                    $(this).addClass('on');
+                    $(this).find('input[type="checkbox"]').prop('checked', true);
+                }
+            });
         }
-        $('.f_chk_only').length && chkOnly.init();
+    };
+    chkOnly.init();
 
-        var chkAll = {
-            init: function() {
-                this.$tartet = $('.chkAll');
-                this.addEvent();
-            },
-            addEvent: function() {
-                this.$tartet.on('click', function() {
-                    var idx = $(this).parents('tr').find('th').index($(this).parent('th'));
+    var chkAll = {
+        init: function() {
+            this.addEvent();
+        },
+        addEvent: function() {
+            // document에 이벤트 위임
+            $(document).on('click', '.chkAll', function() {
+                var idx = $(this).parents('tr').find('th').index($(this).parent('th'));
 
-                    if ($(this).hasClass('on')) {
-                        $(this).parents('table').find('tbody tr').find('td:eq('+idx+') .f_chk_only').addClass('on');
-                        $(this).parents('table').find('tbody tr').find('td:eq('+idx+') .f_chk_only input').prop('checked', true);
-                    } else {
-                        $(this).parents('table').find('tbody tr').find('td:eq('+idx+') .f_chk_only').removeClass('on');
-                        $(this).parents('table').find('tbody tr').find('td:eq('+idx+') .f_chk_only input').prop('checked', false);
-                    }
-                });
-            },
+                if ($(this).hasClass('on')) {
+                    $(this).parents('table').find('tbody tr').find('td:eq(' + idx + ') .f_chk_only').addClass('on');
+                    $(this).parents('table').find('tbody tr').find('td:eq(' + idx + ') .f_chk_only input').prop('checked', true);
+                } else {
+                    $(this).parents('table').find('tbody tr').find('td:eq(' + idx + ') .f_chk_only').removeClass('on');
+                    $(this).parents('table').find('tbody tr').find('td:eq(' + idx + ') .f_chk_only input').prop('checked', false);
+                }
+            });
         }
-        $('.chkAll').length && chkAll.init();
+    }
+    chkAll.init();
 
         // Radio
         $('.f_rdo').on('keyup', function(e) {

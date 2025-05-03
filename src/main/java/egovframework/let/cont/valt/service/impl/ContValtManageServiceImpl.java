@@ -110,7 +110,7 @@ public class ContValtManageServiceImpl extends EgovAbstractServiceImpl implement
         if (delList.length > 0) {
             for (String target : delList) {
                 contValtVO.setNttId(target);
-                contValtManageDAO.deleteContValtScrBbs(contValtVO);
+                //contValtManageDAO.deleteContValtScrBbs(contValtVO);
                 contValtManageDAO.deleteContValtBbs(contValtVO);
                 count++;
             }

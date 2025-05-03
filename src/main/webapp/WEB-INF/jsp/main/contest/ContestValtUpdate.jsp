@@ -62,8 +62,6 @@
         }
 
         function fncUpdateContValt() {
-            //document.board.onsubmit();
-
             if (!validateBoard(document.board)) {
                 return;
             }
@@ -181,7 +179,7 @@
             <!-- 목록/저장버튼-->
             <div class="pop_container board_view_bot">
                 <div class="center_col">
-                    <a href="#" class="btn btn_blue_46" onclick="javascript:fncUpdateContValt(); return false;"><spring:message code="button.update" /></a>
+                    <a href="#" class="btn btn_blue_46" onclick="javascript:fncUpdateContValt(); return false;">수정</a>
                 </div>
             </div>
         </div>

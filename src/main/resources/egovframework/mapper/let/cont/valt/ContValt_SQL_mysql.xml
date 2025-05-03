@@ -172,28 +172,26 @@
 		       B.USER_NM AS NTCR_NM
 		FROM LETTNBBS A
 		LEFT JOIN COMVNUSERMASTER B ON A.FRST_REGISTER_ID = B.ESNTL_ID
-		WHERE NOT EXISTS (SELECT 1
-							FROM TB_VALT_TAR_MNGM B
-							WHERE B.NTT_ID = A.NTT_ID AND B.VALT_MNGM_NO = #{valtMngmNo}  )
-			AND A.BBS_ID = 'BBSMSTR_BBBBBBBBBBBB'
-		    AND A.USE_AT = 'Y'
+		WHERE NOT EXISTS (SELECT 1 FROM TB_VALT_TAR_MNGM B WHERE B.NTT_ID = A.NTT_ID AND B.VALT_MNGM_NO = #{valtMngmNo}  )
+		AND A.BBS_ID = 'BBSMSTR_BBBBBBBBBBBB'
+		AND A.USE_AT = 'Y'
 		<if test="searchWrd != null and searchWrd.trim() != ''">
 			AND A.NTT_SJ LIKE CONCAT ('%', #{searchWrd},'%')
 		</if>
 		ORDER BY A.NTT_ID
+		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 	</select>
 
 	<select id="selectContValtBbsListTotCnt" parameterType="egovframework.let.cont.valt.service.ContValtVO" resultType="java.lang.Integer">
 		SELECT COUNT(1)
 		FROM LETTNBBS A
-		WHERE NOT EXISTS (SELECT 1
-		FROM TB_VALT_TAR_MNGM B
-		WHERE B.NTT_ID = A.NTT_ID)
+		LEFT JOIN COMVNUSERMASTER B ON A.FRST_REGISTER_ID = B.ESNTL_ID
+		WHERE NOT EXISTS (SELECT 1 FROM TB_VALT_TAR_MNGM B WHERE B.NTT_ID = A.NTT_ID AND B.VALT_MNGM_NO = #{valtMngmNo}  )
 		AND A.BBS_ID = 'BBSMSTR_BBBBBBBBBBBB'
+		AND A.USE_AT = 'Y'
 		<if test="searchWrd != null and searchWrd.trim() != ''">
 			AND A.NTT_SJ LIKE CONCAT ('%', #{searchWrd},'%')
 		</if>
-		ORDER BY A.NTT_ID
 	</select>
 
 	<delete id="deleteContValtScrBbs" parameterType="egovframework.let.cont.valt.service.ContValtVO">
@@ -238,12 +236,9 @@
 			   B.USER_NM AS USER_NM,
 			   D.CODE_NM AS TITLE_NM
 		FROM TB_EXMN_MNGM A
-			JOIN COMVNUSERMASTER B
-				ON A.EXMN_ID = B.USER_ID
-			LEFT JOIN lettccmmndetailcode C
-				ON B.DEPT_CODE = C.CODE AND C.CODE_ID = 'IBK101'
-			LEFT JOIN lettccmmndetailcode D
-				ON B.TITLE_CODE = D.CODE AND D.CODE_ID = 'IBK002'
+		JOIN COMVNUSERMASTER B ON A.EXMN_ID = B.USER_ID
+		LEFT JOIN lettccmmndetailcode C ON B.DEPT_CODE = C.CODE AND C.CODE_ID = 'IBK101'
+		LEFT JOIN lettccmmndetailcode D ON B.TITLE_CODE = D.CODE AND D.CODE_ID = 'IBK002'
 		WHERE A.VALT_MNGM_NO = #{valtMngmNo}
 	</select>
 
@@ -255,30 +250,22 @@
 			B.USER_NM AS USER_NM,
 			D.CODE_NM AS TITLE_NM
 		FROM COMVNUSERMASTER B
-			LEFT JOIN lettccmmndetailcode C
-			ON B.DEPT_CODE = C.CODE AND C.CODE_ID = 'IBK101'
-			LEFT JOIN lettccmmndetailcode D
-			ON B.TITLE_CODE = D.CODE AND D.CODE_ID = 'IBK002'
-		WHERE NOT EXISTS (SELECT 1
-			FROM TB_EXMN_MNGM E
-			WHERE E.valt_mngm_no = #{valtMngmNo}
-			AND E.EXMN_ID = B.USER_ID)
+		LEFT JOIN lettccmmndetailcode C ON B.DEPT_CODE = C.CODE AND C.CODE_ID = 'IBK101'
+		LEFT JOIN lettccmmndetailcode D ON B.TITLE_CODE = D.CODE AND D.CODE_ID = 'IBK002'
+		WHERE NOT EXISTS (SELECT 1 FROM TB_EXMN_MNGM E WHERE E.valt_mngm_no = #{valtMngmNo} AND E.EXMN_ID = B.USER_ID)
 		<if test="searchWrd != null and searchWrd.trim() != ''">
 			AND B.USER_NM LIKE CONCAT ('%', #{searchWrd},'%')
 		</if>
+		ORDER BY B.USER_NM
+		LIMIT #{recordCountPerPage} OFFSET #{firstIndex}
 	</select>
 
 	<select id="selectContValtUserListTotCnt" parameterType="egovframework.let.cont.valt.service.ContValtVO" resultType="java.lang.Integer">
 		SELECT COUNT(1)
 		FROM COMVNUSERMASTER B
-			LEFT JOIN lettccmmndetailcode C
-			ON B.DEPT_CODE = C.CODE AND C.CODE_ID = 'IBK101'
-			LEFT JOIN lettccmmndetailcode D
-			ON B.TITLE_CODE = D.CODE AND D.CODE_ID = 'IBK002'
-		WHERE NOT EXISTS (SELECT 1
-			FROM TB_EXMN_MNGM E
-			WHERE E.valt_mngm_no = #{valtMngmNo}
-			AND E.EXMN_ID = B.USER_ID)
+		LEFT JOIN lettccmmndetailcode C ON B.DEPT_CODE = C.CODE AND C.CODE_ID = 'IBK101'
+		LEFT JOIN lettccmmndetailcode D ON B.TITLE_CODE = D.CODE AND D.CODE_ID = 'IBK002'
+		WHERE NOT EXISTS (SELECT 1 FROM TB_EXMN_MNGM E WHERE E.valt_mngm_no = #{valtMngmNo} AND E.EXMN_ID = B.USER_ID)
 		<if test="searchWrd != null and searchWrd.trim() != ''">
 			AND B.USER_NM LIKE CONCAT ('%', #{searchWrd},'%')
 		</if>

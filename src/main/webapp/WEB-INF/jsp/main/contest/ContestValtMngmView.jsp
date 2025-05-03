@@ -55,31 +55,26 @@
     <script type="text/javaScript" language="javascript" defer="defer">
         <!--
 
+        // 전체 체크박스 처리 (checkAll)
         function fncCheckAll(formName) {
             const form = document[formName];
-            var checkField = form.delYn;
-            if (form.checkAll.checked) {
-                if (checkField) {
-                    if (checkField.length > 1) {
-                        for (var i = 0; i < checkField.length; i++) {
-                            checkField[i].checked = true;
-                        }
+            const checkAll = form.checkAll;
+            const checkBoxes = form.querySelectorAll('input[name="delYn"]');
+
+            checkBoxes.forEach(function(checkbox) {
+                checkbox.checked = checkAll.checked;
+                const wrapper = checkbox.closest('.f_chk_only');
+                if (wrapper) {
+                    if (checkAll.checked) {
+                        wrapper.addClass('on');
                     } else {
-                        checkField.checked = true;
+                        wrapper.removeClass('on');
                     }
                 }
-            } else {
-                if (checkField) {
-                    if (checkField.length > 1) {
-                        for (var j = 0; j < checkField.length; j++) {
-                            checkField[j].checked = false;
-                        }
-                    } else {
-                        checkField.checked = false;
-                    }
-                }
-            }
+            });
         }
+
+
 
         function fncManageChecked(formName, target) {
 
@@ -484,19 +479,6 @@
                                     <td colspan="4"><spring:message code="common.nodata.msg"/></td>
                                 </tr>
                             </c:if>
-
-                            <tr>
-                                <td>
-                                        <span class="f_chk_only">
-                                            <input type="checkbox" name="delYn" class="check2" title="선택">
-                                            <input type="hidden" name="checkId"
-                                                   value=""/>
-                                        </span>
-                                </td>
-                                <td>1</td>
-                                <td>2</td>
-                                <td>3</td>
-                            </tr>
 
                             <c:forEach var="bd" items="${boardList}" varStatus="status">
                                 <tr>

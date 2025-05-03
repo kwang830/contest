@@ -42,6 +42,8 @@ public class ContValtManageController {
     public String getContestValtMngmPage(@ModelAttribute("contSearchVO") ContValtVO contSearchVO, HttpServletRequest request, ModelMap model)
             throws Exception{
 
+        System.out.println("valt/contestValtMngm.do >>>>");
+
         // 메뉴 갱신
         request.getSession().setAttribute("menuNo", "6000000");
         request.getSession().setAttribute("activeMenuNo", "6060000");
@@ -94,7 +96,7 @@ public class ContValtManageController {
         contValtManageService.deleteContValt(contSearchVO);
 
         model.addAttribute("message", egovMessageSource.getMessage("success.common.delete"));
-        return "forward:/cmm/contest/valt/contestValtMngm.do";
+        return "redirect:/cmm/contest/valt/contestValtMngm.do";
     }
 
     @RequestMapping(value = "/cmm/contest/valt/updateContestValtPopup.do")
@@ -174,7 +176,7 @@ public class ContValtManageController {
         contValtManageService.deleteContValtBbs(contValtVO);
 
         model.addAttribute("message", egovMessageSource.getMessage("success.common.delete"));
-        return "forward:/cmm/contest/valt/contestValtMngm.do";
+        return "redirect:/cmm/contest/valt/contestValtMngm.do";
     }
 
     @RequestMapping(value = "/cmm/contest/valt/deleteContestValtUser.do")
@@ -190,7 +192,7 @@ public class ContValtManageController {
         contValtManageService.deleteContValtUser(contValtVO);
 
         model.addAttribute("message", egovMessageSource.getMessage("success.common.delete"));
-        return "forward:/cmm/contest/valt/contestValtMngm.do";
+        return "redirect:/cmm/contest/valt/contestValtMngm.do";
     }
 
     @RequestMapping(value="/cmm/contest/valt/selectContValtBbsList.do")
@@ -211,6 +213,7 @@ public class ContValtManageController {
 
         paginationInfo.setTotalRecordCount(totCnt);
         model.addAttribute("paginationInfo", paginationInfo);
+        model.addAttribute("searchWrd", contValtVO.getSearchWrd());
         model.addAttribute("message", egovMessageSource.getMessage("success.common.select"));
 
         return "/main/contest/ContestValtBbsSearch";
@@ -255,6 +258,7 @@ public class ContValtManageController {
 
         paginationInfo.setTotalRecordCount(totCnt);
         model.addAttribute("paginationInfo", paginationInfo);
+        model.addAttribute("searchWrd", contValtVO.getSearchWrd());
         model.addAttribute("message", egovMessageSource.getMessage("success.common.select"));
 
         return "/main/contest/ContestValtUserSearch";

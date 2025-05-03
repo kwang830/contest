@@ -91,11 +91,6 @@ function fncManageChecked() {
     return resultCheck;
 }
 
-function fncSelectContValtBbsList(pageNo){
-    document.listForm.pageIndex.value = pageNo;
-    document.listForm.submit();
-}
-
 function fncSelectGroup(groupId) {
     opener.listForm.searchWrd.value = groupId;
     window.close();
@@ -123,6 +118,11 @@ function fncInsertContestValtBbs() {
             });
         }
 	}
+}
+
+function fncSelectContValtBbsList(pageNo){
+    document.listForm.pageIndex.value = pageNo;
+    document.listForm.submit();
 }
 
 function linkPage(pageNo){
@@ -174,7 +174,7 @@ function setParentData(data) {
                     <span class="lb mr15">게시글 명 : </span>
 
                     <span class="item f_search">
-                        <input class="f_input w_500" name="searchWrd" type="text" title="검색" onkeydown="press();" />
+                        <input class="f_input w_500" name="searchWrd" value="${searchWrd}" type="text" title="검색" onkeydown="press();" />
                         <button class="btn" type="submit" onclick="javascript:fncSelectContValtBbsList('1')">조회</button>
                     </span>
                 </div>

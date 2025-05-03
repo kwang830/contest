@@ -4,8 +4,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html dir="ltr" lang="ko">
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,7 +17,7 @@
 	<script src="<c:url value='/'/>js/jquery-1.11.2.min.js"></script>
 	<script src="<c:url value='/'/>js/ui.js"></script>
 
-<title>평가자 정보</title>
+    <title>IBK시스템 AI 아이디어 챌린지</title>
 
 <script type="text/javaScript" language="javascript" defer="defer">
 <!--
@@ -174,7 +174,7 @@ function setParentData(data) {
                     <span class="lb mr15">이름 : </span>
 
                     <span class="item f_search">
-                        <input class="f_input w_250" name="searchWrd" type="text" title="검색" onkeypress="press();" />
+                        <input class="f_input w_250" name="searchWrd" value="${searchWrd}" type="text" title="검색" onkeydown="press();" />
                         <button class="btn" type="submit" onclick="javascript:fncSelectContValtUserList('1')"><spring:message code='button.inquire' /></button><!-- 조회 -->
                     </span>
                 </div>

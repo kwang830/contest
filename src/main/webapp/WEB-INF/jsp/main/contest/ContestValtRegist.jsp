@@ -62,7 +62,6 @@
         }
 
         function fncInsertContValt() {
-            //document.board.onsubmit();
 
             if (!validateBoard(document.board)) {
                 return;
@@ -87,13 +86,8 @@
             }
         }
 
-        function fncCurrentYear() {
-            const today = new Date();
-            document.board.baseYy.value = today.getFullYear();
-        }
-
         function fncCheckMaxLength(object) {
-            console.log(object.value)
+            // console.log(object.value)
             if(object.value.length > object.maxLength) {
                 object.value = object.value.slice(0, object.maxLength);
             }
@@ -136,7 +130,7 @@
     </script>
 </head>
 
-<body onLoad="document.board.valtMngmTtl.focus(); fncCurrentYear(); fn_egov_init_date();">
+<body onLoad="fn_egov_init_date();">
 <form name="board" method="post">
     <div class="popup EgovGroupSearch" style="background-color: white;">
         <div class="pop_inner">
@@ -151,7 +145,6 @@
                 </div>
                 <div class="tit_3">문항 관리번호</div>
                 <div class="f_select">
-<%--                    <input name="valtQsitMnno" id="valtQsitMnno" type="text" maxlength="50" />--%>
                     <select name="valtQsitMnno" id="valtQsitMnno">
                         <c:forEach var="qsit" items="${qsitList}">
                             <option value="${qsit.valtQsitMnno}">${qsit.valtQsitMnno}</option>
@@ -179,7 +172,7 @@
             <!-- 목록/저장버튼 시작-->
             <div class="pop_container board_view_bot">
                 <div class="center_col">
-                    <a href="#" class="btn btn_blue_46" onclick="javascript:fncInsertContValt(); return false;"><spring:message code="button.create" /></a>
+                    <a href="#" class="btn btn_blue_46" onclick="javascript:fncInsertContValt(); return false;">등록</a>
                 </div>
             </div>
         </div>
@@ -207,6 +200,21 @@
 <!-- Footer Scripts
 ============================================= -->
 <script type="text/javascript" src="<c:url value='/'/>js/functions.js"></script>
+<script type="text/javascript">
+    window.addEventListener('DOMContentLoaded', function () {
+        var today = new Date();
+        var yyyy = today.getFullYear();
+        var mm = String(today.getMonth() + 1).padStart(2, '0');
+        var dd = String(today.getDate()).padStart(2, '0');
 
+        var formattedDate = yyyy + '-' + mm + '-' + dd;
+        document.getElementById('useTs').value = formattedDate;
+
+        document.getElementById('useTs').value = formattedDate;
+        document.getElementById('baseYy').value = today.getFullYear();
+
+        document.board.valtMngmTtl.focus();
+    });
+</script>
 </body>
 </html>
