@@ -316,20 +316,18 @@ public class ContVoteManageController {
 	public String getContestAdminVotePage(HttpServletRequest request, ModelMap model)
 			throws Exception{
 
+		System.out.println("/cmm/contest/contestAdminVote.do >>> ");
+
+		String groupId = request.getParameter("cmb_group");
+		System.out.println("선택된 그룹 ID: " + groupId);
+
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
-		if (!isAuthenticated) {
+		if(!isAuthenticated) {
 			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
 			return "uat/uia/EgovLoginUsr";
 		}
 
-		LoginVO user;
-		if (EgovUserDetailsHelper.isAuthenticated()) {
-			user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-			System.out.println("user.getId():"+user.getId());
-		} else {
-			user = new LoginVO();
-			user.setId("anonymous");
-		}
+		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 
 		// 공모전 심사자가 평가할 대상 리스트 조회
 		ContVoteVO vo = new ContVoteVO();
@@ -343,21 +341,20 @@ public class ContVoteManageController {
 
 		// 리스트가 있을 때 - 첫 번째 리스트에 대상자 조회
 		List<ContVoteVO> resultList = (List<ContVoteVO>) map.get("resultList");
-		if (resultList != null && !resultList.isEmpty()) {
-			ContVoteVO firstItem = resultList.get(0);
-			String valtMngmNo = firstItem.getValtMngmNo(); // ← getter 사용
-			System.out.println("첫 번째 행의 valtMngmNo 값: " + valtMngmNo);
-			vo.setValtMngmNo(valtMngmNo);
+
+		if (groupId != null && !groupId.isEmpty()) {
+			vo.setValtMngmNo(groupId);  // groupId 우선
+		} else if (resultList != null && !resultList.isEmpty()) {
+			vo.setValtMngmNo(resultList.get(0).getValtMngmNo());  // fallback
 		}
 
 		Map<String, Object> map2 = contVoteManageService.selectContVoteAdminBBSList(vo);
 		int totCnt2 = Integer.parseInt((String) map2.get("resultCnt"));
 		System.out.println("totCnt2:"+totCnt2);
+
+		model.addAttribute("valtMngmNo", vo.getValtMngmNo());
 		model.addAttribute("contVoteAdminBBSList", map2.get("resultList"));
 		model.addAttribute("contVoteAdminBBSListCnt", map2.get("resultCnt"));
-
-		model.addAttribute("valtOpnn", "평가 의견을 입력하세요!");
-
 
 		// 메뉴 갱신
 		request.getSession().setAttribute("menuNo", "3000000");
@@ -380,19 +377,12 @@ public class ContVoteManageController {
 	public String updateContestAdminVote(@ModelAttribute("vote") ContVoteVO contVoteVO, ModelMap model) throws Exception {
 
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
-		if (!isAuthenticated) {
+		if(!isAuthenticated) {
 			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
 			return "uat/uia/EgovLoginUsr";
 		}
 
-		LoginVO user;
-		if (EgovUserDetailsHelper.isAuthenticated()) {
-			user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-			System.out.println("user.getId():"+user.getId());
-		} else {
-			user = new LoginVO();
-			user.setId("anonymous");
-		}
+		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 
 //		System.out.println("contVoteVO:"+contVoteVO);
 //		System.out.println("contVoteVO.getValtMngmNo():"+contVoteVO.getValtMngmNo());
@@ -428,6 +418,8 @@ public class ContVoteManageController {
 					System.out.println("잘못된 형식의 데이터: " + pair);
 				}
 			}
+			contVoteManageService.insertAdminValtSta(contVoteVO);
+
 			resultMsg = "success.common.insert";
 		}catch (Exception e) {
 			resultMsg = "fail.request.msg";
@@ -450,10 +442,50 @@ public class ContVoteManageController {
 	public String getContestAdminVoteRsltPage(HttpServletRequest request, ModelMap model)
 			throws Exception{
 
+		System.out.println("/cmm/contest/contestAdminVoteRslt.do >>> ");
+
+		String groupId = request.getParameter("cmb_group");
+		System.out.println("선택된 그룹 ID: " + groupId);
+
+		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+		if(!isAuthenticated) {
+			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
+			return "uat/uia/EgovLoginUsr";
+		}
+
+		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+
+		// 공모전 심사자가 평가할 대상 리스트 조회
+		ContVoteVO vo = new ContVoteVO();
+		vo.setExmnId(user.getId());
+
+		Map<String, Object> map = contVoteManageService.selectContVoteAdminGroupList(vo);
+		int totCnt = Integer.parseInt((String) map.get("resultCnt"));
+
+		model.addAttribute("contVoteAdminGroupList", map.get("resultList"));
+		model.addAttribute("contVoteAdminGroupListCnt", map.get("resultCnt"));
+
+		// 리스트가 있을 때 - 첫 번째 리스트에 대상자 조회
+		List<ContVoteVO> resultList = (List<ContVoteVO>) map.get("resultList");
+
+		if (groupId != null && !groupId.isEmpty()) {
+			vo.setValtMngmNo(groupId);  // groupId 우선
+		} else if (resultList != null && !resultList.isEmpty()) {
+			vo.setValtMngmNo(resultList.get(0).getValtMngmNo());  // fallback
+		}
+
+		Map<String, Object> map2 = contVoteManageService.selectContVoteAdminBBSList(vo);
+		int totCnt2 = Integer.parseInt((String) map2.get("resultCnt"));
+
+		model.addAttribute("valtMngmNo", vo.getValtMngmNo());
+		model.addAttribute("contVoteAdminBBSList", map2.get("resultList"));
+		model.addAttribute("contVoteAdminBBSListCnt", map2.get("resultCnt"));
+
 		// 메뉴 갱신
 		request.getSession().setAttribute("menuNo", "3000000");
 		request.getSession().setAttribute("activeMenuNo", "3021000");
 
+		// 평가기준 및 평가 항목 조회 (현재 하드코딩)
 
 		return "main/contest/ContestAdminVoteRsltView";
 	}

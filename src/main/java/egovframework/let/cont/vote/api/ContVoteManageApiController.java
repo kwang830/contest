@@ -25,7 +25,7 @@ public class ContVoteManageApiController {
 	protected EgovPropertyService propertyService;
 
 	/**
-	 * 게시물에 대한 상세 정보를 조회한다.
+	 * 평가에 대한 상세 정보를 조회한다.
 	 *
 	 * @param contVoteVO
 	 * @return
@@ -33,28 +33,65 @@ public class ContVoteManageApiController {
 	 */
 	@PostMapping(value = "/cont/vote/selectAdminVotesAjax.do", consumes = "application/json", produces = "application/json")
 	public Map<String, Object> selectAdminVotesAjax(@RequestBody ContVoteVO contVoteVO) throws Exception {
-		System.out.println("------------ selectVotesAjax start -------------");
-		System.out.println("------------ contVoteVO.getBbsId():"+contVoteVO.getBbsId());
-		System.out.println("------------ contVoteVO.getNttId():"+contVoteVO.getNttId());
-		System.out.println("------------ contVoteVO.getValtMngmNo():"+contVoteVO.getValtMngmNo());
+		//System.out.println("------------ selectVotesAjax start -------------");
+		//System.out.println("------------ contVoteVO.getBbsId():"+contVoteVO.getBbsId());
+		//System.out.println("------------ contVoteVO.getNttId():"+contVoteVO.getNttId());
+		//System.out.println("------------ contVoteVO.getValtMngmNo():"+contVoteVO.getValtMngmNo());
+		//System.out.println("------------ contVoteVO.getValtQsitMnno():"+contVoteVO.getValtQsitMnno());
 
 		LoginVO user = new LoginVO();
 		if (EgovUserDetailsHelper.isAuthenticated()) {
 			user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		}
 
-		System.out.println("------------ user.getId():"+user.getId());
-		System.out.println("------------ user.getUniqId():"+user.getUniqId());
+		//System.out.println("------------ user.getId():"+user.getId());
+		//System.out.println("------------ user.getUniqId():"+user.getUniqId());
 
 		contVoteVO.setExmnId(user.getId());
 
 		Map<String, Object> map = contVoteManageService.selectAdminVotesAjax(contVoteVO);
 		Map<String, Object> result = new HashMap<>();
 
+		String valtOpnn = contVoteManageService.selectVoteValtOpnn(contVoteVO);
+
 		result.put("contVoteAdminGroupList", map.get("resultList"));
+		result.put("valtOpnn", valtOpnn != null ? valtOpnn : "");
 		result.put("result", "success");
 		result.put("msg", "처리 완료!");
 		return result;
 	}
 
+	/**
+	 * 평가결과 대한 상세 정보를 조회한다.
+	 *
+	 * @param contVoteVO
+	 * @return
+	 * @throws Exception
+	 */
+	@PostMapping(value = "/cont/vote/selectAdminVoteRsltsAjax.do", consumes = "application/json", produces = "application/json")
+	public Map<String, Object> selectAdminVoteRsltsAjax(@RequestBody ContVoteVO contVoteVO) throws Exception {
+		//System.out.println("------------ selectAdminVoteRsltsAjax start -------------");
+		//System.out.println("------------ contVoteVO.getBbsId():"+contVoteVO.getBbsId());
+		//System.out.println("------------ contVoteVO.getNttId():"+contVoteVO.getNttId());
+		//System.out.println("------------ contVoteVO.getValtMngmNo():"+contVoteVO.getValtMngmNo());
+		//System.out.println("------------ contVoteVO.getValtQsitMnno():"+contVoteVO.getValtQsitMnno());
+
+		LoginVO user = new LoginVO();
+		if (EgovUserDetailsHelper.isAuthenticated()) {
+			user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+		}
+
+		//System.out.println("------------ user.getId():"+user.getId());
+		//System.out.println("------------ user.getUniqId():"+user.getUniqId());
+
+		contVoteVO.setExmnId(user.getId());
+
+		Map<String, Object> map = contVoteManageService.selectAdminVoteRsltsAjax(contVoteVO);
+		Map<String, Object> result = new HashMap<>();
+
+		result.put("contVoteRsltList", map.get("resultList"));
+		result.put("result", "success");
+		result.put("msg", "처리 완료!");
+		return result;
+	}
 }

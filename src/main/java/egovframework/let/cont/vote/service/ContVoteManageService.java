@@ -1,6 +1,7 @@
 package egovframework.let.cont.vote.service;
 
 import egovframework.let.cont.vote.service.ContVoteVO;
+import egovframework.let.cop.bbs.service.Board;
 
 import java.util.Map;
 
@@ -37,6 +38,16 @@ public interface ContVoteManageService {
 			throws Exception;
 
 	/**
+	 * 조건에 맞는 평가결과 목록을 조회 한다.
+	 * @return
+	 *
+	 * @param contVoteVO
+	 * @exception Exception Exception
+	 */
+	public Map<String, Object> selectAdminVoteRsltsAjax(ContVoteVO contVoteVO)
+			throws Exception;
+
+	/**
 	 * 평가항목을 등록 한다.
 	 *
 	 * @param contVoteVO
@@ -61,5 +72,22 @@ public interface ContVoteManageService {
 	 * @exception Exception Exception
 	 */
 	public int selectVoteScore(ContVoteVO contVoteVO)
+			throws Exception;
+
+	/**
+	 * 평가항목을 등록 한다.
+	 *
+	 * @param contVoteVO
+	 * @exception Exception Exception
+	 */
+	public int insertAdminValtSta(ContVoteVO contVoteVO)
+			throws Exception;
+
+	/**
+	 * 평가 의견을 조회 한다.
+	 * @param contVoteVO
+	 * @exception Exception Exception
+	 */
+	public String selectVoteValtOpnn(ContVoteVO contVoteVO)
 			throws Exception;
 }

@@ -147,6 +147,10 @@
 			fn_egov_downFile('EcqfhYxRcnWG52hkOGYp/F3suq/5SFOvAnxJUaQhI01X9dgmJjJ+3mWoSYu1PsdTs4dfuDM2VdFX2fN3C0X4iQ==','0');
 		}
 
+		function submitGroupForm() {
+			document.getElementById("groupForm").submit();
+		}
+
 		<c:if test="${!empty resultMsg}">alert("<spring:message code='${resultMsg}' />");</c:if>
 		//-->
 	</script>
@@ -197,13 +201,18 @@
 
 							<div class="board_list selectable-table">
 								<div class="groupList">
+									<form id="groupForm" action="<c:url value='/cmm/contest/contestAdminVote.do'/>" method="post">
 									<label class="item f_select" for="cmb_group">
-										<select name="cmb_group" id="cmb_group" title="평가 선택">
+										<select name="cmb_group" id="cmb_group" title="평가 선택" onchange="submitGroupForm()">
 											<c:forEach var="result" items="${contVoteAdminGroupList}" begin="0" end="10" step="1" varStatus="status">
-												<option value="${result.valtMngmNo}" >${result.valtMngmTtl}</option>
+												<option value="${result.valtMngmNo}"
+														<c:if test="${result.valtMngmNo == valtMngmNo}">selected</c:if>>
+														${result.valtMngmTtl}
+												</option>
 											</c:forEach>
 										</select>
 									</label>
+									</form>
 								</div>
 
 								<table id="userList">
@@ -261,6 +270,7 @@
 								<input type="hidden" name="exmnId" value="" />
 								<input type="hidden" name="exmnNm" value="<c:out value="${exmnNm}" />" />
 								<input type="hidden" name="valtQsitSendStr" value="" />
+								<input type="hidden" name="valtOpnn" value="" />
 
 								<div class="board_list">
 									<table class="selectable-table">
@@ -573,11 +583,11 @@
 
 							<div class="board_form_row">
 								<div class="title">
-									<label for="valtOpnn">평가 의견</label>
+									<label for="valtOpnn2">평가 의견</label>
 								</div>
 								<div class="input">
-                                    <textarea id="valtOpnn" name="valtOpnn" title="평가 의견" class="f_txtar w_full h_200"
-											  rows="10" cols="30"><c:out value="${valtOpnn}" escapeXml="false" /></textarea>
+                                    <textarea id="valtOpnn2" name="valtOpnn2" title="평가 의견" class="f_txtar w_full h_200"
+											  rows="10" cols="30"></textarea>
 								</div>
 							</div>
 
@@ -631,12 +641,12 @@
 	});
 </script>
 <script>
-	function handleRowClick(bbsId, nttId, valtMngmNo) {
+	function handleRowClick(bbsId, nttId, valtMngmNo, valtQsitMnno) {
 		$('[id^="sel_"]').each(function () {
 			$(this).val('');
 		});
 
-		fn_select_votes(bbsId, nttId, valtMngmNo);
+		fn_select_votes(bbsId, nttId, valtMngmNo, valtQsitMnno);
 	}
 
 	$(function () {
@@ -646,12 +656,6 @@
 			const valtMngmNo = $(this).data('valtmngmno');
 			const valtQsitMnno = $(this).data('valtqsitmnno');
 			const ntcrNm = $(this).data('ntcrnm');
-
-			// console.log('bbsId:'+bbsId);
-			// console.log('nttId:'+nttId);
-			// console.log('valtMngmNo:'+valtMngmNo);
-			// console.log('valtQsitMnno:'+valtQsitMnno);
-			// console.log('ntcrNm:'+ntcrNm);
 
 			$('input[name="bbsId"]').val(bbsId);
 			$('input[name="nttId"]').val(nttId);
@@ -663,18 +667,27 @@
 			$('#outputMsg').html(displayText);
 			$('#btnCheck').css('display', 'block');
 
-			handleRowClick(bbsId, nttId, valtMngmNo);
+			handleRowClick(bbsId, nttId, valtMngmNo, valtQsitMnno);
 		});
 	});
 
-	function fn_select_votes(bbsId, nttId, valtMngmNo){
+	function decodeHtmlEntities(str) {
+		if (!str) return '';
+		const txt = document.createElement('textarea');
+		txt.innerHTML = str;
+		return txt.value;
+	}
+
+	function fn_select_votes(bbsId, nttId, valtMngmNo, valtQsitMnno){
+
 		$.ajax({
 			type: "POST",
 			url: "${pageContext.request.contextPath}/api/cont/vote/selectAdminVotesAjax.do",
 			data: JSON.stringify({
 				bbsId: bbsId,
 				nttId: nttId,
-				valtMngmNo: valtMngmNo
+				valtMngmNo: valtMngmNo,
+				valtQsitMnno: valtQsitMnno
 			}),
 			contentType: "application/json; charset=UTF-8",
 			dataType: 'json',
@@ -683,6 +696,7 @@
 
 				// returnData에서 contVoteAdminGroupList 추출
 				const dataList = returnData.contVoteAdminGroupList;
+				const valtOpnn = returnData.valtOpnn;
 
 				dataList.forEach(item => {
 					const qsitNo = item.qsitNo;
@@ -698,6 +712,10 @@
 					}
 
 				});
+
+				const decodedValtOpnn = decodeHtmlEntities(valtOpnn);
+				$('#valtOpnn2').val(decodedValtOpnn);
+				//$('#valtOpnn2').val(valtOpnn);
 
 				calculateTotalPoints();
 			},
@@ -754,6 +772,9 @@
 	function fn_vote_admin_update() {
 		let sNtcrNm = $('[name="ntcrNm"]').val();
 		let sMsg = "발표자("+sNtcrNm+")에 대한 평가를 저장하시겠습니까?"
+		let valtOpnn = $('textarea[name="valtOpnn2"]').val();
+
+		console.log("valtOpnn:"+valtOpnn);
 
 		let result = [];
 
@@ -764,6 +785,7 @@
 		});
 
 		$('input[name="valtQsitSendStr"]').val(result.join('@'));
+		$('input[name="valtOpnn"]').val(valtOpnn);
 
 		if (confirm(sMsg)) {
 			document.vote.action = "<c:url value='/cmm/contest/updateContestAdminVote.do'/>";
@@ -774,6 +796,7 @@
 	$(document).ready(function () {
 		$('select[name^="sel_"]').on('change', calculateTotalPoints);
 	});
+
 
 
 </script>

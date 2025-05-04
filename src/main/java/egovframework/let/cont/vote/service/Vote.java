@@ -168,6 +168,10 @@ public class Vote implements Serializable {
 	 */
 	private String exmnId = "";
 	/**
+	 * 평가자명
+	 */
+	private String exmnNm = "";
+	/**
 	 * 평가관리제목
 	 */
 	private String valtMngmTtl = "";
@@ -203,6 +207,17 @@ public class Vote implements Serializable {
 	 */
 	private String scoreCnt = "";
 
+	/**
+	 * 평가의견
+	 */
+	private String valtOpnn = "";
+
+	/**
+	 * 평가점수합계
+	 */
+	private String sumScr = "";
+	
+	
 	/**
 	 * atchFileId attribute를 리턴한다.
 	 * @return the atchFileId
@@ -835,6 +850,21 @@ public class Vote implements Serializable {
 		this.exmnId = exmnId;
 	}
 
+	/**
+	 * exmnNm attribute를 리턴한다.
+	 * @return the exmnNm
+	 */
+	public String getExmnNm() {
+		return exmnNm;
+	}
+
+	/**
+	 * exmnNm attribute 값을 설정한다.
+	 * @param exmnNm the exmnNm to set
+	 */
+	public void setExmnNm(String exmnNm) {
+		this.exmnNm = exmnNm;
+	}
 
 	/**
 	 * valtMngmTtl attribute를 리턴한다.
@@ -963,4 +993,37 @@ public class Vote implements Serializable {
 	public void setScoreCnt(String scoreCnt) {
 		this.scoreCnt = scoreCnt;
 	}
+
+	/**
+	 * valtOpnn attribute를 리턴한다.
+	 * @return the valtOpnn
+	 */
+	public String getValtOpnn() {
+		return valtOpnn;
+	}
+
+	/**
+	 * valtOpnn attribute 값을 설정한다.
+	 * @param valtOpnn the valtOpnn to set
+	 */
+	public void setValtOpnn(String valtOpnn) {
+		this.valtOpnn = valtOpnn;
+	}
+
+	/**
+	 * sumScr attribute를 리턴한다.
+	 * @return the sumScr
+	 */
+	public String getSumScr() {
+		return sumScr;
+	}
+
+	/**
+	 * sumScr attribute 값을 설정한다.
+	 * @param sumScr the sumScr to set
+	 */
+	public void setSumScr(String sumScr) {
+		this.sumScr = sumScr;
+	}
+
 }

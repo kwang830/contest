@@ -176,6 +176,6 @@ public interface EgovBBSManageService {
 	 */
 	public Map<String, Object> selectBoardCommentMore(BoardVO boardVO)
 			throws Exception;
-	
-	
+
+
 }
