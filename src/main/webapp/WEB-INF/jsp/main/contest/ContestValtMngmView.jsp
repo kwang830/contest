@@ -20,18 +20,13 @@
           rel="stylesheet">
 
     <!-- preload -->
-    <link rel="preload" href="<c:url value='/'/>css/reset.css" as="style"
-          onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="<c:url value='/'/>css/styles.css" as="style"
-          onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="<c:url value='/'/>css/responsive.css" as="style"
-          onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="<c:url value='/'/>css/font-icons.css" as="style"
-          onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="<c:url value='/'/>css/reset.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="<c:url value='/'/>css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="<c:url value='/'/>css/responsive.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="<c:url value='/'/>css/font-icons.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="<c:url value='/'/>css/sub.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="stylesheet" href="<c:url value='/'/>css/sub-ios.css" type="text/css" media="all" />
-    <link rel="preload" href="<c:url value='/'/>css/board.css" as="style"
-          onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="<c:url value='/'/>css/board.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
     <link rel="stylesheet" href="<c:url value='/'/>css/jqueryui.css">
 
@@ -123,6 +118,7 @@
 
         function fncSetValtMngmNo(source) {
             document.listForm.valtMngmNo.value = source;
+            document.listForm2.valtMngmNo.value = source;
         }
 
         function fncSelectContestList(pageNo) {
@@ -132,11 +128,11 @@
         }
 
         function fncContValtDeleteList() {
-            if (!fncManageChecked('listForm', 'valtMngmNos')) return;
+            if (!fncManageChecked('listForm2', 'valtMngmNos')) return;
 
             if (confirm('<spring:message code="common.delete.msg" />')) {
-                document.listForm.action = "<c:url value='/cmm/contest/valt/deleteContestValt.do'/>";
-                document.listForm.submit();
+                document.listForm2.action = "<c:url value='/cmm/contest/valt/deleteContestValt.do'/>";
+                document.listForm2.submit();
             }
         }
 
@@ -317,104 +313,112 @@
         </div>
         <div class="content-wrap">
             <div class="container clearfix">
+                <!-- 검색조건 -->
+                <div class="condition">
+                    <form:form name="listForm" action="<c:url value='/cmm/contest/valt/contestValtMngm.do'/>" method="post">
+                        <input type="hidden" name="valtMngmNo"/>
+                        <div class="condition_inner">
+                            <label class="item f_select" for="sel1">
+                                <select id="sel1" name="searchCnd" title="조회조건">
+                                    <option value="1" <c:if test="${contSearchVO.searchCnd == '1'}">selected</c:if> >평가관리번호</option>
+                                    <option value="2" <c:if test="${contSearchVO.searchCnd == '2'}">selected</c:if> >문항관리번호</option>
+                                    <option value="3" <c:if test="${contSearchVO.searchCnd == '3'}">selected</c:if> >년도</option>
+                                    <option value="4" <c:if test="${contSearchVO.searchCnd == '4'}">selected</c:if> >차수</option>
+                                    <option value="5" <c:if test="${contSearchVO.searchCnd == '5'}">selected</c:if> >제목</option>
+                                </select>
+                            </label>
 
-                <form:form name="listForm" action="<c:url value='/cmm/contest/valt/contestValtMngm.do'/>" method="post">
-                    <!-- 검색조건 -->
-                    <div class="condition">
+                            <span class="item f_search">
+                                <input id="searchWord" class="f_input w_500" name="searchWrd" type="text"
+                                       value="<c:out value='${contSearchVO.searchWrd}'/>" title="검색" onkeydown="press(event);"/>
+                                <button class="btn" type="submit" onclick="javascript:fncSelectContestList('1')">조회</button><!-- 조회 -->
+                            </span>
+                        </div>
+                        <div class="condition_inner">
+                            <a href="#" class="item btn btn_black_46 w_100" onclick="javascript:fncRegistContestValtPop(); return false;">등록</a>
+                            <a href="#" class="item btn btn_black_46 w_100" onclick="javascript:fncUpdateContestValtPop(); return false;">수정</a>
+                            <a href="#" class="item btn btn_black_46 w_100" onclick="javascript:fncContValtDeleteList(); return false;">삭제</a>
 
-                        <label class="item f_select" for="sel1">
-                            <select id="sel1" name="searchCnd" title="조회조건">
-                                <option value="1" <c:if test="${contSearchVO.searchCnd == '1'}">selected</c:if> >평가관리번호</option>
-                                <option value="2" <c:if test="${contSearchVO.searchCnd == '2'}">selected</c:if> >문항관리번호</option>
-                                <option value="3" <c:if test="${contSearchVO.searchCnd == '3'}">selected</c:if> >년도</option>
-                                <option value="4" <c:if test="${contSearchVO.searchCnd == '4'}">selected</c:if> >차수</option>
-                                <option value="5" <c:if test="${contSearchVO.searchCnd == '5'}">selected</c:if> >제목</option>
-                            </select>
-                        </label>
+                            <input type="hidden" name="pageIndex" value="<c:out value='${contSearchVO.pageIndex}'/>"/>
+                        </div>
+                    </form:form>
+                </div>
+                <!--// 검색조건 -->
 
-                        <span class="item f_search">
-                            <input id="searchWord" class="f_input w_500" name="searchWrd" type="text"
-                                   value="<c:out value='${contSearchVO.searchWrd}'/>" title="검색" onkeydown="press(event);"/>
-                            <button class="btn" type="submit" onclick="javascript:fncSelectContestList('1')">조회</button><!-- 조회 -->
-                        </span>
+                <!-- 평가 관리 정보 -->
+                <div class="board_list selectable-table" >
+                    <form:form name="listForm2" action="<c:url value='/cmm/contest/valt/contestValtMngm.do'/>" method="post">
+                        <input type="hidden" name="valtMngmNo"/>
+                        <input type="hidden" name="valtMngmNos"/>
+                    <table>
+                        <caption>목록</caption>
+                        <colgroup>
+                            <col style="width: 70px;">
+                            <col style="width: 70px;">
+                            <col style="width: 120px;">
+                            <col style="width: 120px;">
+                            <col style="width: 120px;">
+                            <col style="width: 70px;">
+                            <col style="width: 220px;">
+                            <col style="width: auto; min-width: 300px;">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th scope="col">No.</th>
+                                <th scope="col">
+                                    <span class="f_chk_only chkAll">
+                                        <input type="checkbox" name="checkAll" title="선택여부" onclick="javascript:fncCheckAll('listForm')">
+                                    </span>
+                                </th>
+                                <th scope="col">평가 관리번호</th>
+                                <th scope="col">문항 관리번호</th>
+                                <th scope="col">년도</th>
+                                <th scope="col">차수</th>
+                                <th scope="col">시작일자</th>
+                                <th scope="col">제목</th>
+                                <th scope="col">내용</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                        <a href="#" class="item btn btn_black_46 w_100" onclick="javascript:fncRegistContestValtPop(); return false;">등록</a>
-                        <a href="#" class="item btn btn_black_46 w_100" onclick="javascript:fncUpdateContestValtPop(); return false;">수정</a>
-                        <a href="#" class="item btn btn_black_46 w_100" onclick="javascript:fncContValtDeleteList(); return false;">삭제</a>
+                        <c:if test="${fn:length(contValtList) == 0}">
+                            <tr>
+                                <td colspan="9"><spring:message code="common.nodata.msg"/></td>
+                            </tr>
+                        </c:if>
 
-                    </div>
-                    <!--// 검색조건 -->
+                        <c:forEach var="contValt" items="${contValtList}" varStatus="status">
+                            <tr onclick="javascript:fncSetValtMngmNo('${contValt.valtMngmNo}');  fncSelectBbsByValt('${contValt.valtMngmNo}'); fncSelectUsrByValt('${contValt.valtMngmNo}')">
+                                <td><c:out value="${(paginationInfo.currentPageNo-1) * paginationInfo.pageSize + status.count}"/></td>
+                                <td>
+                                    <span class="f_chk_only">
+                                        <input type="checkbox" name="delYn" class="check2" title="선택">
+                                        <input type="hidden" name="checkId" value="<c:out value="${contValt.valtMngmNo}"/>"/>
+                                    </span>
+                                </td>
+                                <td><c:out value="${contValt.valtMngmNo}"/></td>
+                                <td><c:out value="${contValt.valtQsitMnno}"/></td>
+                                <td><c:out value="${contValt.baseYy}"/></td>
+                                <td><c:out value="${contValt.sqn}"/></td>
+                                <td><c:out value="${contValt.useTs}"/></td>
+                                <td><c:out value="${contValt.valtMngmTtl}"/></td>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${fn:length(contValt.valtMngmDesc) > 25}">
+                                            <c:out value="${fn:substring(contValt.valtMngmDesc, 0, 25)}"/>...
+                                        </c:when>
+                                        <c:otherwise>
+                                            <c:out value="${contValt.valtMngmDesc}"/>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </td>
+                            </tr>
+                        </c:forEach>
 
-                    <!-- 평가 관리 정보 -->
-                    <div class="board_list selectable-table" >
-                        <table>
-                            <caption>목록</caption>
-                            <colgroup>
-                                <col style="width: 70px;">
-                                <col style="width: 70px;">
-                                <col style="width: 120px;">
-                                <col style="width: 120px;">
-                                <col style="width: 120px;">
-                                <col style="width: 70px;">
-                                <col style="width: 220px;">
-                                <col style="width: auto; min-width: 300px;">
-                            </colgroup>
-                            <thead>
-                                <tr>
-                                    <th scope="col">No.</th>
-                                    <th scope="col">
-                                        <span class="f_chk_only chkAll">
-                                            <input type="checkbox" name="checkAll" title="선택여부" onclick="javascript:fncCheckAll('listForm')">
-                                        </span>
-                                    </th>
-                                    <th scope="col">평가 관리번호</th>
-                                    <th scope="col">문항 관리번호</th>
-                                    <th scope="col">년도</th>
-                                    <th scope="col">차수</th>
-                                    <th scope="col">시작일자</th>
-                                    <th scope="col">제목</th>
-                                    <th scope="col">내용</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                            <c:if test="${fn:length(contValtList) == 0}">
-                                <tr>
-                                    <td colspan="9"><spring:message code="common.nodata.msg"/></td>
-                                </tr>
-                            </c:if>
-
-                            <c:forEach var="contValt" items="${contValtList}" varStatus="status">
-                                <tr onclick="javascript:fncSetValtMngmNo('${contValt.valtMngmNo}');  fncSelectBbsByValt('${contValt.valtMngmNo}'); fncSelectUsrByValt('${contValt.valtMngmNo}')">
-                                    <td><c:out value="${(paginationInfo.currentPageNo-1) * paginationInfo.pageSize + status.count}"/></td>
-                                    <td>
-                                        <span class="f_chk_only">
-                                            <input type="checkbox" name="delYn" class="check2" title="선택">
-                                            <input type="hidden" name="checkId" value="<c:out value="${contValt.valtMngmNo}"/>"/>
-                                        </span>
-                                    </td>
-                                    <td><c:out value="${contValt.valtMngmNo}"/></td>
-                                    <td><c:out value="${contValt.valtQsitMnno}"/></td>
-                                    <td><c:out value="${contValt.baseYy}"/></td>
-                                    <td><c:out value="${contValt.sqn}"/></td>
-                                    <td><c:out value="${contValt.useTs}"/></td>
-                                    <td><c:out value="${contValt.valtMngmTtl}"/></td>
-                                    <td>
-                                        <c:choose>
-                                            <c:when test="${fn:length(contValt.valtMngmDesc) > 25}">
-                                                <c:out value="${fn:substring(contValt.valtMngmDesc, 0, 25)}"/>...
-                                            </c:when>
-                                            <c:otherwise>
-                                                <c:out value="${contValt.valtMngmDesc}"/>
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-
-                            </tbody>
-                        </table>
-                    </div>
+                        </tbody>
+                    </table>
+                    </form:form>
+                </div>
 
                     <!-- 페이징 -->
                     <c:if test="${!empty contSearchVO.pageIndex }">
@@ -428,11 +432,7 @@
                     </c:if>
                     <!-- // 페이징 끝 -->
 
-                    <input type="hidden" name="valtMngmNo"/>
-                    <input type="hidden" name="valtMngmNos"/>
-                    <input type="hidden" name="pageIndex" value="<c:out value='${contSearchVO.pageIndex}'/>"/>
 
-                </form:form>
                 <!--// 평가 관리 정보 -->
             </div>
 

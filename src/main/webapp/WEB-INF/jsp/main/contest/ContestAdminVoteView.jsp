@@ -293,11 +293,6 @@
 										</tr>
 										</thead>
 										<tbody>
-										<%--									<c:if test="${empty resultList}">--%>
-										<%--										<tr>--%>
-										<%--											<td class="al" colspan="6">등록된 정보가 존재하지 않습니다.</td>--%>
-										<%--										</tr>--%>
-										<%--									</c:if>--%>
 
 										<!-- 사업측면 -->
 										<tr>

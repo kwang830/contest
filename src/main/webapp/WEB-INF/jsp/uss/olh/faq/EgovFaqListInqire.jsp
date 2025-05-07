@@ -132,7 +132,7 @@ function fn_egov_inquire_faqlistdetail(faqId) {
                     <!-- 검색조건 -->
                     <div class="condition">
                         <form name="FaqListForm" action="<c:url value='/uss/olh/faq/FaqListInqire.do'/>" method="post">
-
+                            <div class="condition_inner">
                             <input name="faqId" type="hidden" value="">
                             <input name="pageIndex" type="hidden" value="<c:out value='${searchVO.pageIndex}'/>"/>
 
@@ -152,7 +152,7 @@ function fn_egov_inquire_faqlistdetail(faqId) {
                             <c:if test="${authFlag == 'Y'}">
                                 <a href="#" class="item btn btn_black_46 w_100" onclick="fn_egov_regist_faq(); return false;">등록</a>
                             </c:if>
-
+                            </div>
                         </form>
 
                     </div>

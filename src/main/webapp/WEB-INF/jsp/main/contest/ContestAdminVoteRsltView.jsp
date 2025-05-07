@@ -26,6 +26,8 @@
 	<link rel="stylesheet" href="<c:url value='/'/>css/sub-ios.css" type="text/css" media="all" />
 	<link rel="preload" href="<c:url value='/'/>css/board.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
+	<link rel="stylesheet" href="<c:url value='/'/>css/jqueryui.css">
+
 	<style>
 		* {
 			box-sizing: border-box;
@@ -127,6 +129,7 @@
 			color: #000;
 			padding-right: 10px;
 		}
+
 	</style>
 
 	<!-- Document Title
@@ -140,6 +143,14 @@
 		<!--
 		function submitGroupForm() {
 			document.getElementById("groupForm").submit();
+		}
+
+		/**********************************************************
+		 * 모달 종료 버튼
+		 ******************************************************** */
+		function fn_egov_modal_remove() {
+			$('#modalPan').remove();
+			// location.reload();
 		}
 
 		<c:if test="${!empty resultMsg}">alert("<spring:message code='${resultMsg}' />");</c:if>
@@ -263,8 +274,8 @@
 								<input type="hidden" name="valtQsitSendStr" value="" />
 								<input type="hidden" name="valtOpnn" value="" />
 
-								<div class="board_list">
-									<table class="selectable-table" id="voteRslt">
+								<div class="board_list selectable-table">
+									<table class="" id="voteRslt">
 										<caption>목록</caption>
 										<colgroup>
 											<col style="width: 90px;">
@@ -314,6 +325,9 @@
 <!-- Footer Scripts
 ============================================= -->
 <script type="text/javascript" src="<c:url value='/'/>js/functions.js"></script>
+
+<script src="<c:url value='/'/>js/ui.js"></script>
+<script src="<c:url value='/'/>js/jqueryui.js"></script>
 
 <script>
 	$(function () {
@@ -385,9 +399,17 @@
 					const sumScr = item.sumScr;
 					const valtOpnn = decodeHtmlEntities(item.valtOpnn || '');
 
+					const valtMngmNo = item.valtMngmNo;
+					const valtQsitMnno = item.valtQsitMnno;
+					const bbsId = item.bbsId;
+					const nttId = item.nttId;
+					const exmnId = item.exmnId;
+					const queryKey = valtMngmNo+"|"+valtQsitMnno+"|"+bbsId+"|"+nttId+"|"+exmnId
+
+
 					rowHtml += '<tr>';
 					rowHtml += '<td>' + (index + 1) + '</td>';
-					rowHtml += '<td>' + exmnNm + '</td>';
+					rowHtml += '<td><a href=\"#\" onclick="fncRegistContestValtUserPop(\''+queryKey+'\'); return false;">' + exmnNm + '</a></td>';
 					rowHtml += '<td>' + sumScr + '</td>';
 					rowHtml += '<td class="hid">' + decodeHtmlEntities(valtOpnn) + '</td>';
 					rowHtml += '</tr>';
@@ -403,7 +425,45 @@
 
 	}
 
+	function fncRegistContestValtUserPop(key) {
+		const result = key.split(/\|/);
+		const valtMngmNo = result[0];
+		const valtQsitMnno = result[1];
+		const bbsId = result[2];
+		const nttId = result[3];
+		const exmnId = result[4];
 
+		if (
+				!valtMngmNo || valtMngmNo.trim() === "" ||
+				!valtQsitMnno || valtQsitMnno.trim() === "" ||
+				!bbsId || bbsId.trim() === "" ||
+				!nttId || nttId.trim() === "" ||
+				!exmnId || exmnId.trim() === ""
+		) {
+			alert("호출대상 정보가 누락되었습니다.");
+			return;
+		}
+
+		const baseUrl = "<c:url value='/cmm/contest/contestAdminVoteDtlPop.do' />";
+		const action = baseUrl + "?valtMngmNo=" + valtMngmNo + "&valtQsitMnno=" + valtQsitMnno + "&bbsId=" + bbsId + "&nttId=" + nttId + "&exmnId=" + exmnId ;
+		var $dialog = $('<div id="modalPan"></div>')
+				.html('<iframe id="contestFrame2" style="border: 0px; " src="' + action + '" width="100%" height="100%"></iframe>')
+				.dialog({
+					autoOpen: false,
+					modal: true,
+					width: 1100,
+					height: 700,
+					open: function () {
+						//const iframe = document.getElementById("contestFrame2");
+						// iframe.onload = function () {
+						// 	iframe.contentWindow.setParentData(document.userForm.valtMngmNo.value);
+						// }
+					}
+				});
+		$(".ui-dialog-titlebar").hide();
+		$(".ui-dialog-content").css("overflow", "hidden");
+		$dialog.dialog('open');
+	}
 
 </script>
 </body>

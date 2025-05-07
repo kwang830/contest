@@ -91,33 +91,35 @@
 				<!-- 검색조건 -->
 				<div class="condition">
 					<form name="frm" action="<c:url value='/cop/bbs${prefix}/selectBoardList.do'/>" method="post">
+						<div class="condition_inner">
 
-						<input type="hidden" name="bbsId" value="<c:out value='${boardVO.bbsId}'/>" />
-						<input type="hidden" name="nttId" value="0" />
-						<input type="hidden" name="bbsTyCode" value="<c:out value='${brdMstrVO.bbsTyCode}'/>" />
-						<input type="hidden" name="bbsAttrbCode" value="<c:out value='${brdMstrVO.bbsAttrbCode}'/>" />
-						<input type="hidden" name="authFlag" value="<c:out value='${brdMstrVO.authFlag}'/>" />
-						<input name="pageIndex" type="hidden" value="<c:out value='${searchVO.pageIndex}'/>" />
+							<input type="hidden" name="bbsId" value="<c:out value='${boardVO.bbsId}'/>" />
+							<input type="hidden" name="nttId" value="0" />
+							<input type="hidden" name="bbsTyCode" value="<c:out value='${brdMstrVO.bbsTyCode}'/>" />
+							<input type="hidden" name="bbsAttrbCode" value="<c:out value='${brdMstrVO.bbsAttrbCode}'/>" />
+							<input type="hidden" name="authFlag" value="<c:out value='${brdMstrVO.authFlag}'/>" />
+							<input name="pageIndex" type="hidden" value="<c:out value='${searchVO.pageIndex}'/>" />
 
-						<label class="item f_select" for="searchCnd">
-							<select name="searchCnd" id="searchCnd" title="검색조건 선택">
-								<option value="0" <c:if test="${searchVO.searchCnd == '0'}">selected="selected"</c:if>>제목</option>
-								<option value="1" <c:if test="${searchVO.searchCnd == '1'}">selected="selected"</c:if>>내용</option>
-								<option value="2" <c:if test="${searchVO.searchCnd == '2'}">selected="selected"</c:if>>작성자</option>
-							</select>
-						</label>
+							<label class="item f_select" for="searchCnd">
+								<select name="searchCnd" id="searchCnd" title="검색조건 선택">
+									<option value="0" <c:if test="${searchVO.searchCnd == '0'}">selected="selected"</c:if>>제목</option>
+									<option value="1" <c:if test="${searchVO.searchCnd == '1'}">selected="selected"</c:if>>내용</option>
+									<option value="2" <c:if test="${searchVO.searchCnd == '2'}">selected="selected"</c:if>>작성자</option>
+								</select>
+							</label>
 
-						<span class="item f_search">
-                            <input class="f_input w_500" name="searchWrd" type="text" value='<c:out value="${searchVO.searchWrd}"/>'
-								   maxlength="35" title="검색어 입력">
-                            <button class="btn" type="submit"
-									onclick="fn_egov_select_noticeList('1'); return false;">조회</button>
-                        </span>
+							<span class="item f_search">
+								<input class="f_input w_500" name="searchWrd" type="text" value='<c:out value="${searchVO.searchWrd}"/>'
+									   maxlength="35" title="검색어 입력">
+								<button class="btn" type="submit"
+										onclick="fn_egov_select_noticeList('1'); return false;">조회</button>
+							</span>
 
-						<c:if test="${brdMstrVO.authFlag == 'Y'}">
-							<a href="<c:url value='/cop/bbs${prefix}/addBoardArticle.do?bbsId=${boardVO.bbsId}'/>" class="item btn btn_black_46 w_100">등록</a>
-						</c:if>
+							<c:if test="${brdMstrVO.authFlag == 'Y'}">
+								<a href="<c:url value='/cop/bbs${prefix}/addBoardArticle.do?bbsId=${boardVO.bbsId}'/>" class="item btn btn_black_46 w_100">등록</a>
+							</c:if>
 
+						</div>
 					</form>
 
 				</div>

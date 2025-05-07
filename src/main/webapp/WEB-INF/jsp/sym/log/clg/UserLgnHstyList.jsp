@@ -161,18 +161,16 @@ function fn_egov_search_loginLog(){
 				<!-- 검색조건 -->
 				<div class="condition">
 					<form name="LoginLogForm" action="<c:url value='/sym/log/clg/userLgnHsty.do'/>" method="post" >
-
-						<input type="hidden" name="pageIndex" id="pageIndex" class="" value="1"  />
-
 						<div class="condition_inner">
+							<input type="hidden" name="pageIndex" id="pageIndex" class="" value="1"  />
 							<span class="item condition_title">검색기간</span>
 							<span class="item f_search_date">
-                                    <input class="f_input" name="searchBgnDe" type="date" value="" maxlength="35" title="검색시작일">
-                                </span>
+									<input class="f_input" name="searchBgnDe" type="date" value="" maxlength="35" title="검색시작일">
+								</span>
 							<span class="item condition_title">-</span>
 							<span class="item f_search_date">
-                                    <input class="f_input" name="searchEndDe" type="date" value="" maxlength="35" title="검색종료일">
-                                </span>
+									<input class="f_input" name="searchEndDe" type="date" value="" maxlength="35" title="검색종료일">
+								</span>
 						</div>
 						<div class="condition_inner">
 							<label class="item f_select" for="searchCnd">
@@ -200,7 +198,6 @@ function fn_egov_search_loginLog(){
 
 							<a href="#" class="item btn btn_black_46 w_100" onclick="javascript:fn_select_reset(); return false;">초기화</a>
 						</div>
-
 					</form>
 
 				</div>

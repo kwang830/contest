@@ -135,23 +135,24 @@ function fn_egov_inquire_faqlistdetail(faqId) {
                                 <div class="condition">
                                 
                                 	<form name="FaqListForm" action="<c:url value='/uss/olh/faq/admin/FaqListInqire.do'/>" method="post">
-                                
-                                    <label class="item f_select" for="sel1">
-                                        <select name="searchCondition" id="sel1" title="조회조건 선택">
-                                            <option selected value=''>선택</option>
-                                            <option value="qestnSj" <c:if test="${searchVO.searchCondition == 'qestnSj'}"> selected="selected"</c:if> >질문제목</option>
-                                        </select>
-                                    </label>
+                                        <div class="condition_inner">
+                                            <label class="item f_select" for="sel1">
+                                                <select name="searchCondition" id="sel1" title="조회조건 선택">
+                                                    <option selected value=''>선택</option>
+                                                    <option value="qestnSj" <c:if test="${searchVO.searchCondition == 'qestnSj'}"> selected="selected"</c:if> >질문제목</option>
+                                                </select>
+                                            </label>
 
-                                    <span class="item f_search">
-                                        <input class="f_input w_500" name="searchKeyword" type="text" value='<c:out value="${searchVO.searchKeyword}"/>' maxlength="35" title="검색어 입력" >
-                                        <button class="btn" type="submit" onclick="fn_egov_search_faq(); return false;">조회</button><!-- 조회 -->
-                                    </span>
+                                            <span class="item f_search">
+                                                <input class="f_input w_500" name="searchKeyword" type="text" value='<c:out value="${searchVO.searchKeyword}"/>' maxlength="35" title="검색어 입력" >
+                                                <button class="btn" type="submit" onclick="fn_egov_search_faq(); return false;">조회</button><!-- 조회 -->
+                                            </span>
 
-                                    <a href="<c:url value='/uss/olh/faq/admin/FaqCnRegistView.do'/>" class="item btn btn_blue_46 w_100" onclick="fn_egov_regist_faq(); return false;"><spring:message code="button.create" /></a><!-- 등록 -->
-                                    
-                                    <input name="faqId" type="hidden" value="">
-									<input name="pageIndex" type="hidden" value="<c:out value='${searchVO.pageIndex}'/>"/>
+                                            <a href="<c:url value='/uss/olh/faq/admin/FaqCnRegistView.do'/>" class="item btn btn_blue_46 w_100" onclick="fn_egov_regist_faq(); return false;"><spring:message code="button.create" /></a><!-- 등록 -->
+
+                                            <input name="faqId" type="hidden" value="">
+                                            <input name="pageIndex" type="hidden" value="<c:out value='${searchVO.pageIndex}'/>"/>
+                                        </div>
 									</form>
                                     
                                 </div>

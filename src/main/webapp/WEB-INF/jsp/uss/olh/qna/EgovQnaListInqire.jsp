@@ -125,37 +125,38 @@ function fn_egov_inquire_qnadetail(qaId) {
                     <!-- 검색조건 -->
                     <div class="condition">
                         <form name="QnaListForm" action="<c:url value='/uss/olh/qna/QnaListInqire.do'/>" method="post">
+                            <div class="condition_inner">
+                                <input type="hidden" name="ihidnum" value="">
+                                <input type="hidden" name="realname" value="">
 
-                            <input type="hidden" name="ihidnum" value="">
-                            <input type="hidden" name="realname" value="">
+                                <input type="hidden" name ="nextUrlName" value="QA등록">
+                                <input type="hidden" name ="nextUrl" value="/uss/olh/qna/QnaCnRegistView.do">
 
-                            <input type="hidden" name ="nextUrlName" value="QA등록">
-                            <input type="hidden" name ="nextUrl" value="/uss/olh/qna/QnaCnRegistView.do">
+                                <input type="hidden" name="certificationAt" value="<c:out value='${certificationAt}'/>">
+                                <input type="hidden" name="loginRealnmAt" value="">
 
-                            <input type="hidden" name="certificationAt" value="<c:out value='${certificationAt}'/>">
-                            <input type="hidden" name="loginRealnmAt" value="">
+                                <input type="hidden" name="wrterNm" value="">
 
-                            <input type="hidden" name="wrterNm" value="">
+                                <label class="item f_select" for="searchCondition">
+                                    <select name="searchCondition" id="searchCondition" title="검색조건 선택">
+                                        <option value="wrterNm" <c:if test="${searchVO.searchCondition == 'wrterNm'}">selected="selected"</c:if> >작성자</option>
+                                        <option value="qestnSj" <c:if test="${searchVO.searchCondition == 'qestnSj'}">selected="selected"</c:if> >질문제목</option>
+                                    </select>
+                                </label>
 
-                            <label class="item f_select" for="searchCondition">
-                                <select name="searchCondition" id="searchCondition" title="검색조건 선택">
-                                    <option value="wrterNm" <c:if test="${searchVO.searchCondition == 'wrterNm'}">selected="selected"</c:if> >작성자</option>
-                                    <option value="qestnSj" <c:if test="${searchVO.searchCondition == 'qestnSj'}">selected="selected"</c:if> >질문제목</option>
-                                </select>
-                            </label>
+                                <span class="item f_search">
+                                    <input class="f_input w_500" name="searchKeyword" type="text" value='<c:out value="${searchVO.searchKeyword}"/>'
+                                           maxlength="35" title="검색어 입력">
+                                    <button class="btn" type="submit"
+                                            onclick="fn_egov_search_qnacn(); return false;">조회</button>
+                                </span>
 
-                            <span class="item f_search">
-                                <input class="f_input w_500" name="searchKeyword" type="text" value='<c:out value="${searchVO.searchKeyword}"/>'
-                                       maxlength="35" title="검색어 입력">
-                                <button class="btn" type="submit"
-                                        onclick="fn_egov_search_qnacn(); return false;">조회</button>
-                            </span>
+                                <a href="#" class="item btn btn_black_46 w_100" onclick="fn_egov_regist_cnsltcn(); return false;">등록</a>
 
-                            <a href="#" class="item btn btn_black_46 w_100" onclick="fn_egov_regist_cnsltcn(); return false;">등록</a>
-
-                            <input name="qaId" type="hidden" value="">
-                            <input name="passwordConfirmAt" type="hidden" value="">
-                            <input name="pageIndex" type="hidden" value="<c:out value='${searchVO.pageIndex}'/>"/>
+                                <input name="qaId" type="hidden" value="">
+                                <input name="passwordConfirmAt" type="hidden" value="">
+                                <input name="pageIndex" type="hidden" value="<c:out value='${searchVO.pageIndex}'/>"/>
+                            </div>
                         </form>
 
                     </div>

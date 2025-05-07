@@ -132,38 +132,39 @@ function fn_egov_inquire_qnadetail(qaId) {
                                 <div class="condition">
                                 
                                 	<form name="QnaListForm" action="<c:url value='/uss/olh/qna/admin/QnaListInqire.do'/>" method="post">
+                                        <div class="condition_inner">
+                                            <!--실명확인을 위한  설정   Start...-->
+                                            <input type="hidden" name="ihidnum" value="">
+                                            <input type="hidden" name="realname" value="">
 
-										<!--실명확인을 위한  설정   Start...-->
-										<input type="hidden" name="ihidnum" value="">
-										<input type="hidden" name="realname" value="">
-										
-										<input type="hidden" name ="nextUrlName" value="QA등록">
-										<input type="hidden" name ="nextUrl" value="/uss/olh/qna/admin/QnaCnRegistView.do">
-										
-										<input type="hidden" name="certificationAt" value="<c:out value='${certificationAt}'/>">
-										<input type="hidden" name="loginRealnmAt" value="">
-										
-										<input type="hidden" name="wrterNm" value="">
-										<!--실명확인을 위한  설정 End......-->
-                                
-	                                    <label class="item f_select" for="sel1">
-	                                        <select id="sel1" name="searchCondition" class="select" title="조회조건 선택">
-	                                            <option selected="" value="">선택하세요</option>
-	                                            <option value="wrterNm" <c:if test="${searchVO.searchCondition == 'wrterNm'}">selected="selected"</c:if> >작성자명</option>
-	                                            <option value="qestnSj" <c:if test="${searchVO.searchCondition == 'qestnSj'}">selected="selected"</c:if> >질문제목</option>
-	                                        </select>
-	                                    </label>
-	
-	                                    <span class="item f_search">
-	                                        <input class="f_input w_500" name="searchKeyword" type="text" value='<c:out value="${searchVO.searchKeyword}"/>' maxlength="35" title="검색어 입력" >
-	                                        <button class="btn" type="submit" onclick="fn_egov_search_qnacn(); return false;">조회</button><!-- 조회 -->
-	                                    </span>
-	
-	                                    <a href="<c:url value='/uss/olh/qna/admin/QnaCnRegistView.do'/>" class="item btn btn_blue_46 w_100" onclick="fn_egov_regist_cnsltcn(); return false;"><spring:message code="button.create" /></a><!-- 등록 -->
-	                                    
-	                                    <input name="qaId" type="hidden" value="">
-										<input name="passwordConfirmAt" type="hidden" value="">
-										<input name="pageIndex" type="hidden" value="<c:out value='${searchVO.pageIndex}'/>"/>
+                                            <input type="hidden" name ="nextUrlName" value="QA등록">
+                                            <input type="hidden" name ="nextUrl" value="/uss/olh/qna/admin/QnaCnRegistView.do">
+
+                                            <input type="hidden" name="certificationAt" value="<c:out value='${certificationAt}'/>">
+                                            <input type="hidden" name="loginRealnmAt" value="">
+
+                                            <input type="hidden" name="wrterNm" value="">
+                                            <!--실명확인을 위한  설정 End......-->
+
+                                            <label class="item f_select" for="sel1">
+                                                <select id="sel1" name="searchCondition" class="select" title="조회조건 선택">
+                                                    <option selected="" value="">선택하세요</option>
+                                                    <option value="wrterNm" <c:if test="${searchVO.searchCondition == 'wrterNm'}">selected="selected"</c:if> >작성자명</option>
+                                                    <option value="qestnSj" <c:if test="${searchVO.searchCondition == 'qestnSj'}">selected="selected"</c:if> >질문제목</option>
+                                                </select>
+                                            </label>
+
+                                            <span class="item f_search">
+                                                <input class="f_input w_500" name="searchKeyword" type="text" value='<c:out value="${searchVO.searchKeyword}"/>' maxlength="35" title="검색어 입력" >
+                                                <button class="btn" type="submit" onclick="fn_egov_search_qnacn(); return false;">조회</button><!-- 조회 -->
+                                            </span>
+
+                                            <a href="<c:url value='/uss/olh/qna/admin/QnaCnRegistView.do'/>" class="item btn btn_blue_46 w_100" onclick="fn_egov_regist_cnsltcn(); return false;"><spring:message code="button.create" /></a><!-- 등록 -->
+
+                                            <input name="qaId" type="hidden" value="">
+                                            <input name="passwordConfirmAt" type="hidden" value="">
+                                            <input name="pageIndex" type="hidden" value="<c:out value='${searchVO.pageIndex}'/>"/>
+                                        </div>
 									</form>
                                     
                                 </div>

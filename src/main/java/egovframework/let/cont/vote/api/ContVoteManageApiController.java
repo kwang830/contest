@@ -47,7 +47,9 @@ public class ContVoteManageApiController {
 		//System.out.println("------------ user.getId():"+user.getId());
 		//System.out.println("------------ user.getUniqId():"+user.getUniqId());
 
-		contVoteVO.setExmnId(user.getId());
+		if (contVoteVO.getExmnId() == null || contVoteVO.getExmnId().trim().isEmpty()) {
+			contVoteVO.setExmnId(user.getId());
+		}
 
 		Map<String, Object> map = contVoteManageService.selectAdminVotesAjax(contVoteVO);
 		Map<String, Object> result = new HashMap<>();

@@ -66,12 +66,7 @@
 			</div>
 			<div class="content-wrap">
 				<div class="container clearfix">
-					<!-- 검색조건 -->
-<%--					<div class="condition">--%>
-<%--					</div>--%>
-					<!--// 검색조건 -->
 
-					<!-- 게시판 -->
 					<h3>본부별 통계 현황</h3>
 
 					<div class="board_list">
@@ -240,7 +235,6 @@
 					</div>
 					<!-- // 페이징 끝 -->
 
-					<!--// 게시판 -->
 				</div>
 			</div>
 		</section>
@@ -274,7 +268,7 @@
 			var cnt = "${result.scoreA}";
 			var tot = "${bbs_sum_tot}";
 			$(".dept_bbs_sum").each(function(){
-				console.log($(this).attr("title")+','+dept);
+				//console.log($(this).attr("title")+','+dept);
 				if( $(this).attr("title")== dept ){
 					$(this).text(cnt);
 				}

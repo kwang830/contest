@@ -125,24 +125,25 @@ function fn_egov_inquire_qnaanswerdetail(qaId) {
                     <!-- 검색조건 -->
                     <div class="condition">
                         <form name="QnaAnswerListForm" action="<c:url value='/uss/olh/qnm/QnaAnswerListInqire.do'/>" method="post">
+                            <div class="condition_inner">
+                                <label class="item f_select" for="searchCondition">
+                                    <select name="searchCondition" id="searchCondition" title="검색조건 선택">
+                                        <option value="wrterNm" <c:if test="${searchVO.searchCondition == 'wrterNm'}">selected="selected"</c:if> >작성자명</option>
+                                        <option value="qnaProcessSttusCodeNm" <c:if test="${searchVO.searchCondition == 'qnaProcessSttusCodeNm'}">selected="selected"</c:if> >진행상태</option>
+                                    </select>
+                                </label>
 
-                            <label class="item f_select" for="searchCondition">
-                                <select name="searchCondition" id="searchCondition" title="검색조건 선택">
-                                    <option value="wrterNm" <c:if test="${searchVO.searchCondition == 'wrterNm'}">selected="selected"</c:if> >작성자명</option>
-                                    <option value="qnaProcessSttusCodeNm" <c:if test="${searchVO.searchCondition == 'qnaProcessSttusCodeNm'}">selected="selected"</c:if> >진행상태</option>
-                                </select>
-                            </label>
+                                <span class="item f_search">
+                                    <input class="f_input w_500" name="searchKeyword" type="text" value='<c:out value="${searchVO.searchKeyword}"/>'
+                                           maxlength="35" title="검색어 입력">
+                                    <button class="btn" type="submit"
+                                            onclick="fn_egov_search_qnacnanswer(); return false;">조회</button>
+                                </span>
 
-                            <span class="item f_search">
-                                <input class="f_input w_500" name="searchKeyword" type="text" value='<c:out value="${searchVO.searchKeyword}"/>'
-                                       maxlength="35" title="검색어 입력">
-                                <button class="btn" type="submit"
-                                        onclick="fn_egov_search_qnacnanswer(); return false;">조회</button>
-                            </span>
-
-                            <input name="qaId" type="hidden" value="">
-                            <input name="passwordConfirmAt" type="hidden" value="">
-                            <input name="pageIndex" type="hidden" value="<c:out value='${searchVO.pageIndex}'/>"/>
+                                <input name="qaId" type="hidden" value="">
+                                <input name="passwordConfirmAt" type="hidden" value="">
+                                <input name="pageIndex" type="hidden" value="<c:out value='${searchVO.pageIndex}'/>"/>
+                            </div>
                         </form>
 
                     </div>

@@ -186,6 +186,7 @@
 
 .EgovGroupSearch {background-color: #fff;}
 .EgovGroupSearch .pop_inner {width: 800px; height: 100%; overflow: auto;}
+.EgovGroupSearch .pop_inner2 {width: 1100px; height: 100%; overflow: auto;}
 
 .EgovTemplateInqirePopup .pop_inner {width: 1280px;}
 

@@ -28,7 +28,7 @@
 
     <!-- Document Title
     ============================================= -->
-    <title>IBK시스템 AI 아이디어 챌린지 - 사용자 정보 관리</title>
+    <title>IBK시스템 AI 아이디어 챌린지</title>
 
     <!-- favicon -->
     <link rel="icon" type="image/x-icon" href="<c:url value='/'/>images/favicon.ico">
@@ -52,8 +52,8 @@ function fn_select_reset(){
 }
 
 function fnCheckAll() {
-    var checkField = document.listForm.checkField;
-    if(document.listForm.checkAll.checked) {
+    var checkField = document.listForm2.checkField;
+    if(document.listForm2.checkAll.checked) {
         if(checkField) {
             if(checkField.length > 1) {
                 for(var i=0; i < checkField.length; i++) {
@@ -76,8 +76,8 @@ function fnCheckAll() {
     }
 }
 function fnDeleteUser() {
-    var checkField = document.listForm.checkField;
-    var id = document.listForm.checkId;
+    var checkField = document.listForm2.checkField;
+    var id = document.listForm2.checkId;
     var checkedIds = "";
     var checkedCount = 0;
     if(checkField) {
@@ -97,23 +97,23 @@ function fnDeleteUser() {
     if(checkedIds.length > 0) {
     	//alert(checkedIds);
         if(confirm('<spring:message code="common.delete.msg" />')) {
-        	document.listForm.checkedIdForDel.value=checkedIds;
-            document.listForm.action = "<c:url value='/uss/umt/mber/EgovMberDelete.do'/>";
-            document.listForm.submit();
+        	document.listForm2.checkedIdForDel.value=checkedIds;
+            document.listForm2.action = "<c:url value='/uss/umt/mber/EgovMberDelete.do'/>";
+            document.listForm2.submit();
         }
     }
 }
 function fnSelectUser(id) {
-	document.listForm.selectedId.value = id;
+	document.listForm2.selectedId.value = id;
 	array = id.split(":");
 	if(array[0] == "") {
 	} else {
 	    userTy = array[0];
 	    userId = array[1];    
 	}
-	document.listForm.selectedId.value = userId;
-    document.listForm.action = "<c:url value='/uss/umt/mber/EgovMberSelectUpdtView.do'/>";
-    document.listForm.submit();
+	document.listForm2.selectedId.value = userId;
+    document.listForm2.action = "<c:url value='/uss/umt/mber/EgovMberSelectUpdtView.do'/>";
+    document.listForm2.submit();
 }
 function fnAddUserView() {
     document.listForm.action = "<c:url value='/uss/umt/mber/EgovMberInsertView.do'/>";
@@ -131,8 +131,8 @@ function fnSearch(){
 }
 
 function fncUpdatePasswordReset() {
-    var checkField = document.listForm.checkField;
-    var id = document.listForm.checkId;
+    var checkField = document.listForm2.checkField;
+    var id = document.listForm2.checkId;
     var checkedIds = "";
     var checkedCount = 0;
     if(checkField) {
@@ -152,9 +152,9 @@ function fncUpdatePasswordReset() {
     if(checkedIds.length > 0) {
         // alert(checkedIds);
         if(confirm('<spring:message code="common.reset.msg" />')) {
-            document.listForm.selectedId.value=checkedIds;
-            document.listForm.action = "<c:url value='/uss/umt/mber/EgovMberPasswordResetList.do'/>";
-            document.listForm.submit();
+            document.listForm2.selectedId.value=checkedIds;
+            document.listForm2.action = "<c:url value='/uss/umt/mber/EgovMberPasswordResetList.do'/>";
+            document.listForm2.submit();
         }
     }
 }
@@ -193,40 +193,41 @@ function fncUpdatePasswordReset() {
             </div>
             <div class="content-wrap">
                 <div class="container clearfix">
-                    <form name="listForm" action="/uss/umt/mber/EgovMberManage.do" method="post">
+
                     <!-- 검색조건 -->
                     <div class="condition">
+                        <form name="listForm" action="/uss/umt/mber/EgovMberManage.do" method="post">
+                            <div class="condition_inner">
+                                <input name="pageIndex" type="hidden" value="<c:out value='${userSearchVO.pageIndex}'/>"/>
 
-                        <input name="selectedId" type="hidden" />
-                        <input name="checkedIdForDel" type="hidden" />
-                        <input name="pageIndex" type="hidden" value="<c:out value='${userSearchVO.pageIndex}'/>"/>
+                                <label class="item f_select" for="sbscrbSttus">
+                                    <select name="sbscrbSttus" id="sbscrbSttus" title="조회조건1">
+                                        <option value="0" <c:if test="${empty userSearchVO.sbscrbSttus || userSearchVO.sbscrbSttus == '0'}">selected="selected"</c:if> >상태(전체)</option>
+                                        <option value="A" <c:if test="${userSearchVO.sbscrbSttus == 'A'}">selected="selected"</c:if> >가입신청</option>
+                                        <option value="D" <c:if test="${userSearchVO.sbscrbSttus == 'D'}">selected="selected"</c:if> >삭제</option>
+                                        <option value="P" <c:if test="${userSearchVO.sbscrbSttus == 'P'}">selected="selected"</c:if> >승인</option>
+                                    </select>
+                                </label>
 
-                        <label class="item f_select" for="sbscrbSttus">
-                            <select name="sbscrbSttus" id="sbscrbSttus" title="조회조건1">
-                                <option value="0" <c:if test="${empty userSearchVO.sbscrbSttus || userSearchVO.sbscrbSttus == '0'}">selected="selected"</c:if> >상태(전체)</option>
-                                <option value="A" <c:if test="${userSearchVO.sbscrbSttus == 'A'}">selected="selected"</c:if> >가입신청</option>
-                                <option value="D" <c:if test="${userSearchVO.sbscrbSttus == 'D'}">selected="selected"</c:if> >삭제</option>
-                                <option value="P" <c:if test="${userSearchVO.sbscrbSttus == 'P'}">selected="selected"</c:if> >승인</option>
-                            </select>
-                        </label>
+                                <label class="item f_select" for="searchCondition">
+                                    <select name="searchCondition" id="searchCondition" title="조회조건2">
+                                        <option value="0" <c:if test="${userSearchVO.searchCondition == '0'}">selected="selected"</c:if> >ID</option>
+                                        <option value="1" <c:if test="${empty userSearchVO.searchCondition || userSearchVO.searchCondition == '1'}">selected="selected"</c:if> >이름</option>
+                                    </select>
+                                </label>
 
-                        <label class="item f_select" for="searchCondition">
-                            <select name="searchCondition" id="searchCondition" title="조회조건2">
-                                <option value="0" <c:if test="${userSearchVO.searchCondition == '0'}">selected="selected"</c:if> >ID</option>
-                                <option value="1" <c:if test="${empty userSearchVO.searchCondition || userSearchVO.searchCondition == '1'}">selected="selected"</c:if> >이름</option>
-                            </select>
-                        </label>
-
-                        <span class="item f_search">
-                            <input class="f_input w_500" name="searchKeyword" id="searchKeyword" type="text" value="<c:out value="${userSearchVO.searchKeyword}"/>"
-                                   maxlength="35" title="검색어 입력">
-                            <button class="btn" type="submit" onclick="fnSearch(); return false;">조회</button>
-                        </span>
-
-                        <a href="#" class="item btn btn_black_46 w_100" onclick="javascript:fn_select_reset(); return false;">초기화</a>
-                        <a href="#" class="item btn btn_black_46 w_100" onclick="fnDeleteUser(); return false;">삭제</a>
-                        <a href="#" class="item btn btn_black_46 w_100" onclick="fnAddUserView(); return false;">등록</a>
-
+                                <span class="item f_search">
+                                    <input class="f_input w_500" name="searchKeyword" id="searchKeyword" type="text" value="<c:out value="${userSearchVO.searchKeyword}"/>"
+                                           maxlength="35" title="검색어 입력">
+                                    <button class="btn" type="submit" onclick="fnSearch(); return false;">조회</button>
+                                </span>
+                            </div>
+                            <div class="condition_inner">
+                                <a href="#" class="item btn btn_black_46 w_100" onclick="javascript:fn_select_reset(); return false;">초기화</a>
+                                <a href="#" class="item btn btn_black_46 w_100" onclick="fnDeleteUser(); return false;">삭제</a>
+                                <a href="#" class="item btn btn_black_46 w_100" onclick="fnAddUserView(); return false;">등록</a>
+                            </div>
+                        </form>
                     </div>
                     <!--// 검색조건 -->
                     <div class="board_list_top topmargin">
@@ -236,6 +237,9 @@ function fncUpdatePasswordReset() {
                     </div>
                     <!-- 게시판 -->
                     <div class="board_list">
+                        <form name="listForm2" action="/uss/umt/mber/EgovMberManage.do" method="post">
+                            <input name="selectedId" type="hidden" />
+                            <input name="checkedIdForDel" type="hidden" />
                         <table>
                             <caption>목록</caption>
                             <colgroup>
@@ -302,6 +306,7 @@ function fncUpdatePasswordReset() {
 
                             </tbody>
                         </table>
+                        </form>
                     </div>
 
                     <!-- 페이징 -->
@@ -314,7 +319,7 @@ function fncUpdatePasswordReset() {
                     </div>
                     <!-- // 페이징 끝 -->
 
-                    </form>
+
 
                     <!--// 게시판 -->
                 </div>

@@ -489,4 +489,30 @@ public class ContVoteManageController {
 
 		return "main/contest/ContestAdminVoteRsltView";
 	}
+
+	@RequestMapping(value = "/cmm/contest/contestAdminVoteDtlPop.do")
+	public String getContestAdminVoteDtlPopPage(@ModelAttribute("vote") ContVoteVO contVoteVO, ModelMap model)
+			throws Exception{
+
+		System.out.println("/cmm/contest/contestAdminVoteDtlPop.do >>> ");
+		System.out.println("contVoteVO.getValtMngmNo():"+contVoteVO.getValtMngmNo());
+		System.out.println("contVoteVO.getValtQsitMnno():"+contVoteVO.getValtQsitMnno());
+		System.out.println("contVoteVO.getBbsId():"+contVoteVO.getBbsId());
+		System.out.println("contVoteVO.getNttId():"+contVoteVO.getNttId());
+		System.out.println("contVoteVO.getExmnId():"+contVoteVO.getExmnId());
+
+		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+		if(!isAuthenticated) {
+			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
+			return "uat/uia/EgovLoginUsr";
+		}
+
+		model.addAttribute("valtMngmNo", contVoteVO.getValtMngmNo());
+		model.addAttribute("valtQsitMnno", contVoteVO.getValtQsitMnno());
+		model.addAttribute("bbsId", contVoteVO.getBbsId());
+		model.addAttribute("nttId", contVoteVO.getNttId());
+		model.addAttribute("exmnId", contVoteVO.getExmnId());
+
+		return "main/contest/ContestAdminVoteDtlPop";
+	}
 }
