@@ -176,7 +176,7 @@
 			<div class="sub-banner">
 				<div class="container">
 					<div class="sub-banner-title">
-						공모전 심사 결과
+						공모전 심사 순위
 					</div>
 				</div>
 			</div>
@@ -203,7 +203,7 @@
 
 							<div class="board_list selectable-table">
 								<div class="groupList">
-									<form id="groupForm" action="<c:url value='/cmm/contest/contestAdminVoteRslt.do'/>" method="post">
+									<form id="groupForm" action="<c:url value='/cmm/contest/contestAdminVoteRank.do'/>" method="post">
 										<label class="item f_select" for="cmb_group">
 											<select name="cmb_group" id="cmb_group" title="평가 선택" onchange="submitGroupForm()">
 												<c:forEach var="result" items="${contVoteAdminGroupList}" begin="0" end="10" step="1" varStatus="status">
@@ -216,31 +216,6 @@
 										</label>
 									</form>
 								</div>
-
-								<table id="userList">
-									<caption>목록</caption>
-									<colgroup>
-										<col style="width: 70px;">
-										<col style="width: auto; min-width: 80px;">
-									</colgroup>
-									<thead>
-
-									<tr>
-										<th>순번</th>
-										<th>발표자</th>
-									</tr>
-									</thead>
-									<tbody>
-
-									<c:forEach var="result" items="${contVoteAdminBBSList}" begin="0" end="20" step="1" varStatus="status">
-										<tr data-bbsid="${result.bbsId}" data-nttid="${result.nttId}" data-valtmngmno="${result.valtMngmNo}" data-valtqsitmnno="${result.valtQsitMnno}" data-ntcrnm="${result.ntcrNm}">
-											<td>${status.count} </td>
-											<td>${result.ntcrNm}</td>
-										</tr>
-									</c:forEach>
-
-									</tbody>
-								</table>
 							</div>
 						</div>
 
@@ -249,7 +224,7 @@
 					<div class="right">
 
 						<div class="condition">
-							<h2>평가결과</h2>
+							<h2>순위</h2>
 							<%
 								LoginVO loginVO = (LoginVO)session.getAttribute("LoginVO");
 								if(loginVO == null){
@@ -278,20 +253,40 @@
 									<table class="" id="voteRslt">
 										<caption>목록</caption>
 										<colgroup>
-											<col style="width: 90px;">
-											<col style="width: 120px;">
-											<col style="width: 120px;">
+											<col style="width: 80px;">
+											<col style="width: 80px;">
+											<col style="width: 80px;">
+											<col style="width: 80px;">
+											<col style="width: 80px;">
 											<col style="width: auto; min-width: 220px;" class="hid">
+											<col style="width: 120px;">
+											<col style="width: 100px;" class="hid">
 										</colgroup>
 										<thead>
 										<tr>
-											<th scope="col" >순번</th>
-											<th scope="col" >평가자</th>
+											<th scope="col" >총점 순위</th>
 											<th scope="col" >총점</th>
-											<th scope="col" class="hid">평가의견</th>
+											<th scope="col" >평균 순위</th>
+											<th scope="col" >평균</th>
+											<th scope="col" >평가자수</th>
+											<th scope="col" class="hid">제목</th>
+											<th scope="col" >팀명</th>
+											<th scope="col" class="hid">작성자</th>
 										</tr>
 										</thead>
 										<tbody>
+										<c:forEach var="result" items="${resultList}" varStatus="status">
+											<tr>
+												<td><c:out value='${result.totScrRank}'/></td>
+												<td><c:out value='${result.sumScr}'/></td>
+												<td><c:out value='${result.avgScrRank}'/></td>
+												<td><c:out value='${result.avgScr}'/></td>
+												<td><c:out value='${result.valtCnt}'/></td>
+												<td class="hid"><c:out value='${result.nttSj}' escapeXml="false"/></td>
+												<td><c:out value='${result.teamNm}' escapeXml="false"/></td>
+												<td class="hid"><c:out value='${result.ntcrNm}'/></td>
+											</tr>
+										</c:forEach>
 										</tbody>
 									</table>
 								</div>
@@ -338,143 +333,6 @@
 			});
 		});
 	});
-</script>
-<script>
-	function handleRowClick(bbsId, nttId, valtMngmNo, valtQsitMnno) {
-		$('[id^="sel_"]').each(function () {
-			$(this).val('');
-		});
-
-		fn_select_votes(bbsId, nttId, valtMngmNo, valtQsitMnno);
-	}
-
-	$(function () {
-		$('#userList tr').on('click', function () {
-			const bbsId = $(this).data('bbsid');
-			const nttId = $(this).data('nttid');
-			const valtMngmNo = $(this).data('valtmngmno');
-			const valtQsitMnno = $(this).data('valtqsitmnno');
-			const ntcrNm = $(this).data('ntcrnm');
-
-			$('input[name="bbsId"]').val(bbsId);
-			$('input[name="nttId"]').val(nttId);
-			$('input[name="valtMngmNo"]').val(valtMngmNo);
-			$('input[name="valtQsitMnno"]').val(valtQsitMnno);
-			$('input[name="ntcrNm"]').val(ntcrNm);
-
-			const displayText = '발표자 : ' + $('input[name="ntcrNm"]').val() + ',    평가자 : ' + $('input[name="exmnNm"]').val();
-			$('#outputMsg').html(displayText);
-			$('#btnCheck').css('display', 'block');
-
-			handleRowClick(bbsId, nttId, valtMngmNo, valtQsitMnno);
-		});
-	});
-
-	function decodeHtmlEntities(str) {
-		if (!str) return '';
-		const txt = document.createElement('textarea');
-		txt.innerHTML = str;
-		return txt.value;
-	}
-
-	function fn_select_votes(bbsId, nttId, valtMngmNo, valtQsitMnno) {
-		$.ajax({
-			type: "POST",
-			url: "${pageContext.request.contextPath}/api/cont/vote/selectAdminVoteRsltsAjax.do",
-			data: JSON.stringify({
-				bbsId: bbsId,
-				nttId: nttId,
-				valtMngmNo: valtMngmNo,
-				valtQsitMnno: valtQsitMnno
-			}),
-			contentType: "application/json; charset=UTF-8",
-			dataType: 'json',
-			success: function(returnData) {
-				const dataList = returnData.contVoteRsltList;
-				let rowHtml = '';
-				let totalScr = 0;
-
-				dataList.forEach((item, index) => {
-					const exmnNm = item.exmnNm;
-					const sumScr = item.sumScr || 0;
-					const valtOpnn = decodeHtmlEntities(item.valtOpnn || '');
-
-					const valtMngmNo = item.valtMngmNo;
-					const valtQsitMnno = item.valtQsitMnno;
-					const bbsId = item.bbsId;
-					const nttId = item.nttId;
-					const exmnId = item.exmnId;
-					const queryKey = valtMngmNo+"|"+valtQsitMnno+"|"+bbsId+"|"+nttId+"|"+exmnId;
-
-					totalScr += Number(sumScr);
-
-					rowHtml += '<tr>';
-					rowHtml += '<td>' + (index + 1) + '</td>';
-					rowHtml += '<td><a href=\"#\" onclick="fncRegistContestValtUserPop(\''+queryKey+'\'); return false;">' + exmnNm + '</a></td>';
-					rowHtml += '<td>' + sumScr + '</td>';
-					rowHtml += '<td class="hid">' + valtOpnn + '</td>';
-					rowHtml += '</tr>';
-				});
-
-				// 평균 계산
-				const avgScr = dataList.length > 0 ? (totalScr / dataList.length).toFixed(2) : 0;
-
-				// 합계 + 평균 행 추가
-				rowHtml += '<tr class="total-row">';
-				rowHtml += '<td colspan="2"><strong>합계</strong></td>';
-				rowHtml += '<td><strong>' + totalScr + '</strong></td>';
-				rowHtml += '<td><strong>평균: ' + avgScr + '</strong></td>';
-				rowHtml += '</tr>';
-
-				$('#voteRslt tbody').html(rowHtml);
-			},
-			error: function(xhr) {
-				console.error("에러:", xhr.status, xhr.responseText);
-			}
-		});
-	}
-
-
-	function fncRegistContestValtUserPop(key) {
-		const result = key.split(/\|/);
-		const valtMngmNo = result[0];
-		const valtQsitMnno = result[1];
-		const bbsId = result[2];
-		const nttId = result[3];
-		const exmnId = result[4];
-
-		if (
-				!valtMngmNo || valtMngmNo.trim() === "" ||
-				!valtQsitMnno || valtQsitMnno.trim() === "" ||
-				!bbsId || bbsId.trim() === "" ||
-				!nttId || nttId.trim() === "" ||
-				!exmnId || exmnId.trim() === ""
-		) {
-			alert("호출대상 정보가 누락되었습니다.");
-			return;
-		}
-
-		const baseUrl = "<c:url value='/cmm/contest/contestAdminVoteDtlPop.do' />";
-		const action = baseUrl + "?valtMngmNo=" + valtMngmNo + "&valtQsitMnno=" + valtQsitMnno + "&bbsId=" + bbsId + "&nttId=" + nttId + "&exmnId=" + exmnId ;
-		var $dialog = $('<div id="modalPan"></div>')
-				.html('<iframe id="contestFrame2" style="border: 0px; " src="' + action + '" width="100%" height="100%"></iframe>')
-				.dialog({
-					autoOpen: false,
-					modal: true,
-					width: 1100,
-					height: 700,
-					open: function () {
-						//const iframe = document.getElementById("contestFrame2");
-						// iframe.onload = function () {
-						// 	iframe.contentWindow.setParentData(document.userForm.valtMngmNo.value);
-						// }
-					}
-				});
-		$(".ui-dialog-titlebar").hide();
-		$(".ui-dialog-content").css("overflow", "hidden");
-		$dialog.dialog('open');
-	}
-
 </script>
 </body>
 </html>

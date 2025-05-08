@@ -90,4 +90,14 @@ public interface ContVoteManageService {
 	 */
 	public String selectVoteValtOpnn(ContVoteVO contVoteVO)
 			throws Exception;
+
+	/**
+	 * 조건에 맞는 평가순위 목록을 조회 한다.
+	 * @return
+	 *
+	 * @param contVoteVO
+	 * @exception Exception Exception
+	 */
+	public Map<String, Object> selectContVoteRankList(ContVoteVO contVoteVO)
+			throws Exception;
 }

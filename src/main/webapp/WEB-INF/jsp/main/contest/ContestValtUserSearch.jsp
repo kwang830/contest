@@ -98,7 +98,6 @@ function fncSelectContValtUserList(pageNo){
 }
 
 function fncSelectGroup(groupId) {
- // window.returnValue = groupId;
     opener.listForm.searchWrd.value = groupId;
     window.close();
 }
@@ -141,7 +140,6 @@ function fn_egov_cancel_popup() {
 }
 
 function press() {
-
     if (event.keyCode==13) {
     	fncSelectContValtUserList('1');
     }

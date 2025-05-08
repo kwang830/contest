@@ -515,4 +515,63 @@ public class ContVoteManageController {
 
 		return "main/contest/ContestAdminVoteDtlPop";
 	}
+
+	/**
+	 * 공모전 심사순위
+	 * @return 메인페이지 정보 Map [key : 항목명]
+	 *
+	 * @param request
+	 * @param model
+	 * @exception Exception Exception
+	 */
+	@RequestMapping(value = "/cmm/contest/contestAdminVoteRank.do")
+	public String getContestAdminVoteRankPage(HttpServletRequest request, ModelMap model)
+			throws Exception{
+
+		System.out.println("/cmm/contest/contestAdminVoteRslt.do >>> ");
+
+		String groupId = request.getParameter("cmb_group");
+		System.out.println("선택된 그룹 ID: " + groupId);
+
+		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+		if(!isAuthenticated) {
+			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
+			return "uat/uia/EgovLoginUsr";
+		}
+
+		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+
+		// 공모전 심사자가 평가할 대상 리스트 조회
+		ContVoteVO vo = new ContVoteVO();
+		vo.setExmnId(user.getId());
+
+		Map<String, Object> map = contVoteManageService.selectContVoteAdminGroupList(vo);
+		int totCnt = Integer.parseInt((String) map.get("resultCnt"));
+
+		model.addAttribute("contVoteAdminGroupList", map.get("resultList"));
+		model.addAttribute("contVoteAdminGroupListCnt", map.get("resultCnt"));
+
+		// 리스트가 있을 때 - 첫 번째 리스트에 대상자 조회
+		List<ContVoteVO> resultList = (List<ContVoteVO>) map.get("resultList");
+
+		if (groupId != null && !groupId.isEmpty()) {
+			vo.setValtMngmNo(groupId);  // groupId 우선
+		} else if (resultList != null && !resultList.isEmpty()) {
+			vo.setValtMngmNo(resultList.get(0).getValtMngmNo());  // fallback
+		}
+
+		Map<String, Object> map2 = contVoteManageService.selectContVoteRankList(vo);
+
+		model.addAttribute("valtMngmNo", vo.getValtMngmNo());
+		model.addAttribute("resultList", map2.get("resultList"));
+		model.addAttribute("resultCnt", map2.get("resultCnt"));
+
+		// 메뉴 갱신
+		request.getSession().setAttribute("menuNo", "3000000");
+		request.getSession().setAttribute("activeMenuNo", "3022000");
+
+		// 평가기준 및 평가 항목 조회 (현재 하드코딩)
+
+		return "main/contest/ContestAdminVoteRankView";
+	}
 }

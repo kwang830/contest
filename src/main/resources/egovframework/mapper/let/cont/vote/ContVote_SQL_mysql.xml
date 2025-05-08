@@ -117,6 +117,26 @@
 		<result property="lastUpdusrId" column="LAST_UPDUSR_ID"/>
 	</resultMap>
 
+	<resultMap id="voteRankList" type="egovframework.let.cont.vote.service.ContVoteVO">
+		<result property="valtMngmNo" column="VALT_MNGM_NO"/>
+		<result property="valtQsitMnno" column="VALT_QSIT_MNNO"/>
+		<result property="bbsId" column="BBS_ID"/>
+		<result property="nttId" column="NTT_ID"/>
+		<result property="useAt" column="USE_AT"/>
+		<result property="sumScr" column="SUM_SCR"/>
+		<result property="avgScr" column="AVG_SCR"/>
+		<result property="valtCnt" column="VALT_CNT"/>
+		<result property="totScrRank" column="TOT_SCR_RANK"/>
+		<result property="avgScrRank" column="AVG_SCR_RANK"/>
+		<result property="frstRegisterId" column="FRST_REGISTER_ID"/>
+		<result property="nttSj" column="NTT_SJ"/>
+		<result property="teamNm" column="TEAM_NM"/>
+		<result property="selectImg" column="SELECT_IMG"/>
+		<result property="imgUrl" column="IMG_URL"/>
+		<result property="nttId" column="USER_ID"/>
+		<result property="ntcrNm" column="USER_NM"/>
+	</resultMap>
+
 	<select id="selectContVoteAdminGroupList" parameterType="egovframework.let.cont.vote.service.ContVoteVO" resultMap="groupList">
 
 		select distinct a.VALT_MNGM_NO as VALT_MNGM_NO , a.TTL as VALT_MNGM_TTL
@@ -315,5 +335,76 @@
 	<select id="selectVoteValtOpnn" parameterType="egovframework.let.cont.vote.service.ContVoteVO" resultType="java.lang.String">
 		select VALT_OPNN from tb_valt_sta
 		where VALT_MNGM_NO = #{valtMngmNo} and VALT_QSIT_MNNO = #{valtQsitMnno} and NTT_ID = #{nttId} and BBS_ID = #{bbsId} and EXMN_ID = #{exmnId} and USE_AT = 'Y'
+	</select>
+
+	<select id="selectContVoteRankList" parameterType="egovframework.let.cont.vote.service.ContVoteVO" resultMap="voteRankList">
+
+		SELECT
+			r.VALT_MNGM_NO AS VALT_MNGM_NO,
+			r.VALT_QSIT_MNNO AS VALT_QSIT_MNNO,
+			r.NTT_ID AS NTT_ID,
+			r.BBS_ID AS BBS_ID,
+			r.TOTAL_SCORE AS SUM_SCR,
+			r.AVG_SCORE AS AVG_SCR,
+			r.VALT_CNT AS VALT_CNT,
+			r.TOTAL_SCORE_RANK AS TOT_SCR_RANK,
+			r.AVG_SCORE_RANK AS AVG_SCR_RANK,
+			bbs.FRST_REGISTER_ID AS FRST_REGISTER_ID,
+			bbs.NTT_SJ AS NTT_SJ,
+			bbs.TEAM_NM AS TEAM_NM,
+			bbs.SELECT_IMG AS SELECT_IMG,
+			bbs.IMG_URL AS IMG_URL,
+			comuser.USER_ID AS NTT_ID,
+			comuser.USER_NM AS NTCR_NM
+		FROM (
+				 SELECT
+					 VALT_MNGM_NO,
+					 VALT_QSIT_MNNO,
+					 NTT_ID,
+					 BBS_ID,
+					 SUM(SUM_SCR) AS TOTAL_SCORE,
+					 ROUND(AVG(SUM_SCR), 2) AS AVG_SCORE,
+					 COUNT(SUM_SCR) AS VALT_CNT,
+					 RANK() OVER (ORDER BY SUM(SUM_SCR) DESC) AS TOTAL_SCORE_RANK,
+						 RANK() OVER (ORDER BY AVG(SUM_SCR) DESC) AS AVG_SCORE_RANK
+				 FROM tb_valt_sta
+				 WHERE USE_AT = 'Y'
+				   AND VALT_MNGM_NO = #{valtMngmNo}
+				 GROUP BY VALT_MNGM_NO, VALT_QSIT_MNNO, NTT_ID, BBS_ID
+			 ) r
+				 LEFT JOIN LETTNBBS bbs
+						   ON bbs.NTT_ID = r.NTT_ID AND bbs.BBS_ID = r.BBS_ID
+				 LEFT JOIN COMVNUSERMASTER comuser
+						   ON comuser.ESNTL_ID = bbs.FRST_REGISTER_ID
+		ORDER BY r.TOTAL_SCORE_RANK ASC
+
+	</select>
+
+	<select id="selectContVoteRankListCnt" parameterType="egovframework.let.cont.vote.service.ContVoteVO" resultType="java.lang.Integer">
+
+		SELECT
+			count(1) as cnt
+		FROM (
+				 SELECT
+					 VALT_MNGM_NO,
+					 VALT_QSIT_MNNO,
+					 NTT_ID,
+					 BBS_ID,
+					 SUM(SUM_SCR) AS TOTAL_SCORE,
+					 ROUND(AVG(SUM_SCR), 2) AS AVG_SCORE,
+					 COUNT(SUM_SCR) AS VALT_CNT,
+					 RANK() OVER (ORDER BY SUM(SUM_SCR) DESC) AS TOTAL_SCORE_RANK,
+						 RANK() OVER (ORDER BY AVG(SUM_SCR) DESC) AS AVG_SCORE_RANK
+				 FROM tb_valt_sta
+				 WHERE USE_AT = 'Y'
+				   AND VALT_MNGM_NO = #{valtMngmNo}
+				 GROUP BY VALT_MNGM_NO, VALT_QSIT_MNNO, NTT_ID, BBS_ID
+			 ) r
+				 LEFT JOIN LETTNBBS bbs
+						   ON bbs.NTT_ID = r.NTT_ID AND bbs.BBS_ID = r.BBS_ID
+				 LEFT JOIN COMVNUSERMASTER comuser
+						   ON comuser.ESNTL_ID = bbs.FRST_REGISTER_ID
+		ORDER BY r.TOTAL_SCORE_RANK ASC
+
 	</select>
 </mapper>

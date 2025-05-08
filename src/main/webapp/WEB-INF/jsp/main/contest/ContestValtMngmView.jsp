@@ -268,7 +268,8 @@
          ******************************************************** */
         function fn_egov_modal_remove() {
             $('#modalPan').remove();
-            location.reload();
+            fn_reload();
+            //location.reload();
         }
 
         function press(e) {
@@ -388,7 +389,7 @@
                         </c:if>
 
                         <c:forEach var="contValt" items="${contValtList}" varStatus="status">
-                            <tr onclick="javascript:fncSetValtMngmNo('${contValt.valtMngmNo}');  fncSelectBbsByValt('${contValt.valtMngmNo}'); fncSelectUsrByValt('${contValt.valtMngmNo}')">
+                            <tr onclick="javascript:handleRowClick('${contValt.valtMngmNo}');">
                                 <td><c:out value="${(paginationInfo.currentPageNo-1) * paginationInfo.pageSize + status.count}"/></td>
                                 <td>
                                     <span class="f_chk_only">
@@ -695,6 +696,27 @@
             });
         });
     });
+
+    function handleRowClick(valtMngmNo) {
+        fncSetValtMngmNo(valtMngmNo);
+        fncSelectBbsByValt(valtMngmNo);
+        fncSelectUsrByValt(valtMngmNo);
+    }
+    function fn_reload(){
+        const form = document.forms['listForm'];
+        if (!form || !form.valtMngmNo) {
+            return;
+        }
+
+        const valtMngmNo = form.valtMngmNo.value;
+
+        if (valtMngmNo) {
+            fncSetValtMngmNo(valtMngmNo);
+            fncSelectBbsByValt(valtMngmNo);
+            fncSelectUsrByValt(valtMngmNo);
+        }
+    }
+
 </script>
 
 </body>

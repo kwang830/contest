@@ -203,10 +203,22 @@ public class EgovBBSManageController {
 	@RequestMapping("/cop/bbs/selectBoardArticle.do")
 	public String selectBoardArticle(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model, HttpServletRequest request) throws Exception {
 
-		LoginVO user = new LoginVO();
+		// 메뉴 갱신
+		request.getSession().setAttribute("menuNo", "5000000");
+		if(boardVO.getBbsId().equals("BBSMSTR_BBBBBBBBBBBB")){
+			request.getSession().setAttribute("activeMenuNo", "5040000");
+		}else{
+			request.getSession().setAttribute("activeMenuNo", "5010000");
+		}
+
+		LoginVO user;
 		if (EgovUserDetailsHelper.isAuthenticated()) {
 			user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+		} else {
+			user = new LoginVO();
+			user.setUniqId("anonymous");
 		}
+
 		// 조회수 증가 여부 지정
 		boardVO.setPlusCount(true);
 
@@ -230,7 +242,12 @@ public class EgovBBSManageController {
 
 		BoardMasterVO masterVo = bbsAttrbService.selectBBSMasterInf(master);
 
-		if (masterVo.getTmplatCours() == null || masterVo.getTmplatCours().equals("")) {
+		if (masterVo != null) {
+			if (masterVo.getTmplatCours() == null || masterVo.getTmplatCours().equals("")) {
+				masterVo.setTmplatCours("/css/egovframework/cop/bbs/egovBaseTemplate.css");
+			}
+		} else {
+			masterVo = new BoardMasterVO();
 			masterVo.setTmplatCours("/css/egovframework/cop/bbs/egovBaseTemplate.css");
 		}
 

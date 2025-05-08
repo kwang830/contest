@@ -129,4 +129,21 @@ public class ContVoteManageServiceImpl extends EgovAbstractServiceImpl implement
     public String selectVoteValtOpnn(ContVoteVO contVoteVO) throws Exception {
         return contVoteManageDAO.selectVoteValtOpnn(contVoteVO);
     }
+
+    /**
+     * 조건에 맞는 평가순위 목록을 조회 한다.
+     *
+     */
+    public Map<String, Object> selectContVoteRankList(ContVoteVO contVoteVO) throws Exception {
+
+        List<ContVoteVO> result = contVoteManageDAO.selectContVoteRankList(contVoteVO);
+        int cnt = contVoteManageDAO.selectContVoteRankListCnt(contVoteVO);
+
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        map.put("resultList", result);
+        map.put("resultCnt", Integer.toString(cnt));
+
+        return map;
+    }
 }

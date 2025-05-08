@@ -216,7 +216,41 @@ public class Vote implements Serializable {
 	 * 평가점수합계
 	 */
 	private String sumScr = "";
-	
+
+	/**
+	 * 평균점수
+	 */
+	private String avgScr = "";
+
+	/**
+	 * 평가점수합계
+	 */
+	private String valtCnt = "";
+
+	/**
+	 * 합계점수순위
+	 */
+	private String totScrRank = "";
+
+	/**
+	 * 평균점수순위
+	 */
+	private String avgScrRank = "";
+
+	/**
+	 * 팀명
+	 */
+	private String teamNm = "";
+
+	/**
+	 * 선택이미지
+	 */
+	private String selectImg = "";
+
+	/**
+	 * 이미지경로
+	 */
+	private String imgUrl = "";
 	
 	/**
 	 * atchFileId attribute를 리턴한다.
@@ -1024,6 +1058,118 @@ public class Vote implements Serializable {
 	 */
 	public void setSumScr(String sumScr) {
 		this.sumScr = sumScr;
+	}
+
+	/**
+	 * avgScr attribute를 리턴한다.
+	 * @return the avgScr
+	 */
+	public String getAvgScr() {
+		return avgScr;
+	}
+
+	/**
+	 * avgScr attribute 값을 설정한다.
+	 * @param avgScr the avgScr to set
+	 */
+	public void setAvgScr(String avgScr) {
+		this.avgScr = avgScr;
+	}
+
+	/**
+	 * valtCnt attribute를 리턴한다.
+	 * @return the valtCnt
+	 */
+	public String getValtCnt() {
+		return valtCnt;
+	}
+
+	/**
+	 * valtCnt attribute 값을 설정한다.
+	 * @param valtCnt the valtCnt to set
+	 */
+	public void setValtCnt(String valtCnt) {
+		this.valtCnt = valtCnt;
+	}
+
+	/**
+	 * totScrRank attribute를 리턴한다.
+	 * @return the totScrRank
+	 */
+	public String getTotScrRank() {
+		return totScrRank;
+	}
+
+	/**
+	 * totScrRank attribute 값을 설정한다.
+	 * @param totScrRank the totScrRank to set
+	 */
+	public void setTotScrRank(String totScrRank) {
+		this.totScrRank = totScrRank;
+	}
+
+	/**
+	 * avgScrRank attribute를 리턴한다.
+	 * @return the avgScrRank
+	 */
+	public String getAvgScrRank() {
+		return avgScrRank;
+	}
+
+	/**
+	 * avgScrRank attribute 값을 설정한다.
+	 * @param avgScrRank the avgScrRank to set
+	 */
+	public void setAvgScrRank(String avgScrRank) {
+		this.avgScrRank = avgScrRank;
+	}
+
+	/**
+	 * teamNm attribute를 리턴한다.
+	 * @return the teamNm
+	 */
+	public String getTeamNm() {
+		return teamNm;
+	}
+
+	/**
+	 * teamNm attribute 값을 설정한다.
+	 * @param teamNm the teamNm to set
+	 */
+	public void setTeamNm(String teamNm) {
+		this.teamNm = teamNm;
+	}
+
+	/**
+	 * selectImg attribute를 리턴한다.
+	 * @return the selectImg
+	 */
+	public String getSelectImg() {
+		return selectImg;
+	}
+
+	/**
+	 * selectImg attribute 값을 설정한다.
+	 * @param selectImg the selectImg to set
+	 */
+	public void setSelectImg(String selectImg) {
+		this.selectImg = selectImg;
+	}
+
+	/**
+	 * imgUrl attribute를 리턴한다.
+	 * @return the imgUrl
+	 */
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	/**
+	 * imgUrl attribute 값을 설정한다.
+	 * @param imgUrl the imgUrl to set
+	 */
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 
 }

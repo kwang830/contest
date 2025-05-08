@@ -174,4 +174,27 @@ public class ContVoteManageDAO extends EgovAbstractMapper {
     public String selectVoteValtOpnn(ContVoteVO contVoteVO) throws Exception {
         return (String)selectOne("ContVoteManageDAO.selectVoteValtOpnn", contVoteVO);
     }
+
+    /**
+     * 조건에 맞는 평가순위 목록을 조회 한다.
+     *
+     * @param contVoteVO
+     * @return
+     * @throws Exception
+     */
+    @SuppressWarnings("unchecked")
+    public List<ContVoteVO> selectContVoteRankList(ContVoteVO contVoteVO) throws Exception {
+        return (List<ContVoteVO>) list("ContVoteManageDAO.selectContVoteRankList", contVoteVO);
+    }
+
+    /**
+     * 조건에 맞는 평가순위 목록에 대한 전체 건수를 조회 한다.
+     *
+     * @param contVoteVO
+     * @return
+     * @throws Exception
+     */
+    public int selectContVoteRankListCnt(ContVoteVO contVoteVO) throws Exception {
+        return (Integer)selectOne("ContVoteManageDAO.selectContVoteRankListCnt", contVoteVO);
+    }
 }

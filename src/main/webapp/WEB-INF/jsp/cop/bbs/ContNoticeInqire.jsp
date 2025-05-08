@@ -192,6 +192,12 @@
                                         <div class="view_info_title">등록일</div>
                                         <div class="view_info_desc"><c:out value="${fn:replace(result.frstRegisterPnttm, '-', '.')}" /></div>
                                     </div>
+                                    <c:if test='${result.bbsId == "BBSMSTR_BBBBBBBBBBBB"}'>
+                                    <div class="board_view_info">
+                                        <div class="view_info_title">수정일</div>
+                                        <div class="view_info_desc"><c:out value="${fn:replace(result.lastUpdusrPnttm, '-', '.')}" /></div>
+                                    </div>
+                                    </c:if>
                                     <div class="board_view_info">
                                         <div class="view_info_title">조회수</div>
                                         <div class="view_info_desc"><c:out value="${result.inqireCo}" /></div>
