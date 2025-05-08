@@ -33,6 +33,12 @@
 	<!-- favicon -->
 	<link rel="icon" type="image/x-icon" href="<c:url value='/'/>images/favicon.ico">
 
+	<style>
+		#searchInput{
+			margin-bottom: 20px;
+		}
+	</style>
+
 </head>
 
 <body class="stretched">
@@ -68,7 +74,16 @@
 				<div class="container clearfix">
 
 					<h3>본부별 통계 현황</h3>
-
+					<div class="receipt-chart-wrap">
+						<div class="receipt-chart-con" id="receiptChartCon">
+							<canvas id="receiptChart" height="370"></canvas>
+							<div class="receipt-chart-title" style="left: 0;">접속률</div>
+						</div>
+						<div class="receipt-chart-con">
+							<canvas id="receiptPieChart" height="370"></canvas>
+							<div class="receipt-chart-title" style="right: 0;">접수건</div>
+						</div>
+					</div>
 					<div class="board_list">
 						<table>
 							<caption>목록</caption>
@@ -108,6 +123,19 @@
 								</tr>
 							</c:if>
 
+							<c:set var="loginCntITO" value="0"/>
+							<c:set var="loginCntITI" value="0"/>
+							<c:set var="loginCntSID" value="0"/>
+							<c:set var="loginCntSIO" value="0"/>
+							<c:set var="loginCntAUD" value="0"/>
+							<c:set var="loginCntSTR" value="0"/>
+							<c:set var="loginCntPUR" value="0"/>
+							<c:set var="loginCntUNI" value="0"/>
+							<c:set var="loginCntBZ1" value="0"/>
+							<c:set var="loginCntBZ2" value="0"/>
+							<c:set var="loginCntDBZ" value="0"/>
+							<c:set var="loginCntINF" value="0"/>
+
 							<c:set var="dept_sum" value="0"/>
 							<c:set var="tot_sum" value="0"/>
 							<c:set var="score_A" value="0"/>
@@ -139,6 +167,19 @@
 									</td>
 									<td>
 										<c:if test="${result.deptNmS != '전체' }" >${fn:substring(dept_sum/score_A*100,0,5)} %
+											<c:if test="${result.deptNmS=='ITO사업본부'}"><c:set var="loginCntITO" value="${fn:substring(dept_sum/score_A*100,0,5)}"/></c:if>
+											<c:if test="${result.deptNmS=='IT혁신사업본부'}"><c:set var="loginCntITI" value="${fn:substring(dept_sum/score_A*100,0,5)}"/></c:if>
+											<c:if test="${result.deptNmS=='SI개발본부'}"><c:set var="loginCntSID" value="${fn:substring(dept_sum/score_A*100,0,5)}"/></c:if>
+											<c:if test="${result.deptNmS=='SI영업본부'}"><c:set var="loginCntSIO" value="${fn:substring(dept_sum/score_A*100,0,5)}"/></c:if>
+											<c:if test="${result.deptNmS=='감사실'}"><c:set var="loginCntAUD" value="${fn:substring(dept_sum/score_A*100,0,5)}"/></c:if>
+											<c:if test="${result.deptNmS=='경영전략본부'}"><c:set var="loginCntSTR" value="${fn:substring(dept_sum/score_A*100,0,5)}"/></c:if>
+											<c:if test="${result.deptNmS=='구매지원본부'}"><c:set var="loginCntPUR" value="${fn:substring(dept_sum/score_A*100,0,5)}"/></c:if>
+											<c:if test="${result.deptNmS=='노동조합'}"><c:set var="loginCntUNI" value="${fn:substring(dept_sum/score_A*100,0,5)}"/></c:if>
+											<c:if test="${result.deptNmS=='은행사업1본부'}"><c:set var="loginCntBZ1" value="${fn:substring(dept_sum/score_A*100,0,5)}"/></c:if>
+											<c:if test="${result.deptNmS=='은행사업2본부'}"><c:set var="loginCntBZ2" value="${fn:substring(dept_sum/score_A*100,0,5)}"/></c:if>
+											<c:if test="${result.deptNmS=='은행사업디지털본부'}"><c:set var="loginCntDBZ" value="${fn:substring(dept_sum/score_A*100,0,5)}"/></c:if>
+											<c:if test="${result.deptNmS=='인프라사업본부'}"><c:set var="loginCntINF" value="${fn:substring(dept_sum/score_A*100,0,5)}"/></c:if>
+
 											<c:set var="dept_sum" value="0"/>
 										</c:if>
 										<c:if test="${result.deptNmS == '전체' }" >${fn:substring(tot_sum/score_A*100,0,5)} %</c:if>
@@ -260,8 +301,35 @@
 	============================================= -->
 	<script type="text/javascript" src="<c:url value='/'/>js/functions.js"></script>
 
+	<c:set var="bbsCntITO" value="0"/>
+	<c:set var="bbsCntITI" value="0"/>
+	<c:set var="bbsCntSID" value="0"/>
+	<c:set var="bbsCntSIO" value="0"/>
+	<c:set var="bbsCntAUD" value="0"/>
+	<c:set var="bbsCntSTR" value="0"/>
+	<c:set var="bbsCntPUR" value="0"/>
+	<c:set var="bbsCntUNI" value="0"/>
+	<c:set var="bbsCntBZ1" value="0"/>
+	<c:set var="bbsCntBZ2" value="0"/>
+	<c:set var="bbsCntDBZ" value="0"/>
+	<c:set var="bbsCntINF" value="0"/>
+
 	<c:set var="bbs_sum_tot" value="0"/>
 	<c:forEach var="result" items="${bbsDeptBbsList}" varStatus="status">
+
+		<c:if test="${result.deptNmS=='ITO사업본부'}"><c:set var="bbsCntITO" value="${result.scoreA}"/></c:if>
+		<c:if test="${result.deptNmS=='IT혁신사업본부'}"><c:set var="bbsCntITI" value="${result.scoreA}"/></c:if>
+		<c:if test="${result.deptNmS=='SI개발본부'}"><c:set var="bbsCntSID" value="${result.scoreA}"/></c:if>
+		<c:if test="${result.deptNmS=='SI영업본부'}"><c:set var="bbsCntSIO" value="${result.scoreA}"/></c:if>
+		<c:if test="${result.deptNmS=='감사실'}"><c:set var="bbsCntAUD" value="${result.scoreA}"/></c:if>
+		<c:if test="${result.deptNmS=='경영전략본부'}"><c:set var="bbsCntSTR" value="${result.scoreA}"/></c:if>
+		<c:if test="${result.deptNmS=='구매지원본부'}"><c:set var="bbsCntPUR" value="${result.scoreA}"/></c:if>
+		<c:if test="${result.deptNmS=='노동조합'}"><c:set var="bbsCntUNI" value="${result.scoreA}"/></c:if>
+		<c:if test="${result.deptNmS=='은행사업1본부'}"><c:set var="bbsCntBZ1" value="${result.scoreA}"/></c:if>
+		<c:if test="${result.deptNmS=='은행사업2본부'}"><c:set var="bbsCntBZ2" value="${result.scoreA}"/></c:if>
+		<c:if test="${result.deptNmS=='은행사업디지털본부'}"><c:set var="bbsCntDBZ" value="${result.scoreA}"/></c:if>
+		<c:if test="${result.deptNmS=='인프라사업본부'}"><c:set var="bbsCntINF" value="${result.scoreA}"/></c:if>
+
 		<c:set var="bbs_sum_tot" value="${bbs_sum_tot+result.scoreA}"/>
 		<script>$(function(){
 			var dept = "${result.deptNmS}";
@@ -283,6 +351,7 @@
 			}
 		});
 	});</script>
+
 	<script>
 		function filterTable() {
 			const input = document.getElementById("searchInput");
@@ -314,6 +383,84 @@
 			document.getElementById("searchInput").value = titleValue;
 			filterTable(); // 자동으로 필터링도 실행
 		}
+	</script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+	<script>
+
+		const ctx = document.getElementById('receiptChart');
+
+		let receiptLabels = ['ITO사업본부', 'IT혁신사업본부', 'SI개발본부', 'SI영업본부', '감사실', '경영전략본부', '구매지원본부', '노동조합', '은행사업1본부', '은행사업2본부', '은행사업디지털본부', '인프라사업본부'];
+		let receiptData = [${bbsCntITO}, ${bbsCntITI}, ${bbsCntSID}, ${bbsCntSIO}, ${bbsCntAUD}, ${bbsCntSTR}, ${bbsCntPUR}, ${bbsCntUNI}, ${bbsCntBZ1}, ${bbsCntBZ2}, ${bbsCntDBZ}, ${bbsCntINF}];
+		let loginData = [${loginCntITO}, ${loginCntITI}, ${loginCntSID}, ${loginCntSIO}, ${loginCntAUD}, ${loginCntSTR}, ${loginCntPUR}, ${loginCntUNI}, ${loginCntBZ1}, ${loginCntBZ2}, ${loginCntDBZ}, ${loginCntINF}];
+		let receiptColor = [ '#66aa00', '#dd4477', '#990099', '#0099c6', '#994499', '#316395', '#b82e2e', '#22aa99', '#3366cc', '#dc3912', '#ff9900', '#109618'];
+
+		new Chart(ctx, {
+			type: 'bar',
+			data: {
+				labels: receiptLabels,
+				datasets: [{
+					label: '접속률',
+					data: loginData,
+					borderWidth: 1,
+					backgroundColor: '#4881DE',
+					order: 1,
+				}]
+			},
+			options: {
+				responsive: false,
+				indexAxis: 'y',
+				scales: {
+					x: {
+						beginAtZero: true,
+						ticks: {
+							stepSize: 10,
+							font: {
+								size: 10
+							},
+						},
+						max: 100,
+					},
+					y: {
+						ticks: {
+							color: '#000'
+						}
+					}
+				},
+				plugins: {
+					legend: {
+						display: false,
+					}
+				}
+			}
+		});
+
+		const ctx2 = document.getElementById('receiptPieChart');
+		new Chart(ctx2, {
+			type: 'doughnut',
+			data: {
+				labels: receiptLabels,
+				datasets: [{
+					label: '접수건',
+					data: receiptData,
+					backgroundColor: receiptColor,
+				}],
+			},
+			options: {
+				responsive: true,
+				plugins: {
+					legend: {
+						position: 'right',
+						labels: {
+							padding: 10,
+							color: '#000'
+						}
+					}
+				}
+			},
+		});
+
 	</script>
 </body>
 </html>

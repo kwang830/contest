@@ -503,6 +503,25 @@ public class EgovMainController {
 	}
 
 	/**
+	 * 공모전 후기
+	 * @return 메인페이지 정보 Map [key : 항목명]
+	 *
+	 * @param request
+	 * @param model
+	 * @exception Exception Exception
+	 */
+	@RequestMapping(value = "/cmm/contest/contestRvw.do")
+	public String getContestRvwPage(HttpServletRequest request, ModelMap model)
+			throws Exception{
+
+		// 메뉴 갱신
+		request.getSession().setAttribute("menuNo", "4000000");
+		request.getSession().setAttribute("activeMenuNo", "4030000");
+
+		return "main/contest/ContestRvwView";
+	}
+
+	/**
 	 * 공모전 부서 통계 현황
 	 * @return 메인페이지 정보 Map [key : 항목명]
 	 *

@@ -934,6 +934,40 @@
 	margin-right: 0;
 }
 
+/*===부서 통계 현황===*/
+.receipt-chart-wrap{
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 40px;
+	margin-bottom: 80px;
+}
+
+#receiptChartCon{
+	display: none;
+}
+
+#receiptChart{
+	width: 100% !important;
+	max-width: 1100px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#receiptPieChart{
+	width: 100% !important;
+	max-width: 430px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.receipt-chart-title{
+	font-size: 16px;
+	line-height: 24px;
+	color: #000;
+	text-align: center;
+}
 
 @media all and (min-width: 768px) {
 	/*===공통===*/
@@ -1129,6 +1163,25 @@
 		font-size: 20px;
 		line-height: 28px;
 		padding: 9px 28px;
+	}
+
+	.receipt-chart-wrap{
+		flex-direction: row;
+		min-height: 450px;
+	}
+
+	.receipt-chart-con{
+		width: 50%;
+	}
+
+	#receiptChartCon{
+		display: block;
+	}
+
+	.receipt-chart-title{
+		position: absolute;
+		width: 50%;
+		bottom: 0;
 	}
 }
 

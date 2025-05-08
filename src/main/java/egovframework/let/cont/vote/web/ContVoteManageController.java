@@ -63,6 +63,13 @@ public class ContVoteManageController {
 		request.getSession().setAttribute("menuNo", "3000000");
 		request.getSession().setAttribute("activeMenuNo", "3010000");
 
+		// 미인증 사용자에 대한 보안처리
+		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+		if(!isAuthenticated) {
+			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
+			return "uat/uia/EgovLoginUsr";
+		}
+
 		LoginVO user;
 		if (EgovUserDetailsHelper.isAuthenticated()) {
 			user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
@@ -138,6 +145,17 @@ public class ContVoteManageController {
 	public String getContestVoteDetailPage(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model, HttpServletRequest request)
 			throws Exception{
 
+		// 메뉴 갱신
+		request.getSession().setAttribute("menuNo", "3000000");
+		request.getSession().setAttribute("activeMenuNo", "3010000");
+
+		// 미인증 사용자에 대한 보안처리
+		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+		if(!isAuthenticated) {
+			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
+			return "uat/uia/EgovLoginUsr";
+		}
+
 		LoginVO user = new LoginVO();
 		if (EgovUserDetailsHelper.isAuthenticated()) {
 			user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
@@ -209,6 +227,13 @@ public class ContVoteManageController {
 			throws Exception{
 		System.out.println("/cmm/contest/contestVoteScoreUpdt.do >>>>");
 
+		// 미인증 사용자에 대한 보안처리
+		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+		if(!isAuthenticated) {
+			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
+			return "uat/uia/EgovLoginUsr";
+		}
+
 		LoginVO user = new LoginVO();
 		if (EgovUserDetailsHelper.isAuthenticated()) {
 			user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
@@ -241,6 +266,13 @@ public class ContVoteManageController {
 			throws Exception{
 		System.out.println("/cmm/contest/insertContestCmt.do >>>>");
 
+		// 미인증 사용자에 대한 보안처리
+		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+		if(!isAuthenticated) {
+			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
+			return "uat/uia/EgovLoginUsr";
+		}
+
 		LoginVO user = new LoginVO();
 		if (EgovUserDetailsHelper.isAuthenticated()) {
 			user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
@@ -258,7 +290,8 @@ public class ContVoteManageController {
 		}
 
 		//return "forward:/cmm/contest/contestVote.do";
-		return "forward:/cmm/contest/contestVoteDetail.do";
+		//return "forward:/cmm/contest/contestVoteDetail.do";
+		return "redirect:/cmm/contest/contestVoteDetail.do?bbsId=" + boardVO.getBbsId() + "&nttId=" + boardVO.getNttId();
 	}
 
 	/**
@@ -272,6 +305,13 @@ public class ContVoteManageController {
 	@RequestMapping(value = "/cmm/contest/contestVoteCmt.do")
 	public String getContestVoteCmtPage(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model, HttpServletRequest request)
 			throws Exception{
+
+		// 미인증 사용자에 대한 보안처리
+		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+		if(!isAuthenticated) {
+			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
+			return "uat/uia/EgovLoginUsr";
+		}
 
 		System.out.println("/cmm/contest/contestVoteCmt.do >>>>");
 		System.out.println("boardVO.getNttId():" + boardVO.getNttId());
@@ -297,6 +337,13 @@ public class ContVoteManageController {
 	public String getContestVoteRsltPage(HttpServletRequest request, ModelMap model)
 			throws Exception{
 
+		// 미인증 사용자에 대한 보안처리
+		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+		if(!isAuthenticated) {
+			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
+			return "uat/uia/EgovLoginUsr";
+		}
+
 		// 메뉴 갱신
 		request.getSession().setAttribute("menuNo", "3000000");
 		request.getSession().setAttribute("activeMenuNo", "3011000");
@@ -318,14 +365,15 @@ public class ContVoteManageController {
 
 		System.out.println("/cmm/contest/contestAdminVote.do >>> ");
 
-		String groupId = request.getParameter("cmb_group");
-		System.out.println("선택된 그룹 ID: " + groupId);
-
+		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if(!isAuthenticated) {
 			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
 			return "uat/uia/EgovLoginUsr";
 		}
+
+		String groupId = request.getParameter("cmb_group");
+		System.out.println("선택된 그룹 ID: " + groupId);
 
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 

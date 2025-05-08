@@ -75,9 +75,9 @@
 .paging > ul li a {color: #888;}
 .paging > ul li strong {border-radius: 50%; color: #fff; background: #222;}
 
-.board_list_top {display: table; width: 100%;}
-.board_list_top .left_col {display: table-cell; width: 50%; vertical-align: top;}
-.board_list_top .right_col {display: table-cell; width: 50%; font-size: 0; text-align: right; vertical-align: top;}
+.board_list_top {display: table; width: 100%; margin-bottom: 20px;}
+.board_list_top .left_col {display: table-cell; width: 50%; vertical-align: middle;}
+.board_list_top .right_col {display: table-cell; width: 50%; font-size: 0; text-align: right; vertical-align: middle;}
 .board_list_top .right_col .btn + .btn {margin-left: 10px;}
 .list_count {padding-top: 26px; color: #000; font-size: 16px; font-weight: 300;}
 .list_count::before {content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 5px; border-radius: 50%; background: #222; vertical-align: 3px;}
