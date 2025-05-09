@@ -10,7 +10,7 @@ public interface ContValtManageService {
      *
      * @param contSearchVO ContValtVO
      * @return List<ContValtVO>
-     * @throws Exception
+     * @throws Exception 조회 중 발생할 수 있는 모든 예외
      */
     List<ContValtVO> selectContValtList(ContValtVO contSearchVO) throws Exception;
 
@@ -19,7 +19,7 @@ public interface ContValtManageService {
      *
      * @param contSearchVO ContValtVO
      * @return int
-     * @throws Exception
+     * @throws Exception 조회 중 발생할 수 있는 모든 예외
      */
     int selectContValtListTotCnt(ContValtVO contSearchVO) throws Exception;
 
@@ -28,7 +28,7 @@ public interface ContValtManageService {
      *
      * @param contdeleteVO ContValtVO
      * @return int
-     * @throws Exception
+     * @throws Exception 조회 중 발생할 수 있는 모든 예외
      */
     int deleteContValt(ContValtVO contdeleteVO) throws Exception;
 
@@ -37,7 +37,7 @@ public interface ContValtManageService {
      *
      * @param contSearchVO ContValtVO
      * @return List<ContValtVO>
-     * @throws Exception
+     * @throws Exception 조회 중 발생할 수 있는 모든 예외
      */
     List<ContValtVO> selectValtQsitMnnoList(ContValtVO contSearchVO) throws Exception;
 
@@ -46,7 +46,7 @@ public interface ContValtManageService {
      *
      * @param contValtVO ContValtVO
      * @return List<BoardVO>
-     * @throws Exception
+     * @throws Exception 조회 중 발생할 수 있는 모든 예외
      */
     List<BoardVO> selectBbsByValtAjax(ContValtVO contValtVO) throws Exception;
     int selectBbsByValtTotCntAjax(ContValtVO contValtVO) throws Exception;
@@ -55,7 +55,7 @@ public interface ContValtManageService {
      *
      * @param contValtVO ContValtVO
      * @return int
-     * @throws Exception
+     * @throws Exception 조회 중 발생할 수 있는 모든 예외
      */
     int insertContestValt(ContValtVO contValtVO) throws Exception;
 

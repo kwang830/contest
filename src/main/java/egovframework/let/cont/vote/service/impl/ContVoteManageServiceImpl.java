@@ -4,8 +4,6 @@ import egovframework.com.cmm.service.EgovFileMngService;
 
 import egovframework.let.cont.vote.service.ContVoteManageService;
 import egovframework.let.cont.vote.service.ContVoteVO;
-import egovframework.let.cop.bbs.service.Board;
-import egovframework.let.utl.fcc.service.EgovDateUtil;
 import org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import org.egovframe.rte.fdl.property.EgovPropertyService;
 import org.springframework.stereotype.Service;

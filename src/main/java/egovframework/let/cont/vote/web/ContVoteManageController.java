@@ -2,30 +2,19 @@ package egovframework.let.cont.vote.web;
 
 import egovframework.com.cmm.EgovMessageSource;
 import egovframework.com.cmm.LoginVO;
-import egovframework.com.cmm.service.EgovFileMngService;
-import egovframework.com.cmm.service.EgovFileMngUtil;
-import egovframework.com.cmm.service.FileVO;
 import egovframework.let.cont.vote.service.ContVoteManageService;
 import egovframework.let.cont.vote.service.ContVoteVO;
 import egovframework.let.cop.bbs.service.*;
-import egovframework.let.utl.sim.service.EgovFileScrty;
 import org.egovframe.rte.fdl.property.EgovPropertyService;
 import org.egovframe.rte.fdl.security.userdetails.util.EgovUserDetailsHelper;
 import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springmodules.validation.commons.DefaultBeanValidator;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -51,8 +40,8 @@ public class ContVoteManageController {
 	 * 공모전 투표
 	 * @return 메인페이지 정보 Map [key : 항목명]
 	 *
-	 * @param request
-	 * @param model
+	 * @param request request
+	 * @param boardVO boardVO
 	 * @exception Exception Exception
 	 */
 	@RequestMapping(value = "/cmm/contest/contestVote.do")
@@ -92,7 +81,7 @@ public class ContVoteManageController {
 		//-------------------------------
 		// 방명록이면 방명록 URL로 forward
 		//-------------------------------
-		if (master.getBbsTyCode().equals("BBST04")) {
+		if ("BBST04".equals(master.getBbsTyCode())) {
 			return "forward:/cop/bbs/selectGuestList.do";
 		}
 		////-----------------------------
@@ -119,7 +108,7 @@ public class ContVoteManageController {
 		//-------------------------------
 		// 기본 BBS template 지정
 		//-------------------------------
-		if (master.getTmplatCours() == null || master.getTmplatCours().equals("")) {
+		if (master.getTmplatCours() == null || master.getTmplatCours().isEmpty()) {
 			master.setTmplatCours("/css/egovframework/cop/bbs/egovBaseTemplate.css");
 		}
 		////-----------------------------
@@ -137,8 +126,8 @@ public class ContVoteManageController {
 	 * 공모전 투표 상세
 	 * @return 메인페이지 정보 Map [key : 항목명]
 	 *
-	 * @param request
-	 * @param model
+	 * @param request request
+	 * @param boardVO boardVO
 	 * @exception Exception Exception
 	 */
 	@RequestMapping(value = "/cmm/contest/contestVoteDetail.do")
@@ -163,7 +152,7 @@ public class ContVoteManageController {
 		// 조회수 증가 여부 지정
 		boardVO.setPlusCount(true);
 
-		if (!boardVO.getSubPageIndex().equals("")) {
+		if (boardVO.getSubPageIndex() != null && !boardVO.getSubPageIndex().isEmpty()) {
 			boardVO.setPlusCount(false);
 		}
 
@@ -184,7 +173,7 @@ public class ContVoteManageController {
 
 		BoardMasterVO masterVo = bbsAttrbService.selectBBSMasterInf(master);
 
-		if (masterVo.getTmplatCours() == null || masterVo.getTmplatCours().equals("")) {
+		if (masterVo.getTmplatCours() == null || masterVo.getTmplatCours().isEmpty()) {
 			masterVo.setTmplatCours("/css/egovframework/cop/bbs/egovBaseTemplate.css");
 		}
 
@@ -218,14 +207,13 @@ public class ContVoteManageController {
 	 * 공모전 투표 점수 업데이트
 	 * @return 메인페이지 정보 Map [key : 항목명]
 	 *
-	 * @param request
-	 * @param model
+	 * @param request request
+	 * @param contVoteVO contVoteVO
 	 * @exception Exception Exception
 	 */
 	@RequestMapping(value = "/cmm/contest/contestVoteScoreUpdt.do")
 	public String getContestVoteScoreUpdt(@ModelAttribute("searchVO") ContVoteVO contVoteVO, ModelMap model, HttpServletRequest request)
 			throws Exception{
-		System.out.println("/cmm/contest/contestVoteScoreUpdt.do >>>>");
 
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
@@ -239,17 +227,12 @@ public class ContVoteManageController {
 			user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		}
 
-		String aaa = contVoteVO.getScore();
-		System.out.println("score:" + aaa);
-
-
 		contVoteVO.setExmnId(user.getId());
 		contVoteVO.setUseAt("Y");
 		contVoteVO.setFrstRegisterId(user.getUniqId());
 		contVoteVO.setLastUpdusrId(user.getUniqId());
 		contVoteManageService.insertVoteScore(contVoteVO);
 
-		//return "forward:/cmm/contest/contestVote.do";
 		return "forward:/cmm/contest/contestVoteDetail.do";
 	}
 
@@ -257,14 +240,13 @@ public class ContVoteManageController {
 	 * 공모전 댓글 등록
 	 * @return 메인페이지 정보 Map [key : 항목명]
 	 *
-	 * @param request
-	 * @param model
+	 * @param request request
+	 * @param boardVO boardVO
 	 * @exception Exception Exception
 	 */
 	@RequestMapping(value = "/cmm/contest/insertContestCmt.do")
 	public String insertContestCmt(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model, HttpServletRequest request)
 			throws Exception{
-		System.out.println("/cmm/contest/insertContestCmt.do >>>>");
 
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
@@ -289,8 +271,6 @@ public class ContVoteManageController {
 			bbsMngService.insertBoardComment(boardVO);
 		}
 
-		//return "forward:/cmm/contest/contestVote.do";
-		//return "forward:/cmm/contest/contestVoteDetail.do";
 		return "redirect:/cmm/contest/contestVoteDetail.do?bbsId=" + boardVO.getBbsId() + "&nttId=" + boardVO.getNttId();
 	}
 
@@ -298,8 +278,8 @@ public class ContVoteManageController {
 	 * 공모전 투표 댓글 불러오기
 	 * @return 메인페이지 정보 Map [key : 항목명]
 	 *
-	 * @param request
-	 * @param model
+	 * @param request request
+	 * @param boardVO boardVO
 	 * @exception Exception Exception
 	 */
 	@RequestMapping(value = "/cmm/contest/contestVoteCmt.do")
@@ -313,11 +293,6 @@ public class ContVoteManageController {
 			return "uat/uia/EgovLoginUsr";
 		}
 
-		System.out.println("/cmm/contest/contestVoteCmt.do >>>>");
-		System.out.println("boardVO.getNttId():" + boardVO.getNttId());
-		System.out.println("boardVO.getBbsId():" + boardVO.getBbsId());
-		System.out.println("boardVO.getAnswerNo():" + boardVO.getAnswerNo());
-
 		Map<String, Object> map = bbsMngService.selectBoardCommentMore(boardVO);
 		model.addAttribute("resultList", map.get("resultList"));
 		model.addAttribute("resultCnt", map.get("resultCnt"));
@@ -329,8 +304,8 @@ public class ContVoteManageController {
 	 * 공모전 투표결과
 	 * @return 메인페이지 정보 Map [key : 항목명]
 	 *
-	 * @param request
-	 * @param model
+	 * @param request request
+	 * @param model model
 	 * @exception Exception Exception
 	 */
 	@RequestMapping(value = "/cmm/contest/contestVoteRslt.do")
@@ -355,15 +330,13 @@ public class ContVoteManageController {
 	 * 공모전 심사
 	 * @return 메인페이지 정보 Map [key : 항목명]
 	 *
-	 * @param request
-	 * @param model
+	 * @param request request
+	 * @param model model
 	 * @exception Exception Exception
 	 */
 	@RequestMapping(value = "/cmm/contest/contestAdminVote.do")
 	public String getContestAdminVotePage(HttpServletRequest request, ModelMap model)
 			throws Exception{
-
-		System.out.println("/cmm/contest/contestAdminVote.do >>> ");
 
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
@@ -373,7 +346,6 @@ public class ContVoteManageController {
 		}
 
 		String groupId = request.getParameter("cmb_group");
-		System.out.println("선택된 그룹 ID: " + groupId);
 
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 
@@ -383,7 +355,6 @@ public class ContVoteManageController {
 
 		Map<String, Object> map = contVoteManageService.selectContVoteAdminGroupList(vo);
 		int totCnt = Integer.parseInt((String) map.get("resultCnt"));
-		System.out.println("totCnt:"+totCnt);
 		model.addAttribute("contVoteAdminGroupList", map.get("resultList"));
 		model.addAttribute("contVoteAdminGroupListCnt", map.get("resultCnt"));
 
@@ -398,7 +369,6 @@ public class ContVoteManageController {
 
 		Map<String, Object> map2 = contVoteManageService.selectContVoteAdminBBSList(vo);
 		int totCnt2 = Integer.parseInt((String) map2.get("resultCnt"));
-		System.out.println("totCnt2:"+totCnt2);
 
 		model.addAttribute("valtMngmNo", vo.getValtMngmNo());
 		model.addAttribute("contVoteAdminBBSList", map2.get("resultList"));
@@ -416,10 +386,8 @@ public class ContVoteManageController {
 	/**
 	 * 공모전 심사에 대한 내용을 수정한다.
 	 *
-	 * @param contVoteVO
-	 * @param model
-	 * @return
-	 * @throws Exception
+	 * @param contVoteVO contVoteVO
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cmm/contest/updateContestAdminVote.do")
 	public String updateContestAdminVote(@ModelAttribute("vote") ContVoteVO contVoteVO, ModelMap model) throws Exception {
@@ -431,15 +399,7 @@ public class ContVoteManageController {
 		}
 
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-
-//		System.out.println("contVoteVO:"+contVoteVO);
-//		System.out.println("contVoteVO.getValtMngmNo():"+contVoteVO.getValtMngmNo());
-//		System.out.println("contVoteVO.getValtQsitMnno():"+contVoteVO.getValtQsitMnno());
-//		System.out.println("contVoteVO.getBbsId():"+contVoteVO.getBbsId());
-//		System.out.println("contVoteVO.getNttId():"+contVoteVO.getNttId());
 		contVoteVO.setExmnId(user.getId());
-//		System.out.println("contVoteVO.getExmnId():"+contVoteVO.getExmnId());
-//		System.out.println("contVoteVO.getValtQsitSendStr():"+contVoteVO.getValtQsitSendStr());
 		contVoteVO.setFrstRegisterId(user.getId());
 
 		String resultMsg = "";
@@ -454,16 +414,12 @@ public class ContVoteManageController {
 					String sel_name = parts[0].replace("sel_", "");
 					String sel_value = parts[1];
 
-					System.out.println("sel_name: " + sel_name + ", sel_value: " + sel_value);
-
 					contVoteVO.setUseAt("Y");
 					contVoteVO.setQsitNo(sel_name);
 					contVoteVO.setValtScr(sel_value);
-
-					int chkCnt = contVoteManageService.insertAdminVotes(contVoteVO);
-					System.out.println("chkCnt:" + chkCnt);
+					contVoteManageService.insertAdminVotes(contVoteVO);
 				} else {
-					System.out.println("잘못된 형식의 데이터: " + pair);
+					System.out.println("updateContestAdminVote.do - 잘못된 형식의 데이터: " + pair);
 				}
 			}
 			contVoteManageService.insertAdminValtSta(contVoteVO);
@@ -482,18 +438,15 @@ public class ContVoteManageController {
 	 * 공모전 심사결과
 	 * @return 메인페이지 정보 Map [key : 항목명]
 	 *
-	 * @param request
-	 * @param model
+	 * @param request request
+	 * @param model model
 	 * @exception Exception Exception
 	 */
 	@RequestMapping(value = "/cmm/contest/contestAdminVoteRslt.do")
 	public String getContestAdminVoteRsltPage(HttpServletRequest request, ModelMap model)
 			throws Exception{
 
-		System.out.println("/cmm/contest/contestAdminVoteRslt.do >>> ");
-
 		String groupId = request.getParameter("cmb_group");
-		System.out.println("선택된 그룹 ID: " + groupId);
 
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if(!isAuthenticated) {
@@ -508,8 +461,6 @@ public class ContVoteManageController {
 		vo.setExmnId(user.getId());
 
 		Map<String, Object> map = contVoteManageService.selectContVoteAdminGroupList(vo);
-		int totCnt = Integer.parseInt((String) map.get("resultCnt"));
-
 		model.addAttribute("contVoteAdminGroupList", map.get("resultList"));
 		model.addAttribute("contVoteAdminGroupListCnt", map.get("resultCnt"));
 
@@ -523,8 +474,6 @@ public class ContVoteManageController {
 		}
 
 		Map<String, Object> map2 = contVoteManageService.selectContVoteAdminBBSList(vo);
-		int totCnt2 = Integer.parseInt((String) map2.get("resultCnt"));
-
 		model.addAttribute("valtMngmNo", vo.getValtMngmNo());
 		model.addAttribute("contVoteAdminBBSList", map2.get("resultList"));
 		model.addAttribute("contVoteAdminBBSListCnt", map2.get("resultCnt"));
@@ -538,16 +487,17 @@ public class ContVoteManageController {
 		return "main/contest/ContestAdminVoteRsltView";
 	}
 
+	/**
+	 * 공모전 심사결과 상세 팝업
+	 * @return 메인페이지 정보 Map [key : 항목명]
+	 *
+	 * @param contVoteVO contVoteVO
+	 * @param model model
+	 * @exception Exception Exception
+	 */
 	@RequestMapping(value = "/cmm/contest/contestAdminVoteDtlPop.do")
 	public String getContestAdminVoteDtlPopPage(@ModelAttribute("vote") ContVoteVO contVoteVO, ModelMap model)
 			throws Exception{
-
-		System.out.println("/cmm/contest/contestAdminVoteDtlPop.do >>> ");
-		System.out.println("contVoteVO.getValtMngmNo():"+contVoteVO.getValtMngmNo());
-		System.out.println("contVoteVO.getValtQsitMnno():"+contVoteVO.getValtQsitMnno());
-		System.out.println("contVoteVO.getBbsId():"+contVoteVO.getBbsId());
-		System.out.println("contVoteVO.getNttId():"+contVoteVO.getNttId());
-		System.out.println("contVoteVO.getExmnId():"+contVoteVO.getExmnId());
 
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if(!isAuthenticated) {
@@ -568,18 +518,15 @@ public class ContVoteManageController {
 	 * 공모전 심사순위
 	 * @return 메인페이지 정보 Map [key : 항목명]
 	 *
-	 * @param request
-	 * @param model
+	 * @param request request
+	 * @param model model
 	 * @exception Exception Exception
 	 */
 	@RequestMapping(value = "/cmm/contest/contestAdminVoteRank.do")
 	public String getContestAdminVoteRankPage(HttpServletRequest request, ModelMap model)
 			throws Exception{
 
-		System.out.println("/cmm/contest/contestAdminVoteRslt.do >>> ");
-
 		String groupId = request.getParameter("cmb_group");
-		System.out.println("선택된 그룹 ID: " + groupId);
 
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if(!isAuthenticated) {
@@ -594,8 +541,6 @@ public class ContVoteManageController {
 		vo.setExmnId(user.getId());
 
 		Map<String, Object> map = contVoteManageService.selectContVoteAdminGroupList(vo);
-		int totCnt = Integer.parseInt((String) map.get("resultCnt"));
-
 		model.addAttribute("contVoteAdminGroupList", map.get("resultList"));
 		model.addAttribute("contVoteAdminGroupListCnt", map.get("resultCnt"));
 
@@ -609,7 +554,6 @@ public class ContVoteManageController {
 		}
 
 		Map<String, Object> map2 = contVoteManageService.selectContVoteRankList(vo);
-
 		model.addAttribute("valtMngmNo", vo.getValtMngmNo());
 		model.addAttribute("resultList", map2.get("resultList"));
 		model.addAttribute("resultCnt", map2.get("resultCnt"));

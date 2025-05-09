@@ -1,6 +1,5 @@
 package egovframework.let.cont.vote.service;
 
-import egovframework.let.cont.vote.service.Vote;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.io.Serializable;

@@ -42,8 +42,6 @@ public class ContValtManageController {
     public String getContestValtMngmPage(@ModelAttribute("contSearchVO") ContValtVO contSearchVO, HttpServletRequest request, ModelMap model)
             throws Exception{
 
-        System.out.println("valt/contestValtMngm.do >>>>");
-
         // 메뉴 갱신
         request.getSession().setAttribute("menuNo", "6000000");
         request.getSession().setAttribute("activeMenuNo", "6060000");
@@ -56,8 +54,6 @@ public class ContValtManageController {
         }
 
         /** EgovPropertyService */
-        //contSearchVO.setPageUnit(propertyService.getInt("pageUnit"));
-        //contSearchVO.setPageSize(propertyService.getInt("pageSize"));
         contSearchVO.setPageUnit(5);
         contSearchVO.setPageSize(5);
 
@@ -221,8 +217,6 @@ public class ContValtManageController {
 
     @RequestMapping(value = "/cmm/contest/valt/insertContestValtBbs.do")
     public String insertContestValtBbs(@ModelAttribute ContValtVO contValtVO, ModelMap model) throws Exception {
-        System.out.println("contvaltvo.getNttIds : " + contValtVO.getNttIds());
-        System.out.println("contvaltvo.getValtMngmNo : " + contValtVO.getValtMngmNo());
         Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
         if(!isAuthenticated) {
             model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
@@ -266,7 +260,6 @@ public class ContValtManageController {
 
     @RequestMapping(value = "/cmm/contest/valt/insertContestValtUser.do")
     public String insertContestValtUser(@ModelAttribute ContValtVO contValtVO, ModelMap model) throws Exception {
-        System.out.println("contvaltvo.getValtMngmNo : " + contValtVO.getValtMngmNo());
         Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
         if(!isAuthenticated) {
             model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));

@@ -27,25 +27,16 @@ public class ContVoteManageApiController {
 	/**
 	 * 평가에 대한 상세 정보를 조회한다.
 	 *
-	 * @param contVoteVO
-	 * @return
-	 * @throws Exception
+	 * @param contVoteVO contVoteVO
+	 * @throws Exception 조회 중 발생할 수 있는 모든 예외
 	 */
 	@PostMapping(value = "/cont/vote/selectAdminVotesAjax.do", consumes = "application/json", produces = "application/json")
 	public Map<String, Object> selectAdminVotesAjax(@RequestBody ContVoteVO contVoteVO) throws Exception {
-		//System.out.println("------------ selectVotesAjax start -------------");
-		//System.out.println("------------ contVoteVO.getBbsId():"+contVoteVO.getBbsId());
-		//System.out.println("------------ contVoteVO.getNttId():"+contVoteVO.getNttId());
-		//System.out.println("------------ contVoteVO.getValtMngmNo():"+contVoteVO.getValtMngmNo());
-		//System.out.println("------------ contVoteVO.getValtQsitMnno():"+contVoteVO.getValtQsitMnno());
 
 		LoginVO user = new LoginVO();
 		if (EgovUserDetailsHelper.isAuthenticated()) {
 			user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		}
-
-		//System.out.println("------------ user.getId():"+user.getId());
-		//System.out.println("------------ user.getUniqId():"+user.getUniqId());
 
 		if (contVoteVO.getExmnId() == null || contVoteVO.getExmnId().trim().isEmpty()) {
 			contVoteVO.setExmnId(user.getId());
@@ -66,25 +57,16 @@ public class ContVoteManageApiController {
 	/**
 	 * 평가결과 대한 상세 정보를 조회한다.
 	 *
-	 * @param contVoteVO
-	 * @return
-	 * @throws Exception
+	 * @param contVoteVO contVoteVO
+	 * @throws Exception 조회 중 발생할 수 있는 모든 예외
 	 */
 	@PostMapping(value = "/cont/vote/selectAdminVoteRsltsAjax.do", consumes = "application/json", produces = "application/json")
 	public Map<String, Object> selectAdminVoteRsltsAjax(@RequestBody ContVoteVO contVoteVO) throws Exception {
-		//System.out.println("------------ selectAdminVoteRsltsAjax start -------------");
-		//System.out.println("------------ contVoteVO.getBbsId():"+contVoteVO.getBbsId());
-		//System.out.println("------------ contVoteVO.getNttId():"+contVoteVO.getNttId());
-		//System.out.println("------------ contVoteVO.getValtMngmNo():"+contVoteVO.getValtMngmNo());
-		//System.out.println("------------ contVoteVO.getValtQsitMnno():"+contVoteVO.getValtQsitMnno());
 
 		LoginVO user = new LoginVO();
 		if (EgovUserDetailsHelper.isAuthenticated()) {
 			user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 		}
-
-		//System.out.println("------------ user.getId():"+user.getId());
-		//System.out.println("------------ user.getUniqId():"+user.getUniqId());
 
 		contVoteVO.setExmnId(user.getId());
 
