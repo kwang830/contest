@@ -136,7 +136,7 @@ public class EgovCcmZipManageController {
 			, ModelMap model
 			) throws Exception {
     	if   (zip.getZip() == null
-    		||zip.getZip().equals("")) {
+    		||zip.getZip().isEmpty()) {
 
             return "/cmm/sym/zip/EgovCcmZipRegist";
     	}
@@ -167,7 +167,7 @@ public class EgovCcmZipManageController {
 			, Model model) throws Exception {
 
 		String sCmd = commandMap.get("cmd") == null ? "" : (String)commandMap.get("cmd");
-    	if (sCmd.equals("")) {
+    	if (sCmd.isEmpty()) {
     		return "/cmm/sym/zip/EgovCcmExcelZipRegist";
     	}
 
@@ -267,7 +267,7 @@ public class EgovCcmZipManageController {
 			, ModelMap model
 			) throws Exception {
 		String sCmd = commandMap.get("cmd") == null ? "" : (String)commandMap.get("cmd");
-    	if (sCmd.equals("")) {
+    	if (sCmd.isEmpty()) {
     		Zip vo = zipManageService.selectZipDetail(zip);
     		model.addAttribute("zip", vo);
 

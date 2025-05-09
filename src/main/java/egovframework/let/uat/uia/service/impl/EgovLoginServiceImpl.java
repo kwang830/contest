@@ -51,7 +51,7 @@ public class EgovLoginServiceImpl extends EgovAbstractServiceImpl implements
     	LoginVO loginVO = loginDAO.actionLogin(vo);
 
     	// 3. 결과를 리턴한다.
-    	if (loginVO != null && !loginVO.getId().equals("") && !loginVO.getPassword().equals("")) {
+    	if (loginVO != null && !loginVO.getId().isEmpty() && !loginVO.getPassword().isEmpty()) {
     		return loginVO;
     	} else {
 			loginDAO.updateLoginFailCount(vo);
@@ -74,7 +74,7 @@ public class EgovLoginServiceImpl extends EgovAbstractServiceImpl implements
     	LoginVO loginVO = loginDAO.searchId(vo);
 
     	// 2. 결과를 리턴한다.
-    	if (loginVO != null && !loginVO.getId().equals("")) {
+    	if (loginVO != null && !loginVO.getId().isEmpty()) {
     		return loginVO;
     	} else {
     		loginVO = new LoginVO();
@@ -96,7 +96,7 @@ public class EgovLoginServiceImpl extends EgovAbstractServiceImpl implements
 
     	// 1. 아이디, 이름, 이메일주소, 비밀번호 힌트, 비밀번호 정답이 DB와 일치하는 사용자 Password를 조회한다.
     	LoginVO loginVO = loginDAO.searchPassword(vo);
-    	if (loginVO == null || loginVO.getPassword() == null || loginVO.getPassword().equals("")) {
+    	if (loginVO == null || loginVO.getPassword() == null || loginVO.getPassword().isEmpty()) {
     		return false;
     	}
 
@@ -136,7 +136,7 @@ public class EgovLoginServiceImpl extends EgovAbstractServiceImpl implements
 		LoginVO loginVO = loginDAO.actionLoginLockYn(vo);
 
 		// 2. 결과를 리턴한다.
-		if (loginVO != null && !loginVO.getId().equals("")) {
+		if (loginVO != null && !loginVO.getId().isEmpty()) {
 			return loginVO;
 		} else {
 			loginVO = new LoginVO();

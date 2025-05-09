@@ -32,7 +32,7 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
  * @version 1.0
  * @see
  *
- * <pre>
+ *" <pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일      수정자          수정내용
@@ -40,7 +40,7 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
  *  2009.08.25  한성곤          최초 생성
  *  2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성
  *
- *  </pre>
+ *  </pre>"
  */
 @Controller
 public class EgovBBSLoneMasterController {
@@ -60,28 +60,23 @@ public class EgovBBSLoneMasterController {
 	/**
 	 * 신규 게시판 마스터 등록을 위한 등록페이지로 이동한다.
 	 *
-	 * @param boardMasterVO
-	 * @param model
-	 * @return
-	 * @throws Exception
+	 * @param boardMasterVO boardMasterVO
+	 * @param model model
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cop/bbs/addBoardMaster.do")
 	public String addBoardMaster(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, ModelMap model) throws Exception {
 		BoardMaster boardMaster = new BoardMaster();
-
 		ComDefaultCodeVO vo = new ComDefaultCodeVO();
 
 		vo.setCodeId("COM004");
-
 		List<?> codeResult = cmmUseService.selectCmmCodeDetail(vo);
-
 		model.addAttribute("typeList", codeResult);
 
 		vo.setCodeId("COM009");
-
 		codeResult = cmmUseService.selectCmmCodeDetail(vo);
-
 		model.addAttribute("attrbList", codeResult);
+
 		model.addAttribute("boardMaster", boardMaster);
 
 		return "cop/bbs/EgovBBSLoneMstrRegist";
@@ -90,11 +85,9 @@ public class EgovBBSLoneMasterController {
 	/**
 	 * 신규 게시판 마스터 정보를 등록한다.
 	 *
-	 * @param boardMasterVO
-	 * @param boardMaster
-	 * @param status
-	 * @return
-	 * @throws Exception
+	 * @param boardMasterVO boardMasterVO
+	 * @param model model
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cop/bbs/insertBoardMaster.do")
 	public String insertBoardMaster(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, @ModelAttribute("boardMaster") BoardMaster boardMaster, BindingResult bindingResult,
@@ -137,10 +130,9 @@ public class EgovBBSLoneMasterController {
 	/**
 	 * 게시판 마스터 목록을 조회한다.
 	 *
-	 * @param boardMasterVO
-	 * @param model
-	 * @return
-	 * @throws Exception
+	 * @param boardMasterVO boardMasterVO
+	 * @param model model
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cop/bbs/selectBoardMasterList.do")
 	public String selectBoardMasterList(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, ModelMap model) throws Exception {
@@ -172,30 +164,24 @@ public class EgovBBSLoneMasterController {
 	/**
 	 * 게시판 마스터 상세내용을 조회한다.
 	 *
-	 * @param boardMasterVO
-	 * @param model
-	 * @return
-	 * @throws Exception
+	 * @param boardMasterVO boardMasterVO
+	 * @param model model
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cop/bbs/selectBoardMaster.do")
-	public String selectBoardMaster(@ModelAttribute("searchVO") BoardMasterVO searchVO, ModelMap model) throws Exception {
-		BoardMasterVO vo = bbsLoneService.selectMaster(searchVO);
-
+	public String selectBoardMaster(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, ModelMap model) throws Exception {
+		BoardMasterVO vo = bbsLoneService.selectMaster(boardMasterVO);
 		model.addAttribute("result", vo);
-
 		model.addAttribute("provdUrl", "/cop/bbs/selectBoardList.do?bbsId=" + vo.getBbsId());
-
 		return "cop/bbs/EgovBBSLoneMstrUpdt";
 	}
 
 	/**
 	 * 게시판 마스터 정보를 수정한다.
 	 *
-	 * @param boardMasterVO
-	 * @param boardMaster
-	 * @param model
-	 * @return
-	 * @throws Exception
+	 * @param boardMasterVO boardMasterVO
+	 * @param model model
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cop/bbs/updateBoardMaster.do")
 	public String updateBoardMaster(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, @ModelAttribute("boardMaster") BoardMaster boardMaster, BindingResult bindingResult,
@@ -224,11 +210,8 @@ public class EgovBBSLoneMasterController {
 	/**
 	 * 게시판 마스터 정보를 삭제한다.
 	 *
-	 * @param boardMasterVO
-	 * @param boardMaster
-	 * @param status
-	 * @return
-	 * @throws Exception
+	 * @param boardMasterVO boardMasterVO
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cop/bbs/deleteBoardMaster.do")
 	public String deleteBoardMaster(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, @ModelAttribute("boardMaster") BoardMaster boardMaster, SessionStatus status)

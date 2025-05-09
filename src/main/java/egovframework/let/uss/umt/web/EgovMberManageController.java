@@ -679,7 +679,7 @@ public class EgovMberManageController {
 		String checkId = (String) commandMap.get("checkId");
 		checkId = new String(checkId.getBytes("ISO-8859-1"), "UTF-8");
 
-		if (checkId == null || checkId.equals(""))
+		if (checkId == null || checkId.isEmpty())
 			return "forward:/uss/umt/EgovIdDplctCnfirmView.do";
 
 		int usedCnt = mberManageService.checkIdDplct(checkId);

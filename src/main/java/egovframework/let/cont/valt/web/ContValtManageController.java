@@ -34,8 +34,8 @@ public class ContValtManageController {
      * 공모전 평가 관리 페이지
      * @return 공모전 평가 관리 정보 Map [key : 항목명]
      *
-     * @param request
-     * @param model
+     * @param request request
+     * @param model model
      * @exception Exception Exception
      */
     @RequestMapping(value = "/cmm/contest/valt/contestValtMngm.do")
@@ -53,11 +53,11 @@ public class ContValtManageController {
             return "uat/uia/EgovLoginUsr";
         }
 
-        /** EgovPropertyService */
+        /* EgovPropertyService */
         contSearchVO.setPageUnit(5);
         contSearchVO.setPageSize(5);
 
-        /** pageing */
+        /* pageing */
         PaginationInfo paginationInfo = new PaginationInfo();
         paginationInfo.setCurrentPageNo(contSearchVO.getPageIndex());
         paginationInfo.setRecordCountPerPage(contSearchVO.getPageUnit());
@@ -194,7 +194,7 @@ public class ContValtManageController {
     @RequestMapping(value="/cmm/contest/valt/selectContValtBbsList.do")
     public String selectContValtBbsList(@ModelAttribute("contValtVO") ContValtVO contValtVO,
                                         ModelMap model) throws Exception {
-        /** paging */
+        /* paging */
         PaginationInfo paginationInfo = new PaginationInfo();
         paginationInfo.setCurrentPageNo(contValtVO.getPageIndex());
         paginationInfo.setRecordCountPerPage(contValtVO.getPageUnit());
@@ -233,7 +233,7 @@ public class ContValtManageController {
     @RequestMapping(value="/cmm/contest/valt/selectContValtUserList.do")
     public String selectContValtUserList(@ModelAttribute("contValtVO") ContValtVO contValtVO, HttpServletRequest request,
                                         ModelMap model) throws Exception {
-        /** paging */
+        /* paging */
         PaginationInfo paginationInfo = new PaginationInfo();
         paginationInfo.setCurrentPageNo(contValtVO.getPageIndex());
         paginationInfo.setRecordCountPerPage(contValtVO.getPageUnit());

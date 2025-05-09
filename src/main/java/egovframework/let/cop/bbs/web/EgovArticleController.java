@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import egovframework.let.cop.bbs.service.*;
 import egovframework.let.cop.bbs.service.EgovArticleService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -21,7 +19,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springmodules.validation.commons.DefaultBeanValidator;
 import org.springframework.web.servlet.ModelAndView;
 
-import egovframework.com.cmm.EgovMessageSource;
 import egovframework.com.cmm.LoginVO;
 import egovframework.com.cmm.service.EgovFileMngService;
 import egovframework.com.cmm.service.EgovFileMngUtil;
@@ -34,8 +31,6 @@ import org.egovframe.rte.fdl.property.EgovPropertyService;
 import org.egovframe.rte.fdl.string.EgovStringUtil;
 import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
-import egovframework.let.uss.umt.service.EgovMberManageService;
-
 
 /**
  * 게시물 관리를 위한 컨트롤러 클래스
@@ -44,7 +39,7 @@ import egovframework.let.uss.umt.service.EgovMberManageService;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *   
  *   수정일      수정자           수정내용
@@ -55,14 +50,12 @@ import egovframework.let.uss.umt.service.EgovMberManageService;
  *   2011.8.26	정진오			IncludedInfo annotation 추가
  *   2011.09.07 서준식           유효 게시판 게시일 지나도 게시물이 조회되던 오류 수정
  *   2016.06.13 김연호			표준프레임워크 3.6 개선
- * </pre>
+ * </pre>"
  */
 
 @Controller
 public class EgovArticleController {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(EgovArticleController.class);
-	
 	/** mberManageService */
 	@Resource(name = "mberManageService")
 	private EgovMberManageService mberManageService;	
@@ -79,9 +72,6 @@ public class EgovArticleController {
     @Resource(name = "propertiesService")
     protected EgovPropertyService propertyService;
     
-    @Resource(name="egovMessageSource")
-    EgovMessageSource egovMessageSource;
-
 	@Resource(name = "EgovBBSAttributeManageService")
 	private EgovBBSAttributeManageService bbsAttrbService;
 
@@ -93,11 +83,11 @@ public class EgovArticleController {
     /**
      * XSS 방지 처리.
      * 
-     * @param data
-     * @return
+     * @param data data
+     * @return unscript unscript
      */
     protected String unscript(String data) {
-        if (data == null || data.trim().equals("")) {
+        if (data == null || data.trim().isEmpty()) {
             return "";
         }
         
@@ -123,10 +113,10 @@ public class EgovArticleController {
 
     /**
      * 게시물에 대한 목록을 조회한다.
-     * 
-     * @param model
-     * @return
-     * @throws Exception
+     *
+	 * @param searchVO searchVO
+     * @param model model
+     * @throws Exception Exception
      */
     @RequestMapping("/cop/bbs/selectArticleList.do")
     public String selectArticleList(@ModelAttribute("searchVO") BoardVO searchVO, ModelMap model) throws Exception {
@@ -145,9 +135,6 @@ public class EgovArticleController {
 				
 		vo.setBbsId(searchVO.getBbsId());
 		vo.setUniqId(user.getUniqId());
-
-		//Map<String, Object> map = bbsAttrbService.selectBBSMasterInfs(boardMasterVO);
-		//int totCnt = Integer.parseInt((String) map.get("resultCnt"));
 
 		BoardMasterVO master = bbsAttrbService.selectBBSMasterInf(vo);
 		
@@ -168,7 +155,6 @@ public class EgovArticleController {
 		searchVO.setLastIndex(paginationInfo.getLastRecordIndex());
 		searchVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 		
-		//System.out.println("### selectArticleList.do - user.getUniqId():"+user.getUniqId());
 		searchVO.setSearchId(user.getUniqId());
 
 		
@@ -180,19 +166,14 @@ public class EgovArticleController {
 		
 		paginationInfo.setTotalRecordCount(totCnt);
 	
-		//-------------------------------
-		// 기본 BBS template 지정 
-		//-------------------------------
-		if (master.getTmplatCours() == null || master.getTmplatCours().equals("")) {
+		// 기본 BBS template 지정
+		if (master.getTmplatCours() == null || master.getTmplatCours().isEmpty()) {
 		    master.setTmplatCours("/css/egovframework/com/cop/tpl/egovBaseTemplate.css");
 		}
-		////-----------------------------
-	
-		if(user != null) {
-	    	model.addAttribute("sessionUniqId", user.getUniqId());
-	    	model.addAttribute("sessionUserSe", user.getUserSe());
-	    }
-		
+
+		model.addAttribute("sessionUniqId", user.getUniqId());
+		model.addAttribute("sessionUserSe", user.getUserSe());
+
 		model.addAttribute("resultList", map.get("resultList"));
 		model.addAttribute("resultCnt", map.get("resultCnt"));
 		model.addAttribute("articleVO", searchVO);
@@ -205,11 +186,10 @@ public class EgovArticleController {
 
     /**
      * 게시물에 대한 상세 정보를 조회한다.
-     * 
-     * @param boardVO
-     * @param model
-     * @return
-     * @throws Exception
+     *
+	 * @param boardVO boardVO
+	 * @param model model
+	 * @throws Exception Exception
      */
     @RequestMapping("/cop/bbs/selectArticleDetail.do")
     public String selectArticleDetail(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model) throws Exception {
@@ -217,10 +197,7 @@ public class EgovArticleController {
 	
 		boardVO.setLastUpdusrId(user.getUniqId());
 		BoardVO vo = egovArticleService.selectArticleDetail(boardVO);
-		
-		//System.out.println("### user.getId:"+user.getId());
-		//System.out.println("### user.getUniqId:"+user.getUniqId());
-		//System.out.println("### user.getName:"+user.getName());
+
 		boardVO.setNtcrId(user.getId());
 		boardVO.setNtcrNm(user.getName());
 		boardVO.setFrstRegisterId(user.getUniqId());
@@ -246,7 +223,7 @@ public class EgovArticleController {
 		
 		BoardMasterVO masterVo = bbsAttrbService.selectBBSMasterInf(master);
 	
-		if (masterVo.getTmplatCours() == null || masterVo.getTmplatCours().equals("")) {
+		if (masterVo.getTmplatCours() == null || masterVo.getTmplatCours().isEmpty()) {
 		    masterVo.setTmplatCours("/css/egovframework/com/cop/tpl/egovBaseTemplate.css");
 		}
 	
@@ -257,9 +234,9 @@ public class EgovArticleController {
     
 	/**
 	 * 게시물에 대한 상세 정보를 조회한다. 팝업 전달용
-	 * @param model 화면모델
-	 * @return uss/umt/EgovIdDplctCnfirm
-	 * @throws Exception
+	 * @param boardVO boardVO
+	 * @param model model
+	 * @throws Exception Exception
 	 */
     @RequestMapping("/cop/bbs/selectArticleDetailAjax.do")
     public ModelAndView selectArticleDetailAjax(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model) throws Exception {
@@ -270,10 +247,10 @@ public class EgovArticleController {
 	
 		String noticeTitle = "";
 		String noticeCotents = "";
-		if (vo.getNttSj() != null || !vo.getNttSj().equals("")) {
+		if (vo.getNttSj() != null || !vo.getNttSj().isEmpty()) {
 			noticeTitle = vo.getNttSj();
 		}		
-		if (vo.getNttCn() != null || !vo.getNttCn().equals("")) {
+		if (vo.getNttCn() != null || !vo.getNttCn().isEmpty()) {
 			noticeCotents = vo.getNttCn();
 		}		
 		
@@ -288,11 +265,10 @@ public class EgovArticleController {
 
     /**
      * 게시물 등록을 위한 등록페이지로 이동한다.
-     * 
-     * @param boardVO
-     * @param model
-     * @return
-     * @throws Exception
+     *
+	 * @param boardVO boardVO
+	 * @param model model
+	 * @throws Exception Exception
      */
     @RequestMapping("/cop/bbs/insertArticleView.do")
     public String insertArticleView(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model) throws Exception {
@@ -314,7 +290,7 @@ public class EgovArticleController {
 		//----------------------------
 		// 기본 BBS template 지정 
 		//----------------------------
-		if (bdMstr.getTmplatCours() == null || bdMstr.getTmplatCours().equals("")) {
+		if (bdMstr.getTmplatCours() == null || bdMstr.getTmplatCours().isEmpty()) {
 		    bdMstr.setTmplatCours("/css/egovframework/com/cop/tpl/egovBaseTemplate.css");
 		}
 	
@@ -327,12 +303,10 @@ public class EgovArticleController {
 
     /**
      * 게시물을 등록한다.
-     * 
-     * @param boardVO
-     * @param board
-     * @param model
-     * @return
-     * @throws Exception
+     *
+	 * @param boardVO boardVO
+	 * @param model model
+	 * @throws Exception Exception
      */
     @RequestMapping("/cop/bbs/insertArticle.do")
     public String insertArticle(final MultipartHttpServletRequest multiRequest, @ModelAttribute("searchVO") BoardVO boardVO,
@@ -358,7 +332,7 @@ public class EgovArticleController {
 		    //----------------------------
 		    // 기본 BBS template 지정 
 		    //----------------------------
-		    if (master.getTmplatCours() == null || master.getTmplatCours().equals("")) {
+		    if (master.getTmplatCours() == null || master.getTmplatCours().isEmpty()) {
 			master.setTmplatCours("css/egovframework/com/cop/tpl/egovBaseTemplate.css");
 		    }
 	
@@ -369,13 +343,12 @@ public class EgovArticleController {
 		}
 	
 		if (isAuthenticated) {
-		    List<FileVO> result = null;
 		    String atchFileId = "";
 		    
 		    final Map<String, MultipartFile> files = multiRequest.getFileMap();
 		    if (!files.isEmpty()) {
-			result = fileUtil.parseFileInf(files, "BBS_", 0, "", "");
-			atchFileId = fileMngService.insertFileInfs(result);
+				List<FileVO> result = fileUtil.parseFileInf(files, "BBS_", 0, "", "");
+				atchFileId = fileMngService.insertFileInfs(result);
 		    }
 		    board.setAtchFileId(atchFileId);
 		    board.setFrstRegisterId(user.getUniqId());
@@ -398,18 +371,16 @@ public class EgovArticleController {
 		    
 		    egovArticleService.insertArticle(board);
 		}
-		//System.out.println(">>>>>>>>>>>>>>>>>>>");
-		//status.setComplete();
+
 		return "forward:/cop/bbs/selectArticleList.do";
     }
 
     /**
      * 게시물에 대한 답변 등록을 위한 등록페이지로 이동한다.
-     * 
-     * @param boardVO
-     * @param model
-     * @return
-     * @throws Exception
+     *
+	 * @param boardVO boardVO
+	 * @param model model
+	 * @throws Exception Exception
      */
     @RequestMapping("/cop/bbs/replyArticleView.do")
     public String addReplyBoardArticle(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model) throws Exception {
@@ -426,7 +397,7 @@ public class EgovArticleController {
 		//----------------------------
 		// 기본 BBS template 지정 
 		//----------------------------
-		if (master.getTmplatCours() == null || master.getTmplatCours().equals("")) {
+		if (master.getTmplatCours() == null || master.getTmplatCours().isEmpty()) {
 		    master.setTmplatCours("/css/egovframework/com/cop/tpl/egovBaseTemplate.css");
 		}
 	
@@ -440,12 +411,10 @@ public class EgovArticleController {
 
     /**
      * 게시물에 대한 답변을 등록한다.
-     * 
-     * @param boardVO
-     * @param board
-     * @param model
-     * @return
-     * @throws Exception
+     *
+	 * @param boardVO boardVO
+	 * @param model model
+	 * @throws Exception Exception
      */
     @RequestMapping("/cop/bbs/replyArticle.do")
     public String replyBoardArticle(final MultipartHttpServletRequest multiRequest, @ModelAttribute("searchVO") BoardVO boardVO,
@@ -468,7 +437,7 @@ public class EgovArticleController {
 		    //----------------------------
 		    // 기본 BBS template 지정 
 		    //----------------------------
-		    if (master.getTmplatCours() == null || master.getTmplatCours().equals("")) {
+		    if (master.getTmplatCours() == null || master.getTmplatCours().isEmpty()) {
 			master.setTmplatCours("/css/egovframework/com/cop/tpl/egovBaseTemplate.css");
 		    }
 	
@@ -517,12 +486,10 @@ public class EgovArticleController {
 
     /**
      * 게시물 수정을 위한 수정페이지로 이동한다.
-     * 
-     * @param boardVO
-     * @param vo
-     * @param model
-     * @return
-     * @throws Exception
+     *
+	 * @param boardVO boardVO
+	 * @param model model
+	 * @throws Exception Exception
      */
     @RequestMapping("/cop/bbs/updateArticleView.do")
     public String updateArticleView(@ModelAttribute("searchVO") BoardVO boardVO, @ModelAttribute("board") BoardVO vo, ModelMap model)
@@ -549,7 +516,7 @@ public class EgovArticleController {
 		//----------------------------
 		// 기본 BBS template 지정 
 		//----------------------------
-		if (bmvo.getTmplatCours() == null || bmvo.getTmplatCours().equals("")) {
+		if (bmvo.getTmplatCours() == null || bmvo.getTmplatCours().isEmpty()) {
 		    bmvo.setTmplatCours("/css/egovframework/com/cop/tpl/egovBaseTemplate.css");
 		}
 	
@@ -568,12 +535,10 @@ public class EgovArticleController {
 
     /**
      * 게시물에 대한 내용을 수정한다.
-     * 
-     * @param boardVO
-     * @param board
-     * @param model
-     * @return
-     * @throws Exception
+     *
+	 * @param boardVO boardVO
+	 * @param model model
+	 * @throws Exception Exception
      */
     @RequestMapping("/cop/bbs/updateArticle.do")
     public String updateBoardArticle(final MultipartHttpServletRequest multiRequest, @ModelAttribute("searchVO") BoardVO boardVO,
@@ -590,13 +555,12 @@ public class EgovArticleController {
 		    boardVO.setFrstRegisterId(user.getUniqId());
 		    
 		    BoardMasterVO bmvo = new BoardMasterVO();
-		    BoardVO bdvo = new BoardVO();
-		    
+
 		    bmvo.setBbsId(boardVO.getBbsId());
 		    bmvo.setUniqId(user.getUniqId());
 	
 		    bmvo = bbsAttrbService.selectBBSMasterInf(bmvo);
-		    bdvo = egovArticleService.selectArticleDetail(boardVO);
+			BoardVO bdvo = egovArticleService.selectArticleDetail(boardVO);
 	
 		    model.addAttribute("articleVO", bdvo);
 		    model.addAttribute("boardMasterVO", bmvo);
@@ -635,12 +599,10 @@ public class EgovArticleController {
 
     /**
      * 게시물에 대한 내용을 삭제한다.
-     * 
-     * @param boardVO
-     * @param board
-     * @param model
-     * @return
-     * @throws Exception
+     *
+	 * @param boardVO boardVO
+	 * @param model model
+	 * @throws Exception Exception
      */
     @RequestMapping("/cop/bbs/deleteArticle.do")
     public String deleteBoardArticle(HttpServletRequest request, @ModelAttribute("searchVO") BoardVO boardVO, @ModelAttribute("board") Board board,
@@ -675,11 +637,10 @@ public class EgovArticleController {
     
     /**
      * 방명록에 대한 목록을 조회한다.
-     * 
-     * @param boardVO
-     * @param model
-     * @return
-     * @throws Exception
+     *
+	 * @param boardVO boardVO
+	 * @param model model
+	 * @throws Exception Exception
      */
     @RequestMapping("/cop/bbs/selectGuestArticleList.do")
     public String selectGuestArticleList(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model) throws Exception {
@@ -736,12 +697,10 @@ public class EgovArticleController {
 	
     /**
      * 방명록에 대한 내용을 등록한다.
-     * 
-     * @param boardVO
-     * @param board
-     * @param model
-     * @return
-     * @throws Exception
+     *
+	 * @param boardVO boardVO
+	 * @param model model
+	 * @throws Exception Exception
      */
     @RequestMapping("/cop/bbs/insertGuestArticle.do")
     public String insertGuestList(@ModelAttribute("searchVO") BoardVO boardVO, @ModelAttribute("Board") Board board, BindingResult bindingResult,
@@ -810,11 +769,10 @@ public class EgovArticleController {
     
     /**
      * 방명록에 대한 내용을 삭제한다.
-     * 
-     * @param boardVO
-     * @param model
-     * @return
-     * @throws Exception
+     *
+	 * @param boardVO boardVO
+	 * @param model model
+	 * @throws Exception Exception
      */
     @RequestMapping("/cop/bbs/deleteGuestArticle.do")
     public String deleteGuestList(@ModelAttribute("searchVO") BoardVO boardVO, @ModelAttribute("articleVO") Board board, ModelMap model) throws Exception {
@@ -831,11 +789,10 @@ public class EgovArticleController {
     
     /**
      * 방명록 수정을 위한 특정 내용을 조회한다.
-     * 
-     * @param boardVO
-     * @param model
-     * @return
-     * @throws Exception
+     *
+	 * @param boardVO boardVO
+	 * @param model model
+	 * @throws Exception Exception
      */
     @RequestMapping("/cop/bbs/updateGuestArticleView.do")
     public String updateGuestArticleView(@ModelAttribute("searchVO") BoardVO boardVO, @ModelAttribute("boardMasterVO") BoardMasterVO brdMstrVO,
@@ -881,11 +838,10 @@ public class EgovArticleController {
     
     /**
      * 방명록을 수정하고 게시판 메인페이지를 조회한다.
-     * 
-     * @param boardVO
-     * @param model
-     * @return
-     * @throws Exception
+     *
+	 * @param boardVO boardVO
+	 * @param model model
+	 * @throws Exception Exception
      */
     @RequestMapping("/cop/bbs/updateGuestArticle.do")
     public String updateGuestArticle(@ModelAttribute("searchVO") BoardVO boardVO, @ModelAttribute Board board, BindingResult bindingResult,

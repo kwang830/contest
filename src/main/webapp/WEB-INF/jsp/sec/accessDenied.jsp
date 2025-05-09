@@ -22,17 +22,17 @@
 <%@ page import="java.lang.String" %>
 <%
   	boolean authenticateFail = false;
-  	if(request.getAttribute("authenticateFail")!=null && !request.getAttribute("authenticateFail").toString().equals("")){
+  	if(request.getAttribute("authenticateFail")!=null && !request.getAttribute("authenticateFail").toString().isEmpty()){
 		authenticateFail = true;
   	}
   
   	boolean authFail = false;
-  	if(request.getAttribute("authFail")!=null && !request.getAttribute("authFail").toString().equals("")){
+  	if(request.getAttribute("authFail")!=null && !request.getAttribute("authFail").toString().isEmpty()){
 		authFail = true;
   	}  
 
   	String target = EgovStringUtil.null2void((String)request.getAttribute("target"));
-  	target = target.equals("") ? "_top" : target;  	
+  	target = target.isEmpty() ? "_top" : target;
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>

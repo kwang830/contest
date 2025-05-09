@@ -9,7 +9,7 @@ import java.util.Map;
  * @version 1.0
  * @see
  *  
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  * 
  *   수정일      수정자          수정내용
@@ -17,14 +17,14 @@ import java.util.Map;
  *  2009.03.19  이삼섭          최초 생성
  *  2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성 
  *  
- *  </pre>
+ *  </pre>"
  */
 public interface EgovBBSManageService {
 
 	/**
 	 * 게시물 한 건을 삭제 한다.
 	 * 
-	 * @param Board
+	 * @param Board Board
 	 * @exception Exception Exception
 	 */
 	public void deleteBoardArticle(Board Board)
@@ -33,7 +33,7 @@ public interface EgovBBSManageService {
 	/**
 	 * 방명록 내용을 삭제 한다.
 	 * 
-	 * @param boardVO
+	 * @param boardVO boardVO
 	 * @exception Exception Exception
 	 */
 	public void deleteGuestList(BoardVO boardVO)
@@ -41,9 +41,8 @@ public interface EgovBBSManageService {
 
 	/**
 	 * 방명록에 대한 패스워드를 조회 한다.
-	 * @return
-	 * 
-	 * @param Board
+	 *
+	 * @param Board Board
 	 * @exception Exception Exception
 	 */
 	public String getPasswordInf(Board Board)
@@ -52,7 +51,7 @@ public interface EgovBBSManageService {
 	/**
 	 * 게시판에 게시물 또는 답변 게시물을 등록 한다.
 	 * 
-	 * @param Board
+	 * @param Board Board
 	 * @exception Exception Exception
 	 */
 	public void insertBoardArticle(Board Board)
@@ -60,9 +59,8 @@ public interface EgovBBSManageService {
 
 	/**
 	 * 게시물 대하여 상세 내용을 조회 한다.
-	 * @return
-	 * 
-	 * @param boardVO
+	 *
+	 * @param boardVO boardVO
 	 * @exception Exception Exception
 	 */
 	public BoardVO selectBoardArticle(BoardVO boardVO)
@@ -70,9 +68,8 @@ public interface EgovBBSManageService {
 
 	/**
 	 * 게시물 대하여 상세 내용을 조회 한다.
-	 * @return
 	 *
-	 * @param boardVO
+	 * @param boardVO boardVO
 	 * @exception Exception Exception
 	 */
 	public BoardVO selectBoardVoteArticle(BoardVO boardVO)
@@ -80,10 +77,9 @@ public interface EgovBBSManageService {
 
 	/**
 	 * 조건에 맞는 게시물 목록을 조회 한다.
-	 * @return
-	 * 
-	 * @param boardVO
-	 * @param attrbFlag
+	 *
+	 * @param boardVO boardVO
+	 * @param attrbFlag attrbFlag
 	 * @exception Exception Exception
 	 */
 	public Map<String, Object> selectBoardArticles(BoardVO boardVO, String attrbFlag)
@@ -91,10 +87,9 @@ public interface EgovBBSManageService {
 
 	/**
 	 * 조건에 맞는 게시물 목록을 조회 한다.
-	 * @return
 	 *
-	 * @param boardVO
-	 * @param attrbFlag
+	 * @param boardVO boardVO
+	 * @param attrbFlag attrbFlag
 	 * @exception Exception Exception
 	 */
 	public Map<String, Object> selectBoardVoteArticles(BoardVO boardVO, String attrbFlag)
@@ -102,9 +97,8 @@ public interface EgovBBSManageService {
 
 	/**
 	 * 방명록에 대한 목록을 조회 한다.
-	 * @return
-	 * 
-	 * @param boardVO
+	 *
+	 * @param boardVO boardVO
 	 * @exception Exception Exception
 	 */
 	public Map<String, Object> selectGuestList(BoardVO boardVO)
@@ -113,7 +107,7 @@ public interface EgovBBSManageService {
 	/**
 	 * 게시물 한 건의 내용을 수정 한다.
 	 * 
-	 * @param Board
+	 * @param Board Board
 	 * @exception Exception Exception
 	 */
 	public void updateBoardArticle(Board Board)
@@ -121,9 +115,8 @@ public interface EgovBBSManageService {
 
 	/**
 	 * 첨부파일 조회수를 조회 한다.
-	 * @return
 	 *
-	 * @param Board
+	 * @param Board Board
 	 * @exception Exception Exception
 	 */
 	public String selectBoardArticleFileRdcnt(Board Board)
@@ -131,9 +124,8 @@ public interface EgovBBSManageService {
 
 	/**
 	 * 홈페이지 방문수를 조회 한다.
-	 * @return
 	 *
-	 * @param Board
+	 * @param Board Board
 	 * @exception Exception Exception
 	 */
 	public String selectBoardArticleVisitRdcnt(Board Board)
@@ -142,7 +134,7 @@ public interface EgovBBSManageService {
 	/**
 	 * 게시판에 댓글을 등록 한다.
 	 *
-	 * @param Board
+	 * @param Board Board
 	 * @exception Exception Exception
 	 */
 	public void insertBoardComment(Board Board)
@@ -151,7 +143,7 @@ public interface EgovBBSManageService {
 	/**
 	 * 게시판에 댓글을 수정 한다.
 	 *
-	 * @param Board
+	 * @param Board Board
 	 * @exception Exception Exception
 	 */
 	public void updateBoardComment(Board Board)
@@ -159,9 +151,8 @@ public interface EgovBBSManageService {
 
 	/**
 	 * 댓글 목록을 조회 한다.
-	 * @return
 	 *
-	 * @param boardVO
+	 * @param boardVO boardVO
 	 * @exception Exception Exception
 	 */
 	public Map<String, Object> selectBoardComments(BoardVO boardVO)
@@ -169,9 +160,8 @@ public interface EgovBBSManageService {
 
 	/**
 	 * 댓글 목록을 조회 한다.
-	 * @return
 	 *
-	 * @param boardVO
+	 * @param boardVO boardVO
 	 * @exception Exception Exception
 	 */
 	public Map<String, Object> selectBoardCommentMore(BoardVO boardVO)

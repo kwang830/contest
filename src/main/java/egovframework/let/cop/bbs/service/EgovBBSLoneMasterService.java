@@ -9,7 +9,7 @@ import java.util.Map;
  * @version 1.0
  * @see
  *  
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  * 
  *   수정일      수정자          수정내용
@@ -17,15 +17,14 @@ import java.util.Map;
  *  2009.08.25  한성곤          최초 생성
  *  2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성 
  *  
- *  </pre>
+ *  </pre>"
  */
 public interface EgovBBSLoneMasterService {
 
 	/**
 	 * 등록된 게시판 속성정보를 삭제한다.
-	 * @param BoardMaster
-	 * 
-	 * @param boardMaster
+	 *
+	 * @param boardMaster boardMaster
 	 * @exception Exception Exception
 	 */
 	public void deleteMaster(BoardMaster boardMaster)
@@ -33,9 +32,8 @@ public interface EgovBBSLoneMasterService {
 
 	/**
 	 * 신규 게시판 속성정보를 생성한다.
-	 * @param BoardMaster
-	 * 
-	 * @param boardMaster
+	 *
+	 * @param boardMaster boardMaster
 	 * @exception Exception Exception
 	 */
 	public String insertMaster(BoardMaster boardMaster)
@@ -43,9 +41,8 @@ public interface EgovBBSLoneMasterService {
 
 	/**
 	 * 게시판 속성정보 한 건을 상세조회한다.
-	 * @param BoardMasterVO
-	 * 
-	 * @param searchVO
+	 *
+	 * @param searchVO searchVO
 	 * @exception Exception Exception
 	 */
 	public BoardMasterVO selectMaster(BoardMaster searchVO)
@@ -53,9 +50,8 @@ public interface EgovBBSLoneMasterService {
 
 	/**
 	 * 게시판 속성 정보의 목록을 조회 한다.
-	 * @param BoardMasterVO
-	 * 
-	 * @param searchVO
+	 *
+	 * @param searchVO searchVO
 	 * @exception Exception Exception
 	 */
 	public Map<String, Object> selectMasterList(BoardMasterVO searchVO)
@@ -63,9 +59,8 @@ public interface EgovBBSLoneMasterService {
 
 	/**
 	 * 게시판 속성정보를 수정한다.
-	 * @param BoardMaster
-	 * 
-	 * @param boardMaster
+	 *
+	 * @param boardMaster boardMaster
 	 * @exception Exception Exception
 	 */
 	public void updateMaster(BoardMaster boardMaster)

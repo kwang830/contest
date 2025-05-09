@@ -354,7 +354,6 @@ public class ContVoteManageController {
 		vo.setExmnId(user.getId());
 
 		Map<String, Object> map = contVoteManageService.selectContVoteAdminGroupList(vo);
-		int totCnt = Integer.parseInt((String) map.get("resultCnt"));
 		model.addAttribute("contVoteAdminGroupList", map.get("resultList"));
 		model.addAttribute("contVoteAdminGroupListCnt", map.get("resultCnt"));
 
@@ -368,8 +367,6 @@ public class ContVoteManageController {
 		}
 
 		Map<String, Object> map2 = contVoteManageService.selectContVoteAdminBBSList(vo);
-		int totCnt2 = Integer.parseInt((String) map2.get("resultCnt"));
-
 		model.addAttribute("valtMngmNo", vo.getValtMngmNo());
 		model.addAttribute("contVoteAdminBBSList", map2.get("resultList"));
 		model.addAttribute("contVoteAdminBBSListCnt", map2.get("resultCnt"));

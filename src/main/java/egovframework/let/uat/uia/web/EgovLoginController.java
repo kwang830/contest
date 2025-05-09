@@ -153,7 +153,7 @@ public class EgovLoginController {
 
 			boolean loginPolicyYn = true;
 
-			if (resultVO != null && resultVO.getId() != null && !resultVO.getId().equals("") && loginPolicyYn) {
+			if (resultVO != null && resultVO.getId() != null && !resultVO.getId().isEmpty() && loginPolicyYn) {
 
 				// 2. spring security 연동
 				request.getSession().setAttribute("LoginVO", resultVO);
@@ -234,7 +234,7 @@ public class EgovLoginController {
 
         boolean loginPolicyYn = true;
 
-        if (resultVO != null && resultVO.getId() != null && !resultVO.getId().equals("") && loginPolicyYn) {
+        if (resultVO != null && resultVO.getId() != null && !resultVO.getId().isEmpty() && loginPolicyYn) {
 
 			// 1. 로그인 성공시 Lock_cnt = 0
 			loginService.actionLoginLockCntReset(loginVO);

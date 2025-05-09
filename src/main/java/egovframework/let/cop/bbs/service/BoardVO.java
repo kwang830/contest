@@ -11,7 +11,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * @version 1.0
  * @see
  *  
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  * 
  *   수정일      수정자          수정내용
@@ -20,7 +20,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  *  2009.06.29  한성곤		   2단계 기능 추가 (댓글관리, 만족도조사)
  *  2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성 
  *  
- *  </pre>
+ *  </pre>"
  */
 @SuppressWarnings("serial")
 public class BoardVO extends Board implements Serializable {

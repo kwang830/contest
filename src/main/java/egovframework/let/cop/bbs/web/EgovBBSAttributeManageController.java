@@ -35,7 +35,7 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일      수정자          수정내용
@@ -44,7 +44,7 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
  *  2009.06.26	한성곤		2단계 기능 추가 (댓글관리, 만족도조사)
  *  2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성
  *
- *  </pre>
+ *  </pre>"
  */
 @Controller
 public class EgovBBSAttributeManageController {
@@ -64,8 +64,8 @@ public class EgovBBSAttributeManageController {
 	/**
 	 * 커뮤니티 관리자 및 동호회 운영자 권한을 확인한다.
 	 *
-	 * @param boardMaster
-	 * @throws EgovBizException
+	 * @param boardMaster boardMaster
+	 * @throws Exception Exception
 	 */
 	protected void checkAuthority(BoardMaster boardMaster) throws Exception {
 
@@ -79,10 +79,9 @@ public class EgovBBSAttributeManageController {
 	/**
 	 * 신규 게시판 마스터 등록을 위한 등록페이지로 이동한다.
 	 *
-	 * @param boardMasterVO
-	 * @param model
-	 * @return
-	 * @throws Exception
+	 * @param boardMasterVO boardMasterVO
+	 * @param model model
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cop/bbs/addBBSMaster.do")
 	public String addBBSMaster(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, ModelMap model) throws Exception {
@@ -114,11 +113,9 @@ public class EgovBBSAttributeManageController {
 	/**
 	 * 신규 게시판 마스터 정보를 등록한다.
 	 *
-	 * @param boardMasterVO
-	 * @param boardMaster
-	 * @param status
-	 * @return
-	 * @throws Exception
+	 * @param boardMasterVO boardMasterVO
+	 * @param model model
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cop/bbs/insertBBSMasterInf.do")
 	public String insertBBSMasterInf(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, @ModelAttribute("boardMaster") BoardMaster boardMaster, BindingResult bindingResult,
@@ -161,10 +158,9 @@ public class EgovBBSAttributeManageController {
 	/**
 	 * 게시판 마스터 목록을 조회한다.
 	 *
-	 * @param boardMasterVO
-	 * @param model
-	 * @return
-	 * @throws Exception
+	 * @param boardMasterVO boardMasterVO
+	 * @param model model
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cop/bbs/SelectBBSMasterInfs.do")
 	public String selectBBSMasterInfs(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, ModelMap model) throws Exception {
@@ -196,14 +192,13 @@ public class EgovBBSAttributeManageController {
 	/**
 	 * 게시판 마스터 상세내용을 조회한다.
 	 *
-	 * @param boardMasterVO
-	 * @param model
-	 * @return
-	 * @throws Exception
+	 * @param boardMasterVO boardMasterVO
+	 * @param model model
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cop/bbs/SelectBBSMasterInf.do")
-	public String selectBBSMasterInf(@ModelAttribute("searchVO") BoardMasterVO searchVO, ModelMap model) throws Exception {
-		BoardMasterVO vo = bbsAttrbService.selectBBSMasterInf(searchVO);
+	public String selectBBSMasterInf(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, ModelMap model) throws Exception {
+		BoardMasterVO vo = bbsAttrbService.selectBBSMasterInf(boardMasterVO);
 
 		model.addAttribute("result", vo);
 		
@@ -211,7 +206,6 @@ public class EgovBBSAttributeManageController {
 		if (flag != null && flag.trim().equalsIgnoreCase("true")) {
 			model.addAttribute("addedOptions", "true");
 		}
-		////-------------------------------
 
 		return "cop/bbs/EgovBoardMstrUpdt";
 	}
@@ -219,11 +213,9 @@ public class EgovBBSAttributeManageController {
 	/**
 	 * 게시판 마스터 정보를 수정한다.
 	 *
-	 * @param boardMasterVO
-	 * @param boardMaster
-	 * @param model
-	 * @return
-	 * @throws Exception
+	 * @param boardMasterVO boardMasterVO
+	 * @param model model
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cop/bbs/UpdateBBSMasterInf.do")
 	public String updateBBSMasterInf(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, @ModelAttribute("boardMaster") BoardMaster boardMaster, BindingResult bindingResult,
@@ -253,11 +245,8 @@ public class EgovBBSAttributeManageController {
 	/**
 	 * 게시판 마스터 정보를 삭제한다.
 	 *
-	 * @param boardMasterVO
-	 * @param boardMaster
-	 * @param status
-	 * @return
-	 * @throws Exception
+	 * @param boardMasterVO boardMasterVO
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cop/bbs/DeleteBBSMasterInf.do")
 	public String deleteBBSMasterInf(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, @ModelAttribute("boardMaster") BoardMaster boardMaster, SessionStatus status)
@@ -276,10 +265,9 @@ public class EgovBBSAttributeManageController {
 	/**
 	 * 게시판 마스터 선택 팝업을 위한 목록을 조회한다.
 	 *
-	 * @param boardMasterVO
-	 * @param model
-	 * @return
-	 * @throws Exception
+	 * @param boardMasterVO boardMasterVO
+	 * @param model model
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cop/bbs/SelectBBSMasterInfsPop.do")
 	public String selectBBSMasterInfsPop(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, ModelMap model) throws Exception {
@@ -313,13 +301,9 @@ public class EgovBBSAttributeManageController {
 	/**
 	 * 게시판 사용을 위한 신규 게시판 속성정보를 생성한다.
 	 *
-	 * @param boardMasterVO
-	 * @param boardMaster
-	 * @param bindingResult
-	 * @param status
-	 * @param model
-	 * @return
-	 * @throws Exception
+	 * @param boardMasterVO boardMasterVO
+	 * @param model model
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cop/bbs/insertBdMstrByTrget.do")
 	public String insertBdMstrByTrget(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, @ModelAttribute("boardMaster") BoardMaster boardMaster, BindingResult bindingResult,
@@ -372,10 +356,9 @@ public class EgovBBSAttributeManageController {
 	/**
 	 * 사용중인 게시판 속성 정보의 목록을 조회 한다.
 	 *
-	 * @param boardMasterVO
-	 * @param model
-	 * @return
-	 * @throws Exception
+	 * @param boardMasterVO boardMasterVO
+	 * @param model model
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cop/bbs/selectBdMstrListByTrget.do")
 	public String selectBdMstrListByTrget(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, ModelMap model) throws Exception {
@@ -409,10 +392,9 @@ public class EgovBBSAttributeManageController {
 	/**
 	 * 게시판 사용을 위한 게시판 속성정보 한 건을 상세조회한다.
 	 *
-	 * @param boardMasterVO
-	 * @param model
-	 * @return
-	 * @throws Exception
+	 * @param boardMasterVO boardMasterVO
+	 * @param model model
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cop/bbs/SelectBBSMasterInfByTrget.do")
 	public String selectBBSMasterInfByTrget(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, @RequestParam Map<String, Object> commandMap, ModelMap model) throws Exception {
@@ -436,11 +418,9 @@ public class EgovBBSAttributeManageController {
 	/**
 	 * 게시판 사용을 위한 게시판 속성정보를 수정한다.
 	 *
-	 * @param boardMasterVO
-	 * @param boardMaster
-	 * @param model
-	 * @return
-	 * @throws Exception
+	 * @param boardMasterVO boardMasterVO
+	 * @param model model
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cop/bbs/UpdateBBSMasterInfByTrget.do")
 	public String updateBBSMasterInfByTrget(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, @ModelAttribute("boardMaster") BoardMaster boardMaster,
@@ -475,11 +455,9 @@ public class EgovBBSAttributeManageController {
 	/**
 	 * 커뮤니티, 동호회에서 사용을 위한 게시판 마스터 등록 화면으로 이동한다.
 	 *
-	 * @param boardMasterVO
-	 * @param sessionVO
-	 * @param model
-	 * @return
-	 * @throws Exception
+	 * @param boardMasterVO boardMasterVO
+	 * @param model model
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cop/bbs/addBBSMasterByTrget.do")
 	public String addBBSMasterByTrget(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, ModelMap model) throws Exception {
@@ -514,12 +492,8 @@ public class EgovBBSAttributeManageController {
 	/**
 	 * 등록된 게시판 속성정보를 삭제한다.
 	 *
-	 * @param boardMasterVO
-	 * @param boardMaster
-	 * @param sessionVO
-	 * @param status
-	 * @return
-	 * @throws Exception
+	 * @param boardMasterVO boardMasterVO
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cop/bbs/DeleteBBSMasterInfByTrget.do")
 	public String deleteBBSMasterInfByTrget(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, @ModelAttribute("boardMaster") BoardMaster boardMaster, SessionStatus status)
@@ -542,11 +516,9 @@ public class EgovBBSAttributeManageController {
 	/**
 	 * 커뮤니티, 동호회에서 사용중인 게시판 속성 정보의 목록 조회한다.
 	 *
-	 * @param commandMap
-	 * @param sessionVO
-	 * @param model
-	 * @return
-	 * @throws Exception
+	 * @param commandMap commandMap
+	 * @param model model
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cop/bbs/selectAllBdMstrByTrget.do")
 	public String selectAllBdMstrByTrget(@RequestParam Map<String, Object> commandMap, ModelMap model) throws Exception {

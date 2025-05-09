@@ -74,7 +74,7 @@ public class EgovComUtlController {
 		}
 		
 		// 선택된 메뉴정보를 세션으로 등록한다.
-		if (menuNo != null && !menuNo.equals("")) {
+		if (menuNo != null && !menuNo.isEmpty()) {
 			session.setAttribute("menuNo", menuNo);
 		}
 		

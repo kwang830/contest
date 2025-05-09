@@ -227,9 +227,8 @@ public class EgovBBSManageServiceImpl extends EgovAbstractServiceImpl implements
 	/**
 	 * 방명록에 대한 패스워드를 조회 한다.
 	 *
-	 * @param board
-	 * @return
-	 * @throws Exception
+	 * @param board board
+	 * @throws Exception Exception
 	 */
 	public String getPasswordInf(Board board) throws Exception {
 		return bbsMngDAO.getPasswordInf(board);
@@ -238,9 +237,8 @@ public class EgovBBSManageServiceImpl extends EgovAbstractServiceImpl implements
 	/**
 	 * 첨부파일 조회수를 조회 한다.
 	 *
-	 * @param board
-	 * @return
-	 * @throws Exception
+	 * @param board board
+	 * @throws Exception Exception
 	 */
 	public String selectBoardArticleFileRdcnt(Board board) throws Exception {
 		return bbsMngDAO.selectBoardArticleFileRdcnt(board);
@@ -249,9 +247,8 @@ public class EgovBBSManageServiceImpl extends EgovAbstractServiceImpl implements
 	/**
 	 * 홈페이지 방문수를 조회 한다.
 	 *
-	 * @param board
-	 * @return
-	 * @throws Exception
+	 * @param board board
+	 * @throws Exception Exception
 	 */
 	public String selectBoardArticleVisitRdcnt(Board board) throws Exception {
 		return bbsMngDAO.selectBoardArticleVisitRdcnt(board);
@@ -260,6 +257,8 @@ public class EgovBBSManageServiceImpl extends EgovAbstractServiceImpl implements
 	/**
 	 * 게시판에 댓글을 등록 한다.
 	 *
+	 * @param board board
+	 * @throws Exception Exception
 	 */
 	public void insertBoardComment(Board board) throws Exception {
 		bbsMngDAO.insertBoardComment(board);
@@ -268,6 +267,8 @@ public class EgovBBSManageServiceImpl extends EgovAbstractServiceImpl implements
 	/**
 	 * 게시판에 댓글을 수정 한다.
 	 *
+	 * @param board board
+	 * @throws Exception Exception
 	 */
 	public void updateBoardComment(Board board) throws Exception {
 		bbsMngDAO.updateBoardComment(board);
@@ -276,6 +277,8 @@ public class EgovBBSManageServiceImpl extends EgovAbstractServiceImpl implements
 	/**
 	 * 댓글 목록을 조회 한다.
 	 *
+	 * @param boardVO boardVO
+	 * @throws Exception Exception
 	 */
 	public Map<String, Object> selectBoardComments(BoardVO boardVO) throws Exception {
 
@@ -293,6 +296,8 @@ public class EgovBBSManageServiceImpl extends EgovAbstractServiceImpl implements
 	/**
 	 * 댓글 목록을 조회 한다.
 	 *
+	 * @param boardVO boardVO
+	 * @throws Exception Exception
 	 */
 	public Map<String, Object> selectBoardCommentMore(BoardVO boardVO) throws Exception {
 

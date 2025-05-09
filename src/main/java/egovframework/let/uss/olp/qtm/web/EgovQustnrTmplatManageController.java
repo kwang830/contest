@@ -260,7 +260,7 @@ public class EgovQustnrTmplatManageController {
 			for (MultipartFile file : files.values()) {
 				System.out.println("getName =>" + file.getName());
 				System.out.println("getOriginalFilename =>" + file.getOriginalFilename());
-				if (file.getName().equals("qestnrTmplatImage") && !file.getOriginalFilename().equals("")) {
+				if (file.getName().equals("qestnrTmplatImage") && !file.getOriginalFilename().isEmpty()) {
 					qustnrTmplatManageVO.setQestnrTmplatImagepathnm(file.getBytes());
 				}
 			}

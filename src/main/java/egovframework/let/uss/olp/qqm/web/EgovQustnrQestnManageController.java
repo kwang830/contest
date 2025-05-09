@@ -292,7 +292,7 @@ public class EgovQustnrQestnManageController {
 
             	LOGGER.info("sQestnrId => {}", sQestnrId);
             	LOGGER.info("sQestnrTmplatId => {}", sQestnrTmplatId);
-            	if(!sQestnrId.equals("") && !sQestnrTmplatId.equals("")){
+            	if(!sQestnrId.isEmpty() && !sQestnrTmplatId.isEmpty()){
 
             		Map<String,String> mapQustnrManage = new HashMap<String,String>();
             		mapQustnrManage.put("qestnrId", sQestnrId);
@@ -372,7 +372,7 @@ public class EgovQustnrQestnManageController {
 
             	LOGGER.info("sQestnrId => {}", sQestnrId);
             	LOGGER.info("sQestnrTmplatId => {}", sQestnrTmplatId);
-            	if(!sQestnrId.equals("") && !sQestnrTmplatId.equals("")){
+            	if(!sQestnrId.isEmpty() && !sQestnrTmplatId.isEmpty()){
 
             		Map<String,String> mapQustnrManage = new HashMap<String,String>();
             		mapQustnrManage.put("qestnrId", sQestnrId);
@@ -402,7 +402,7 @@ public class EgovQustnrQestnManageController {
 
         	LOGGER.info("sQestnrId => {}", sQestnrId);
         	LOGGER.info("sQestnrTmplatId => {}", sQestnrTmplatId);
-        	if(!sQestnrId.equals("") && !sQestnrTmplatId.equals("")){
+        	if(!sQestnrId.isEmpty() && !sQestnrTmplatId.isEmpty()){
 
         		Map<String,String> mapQustnrManage = new HashMap<String,String>();
         		mapQustnrManage.put("qestnrId", sQestnrId);

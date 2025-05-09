@@ -90,10 +90,10 @@ public class EgovCalRestdeManageController {
 
 		Calendar cal = Calendar.getInstance();
 
-		if(restde.getYear()==null || restde.getYear().equals("")){
+		if(restde.getYear()==null || restde.getYear().isEmpty()){
 			restde.setYear(Integer.toString(cal.get(Calendar.YEAR)));
 		}
-		if(restde.getMonth()==null || restde.getMonth().equals("")){
+		if(restde.getMonth()==null || restde.getMonth().isEmpty()){
 			restde.setMonth(Integer.toString(cal.get(Calendar.MONTH)+1));
 		}
 		int iYear  = Integer.parseInt(restde.getYear());
@@ -197,10 +197,10 @@ public class EgovCalRestdeManageController {
 
 		Calendar cal = Calendar.getInstance();
 
-		if(restde.getYear()==null || restde.getYear().equals("")){
+		if(restde.getYear()==null || restde.getYear().isEmpty()){
 			restde.setYear(Integer.toString(cal.get(Calendar.YEAR)));
 		}
-		if(restde.getMonth()==null || restde.getMonth().equals("")){
+		if(restde.getMonth()==null || restde.getMonth().isEmpty()){
 			restde.setMonth(Integer.toString(cal.get(Calendar.MONTH)+1));
 		}
 		int iYear  = Integer.parseInt(restde.getYear());
@@ -317,10 +317,10 @@ public class EgovCalRestdeManageController {
 
 		Calendar cal = Calendar.getInstance();
 
-		if(restde.getYear()==null || restde.getYear().equals("")){
+		if(restde.getYear()==null || restde.getYear().isEmpty()){
 			restde.setYear(Integer.toString(cal.get(Calendar.YEAR)));
 		}
-		if(restde.getMonth()==null || restde.getMonth().equals("")){
+		if(restde.getMonth()==null || restde.getMonth().isEmpty()){
 			restde.setMonth(Integer.toString(cal.get(Calendar.MONTH)+1));
 		}
 		int iYear  = Integer.parseInt(restde.getYear());
@@ -370,13 +370,13 @@ public class EgovCalRestdeManageController {
 		Calendar cal = Calendar.getInstance();
 
 
-		if(restde.getYear()==null || restde.getYear().equals("")){
+		if(restde.getYear()==null || restde.getYear().isEmpty()){
 			restde.setYear(Integer.toString(cal.get(Calendar.YEAR)));
 		}
-		if(restde.getMonth()==null || restde.getMonth().equals("")){
+		if(restde.getMonth()==null || restde.getMonth().isEmpty()){
 			restde.setMonth(Integer.toString(cal.get(Calendar.MONTH)+1));
 		}
-		if(restde.getDay()==null || restde.getDay().equals("")){
+		if(restde.getDay()==null || restde.getDay().isEmpty()){
 			restde.setDay(Integer.toString(cal.get(Calendar.DATE)));
 		}
 
@@ -438,13 +438,13 @@ public class EgovCalRestdeManageController {
 
 		Calendar cal = Calendar.getInstance();
 
-		if(restde.getYear()==null || restde.getYear().equals("")){
+		if(restde.getYear()==null || restde.getYear().isEmpty()){
 			restde.setYear(Integer.toString(cal.get(Calendar.YEAR)));
 		}
-		if(restde.getMonth()==null || restde.getMonth().equals("")){
+		if(restde.getMonth()==null || restde.getMonth().isEmpty()){
 			restde.setMonth(Integer.toString(cal.get(Calendar.MONTH)+1));
 		}
-		if(restde.getDay()==null || restde.getDay().equals("")){
+		if(restde.getDay()==null || restde.getDay().isEmpty()){
 			restde.setDay(Integer.toString(cal.get(Calendar.DATE)));
 		}
 
@@ -587,10 +587,10 @@ public class EgovCalRestdeManageController {
 
 		Calendar cal = Calendar.getInstance();
 
-		if(restde.getYear()==null || restde.getYear().equals("")){
+		if(restde.getYear()==null || restde.getYear().isEmpty()){
 			restde.setYear(Integer.toString(cal.get(Calendar.YEAR)));
 		}
-		if(restde.getMonth()==null || restde.getMonth().equals("")){
+		if(restde.getMonth()==null || restde.getMonth().isEmpty()){
 			restde.setMonth(Integer.toString(cal.get(Calendar.MONTH)+1));
 		}
 		int iYear  = Integer.parseInt(restde.getYear());
@@ -640,10 +640,10 @@ public class EgovCalRestdeManageController {
 
 		Calendar cal = Calendar.getInstance();
 
-		if(restde.getYear()==null || restde.getYear().equals("")){
+		if(restde.getYear()==null || restde.getYear().isEmpty()){
 			restde.setYear(Integer.toString(cal.get(Calendar.YEAR)));
 		}
-		if(restde.getMonth()==null || restde.getMonth().equals("")){
+		if(restde.getMonth()==null || restde.getMonth().isEmpty()){
 			restde.setMonth(Integer.toString(cal.get(Calendar.MONTH)+1));
 		}
 		int iYear  = Integer.parseInt(restde.getYear());
@@ -796,13 +796,13 @@ public class EgovCalRestdeManageController {
 		Calendar cal = Calendar.getInstance();
 
 
-		if(restde.getYear()==null || restde.getYear().equals("")){
+		if(restde.getYear()==null || restde.getYear().isEmpty()){
 			restde.setYear(Integer.toString(cal.get(Calendar.YEAR)));
 		}
-		if(restde.getMonth()==null || restde.getMonth().equals("")){
+		if(restde.getMonth()==null || restde.getMonth().isEmpty()){
 			restde.setMonth(Integer.toString(cal.get(Calendar.MONTH)+1));
 		}
-		if(restde.getDay()==null || restde.getDay().equals("")){
+		if(restde.getDay()==null || restde.getDay().isEmpty()){
 			restde.setDay(Integer.toString(cal.get(Calendar.DATE)));
 		}
 
@@ -862,13 +862,13 @@ public class EgovCalRestdeManageController {
 
 		Calendar cal = Calendar.getInstance();
 
-		if(restde.getYear()==null || restde.getYear().equals("")){
+		if(restde.getYear()==null || restde.getYear().isEmpty()){
 			restde.setYear(Integer.toString(cal.get(Calendar.YEAR)));
 		}
-		if(restde.getMonth()==null || restde.getMonth().equals("")){
+		if(restde.getMonth()==null || restde.getMonth().isEmpty()){
 			restde.setMonth(Integer.toString(cal.get(Calendar.MONTH)+1));
 		}
-		if(restde.getDay()==null || restde.getDay().equals("")){
+		if(restde.getDay()==null || restde.getDay().isEmpty()){
 			restde.setDay(Integer.toString(cal.get(Calendar.DATE)));
 		}
 
@@ -1012,10 +1012,10 @@ public class EgovCalRestdeManageController {
 
 		Calendar cal = Calendar.getInstance();
 
-		if(restde.getYear()==null || restde.getYear().equals("")){
+		if(restde.getYear()==null || restde.getYear().isEmpty()){
 			restde.setYear(Integer.toString(cal.get(Calendar.YEAR)));
 		}
-		if(restde.getMonth()==null || restde.getMonth().equals("")){
+		if(restde.getMonth()==null || restde.getMonth().isEmpty()){
 			restde.setMonth(Integer.toString(cal.get(Calendar.MONTH)+1));
 		}
 		int iYear  = Integer.parseInt(restde.getYear());
@@ -1066,10 +1066,10 @@ public class EgovCalRestdeManageController {
 
 		Calendar cal = Calendar.getInstance();
 
-		if(restde.getYear()==null || restde.getYear().equals("")){
+		if(restde.getYear()==null || restde.getYear().isEmpty()){
 			restde.setYear(Integer.toString(cal.get(Calendar.YEAR)));
 		}
-		if(restde.getMonth()==null || restde.getMonth().equals("")){
+		if(restde.getMonth()==null || restde.getMonth().isEmpty()){
 			restde.setMonth(Integer.toString(cal.get(Calendar.MONTH)+1));
 		}
 		int iYear  = Integer.parseInt(restde.getYear());
@@ -1300,7 +1300,7 @@ public class EgovCalRestdeManageController {
 			, ModelMap model
 			) throws Exception {
 		String sCmd = commandMap.get("cmd") == null ? "" : (String)commandMap.get("cmd");
-    	if (sCmd.equals("")) {
+    	if (sCmd.isEmpty()) {
     		Restde vo = restdeManageService.selectRestdeDetail(restde);
     		model.addAttribute("restde", vo);
 
