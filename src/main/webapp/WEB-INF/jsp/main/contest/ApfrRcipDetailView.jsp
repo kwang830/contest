@@ -149,10 +149,8 @@
 								</div>
 							</div>
 						</div>
-						<div class="board_view_content_con">
-							<textarea id="nttCn2" name="nttCn2" title="내용" class="f_txtar w_full h_200"
-									  rows="10" cols="30" readonly="readonly"><c:out value="${result.nttCn}" escapeXml="false" />
-							</textarea>
+						<div class="board_view_content_con" style="white-space: pre-line;">
+							<c:out value="${result.nttCn}" escapeXml="false"/>
 						</div>
 						<c:if test="${result.atchFileId != ''}">
 							<div class="board_view_file_con">
