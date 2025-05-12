@@ -240,7 +240,10 @@ select::-ms-expand {display:none;}
 }
 
 @media all and (min-width: 1200px) {
-	.board_view_avg_con{display: flex;}
+	.board_view_avg_con{
+		flex: 0 0 auto;
+		display: flex;
+	}
 }
 
 @media all and (max-width: 479px){

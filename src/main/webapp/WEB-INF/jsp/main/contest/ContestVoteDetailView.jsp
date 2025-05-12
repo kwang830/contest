@@ -205,6 +205,37 @@
 							</form:form>
 						</div>
 					</div>
+
+					<!--평가하기 관리자-->
+					<div class="vote-con">
+						<div class="vote-inner">
+							<div class="vote-left-inner">
+								<div class="vote-title">평가 평점</div>
+								<div class="vote-info">
+									<div class="star-rating" data-rating="<fmt:formatNumber value="${result.scoreA}" pattern="#0" />">
+										<span class="star" data-value="1">&#9733;</span>
+										<span class="star" data-value="2">&#9733;</span>
+										<span class="star" data-value="3">&#9733;</span>
+										<span class="star" data-value="4">&#9733;</span>
+										<span class="star" data-value="5">&#9733;</span>
+									</div>
+									<div class="vote-rating">
+										<div class="rating-value">
+											<span class="rating-avg"><c:out value="${result.scoreA}" default="0" /></span> /5
+										</div>
+										<div class="rating-cnt">
+											(평가 <c:out value="${result.scoreCnt}" default="0" />개)
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="vote-right-inner">
+								<div class="vote-chart-con">
+								</div>
+							</div>
+						</div>
+					</div>
+
 					<div class="comment-con">
 						<div class="comment-top-con">
 							<div class="comment-top-title">
@@ -396,6 +427,47 @@
 			}
 		});
 	});
+</script>
+
+<script>
+	$(function () {
+		const voteData = [
+			{score: 5, count: 15},
+			{score: 4, count: 25},
+			{score: 3, count: 50},
+			{score: 2, count: 10},
+			{score: 1, count: 0}
+		];
+
+		const total = voteData.reduce((sum, v) => sum + v.count, 0);
+		const maxCount = Math.max(...voteData.map(v => v.count));
+
+		const $container = $('.vote-chart-con');
+		let html = '';
+		for (let i = 0; i < voteData.length; i++) {
+			const v = voteData[i];
+			const percent = (v.count / total) * 100;
+			const isTop = (v.count === maxCount) ? ' top' : '';
+
+			html +=
+					'<div class="vote-chart-box' + isTop + '">' +
+					'<div class="vote-cnt">' + v.count + '</div>' +
+					'<div class="vote-chart">' +
+					'<span class="vote-bar" data-percent="'+percent+'"></span>' +
+					'</div>' +
+					'<div class="vote-score">' + v.score + '점</div>' +
+					'</div>';
+		}
+		$container.html(html);
+
+		setTimeout(() => {
+			document.querySelectorAll('.vote-bar').forEach(bar => {
+				const percent = bar.getAttribute('data-percent');
+				bar.style.height = percent + '%';
+			});
+		}, 50);
+	})
+
 </script>
 </body>
 </html>
