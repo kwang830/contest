@@ -35,7 +35,7 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일      수정자           수정내용
@@ -43,7 +43,7 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
  *   2009.03.11  이문준          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성
  *
- * </pre>
+ * </pre>"
  */
 
 @Controller
@@ -61,7 +61,7 @@ public class EgovRoleManageController {
     @Resource(name = "egovAuthorManageService")
     private EgovAuthorManageService egovAuthorManageService;
 
-    /** EgovPropertyService */
+    /* EgovPropertyService */
     @Resource(name = "propertiesService")
     protected EgovPropertyService propertiesService;
 
@@ -75,7 +75,7 @@ public class EgovRoleManageController {
     /**
 	 * 롤 목록화면 이동
 	 * @return String
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
     @RequestMapping("/sec/rmt/EgovRoleListView.do")
     public String selectRoleListView()
@@ -87,13 +87,13 @@ public class EgovRoleManageController {
 	 * 등록된 롤 정보 목록 조회
 	 * @param roleManageVO RoleManageVO
 	 * @return String
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
     @RequestMapping(value="/sec/rmt/EgovRoleList.do")
 	public String selectRoleList(@ModelAttribute("roleManageVO") RoleManageVO roleManageVO,
 			                      ModelMap model) throws Exception {
 
-    	/** paging */
+    	/* paging */
     	PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(roleManageVO.getPageIndex());
 		paginationInfo.setRecordCountPerPage(roleManageVO.getPageUnit());
@@ -120,7 +120,7 @@ public class EgovRoleManageController {
 	 * @param roleManageVO RoleManageVO
 	 * @param authorManageVO AuthorManageVO
 	 * @return String
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
     @RequestMapping(value="/sec/rmt/EgovRole.do")
 	public String selectRole(@RequestParam("roleCode") String roleCode,
@@ -143,7 +143,7 @@ public class EgovRoleManageController {
 	 * 롤 등록화면 이동
 	 * @param authorManageVO AuthorManageVO
 	 * @return String
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
     @RequestMapping("/sec/rmt/EgovRoleInsertView.do")
     public String insertRoleView(@ModelAttribute("authorManageVO") AuthorManageVO authorManageVO,
@@ -161,7 +161,7 @@ public class EgovRoleManageController {
 	 * @param comDefaultCodeVO ComDefaultCodeVO
 	 * @param codeId String
 	 * @return List
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	public List<?> getCmmCodeDetailList(ComDefaultCodeVO comDefaultCodeVO, String codeId)  throws Exception {
     	comDefaultCodeVO.setCodeId(codeId);
@@ -173,7 +173,7 @@ public class EgovRoleManageController {
 	 * @param roleManage RoleManage
 	 * @param roleManageVO RoleManageVO
 	 * @return String
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
     @RequestMapping(value="/sec/rmt/EgovRoleInsert.do")
 	public String insertRole(@ModelAttribute("roleManage") RoleManage roleManage,
@@ -211,7 +211,7 @@ public class EgovRoleManageController {
 	 * @param roleManage RoleManage
 	 * @param bindingResult BindingResult
 	 * @return String
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
     @RequestMapping(value="/sec/rmt/EgovRoleUpdate.do")
 	public String updateRole(@ModelAttribute("roleManage") RoleManage roleManage,
@@ -234,7 +234,7 @@ public class EgovRoleManageController {
 	 * 불필요한 롤정보를 화면에 조회하여 데이터베이스에서 삭제
 	 * @param roleManage RoleManage
 	 * @return String
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
     @RequestMapping(value="/sec/rmt/EgovRoleDelete.do")
 	public String deleteRole(@ModelAttribute("roleManage") RoleManage roleManage,
@@ -253,7 +253,7 @@ public class EgovRoleManageController {
 	 * @param roleCodes String
 	 * @param roleManage RoleManage
 	 * @return String
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	@RequestMapping(value="/sec/rmt/EgovRoleListDelete.do")
 	public String deleteRoleList(@RequestParam("roleCodes") String roleCodes,

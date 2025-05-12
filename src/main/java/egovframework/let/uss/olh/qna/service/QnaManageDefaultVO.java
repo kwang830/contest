@@ -12,7 +12,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *   
  *   수정일      수정자           수정내용
@@ -20,7 +20,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  *   2009.04.01  박정규          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성 
  *
- * </pre>
+ * </pre>"
  */
 public class QnaManageDefaultVO implements Serializable {
 	
@@ -66,7 +66,6 @@ public class QnaManageDefaultVO implements Serializable {
 
 	/**
 	 * searchCondition attribute 값을 설정한다.
-	 * @return searchCondition String
 	 */
 	public void setSearchCondition(String searchCondition) {
 		this.searchCondition = searchCondition;
@@ -82,7 +81,6 @@ public class QnaManageDefaultVO implements Serializable {
 
 	/**
 	 * searchKeyword attribute 값을 설정한다.
-	 * @return searchKeyword String
 	 */
 	public void setSearchKeyword(String searchKeyword) {
 		this.searchKeyword = searchKeyword;
@@ -98,7 +96,6 @@ public class QnaManageDefaultVO implements Serializable {
 
 	/**
 	 * searchUseYn attribute 값을 설정한다.
-	 * @return searchUseYn String
 	 */
 	public void setSearchUseYn(String searchUseYn) {
 		this.searchUseYn = searchUseYn;
@@ -114,7 +111,6 @@ public class QnaManageDefaultVO implements Serializable {
 
 	/**
 	 * pageIndex attribute 값을 설정한다.
-	 * @return pageIndex int
 	 */
 	public void setPageIndex(int pageIndex) {
 		this.pageIndex = pageIndex;
@@ -130,7 +126,6 @@ public class QnaManageDefaultVO implements Serializable {
 
 	/**
 	 * pageUnit attribute 값을 설정한다.
-	 * @return pageUnit int
 	 */
 	public void setPageUnit(int pageUnit) {
 		this.pageUnit = pageUnit;
@@ -146,7 +141,6 @@ public class QnaManageDefaultVO implements Serializable {
 
 	/**
 	 * pageSize attribute 값을 설정한다.
-	 * @return pageSize int
 	 */
 	public void setPageSize(int pageSize) {
 		this.pageSize = pageSize;
@@ -162,7 +156,6 @@ public class QnaManageDefaultVO implements Serializable {
 
 	/**
 	 * firstIndex attribute 값을 설정한다.
-	 * @return firstIndex int
 	 */
 	public void setFirstIndex(int firstIndex) {
 		this.firstIndex = firstIndex;
@@ -178,7 +171,6 @@ public class QnaManageDefaultVO implements Serializable {
 
 	/**
 	 * lastIndex attribute 값을 설정한다.
-	 * @return lastIndex int
 	 */
 	public void setLastIndex(int lastIndex) {
 		this.lastIndex = lastIndex;
@@ -194,7 +186,6 @@ public class QnaManageDefaultVO implements Serializable {
 
 	/**
 	 * recordCountPerPage attribute 값을 설정한다.
-	 * @return recordCountPerPage int
 	 */
 	public void setRecordCountPerPage(int recordCountPerPage) {
 		this.recordCountPerPage = recordCountPerPage;
@@ -204,9 +195,7 @@ public class QnaManageDefaultVO implements Serializable {
      * toString 메소드를 대치한다.
      */
     public String toString() {
-    	return ToStringBuilder.reflectionToString(this);
+		return ToStringBuilder.reflectionToString(this);
     }
-    
-    
-    
+
 }

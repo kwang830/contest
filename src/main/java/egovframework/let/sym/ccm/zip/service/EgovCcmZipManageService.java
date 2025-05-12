@@ -11,7 +11,7 @@ import java.util.List;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일      수정자           수정내용
@@ -19,34 +19,34 @@ import java.util.List;
  *   2009.04.01  이중호          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성
  *
- * </pre>
+ * </pre>"
  */
 public interface EgovCcmZipManageService {
 
 	/**
 	 * 우편번호를 삭제한다.
 	 * @param zip
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	void deleteZip(Zip zip) throws Exception;
 
 	/**
 	 * 우편번호 전체를 삭제한다.
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	void deleteAllZip() throws Exception;
 
 	/**
 	 * 우편번호를 등록한다.
 	 * @param zip
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	void insertZip(Zip zip) throws Exception;
 
 	/**
 	 * 우편번호 엑셀파일을 등록한다.
 	 * @param zip
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	void insertExcelZip(InputStream file) throws Exception;
 
@@ -54,7 +54,7 @@ public interface EgovCcmZipManageService {
 	 * 우편번호 상세항목을 조회한다.
 	 * @param zip
 	 * @return Zip(우편번호)
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	Zip selectZipDetail(Zip zip) throws Exception;
 
@@ -62,7 +62,7 @@ public interface EgovCcmZipManageService {
 	 * 우편번호 목록을 조회한다.
 	 * @param searchVO
 	 * @return List(우편번호 목록)
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	List<?> selectZipList(ZipVO searchVO) throws Exception;
 
@@ -76,7 +76,7 @@ public interface EgovCcmZipManageService {
 	/**
 	 * 우편번호를 수정한다.
 	 * @param zip
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	void updateZip(Zip zip) throws Exception;
 

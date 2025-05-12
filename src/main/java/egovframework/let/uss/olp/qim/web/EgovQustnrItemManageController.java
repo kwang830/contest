@@ -31,7 +31,7 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일      수정자           수정내용
@@ -39,7 +39,7 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
  *   2009.03.20  장동한          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성
  *
- * </pre>
+ * </pre>"
  */
 @Controller
 public class EgovQustnrItemManageController {
@@ -56,18 +56,12 @@ public class EgovQustnrItemManageController {
 	@Resource(name = "egovQustnrItemManageService")
 	private EgovQustnrItemManageService egovQustnrItemManageService;
 
-    /** EgovPropertyService */
+    /* EgovPropertyService */
     @Resource(name = "propertiesService")
     protected EgovPropertyService propertiesService;
 
 	/**
 	 * 설문항목 팝업 목록을 조회한다.
-	 * @param searchVO
-	 * @param commandMap
-	 * @param qustnrItemManageVO
-	 * @param model
-	 * @return "/uss/olp/qim/EgovQustnrItemManageListPopup"
-	 * @throws Exception
 	 */
 	@RequestMapping(value="/uss/olp/qim/EgovQustnrItemManageListPopup.do")
 	public String EgovQustnrItemManageListPopup(
@@ -82,11 +76,11 @@ public class EgovQustnrItemManageController {
 			egovQustnrItemManageService.deleteQustnrItemManage(qustnrItemManageVO);
 		}
 
-    	/** EgovPropertyService.sample */
+    	/* EgovPropertyService.sample */
     	searchVO.setPageUnit(propertiesService.getInt("pageUnit"));
     	searchVO.setPageSize(propertiesService.getInt("pageSize"));
 
-    	/** pageing */
+    	/* pageing */
     	PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(searchVO.getPageIndex());
 		paginationInfo.setRecordCountPerPage(searchVO.getPageUnit());
@@ -110,12 +104,6 @@ public class EgovQustnrItemManageController {
 
 	/**
 	 * 설문항목 목록을 조회한다.
-	 * @param searchVO
-	 * @param commandMap
-	 * @param qustnrItemManageVO
-	 * @param model
-	 * @return "/uss/olp/qim/EgovQustnrItemManageList"
-	 * @throws Exception
 	 */
 	@RequestMapping(value="/uss/olp/qim/EgovQustnrItemManageList.do")
 	public String EgovQustnrItemManageList(
@@ -133,11 +121,11 @@ public class EgovQustnrItemManageController {
 			searchVO.setSearchKeyword(qustnrItemManageVO.getQestnrQesitmId());
 		}
 
-    	/** EgovPropertyService.sample */
+    	/* EgovPropertyService.sample */
     	searchVO.setPageUnit(propertiesService.getInt("pageUnit"));
     	searchVO.setPageSize(propertiesService.getInt("pageSize"));
 
-    	/** pageing */
+    	/* pageing */
     	PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(searchVO.getPageIndex());
 		paginationInfo.setRecordCountPerPage(searchVO.getPageUnit());
@@ -161,12 +149,6 @@ public class EgovQustnrItemManageController {
 
 	/**
 	 * 설문항목 목록을 상세조회 조회한다.
-	 * @param searchVO
-	 * @param qustnrItemManageVO
-	 * @param commandMap
-	 * @param model
-	 * @return  "/uss/olp/qim/EgovQustnrItemManageDetail"
-	 * @throws Exception
 	 */
 	@RequestMapping(value="/uss/olp/qim/EgovQustnrItemManageDetail.do")
 	public String EgovQustnrItemManageDetail(
@@ -192,13 +174,6 @@ public class EgovQustnrItemManageController {
 
 	/**
 	 * 설문항목를 수정한다.
-	 * @param searchVO
-	 * @param commandMap
-	 * @param qustnrItemManageVO
-	 * @param bindingResult
-	 * @param model
-	 * @return "/uss/olp/qim/EgovQustnrItemManageModify"
-	 * @throws Exception
 	 */
 	@RequestMapping(value="/uss/olp/qim/EgovQustnrItemManageModify.do")
 	public String QustnrItemManageModify(
@@ -253,13 +228,6 @@ public class EgovQustnrItemManageController {
 
 	/**
 	 * 설문항목를 등록한다.
-	 * @param searchVO
-	 * @param commandMap
-	 * @param qustnrItemManageVO
-	 * @param bindingResult
-	 * @param model
-	 * @return "/uss/olp/qim/EgovQustnrItemManageRegist"
-	 * @throws Exception
 	 */
 	@RequestMapping(value="/uss/olp/qim/EgovQustnrItemManageRegist.do")
 	public String QustnrItemManageRegist(

@@ -8,7 +8,7 @@ package egovframework.let.uss.olh.qna.service;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *   
  *   수정일      수정자           수정내용
@@ -16,7 +16,7 @@ package egovframework.let.uss.olh.qna.service;
  *   2009.04.01  박정규          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성 
  *
- * </pre>
+ * </pre>"
  */
 public class QnaManageVO extends QnaManageDefaultVO {
 	
@@ -107,7 +107,6 @@ public class QnaManageVO extends QnaManageDefaultVO {
 
 	/**
 	 * qaId attribute 값을 설정한다.
-	 * @return qaId String
 	 */
 	public void setQaId(String qaId) {
 		this.qaId = qaId;
@@ -123,7 +122,6 @@ public class QnaManageVO extends QnaManageDefaultVO {
 
 	/**
 	 * qestnSj attribute 값을 설정한다.
-	 * @return qestnSj String
 	 */
 	public void setQestnSj(String qestnSj) {
 		this.qestnSj = qestnSj;
@@ -139,7 +137,6 @@ public class QnaManageVO extends QnaManageDefaultVO {
 
 	/**
 	 * qestnCn attribute 값을 설정한다.
-	 * @return qestnCn String
 	 */
 	public void setQestnCn(String qestnCn) {
 		this.qestnCn = qestnCn;
@@ -155,7 +152,6 @@ public class QnaManageVO extends QnaManageDefaultVO {
 
 	/**
 	 * writngPassword attribute 값을 설정한다.
-	 * @return writngPassword String
 	 */
 	public void setWritngPassword(String writngPassword) {
 		this.writngPassword = writngPassword;
@@ -171,7 +167,6 @@ public class QnaManageVO extends QnaManageDefaultVO {
 
 	/**
 	 * areaNo attribute 값을 설정한다.
-	 * @return areaNo String
 	 */
 	public void setAreaNo(String areaNo) {
 		this.areaNo = areaNo;
@@ -187,7 +182,6 @@ public class QnaManageVO extends QnaManageDefaultVO {
 
 	/**
 	 * middleTelno attribute 값을 설정한다.
-	 * @return middleTelno String
 	 */
 	public void setMiddleTelno(String middleTelno) {
 		this.middleTelno = middleTelno;
@@ -203,7 +197,6 @@ public class QnaManageVO extends QnaManageDefaultVO {
 
 	/**
 	 * endTelno attribute 값을 설정한다.
-	 * @return endTelno String
 	 */
 	public void setEndTelno(String endTelno) {
 		this.endTelno = endTelno;
@@ -219,7 +212,6 @@ public class QnaManageVO extends QnaManageDefaultVO {
 
 	/**
 	 * emailAdres attribute 값을 설정한다.
-	 * @return emailAdres String
 	 */
 	public void setEmailAdres(String emailAdres) {
 		this.emailAdres = emailAdres;
@@ -235,7 +227,6 @@ public class QnaManageVO extends QnaManageDefaultVO {
 
 	/**
 	 * emailAnswerAt attribute 값을 설정한다.
-	 * @return emailAnswerAt String
 	 */
 	public void setEmailAnswerAt(String emailAnswerAt) {
 		this.emailAnswerAt = emailAnswerAt;
@@ -251,7 +242,6 @@ public class QnaManageVO extends QnaManageDefaultVO {
 
 	/**
 	 * wrterNm attribute 값을 설정한다.
-	 * @return wrterNm String
 	 */
 	public void setWrterNm(String wrterNm) {
 		this.wrterNm = wrterNm;
@@ -267,7 +257,6 @@ public class QnaManageVO extends QnaManageDefaultVO {
 
 	/**
 	 * writngDe attribute 값을 설정한다.
-	 * @return writngDe String
 	 */
 	public void setWritngDe(String writngDe) {
 		this.writngDe = writngDe;
@@ -283,7 +272,6 @@ public class QnaManageVO extends QnaManageDefaultVO {
 
 	/**
 	 * inqireCo attribute 값을 설정한다.
-	 * @return inqireCo String
 	 */
 	public void setInqireCo(String inqireCo) {
 		this.inqireCo = inqireCo;
@@ -299,7 +287,6 @@ public class QnaManageVO extends QnaManageDefaultVO {
 
 	/**
 	 * qnaProcessSttusCode attribute 값을 설정한다.
-	 * @return qnaProcessSttusCode String
 	 */
 	public void setQnaProcessSttusCode(String qnaProcessSttusCode) {
 		this.qnaProcessSttusCode = qnaProcessSttusCode;
@@ -315,7 +302,6 @@ public class QnaManageVO extends QnaManageDefaultVO {
 
 	/**
 	 * qnaProcessSttusCodeNm attribute 값을 설정한다.
-	 * @return qnaProcessSttusCodeNm String
 	 */
 	public void setQnaProcessSttusCodeNm(String qnaProcessSttusCodeNm) {
 		this.qnaProcessSttusCodeNm = qnaProcessSttusCodeNm;
@@ -331,7 +317,6 @@ public class QnaManageVO extends QnaManageDefaultVO {
 
 	/**
 	 * answerCn attribute 값을 설정한다.
-	 * @return answerCn String
 	 */
 	public void setAnswerCn(String answerCn) {
 		this.answerCn = answerCn;
@@ -347,7 +332,6 @@ public class QnaManageVO extends QnaManageDefaultVO {
 
 	/**
 	 * answerDe attribute 값을 설정한다.
-	 * @return answerDe String
 	 */
 	public void setAnswerDe(String answerDe) {
 		this.answerDe = answerDe;
@@ -363,7 +347,6 @@ public class QnaManageVO extends QnaManageDefaultVO {
 
 	/**
 	 * passwordConfirmAt attribute 값을 설정한다.
-	 * @return passwordConfirmAt String
 	 */
 	public void setPasswordConfirmAt(String passwordConfirmAt) {
 		this.passwordConfirmAt = passwordConfirmAt;
@@ -379,7 +362,6 @@ public class QnaManageVO extends QnaManageDefaultVO {
 
 	/**
 	 * emplyrNm attribute 값을 설정한다.
-	 * @return emplyrNm String
 	 */
 	public void setEmplyrNm(String emplyrNm) {
 		this.emplyrNm = emplyrNm;
@@ -395,7 +377,6 @@ public class QnaManageVO extends QnaManageDefaultVO {
 
 	/**
 	 * offmTelno attribute 값을 설정한다.
-	 * @return offmTelno String
 	 */
 	public void setOffmTelno(String offmTelno) {
 		this.offmTelno = offmTelno;
@@ -411,7 +392,6 @@ public class QnaManageVO extends QnaManageDefaultVO {
 
 	/**
 	 * aemailAdres attribute 값을 설정한다.
-	 * @return aemailAdres String
 	 */
 	public void setAemailAdres(String aemailAdres) {
 		this.aemailAdres = aemailAdres;
@@ -427,7 +407,6 @@ public class QnaManageVO extends QnaManageDefaultVO {
 
 	/**
 	 * orgnztNm attribute 값을 설정한다.
-	 * @return orgnztNm String
 	 */
 	public void setOrgnztNm(String orgnztNm) {
 		this.orgnztNm = orgnztNm;
@@ -443,7 +422,6 @@ public class QnaManageVO extends QnaManageDefaultVO {
 
 	/**
 	 * frstRegisterPnttm attribute 값을 설정한다.
-	 * @return frstRegisterPnttm String
 	 */
 	public void setFrstRegisterPnttm(String frstRegisterPnttm) {
 		this.frstRegisterPnttm = frstRegisterPnttm;
@@ -459,7 +437,6 @@ public class QnaManageVO extends QnaManageDefaultVO {
 
 	/**
 	 * frstRegisterId attribute 값을 설정한다.
-	 * @return frstRegisterId String
 	 */
 	public void setFrstRegisterId(String frstRegisterId) {
 		this.frstRegisterId = frstRegisterId;
@@ -475,7 +452,6 @@ public class QnaManageVO extends QnaManageDefaultVO {
 
 	/**
 	 * lastUpdusrPnttm attribute 값을 설정한다.
-	 * @return lastUpdusrPnttm String
 	 */
 	public void setLastUpdusrPnttm(String lastUpdusrPnttm) {
 		this.lastUpdusrPnttm = lastUpdusrPnttm;
@@ -491,12 +467,9 @@ public class QnaManageVO extends QnaManageDefaultVO {
 
 	/**
 	 * lastUpdusrId attribute 값을 설정한다.
-	 * @return lastUpdusrId String
 	 */
 	public void setLastUpdusrId(String lastUpdusrId) {
 		this.lastUpdusrId = lastUpdusrId;
 	}
 
-    
-   
 }

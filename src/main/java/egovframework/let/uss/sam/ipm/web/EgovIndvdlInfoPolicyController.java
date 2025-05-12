@@ -28,21 +28,19 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
  * @author 공통서비스 장동한
  * @since 2009.07.03
  * @version 1.0
- * @see <pre>
- * &lt;&lt; 개정이력(Modification Information) &gt;&gt;
+ * @see
+ * "<pre>
+ * 개정이력(Modification Information)
  *
  *   수정일      수정자           수정내용
  *  -------    --------    ---------------------------
  *   2009.07.03  장동한          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성
  *
- * </pre>
+ * </pre>"
  */
 @Controller
 public class EgovIndvdlInfoPolicyController {
-
-
-
 
     @Autowired
     private DefaultBeanValidator beanValidator;
@@ -55,18 +53,12 @@ public class EgovIndvdlInfoPolicyController {
     @Resource(name = "egovIndvdlInfoPolicyService")
     private EgovIndvdlInfoPolicyService egovIndvdlInfoPolicyService;
 
-    /** EgovPropertyService */
+    /* EgovPropertyService */
     @Resource(name = "propertiesService")
     protected EgovPropertyService propertiesService;
 
     /**
      * 개인정보보호정책 목록을 조회한다.
-     * @param searchVO
-     * @param commandMap
-     * @param indvdlInfoPolicy
-     * @param model
-     * @return "/uss/sam/ipm/EgovOnlinePollList"
-     * @throws Exception
      */
     @SuppressWarnings("unused")
 	@RequestMapping(value = "/uss/sam/ipm/listIndvdlInfoPolicy.do")
@@ -77,11 +69,11 @@ public class EgovIndvdlInfoPolicyController {
 
         String sSearchMode = commandMap.get("searchMode") == null ? "" : (String)commandMap.get("searchMode");
 
-        /** EgovPropertyService.sample */
+        /* EgovPropertyService.sample */
         searchVO.setPageUnit(propertiesService.getInt("pageUnit"));
         searchVO.setPageSize(propertiesService.getInt("pageSize"));
 
-        /** pageing */
+        /* pageing */
         PaginationInfo paginationInfo = new PaginationInfo();
         paginationInfo.setCurrentPageNo(searchVO.getPageIndex());
         paginationInfo.setRecordCountPerPage(searchVO.getPageUnit());
@@ -104,13 +96,6 @@ public class EgovIndvdlInfoPolicyController {
 
     /**
      * 개인정보보호정책 목록을 상세조회 조회한다.
-     * @param searchVO
-     * @param indvdlInfoPolicy
-     * @param commandMap
-     * @param model
-     * @return
-     *         "/uss/sam/ipm/EgovOnlinePollDetail"
-     * @throws Exception
      */
     @RequestMapping(value = "/uss/sam/ipm/detailIndvdlInfoPolicy.do")
     public String EgovIndvdlInfoPolicyDetail(
@@ -135,14 +120,6 @@ public class EgovIndvdlInfoPolicyController {
 
     /**
      * 개인정보보호정책를 수정한다.
-     * @param searchVO
-     * @param commandMap
-     * @param indvdlInfoPolicy
-     * @param bindingResult
-     * @param model
-     * @return
-     *         "/uss/sam/ipm/EgovOnlinePollUpdt"
-     * @throws Exception
      */
     @RequestMapping(value = "/uss/sam/ipm/updtIndvdlInfoPolicy.do")
     public String EgovIndvdlInfoPolicyModify(
@@ -186,14 +163,6 @@ public class EgovIndvdlInfoPolicyController {
 
     /**
      * 개인정보보호정책를 등록한다.
-     * @param searchVO
-     * @param commandMap
-     * @param indvdlInfoPolicy
-     * @param bindingResult
-     * @param model
-     * @return
-     *         "/uss/sam/ipm/EgovOnlinePollRegist"
-     * @throws Exception
      */
     @RequestMapping(value = "/uss/sam/ipm/registIndvdlInfoPolicy.do")
     public String EgovIndvdlInfoPolicyRegist(

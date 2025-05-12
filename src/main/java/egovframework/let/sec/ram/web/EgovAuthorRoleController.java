@@ -24,7 +24,7 @@ import org.springframework.web.bind.support.SessionStatus;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *   
  *   수정일      수정자           수정내용
@@ -32,7 +32,7 @@ import org.springframework.web.bind.support.SessionStatus;
  *   2009.03.11  이문준          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성 
  *
- * </pre>
+ * </pre>"
  */
 
 @Controller
@@ -44,14 +44,14 @@ public class EgovAuthorRoleController {
     @Resource(name = "egovAuthorRoleManageService")
     private EgovAuthorRoleManageService egovAuthorRoleManageService;
     
-    /** EgovPropertyService */
+    /* EgovPropertyService */
     @Resource(name = "propertiesService")
     protected EgovPropertyService propertiesService;
 
     /**
 	 * 권한 롤 관계 화면 이동
 	 * @return "/sec/ram/EgovDeptAuthorList"
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
     @RequestMapping("/sec/ram/EgovAuthorRoleListView.do")
     public String selectAuthorRoleListView() throws Exception {
@@ -64,13 +64,13 @@ public class EgovAuthorRoleController {
 	 * 
 	 * @param authorRoleManageVO AuthorRoleManageVO
 	 * @return String
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
     @RequestMapping(value="/sec/ram/EgovAuthorRoleList.do")
 	public String selectAuthorRoleList(@ModelAttribute("authorRoleManageVO") AuthorRoleManageVO authorRoleManageVO,
 			                            ModelMap model) throws Exception {
 
-    	/** paging */
+    	/* paging */
     	PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(authorRoleManageVO.getPageIndex());
 		paginationInfo.setRecordCountPerPage(authorRoleManageVO.getPageUnit());
@@ -99,7 +99,7 @@ public class EgovAuthorRoleController {
 	 * @param regYns String
 	 * @param authorRoleManage AuthorRoleManage
 	 * @return String
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	@RequestMapping(value="/sec/ram/EgovAuthorRoleInsert.do")
 	public String insertAuthorRole(@RequestParam("authorCode") String authorCode,

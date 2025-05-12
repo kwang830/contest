@@ -12,14 +12,14 @@ import egovframework.com.cmm.service.EgovUserDetailsService;
  * @author sjyoon
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일      수정자           수정내용
  *  -------    -------------    ----------------------
  *   2009.03.10  sjyoon         최초 생성
  *   2011.07.01	 서준식          interface 생성후 상세 로직의 분리
- * </pre>
+ * </pre>"
  */
 
 public class EgovUserDetailsHelper {

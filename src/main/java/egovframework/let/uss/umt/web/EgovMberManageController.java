@@ -36,14 +36,14 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일      수정자           수정내용
  *  -------    --------    ---------------------------
  *   2009.04.10  조재영          최초 생성
  *
- * </pre>
+ * </pre>"
  */
 @Controller
 public class EgovMberManageController {
@@ -60,7 +60,7 @@ public class EgovMberManageController {
     @Resource(name="egovMessageSource")
     EgovMessageSource egovMessageSource;
 
-	/** EgovPropertyService */
+	/* EgovPropertyService */
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertiesService;
 
@@ -73,7 +73,7 @@ public class EgovMberManageController {
 	 * @param userSearchVO 검색조건정보
 	 * @param model 화면모델
 	 * @return cmm/uss/umt/EgovMberManage
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping(value = "/uss/umt/mber/EgovMberManage.do")
 	public String selectMberList(@ModelAttribute("userSearchVO") UserDefaultVO userSearchVO, ModelMap model, HttpServletRequest request) throws Exception {
@@ -89,11 +89,11 @@ public class EgovMberManageController {
 			return "uat/uia/EgovLoginUsr";
 		}
 
-		/** EgovPropertyService */
+		/* EgovPropertyService */
 		userSearchVO.setPageUnit(propertiesService.getInt("pageUnit"));
 		userSearchVO.setPageSize(propertiesService.getInt("pageSize"));
 
-		/** pageing */
+		/* pageing */
 		PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(userSearchVO.getPageIndex());
 		paginationInfo.setRecordCountPerPage(userSearchVO.getPageUnit());
@@ -123,7 +123,7 @@ public class EgovMberManageController {
 	 * @param mberManageVO 일반회원초기화정보
 	 * @param model 화면모델
 	 * @return cmm/uss/umt/EgovMberInsert
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/uss/umt/mber/EgovMberInsertView.do")
 	public String insertMberView(@ModelAttribute("userSearchVO") UserDefaultVO userSearchVO, @ModelAttribute("mberManageVO") MberManageVO mberManageVO, Model model)
@@ -163,7 +163,7 @@ public class EgovMberManageController {
 	 * @param bindingResult 입력값검증용 bindingResult
 	 * @param model 화면모델
 	 * @return forward:/uss/umt/mber/EgovMberManage.do
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/uss/umt/mber/EgovMberInsert.do")
 	public String insertMber(@ModelAttribute("mberManageVO") MberManageVO mberManageVO, BindingResult bindingResult, Model model) throws Exception {
@@ -209,7 +209,7 @@ public class EgovMberManageController {
 	 * @param userSearchVO 검색조건
 	 * @param model 화면모델
 	 * @return cmm/uss/umt/EgovMberSelectUpdt
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/uss/umt/mber/EgovMberSelectUpdtView.do")
 	public String updateMberView(@RequestParam("selectedId") String mberId, @ModelAttribute("searchVO") UserDefaultVO userSearchVO, Model model) throws Exception {
@@ -276,7 +276,7 @@ public class EgovMberManageController {
 	 * @param bindingResult 입력값검증용 bindingResult
 	 * @param model 화면모델
 	 * @return forward:/uss/umt/mber/EgovMberManage.do
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/uss/umt/mber/EgovMberSelectUpdt.do")
 	public String updateMber(@ModelAttribute("mberManageVO") MberManageVO mberManageVO, BindingResult bindingResult, Model model) throws Exception {
@@ -346,7 +346,7 @@ public class EgovMberManageController {
 	 * @param userSearchVO 검색조건정보
 	 * @param model 화면모델
 	 * @return forward:/uss/umt/mber/EgovMberManage.do
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/uss/umt/mber/EgovMberDelete.do")
 	public String deleteMber(@RequestParam("checkedIdForDel") String checkedIdForDel, @ModelAttribute("searchVO") UserDefaultVO userSearchVO, Model model) throws Exception {
@@ -371,7 +371,7 @@ public class EgovMberManageController {
 	 * @param commandMap 파라메터전달용 commandMap
 	 * @param model 화면모델
 	 * @return cmm/uss/umt/EgovMberSbscrb
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/uss/umt/cmm/EgovMberSbscrbView.do")
 	public String sbscrbMberView(@ModelAttribute("userSearchVO") UserDefaultVO userSearchVO, @ModelAttribute("mberManageVO") MberManageVO mberManageVO,
@@ -412,7 +412,7 @@ public class EgovMberManageController {
 	 * 일반회원가입신청등록처리후로그인화면으로 이동한다.
 	 * @param mberManageVO 일반회원가입신청정보
 	 * @return forward:/uat/uia/egovLoginUsr.do
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/uss/umt/cmm/EgovMberSbscrb.do")
 	public String sbscrbMber(@ModelAttribute("mberManageVO") MberManageVO mberManageVO) throws Exception {
@@ -430,7 +430,7 @@ public class EgovMberManageController {
 	 * 일반회원 약관확인
 	 * @param model 화면모델
 	 * @return cmm/uss/umt/EgovStplatCnfirm
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/uss/umt/cmm/EgovStplatCnfirmMber.do")
 	public String sbscrbEntrprsMber(Model model) throws Exception {
@@ -459,7 +459,7 @@ public class EgovMberManageController {
 	 * @param userSearchVO 검색조건
 	 * @param mberManageVO 일반회원수정정보(비밀번호)
 	 * @return cmm/uss/umt/EgovMberPasswordUpdt
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping(value = "/uss/umt/mber/EgovMberPasswordUpdt.do")
 	public String updatePassword(ModelMap model, @RequestParam Map<String, Object> commandMap, @ModelAttribute("searchVO") UserDefaultVO userSearchVO,
@@ -520,7 +520,7 @@ public class EgovMberManageController {
 	 * @param userSearchVO 검색조건
 	 * @param mberManageVO 일반회원수정정보(비밀번호)
 	 * @return cmm/uss/umt/EgovMberPasswordReset
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping(value = "/uss/umt/mber/EgovMberPasswordReset.do")
 	public String updatePasswordReset(ModelMap model, @RequestParam Map<String, Object> commandMap, @ModelAttribute("searchVO") UserDefaultVO userSearchVO,
@@ -551,12 +551,10 @@ public class EgovMberManageController {
 		mberManageVO.setPassword(EgovFileScrty.encryptPassword(password, mberManageVO.getMberId()));
 
 		if (!mberManageVO.getPasswordCnsr().isEmpty()) {
-			System.out.println("1");
 			mberManageService.updatePassword(mberManageVO);
 			model.addAttribute("mberManageVO", mberManageVO);
 			resultMsg = "success.common.update";
 		}else{
-			System.out.println("2");
 			model.addAttribute("mberManageVO", mberManageVO);
 			resultMsg = "fail.common.update";
 		}
@@ -615,13 +613,11 @@ public class EgovMberManageController {
 	 * @param userSearchVO 검색조건
 	 * @param mberManageVO 일반회원수정정보(비밀번호)
 	 * @return cmm/uss/umt/EgovMberPasswordUpdt
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping(value = "/uss/umt/mber/EgovMberPasswordUpdtView.do")
 	public String updatePasswordView(ModelMap model, @RequestParam Map<String, Object> commandMap, @ModelAttribute("searchVO") UserDefaultVO userSearchVO,
 			@ModelAttribute("mberManageVO") MberManageVO mberManageVO) throws Exception {
-
-		System.out.println("updatePasswordView >>> mberManageVO:" + mberManageVO);
 
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
@@ -633,8 +629,6 @@ public class EgovMberManageController {
 		String userTyForPassword = (String) commandMap.get("userTyForPassword");
 		mberManageVO.setUserTy(userTyForPassword);
 
-		System.out.println("userTyForPassword :" + userTyForPassword);
-
 		model.addAttribute("userSearchVO", userSearchVO);
 		model.addAttribute("mberManageVO", mberManageVO);
 		return "cmm/uss/umt/EgovMberPasswordUpdt";
@@ -644,7 +638,7 @@ public class EgovMberManageController {
 	 * 입력한 사용자아이디의 중복확인화면 이동
 	 * @param model 화면모델
 	 * @return cmm/uss/umt/EgovIdDplctCnfirm
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping(value = "/uss/umt/EgovIdDplctCnfirmView.do")
 	public String checkIdDplct(ModelMap model) throws Exception {
@@ -665,7 +659,7 @@ public class EgovMberManageController {
 	 * @param commandMap 파라메터전달용 commandMap
 	 * @param model 화면모델
 	 * @return cmm/uss/umt/EgovIdDplctCnfirm
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping(value = "/uss/umt/cmm/EgovIdDplctCnfirm.do")
 	public String checkIdDplct(@RequestParam Map<String, Object> commandMap, ModelMap model) throws Exception {
@@ -691,13 +685,12 @@ public class EgovMberManageController {
 
 	/**
 	 * 내정보관리
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping(value = "/uss/umt/edit/MyInfo.do")
 	public String memberMyInfoView(ModelMap model, @RequestParam Map<String, Object> commandMap, @ModelAttribute("searchVO") UserDefaultVO userSearchVO,
 									 @ModelAttribute("mberManageVO") MberManageVO mberManageVO) throws Exception {
 
-		System.out.println("memberMyInfoView >> ");
 		LoginVO user;
 
 		// 미인증 사용자에 대한 보안처리
@@ -721,7 +714,7 @@ public class EgovMberManageController {
 
 	/**
 	 * 내정보관리
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping(value = "/uss/umt/mber/userMngm.do")
 	public String memberUserMngmView(ModelMap model, @RequestParam Map<String, Object> commandMap, @ModelAttribute("searchVO") UserDefaultVO userSearchVO,
@@ -748,13 +741,12 @@ public class EgovMberManageController {
 	 * @param userSearchVO 검색조건
 	 * @param mberManageVO 내정보관리(비밀번호)
 	 * @return cmm/uss/edit/MyInfoPasswordUpdt
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping(value = "/uss/umt/edit/MyInfoPasswordUpdt.do")
 	public String updateMyPassword(ModelMap model, @RequestParam Map<String, Object> commandMap, @ModelAttribute("searchVO") UserDefaultVO userSearchVO,
 								 @ModelAttribute("mberManageVO") MberManageVO mberManageVO, HttpServletRequest request) throws Exception {
 
-		System.out.println("updateMyPassword >> ");
 
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
@@ -768,11 +760,11 @@ public class EgovMberManageController {
 		String newPassword2 = (String) commandMap.get("newPassword2");
 		String uniqId = (String) commandMap.get("uniqId");
 
-		System.out.println("oldPassword: "+oldPassword);
-		System.out.println("newPassword: "+newPassword);
-		System.out.println("newPassword2: "+newPassword2);
-		System.out.println("uniqId: "+uniqId);
-		System.out.println("mberManageVO.getMberId(): "+mberManageVO.getMberId());
+//		System.out.println("oldPassword: "+oldPassword);
+//		System.out.println("newPassword: "+newPassword);
+//		System.out.println("newPassword2: "+newPassword2);
+//		System.out.println("uniqId: "+uniqId);
+//		System.out.println("mberManageVO.getMberId(): "+mberManageVO.getMberId());
 
 		boolean isCorrectPassword = false;
 		MberManageVO resultVO = new MberManageVO();

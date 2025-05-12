@@ -24,7 +24,7 @@ import org.springframework.stereotype.Service;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일      수정자           수정내용
@@ -32,7 +32,7 @@ import org.springframework.stereotype.Service;
  *   2009.04.01  이중호          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성
  *
- * </pre>
+ * </pre>"
  */
 @Service("ZipManageService")
 public class EgovCcmZipManageServiceImpl extends EgovAbstractServiceImpl implements EgovCcmZipManageService {
@@ -69,10 +69,7 @@ public class EgovCcmZipManageServiceImpl extends EgovAbstractServiceImpl impleme
 
 	/**
 	 * 우편번호 엑셀파일을 등록한다.
-	 * @param zip
-	 * @throws Exception
 	 */
-
 	@Override
 	public void insertExcelZip(InputStream file) throws Exception {
 //		zipManageDAO.insertExcelZip();
@@ -85,8 +82,7 @@ public class EgovCcmZipManageServiceImpl extends EgovAbstractServiceImpl impleme
 	 */
 	@Override
 	public Zip selectZipDetail(Zip zip) throws Exception {
-    	Zip ret = zipManageDAO.selectZipDetail(zip);
-    	return ret;
+        return zipManageDAO.selectZipDetail(zip);
 	}
 
 	/**

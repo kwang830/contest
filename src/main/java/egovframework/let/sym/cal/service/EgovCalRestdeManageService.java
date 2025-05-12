@@ -10,7 +10,7 @@ import java.util.List;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일      수정자           수정내용
@@ -18,115 +18,115 @@ import java.util.List;
  *   2009.04.01  이중호          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성
  *
- * </pre>
+ * </pre>"
  */
 public interface EgovCalRestdeManageService {
 
 	/**
 	 * 일반달력 팝업 정보를 조회한다.
-	 * @param restde
+	 * @param restde restde
 	 * @return List(일반달력 팝업 날짜정보)
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	List<?> selectNormalRestdePopup(Restde restde)	throws Exception;
 
 	/**
 	 * 행정달력 팝업 정보를 조회한다.
-	 * @param restde
+	 * @param restde restde
 	 * @return List(행정달력 팝업 날짜정보)
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	List<?> selectAdministRestdePopup(Restde restde)	throws Exception;
 
 	/**
 	 * 일반달력 일간 정보를 조회한다.
-	 * @param restde
+	 * @param restde restde
 	 * @return List(일반달력 일간 날짜정보)
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	List<?> selectNormalDayCal(Restde restde)	throws Exception;
 
 	/**
 	 * 일반달력 일간 휴일을 조회한다.
-	 * @param restde
+	 * @param restde restde
 	 * @return List(일반달력 일간 휴일정보)
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	List<?> selectNormalDayRestde(Restde restde)	throws Exception;
 
 	/**
 	 * 일반달력 월간 휴일을 조회한다.
-	 * @param restde
+	 * @param restde restde
 	 * @return List(일반달력 월간 휴일정보)
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	List<?> selectNormalMonthRestde(Restde restde)	throws Exception;
 
 	/**
 	 * 행정달력 일간 정보를 조회한다.
-	 * @param restde
+	 * @param restde restde
 	 * @return List(행정달력 일간 날짜정보)
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	List<?> selectAdministDayCal(Restde restde)	throws Exception;
 
 	/**
 	 * 행정달력 일간 휴일을 조회한다.
-	 * @param restde
+	 * @param restde restde
 	 * @return List(행정달력 일간 휴일정보)
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	List<?> selectAdministDayRestde(Restde restde)	throws Exception;
 
 	/**
 	 * 행정달력 월간 휴일을 조회한다.
-	 * @param restde
+	 * @param restde restde
 	 * @return List(행정달력 월간 휴일정보)
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	List<?> selectAdministMonthRestde(Restde restde)	throws Exception;
 
 	/**
 	 * 휴일을 삭제한다.
-	 * @param restde
-	 * @throws Exception
+	 * @param restde restde
+	 * @throws Exception Exception
 	 */
 	void deleteRestde(Restde restde) throws Exception;
 
 	/**
 	 * 휴일을 등록한다.
-	 * @param restde
-	 * @throws Exception
+	 * @param restde restde
+	 * @throws Exception Exception
 	 */
 	void insertRestde(Restde restde) throws Exception;
 
 	/**
 	 * 휴일 상세항목을 조회한다.
-	 * @param restde
+	 * @param restde restde
 	 * @return Restde(휴일)
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	Restde selectRestdeDetail(Restde restde) throws Exception;
 
 	/**
 	 * 휴일 목록을 조회한다.
-	 * @param searchVO
+	 * @param searchVO searchVO
 	 * @return List(휴일 목록)
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	List<?> selectRestdeList(RestdeVO searchVO) throws Exception;
 
     /**
      * 휴일 총 갯수를 조회한다.
-     * @param searchVO
+     * @param searchVO searchVO
      * @return int(휴일 총 갯수)
      */
     int selectRestdeListTotCnt(RestdeVO searchVO) throws Exception;
 
 	/**
 	 * 휴일을 수정한다.
-	 * @param restde
-	 * @throws Exception
+	 * @param restde restde
+	 * @throws Exception Exception
 	 */
 	void updateRestde(Restde restde) throws Exception;
 

@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *   
  *   수정일      수정자           수정내용
@@ -16,7 +16,7 @@ import java.io.Serializable;
  *   2009.03.20  장동한          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성
  *
- * </pre>
+ * </pre>"
  */
 public class QustnrManageVO implements Serializable {
 	
@@ -74,7 +74,6 @@ public class QustnrManageVO implements Serializable {
 
 	/**
 	 * qestnrId attribute 값을 설정한다.
-	 * @return qestnrId String
 	 */
 	public void setQestnrId(String qestnrId) {
 		this.qestnrId = qestnrId;
@@ -90,7 +89,6 @@ public class QustnrManageVO implements Serializable {
 
 	/**
 	 * qestnrSj attribute 값을 설정한다.
-	 * @return qestnrSj String
 	 */
 	public void setQestnrSj(String qestnrSj) {
 		this.qestnrSj = qestnrSj;
@@ -106,7 +104,6 @@ public class QustnrManageVO implements Serializable {
 
 	/**
 	 * qestnrPurps attribute 값을 설정한다.
-	 * @return qestnrPurps String
 	 */
 	public void setQestnrPurps(String qestnrPurps) {
 		this.qestnrPurps = qestnrPurps;
@@ -122,7 +119,6 @@ public class QustnrManageVO implements Serializable {
 
 	/**
 	 * qestnrWritngGuidanceCn attribute 값을 설정한다.
-	 * @return qestnrWritngGuidanceCn String
 	 */
 	public void setQestnrWritngGuidanceCn(String qestnrWritngGuidanceCn) {
 		this.qestnrWritngGuidanceCn = qestnrWritngGuidanceCn;
@@ -138,7 +134,6 @@ public class QustnrManageVO implements Serializable {
 
 	/**
 	 * qestnrBeginDe attribute 값을 설정한다.
-	 * @return qestnrBeginDe String
 	 */
 	public void setQestnrBeginDe(String qestnrBeginDe) {
 		this.qestnrBeginDe = qestnrBeginDe;
@@ -154,7 +149,6 @@ public class QustnrManageVO implements Serializable {
 
 	/**
 	 * qestnrEndDe attribute 값을 설정한다.
-	 * @return qestnrEndDe String
 	 */
 	public void setQestnrEndDe(String qestnrEndDe) {
 		this.qestnrEndDe = qestnrEndDe;
@@ -170,7 +164,6 @@ public class QustnrManageVO implements Serializable {
 
 	/**
 	 * qestnrTrget attribute 값을 설정한다.
-	 * @return qestnrTrget String
 	 */
 	public void setQestnrTrget(String qestnrTrget) {
 		this.qestnrTrget = qestnrTrget;
@@ -186,7 +179,6 @@ public class QustnrManageVO implements Serializable {
 
 	/**
 	 * qestnrTmplatId attribute 값을 설정한다.
-	 * @return qestnrTmplatId String
 	 */
 	public void setQestnrTmplatId(String qestnrTmplatId) {
 		this.qestnrTmplatId = qestnrTmplatId;
@@ -202,7 +194,6 @@ public class QustnrManageVO implements Serializable {
 
 	/**
 	 * qestnrTmplatTy attribute 값을 설정한다.
-	 * @return qestnrTmplatTy String
 	 */
 	public void setQestnrTmplatTy(String qestnrTmplatTy) {
 		this.qestnrTmplatTy = qestnrTmplatTy;
@@ -218,7 +209,6 @@ public class QustnrManageVO implements Serializable {
 
 	/**
 	 * frstRegisterPnttm attribute 값을 설정한다.
-	 * @return frstRegisterPnttm String
 	 */
 	public void setFrstRegisterPnttm(String frstRegisterPnttm) {
 		this.frstRegisterPnttm = frstRegisterPnttm;
@@ -234,7 +224,6 @@ public class QustnrManageVO implements Serializable {
 
 	/**
 	 * frstRegisterId attribute 값을 설정한다.
-	 * @return frstRegisterId String
 	 */
 	public void setFrstRegisterId(String frstRegisterId) {
 		this.frstRegisterId = frstRegisterId;
@@ -250,7 +239,6 @@ public class QustnrManageVO implements Serializable {
 
 	/**
 	 * lastUpdusrPnttm attribute 값을 설정한다.
-	 * @return lastUpdusrPnttm String
 	 */
 	public void setLastUpdusrPnttm(String lastUpdusrPnttm) {
 		this.lastUpdusrPnttm = lastUpdusrPnttm;
@@ -266,7 +254,6 @@ public class QustnrManageVO implements Serializable {
 
 	/**
 	 * lastUpdusrId attribute 값을 설정한다.
-	 * @return lastUpdusrId String
 	 */
 	public void setLastUpdusrId(String lastUpdusrId) {
 		this.lastUpdusrId = lastUpdusrId;

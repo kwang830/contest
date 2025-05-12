@@ -9,7 +9,7 @@ import java.util.List;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일      수정자           수정내용
@@ -19,7 +19,7 @@ import java.util.List;
  *   							selectUpperMenuNoByPk() 메서드 추가
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성
  *
- * </pre>
+ * </pre>"
  */
 
 public interface EgovMenuManageService {
@@ -29,7 +29,7 @@ public interface EgovMenuManageService {
 	 * MainMenu Head Menu 조회
 	 * @param vo MenuManageVO
 	 * @return List
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	List<?> selectMainMenuHead(MenuManageVO vo) throws Exception;
 
@@ -37,7 +37,7 @@ public interface EgovMenuManageService {
 	 * MainMenu Head Left 조회
 	 * @param vo MenuManageVO
 	 * @return List
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	List<?> selectMainMenuLeft(MenuManageVO vo) throws Exception;
 
@@ -46,7 +46,7 @@ public interface EgovMenuManageService {
 	 * @param iMenuNo int
 	 * @param sUniqId String
 	 * @return String
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	String selectLastMenuURL(int iMenuNo, String sUniqId) throws Exception;
 
@@ -54,7 +54,7 @@ public interface EgovMenuManageService {
 	 * MainMenu Head Menu 조회 - Anonymous
 	 * @param vo MenuManageVO
 	 * @return List
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	List<?> selectMainMenuHeadByAuthor(MenuManageVO vo) throws Exception;
 
@@ -62,7 +62,7 @@ public interface EgovMenuManageService {
 	 * MainMenu Head Left 조회 - Anonymous
 	 * @param vo MenuManageVO
 	 * @return List
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	List<?> selectMainMenuLeftByAuthor(MenuManageVO vo) throws Exception;
 

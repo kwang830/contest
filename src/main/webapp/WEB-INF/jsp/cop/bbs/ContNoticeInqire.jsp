@@ -211,9 +211,10 @@
                         □ 설명회 신청 : <a href="https://forms.gle/8P9oJ9e92dGFtux18" target="_blank" rel="noopener noreferrer" style="color: blue;">https://forms.gle/8P9oJ9e92dGFtux18</a>
                     </div>
                     </c:if>
-                    <div class="board_view_content_con">
-                        <pre><c:out value="${result.nttCn}" escapeXml="false" /></pre>
+                    <div class="board_view_content_con" style="white-space: pre-line;">
+                        <c:out value="${result.nttCn}" escapeXml="false"/>
                     </div>
+
                     <c:if test="${result.atchFileId != ''}">
                     <div class="board_view_file_con">
                         <img src="/images/icon-attachment.png" alt="" style="width: 24px;">

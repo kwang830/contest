@@ -37,7 +37,7 @@ import egovframework.let.uss.olh.faq.service.FaqManageVO;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일      수정자           수정내용
@@ -45,7 +45,7 @@ import egovframework.let.uss.olh.faq.service.FaqManageVO;
  *   2009.04.01  박정규          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성
  *
- * </pre>
+ * </pre>"
  */
 @Controller
 public class EgovFaqManageController {
@@ -53,7 +53,7 @@ public class EgovFaqManageController {
     @Resource(name = "FaqManageService")
     private EgovFaqManageService faqManageService;
 
-    /** EgovPropertyService */
+    /* EgovPropertyService */
     @Resource(name = "propertiesService")
     protected EgovPropertyService propertiesService;
 
@@ -74,9 +74,6 @@ public class EgovFaqManageController {
 
     /**
      * 개별 배포시 메인메뉴를 조회한다.
-     * @param model
-     * @return	"/uss/olh/faq/"
-     * @throws Exception
      */
     @RequestMapping(value="/uss/olh/faq/EgovMain.do")
     public String EgovMain(ModelMap model) throws Exception {
@@ -86,9 +83,6 @@ public class EgovFaqManageController {
 
     /**
      * 메뉴를 조회한다.
-     * @param model
-     * @return	"/uss/olh/faq/EgovLeft"
-     * @throws Exception
      */
     @RequestMapping(value="/uss/olh/faq/EgovLeft.do")
     public String EgovLeft(ModelMap model) throws Exception {
@@ -98,10 +92,6 @@ public class EgovFaqManageController {
 
     /**
      * FAQ 목록을 조회한다.
-     * @param searchVO
-     * @param model
-     * @return	"/uss/olh/faq/EgovFaqListInqire"
-     * @throws Exception
      */
     @RequestMapping(value="/uss/olh/faq/FaqListInqire.do")
     public String selectFaqList(@ModelAttribute("searchVO") FaqManageDefaultVO searchVO, ModelMap model, HttpServletRequest request) throws Exception {
@@ -117,11 +107,11 @@ public class EgovFaqManageController {
 		}
 
     	
-    	/** EgovPropertyService.SiteList */
+    	/* EgovPropertyService.SiteList */
     	searchVO.setPageUnit(propertiesService.getInt("pageUnit"));
     	searchVO.setPageSize(propertiesService.getInt("pageSize"));
 
-    	/** pageing */
+    	/* pageing */
     	PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(searchVO.getPageIndex());
 		paginationInfo.setRecordCountPerPage(searchVO.getPageUnit());
@@ -142,11 +132,6 @@ public class EgovFaqManageController {
 
     /**
      * FAQ 목록에 대한 상세정보를 조회한다.
-     * @param faqManageVO
-     * @param searchVO
-     * @param model
-     * @return	"/uss/olh/faq/EgovFaqDetailInqire"
-     * @throws Exception
      */
     @RequestMapping("/uss/olh/faq/FaqListDetailInqire.do")
     public String	selectFaqListDetail(FaqManageVO faqManageVO,
@@ -171,10 +156,6 @@ public class EgovFaqManageController {
 
     /**
      * FAQ 조회 / 수정처리
-     * @param faqManageVO
-     * @param searchVO
-     * @return	"forward:/uss/olh/faq/FaqListDetailInqire.do"
-     * @throws Exception
      */
     @RequestMapping("/uss/olh/faq/FaqInqireCoUpdt.do")
     public String updateFaqInqireCo(
@@ -204,10 +185,6 @@ public class EgovFaqManageController {
 
     /**
      * FAQ를 등록하기 위한 전 처리
-     * @param searchVO
-     * @param model
-     * @return	"/uss/olh/faq/EgovFaqCnRegist"
-     * @throws Exception
      */
     @RequestMapping("/uss/olh/faq/FaqCnRegistView.do")
     public String insertFaqCnView(
@@ -232,12 +209,6 @@ public class EgovFaqManageController {
 
     /**
      * FAQ를 등록한다.
-     * @param multiRequest
-     * @param searchVO
-     * @param faqManageVO
-     * @param bindingResult
-     * @return	"forward:/uss/olh/faq/FaqListInqire.do"
-     * @throws Exception
      */
     @RequestMapping("/uss/olh/faq/FaqCnRegist.do")
     public String insertFaqCn(
@@ -295,11 +266,6 @@ public class EgovFaqManageController {
 
     /**
      * FAQ를 수정하기 위한 전 처리
-     * @param faqId
-     * @param searchVO
-     * @param model
-     * @return	"/uss/olh/faq/EgovFaqCnUpdt"
-     * @throws Exception
      */
     @RequestMapping("/uss/olh/faq/FaqCnUpdtView.do")
     public String updateFaqCnView(@RequestParam("faqId") String faqId ,
@@ -332,14 +298,6 @@ public class EgovFaqManageController {
 
     /**
      * FAQ를 수정처리한다.
-     * @param atchFileAt
-     * @param multiRequest
-     * @param searchVO
-     * @param faqManageVO
-     * @param bindingResult
-     * @param model
-     * @return	"forward:/uss/olh/faq/FaqListInqire.do"
-     * @throws Exception
      */
     @RequestMapping("/uss/olh/faq/FaqCnUpdt.do")
     public String updateFaqCn(@RequestParam("atchFileAt") String atchFileAt ,
@@ -397,9 +355,7 @@ public class EgovFaqManageController {
     	LoginVO	loginVO = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
 
     	String	lastUpdusrId = loginVO.getUniqId();
-
-    	faqManageVO.setLastUpdusrId(lastUpdusrId);    	// 최종수정자ID
-
+    	faqManageVO.setLastUpdusrId(lastUpdusrId);
     	faqManageService.updateFaqCn(faqManageVO);
 
         return "forward:/uss/olh/faq/FaqListInqire.do";
@@ -408,10 +364,6 @@ public class EgovFaqManageController {
 
     /**
      * FAQ를 삭제처리한다.
-     * @param faqManageVO
-     * @param searchVO
-     * @return	"forward:/uss/olh/faq/FaqListInqire.do"
-     * @throws Exception
      */
     @RequestMapping("/uss/olh/faq/FaqCnDelete.do")
     public String deleteFaqCn(
@@ -429,7 +381,6 @@ public class EgovFaqManageController {
 			return "/uss/olh/faq/FaqListInqire.do";
 		}
 
-    	// 첨부파일 삭제를 위한 ID 생성 start....
 		String _atchFileId = faqManageVO.getAtchFileId();
 
     	faqManageService.deleteFaqCn(faqManageVO);
@@ -439,7 +390,6 @@ public class EgovFaqManageController {
     	fvo.setAtchFileId(_atchFileId);
 
     	fileMngService.deleteAllFileInf(fvo);
-    	// 첨부파일 삭제 End.............
 
         return "forward:/uss/olh/faq/FaqListInqire.do";
     }

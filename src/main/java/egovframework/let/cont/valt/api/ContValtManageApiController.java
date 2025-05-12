@@ -31,7 +31,7 @@ public class ContValtManageApiController {
 	 *
 	 * @param contValtVO 조회 조건이 담긴 VO 객체
 	 * @return Map
-	 * @throws Exception 조회 중 발생할 수 있는 모든 예외
+	 * @throws Exception Exception 조회 중 발생할 수 있는 모든 예외
 	 */
 	@PostMapping(value = "/cont/valt/selectBbsByValtAjax.do", consumes = "application/json", produces = "application/json")
 	public Map<String, Object> selectBbsByValtAjax(@RequestBody ContValtVO contValtVO) throws Exception {

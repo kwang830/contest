@@ -108,13 +108,13 @@ public class EgovStringUtil {
      * String이 비었거나("") 혹은 null 인지 검증한다.
      * </p>
      *
-     * <pre>
+     * "<pre>
      *  StringUtil.isEmpty(null)      = true
      *  StringUtil.isEmpty("")        = true
      *  StringUtil.isEmpty(" ")       = false
      *  StringUtil.isEmpty("bob")     = false
      *  StringUtil.isEmpty("  bob  ") = false
-     * </pre>
+     * </pre>"
      *
      * @param str - 체크 대상 스트링오브젝트이며 null을 허용함
      * @return <code>true</code> - 입력받은 String 이 빈 문자열 또는 null인 경우
@@ -127,12 +127,12 @@ public class EgovStringUtil {
     /**
      * <p>기준 문자열에 포함된 모든 대상 문자(char)를 제거한다.</p>
      *
-     * <pre>
+     * "<pre>
      * StringUtil.remove(null, *)       = null
      * StringUtil.remove("", *)         = ""
      * StringUtil.remove("queued", 'u') = "qeed"
      * StringUtil.remove("queued", 'z') = "queued"
-     * </pre>
+     * </pre>"
      *
      * @param str  입력받는 기준 문자열
      * @param remove  입력받는 문자열에서 제거할 대상 문자열
@@ -155,11 +155,11 @@ public class EgovStringUtil {
     /**
      * <p>문자열 내부의 콤마 character(,)를 모두 제거한다.</p>
      *
-     * <pre>
+     * "<pre>
      * StringUtil.removeCommaChar(null)       = null
      * StringUtil.removeCommaChar("")         = ""
      * StringUtil.removeCommaChar("asdfg,qweqe") = "asdfgqweqe"
-     * </pre>
+     * </pre>"
      *
      * @param str 입력받는 기준 문자열
      * @return " , "가 제거된 입력문자열
@@ -172,11 +172,11 @@ public class EgovStringUtil {
     /**
      * <p>문자열 내부의 마이너스 character(-)를 모두 제거한다.</p>
      *
-     * <pre>
+     * "<pre>
      * StringUtil.removeMinusChar(null)       = null
      * StringUtil.removeMinusChar("")         = ""
      * StringUtil.removeMinusChar("a-sdfg-qweqe") = "asdfgqweqe"
-     * </pre>
+     * </pre>"
      *
      * @param str  입력받는 기준 문자열
      * @return " - "가 제거된 입력문자열
@@ -265,7 +265,7 @@ public class EgovStringUtil {
      *
      * <p>입력값 중 <code>null</code>이 있을 경우 <code>-1</code>을 반환.</p>
      *
-     * <pre>
+     * "<pre>
      * StringUtil.indexOf(null, *)          = -1
      * StringUtil.indexOf(*, null)          = -1
      * StringUtil.indexOf("", "")           = 0
@@ -273,7 +273,7 @@ public class EgovStringUtil {
      * StringUtil.indexOf("aabaabaa", "b")  = 2
      * StringUtil.indexOf("aabaabaa", "ab") = 1
      * StringUtil.indexOf("aabaabaa", "")   = 0
-     * </pre>
+     * </pre>"
      *
      * @param str  검색 문자열
      * @param searchStr  검색 대상문자열
@@ -293,7 +293,7 @@ public class EgovStringUtil {
      * <code>returStr</code>을 반환하며, 다르면  <code>defaultStr</code>을 반환한다.
      * </p>
      *
-     * <pre>
+     * "<pre>
      * StringUtil.decode(null, null, "foo", "bar")= "foo"
      * StringUtil.decode("", null, "foo", "bar") = "bar"
      * StringUtil.decode(null, "", "foo", "bar") = "bar"
@@ -301,7 +301,7 @@ public class EgovStringUtil {
      * StringUtil.decode("하이", "하이  ", "foo", null) = null
      * StringUtil.decode("하이", "하이", "foo", "bar") = "foo"
      * StringUtil.decode("하이", "하이  ", "foo", "bar") = "bar"
-     * </pre>
+     * </pre>"
      *
      * @param sourceStr 비교할 문자열
      * @param compareStr 비교 대상 문자열
@@ -332,14 +332,14 @@ public class EgovStringUtil {
      * <code>returStr</code>을 반환하며, 다르면  <code>sourceStr</code>을 반환한다.
      * </p>
      *
-     * <pre>
+     * "<pre>
      * StringUtil.decode(null, null, "foo") = "foo"
      * StringUtil.decode("", null, "foo") = ""
      * StringUtil.decode(null, "", "foo") = null
      * StringUtil.decode("하이", "하이", "foo") = "foo"
      * StringUtil.decode("하이", "하이 ", "foo") = "하이"
      * StringUtil.decode("하이", "바이", "foo") = "하이"
-     * </pre>
+     * </pre>"
      *
      * @param sourceStr 비교할 문자열
      * @param compareStr 비교 대상 문자열
@@ -438,12 +438,12 @@ public class EgovStringUtil {
      * <p>문자열에서 {@link Character#isWhitespace(char)}에 정의된
      * 모든 공백문자를 제거한다.</p>
      *
-     * <pre>
+     * "<pre>
      * StringUtil.removeWhitespace(null)         = null
      * StringUtil.removeWhitespace("")           = ""
      * StringUtil.removeWhitespace("abc")        = "abc"
      * StringUtil.removeWhitespace("   ab  c  ") = "abc"
-     * </pre>
+     * </pre>"
      *
      * @param str  공백문자가 제거도어야 할 문자열
      * @return the 공백문자가 제거된 문자열, null이 입력되면 <code>null</code>이 리턴
@@ -546,11 +546,11 @@ public class EgovStringUtil {
     /**
      * <p>{@link String#toLowerCase()}를 이용하여 소문자로 변환한다.</p>
      *
-     * <pre>
+     * "<pre>
      * StringUtil.lowerCase(null)  = null
      * StringUtil.lowerCase("")    = ""
      * StringUtil.lowerCase("aBc") = "abc"
-     * </pre>
+     * </pre>"
      *
      * @param str 소문자로 변환되어야 할 문자열
      * @return 소문자로 변환된 문자열, null이 입력되면 <code>null</code> 리턴
@@ -566,11 +566,11 @@ public class EgovStringUtil {
     /**
      * <p>{@link String#toUpperCase()}를 이용하여 대문자로 변환한다.</p>
      *
-     * <pre>
+     * "<pre>
      * StringUtil.upperCase(null)  = null
      * StringUtil.upperCase("")    = ""
      * StringUtil.upperCase("aBc") = "ABC"
-     * </pre>
+     * </pre>"
      *
      * @param str 대문자로 변환되어야 할 문자열
      * @return 대문자로 변환된 문자열, null이 입력되면 <code>null</code> 리턴
@@ -586,7 +586,7 @@ public class EgovStringUtil {
     /**
      * <p>입력된 String의 앞쪽에서 두번째 인자로 전달된 문자(stripChars)를 모두 제거한다.</p>
      *
-     * <pre>
+     * "<pre>
      * StringUtil.stripStart(null, *)          = null
      * StringUtil.stripStart("", *)            = ""
      * StringUtil.stripStart("abc", "")        = "abc"
@@ -595,7 +595,7 @@ public class EgovStringUtil {
      * StringUtil.stripStart("abc  ", null)    = "abc  "
      * StringUtil.stripStart(" abc ", null)    = "abc "
      * StringUtil.stripStart("yxabc  ", "xyz") = "abc  "
-     * </pre>
+     * </pre>"
      *
      * @param str 지정된 문자가 제거되어야 할 문자열
      * @param stripChars 제거대상 문자열
@@ -626,7 +626,7 @@ public class EgovStringUtil {
     /**
      * <p>입력된 String의 뒤쪽에서 두번째 인자로 전달된 문자(stripChars)를 모두 제거한다.</p>
      *
-     * <pre>
+     * "<pre>
      * StringUtil.stripEnd(null, *)          = null
      * StringUtil.stripEnd("", *)            = ""
      * StringUtil.stripEnd("abc", "")        = "abc"
@@ -635,7 +635,7 @@ public class EgovStringUtil {
      * StringUtil.stripEnd("abc  ", null)    = "abc"
      * StringUtil.stripEnd(" abc ", null)    = " abc"
      * StringUtil.stripEnd("  abcyx", "xyz") = "  abc"
-     * </pre>
+     * </pre>"
      *
      * @param str 지정된 문자가 제거되어야 할 문자열
      * @param stripChars 제거대상 문자열
@@ -665,7 +665,7 @@ public class EgovStringUtil {
     /**
      * <p>입력된 String의 앞, 뒤에서 두번째 인자로 전달된 문자(stripChars)를 모두 제거한다.</p>
      *
-     * <pre>
+     * "<pre>
      * StringUtil.strip(null, *)          = null
      * StringUtil.strip("", *)            = ""
      * StringUtil.strip("abc", null)      = "abc"
@@ -673,7 +673,7 @@ public class EgovStringUtil {
      * StringUtil.strip("abc  ", null)    = "abc"
      * StringUtil.strip(" abc ", null)    = "abc"
      * StringUtil.strip("  abcyx", "xyz") = "  abc"
-     * </pre>
+     * </pre>"
      *
      * @param str 지정된 문자가 제거되어야 할 문자열
      * @param stripChars 제거대상 문자열
@@ -862,7 +862,7 @@ public class EgovStringUtil {
      *
      * @param srcString
      * @return String
-     * @exception Exception
+     * @exception Exception Exception
      * @see
      */
     public static String getHtmlStrCnvr(String srcString) {
@@ -883,9 +883,9 @@ public class EgovStringUtil {
     /**
      * <p>날짜 형식의 문자열 내부에 마이너스 character(-)를 추가한다.</p>
      *
-     * <pre>
+     * "<pre>
      *   StringUtil.addMinusChar("20100901") = "2010-09-01"
-     * </pre>
+     * </pre>"
      *
      * @param date  입력받는 문자열
      * @return " - "가 추가된 입력문자열

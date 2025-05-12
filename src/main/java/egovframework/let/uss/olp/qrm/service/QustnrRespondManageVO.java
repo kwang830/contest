@@ -10,7 +10,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *   
  *   수정일      수정자           수정내용
@@ -18,7 +18,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  *   2009.03.20  장동한          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성
  *
- * </pre>
+ * </pre>"
  */
 public class QustnrRespondManageVO implements Serializable {
 	
@@ -79,7 +79,6 @@ public class QustnrRespondManageVO implements Serializable {
 
 	/**
 	 * qestnrId attribute 값을 설정한다.
-	 * @return qestnrId String
 	 */
 	public void setQestnrId(String qestnrId) {
 		this.qestnrId = qestnrId;
@@ -95,7 +94,6 @@ public class QustnrRespondManageVO implements Serializable {
 
 	/**
 	 * qestnrRespondId attribute 값을 설정한다.
-	 * @return qestnrRespondId String
 	 */
 	public void setQestnrRespondId(String qestnrRespondId) {
 		this.qestnrRespondId = qestnrRespondId;
@@ -111,7 +109,6 @@ public class QustnrRespondManageVO implements Serializable {
 
 	/**
 	 * sexdstnCode attribute 값을 설정한다.
-	 * @return sexdstnCode String
 	 */
 	public void setSexdstnCode(String sexdstnCode) {
 		this.sexdstnCode = sexdstnCode;
@@ -127,7 +124,6 @@ public class QustnrRespondManageVO implements Serializable {
 
 	/**
 	 * occpTyCode attribute 값을 설정한다.
-	 * @return occpTyCode String
 	 */
 	public void setOccpTyCode(String occpTyCode) {
 		this.occpTyCode = occpTyCode;
@@ -143,7 +139,6 @@ public class QustnrRespondManageVO implements Serializable {
 
 	/**
 	 * respondNm attribute 값을 설정한다.
-	 * @return respondNm String
 	 */
 	public void setRespondNm(String respondNm) {
 		this.respondNm = respondNm;
@@ -159,7 +154,6 @@ public class QustnrRespondManageVO implements Serializable {
 
 	/**
 	 * brth attribute 값을 설정한다.
-	 * @return brth String
 	 */
 	public void setBrth(String brth) {
 		this.brth = brth;
@@ -175,7 +169,6 @@ public class QustnrRespondManageVO implements Serializable {
 
 	/**
 	 * areaNo attribute 값을 설정한다.
-	 * @return areaNo String
 	 */
 	public void setAreaNo(String areaNo) {
 		this.areaNo = areaNo;
@@ -191,7 +184,6 @@ public class QustnrRespondManageVO implements Serializable {
 
 	/**
 	 * middleTelno attribute 값을 설정한다.
-	 * @return middleTelno String
 	 */
 	public void setMiddleTelno(String middleTelno) {
 		this.middleTelno = middleTelno;
@@ -207,7 +199,6 @@ public class QustnrRespondManageVO implements Serializable {
 
 	/**
 	 * endTelno attribute 값을 설정한다.
-	 * @return endTelno String
 	 */
 	public void setEndTelno(String endTelno) {
 		this.endTelno = endTelno;
@@ -223,7 +214,6 @@ public class QustnrRespondManageVO implements Serializable {
 
 	/**
 	 * frstRegisterPnttm attribute 값을 설정한다.
-	 * @return frstRegisterPnttm String
 	 */
 	public void setFrstRegisterPnttm(String frstRegisterPnttm) {
 		this.frstRegisterPnttm = frstRegisterPnttm;
@@ -239,7 +229,6 @@ public class QustnrRespondManageVO implements Serializable {
 
 	/**
 	 * frstRegisterId attribute 값을 설정한다.
-	 * @return frstRegisterId String
 	 */
 	public void setFrstRegisterId(String frstRegisterId) {
 		this.frstRegisterId = frstRegisterId;
@@ -255,7 +244,6 @@ public class QustnrRespondManageVO implements Serializable {
 
 	/**
 	 * lastUpdusrPnttm attribute 값을 설정한다.
-	 * @return lastUpdusrPnttm String
 	 */
 	public void setLastUpdusrPnttm(String lastUpdusrPnttm) {
 		this.lastUpdusrPnttm = lastUpdusrPnttm;
@@ -271,7 +259,6 @@ public class QustnrRespondManageVO implements Serializable {
 
 	/**
 	 * lastUpdusrId attribute 값을 설정한다.
-	 * @return lastUpdusrId String
 	 */
 	public void setLastUpdusrId(String lastUpdusrId) {
 		this.lastUpdusrId = lastUpdusrId;
@@ -287,7 +274,6 @@ public class QustnrRespondManageVO implements Serializable {
 
 	/**
 	 * qestnrTmplatId attribute 값을 설정한다.
-	 * @return qestnrTmplatId String
 	 */
 	public void setQestnrTmplatId(String qestnrTmplatId) {
 		this.qestnrTmplatId = qestnrTmplatId;

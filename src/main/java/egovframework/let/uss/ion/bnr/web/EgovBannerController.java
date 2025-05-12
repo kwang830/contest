@@ -40,7 +40,7 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일      수정자           수정내용
@@ -48,7 +48,7 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
  *   2009.08.03  lee.m.j        최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성
  *
- * </pre>
+ * </pre>"
  */
 @Controller
 public class EgovBannerController {
@@ -75,7 +75,7 @@ public class EgovBannerController {
 	/**
 	 * 배너 목록화면 이동
 	 * @return String
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	@RequestMapping("/uss/ion/bnr/selectBannerListView.do")
 	public String selectBannerListView() throws Exception {
@@ -87,12 +87,12 @@ public class EgovBannerController {
 	 * 배너를 관리하기 위해 등록된 배너목록을 조회한다.
 	 * @param bannerVO - 배너 VO
 	 * @return String - 리턴 URL
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping(value = "/uss/ion/bnr/selectBannerList.do")
 	public String selectBannerList(@ModelAttribute("bannerVO") BannerVO bannerVO, ModelMap model) throws Exception {
 
-		/** paging */
+		/* paging */
 		PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(bannerVO.getPageIndex());
 		paginationInfo.setRecordCountPerPage(bannerVO.getPageUnit());
@@ -255,7 +255,7 @@ public class EgovBannerController {
 	 * 기 등록된 배너정보를 삭제한다.
 	 * @param banner Banner
 	 * @return String
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	@RequestMapping(value = "/uss/ion/bnr/removeBanner.do")
 	public String deleteBanner(@RequestParam("bannerId") String bannerId, @ModelAttribute("banner") Banner banner, SessionStatus status, ModelMap model) throws Exception {
@@ -273,7 +273,7 @@ public class EgovBannerController {
 	 * @param banners String
 	 * @param banner Banner
 	 * @return String
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	@RequestMapping(value = "/uss/ion/bnr/removeBannerList.do")
 	public String deleteBannerList(@RequestParam("bannerIds") String bannerIds, @ModelAttribute("banner") Banner banner, SessionStatus status, ModelMap model) throws Exception {
@@ -310,12 +310,12 @@ public class EgovBannerController {
 	 * MyPage에 배너정보를 제공하기 위해 목록을 조회한다.
 	 * @param bannerVO - 배너 VO
 	 * @return String - 리턴 URL
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping(value = "/uss/ion/bnr/selectBannerMainList.do")
 	public String selectBannerMainList(@ModelAttribute("bannerVO") BannerVO bannerVO, ModelMap model) throws Exception {
 
-		/** paging */
+		/* paging */
 		PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(bannerVO.getPageIndex());
 		paginationInfo.setRecordCountPerPage(5);

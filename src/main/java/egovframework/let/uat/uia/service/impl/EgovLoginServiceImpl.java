@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일      수정자          수정내용
@@ -38,7 +38,7 @@ public class EgovLoginServiceImpl extends EgovAbstractServiceImpl implements
 	 * 일반 로그인을 처리한다
 	 * @param vo LoginVO
 	 * @return LoginVO
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
     @Override
 	public LoginVO actionLogin(LoginVO vo) throws Exception {
@@ -65,7 +65,7 @@ public class EgovLoginServiceImpl extends EgovAbstractServiceImpl implements
 	 * 아이디를 찾는다.
 	 * @param vo LoginVO
 	 * @return LoginVO
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
     @Override
 	public LoginVO searchId(LoginVO vo) throws Exception {
@@ -87,7 +87,7 @@ public class EgovLoginServiceImpl extends EgovAbstractServiceImpl implements
 	 * 비밀번호를 찾는다.
 	 * @param vo LoginVO
 	 * @return boolean
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
     @Override
 	public boolean searchPassword(LoginVO vo) throws Exception {
@@ -127,7 +127,7 @@ public class EgovLoginServiceImpl extends EgovAbstractServiceImpl implements
 	 * 아이디 잠김여부를 조회한다.
 	 * @param vo LoginVO
 	 * @return LoginVO
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	@Override
 	public LoginVO actionLoginLockYn(LoginVO vo) throws Exception {
@@ -149,7 +149,7 @@ public class EgovLoginServiceImpl extends EgovAbstractServiceImpl implements
 	 * Lock_cnt 를 초기화 한다.
 	 * @param vo LoginVO
 	 * @return Void
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	@Override
 	public void actionLoginLockCntReset(LoginVO vo) throws Exception {

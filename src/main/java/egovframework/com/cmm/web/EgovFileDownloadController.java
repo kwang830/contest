@@ -92,7 +92,7 @@ public class EgovFileDownloadController {
 	 * @param filename
 	 * @param request
 	 * @param response
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	private void setDisposition(String filename, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String browser = getBrowser(request);
@@ -135,13 +135,12 @@ public class EgovFileDownloadController {
 	 *
 	 * @param commandMap
 	 * @param response
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping(value = "/cmm/fms/FileDown.do")
 	public void cvplFileDownload(@RequestParam Map<String, Object> commandMap, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
-		System.out.println("isAuthenticated:"+isAuthenticated);
 		String AuthPass = (String) commandMap.get("authPass");
 
 		if (isAuthenticated || AuthPass.equals("yes")) {

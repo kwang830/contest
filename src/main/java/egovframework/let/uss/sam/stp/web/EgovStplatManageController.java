@@ -30,14 +30,14 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일      수정자           수정내용
  *  -------    --------    ---------------------------
  *   2009.04.01  박정규          최초 생성
  *
- * </pre>
+ * </pre>"
  */
 @Controller
 public class EgovStplatManageController {
@@ -45,7 +45,7 @@ public class EgovStplatManageController {
 	@Resource(name = "StplatManageService")
 	private EgovStplatManageService stplatManageService;
 
-	/** EgovPropertyService */
+	/* EgovPropertyService */
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertiesService;
 
@@ -59,9 +59,9 @@ public class EgovStplatManageController {
 
 	/**
 	 * 개별 배포시 메인메뉴를 조회한다.
-	 * @param model
+	 * @param model model
 	 * @return	"/uss/sam/stp/EgovMain"
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping(value = "/uss/sam/stp/EgovMain.do")
 	public String EgovMain(ModelMap model) throws Exception {
@@ -70,9 +70,9 @@ public class EgovStplatManageController {
 
 	/**
 	 * 메뉴를 조회한다.
-	 * @param model
+	 * @param model model
 	 * @return	"/uss/sam/stp/EgovLeft"
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping(value = "/uss/sam/stp/EgovLeft.do")
 	public String EgovLeft(ModelMap model) throws Exception {
@@ -81,19 +81,19 @@ public class EgovStplatManageController {
 
 	/**
 	 * 약관정보 목록을 조회한다.
-	 * @param searchVO
-	 * @param model
+	 * @param searchVO searchVO
+	 * @param model model
 	 * @return	"/uss/sam/stp/EgovStplatListInqire"
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping(value = "/uss/sam/stp/StplatListInqire.do")
 	public String selectStplatList(@ModelAttribute("searchVO") StplatManageDefaultVO searchVO, ModelMap model) throws Exception {
 
-		/** EgovPropertyService.SiteList */
+		/* EgovPropertyService.SiteList */
 		searchVO.setPageUnit(propertiesService.getInt("pageUnit"));
 		searchVO.setPageSize(propertiesService.getInt("pageSize"));
 
-		/** pageing */
+		/* pageing */
 		PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(searchVO.getPageIndex());
 		paginationInfo.setRecordCountPerPage(searchVO.getPageUnit());
@@ -114,11 +114,11 @@ public class EgovStplatManageController {
 
 	/**
 	 * 약관정보상세내용을 조회한다.
-	 * @param stplatManageVO
-	 * @param searchVO
-	 * @param model
+	 * @param stplatManageVO stplatManageVO
+	 * @param searchVO searchVO
+	 * @param model model
 	 * @return	"/uss/sam/stp/EgovStplatDetailInqire"
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/uss/sam/stp/StplatDetailInqire.do")
 	public String selectStplatDetail(StplatManageVO stplatManageVO, @ModelAttribute("searchVO") StplatManageDefaultVO searchVO, ModelMap model) throws Exception {
@@ -132,10 +132,10 @@ public class EgovStplatManageController {
 
 	/**
 	 * 약관정보를 등록하기 위한 전 처리
-	 * @param searchVO
-	 * @param model
+	 * @param searchVO searchVO
+	 * @param model model
 	 * @return	"/uss/sam/stp/EgovStplatCnRegist"
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/uss/sam/stp/StplatCnRegistView.do")
 	public String insertStplatCnView(@ModelAttribute("searchVO") StplatManageDefaultVO searchVO, Model model) throws Exception {
@@ -148,11 +148,11 @@ public class EgovStplatManageController {
 
 	/**
 	 * 약관정보를 등록한다.
-	 * @param searchVO
-	 * @param stplatManageVO
-	 * @param bindingResult
+	 * @param searchVO searchVO
+	 * @param stplatManageVO stplatManageVO
+	 * @param bindingResult bindingResult
 	 * @return	"forward:/uss/sam/stp/StplatListInqire.do"
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/uss/sam/stp/StplatCnRegist.do")
 	public String insertStplatCn(@ModelAttribute("searchVO") StplatManageDefaultVO searchVO, @ModelAttribute("stplatManageVO") StplatManageVO stplatManageVO,
@@ -181,11 +181,11 @@ public class EgovStplatManageController {
 
 	/**
 	 * 약관정보를 수정하기 위한 전 처리
-	 * @param useStplatId
-	 * @param searchVO
-	 * @param model
+	 * @param useStplatId useStplatId
+	 * @param searchVO searchVO
+	 * @param model model
 	 * @return	"/uss/sam/stp/EgovStplatCnUpdt"
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/uss/sam/stp/StplatCnUpdtView.do")
 	public String updateStplatCnView(@RequestParam("useStplatId") String useStplatId, @ModelAttribute("searchVO") StplatManageDefaultVO searchVO, ModelMap model) throws Exception {
@@ -206,11 +206,11 @@ public class EgovStplatManageController {
 
 	/**
 	 * 약관정보를 수정 처리한다.
-	 * @param searchVO
-	 * @param stplatManageVO
-	 * @param bindingResult
+	 * @param searchVO searchVO
+	 * @param stplatManageVO stplatManageVO
+	 * @param bindingResult bindingResult
 	 * @return	"forward:/uss/sam/stp/StplatListInqire.do"
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/uss/sam/stp/StplatCnUpdt.do")
 	public String updateStplatCn(@ModelAttribute("searchVO") StplatManageDefaultVO searchVO, @ModelAttribute("stplatManageVO") StplatManageVO stplatManageVO,
@@ -239,10 +239,10 @@ public class EgovStplatManageController {
 
 	/**
 	 * 약관정보를 삭제 처리한다.
-	 * @param stplatManageVO
-	 * @param searchVO
+	 * @param stplatManageVO stplatManageVO
+	 * @param searchVO searchVO
 	 * @return	"forward:/uss/sam/stp/StplatListInqire.do"
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/uss/sam/stp/StplatCnDelete.do")
 	public String deleteStplatCn(StplatManageVO stplatManageVO, @ModelAttribute("searchVO") StplatManageDefaultVO searchVO) throws Exception {

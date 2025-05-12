@@ -9,7 +9,7 @@ import java.util.List;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *   
  *   수정일      수정자           수정내용
@@ -17,7 +17,7 @@ import java.util.List;
  *   2009.03.20  이문준          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성 
  *
- * </pre>
+ * </pre>"
  */
 
 public class AuthorRoleManageVO extends AuthorRoleManage {

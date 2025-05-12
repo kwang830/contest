@@ -8,9 +8,6 @@ import egovframework.let.sym.log.clg.service.LoginLog;
 import org.springframework.stereotype.Repository;
 
 /**
- * @Class Name : LoginLogDAO.java
- * @Description : 시스템 로그 관리를 위한 데이터 접근 클래스
- * @Modification Information
  *
  *    수정일       수정자         수정내용
  *    -------       -------     -------------------
@@ -19,8 +16,8 @@ import org.springframework.stereotype.Repository;
  *
  * @author 공통 서비스 개발팀 이삼섭
  * @since 2009. 3. 11.
- * @version
- * @see
+ * @version ""
+ * @see ""
  *
  */
 @Repository("loginLogDAO")
@@ -36,10 +33,6 @@ public class LoginLogDAO extends EgovComAbstractDAO {
 
 	/**
 	 * 접속로그 상세보기를 조회한다.
-	 *
-	 * @param loginLog
-	 * @return loginLog
-	 * @throws Exception
 	 */
 	public LoginLog selectLoginLog(LoginLog loginLog) throws Exception{
 
@@ -48,10 +41,6 @@ public class LoginLogDAO extends EgovComAbstractDAO {
 
 	/**
 	 * 접속로그를 목록을 조회한다.
-	 *
-	 * @param loginLog
-	 * @return
-	 * @throws Exception
 	 */
 	public List<LoginLog> selectLoginLogInf(LoginLog loginLog) throws Exception{
 		return selectList("LoginLog.selectLoginLogInf", loginLog);
@@ -59,9 +48,6 @@ public class LoginLogDAO extends EgovComAbstractDAO {
 
 	/**
 	 * 접속로그 목록의 숫자를 조회한다.
-	 * @param loginLog
-	 * @return
-	 * @throws Exception
 	 */
 	public int selectLoginLogInfCnt(LoginLog loginLog) throws Exception{
 

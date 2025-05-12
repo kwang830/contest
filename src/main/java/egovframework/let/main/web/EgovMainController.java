@@ -8,7 +8,6 @@ import egovframework.com.cmm.EgovMessageSource;
 import egovframework.com.cmm.LoginVO;
 import egovframework.let.cop.bbs.service.BoardVO;
 import egovframework.let.cop.bbs.service.EgovBBSManageService;
-import egovframework.let.sym.log.clg.service.impl.LoginLogDAO;
 import egovframework.let.sym.mnu.mpm.service.EgovMenuManageService;
 import egovframework.let.sym.mnu.mpm.service.MenuManageVO;
 import egovframework.let.uss.olh.faq.service.EgovFaqManageService;
@@ -37,7 +36,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *
  *  수정일              수정자           수정내용
@@ -45,7 +44,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
  *  2011.08.31  JJY        최초 생성
  *  2021.08.12  신용호            추가 URL 생성
  *
- * </pre>
+ * </pre>"
  */
 @Controller@SessionAttributes(types = ComDefaultVO.class)
 public class EgovMainController {
@@ -82,8 +81,8 @@ public class EgovMainController {
 	/**
 	 * 메인 페이지에서 각 업무 화면으로 연계하는 기능을 제공한다.
 	 *
-	 * @param request
-	 * @param commandMap
+	 * @param request request
+	 * @param commandMap commandMap
 	 * @exception Exception Exception
 	 */
 	@RequestMapping(value = "/cmm/forwardPage.do")
@@ -96,8 +95,8 @@ public class EgovMainController {
 	 * 템플릿 메인 페이지 조회
 	 * @return 메인페이지 정보 Map [key : 항목명]
 	 *
-	 * @param request
-	 * @param model
+	 * @param request request
+	 * @param model model
 	 * @exception Exception Exception
 	 */
 	@RequestMapping(value = "/cmm/main/mainPage.do")
@@ -106,7 +105,7 @@ public class EgovMainController {
 
 		// 방문수 확인용
 		BigDecimal visit_count = egovVisitCountLogIdGnrService.getNextBigDecimalId();
-		System.out.println("visit_count:"+visit_count);
+		//System.out.println("visit_count:"+visit_count);
 
 		//LoginVO user =
 		//		EgovUserDetailsHelper.isAuthenticated()? (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser():null;
@@ -152,7 +151,7 @@ public class EgovMainController {
      * Header Page를 조회한다.
      * @param menuManageVO MenuManageVO
      * @return 출력페이지정보 "EgovIncHeader"
-     * @exception Exception
+     * @exception Exception Exception
      */
 	@RequestMapping(value="/sym/mms/EgovHeader.do")
     public String selectHeader(
@@ -187,7 +186,7 @@ public class EgovMainController {
      * Header Page를 조회한다.
      * @param menuManageVO MenuManageVO
      * @return 출력페이지정보 "ContIncHeader"
-     * @exception Exception
+     * @exception Exception Exception
      */
 	@RequestMapping(value="/sym/mms/ContHeader.do")
     public String selectHeader2(
@@ -220,9 +219,8 @@ public class EgovMainController {
 
 	/**
      * Footer Page를 조회한다.
-     * @param
      * @return 출력페이지정보 "EgovIncFooter"
-     * @exception Exception
+     * @exception Exception Exception
      */
 	@RequestMapping(value="/sym/mms/EgovFooter.do")
     public String selectFooter(ModelMap model) throws Exception {
@@ -231,9 +229,8 @@ public class EgovMainController {
 
 	/**
      * Footer Page를 조회한다.
-     * @param
      * @return 출력페이지정보 "ContIncFooter"
-     * @exception Exception
+     * @exception Exception Exception
      */
 	@RequestMapping(value="/sym/mms/ContFooter.do")
     public String selectFooter2(ModelMap model) throws Exception {
@@ -253,9 +250,8 @@ public class EgovMainController {
 
     /**
      * 좌측메뉴를 조회한다.
-     * @param
      * @return 출력페이지정보 "EgovIncLeftmenu"
-     * @exception Exception
+     * @exception Exception Exception
      */
 	@RequestMapping(value="/sym/mms/EgovMenuLeft.do")
     public String selectMenuLeft(ModelMap model) throws Exception {
@@ -274,9 +270,8 @@ public class EgovMainController {
 
 	/**
 	 * 좌측메뉴를 조회한다.
-	 * @param
 	 * @return 출력페이지정보 "EgovIncLeftmenu"
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	@RequestMapping(value="/sym/mms/ContMenuLeft.do")
 	public String selectContMenuLeft(ModelMap model) throws Exception {
@@ -297,7 +292,7 @@ public class EgovMainController {
      * Head메뉴를 조회한다.
      * @param menuManageVO MenuManageVO
      * @return 출력페이지정보 "main_headG", "main_head"
-     * @exception Exception
+     * @exception Exception Exception
      */
 	@RequestMapping(value="/sym/mms/EgovMainMenuHead.do")
     public String selectMainMenuHead(
@@ -337,7 +332,7 @@ public class EgovMainController {
     /**
      * 좌측메뉴를 조회한다.
      * @return 출력페이지정보 "main_left"
-     * @exception Exception
+     * @exception Exception Exception
      */
 	@RequestMapping(value="/sym/mms/EgovMainMenuLeft.do")
     public String selectMainMenuLeft(
@@ -361,8 +356,8 @@ public class EgovMainController {
 	 * 템플릿 메인 페이지 조회
 	 * @return 메인페이지 정보 Map [key : 항목명]
 	 *
-	 * @param request
-	 * @param model
+	 * @param request request
+	 * @param model model
 	 * @exception Exception Exception
 	 */
 	@RequestMapping(value = "/cmm/main/mainPage99.do")
@@ -410,12 +405,12 @@ public class EgovMainController {
 		// 자유게시판 메인컨텐츠 조회 끝 -----------------------------------
 
 		// FAQ 메인 컨텐츠 조회 시작 ---------------------------------
-		/** EgovPropertyService.SiteList */
+		/* EgovPropertyService.SiteList */
 		FaqManageDefaultVO searchVO = new FaqManageDefaultVO();
 		searchVO.setPageUnit(3);
     	searchVO.setPageSize(10);
 
-    	/** pageing */
+    	/* pageing */
     	paginationInfo.setCurrentPageNo(searchVO.getPageIndex());
 		paginationInfo.setRecordCountPerPage(searchVO.getPageUnit());
 		paginationInfo.setPageSize(searchVO.getPageSize());
@@ -433,7 +428,7 @@ public class EgovMainController {
     	qVO.setPageUnit(1);
     	qVO.setPageSize(10);
 
-    	/** pageing */
+    	/* pageing */
 		paginationInfo.setCurrentPageNo(qVO.getPageIndex());
 		paginationInfo.setRecordCountPerPage(qVO.getPageUnit());
 		paginationInfo.setPageSize(qVO.getPageSize());
@@ -453,8 +448,8 @@ public class EgovMainController {
 	 * 공모전 소개 페이지 조회
 	 * @return 메인페이지 정보 Map [key : 항목명]
 	 *
-	 * @param request
-	 * @param model
+	 * @param request request
+	 * @param model model
 	 * @exception Exception Exception
 	 */
 	@RequestMapping(value = "/cmm/main/contIntroPage.do")
@@ -468,8 +463,8 @@ public class EgovMainController {
 	 * 공모전 성과 (역대수상작)
 	 * @return 메인페이지 정보 Map [key : 항목명]
 	 *
-	 * @param request
-	 * @param model
+	 * @param request request
+	 * @param model model
 	 * @exception Exception Exception
 	 */
 	@RequestMapping(value = "/cmm/contest/contestOtcm.do")
@@ -487,8 +482,8 @@ public class EgovMainController {
 	 * 공모전 참관기
 	 * @return 메인페이지 정보 Map [key : 항목명]
 	 *
-	 * @param request
-	 * @param model
+	 * @param request request
+	 * @param model model
 	 * @exception Exception Exception
 	 */
 	@RequestMapping(value = "/cmm/contest/contestPtcpRvw.do")
@@ -506,8 +501,8 @@ public class EgovMainController {
 	 * 공모전 후기
 	 * @return 메인페이지 정보 Map [key : 항목명]
 	 *
-	 * @param request
-	 * @param model
+	 * @param request request
+	 * @param model model
 	 * @exception Exception Exception
 	 */
 	@RequestMapping(value = "/cmm/contest/contestRvw.do")
@@ -525,8 +520,8 @@ public class EgovMainController {
 	 * 공모전 부서 통계 현황
 	 * @return 메인페이지 정보 Map [key : 항목명]
 	 *
-	 * @param request
-	 * @param model
+	 * @param request request
+	 * @param model model
 	 * @exception Exception Exception
 	 */
 	@RequestMapping(value = "/cmm/contest/deptSttcPsst.do")
@@ -554,13 +549,8 @@ public class EgovMainController {
 		boardVO.setBbsId("BBSMSTR_BBBBBBBBBBBB");
 
 		model.addAttribute("bbsDeptBbsList", egovArticleService.selectDeptBbsList(boardVO).get("resultList"));
-//		System.out.println("chk :"+egovArticleService.selectDeptBbsList(boardVO).get("resultList"));
-
 		model.addAttribute("bbsDeptLoginList", egovArticleService.selectDeptLoginList(boardVO).get("resultList"));
-//		System.out.println("chk :"+egovArticleService.selectDeptLoginList(boardVO).get("resultList"));
-
 		model.addAttribute("bbsUserLoginList", egovArticleService.selectUserLoginList(boardVO).get("resultList"));
-//		System.out.println("chk :"+egovArticleService.selectUserLoginList(boardVO).get("resultList"));
 
 		return "main/contest/DeptSttcPsstView";
 	}
@@ -569,8 +559,8 @@ public class EgovMainController {
 	 * 공모전 부서 통계 현황 (임원용)
 	 * @return 메인페이지 정보 Map [key : 항목명]
 	 *
-	 * @param request
-	 * @param model
+	 * @param request request
+	 * @param model model
 	 * @exception Exception Exception
 	 */
 	@RequestMapping(value = "/cmm/contest/deptSttcPsst2.do")
@@ -598,13 +588,8 @@ public class EgovMainController {
 		boardVO.setBbsId("BBSMSTR_BBBBBBBBBBBB");
 
 		model.addAttribute("bbsDeptBbsList", egovArticleService.selectDeptBbsList(boardVO).get("resultList"));
-//		System.out.println("chk :"+egovArticleService.selectDeptBbsList(boardVO).get("resultList"));
-
 		model.addAttribute("bbsDeptLoginList", egovArticleService.selectDeptLoginList(boardVO).get("resultList"));
-//		System.out.println("chk :"+egovArticleService.selectDeptLoginList(boardVO).get("resultList"));
-
 		model.addAttribute("bbsUserLoginList", egovArticleService.selectUserLoginList(boardVO).get("resultList"));
-//		System.out.println("chk :"+egovArticleService.selectUserLoginList(boardVO).get("resultList"));
 
 		return "main/contest/DeptSttcPsstView";
 	}
@@ -613,8 +598,8 @@ public class EgovMainController {
 	 * 공모전 개요 페이지 조회
 	 * @return 메인페이지 정보 Map [key : 항목명]
 	 *
-	 * @param request
-	 * @param model
+	 * @param request request
+	 * @param model model
 	 * @exception Exception Exception
 	 */
 	@RequestMapping(value = "/cmm/contest/contestOvrv.do")
@@ -632,8 +617,8 @@ public class EgovMainController {
 	 * 템플릿 메인 페이지 조회
 	 * @return 메인페이지 정보 Map [key : 항목명]
 	 *
-	 * @param request
-	 * @param model
+	 * @param request request
+	 * @param model model
 	 * @exception Exception Exception
 	 */
 	@RequestMapping(value = "/cmm/main/mainPage2.do")
@@ -642,7 +627,6 @@ public class EgovMainController {
 
 		// 방문수 확인용
 		BigDecimal visit_count = egovVisitCountLogIdGnrService.getNextBigDecimalId();
-		System.out.println("visit_count:"+visit_count);
 
 		LoginVO user =
 				EgovUserDetailsHelper.isAuthenticated()? (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser():null;
@@ -672,8 +656,6 @@ public class EgovMainController {
 			boardVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
 			boardVO.setLastIndex(paginationInfo.getLastRecordIndex());
 			boardVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
-
-			System.out.println("boardVO.getUseAt():"+boardVO.getUseAt());
 
 			model.addAttribute("notiList", bbsMngService.selectBoardArticles(boardVO, "BBSA02").get("resultList"));
 

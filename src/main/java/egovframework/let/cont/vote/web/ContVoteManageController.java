@@ -415,8 +415,6 @@ public class ContVoteManageController {
 					contVoteVO.setQsitNo(sel_name);
 					contVoteVO.setValtScr(sel_value);
 					contVoteManageService.insertAdminVotes(contVoteVO);
-				} else {
-					System.out.println("updateContestAdminVote.do - 잘못된 형식의 데이터: " + pair);
 				}
 			}
 			contVoteManageService.insertAdminValtSta(contVoteVO);

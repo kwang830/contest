@@ -21,7 +21,7 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  *  -------    --------    ---------------------------
  *   2010.11.09  장동한          최초 생성
  *
- * </pre>
+ * </pre>"
  */
 public class EgovComCrossSiteHndlr extends BodyTagSupport {
 	

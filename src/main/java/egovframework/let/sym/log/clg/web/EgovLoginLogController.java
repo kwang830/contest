@@ -57,7 +57,7 @@ public class EgovLoginLogController {
 	 *
 	 * @param loginLog
 	 * @return sym/log/clg/EgovLoginLogList
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@IncludedInfo(name="접속로그관리", order = 1080 ,gid = 60)
 	@RequestMapping(value="/sym/log/clg/SelectLoginLogList.do")
@@ -95,7 +95,7 @@ public class EgovLoginLogController {
 	 * @param loginLog
 	 * @param model
 	 * @return sym/log/clg/EgovLoginLogInqire
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping(value="/sym/log/clg/SelectLoginLogDetail.do")
 	public String selectLoginLog(@ModelAttribute("searchVO") LoginLog loginLog,
@@ -115,7 +115,7 @@ public class EgovLoginLogController {
 	 *
 	 * @param loginLog
 	 * @return sym/log/clg/EgovLoginLogList
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@IncludedInfo(name="접속로그관리", order = 1080 ,gid = 60)
 	@RequestMapping(value="/sym/log/clg/userLgnHsty.do")

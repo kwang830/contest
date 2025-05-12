@@ -15,14 +15,14 @@ import egovframework.com.cmm.ComDefaultCodeVO;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일      수정자           수정내용
  *  -------    --------    ---------------------------
  *   2009.03.11  이삼섭          최초 생성
  *
- * </pre>
+ * </pre>"
  */
 public interface EgovCmmUseService {
 

@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일      수정자           수정내용
@@ -23,7 +23,7 @@ import org.springframework.stereotype.Repository;
  *   2009.03.20  장동한          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성
  *
- * </pre>
+ * </pre>"
  */
 @Repository("qustnrRespondManageDao")
 public class QustnrRespondManageDao extends EgovAbstractMapper {
@@ -32,27 +32,27 @@ public class QustnrRespondManageDao extends EgovAbstractMapper {
 	 * 응답자정보 목록을 조회한다.
 	 * @param searchVO - 조회할 정보가 담긴 VO
 	 * @return List
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	public List<?> selectQustnrRespondManageList(ComDefaultVO searchVO) throws Exception{
-		return list("QustnrRespondManage.selectQustnrRespondManage", searchVO);
+		return selectList("QustnrRespondManage.selectQustnrRespondManage", searchVO);
 	}
 
     /**
 	 * 응답자정보를(을) 상세조회 한다.
 	 * @param qustnrRespondManageVO - 응답자정보 정보 담김 VO
 	 * @return List
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	public List<?> selectQustnrRespondManageDetail(QustnrRespondManageVO qustnrRespondManageVO) throws Exception{
-		return list("QustnrRespondManage.selectQustnrRespondManageDetail", qustnrRespondManageVO);
+		return selectList("QustnrRespondManage.selectQustnrRespondManageDetail", qustnrRespondManageVO);
 	}
 
     /**
 	 * 응답자정보를(을) 목록 전체 건수를(을) 조회한다.
 	 * @param searchVO - 조회할 정보가 담긴 VO
 	 * @return int
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	public int selectQustnrRespondManageListCnt(ComDefaultVO searchVO) throws Exception{
 		return (Integer)selectOne("QustnrRespondManage.selectQustnrRespondManageCnt", searchVO);
@@ -60,8 +60,8 @@ public class QustnrRespondManageDao extends EgovAbstractMapper {
 
     /**
 	 * 응답자정보를(을) 등록한다.
-	 * @param qqustnrRespondManageVO - 응답자정보 정보 담김 VO
-	 * @throws Exception
+	 * @param qustnrRespondManageVO - 응답자정보 정보 담김 VO
+	 * @throws Exception Exception
 	 */
 	public void insertQustnrRespondManage(QustnrRespondManageVO qustnrRespondManageVO) throws Exception{
 		insert("QustnrRespondManage.insertQustnrRespondManage", qustnrRespondManageVO);
@@ -70,7 +70,7 @@ public class QustnrRespondManageDao extends EgovAbstractMapper {
     /**
 	 * 응답자정보를(을) 수정한다.
 	 * @param qustnrRespondManageVO - 응답자정보 정보 담김 VO
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	public void updateQustnrRespondManage(QustnrRespondManageVO qustnrRespondManageVO) throws Exception{
 		insert("QustnrRespondManage.updateQustnrRespondManage", qustnrRespondManageVO);
@@ -79,7 +79,7 @@ public class QustnrRespondManageDao extends EgovAbstractMapper {
     /**
 	 * 응답자정보를(을) 삭제한다.
 	 * @param qustnrRespondManageVO - 응답자정보 정보 담김 VO
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	public void deleteQustnrRespondManage(QustnrRespondManageVO qustnrRespondManageVO) throws Exception{
 		insert("QustnrRespondManage.deleteQustnrRespondManage", qustnrRespondManageVO);

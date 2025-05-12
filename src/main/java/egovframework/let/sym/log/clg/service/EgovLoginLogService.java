@@ -13,9 +13,9 @@ public interface EgovLoginLogService {
 	/**
 	 * 접속로그를 조회한다.
 	 *
-	 * @param loginLog
+	 * @param loginLog loginLog
 	 * @return loginLog
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	public LoginLog selectLoginLog(LoginLog loginLog) throws Exception;
 

@@ -9,7 +9,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *   
  *   수정일      수정자           수정내용
@@ -17,12 +17,11 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  *   2009.03.20  이  용          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성 
  *
- * </pre>
+ * </pre>"
  */
 
 public class MenuManageVO{
 
-   /** 메뉴정보 */
    /** 메뉴번호 */
    private   int      menuNo;
    /** 메뉴순서 */
@@ -40,11 +39,9 @@ public class MenuManageVO{
    /** 프로그램파일명 */
    private   String   progrmFileNm;
 
-   /** 사이트맵 */
    /** 생성자ID **/
    private   String   creatPersonId;
 
-   /** 권한정보설정 */
    /** 권한코드 */
    private   String   authorCode;
 
@@ -53,7 +50,6 @@ public class MenuManageVO{
    private   int      tempInt; 
    
 
-   /** Login 메뉴관련 VO변수 */
    /** tmp_Id */
    private   String   tmp_Id;
    /** tmp_Password */

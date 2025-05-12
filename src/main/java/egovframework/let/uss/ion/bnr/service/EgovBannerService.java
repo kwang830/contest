@@ -10,7 +10,7 @@ import java.util.List;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *   
  *   수정일      수정자           수정내용
@@ -18,75 +18,47 @@ import java.util.List;
  *   2009.08.03  lee.m.j        최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성 
  *
- * </pre>
+ * </pre>"
  */
 public interface EgovBannerService {
 
 	/**
 	 * 배너를 관리하기 위해 등록된 배너목록을 조회한다.
-	 * @param bannerVO - 배너 Vo
-	 * @return List - 배너 목록
-	 * 
-	 * @param bannerVO
 	 */
 	public List<BannerVO> selectBannerList(BannerVO bannerVO) throws Exception;
 
 	/**
 	 * 배너목록 총 갯수를 조회한다.
-	 * @param bannerVO - 배너 Vo
-	 * @return int - 배너 카운트 수
-	 * 
-	 * @param bannerVO
 	 */
 	public int selectBannerListTotCnt(BannerVO bannerVO) throws Exception;
 	
 	/**
 	 * 등록된 배너의 상세정보를 조회한다.
-	 * @param bannerVO - 배너 Vo
-	 * @return BannerVO - 배너 Vo
-	 * 
-	 * @param bannerVO
 	 */
 	public BannerVO selectBanner(BannerVO bannerVO) throws Exception;
 
 	/**
 	 * 배너정보를 신규로 등록한다.
-	 * @param banner - 배너 model
-	 * 
-	 * @param banner
 	 */
 	public BannerVO insertBanner(Banner banner, BannerVO bannerVO) throws Exception;
 
 	/**
 	 * 기 등록된 배너정보를 수정한다.
-	 * @param banner - 배너 model
-	 * 
-	 * @param banner
 	 */
 	public void updateBanner(Banner banner) throws Exception;
 
 	/**
 	 * 기 등록된 배너정보를 삭제한다.
-	 * @param banner - 배너 model
-	 * 
-	 * @param banner
 	 */
 	public void deleteBanner(Banner banner) throws Exception;
 
 	/**
 	 * 기 등록된 배너정보의 이미지파일을 삭제한다.
-	 * @param banner - 배너 model
-	 * 
-	 * @param banner
 	 */
 	public void deleteBannerFile(Banner banner) throws Exception;
 
 	/**
 	 * 배너가 특정화면에 반영된 결과를 조회한다.
-	 * @param bannerVO - 배너 Vo
-	 * @return BannerVO - 배너 Vo
-	 * 
-	 * @param bannerVO
 	 */
 	public List<BannerVO> selectBannerResult(BannerVO bannerVO) throws Exception;
 }

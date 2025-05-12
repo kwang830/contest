@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일      수정자           수정내용
@@ -24,38 +24,37 @@ import org.springframework.stereotype.Repository;
  *   							selectUpperMenuNoByPk() 메서드 추가
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성
  *
- * </pre>
+ * </pre>"
  */
 
 @Repository("menuManageDAO")
 public class MenuManageDAO extends EgovAbstractMapper{
 
-	/*### 메뉴관련 프로세스 ###*/
 	/**
 	 * MainMenu Head Menu 조회
 	 * @param vo MenuManageVO
 	 * @return List
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	public List<?> selectMainMenuHead(MenuManageVO vo) throws Exception{
-		return list("menuManageDAO.selectMainMenuHead", vo);
+		return selectList("menuManageDAO.selectMainMenuHead", vo);
 	}
 
 	/**
 	 * MainMenu Left Menu 조회
 	 * @param vo MenuManageVO
 	 * @return List
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	public List<?> selectMainMenuLeft(MenuManageVO vo) throws Exception{
-		return list("menuManageDAO.selectMainMenuLeft", vo);
+		return selectList("menuManageDAO.selectMainMenuLeft", vo);
 	}
 
 	/**
 	 * MainMenu Head MenuURL 조회
 	 * @param vo MenuManageVO
 	 * @return  String
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	public String selectLastMenuURL(MenuManageVO vo) throws Exception{
 		return (String)selectOne("menuManageDAO.selectLastMenuURL", vo);
@@ -65,7 +64,7 @@ public class MenuManageDAO extends EgovAbstractMapper{
 	 * MainMenu Left Menu 조회
 	 * @param vo MenuManageVO
 	 * @return int
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	public int selectLastMenuNo(MenuManageVO vo) throws Exception{
 		return (Integer)selectOne("menuManageDAO.selectLastMenuNo", vo);
@@ -75,7 +74,7 @@ public class MenuManageDAO extends EgovAbstractMapper{
 	 * MainMenu Left Menu 조회
 	 * @param vo MenuManageVO
 	 * @return int
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	public int selectLastMenuNoCnt(MenuManageVO vo) throws Exception{
 		return (Integer)selectOne("menuManageDAO.selectLastMenuNoCnt", vo);
@@ -85,20 +84,20 @@ public class MenuManageDAO extends EgovAbstractMapper{
 	 * MainMenu Head Menu 조회 - Anonymous
 	 * @param vo MenuManageVO
 	 * @return List
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	public List<?> selectMainMenuHeadByAuthor(MenuManageVO vo) throws Exception{
-		return list("menuManageDAO.selectMainMenuHeadByAuthor", vo);
+		return selectList("menuManageDAO.selectMainMenuHeadByAuthor", vo);
 	}
 
 	/**
 	 * MainMenu Left Menu 조회 - Anonymous
 	 * @param vo MenuManageVO
 	 * @return List
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	public List<?> selectMainMenuLeftByAuthor(MenuManageVO vo) throws Exception{
-		return list("menuManageDAO.selectMainMenuLeftByAuthor", vo);
+		return selectList("menuManageDAO.selectMainMenuLeftByAuthor", vo);
 	}
 
 }

@@ -69,7 +69,7 @@ public class EgovFileMngController {
 	 * @param sessionVO
 	 * @param model
 	 * @return
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cmm/fms/selectFileInfs.do")
 	public String selectFileInfs(@ModelAttribute("searchVO") FileVO fileVO,
@@ -110,7 +110,7 @@ public class EgovFileMngController {
 	 * @param sessionVO
 	 * @param model
 	 * @return
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cmm/fms/selectFileInfsForUpdate.do")
 	public String selectFileInfsForUpdate(@ModelAttribute("searchVO") FileVO fileVO,
@@ -153,7 +153,7 @@ public class EgovFileMngController {
 	 * @param sessionVO
 	 * @param model
 	 * @return
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cmm/fms/selectFileInfsForUpdateAdd.do")
 	public String selectFileInfsForUpdateAdd(@ModelAttribute("searchVO") FileVO fileVO,
@@ -202,7 +202,7 @@ public class EgovFileMngController {
 	 * @param sessionVO
 	 * @param model
 	 * @return
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cmm/fms/deleteFileInfs.do")
 	public String deleteFileInf(@ModelAttribute("searchVO") FileVO fileVO, @RequestParam("returnUrl") String returnUrl, HttpServletRequest request, ModelMap model)
@@ -242,7 +242,7 @@ public class EgovFileMngController {
 	 * @param sessionVO
 	 * @param model
 	 * @return
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cmm/fms/deleteImgUrlFileInfs.do")
 	public String deleteImgUrlFileInf(@ModelAttribute("searchVO") FileVO fileVO,
@@ -291,7 +291,7 @@ public class EgovFileMngController {
 	 * @param sessionVO
 	 * @param model
 	 * @return
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cmm/fms/selectImageFileInfs.do")
 	public String selectImageFileInfs(@ModelAttribute("searchVO") FileVO fileVO,

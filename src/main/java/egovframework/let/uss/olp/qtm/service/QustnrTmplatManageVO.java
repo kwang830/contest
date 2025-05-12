@@ -10,7 +10,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *   
  *   수정일      수정자           수정내용
@@ -18,7 +18,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  *   2009.03.20  장동한          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성 
  *
- * </pre>
+ * </pre>"
  */
 public class QustnrTmplatManageVO implements Serializable {
 
@@ -67,7 +67,6 @@ public class QustnrTmplatManageVO implements Serializable {
 
 	/**
 	 * qestnrTmplatId attribute 값을 설정한다.
-	 * @return qestnrTmplatId String
 	 */
 	public void setQestnrTmplatId(String qestnrTmplatId) {
 		this.qestnrTmplatId = qestnrTmplatId;
@@ -83,7 +82,6 @@ public class QustnrTmplatManageVO implements Serializable {
 
 	/**
 	 * qestnrTmplatTy attribute 값을 설정한다.
-	 * @return qestnrTmplatTy String
 	 */
 	public void setQestnrTmplatTy(String qestnrTmplatTy) {
 		this.qestnrTmplatTy = qestnrTmplatTy;
@@ -91,7 +89,6 @@ public class QustnrTmplatManageVO implements Serializable {
 
 	/**
 	 * qestnrTmplatImagepathnm attribute 값을 설정한다.
-	 * @return qestnrTmplatImagepathnm byte[]
 	 */
 	public void setQestnrTmplatImagepathnm(byte[] qestnrTmplatImagepathnm) {
 		this.qestnrTmplatImagepathnm = qestnrTmplatImagepathnm;
@@ -107,7 +104,6 @@ public class QustnrTmplatManageVO implements Serializable {
 
 	/**
 	 * qestnrTmplatCn attribute 값을 설정한다.
-	 * @return qestnrTmplatCn String
 	 */
 	public void setQestnrTmplatCn(String qestnrTmplatCn) {
 		this.qestnrTmplatCn = qestnrTmplatCn;
@@ -123,7 +119,6 @@ public class QustnrTmplatManageVO implements Serializable {
 
 	/**
 	 * qestnrTmplatCours attribute 값을 설정한다.
-	 * @return qestnrTmplatCours String
 	 */
 	public void setQestnrTmplatCours(String qestnrTmplatCours) {
 		this.qestnrTmplatCours = qestnrTmplatCours;
@@ -139,7 +134,6 @@ public class QustnrTmplatManageVO implements Serializable {
 
 	/**
 	 * frstRegisterPnttm attribute 값을 설정한다.
-	 * @return frstRegisterPnttm String
 	 */
 	public void setFrstRegisterPnttm(String frstRegisterPnttm) {
 		this.frstRegisterPnttm = frstRegisterPnttm;
@@ -155,7 +149,6 @@ public class QustnrTmplatManageVO implements Serializable {
 
 	/**
 	 * frstRegisterId attribute 값을 설정한다.
-	 * @return frstRegisterId String
 	 */
 	public void setFrstRegisterId(String frstRegisterId) {
 		this.frstRegisterId = frstRegisterId;
@@ -171,7 +164,6 @@ public class QustnrTmplatManageVO implements Serializable {
 
 	/**
 	 * lastUpdusrPnttm attribute 값을 설정한다.
-	 * @return lastUpdusrPnttm String
 	 */
 	public void setLastUpdusrPnttm(String lastUpdusrPnttm) {
 		this.lastUpdusrPnttm = lastUpdusrPnttm;
@@ -187,7 +179,6 @@ public class QustnrTmplatManageVO implements Serializable {
 
 	/**
 	 * lastUpdusrId attribute 값을 설정한다.
-	 * @return lastUpdusrId String
 	 */
 	public void setLastUpdusrId(String lastUpdusrId) {
 		this.lastUpdusrId = lastUpdusrId;
@@ -203,7 +194,6 @@ public class QustnrTmplatManageVO implements Serializable {
 
 	/**
 	 * cmd attribute 값을 설정한다.
-	 * @return cmd String
 	 */
 	public void setCmd(String cmd) {
 		this.cmd = cmd;

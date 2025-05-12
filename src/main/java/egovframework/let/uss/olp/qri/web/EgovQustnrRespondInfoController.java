@@ -40,7 +40,7 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
  * @version 1.0
  * @see
  *
- *      <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일      수정자           수정내용
@@ -48,7 +48,7 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
  *   2009.03.20  장동한          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성
  *
- *      </pre>
+ * </pre>"
  */
 @Controller
 public class EgovQustnrRespondInfoController {
@@ -68,7 +68,7 @@ public class EgovQustnrRespondInfoController {
 	@Resource(name = "egovQustnrRespondManageService")
 	private EgovQustnrRespondManageService egovQustnrRespondManageService;
 
-	/** EgovPropertyService */
+	/* EgovPropertyService */
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertiesService;
 
@@ -77,13 +77,6 @@ public class EgovQustnrRespondInfoController {
 
 	/**
 	 * 설문템플릿을 적용한다.
-	 * 
-	 * @param searchVO
-	 * @param request
-	 * @param commandMap
-	 * @param model
-	 * @return "/uss/olp/mgt/template/template"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/olp/qri/template/template.do")
 	public String EgovQustnrRespondInfoManageTemplate(@ModelAttribute("searchVO") ComDefaultVO searchVO,
@@ -129,13 +122,6 @@ public class EgovQustnrRespondInfoController {
 
 	/**
 	 * 설문조사 전체 통계를 조회한다.
-	 * 
-	 * @param searchVO
-	 * @param request
-	 * @param commandMap
-	 * @param model
-	 * @return "/uss/olp/qnn/EgovQustnrRespondInfoManageStatistics"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/olp/qnn/EgovQustnrRespondInfoManageStatistics.do")
 	public String EgovQustnrRespondInfoManageStatistics(@ModelAttribute("searchVO") ComDefaultVO searchVO,
@@ -174,14 +160,6 @@ public class EgovQustnrRespondInfoController {
 
 	/**
 	 * 설문조사(설문등록) 목록을 조회한다.
-	 * 
-	 * @param searchVO
-	 * @param request
-	 * @param response
-	 * @param commandMap
-	 * @param model
-	 * @return "/uss/olp/qnn/EgovQustnrRespondInfoManageList"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/olp/qnn/EgovQustnrRespondInfoManageList.do")
 	public String EgovQustnrRespondInfoManageList(@ModelAttribute("searchVO") ComDefaultVO searchVO,
@@ -189,11 +167,11 @@ public class EgovQustnrRespondInfoController {
 			ModelMap model) throws Exception {
 		// 메인화면에서 넘어온 경우 메뉴 갱신을 위해 추가
 		request.getSession().setAttribute("menuNo", "4000000");
-		/** EgovPropertyService.sample */
+		/* EgovPropertyService.sample */
 		searchVO.setPageUnit(propertiesService.getInt("pageUnit"));
 		searchVO.setPageSize(propertiesService.getInt("pageSize"));
 
-		/** pageing */
+		/* pageing */
 		PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(searchVO.getPageIndex());
 		paginationInfo.setRecordCountPerPage(searchVO.getPageUnit());
@@ -219,12 +197,6 @@ public class EgovQustnrRespondInfoController {
 
 	/**
 	 * 설문조사(설문등록)를 등록한다.
-	 * 
-	 * @param searchVO
-	 * @param commandMap
-	 * @param model
-	 * @return "/uss/olp/qnn/EgovQustnrRespondInfoManageRegist"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/olp/qnn/EgovQustnrRespondInfoManageRegist.do")
 	public String EgovQustnrRespondInfoManageRegist(@ModelAttribute("searchVO") ComDefaultVO searchVO,
@@ -397,14 +369,6 @@ public class EgovQustnrRespondInfoController {
 
 	/**
 	 * 응답자결과(설문조사) 목록을 조회한다.
-	 * 
-	 * @param searchVO
-	 * @param request
-	 * @param commandMap
-	 * @param qustnrRespondInfoVO
-	 * @param model
-	 * @return "/uss/olp/qri/EgovQustnrRespondInfoList"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/olp/qri/EgovQustnrRespondInfoList.do")
 	public String EgovQustnrRespondInfoList(@ModelAttribute("searchVO") ComDefaultVO searchVO,
@@ -432,11 +396,11 @@ public class EgovQustnrRespondInfoController {
 			searchVO.setSearchKeyword(qustnrRespondInfoVO.getQestnrId());
 		}
 
-		/** EgovPropertyService.sample */
+		/* EgovPropertyService.sample */
 		searchVO.setPageUnit(propertiesService.getInt("pageUnit"));
 		searchVO.setPageSize(propertiesService.getInt("pageSize"));
 
-		/** pageing */
+		/* pageing */
 		PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(searchVO.getPageIndex());
 		paginationInfo.setRecordCountPerPage(searchVO.getPageUnit());
@@ -463,13 +427,6 @@ public class EgovQustnrRespondInfoController {
 
 	/**
 	 * 응답자결과(설문조사) 목록을 상세조회 조회한다.
-	 * 
-	 * @param searchVO
-	 * @param qustnrRespondInfoVO
-	 * @param commandMap
-	 * @param model
-	 * @return
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/olp/qri/EgovQustnrRespondInfoDetail.do")
 	public String EgovQustnrRespondInfoDetail(@ModelAttribute("searchVO") ComDefaultVO searchVO,
@@ -493,15 +450,6 @@ public class EgovQustnrRespondInfoController {
 
 	/**
 	 * 응답자결과(설문조사)를 수정한다.
-	 * 
-	 * @param searchVO
-	 * @param commandMap
-	 * @param request
-	 * @param qustnrRespondInfoVO
-	 * @param bindingResult
-	 * @param model
-	 * @return "/uss/olp/qri/EgovQustnrRespondInfoModify"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/olp/qri/EgovQustnrRespondInfoModify.do")
 	public String QustnrRespondInfoModify(@ModelAttribute("searchVO") ComDefaultVO searchVO,
@@ -549,15 +497,6 @@ public class EgovQustnrRespondInfoController {
 
 	/**
 	 * 응답자결과(설문조사)를 등록한다.
-	 * 
-	 * @param searchVO
-	 * @param commandMap
-	 * @param request
-	 * @param qustnrRespondInfoVO
-	 * @param bindingResult
-	 * @param model
-	 * @return "/uss/olp/qri/EgovQustnrRespondInfoRegist"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/olp/qri/EgovQustnrRespondInfoRegist.do")
 	public String QustnrRespondInfoRegist(@ModelAttribute("searchVO") ComDefaultVO searchVO,

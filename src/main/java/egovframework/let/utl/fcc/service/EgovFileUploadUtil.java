@@ -40,7 +40,7 @@ public class EgovFileUploadUtil extends EgovFormBasedFileUtil {
 	 * @param where
 	 * @param maxFileSize
 	 * @return
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	public static List<EgovFormBasedFileVo> uploadFiles(HttpServletRequest request, String where, long maxFileSize)
 		throws Exception {
@@ -101,7 +101,7 @@ public class EgovFileUploadUtil extends EgovFormBasedFileUtil {
 	 * @param where
 	 * @param maxFileSize
 	 * @return
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	public static List<EgovFormBasedFileVo> uploadFilesExt(MultipartHttpServletRequest mptRequest, String where,
 		long maxFileSize, String extensionWhiteList) throws Exception {

@@ -36,7 +36,7 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일      수정자           수정내용
@@ -44,7 +44,7 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
  *   2009.04.02  이삼섭          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성
  *
- * </pre>
+ * </pre>"
  */
 @Controller
 public class EgovBBSUseInfoManageController {
@@ -60,14 +60,6 @@ public class EgovBBSUseInfoManageController {
 
 	/**
 	 * 게시판 사용 정보를 삭제한다.
-	 *
-	 * @param bdUseVO
-	 * @param bdUseInf
-	 * @param sessionVO
-	 * @param status
-	 * @param model
-	 * @return
-	 * @throws Exception
 	 */
 	@RequestMapping("/cop/com/deleteBBSUseInf.do")
 	public String deleteBBSUseInf(@ModelAttribute("searchVO") BoardUseInfVO bdUseVO, @ModelAttribute("bdUseInf") BoardUseInf bdUseInf, SessionStatus status, ModelMap model)
@@ -84,12 +76,6 @@ public class EgovBBSUseInfoManageController {
 
 	/**
 	 * 게사판 사용정보 등록을 위한 등록페이지로 이동한다.
-	 *
-	 * @param bdUseVO
-	 * @param sessionVO
-	 * @param model
-	 * @return
-	 * @throws Exception
 	 */
 	@RequestMapping("/cop/com/addBBSUseInf.do")
 	public String addBBSUseInf(@ModelAttribute("searchVO") BoardUseInfVO bdUseVO, ModelMap model) throws Exception {
@@ -98,14 +84,6 @@ public class EgovBBSUseInfoManageController {
 
 	/**
 	 * 게시판 사용정보를 등록한다.
-	 *
-	 * @param bdUseVO
-	 * @param bdUseInf
-	 * @param sessionVO
-	 * @param status
-	 * @param model
-	 * @return
-	 * @throws Exception
 	 */
 	@RequestMapping("/cop/com/insertBBSUseInf.do")
 	public String insertBBSUseInf(@ModelAttribute("searchVO") BoardUseInfVO bdUseVO, @ModelAttribute("boardUseInf") BoardUseInf boardUseInf, BindingResult bindingResult,
@@ -145,12 +123,6 @@ public class EgovBBSUseInfoManageController {
 
 	/**
 	 * 게시판 사용정보 목록을 조회한다.
-	 *
-	 * @param bdUseVO
-	 * @param sessionVO
-	 * @param model
-	 * @return
-	 * @throws Exception
 	 */
 	@RequestMapping("/cop/com/selectBBSUseInfs.do")
 	public String selectBBSUseInfs(@ModelAttribute("searchVO") BoardUseInfVO bdUseVO, ModelMap model) throws Exception {
@@ -182,14 +154,6 @@ public class EgovBBSUseInfoManageController {
 
 	/**
 	 * 게시판 사용정보를 수정한다.
-	 *
-	 * @param bdUseVO
-	 * @param bdUseInf
-	 * @param sessionVO
-	 * @param status
-	 * @param model
-	 * @return
-	 * @throws Exception
 	 */
 	@RequestMapping("/cop/com/updateBBSUseInf.do")
 	public String updateBBSUseInf(@ModelAttribute("searchVO") BoardUseInfVO bdUseVO, @ModelAttribute("boardUseInf") BoardUseInf boardUseInf, HttpServletRequest request,
@@ -204,12 +168,6 @@ public class EgovBBSUseInfoManageController {
 
 	/**
 	 * 게시판 사용정보에 대한 상세정보를 조회한다.
-	 *
-	 * @param bdUseVO
-	 * @param sessionVO
-	 * @param model
-	 * @return
-	 * @throws Exception
 	 */
 	@RequestMapping("/cop/com/selectBBSUseInf.do")
 	public String selectBBSUseInf(@ModelAttribute("searchVO") BoardUseInfVO bdUseVO, ModelMap model) throws Exception {
@@ -230,11 +188,6 @@ public class EgovBBSUseInfoManageController {
 
 	/**
 	 * 커뮤니티, 동호회에 사용되는 게시판 사용정보에 대한 목록을 조회한다.
-	 *
-	 * @param bdUseVO
-	 * @param model
-	 * @return
-	 * @throws Exception
 	 */
 	@RequestMapping("/cop/com/selectBBSUseInfsByTrget.do")
 	public String selectBBSUseInfsByTrget(@ModelAttribute("searchVO") BoardUseInfVO bdUseVO, ModelMap model) throws Exception {
@@ -268,13 +221,6 @@ public class EgovBBSUseInfoManageController {
 
 	/**
 	 * 커뮤니티, 동호회에 사용되는 게시판 사용정보를 수정한다.
-	 *
-	 * @param bdUseVO
-	 * @param boardUseInf
-	 * @param status
-	 * @param model
-	 * @return
-	 * @throws Exception
 	 */
 	@RequestMapping("/cop/com/updateBBSUseInfByTrget.do")
 	public String updateBBSUseInfByTrget(@ModelAttribute("searchVO") BoardUseInfVO bdUseVO, @ModelAttribute("boardUseInf") BoardUseInf boardUseInf,
@@ -294,13 +240,6 @@ public class EgovBBSUseInfoManageController {
 
 	/**
 	 * 커뮤니티, 동호회에 사용되는 게시판 사용정보를 등록한다.
-	 *
-	 * @param bdUseVO
-	 * @param boardUseInf
-	 * @param status
-	 * @param model
-	 * @return
-	 * @throws Exception
 	 */
 	@RequestMapping("/cop/com/insertBBSUseInfByTrget.do")
 	public String insertBBSUseInfByTrget(@ModelAttribute("searchVO") BoardUseInfVO bdUseVO, @ModelAttribute("boardUseInf") BoardUseInf boardUseInf,

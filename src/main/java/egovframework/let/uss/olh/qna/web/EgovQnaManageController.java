@@ -34,7 +34,7 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일      수정자           수정내용
@@ -42,7 +42,7 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
  *   2009.04.01  박정규          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성
  *
- * </pre>
+ * </pre>"
  */
 @Controller
 public class EgovQnaManageController {
@@ -50,7 +50,7 @@ public class EgovQnaManageController {
 	@Resource(name = "QnaManageService")
 	private EgovQnaManageService qnaManageService;
 
-	/** EgovPropertyService */
+	/* EgovPropertyService */
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertiesService;
 
@@ -67,9 +67,6 @@ public class EgovQnaManageController {
 
 	/**
 	 * 개별 배포시 메인메뉴를 조회한다.
-	 * @param model
-	 * @return	"/uss/olh/qna/"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/olh/qna/EgovMain.do")
 	public String EgovMain(ModelMap model) throws Exception {
@@ -78,9 +75,9 @@ public class EgovQnaManageController {
 
 	/**
 	 * 메뉴를 조회한다.
-	 * @param model
+	 * @param model model
 	 * @return	"/uss/olh/qna/EgovLeft"
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping(value = "/uss/olh/qna/EgovLeft.do")
 	public String EgovLeft(ModelMap model) throws Exception {
@@ -89,10 +86,6 @@ public class EgovQnaManageController {
 
 	/**
 	 * Q&A정보 목록을 조회한다. (pageing)
-	 * @param searchVO
-	 * @param model
-	 * @return	"/uss/olh/qna/EgovQnaListInqire"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/olh/qna/QnaListInqire.do")
 	public String selectQnaList(@ModelAttribute("searchVO") QnaManageDefaultVO searchVO, ModelMap model, HttpServletRequest request) throws Exception {
@@ -101,11 +94,11 @@ public class EgovQnaManageController {
 		request.getSession().setAttribute("menuNo", "5000000");
 		request.getSession().setAttribute("activeMenuNo", "5030000");
 
-		/** EgovPropertyService.SiteList */
+		/* EgovPropertyService.SiteList */
 		searchVO.setPageUnit(propertiesService.getInt("pageUnit"));
 		searchVO.setPageSize(propertiesService.getInt("pageSize"));
 
-		/** pageing */
+		/* pageing */
 		PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(searchVO.getPageIndex());
 		paginationInfo.setRecordCountPerPage(searchVO.getPageUnit());
@@ -139,12 +132,6 @@ public class EgovQnaManageController {
 
 	/**
 	 * Q&A정보 목록에 대한 상세정보를 조회한다.
-	 * @param passwordConfirmAt
-	 * @param qnaManageVO
-	 * @param searchVO
-	 * @param model
-	 * @return	"/uss/olh/qna/EgovQnaDetailInqire"
-	 * @throws Exception
 	 */
 	@RequestMapping("/uss/olh/qna/QnaDetailInqire.do")
 	public String selectQnaListDetail(@RequestParam("passwordConfirmAt") String passwordConfirmAt, QnaManageVO qnaManageVO,
@@ -167,10 +154,6 @@ public class EgovQnaManageController {
 
 	/**
 	 * Q&A 조회수를  수정처리한다.
-	 * @param qnaManageVO
-	 * @param searchVO
-	 * @return	"forward:/uss/olh/qna/QnaDetailInqire.do"
-	 * @throws Exception
 	 */
 	@RequestMapping("/uss/olh/qna/QnaInqireCoUpdt.do")
 	public String updateQnaInqireCo(QnaManageVO qnaManageVO, @ModelAttribute("searchVO") QnaManageDefaultVO searchVO) throws Exception {
@@ -183,11 +166,6 @@ public class EgovQnaManageController {
 
 	/**
 	 * 로그인/실명확인 처리
-	 * @param qnaManageVO
-	 * @param searchVO
-	 * @param model
-	 * @return	/uss/olh/qna/EgovLoginRealnmChoice
-	 * @throws Exception
 	 */
 	@RequestMapping("/uss/olh/qna/LoginRealnmChoice.do")
 	public String selectLoginRealnmChoice(QnaManageVO qnaManageVO, @ModelAttribute("searchVO") QnaManageDefaultVO searchVO, Model model) throws Exception {
@@ -199,11 +177,6 @@ public class EgovQnaManageController {
 
 	/**
 	 * Q&A정보를 등록하기 위한 전 처리(인증체크)
-	 * @param searchVO
-	 * @param qnaManageVO
-	 * @param model
-	 * @return	"/uss/olh/qna/EgovQnaCnRegist"
-	 * @throws Exception
 	 */
 	@RequestMapping("/uss/olh/qna/QnaCnRegistView.do")
 	public String insertQnaCnView(@ModelAttribute("searchVO") QnaManageDefaultVO searchVO, QnaManageVO qnaManageVO, Model model) throws Exception {
@@ -235,11 +208,6 @@ public class EgovQnaManageController {
 
 	/**
 	 * Q&A정보를 등록한다.
-	 * @param searchVO
-	 * @param qnaManageVO
-	 * @param bindingResult
-	 * @return	"forward:/uss/olh/qna/QnaListInqire.do"
-	 * @throws Exception
 	 */
 	@RequestMapping("/uss/olh/qna/QnaCnRegist.do")
 	public String insertQnaCn(@ModelAttribute("searchVO") QnaManageDefaultVO searchVO, @ModelAttribute("qnaManageVO") QnaManageVO qnaManageVO, BindingResult bindingResult,
@@ -272,11 +240,6 @@ public class EgovQnaManageController {
 
 	/**
 	 * 작성 비밀번호를 확인하기 위한 전 처리
-	 * @param qnaManageVO
-	 * @param searchVO
-	 * @param model
-	 * @return	"/uss/olh/qna/EgovQnaPasswordConfirm"
-	 * @throws Exception
 	 */
 	@RequestMapping("/uss/olh/qna/QnaPasswordConfirmView.do")
 	public String selectPasswordConfirmView(QnaManageVO qnaManageVO, @ModelAttribute("searchVO") QnaManageDefaultVO searchVO, Model model) throws Exception {
@@ -288,10 +251,6 @@ public class EgovQnaManageController {
 
 	/**
 	 * 작성 비밀번호를 확인한다.
-	 * @param qnaManageVO
-	 * @param searchVO
-	 * @return	"forward:/uss/olh/qna/QnaDetailInqire.do"
-	 * @throws Exception
 	 */
 	@RequestMapping("/uss/olh/qna/QnaPasswordConfirm.do")
 	public String selectPasswordConfirm(QnaManageVO qnaManageVO, @ModelAttribute("searchVO") QnaManageDefaultVO searchVO, Model model) throws Exception {
@@ -331,11 +290,6 @@ public class EgovQnaManageController {
 
 	/**
 	 * Q&A정보를 수정하기 위한 전 처리(비밀번호 암호화)
-	 * @param qnaManageVO
-	 * @param searchVO
-	 * @param model
-	 * @return	"/uss/olh/qna/EgovQnaCnUpdt
-	 * @throws Exception
 	 */
 	@RequestMapping("/uss/olh/qna/QnaCnUpdtView.do")
 	public String updateQnaCnView(QnaManageVO qnaManageVO, @ModelAttribute("searchVO") QnaManageDefaultVO searchVO, ModelMap model) throws Exception {
@@ -359,11 +313,6 @@ public class EgovQnaManageController {
 
 	/**
 	 * Q&A정보를 수정처리한다.
-	 * @param searchVO
-	 * @param qnaManageVO
-	 * @param bindingResult
-	 * @return	"forward:/uss/olh/qna/QnaListInqire.do"
-	 * @throws Exception
 	 */
 	@RequestMapping("/uss/olh/qna/QnaCnUpdt.do")
 	public String updateQnaCn(@ModelAttribute("searchVO") QnaManageDefaultVO searchVO, @ModelAttribute("qnaManageVO") QnaManageVO qnaManageVO, BindingResult bindingResult)
@@ -397,10 +346,6 @@ public class EgovQnaManageController {
 
 	/**
 	 * Q&A정보를 삭제처리한다.
-	 * @param qnaManageVO
-	 * @param searchVO
-	 * @return	"forward:/uss/olh/qna/QnaListInqire.do"
-	 * @throws Exception
 	 */
 	@RequestMapping("/uss/olh/qna/QnaCnDelete.do")
 	public String deleteQnaCn(QnaManageVO qnaManageVO, @ModelAttribute("searchVO") QnaManageDefaultVO searchVO, Model model) throws Exception {
@@ -420,10 +365,6 @@ public class EgovQnaManageController {
 
 	/**
 	 * Q&A답변정보 목록을 조회한다. (pageing)
-	 * @param searchVO
-	 * @param model
-	 * @return	"/uss/olh/qna/EgovQnaAnswerListInqire"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/olh/qnm/QnaAnswerListInqire.do")
 	public String selectQnaAnswerList(@ModelAttribute("searchVO") QnaManageDefaultVO searchVO, ModelMap model, HttpServletRequest request) throws Exception {
@@ -432,11 +373,11 @@ public class EgovQnaManageController {
 		request.getSession().setAttribute("menuNo", "5000000");
 		request.getSession().setAttribute("activeMenuNo", "5035000");
 
-		/** EgovPropertyService.SiteList */
+		/* EgovPropertyService.SiteList */
 		searchVO.setPageUnit(propertiesService.getInt("pageUnit"));
 		searchVO.setPageSize(propertiesService.getInt("pageSize"));
 
-		/** pageing */
+		/* pageing */
 		PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(searchVO.getPageIndex());
 		paginationInfo.setRecordCountPerPage(searchVO.getPageUnit());
@@ -457,11 +398,6 @@ public class EgovQnaManageController {
 
 	/**
 	 * Q&A답변정보 목록에 대한 상세정보를 조회한다.
-	 * @param qnaManageVO
-	 * @param searchVO
-	 * @param model
-	 * @return	"/uss/olh/qna/EgovQnaAnswerDetailInqire"
-	 * @throws Exception
 	 */
 	@RequestMapping("/uss/olh/qnm/QnaAnswerDetailInqire.do")
 	public String selectQnaAnswerListDetail(QnaManageVO qnaManageVO, @ModelAttribute("searchVO") QnaManageDefaultVO searchVO, ModelMap model) throws Exception {
@@ -476,11 +412,6 @@ public class EgovQnaManageController {
 
 	/**
 	 * Q&A답변정보를 수정하기 위한 전 처리(공통코드 처리)
-	 * @param qnaManageVO
-	 * @param searchVO
-	 * @param model
-	 * @return	"/uss/olh/qna/EgovQnaCnAnswerUpdt"
-	 * @throws Exception
 	 */
 	@RequestMapping("/uss/olh/qnm/QnaCnAnswerUpdtView.do")
 	public String updateQnaCnAnswerView(QnaManageVO qnaManageVO, @ModelAttribute("searchVO") QnaManageDefaultVO searchVO, ModelMap model) throws Exception {
@@ -499,10 +430,6 @@ public class EgovQnaManageController {
 
 	/**
 	 * Q&A답변정보를 수정처리한다.
-	 * @param qnaManageVO
-	 * @param searchVO
-	 * @return	"forward:/uss/olh/qnm/QnaAnswerListInqire.do"
-	 * @throws Exception
 	 */
 	@RequestMapping("/uss/olh/qnm/QnaCnAnswerUpdt.do")
 	public String updateQnaCnAnswer(QnaManageVO qnaManageVO, @ModelAttribute("searchVO") QnaManageDefaultVO searchVO) throws Exception {
@@ -512,7 +439,7 @@ public class EgovQnaManageController {
 
 		String lastUpdusrId = loginVO.getUniqId();
 
-		qnaManageVO.setLastUpdusrId(lastUpdusrId); // 최종수정자ID
+		qnaManageVO.setLastUpdusrId(lastUpdusrId);
 
 		qnaManageService.updateQnaCnAnswer(qnaManageVO);
 

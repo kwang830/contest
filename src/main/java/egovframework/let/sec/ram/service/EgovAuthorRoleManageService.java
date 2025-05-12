@@ -9,7 +9,7 @@ import java.util.List;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *   
  *   수정일      수정자           수정내용
@@ -17,7 +17,7 @@ import java.util.List;
  *   2009.03.20  이문준          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성 
  *
- * </pre>
+ * </pre>"
  */
 
 public interface EgovAuthorRoleManageService {
@@ -25,7 +25,7 @@ public interface EgovAuthorRoleManageService {
 	/**
 	 * 권한 롤 관계정보를 조회
 	 * @param authorRoleManageVO AuthorRoleManageVO
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	public AuthorRoleManageVO selectAuthorRole(AuthorRoleManageVO authorRoleManageVO) throws Exception;
 
@@ -33,28 +33,28 @@ public interface EgovAuthorRoleManageService {
 	 * 권한 롤 관계정보 목록 조회
 	 * @param authorRoleManageVO AuthorRoleManageVO
 	 * @return List<AuthorRoleManageVO>
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	public List<AuthorRoleManageVO> selectAuthorRoleList(AuthorRoleManageVO authorRoleManageVO) throws Exception;
 	
 	/**
 	 * 권한 롤 관계정보를 화면에서 입력하여 입력항목의 정합성을 체크하고 데이터베이스에 저장
 	 * @param authorRoleManage AuthorRoleManage
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	public void insertAuthorRole(AuthorRoleManage authorRoleManage) throws Exception;
 
 	/**
 	 * 수정된 권한 롤 관계정보를 데이터베이스에 반영
 	 * @param authorRoleManage AuthorRoleManage
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	public void updateAuthorRole(AuthorRoleManage authorRoleManage) throws Exception;
 
 	/**
 	 * 권한 롤 관계정보를 화면에 조회하여 데이터베이스에서 삭제
 	 * @param authorRoleManage AuthorRoleManage
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	public void deleteAuthorRole(AuthorRoleManage authorRoleManage) throws Exception;
 
@@ -62,7 +62,7 @@ public interface EgovAuthorRoleManageService {
 	 * 목록조회 카운트를 반환한다
 	 * @param authorRoleManageVO AuthorRoleManageVO
 	 * @return int
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	public int selectAuthorRoleListTotCnt(AuthorRoleManageVO authorRoleManageVO) throws Exception;	
 

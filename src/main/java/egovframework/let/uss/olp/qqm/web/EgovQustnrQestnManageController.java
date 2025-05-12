@@ -34,7 +34,7 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일      수정자           수정내용
@@ -42,7 +42,7 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
  *   2009.03.20  장동한          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성
  *
- * </pre>
+ * </pre>"
  */
 @Controller
 public class EgovQustnrQestnManageController {
@@ -59,7 +59,7 @@ public class EgovQustnrQestnManageController {
 	@Resource(name = "egovQustnrQestnManageService")
 	private EgovQustnrQestnManageService egovQustnrQestnManageService;
 
-    /** EgovPropertyService */
+    /* EgovPropertyService */
     @Resource(name = "propertiesService")
     protected EgovPropertyService propertiesService;
 
@@ -68,12 +68,6 @@ public class EgovQustnrQestnManageController {
 
     /**
      * 설문항목 통계를 조회한다.
-     * @param searchVO
-     * @param qustnrQestnManageVO
-     * @param commandMap
-     * @param model
-     * @return "/uss/olp/qqm/EgovQustnrQestnManageStatistics"
-     * @throws Exception
      */
     @RequestMapping(value="/uss/olp/qqm/EgovQustnrQestnManageStatistics.do")
 	public String EgovQustnrQestnManageStatistics(
@@ -100,12 +94,6 @@ public class EgovQustnrQestnManageController {
 
 	/**
 	 * 설문문항 팝업 록을 조회한다.
-	 * @param searchVO
-	 * @param qustnrQestnManageVO
-	 * @param commandMap
-	 * @param model
-	 * @return "/uss/olp/qqm/EgovQustnrQestnManageListPopup"
-	 * @throws Exception
 	 */
 	@RequestMapping(value="/uss/olp/qqm/EgovQustnrQestnManageListPopup.do")
 	public String EgovQustnrQestnManageListPopup(
@@ -123,11 +111,11 @@ public class EgovQustnrQestnManageController {
 			searchVO.setSearchKeyword(qustnrQestnManageVO.getQestnrId());
 		}
 
-    	/** EgovPropertyService.sample */
+    	/* EgovPropertyService.sample */
     	searchVO.setPageUnit(propertiesService.getInt("pageUnit"));
     	searchVO.setPageSize(propertiesService.getInt("pageSize"));
 
-    	/** pageing */
+    	/* pageing */
     	PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(searchVO.getPageIndex());
 		paginationInfo.setRecordCountPerPage(searchVO.getPageUnit());
@@ -148,12 +136,6 @@ public class EgovQustnrQestnManageController {
 
 	/**
 	 * 설문문항 목록을 조회한다.
-	 * @param searchVO
-	 * @param qustnrQestnManageVO
-	 * @param commandMap
-	 * @param model
-	 * @return "/uss/olp/qqm/EgovQustnrQestnManageList"
-	 * @throws Exception
 	 */
 	@RequestMapping(value="/uss/olp/qqm/EgovQustnrQestnManageList.do")
 	public String EgovQustnrQestnManageList(
@@ -182,11 +164,11 @@ public class EgovQustnrQestnManageController {
 			searchVO.setSearchKeyword(qustnrQestnManageVO.getQestnrId());
 		}
 
-    	/** EgovPropertyService.sample */
+    	/* EgovPropertyService.sample */
     	searchVO.setPageUnit(propertiesService.getInt("pageUnit"));
     	searchVO.setPageSize(propertiesService.getInt("pageSize"));
 
-    	/** pageing */
+    	/* pageing */
     	PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(searchVO.getPageIndex());
 		paginationInfo.setRecordCountPerPage(searchVO.getPageUnit());
@@ -207,12 +189,6 @@ public class EgovQustnrQestnManageController {
 
 	/**
 	 * 설문문항 목록을 상세조회 조회한다.
-	 * @param searchVO
-	 * @param qustnrQestnManageVO
-	 * @param commandMap
-	 * @param model
-	 * @return "/uss/olp/qqm/EgovQustnrQestnManageDetail"
-	 * @throws Exception
 	 */
 	@RequestMapping(value="/uss/olp/qqm/EgovQustnrQestnManageDetail.do")
 	public String EgovQustnrQestnManageDetail(
@@ -228,7 +204,7 @@ public class EgovQustnrQestnManageController {
 
 		if(sCmd.equals("del")){
 			egovQustnrQestnManageService.deleteQustnrQestnManage(qustnrQestnManageVO);
-			/** 목록으로갈때 검색조건 유지 */
+			/* 목록으로갈때 검색조건 유지 */
 			sLocationUrl = "redirect:/uss/olp/qqm/EgovQustnrQestnManageList.do?";
         	sLocationUrl = sLocationUrl + "searchMode=" + qustnrQestnManageVO.getSearchMode();
         	sLocationUrl = sLocationUrl + "&qestnrId=" + qustnrQestnManageVO.getQestnrId();
@@ -247,13 +223,6 @@ public class EgovQustnrQestnManageController {
 
 	/**
 	 * 설문문항를 수정한다.
-	 * @param searchVO
-	 * @param commandMap
-	 * @param qustnrQestnManageVO
-	 * @param bindingResult
-	 * @param model
-	 * @return "/uss/olp/qqm/EgovQustnrQestnManageModify"
-	 * @throws Exception
 	 */
 	@RequestMapping(value="/uss/olp/qqm/EgovQustnrQestnManageModify.do")
 	public String QustnrQestnManageModify(
@@ -310,7 +279,7 @@ public class EgovQustnrQestnManageController {
     		qustnrQestnManageVO.setLastUpdusrId((String)loginVO.getUniqId());
 
         	egovQustnrQestnManageService.updateQustnrQestnManage(qustnrQestnManageVO);
-        	/** 목록으로갈때 검색조건 유지 */
+        	/* 목록으로갈때 검색조건 유지 */
         	sLocationUrl = "redirect:/uss/olp/qqm/EgovQustnrQestnManageList.do?";
         	sLocationUrl = sLocationUrl + "searchMode=" + qustnrQestnManageVO.getSearchMode();
         	sLocationUrl = sLocationUrl + "&qestnrId=" + qustnrQestnManageVO.getQestnrId();
@@ -325,13 +294,6 @@ public class EgovQustnrQestnManageController {
 
 	/**
 	 * 설문문항를 등록한다.
-	 * @param searchVO
-	 * @param commandMap
-	 * @param qustnrQestnManageVO
-	 * @param bindingResult
-	 * @param model
-	 * @return "/uss/olp/qqm/EgovQustnrQestnManageRegist"
-	 * @throws Exception
 	 */
 	@RequestMapping(value="/uss/olp/qqm/EgovQustnrQestnManageRegist.do")
 	public String QustnrQestnManageRegist(
@@ -387,7 +349,7 @@ public class EgovQustnrQestnManageController {
     		//아이디 설정
     		qustnrQestnManageVO.setFrstRegisterId((String)loginVO.getUniqId());
     		qustnrQestnManageVO.setLastUpdusrId((String)loginVO.getUniqId());
-    		/** 목록으로갈때 검색조건 유지 */
+    		/* 목록으로갈때 검색조건 유지 */
         	egovQustnrQestnManageService.insertQustnrQestnManage(qustnrQestnManageVO);
         	sLocationUrl = "redirect:/uss/olp/qqm/EgovQustnrQestnManageList.do?";
         	sLocationUrl = sLocationUrl + "searchMode=" + qustnrQestnManageVO.getSearchMode();

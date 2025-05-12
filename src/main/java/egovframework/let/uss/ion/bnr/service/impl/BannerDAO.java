@@ -18,7 +18,7 @@ import org.springframework.stereotype.Repository;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일      수정자           수정내용
@@ -26,7 +26,7 @@ import org.springframework.stereotype.Repository;
  *   2009.08.03  lee.m.j        최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성
  *
- * </pre>
+ * </pre>"
  */
 @Repository("bannerDAO")
 public class BannerDAO extends EgovAbstractMapper {
@@ -35,18 +35,18 @@ public class BannerDAO extends EgovAbstractMapper {
 	 * 배너를 관리하기 위해 등록된 배너목록을 조회한다.
 	 * @param bannerVO - 배너 Vo
 	 * @return List - 배너 목록
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	@SuppressWarnings("unchecked")
 	public List<BannerVO> selectBannerList(BannerVO bannerVO) throws Exception {
-		return (List<BannerVO>) list("bannerDAO.selectBannerList", bannerVO);
+		return selectList("bannerDAO.selectBannerList", bannerVO);
 	}
 
     /**
 	 * 배너목록 총 갯수를 조회한다.
 	 * @param bannerVO BannerVO
 	 * @return int
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
     public int selectBannerListTotCnt(BannerVO bannerVO) throws Exception {
         return (Integer)selectOne("bannerDAO.selectBannerListTotCnt", bannerVO);
@@ -102,11 +102,11 @@ public class BannerDAO extends EgovAbstractMapper {
 	 * 배너가 특정화면에 반영된 결과를 조회한다.
 	 * @param bannerVO - 배너 VO
 	 * @return BannerVO - 배너 VO
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	@SuppressWarnings("unchecked")
 	public List<BannerVO> selectBannerResult(BannerVO bannerVO) throws Exception {
-		return (List<BannerVO>) list("bannerDAO.selectBannerResult", bannerVO);
+		return selectList("bannerDAO.selectBannerResult", bannerVO);
 	}
 
 }

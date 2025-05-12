@@ -28,7 +28,7 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일      수정자           수정내용
@@ -36,7 +36,7 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
  *   2009.03.11  이문준          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성
  *
- * </pre>
+ * </pre>"
  */
 
 @Controller
@@ -48,7 +48,7 @@ public class EgovAuthorManageController {
 	@Resource(name = "egovAuthorManageService")
 	private EgovAuthorManageService egovAuthorManageService;
 
-	/** EgovPropertyService */
+	/* EgovPropertyService */
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertiesService;
 
@@ -58,7 +58,7 @@ public class EgovAuthorManageController {
 	/**
 	 * 권한 목록화면 이동
 	 * @return String
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	@RequestMapping("/sec/ram/EgovAuthorListView.do")
 	public String selectAuthorListView() throws Exception {
@@ -69,12 +69,12 @@ public class EgovAuthorManageController {
 	 * 권한 목록을 조회한다
 	 * @param authorManageVO AuthorManageVO
 	 * @return String
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	@RequestMapping(value = "/sec/ram/EgovAuthorList.do")
 	public String selectAuthorList(@ModelAttribute("authorManageVO") AuthorManageVO authorManageVO, ModelMap model) throws Exception {
 
-		/** paging */
+		/* paging */
 		PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(authorManageVO.getPageIndex());
 		paginationInfo.setRecordCountPerPage(authorManageVO.getPageUnit());
@@ -100,7 +100,7 @@ public class EgovAuthorManageController {
 	 * @param authorCode String
 	 * @param authorManageVO AuthorManageVO
 	 * @return String
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	@RequestMapping(value = "/sec/ram/EgovAuthor.do")
 	public String selectAuthor(@RequestParam("authorCode") String authorCode, @ModelAttribute("authorManageVO") AuthorManageVO authorManageVO, ModelMap model) throws Exception {
@@ -115,7 +115,7 @@ public class EgovAuthorManageController {
 	/**
 	 * 권한 등록화면 이동
 	 * @return String
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	@RequestMapping("/sec/ram/EgovAuthorInsertView.do")
 	public String insertAuthorView() throws Exception {
@@ -127,7 +127,7 @@ public class EgovAuthorManageController {
 	 * @param authorManage AuthorManage
 	 * @param bindingResult BindingResult
 	 * @return String
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	@RequestMapping(value = "/sec/ram/EgovAuthorInsert.do")
 	public String insertAuthor(@ModelAttribute("authorManage") AuthorManage authorManage, BindingResult bindingResult, SessionStatus status, ModelMap model) throws Exception {
@@ -149,7 +149,7 @@ public class EgovAuthorManageController {
 	 * @param authorManage AuthorManage
 	 * @param bindingResult BindingResult
 	 * @return String
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	@RequestMapping(value = "/sec/ram/EgovAuthorUpdate.do")
 	public String updateAuthor(@ModelAttribute("authorManage") AuthorManage authorManage, BindingResult bindingResult, SessionStatus status, Model model) throws Exception {
@@ -170,7 +170,7 @@ public class EgovAuthorManageController {
 	 * 권한 세부정보를 삭제한다.
 	 * @param authorManage AuthorManage
 	 * @return String
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	@RequestMapping(value = "/sec/ram/EgovAuthorDelete.do")
 	public String deleteAuthor(@ModelAttribute("authorManage") AuthorManage authorManage, SessionStatus status, Model model) throws Exception {
@@ -186,7 +186,7 @@ public class EgovAuthorManageController {
 	 * @param authorCodes String
 	 * @param authorManage AuthorManage
 	 * @return String
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	@RequestMapping(value = "/sec/ram/EgovAuthorListDelete.do")
 	public String deleteAuthorList(@RequestParam("authorCodes") String authorCodes, @ModelAttribute("authorManage") AuthorManage authorManage, SessionStatus status, Model model)
@@ -205,7 +205,7 @@ public class EgovAuthorManageController {
 	/**
 	 * 권한제한 화면 이동
 	 * @return String
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	@RequestMapping("/sec/ram/accessDenied.do")
 	public String accessDenied() throws Exception {

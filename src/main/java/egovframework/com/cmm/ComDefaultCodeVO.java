@@ -11,14 +11,14 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *   
  *   수정일      수정자           수정내용
  *  -------       --------    ---------------------------
  *   2009.3.11   이삼섭          최초 생성
  *
- * </pre>
+ * </pre>"
  */
 @SuppressWarnings("serial")
 public class ComDefaultCodeVO implements Serializable {

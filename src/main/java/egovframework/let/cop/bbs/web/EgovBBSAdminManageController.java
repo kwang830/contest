@@ -116,7 +116,7 @@ public class EgovBBSAdminManageController {
 	 */
 	@RequestMapping("/cop/bbs/admin/selectBoardList.do")
 	public String selectBoardArticles(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model, HttpServletRequest request) throws Exception {
-		System.out.println(boardVO.getBbsId());
+		//System.out.println(boardVO.getBbsId());
 		// 메인화면에서 넘어온 경우 메뉴 갱신을 위해 추가
 		request.getSession().setAttribute("menuNo", "5000000");
 		

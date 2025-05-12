@@ -9,7 +9,7 @@ package egovframework.let.uss.sam.stp.service;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *   
  *   수정일      수정자           수정내용
@@ -17,7 +17,7 @@ package egovframework.let.uss.sam.stp.service;
  *   2009.04.01  박정규          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성 
  *
- * </pre>
+ * </pre>"
  */
 public class StplatManageVO extends StplatManageDefaultVO {
 	
@@ -57,7 +57,6 @@ public class StplatManageVO extends StplatManageDefaultVO {
 
 	/**
 	 * useStplatId attribute 값을 설정한다.
-	 * @return useStplatId String
 	 */
 	public void setUseStplatId(String useStplatId) {
 		this.useStplatId = useStplatId;
@@ -73,7 +72,6 @@ public class StplatManageVO extends StplatManageDefaultVO {
 
 	/**
 	 * useStplatNm attribute 값을 설정한다.
-	 * @return useStplatNm String
 	 */
 	public void setUseStplatNm(String useStplatNm) {
 		this.useStplatNm = useStplatNm;
@@ -89,7 +87,6 @@ public class StplatManageVO extends StplatManageDefaultVO {
 
 	/**
 	 * useStplatCn attribute 값을 설정한다.
-	 * @return useStplatCn String
 	 */
 	public void setUseStplatCn(String useStplatCn) {
 		this.useStplatCn = useStplatCn;
@@ -105,7 +102,6 @@ public class StplatManageVO extends StplatManageDefaultVO {
 
 	/**
 	 * infoProvdAgreCn attribute 값을 설정한다.
-	 * @return infoProvdAgreCn String
 	 */
 	public void setInfoProvdAgreCn(String infoProvdAgreCn) {
 		this.infoProvdAgreCn = infoProvdAgreCn;
@@ -121,7 +117,6 @@ public class StplatManageVO extends StplatManageDefaultVO {
 
 	/**
 	 * frstRegisterPnttm attribute 값을 설정한다.
-	 * @return frstRegisterPnttm String
 	 */
 	public void setFrstRegisterPnttm(String frstRegisterPnttm) {
 		this.frstRegisterPnttm = frstRegisterPnttm;
@@ -137,7 +132,6 @@ public class StplatManageVO extends StplatManageDefaultVO {
 
 	/**
 	 * frstRegisterId attribute 값을 설정한다.
-	 * @return frstRegisterId String
 	 */
 	public void setFrstRegisterId(String frstRegisterId) {
 		this.frstRegisterId = frstRegisterId;
@@ -153,7 +147,6 @@ public class StplatManageVO extends StplatManageDefaultVO {
 
 	/**
 	 * lastUpdusrPnttm attribute 값을 설정한다.
-	 * @return lastUpdusrPnttm String
 	 */
 	public void setLastUpdusrPnttm(String lastUpdusrPnttm) {
 		this.lastUpdusrPnttm = lastUpdusrPnttm;
@@ -169,7 +162,6 @@ public class StplatManageVO extends StplatManageDefaultVO {
 
 	/**
 	 * lastUpdusrId attribute 값을 설정한다.
-	 * @return lastUpdusrId String
 	 */
 	public void setLastUpdusrId(String lastUpdusrId) {
 		this.lastUpdusrId = lastUpdusrId;

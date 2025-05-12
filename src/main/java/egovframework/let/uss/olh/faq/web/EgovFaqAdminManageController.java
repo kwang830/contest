@@ -37,7 +37,7 @@ import egovframework.let.uss.olh.faq.service.FaqManageVO;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일      수정자           수정내용
@@ -45,7 +45,7 @@ import egovframework.let.uss.olh.faq.service.FaqManageVO;
  *   2009.04.01  박정규          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성
  *
- * </pre>
+ * </pre>"
  */
 @Controller
 public class EgovFaqAdminManageController {
@@ -53,7 +53,7 @@ public class EgovFaqAdminManageController {
     @Resource(name = "FaqManageService")
     private EgovFaqManageService faqManageService;
 
-    /** EgovPropertyService */
+    /* EgovPropertyService */
     @Resource(name = "propertiesService")
     protected EgovPropertyService propertiesService;
 
@@ -85,11 +85,11 @@ public class EgovFaqAdminManageController {
     		// 메인화면에서 넘어온 경우 메뉴 갱신을 위해 추가
     		request.getSession().setAttribute("menuNo", "5000000");
     	
-    	/** EgovPropertyService.SiteList */
+    	/* EgovPropertyService.SiteList */
     	searchVO.setPageUnit(propertiesService.getInt("pageUnit"));
     	searchVO.setPageSize(propertiesService.getInt("pageSize"));
 
-    	/** pageing */
+    	/* pageing */
     	PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(searchVO.getPageIndex());
 		paginationInfo.setRecordCountPerPage(searchVO.getPageUnit());

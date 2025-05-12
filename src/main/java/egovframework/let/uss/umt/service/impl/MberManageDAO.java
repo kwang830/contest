@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일      수정자           수정내용
@@ -24,7 +24,7 @@ import org.springframework.stereotype.Repository;
  *   2009.04.10  JJY            최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성
  *
- * </pre>
+ * </pre>"
  */
 @Repository("mberManageDAO")
 public class MberManageDAO extends EgovAbstractMapper{
@@ -35,8 +35,8 @@ public class MberManageDAO extends EgovAbstractMapper{
      * @return List<MberManageVO> 기업회원 목록정보
      */
     @SuppressWarnings("unchecked")
-	public List<MberManageVO> selectMberList(UserDefaultVO userSearchVO){
-        return (List<MberManageVO>) list("mberManageDAO.selectMberList", userSearchVO);
+    public List<MberManageVO> selectMberList(UserDefaultVO userSearchVO){
+        return selectList("mberManageDAO.selectMberList", userSearchVO);
     }
 
     /**
@@ -87,8 +87,8 @@ public class MberManageDAO extends EgovAbstractMapper{
      * @param stplatId 일반회원약관아이디
      * @return List 일반회원약관정보
      */
-	public List<?> selectStplat(String stplatId){
-    	return list("mberManageDAO.selectStplat_S", stplatId);
+    public List<?> selectStplat(String stplatId){
+        return selectList("mberManageDAO.selectStplat_S", stplatId);
     }
 
     /**
@@ -105,7 +105,7 @@ public class MberManageDAO extends EgovAbstractMapper{
      * @return MberManageVO 일반회원 암호정보
      */
     public MberManageVO selectPassword(MberManageVO mberManageVO){
-    	return (MberManageVO) selectOne("mberManageDAO.selectPassword_S", mberManageVO);
+        return (MberManageVO) selectOne("mberManageDAO.selectPassword_S", mberManageVO);
     }
 
     /**

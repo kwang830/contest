@@ -8,7 +8,7 @@ package egovframework.let.uss.olh.faq.service;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *   
  *   수정일      수정자           수정내용
@@ -16,7 +16,7 @@ package egovframework.let.uss.olh.faq.service;
  *   2009.04.01  박정규          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성 
  *
- * </pre>
+ * </pre>"
  */
 public class FaqManageVO extends FaqManageDefaultVO {
 	
@@ -62,7 +62,6 @@ public class FaqManageVO extends FaqManageDefaultVO {
 
 	/**
 	 * faqId attribute 값을 설정한다.
-	 * @return faqId String
 	 */
 	public void setFaqId(String faqId) {
 		this.faqId = faqId;
@@ -78,7 +77,6 @@ public class FaqManageVO extends FaqManageDefaultVO {
 
 	/**
 	 * qestnSj attribute 값을 설정한다.
-	 * @return qestnSj String
 	 */
 	public void setQestnSj(String qestnSj) {
 		this.qestnSj = qestnSj;
@@ -94,7 +92,6 @@ public class FaqManageVO extends FaqManageDefaultVO {
 
 	/**
 	 * qestnCn attribute 값을 설정한다.
-	 * @return qestnCn String
 	 */
 	public void setQestnCn(String qestnCn) {
 		this.qestnCn = qestnCn;
@@ -110,7 +107,6 @@ public class FaqManageVO extends FaqManageDefaultVO {
 
 	/**
 	 * answerCn attribute 값을 설정한다.
-	 * @return answerCn String
 	 */
 	public void setAnswerCn(String answerCn) {
 		this.answerCn = answerCn;
@@ -126,7 +122,6 @@ public class FaqManageVO extends FaqManageDefaultVO {
 
 	/**
 	 * inqireCo attribute 값을 설정한다.
-	 * @return inqireCo String
 	 */
 	public void setInqireCo(String inqireCo) {
 		this.inqireCo = inqireCo;
@@ -142,7 +137,6 @@ public class FaqManageVO extends FaqManageDefaultVO {
 
 	/**
 	 * atchFileId attribute 값을 설정한다.
-	 * @return atchFileId String
 	 */
 	public void setAtchFileId(String atchFileId) {
 		this.atchFileId = atchFileId;
@@ -158,7 +152,6 @@ public class FaqManageVO extends FaqManageDefaultVO {
 
 	/**
 	 * frstRegisterPnttm attribute 값을 설정한다.
-	 * @return frstRegisterPnttm String
 	 */
 	public void setFrstRegisterPnttm(String frstRegisterPnttm) {
 		this.frstRegisterPnttm = frstRegisterPnttm;
@@ -174,7 +167,6 @@ public class FaqManageVO extends FaqManageDefaultVO {
 
 	/**
 	 * frstRegisterId attribute 값을 설정한다.
-	 * @return frstRegisterId String
 	 */
 	public void setFrstRegisterId(String frstRegisterId) {
 		this.frstRegisterId = frstRegisterId;
@@ -190,7 +182,6 @@ public class FaqManageVO extends FaqManageDefaultVO {
 
 	/**
 	 * lastUpdusrPnttm attribute 값을 설정한다.
-	 * @return lastUpdusrPnttm String
 	 */
 	public void setLastUpdusrPnttm(String lastUpdusrPnttm) {
 		this.lastUpdusrPnttm = lastUpdusrPnttm;
@@ -206,12 +197,9 @@ public class FaqManageVO extends FaqManageDefaultVO {
 
 	/**
 	 * lastUpdusrId attribute 값을 설정한다.
-	 * @return lastUpdusrId String
 	 */
 	public void setLastUpdusrId(String lastUpdusrId) {
 		this.lastUpdusrId = lastUpdusrId;
 	}
 
-    
-    
 }

@@ -23,7 +23,7 @@ import org.springframework.stereotype.Service;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일      수정자           수정내용
@@ -31,7 +31,7 @@ import org.springframework.stereotype.Service;
  *   2009.04.01  박정규          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성
  *
- * </pre>
+ * </pre>"
  */
 @Service("StplatManageService")
 public class EgovStplatManageServiceImpl extends EgovAbstractServiceImpl implements
@@ -47,9 +47,6 @@ public class EgovStplatManageServiceImpl extends EgovAbstractServiceImpl impleme
 
     /**
 	 * 글을 조회한다.
-	 * @param vo
-	 * @return 조회한 글
-	 * @exception Exception
 	 */
     @Override
 	public StplatManageVO selectStplatDetail(StplatManageVO vo) throws Exception {
@@ -61,9 +58,6 @@ public class EgovStplatManageServiceImpl extends EgovAbstractServiceImpl impleme
 
     /**
 	 * 약관정보 글 목록을 조회한다.
-	 * @param searchVO
-	 * @return 글 목록
-	 * @exception Exception
 	 */
 	@Override
 	public List<?> selectStplatList(StplatManageDefaultVO searchVO) throws Exception {
@@ -72,8 +66,6 @@ public class EgovStplatManageServiceImpl extends EgovAbstractServiceImpl impleme
 
     /**
 	 * 약관정보 글 총 갯수를 조회한다.
-	 * @param searchVO
-	 * @return 글 총 갯수
 	 */
     @Override
 	public int selectStplatListTotCnt(StplatManageDefaultVO searchVO) {
@@ -82,8 +74,6 @@ public class EgovStplatManageServiceImpl extends EgovAbstractServiceImpl impleme
 
 	/**
 	 * 약관정보 글을 등록한다.
-	 * @param vo
-	 * @exception Exception
 	 */
     @Override
 	public void insertStplatCn(StplatManageVO vo) throws Exception {
@@ -97,8 +87,6 @@ public class EgovStplatManageServiceImpl extends EgovAbstractServiceImpl impleme
 
 	/**
 	 * 약관정보 글을 수정한다.
-	 * @param vo
-	 * @exception Exception
 	 */
     @Override
 	public void updateStplatCn(StplatManageVO vo) throws Exception {
@@ -108,8 +96,6 @@ public class EgovStplatManageServiceImpl extends EgovAbstractServiceImpl impleme
 
 	/**
 	 * 약관정보 글을 삭제한다.
-	 * @param vo
-	 * @exception Exception
 	 */
     @Override
 	public void deleteStplatCn(StplatManageVO vo) throws Exception {

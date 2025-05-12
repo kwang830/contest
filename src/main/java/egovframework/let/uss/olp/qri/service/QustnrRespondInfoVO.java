@@ -10,7 +10,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *   
  *   수정일      수정자           수정내용
@@ -18,7 +18,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  *   2009.03.20  장동한          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성
  *
- * </pre>
+ * </pre>"
  */
 public class QustnrRespondInfoVO implements Serializable {
 	
@@ -73,7 +73,6 @@ public class QustnrRespondInfoVO implements Serializable {
 
 	/**
 	 * qestnrQesrspnsId attribute 값을 설정한다.
-	 * @return qestnrQesrspnsId String
 	 */
 	public void setQestnrQesrspnsId(String qestnrQesrspnsId) {
 		this.qestnrQesrspnsId = qestnrQesrspnsId;
@@ -89,7 +88,6 @@ public class QustnrRespondInfoVO implements Serializable {
 
 	/**
 	 * qestnrQesitmId attribute 값을 설정한다.
-	 * @return qestnrQesitmId String
 	 */
 	public void setQestnrQesitmId(String qestnrQesitmId) {
 		this.qestnrQesitmId = qestnrQesitmId;
@@ -105,7 +103,6 @@ public class QustnrRespondInfoVO implements Serializable {
 
 	/**
 	 * qestnrId attribute 값을 설정한다.
-	 * @return qestnrId String
 	 */
 	public void setQestnrId(String qestnrId) {
 		this.qestnrId = qestnrId;
@@ -121,7 +118,6 @@ public class QustnrRespondInfoVO implements Serializable {
 
 	/**
 	 * qestnrTmplatId attribute 값을 설정한다.
-	 * @return qestnrTmplatId String
 	 */
 	public void setQestnrTmplatId(String qestnrTmplatId) {
 		this.qestnrTmplatId = qestnrTmplatId;
@@ -137,7 +133,6 @@ public class QustnrRespondInfoVO implements Serializable {
 
 	/**
 	 * qustnrIemId attribute 값을 설정한다.
-	 * @return qustnrIemId String
 	 */
 	public void setQustnrIemId(String qustnrIemId) {
 		this.qustnrIemId = qustnrIemId;
@@ -153,7 +148,6 @@ public class QustnrRespondInfoVO implements Serializable {
 
 	/**
 	 * respondAnswerCn attribute 값을 설정한다.
-	 * @return respondAnswerCn String
 	 */
 	public void setRespondAnswerCn(String respondAnswerCn) {
 		this.respondAnswerCn = respondAnswerCn;
@@ -169,7 +163,6 @@ public class QustnrRespondInfoVO implements Serializable {
 
 	/**
 	 * respondNm attribute 값을 설정한다.
-	 * @return respondNm String
 	 */
 	public void setRespondNm(String respondNm) {
 		this.respondNm = respondNm;
@@ -185,7 +178,6 @@ public class QustnrRespondInfoVO implements Serializable {
 
 	/**
 	 * etcAnswerCn attribute 값을 설정한다.
-	 * @return etcAnswerCn String
 	 */
 	public void setEtcAnswerCn(String etcAnswerCn) {
 		this.etcAnswerCn = etcAnswerCn;
@@ -201,7 +193,6 @@ public class QustnrRespondInfoVO implements Serializable {
 
 	/**
 	 * frstRegisterPnttm attribute 값을 설정한다.
-	 * @return frstRegisterPnttm String
 	 */
 	public void setFrstRegisterPnttm(String frstRegisterPnttm) {
 		this.frstRegisterPnttm = frstRegisterPnttm;
@@ -217,7 +208,6 @@ public class QustnrRespondInfoVO implements Serializable {
 
 	/**
 	 * frstRegisterId attribute 값을 설정한다.
-	 * @return frstRegisterId String
 	 */
 	public void setFrstRegisterId(String frstRegisterId) {
 		this.frstRegisterId = frstRegisterId;
@@ -233,7 +223,6 @@ public class QustnrRespondInfoVO implements Serializable {
 
 	/**
 	 * lastUpdusrPnttm attribute 값을 설정한다.
-	 * @return lastUpdusrPnttm String
 	 */
 	public void setLastUpdusrPnttm(String lastUpdusrPnttm) {
 		this.lastUpdusrPnttm = lastUpdusrPnttm;
@@ -249,7 +238,6 @@ public class QustnrRespondInfoVO implements Serializable {
 
 	/**
 	 * lastUpdusrId attribute 값을 설정한다.
-	 * @return lastUpdusrId String
 	 */
 	public void setLastUpdusrId(String lastUpdusrId) {
 		this.lastUpdusrId = lastUpdusrId;

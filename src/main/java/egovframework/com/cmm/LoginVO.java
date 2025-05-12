@@ -3,9 +3,6 @@ package egovframework.com.cmm;
 import java.io.Serializable;
 
 /**
- * @Class Name : LoginVO.java
- * @Description : Login VO class
- * @Modification Information
  * @
  * @  수정일         수정자                   수정내용
  * @ -------    --------    ---------------------------
@@ -14,7 +11,7 @@ import java.io.Serializable;
  *  @author 공통서비스 개발팀 박지욱
  *  @since 2009.03.03
  *  @version 1.0
- *  @see
+ *  @see ""
  *  
  */
 public class LoginVO implements Serializable{

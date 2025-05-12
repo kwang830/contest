@@ -35,7 +35,7 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *   
  *   수정일      수정자           수정내용
@@ -43,14 +43,14 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
  *   2009.04.01  이중호          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성
  *
- * </pre>
+ * </pre>"
  */
 @Controller
 public class EgovCcmZipManageController {
 	@Resource(name = "ZipManageService")
     private EgovCcmZipManageService zipManageService;
 
-    /** EgovPropertyService */
+    /* EgovPropertyService */
     @Resource(name = "propertiesService")
     protected EgovPropertyService propertiesService;
 
@@ -59,9 +59,9 @@ public class EgovCcmZipManageController {
 	
 	/**
 	 * 우편번호 찾기 팝업 메인창을 호출한다.
-	 * @param model
+	 * @param model model
 	 * @return "/cmm/sym/zip/EgovCcmZipSearchPopup"
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping(value="/sym/cmm/EgovCcmZipSearchPopup.do")
  	public String callNormalCalPopup (ModelMap model
@@ -71,20 +71,20 @@ public class EgovCcmZipManageController {
     
     /**
 	 * 우편번호 찾기 목록을 조회한다.
-     * @param searchVO
-     * @param model
+     * @param searchVO searchVO
+     * @param model model
      * @return "/cmm/sym/zip/EgovCcmZipSearchList"
-     * @throws Exception
+     * @throws Exception Exception
      */
     @RequestMapping(value="/sym/cmm/EgovCcmZipSearchList.do")
 	public String selectZipSearchList (@ModelAttribute("searchVO") ZipVO searchVO
 			, ModelMap model
 			) throws Exception {
-    	/** EgovPropertyService.sample */
+    	/* EgovPropertyService.sample */
     	searchVO.setPageUnit(propertiesService.getInt("pageUnit"));
     	searchVO.setPageSize(propertiesService.getInt("pageSize"));
 
-    	/** pageing */
+    	/* pageing */
     	PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(searchVO.getPageIndex());
 		paginationInfo.setRecordCountPerPage(searchVO.getPageUnit());
@@ -105,11 +105,11 @@ public class EgovCcmZipManageController {
 	
 	/**
 	 * 우편번호를 삭제한다.
-	 * @param loginVO
-	 * @param zip
-	 * @param model
+	 * @param loginVO loginVO
+	 * @param zip zip
+	 * @param model model
 	 * @return "forward:/sym/ccm/zip/EgovCcmZipList.do"
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
     @RequestMapping(value="/sym/ccm/zip/EgovCcmZipRemove.do")
 	public String deleteZip (@ModelAttribute("loginVO") LoginVO loginVO
@@ -122,12 +122,6 @@ public class EgovCcmZipManageController {
 
 	/**
 	 * 우편번호를 등록한다.
-	 * @param loginVO
-	 * @param zip
-	 * @param bindingResult
-	 * @param model
-	 * @return "/cmm/sym/zip/EgovCcmZipRegist"
-	 * @throws Exception
 	 */
     @RequestMapping(value="/sym/ccm/zip/EgovCcmZipRegist.do")
 	public String insertZip (@ModelAttribute("loginVO") LoginVO loginVO
@@ -153,12 +147,6 @@ public class EgovCcmZipManageController {
 
 	/**
 	 * 엑셀파일을 업로드하여 우편번호를 등록한다.
-	 * @param loginVO
-	 * @param request
-	 * @param commandMap
-	 * @param model
-	 * @return "/cmm/sym/zip/EgovCcmExcelZipRegist"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/sym/ccm/zip/EgovCcmExcelZipRegist.do")
 	public String insertExcelZip(@ModelAttribute("loginVO") LoginVO loginVO
@@ -196,11 +184,6 @@ public class EgovCcmZipManageController {
     
 	/**
 	 * 우편번호 상세항목을 조회한다.
-	 * @param loginVO
-	 * @param zip
-	 * @param model
-	 * @return "/cmm/sym/zip/EgovCcmZipDetail"
-	 * @throws Exception
 	 */
 	@RequestMapping(value="/sym/ccm/zip/EgovCcmZipDetail.do")
  	public String selectZipDetail (@ModelAttribute("loginVO") LoginVO loginVO
@@ -215,22 +198,17 @@ public class EgovCcmZipManageController {
 
     /**
 	 * 우편번호 목록을 조회한다.
-     * @param loginVO
-     * @param searchVO
-     * @param model
-     * @return "/cmm/sym/zip/EgovCcmZipList"
-     * @throws Exception
      */
     @RequestMapping(value="/sym/ccm/zip/EgovCcmZipList.do")
 	public String selectZipList (@ModelAttribute("loginVO") LoginVO loginVO
 			, @ModelAttribute("searchVO") ZipVO searchVO
 			, ModelMap model
 			) throws Exception {
-    	/** EgovPropertyService.sample */
+    	/* EgovPropertyService.sample */
     	searchVO.setPageUnit(propertiesService.getInt("pageUnit"));
     	searchVO.setPageSize(propertiesService.getInt("pageSize"));
 
-    	/** pageing */
+    	/* pageing */
     	PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(searchVO.getPageIndex());
 		paginationInfo.setRecordCountPerPage(searchVO.getPageUnit());
@@ -251,13 +229,6 @@ public class EgovCcmZipManageController {
 
 	/**
 	 * 우편번호를 수정한다.
-	 * @param loginVO
-	 * @param zip
-	 * @param bindingResult
-	 * @param commandMap
-	 * @param model
-	 * @return "/cmm/sym/zip/EgovCcmZipModify"
-	 * @throws Exception
 	 */
     @RequestMapping(value="/sym/ccm/zip/EgovCcmZipModify.do")
 	public String updateZip (@ModelAttribute("loginVO") LoginVO loginVO

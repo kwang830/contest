@@ -36,7 +36,7 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *   
  *   수정일      수정자           수정내용
@@ -44,7 +44,7 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
  *   2009.04.01  이중호          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성 
  *
- * </pre>
+ * </pre>"
  */
 @Controller
 public class EgovCalRestdeManageController {
@@ -53,7 +53,7 @@ public class EgovCalRestdeManageController {
 	@Resource(name = "RestdeManageService")
     private EgovCalRestdeManageService restdeManageService;
 
-    /** EgovPropertyService */
+    /* EgovPropertyService */
     @Resource(name = "propertiesService")
     protected EgovPropertyService propertiesService;
 
@@ -67,9 +67,6 @@ public class EgovCalRestdeManageController {
 
 	/**
 	 * 달력 메인창을 호출한다.
-	 * @param model
-	 * @return "/cmm/sym/cal/EgovNormalCalPopup"
-	 * @throws Exception
 	 */
 	@RequestMapping(value="/sym/cmm/callCalPopup.do")
  	public String callCalendar (ModelMap model
@@ -79,9 +76,6 @@ public class EgovCalRestdeManageController {
 	
 	/**
 	 * 달력을 호출한다.
-	 * @param model
-	 * @return "/cmm/sym/cal/EgovNormalCalPopup"
-	 * @throws Exception
 	 */
 	@RequestMapping(value="/sym/cmm/callCal.do")
  	public String callCal (Restde restde
@@ -134,7 +128,7 @@ public class EgovCalRestdeManageController {
 		List<ListOrderedMap> CalInfoList = new ArrayList<ListOrderedMap>();
 		String tmpDay = "";
 		
-		/**
+		/*
 		 * 계산... START
 		 */
 		for(int i=0; i<42;i++) {
@@ -162,7 +156,7 @@ public class EgovCalRestdeManageController {
 	    	CalInfoList.add(map);
 
 		}
-		/**
+		/*
 		 * 계산... END		
 		 */
 		
@@ -173,9 +167,6 @@ public class EgovCalRestdeManageController {
 	
 	/**
 	 * 일반달력 팝업 메인창을 호출한다.
-	 * @param model
-	 * @return "/cmm/sym/cal/EgovNormalCalPopup"
-	 * @throws Exception
 	 */
 	@RequestMapping(value="/sym/cmm/EgovNormalCalPopup.do")
  	public String callNormalCalPopup (ModelMap model
@@ -185,10 +176,6 @@ public class EgovCalRestdeManageController {
 
 	/**
 	 * 일반달력 팝업 정보를 조회한다.
-	 * @param restde
-	 * @param model
-	 * @return "/cmm/sym/cal/EgovNormalCalendar"
-	 * @throws Exception
 	 */
 	@RequestMapping(value="/sym/cmm/EgovselectNormalCalendar.do")
  	public String selectNormalRestdePopup (Restde restde
@@ -253,7 +240,7 @@ public class EgovCalRestdeManageController {
         List<ListOrderedMap> CalInfoList = new ArrayList<ListOrderedMap>();
         String tmpDay = "";
  
-        /**
+        /*
          * 계산... START
          */
         for(int i=0; i<42;i++) {
@@ -281,7 +268,7 @@ public class EgovCalRestdeManageController {
             CalInfoList.add(map);
  
         }
-        /**
+        /*
          * 계산... END
          */
 		
@@ -293,9 +280,6 @@ public class EgovCalRestdeManageController {
 	
 	/**
 	 * 행정달력 팝업 메인창을 호출한다.
-	 * @param model
-	 * @return "/cmm/sym/cal/EgovAdministCalPopup"
-	 * @throws Exception
 	 */
 	@RequestMapping(value="/sym/cmm/EgovAdministCalPopup.do")
  	public String callAdministCalPopup (ModelMap model
@@ -305,10 +289,6 @@ public class EgovCalRestdeManageController {
 	
 	/**
 	 * 행정달력 팝업 정보를 조회한다.
-	 * @param restde
-	 * @param model
-	 * @return "/cmm/sym/cal/EgovAdministCalendar"
-	 * @throws Exception
 	 */
 	@RequestMapping(value="/sym/cmm/EgovselectAdministCalendar.do")
  	public String selectAdministRestdePopup (Restde restde
@@ -357,10 +337,6 @@ public class EgovCalRestdeManageController {
 
 	/**
 	 * 일반달력 일간
-	 * @param restde
-	 * @param model
-	 * @return "/cmm/sym/cal/EgovNormalDayCalendar"
-	 * @throws Exception
 	 */
 	@RequestMapping(value="/sym/cal/EgovNormalDayCalendar.do")
  	public String selectNormalDayCalendar (Restde restde
@@ -426,10 +402,6 @@ public class EgovCalRestdeManageController {
 	
 	/**
 	 * 일반달력 주간
-	 * @param restde
-	 * @param model
-	 * @return "/cmm/sym/cal/EgovNormalWeekCalendar"
-	 * @throws Exception
 	 */
 	@RequestMapping(value="/sym/cal/EgovNormalWeekCalendar.do")
  	public String selectNormalWeekCalendar (Restde restde
@@ -575,10 +547,6 @@ public class EgovCalRestdeManageController {
 
 	/**
 	 * 일반달력 월간
-	 * @param restde
-	 * @param model
-	 * @return "/cmm/sym/cal/EgovNormalMonthCalendar"
-	 * @throws Exception
 	 */
 	@RequestMapping(value="/sym/cal/EgovNormalMonthCalendar.do")
  	public String selectNormalMonthCalendar (Restde restde
@@ -628,10 +596,6 @@ public class EgovCalRestdeManageController {
 	
 	/**
 	 * 일반달력 연간
-	 * @param restde
-	 * @param model
-	 * @return "/cmm/sym/cal/EgovNormalYearCalendar"
-	 * @throws Exception
 	 */
 	@RequestMapping(value="/sym/cal/EgovNormalYearCalendar.do")
  	public String selectNormalYearCalendar (Restde restde
@@ -783,10 +747,6 @@ public class EgovCalRestdeManageController {
 
 	/**
 	 * 행정달력 일간
-	 * @param restde
-	 * @param model
-	 * @return "/cmm/sym/cal/EgovAdministDayCalendar"
-	 * @throws Exception
 	 */
 	@RequestMapping(value="/sym/cal/EgovAdministDayCalendar.do")
  	public String selectAdministDayCalendar (Restde restde
@@ -850,10 +810,6 @@ public class EgovCalRestdeManageController {
 
 	/**
 	 * 행정달력 주간
-	 * @param restde
-	 * @param model
-	 * @return "/cmm/sym/cal/EgovAdministWeekCalendar"
-	 * @throws Exception
 	 */
 	@RequestMapping(value="/sym/cal/EgovAdministWeekCalendar.do")
  	public String selectAdministWeekCalendar (Restde restde
@@ -1000,10 +956,6 @@ public class EgovCalRestdeManageController {
 	
 	/**
 	 * 행정달력 월간
-	 * @param restde
-	 * @param model
-	 * @return "/cmm/sym/cal/EgovAdministMonthCalendar"
-	 * @throws Exception
 	 */
 	@RequestMapping(value="/sym/cal/EgovAdministMonthCalendar.do")
  	public String selectAdministMonthCalendar (Restde restde
@@ -1054,10 +1006,6 @@ public class EgovCalRestdeManageController {
 
 	/**
 	 * 행정달력 연간
-	 * @param restde
-	 * @param model
-	 * @return "/cmm/sym/cal/EgovAdministYearCalendar"
-	 * @throws Exception
 	 */
 	@RequestMapping(value="/sym/cal/EgovAdministYearCalendar.do")
  	public String selectAdministYearCalendar (Restde restde
@@ -1210,11 +1158,6 @@ public class EgovCalRestdeManageController {
 
 	/**
 	 * 휴일을 삭제한다.
-	 * @param loginVO
-	 * @param restde
-	 * @param model
-	 * @return "forward:/sym/cal/EgovRestdeList.do"
-	 * @throws Exception
 	 */
     @RequestMapping(value="/sym/cal/EgovRestdeRemove.do")
 	public String deleteRestde (@ModelAttribute("loginVO") LoginVO loginVO
@@ -1229,11 +1172,6 @@ public class EgovCalRestdeManageController {
 
     /**
      * 휴일 세부내역을 조회한다.
-     * @param loginVO
-     * @param restde
-     * @param model
-     * @return "/cmm/sym/cal/EgovRestdeDetail"
-     * @throws Exception
      */
 	@RequestMapping(value="/sym/cal/EgovRestdeDetail.do")
  	public String selectRestdeDetail (@ModelAttribute("loginVO") LoginVO loginVO
@@ -1248,22 +1186,17 @@ public class EgovCalRestdeManageController {
 
     /**
 	 * 휴일 리스트를 조회한다.
-     * @param loginVO
-     * @param searchVO
-     * @param model
-     * @return "/cmm/sym/cal/EgovRestdeList"
-     * @throws Exception
      */
     @RequestMapping(value="/sym/cal/EgovRestdeList.do")
 	public String selectRestdeList (@ModelAttribute("loginVO") LoginVO loginVO
 			, @ModelAttribute("searchVO") RestdeVO searchVO
 			, ModelMap model
 			) throws Exception {
-    	/** EgovPropertyService.sample */
+    	/* EgovPropertyService.sample */
     	searchVO.setPageUnit(propertiesService.getInt("pageUnit"));
     	searchVO.setPageSize(propertiesService.getInt("pageSize"));
 
-    	/** pageing */
+    	/* pageing */
     	PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(searchVO.getPageIndex());
 		paginationInfo.setRecordCountPerPage(searchVO.getPageUnit());
@@ -1284,13 +1217,6 @@ public class EgovCalRestdeManageController {
 
     /**
 	 * 휴일을 수정한다.
-     * @param loginVO
-     * @param restde
-     * @param bindingResult
-     * @param commandMap
-     * @param model
-     * @return "/cmm/sym/cal/EgovRestdeModify"
-     * @throws Exception
      */
     @RequestMapping(value="/sym/cal/EgovRestdeModify.do")
 	public String updateRestde (@ModelAttribute("loginVO") LoginVO loginVO

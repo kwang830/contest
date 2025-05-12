@@ -41,7 +41,7 @@ public class EgovCmmUseServiceImpl extends EgovAbstractServiceImpl implements Eg
 	 *
 	 * @param vo
 	 * @return
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@Override
 	public List<CmmnDetailCode> selectCmmCodeDetail(ComDefaultCodeVO vo) throws Exception {
@@ -53,7 +53,7 @@ public class EgovCmmUseServiceImpl extends EgovAbstractServiceImpl implements Eg
 	 *
 	 * @param voList
 	 * @return
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@Override
 	public Map<String, List<CmmnDetailCode>> selectCmmCodeDetails(List<?> voList) throws Exception {
@@ -74,7 +74,7 @@ public class EgovCmmUseServiceImpl extends EgovAbstractServiceImpl implements Eg
 	 *
 	 * @param 조회조건정보 vo
 	 * @return 조직정보 List
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@Override
 	public List<CmmnDetailCode> selectOgrnztIdDetail(ComDefaultCodeVO vo) throws Exception {
@@ -86,7 +86,7 @@ public class EgovCmmUseServiceImpl extends EgovAbstractServiceImpl implements Eg
 	 *
 	 * @param 조회조건정보 vo
 	 * @return 그룹정보 List
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@Override
 	public List<CmmnDetailCode> selectGroupIdDetail(ComDefaultCodeVO vo) throws Exception {

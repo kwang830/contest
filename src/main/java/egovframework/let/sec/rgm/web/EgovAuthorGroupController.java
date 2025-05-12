@@ -27,7 +27,7 @@ import org.springframework.web.bind.support.SessionStatus;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *   
  *   수정일      수정자           수정내용
@@ -35,7 +35,7 @@ import org.springframework.web.bind.support.SessionStatus;
  *   2009.03.11  이문준          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성 
  *
- * </pre>
+ * </pre>"
  */
 
 @Controller
@@ -50,14 +50,14 @@ public class EgovAuthorGroupController {
     @Resource(name = "egovAuthorManageService")
     private EgovAuthorManageService egovAuthorManageService;
     
-    /** EgovPropertyService */
+    /* EgovPropertyService */
     @Resource(name = "propertiesService")
     protected EgovPropertyService propertiesService;
 
     /**
 	 * 권한 목록화면 이동
 	 * @return String
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
     @RequestMapping("/sec/rgm/EgovAuthorGroupListView.do")
     public String selectAuthorGroupListView(HttpServletRequest request) throws Exception {
@@ -74,14 +74,14 @@ public class EgovAuthorGroupController {
 	 * @param authorGroupVO AuthorGroupVO
 	 * @param authorManageVO AuthorManageVO
 	 * @return String
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
     @RequestMapping(value="/sec/rgm/EgovAuthorGroupList.do")
 	public String selectAuthorGroupList(@ModelAttribute("authorGroupVO") AuthorGroupVO authorGroupVO,
 			                            @ModelAttribute("authorManageVO") AuthorManageVO authorManageVO,
 			                             ModelMap model) throws Exception {
 
-    	/** paging */
+    	/* paging */
     	PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(authorGroupVO.getPageIndex());
 		paginationInfo.setRecordCountPerPage(authorGroupVO.getPageUnit());
@@ -113,7 +113,7 @@ public class EgovAuthorGroupController {
 	 * @param regYns String
 	 * @param authorGroup AuthorGroup
 	 * @return String
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	@RequestMapping(value="/sec/rgm/EgovAuthorGroupInsert.do")
 	public String insertAuthorGroup(@RequestParam("userIds") String userIds,
@@ -149,7 +149,7 @@ public class EgovAuthorGroupController {
 	 * @param userIds String
 	 * @param authorGroup AuthorGroup
 	 * @return String
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */ 
 	@RequestMapping(value="/sec/rgm/EgovAuthorGroupDelete.do")
 	public String deleteAuthorGroup(@RequestParam("userIds") String userIds,

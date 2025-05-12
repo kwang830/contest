@@ -20,20 +20,20 @@ import java.security.SecureRandom;
  *
  * The most significant long consists of the following unsigned fields:
  *
- * <pre>
+ * "<pre>
  *   0xFFFFFFFF00000000 time_low
  *   0x00000000FFFF0000 time_mid
  *   0x000000000000F000 version
  *   0x0000000000000FFF time_hi
- * </pre>
+ * </pre>"
  *
  * The least significant long consists of the following unsigned fields:
  *
- * <pre>
+ * "<pre>
  *   0xC000000000000000 variant
  *   0x3FFF000000000000 clock_seq
  *   0x0000FFFFFFFFFFFF node
- * </pre>
+ * </pre>"
  *
  * <p>
  * The variant field contains a value which identifies the layout of the
@@ -404,7 +404,7 @@ public class EgovFormBasedUUID implements Serializable {
      * <p>
      * The UUID string representation is as described by this BNF :
      *
-     * <pre>
+     * "<pre>
      *    UUID                   = &lt;time_low&gt; &quot;-&quot; &lt;time_mid&gt; &quot;-&quot;
      *                             &lt;time_high_and_version&gt; &quot;-&quot;
      *                             &lt;variant_and_sequence&gt; &quot;-&quot;
@@ -419,7 +419,7 @@ public class EgovFormBasedUUID implements Serializable {
      *          &quot;0&quot; | &quot;1&quot; | &quot;2&quot; | &quot;3&quot; | &quot;4&quot; | &quot;5&quot; | &quot;6&quot; | &quot;7&quot; | &quot;8&quot; | &quot;9&quot;
      *          | &quot;a&quot; | &quot;b&quot; | &quot;c&quot; | &quot;d&quot; | &quot;e&quot; | &quot;f&quot;
      *          | &quot;A&quot; | &quot;B&quot; | &quot;C&quot; | &quot;D&quot; | &quot;E&quot; | &quot;F&quot;
-     * </pre>
+     * </pre>"
      *
      * @return a string representation of this <tt>UUID</tt>.
      */

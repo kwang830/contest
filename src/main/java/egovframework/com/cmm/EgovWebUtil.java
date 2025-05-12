@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 /**
  * 교차접속 스크립트 공격 취약성 방지(파라미터 문자열 교체)
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일              수정자           수정내용
@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
  *	 2017-02-07   이정은           시큐어코딩(ES) - 시큐어코딩 경로 조작 및 자원 삽입[CWE-22, CWE-23, CWE-95, CWE-99]
  *   2018.08.17  신용호           filePathBlackList 수정
  *   2018.10.10  신용호           . => \\.으로 수정
- * </pre>
+ * </pre>"
  */
 
 public class EgovWebUtil {

@@ -34,7 +34,7 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일      수정자           수정내용
@@ -42,7 +42,7 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
  *   2009.03.20  장동한          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성
  *
- * </pre>
+ * </pre>"
  */
 @Controller
 public class EgovQustnrTmplatManageController {
@@ -57,7 +57,7 @@ public class EgovQustnrTmplatManageController {
 	@Resource(name = "egovQustnrTmplatManageService")
 	private EgovQustnrTmplatManageService egovQustnrTmplatManageService;
 
-	/** EgovPropertyService */
+	/* EgovPropertyService */
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertiesService;
 
@@ -73,9 +73,9 @@ public class EgovQustnrTmplatManageController {
 
 	/**
 	 * 개별 배포시 메인메뉴를 조회한다.
-	 * @param model
+	 * @param model model
 	 * @return	"/uss/sam/cpy/"
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping(value = "/uss/olp/EgovMain.do")
 	public String EgovMain(ModelMap model) throws Exception {
@@ -84,9 +84,9 @@ public class EgovQustnrTmplatManageController {
 
 	/**
 	 * 메뉴를 조회한다.
-	 * @param model
+	 * @param model model
 	 * @return	"/uss/sam/cpy/EgovLeft"
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@RequestMapping(value = "/uss/olp/EgovLeft.do")
 	public String EgovLeft(ModelMap model) throws Exception {
@@ -95,12 +95,6 @@ public class EgovQustnrTmplatManageController {
 
 	/**
 	 * 설문템플릿 목록을 조회한다.
-	 * @param searchVO
-	 * @param commandMap
-	 * @param qustnrTmplatManageVO
-	 * @param model
-	 * @return "/uss/olp/qtm/EgovQustnrTmplatManageList"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/olp/qtm/EgovQustnrTmplatManageList.do")
 	public String EgovQustnrTmplatManageList(@ModelAttribute("searchVO") ComDefaultVO searchVO, @RequestParam Map<String, Object> commandMap,
@@ -112,11 +106,11 @@ public class EgovQustnrTmplatManageController {
 			egovQustnrTmplatManageService.deleteQustnrTmplatManage(qustnrTmplatManageVO);
 		}
 
-		/** EgovPropertyService.sample */
+		/* EgovPropertyService.sample */
 		searchVO.setPageUnit(propertiesService.getInt("pageUnit"));
 		searchVO.setPageSize(propertiesService.getInt("pageSize"));
 
-		/** pageing */
+		/* pageing */
 		PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(searchVO.getPageIndex());
 		paginationInfo.setRecordCountPerPage(searchVO.getPageUnit());
@@ -140,12 +134,6 @@ public class EgovQustnrTmplatManageController {
 
 	/**
 	 * 설문템플릿 목록을 상세조회 조회한다.
-	 * @param request
-	 * @param response
-	 * @param qustnrTmplatManageVO
-	 * @param commandMap
-	 * @return "/uss/olp/qtm/EgovQustnrTmplatManageImg"
-	 * @throws Exception
 	 */
 	@SuppressWarnings("unused")
 	@RequestMapping(value = "/uss/olp/qtm/EgovQustnrTmplatManageImg.do")
@@ -156,9 +144,9 @@ public class EgovQustnrTmplatManageController {
 		byte[] img = (byte[]) mapResult.get("QUSTNR_TMPLAT_IMAGE_INFOPATHNM");
 		String imgtype = "jpeg";
 		String type = "";
-		
-		if (imgtype != null && !"".equals(imgtype)) {
-			type = "image/" + imgtype;
+
+		if (imgtype != null && !imgtype.trim().isEmpty()) {
+			type = "image/" + imgtype.trim();
 		}
 
 		response.setHeader("Content-Type", imgtype);
@@ -169,13 +157,7 @@ public class EgovQustnrTmplatManageController {
 	}
 
 	/**
-	 * 설문템플릿 목록을 상세조회 조회한다.
-	 * @param searchVO
-	 * @param qustnrTmplatManageVO
-	 * @param commandMap
-	 * @param model
-	 * @return "/uss/olp/qtm/EgovQustnrTmplatManageDetail"
-	 * @throws Exception
+	 * 설문템플릿 목록을 상세조회 조회한다.model
 	 */
 	@RequestMapping(value = "/uss/olp/qtm/EgovQustnrTmplatManageDetail.do")
 	public String EgovQustnrTmplatManageDetail(@ModelAttribute("searchVO") ComDefaultVO searchVO, QustnrTmplatManageVO qustnrTmplatManageVO,
@@ -197,12 +179,6 @@ public class EgovQustnrTmplatManageController {
 
 	/**
 	 * 설문템플릿를 수정한다.
-	 * @param searchVO
-	 * @param commandMap
-	 * @param qustnrTmplatManageVO
-	 * @param model
-	 * @return "/uss/olp/qtm/EgovQustnrTmplatManageModify"
-	 * @throws Exception
 	 */
 	@SuppressWarnings("unused")
 	@RequestMapping(value = "/uss/olp/qtm/EgovQustnrTmplatManageModify.do")
@@ -219,14 +195,6 @@ public class EgovQustnrTmplatManageController {
 
 	/**
 	 * 설문템플릿를 수정처리 한다.
-	 * @param multiRequest
-	 * @param searchVO
-	 * @param commandMap
-	 * @param qustnrTmplatManageVO
-	 * @param bindingResult
-	 * @param model
-	 * @return "/uss/olp/qtm/EgovQustnrTmplatManageModifyActor"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/olp/qtm/EgovQustnrTmplatManageModifyActor.do")
 	public String QustnrTmplatManageModifyActor(final MultipartHttpServletRequest multiRequest, @ModelAttribute("searchVO") ComDefaultVO searchVO,
@@ -258,8 +226,6 @@ public class EgovQustnrTmplatManageController {
 
 		if (!files.isEmpty()) {
 			for (MultipartFile file : files.values()) {
-				System.out.println("getName =>" + file.getName());
-				System.out.println("getOriginalFilename =>" + file.getOriginalFilename());
 				if (file.getName().equals("qestnrTmplatImage") && !file.getOriginalFilename().isEmpty()) {
 					qustnrTmplatManageVO.setQestnrTmplatImagepathnm(file.getBytes());
 				}
@@ -272,12 +238,6 @@ public class EgovQustnrTmplatManageController {
 
 	/**
 	 * 설문템플릿를 등록한다. / 초기등록페이지
-	 * @param searchVO
-	 * @param commandMap
-	 * @param qustnrTmplatManageVO
-	 * @param model
-	 * @return "/uss/olp/qtm/EgovQustnrTmplatManageRegist"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/olp/qtm/EgovQustnrTmplatManageRegist.do")
 	public String QustnrTmplatManageRegist(@ModelAttribute("searchVO") ComDefaultVO searchVO, @RequestParam Map<String, Object> commandMap,
@@ -304,12 +264,6 @@ public class EgovQustnrTmplatManageController {
 
 	/**
 	 * 설문템플릿를 등록 처리 한다.  / 등록처리
-	 * @param multiRequest
-	 * @param searchVO
-	 * @param qustnrTmplatManageVO
-	 * @param model
-	 * @return "/uss/olp/qtm/EgovQustnrTmplatManageRegistActor"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/olp/qtm/EgovQustnrTmplatManageRegistActor.do")
 	public String QustnrTmplatManageRegistActor(final MultipartHttpServletRequest multiRequest, @ModelAttribute("searchVO") ComDefaultVO searchVO,

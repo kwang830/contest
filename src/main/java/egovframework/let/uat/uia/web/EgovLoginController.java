@@ -17,7 +17,6 @@ import org.egovframe.rte.fdl.property.EgovPropertyService;
 import org.egovframe.rte.fdl.security.userdetails.util.EgovUserDetailsHelper;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 
@@ -48,7 +47,7 @@ public class EgovLoginController {
     @Resource(name="egovMessageSource")
     EgovMessageSource egovMessageSource;
 
-    /** EgovPropertyService */
+    /* EgovPropertyService */
     @Resource(name = "propertiesService")
     protected EgovPropertyService propertiesService;
 
@@ -126,10 +125,7 @@ public class EgovLoginController {
 			String empName = claims.getBody().get("empName").toString();
 			String deptName = claims.getBody().get("deptName").toString();
 			String posName = claims.getBody().get("posName").toString();
-			System.out.println(">>>>>>>>>>> empCode : " + empCode);
-			System.out.println(">>>>>>>>>>> empName : " + empName);
-			System.out.println(">>>>>>>>>>> deptName : " + deptName);
-			System.out.println(">>>>>>>>>>> posName : " + posName);
+			System.out.println(">>>>>>>>>>> empCode: " + empCode + ", empName: " + empName + ", deptName: " + deptName + ", posName: " + posName);
 
 			String ip = request.getHeader("X-FORWARDED-FOR");
 
@@ -149,7 +145,6 @@ public class EgovLoginController {
 			loginVO.setId(empCode);
 			loginVO.setUserSe("GNR");
 			LoginVO resultVO = loginService.actionLogin(loginVO); //사번만 확인
-			//System.out.println("resultVO.getId():"+resultVO.getId());
 
 			boolean loginPolicyYn = true;
 
@@ -287,9 +282,6 @@ public class EgovLoginController {
 
     /**
 	 * 로그인 후 메인화면으로 들어간다
-	 * @param
-	 * @return 로그인 페이지
-	 * @exception Exception
 	 */
     @RequestMapping(value="/uat/uia/actionMain.do")
 	public String actionMain(ModelMap model)
@@ -313,7 +305,7 @@ public class EgovLoginController {
     /**
 	 * 로그아웃한다.
 	 * @return String
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
     @RequestMapping(value="/uat/uia/actionLogout.do")
 	public String actionLogout(HttpServletRequest request, ModelMap model) throws Exception {

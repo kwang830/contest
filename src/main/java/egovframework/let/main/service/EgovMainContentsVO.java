@@ -9,14 +9,14 @@ import java.io.Serializable;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *   
  *   수정일      수정자           수정내용
  *  -------    --------    ---------------------------
  *   2011.08.31  JJY            최초 생성
  *
- * </pre>
+ * </pre>"
  */
 public class EgovMainContentsVO implements Serializable {
 
@@ -39,7 +39,7 @@ public class EgovMainContentsVO implements Serializable {
 
 	/**
 	 * 
-	 * @exception Throwable
+	 * @exception Throwable Throwable
 	 */
 	public void finalize()
 	  throws Throwable{
@@ -48,7 +48,6 @@ public class EgovMainContentsVO implements Serializable {
 
 	/**
 	 * getItemCount 항목 개수 getter
-	 * @return
 	 */
 	public int getItemCount(){
 		return 0;

@@ -33,7 +33,7 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일      수정자           수정내용
@@ -41,7 +41,7 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
  *   2009.03.18  이삼섭          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성
  *
- * </pre>
+ * </pre>"
  */
 @Controller
 public class EgovTemplateManageController {
@@ -63,10 +63,9 @@ public class EgovTemplateManageController {
 	/**
 	 * 템플릿 목록을 조회한다.
 	 *
-	 * @param searchVO
-	 * @param model
-	 * @return
-	 * @throws Exception
+	 * @param tmplatInfVO tmplatInfVO
+	 * @param model model
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cop/com/selectTemplateInfs.do")
 	public String selectTemplateInfs(@ModelAttribute("searchVO") TemplateInfVO tmplatInfVO, ModelMap model) throws Exception {
@@ -98,10 +97,9 @@ public class EgovTemplateManageController {
 	/**
 	 * 템플릿에 대한 상세정보를 조회한다.
 	 *
-	 * @param searchVO
-	 * @param model
-	 * @return
-	 * @throws Exception
+	 * @param tmplatInfVO tmplatInfVO
+	 * @param model model
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cop/com/selectTemplateInf.do")
 	public String selectTemplateInf(@ModelAttribute("searchVO") TemplateInfVO tmplatInfVO, ModelMap model) throws Exception {
@@ -122,11 +120,10 @@ public class EgovTemplateManageController {
 	/**
 	 * 템플릿 정보를 등록한다.
 	 *
-	 * @param searchVO
-	 * @param tmplatInfo
-	 * @param model
-	 * @return
-	 * @throws Exception
+	 * @param searchVO searchVO
+	 * @param templateInf templateInf
+	 * @param model model
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cop/com/insertTemplateInf.do")
 	public String insertTemplateInf(@ModelAttribute("searchVO") TemplateInfVO searchVO, @ModelAttribute("templateInf") TemplateInf templateInf, BindingResult bindingResult,
@@ -161,10 +158,9 @@ public class EgovTemplateManageController {
 	/**
 	 * 템플릿 등록을 위한 등록페이지로 이동한다.
 	 *
-	 * @param searchVO
-	 * @param model
-	 * @return
-	 * @throws Exception
+	 * @param searchVO searchVO
+	 * @param model model
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cop/com/addTemplateInf.do")
 	public String addTemplateInf(@ModelAttribute("searchVO") TemplateInfVO searchVO, ModelMap model) throws Exception {
@@ -182,11 +178,10 @@ public class EgovTemplateManageController {
 	/**
 	 * 템플릿 정보를 수정한다.
 	 *
-	 * @param searchVO
-	 * @param tmplatInfo
-	 * @param model
-	 * @return
-	 * @throws Exception
+	 * @param tmplatInfVO tmplatInfVO
+	 * @param templateInf templateInf
+	 * @param model model
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cop/com/updateTemplateInf.do")
 	public String updateTemplateInf(@ModelAttribute("searchVO") TemplateInfVO tmplatInfVO, @ModelAttribute("templateInf") TemplateInf templateInf, BindingResult bindingResult,
@@ -224,11 +219,10 @@ public class EgovTemplateManageController {
 	/**
 	 * 템플릿 정보를 삭제한다.
 	 *
-	 * @param searchVO
-	 * @param tmplatInfo
-	 * @param model
-	 * @return
-	 * @throws Exception
+	 * @param searchVO searchVO
+	 * @param tmplatInf tmplatInf
+	 * @param model model
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cop/bbs/deleteTemplateInf.do")
 	public String deleteTemplateInf(@ModelAttribute("searchVO") TemplateInfVO searchVO, @ModelAttribute("tmplatInf") TemplateInf tmplatInf, SessionStatus status, ModelMap model)
@@ -249,10 +243,9 @@ public class EgovTemplateManageController {
 	/**
 	 * 팝업을 위한 템플릿 목록을 조회한다.
 	 *
-	 * @param searchVO
-	 * @param model
-	 * @return
-	 * @throws Exception
+	 * @param tmplatInfVO tmplatInfVO
+	 * @param model model
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cop/com/selectTemplateInfsPop.do")
 	public String selectTemplateInfsPop(@ModelAttribute("searchVO") TemplateInfVO tmplatInfVO, @RequestParam Map<String, Object> commandMap, ModelMap model) throws Exception {
@@ -299,11 +292,9 @@ public class EgovTemplateManageController {
 	/**
 	 * 팝업 페이지를 호출한다.
 	 *
-	 * @param userVO
-	 * @param sessionVO
-	 * @param model
-	 * @return
-	 * @throws Exception
+	 * @param commandMap commandMap
+	 * @param model model
+	 * @throws Exception Exception
 	 */
 	@RequestMapping("/cop/com/openPopup.do")
 	public String openPopupWindow(@RequestParam Map<String, Object> commandMap, ModelMap model) throws Exception {
@@ -314,14 +305,14 @@ public class EgovTemplateManageController {
 		String height = (String) commandMap.get("height");
 		String typeFlag = (String) commandMap.get("typeFlag");
 
-		if (trgetId != null && trgetId != "") {
-			if (typeFlag != null && typeFlag != "") {
+		if (trgetId != null && !trgetId.isEmpty()) {
+			if (typeFlag != null && !typeFlag.isEmpty()) {
 				model.addAttribute("requestUrl", requestUrl + "?trgetId=" + trgetId + "&PopFlag=Y&typeFlag=" + typeFlag);
 			} else {
 				model.addAttribute("requestUrl", requestUrl + "?trgetId=" + trgetId + "&PopFlag=Y");
 			}
 		} else {
-			if (typeFlag != null && typeFlag != "") {
+			if (typeFlag != null && !typeFlag.isEmpty()) {
 				model.addAttribute("requestUrl", requestUrl + "?PopFlag=Y&typeFlag=" + typeFlag);
 			} else {
 				model.addAttribute("requestUrl", requestUrl + "?PopFlag=Y");

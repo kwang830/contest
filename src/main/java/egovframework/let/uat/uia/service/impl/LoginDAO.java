@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일      수정자          수정내용
@@ -28,7 +28,7 @@ public class LoginDAO extends EgovAbstractMapper {
 	 * 일반 로그인을 처리한다
 	 * @param vo LoginVO
 	 * @return LoginVO
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
     public LoginVO actionLogin(LoginVO vo) throws Exception {
     	return (LoginVO)selectOne("loginDAO.actionLogin", vo);
@@ -38,7 +38,7 @@ public class LoginDAO extends EgovAbstractMapper {
 	 * 아이디를 찾는다.
 	 * @param vo LoginVO
 	 * @return LoginVO
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
     public LoginVO searchId(LoginVO vo) throws Exception {
 
@@ -49,7 +49,7 @@ public class LoginDAO extends EgovAbstractMapper {
 	 * 비밀번호를 찾는다.
 	 * @param vo LoginVO
 	 * @return LoginVO
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
     public LoginVO searchPassword(LoginVO vo) throws Exception {
 
@@ -59,7 +59,7 @@ public class LoginDAO extends EgovAbstractMapper {
     /**
 	 * 변경된 비밀번호를 저장한다.
 	 * @param vo LoginVO
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
     public void updatePassword(LoginVO vo) throws Exception {
     	update("loginDAO.updatePassword", vo);
@@ -68,7 +68,7 @@ public class LoginDAO extends EgovAbstractMapper {
 	/**
 	 * 비밀번호 실패시 카운트를 저장한다. 5회 이상시 계정을 잠금한다.
 	 * @param vo LoginVO
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	public void updateLoginFailCount(LoginVO vo) throws Exception {
 		update("loginDAO.updateLoginFailCount", vo);
@@ -78,7 +78,7 @@ public class LoginDAO extends EgovAbstractMapper {
 	 * 아이디 잠김여부를 조회한다.
 	 * @param vo LoginVO
 	 * @return LoginVO
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	public LoginVO actionLoginLockYn(LoginVO vo) throws Exception {
 
@@ -88,7 +88,7 @@ public class LoginDAO extends EgovAbstractMapper {
 	/**
 	 * Lock_cnt 를 초기화 한다.
 	 * @param vo LoginVO
-	 * @exception Exception
+	 * @exception Exception Exception
 	 */
 	public void actionLoginLockCntReset(LoginVO vo) throws Exception {
 

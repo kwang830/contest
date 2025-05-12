@@ -15,9 +15,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 /**
- * @Class Name : EgovLoginLogServiceImpl.java
- * @Description : 접속로그 관리를 위한 서비스 구현 클래스
- * @Modification Information
  *
  *       수정일       수정자         수정내용
  *      -------        -------     -------------------
@@ -26,8 +23,8 @@ import org.springframework.stereotype.Service;
  *
  * @author 공통 서비스 개발팀 이삼섭
  * @since 2009. 3. 11.
- * @version
- * @see
+ * @version ""
+ * @see ""
  *
  */
 @Service("EgovLoginLogService")
@@ -55,10 +52,6 @@ public class EgovLoginLogServiceImpl extends EgovAbstractServiceImpl implements
 
 	/**
 	 * 접속로그를 조회한다.
-	 *
-	 * @param loginLog
-	 * @return loginLog
-	 * @throws Exception
 	 */
 	@Override
 	public LoginLog selectLoginLog(LoginLog loginLog) throws Exception{
@@ -68,8 +61,6 @@ public class EgovLoginLogServiceImpl extends EgovAbstractServiceImpl implements
 
 	/**
 	 * 접속로그 목록을 조회한다.
-	 *
-	 * @param LoginLog
 	 */
 	@Override
 	public Map<?, ?> selectLoginLogInf(LoginLog loinLog) throws Exception {

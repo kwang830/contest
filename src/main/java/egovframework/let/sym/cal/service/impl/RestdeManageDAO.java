@@ -17,7 +17,7 @@ import org.springframework.stereotype.Repository;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일      수정자           수정내용
@@ -25,95 +25,95 @@ import org.springframework.stereotype.Repository;
  *   2009.04.01  이중호          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성
  *
- * </pre>
+ * </pre>"
  */
 @Repository("RestdeManageDAO")
 public class RestdeManageDAO extends EgovAbstractMapper {
 
 	/**
 	 * 일반달력 팝업 정보를 조회한다.
-	 * @param restde
+	 * @param restde restde
 	 * @return List(일반달력 팝업 날짜정보)
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
     public List<?> selectNormalRestdePopup(Restde restde) throws Exception {
-        return list("RestdeManageDAO.selectNormalRestdePopup", restde);
+		return selectList("RestdeManageDAO.selectNormalRestdePopup", restde);
 	}
 
 	/**
 	 * 행정달력 팝업 정보를 조회한다.
-	 * @param restde
+	 * @param restde restde
 	 * @return List(행정달력 팝업 날짜정보)
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
     public List<?> selectAdministRestdePopup(Restde restde) throws Exception {
-        return list("RestdeManageDAO.selectAdministRestdePopup", restde);
+		return selectList("RestdeManageDAO.selectAdministRestdePopup", restde);
 	}
 
 	/**
 	 * 일반달력 일간 정보를 조회한다.
-	 * @param restde
+	 * @param restde restde
 	 * @return List(일반달력 일간 날짜정보)
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
     public List<?> selectNormalDayCal(Restde restde) throws Exception {
-        return list("RestdeManageDAO.selectNormalDayCal", restde);
+		return selectList("RestdeManageDAO.selectNormalDayCal", restde);
 	}
 
 	/**
 	 * 일반달력 일간 휴일을 조회한다.
-	 * @param restde
+	 * @param restde restde
 	 * @return List(일반달력 일간 휴일정보)
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
     public List<?> selectNormalDayRestde(Restde restde) throws Exception {
-        return list("RestdeManageDAO.selectNormalDayRestde", restde);
+		return selectList("RestdeManageDAO.selectNormalDayRestde", restde);
 	}
 
 	/**
 	 * 일반달력 월간 휴일을 조회한다.
-	 * @param restde
+	 * @param restde restde
 	 * @return List(일반달력 월간 휴일정보)
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
     public List<?> selectNormalMonthRestde(Restde restde) throws Exception {
-        return list("RestdeManageDAO.selectNormalMonthRestde", restde);
+		return selectList("RestdeManageDAO.selectNormalMonthRestde", restde);
 	}
 
 	/**
 	 * 행정달력 일간 정보를 조회한다.
-	 * @param restde
+	 * @param restde restde
 	 * @return List(행정달력 일간 날짜정보)
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
     public List<?> selectAdministDayCal(Restde restde) throws Exception {
-        return list("RestdeManageDAO.selectAdministDayCal", restde);
+		return selectList("RestdeManageDAO.selectAdministDayCal", restde);
 	}
 
 	/**
 	 * 행정달력 일간 휴일을 조회한다.
-	 * @param restde
+	 * @param restde restde
 	 * @return List(행정달력 일간 휴일정보)
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
     public List<?> selectAdministDayRestde(Restde restde) throws Exception {
-        return list("RestdeManageDAO.selectAdministDayRestde", restde);
+		return selectList("RestdeManageDAO.selectAdministDayRestde", restde);
 	}
 
 	/**
 	 * 행정달력 월간 휴일을 조회한다.
-	 * @param restde
+	 * @param restde restde
 	 * @return List(행정달력 월간 휴일정보)
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
     public List<?> selectAdministMonthRestde(Restde restde) throws Exception {
-        return list("RestdeManageDAO.selectAdministMonthRestde", restde);
+		return selectList("RestdeManageDAO.selectAdministMonthRestde", restde);
 	}
 
 	/**
 	 * 휴일을 삭제한다.
-	 * @param restde
-	 * @throws Exception
+	 * @param restde restde
+	 * @throws Exception Exception
 	 */
 	public void deleteRestde(Restde restde) throws Exception {
 		delete("RestdeManageDAO.deleteRestde", restde);
@@ -122,8 +122,8 @@ public class RestdeManageDAO extends EgovAbstractMapper {
 
 	/**
 	 * 휴일을 등록한다.
-	 * @param restde
-	 * @throws Exception
+	 * @param restde restde
+	 * @throws Exception Exception
 	 */
 	public void insertRestde(Restde restde) throws Exception {
         insert("RestdeManageDAO.insertRestde", restde);
@@ -131,9 +131,9 @@ public class RestdeManageDAO extends EgovAbstractMapper {
 
 	/**
 	 * 휴일 상세항목을 조회한다.
-	 * @param restde
+	 * @param restde restde
 	 * @return Restde(휴일)
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	public Restde selectRestdeDetail(Restde restde) throws Exception {
 		return (Restde) selectOne("RestdeManageDAO.selectRestdeDetail", restde);
@@ -142,19 +142,19 @@ public class RestdeManageDAO extends EgovAbstractMapper {
 
     /**
      * 휴일 목록을 조회한다.
-     * @param searchVO
+     * @param searchVO searchVO
 	 * @return List(휴일 목록)
-     * @throws Exception
+     * @throws Exception Exception
      */
     public List<?> selectRestdeList(RestdeVO searchVO) throws Exception {
-        return list("RestdeManageDAO.selectRestdeList", searchVO);
+		return selectList("RestdeManageDAO.selectRestdeList", searchVO);
     }
 
     /**
      * 글 총 갯수를 조회한다.
-     * @param searchVO
+     * @param searchVO searchVO
      * @return int(휴일 총 갯수)
-     * @throws Exception
+     * @throws Exception Exception
      */
     public int selectRestdeListTotCnt(RestdeVO searchVO) throws Exception {
         return (Integer)selectOne("RestdeManageDAO.selectRestdeListTotCnt", searchVO);
@@ -162,8 +162,8 @@ public class RestdeManageDAO extends EgovAbstractMapper {
 
 	/**
 	 * 휴일을 수정한다.
-	 * @param restde
-	 * @throws Exception
+	 * @param restde restde
+	 * @throws Exception Exception
 	 */
 	public void updateRestde(Restde restde) throws Exception {
 		update("RestdeManageDAO.updateRestde", restde);

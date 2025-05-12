@@ -28,7 +28,7 @@ public class ContVoteManageApiController {
 	 * 평가에 대한 상세 정보를 조회한다.
 	 *
 	 * @param contVoteVO contVoteVO
-	 * @throws Exception 조회 중 발생할 수 있는 모든 예외
+	 * @throws Exception Exception 조회 중 발생할 수 있는 모든 예외
 	 */
 	@PostMapping(value = "/cont/vote/selectAdminVotesAjax.do", consumes = "application/json", produces = "application/json")
 	public Map<String, Object> selectAdminVotesAjax(@RequestBody ContVoteVO contVoteVO) throws Exception {
@@ -58,7 +58,7 @@ public class ContVoteManageApiController {
 	 * 평가결과 대한 상세 정보를 조회한다.
 	 *
 	 * @param contVoteVO contVoteVO
-	 * @throws Exception 조회 중 발생할 수 있는 모든 예외
+	 * @throws Exception Exception 조회 중 발생할 수 있는 모든 예외
 	 */
 	@PostMapping(value = "/cont/vote/selectAdminVoteRsltsAjax.do", consumes = "application/json", produces = "application/json")
 	public Map<String, Object> selectAdminVoteRsltsAjax(@RequestBody ContVoteVO contVoteVO) throws Exception {

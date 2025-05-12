@@ -30,7 +30,7 @@ public class FileManageDAO extends EgovComAbstractDAO {
 	 *
 	 * @param fileList
 	 * @return
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	public String insertFileInfs(List<?> fileList) throws Exception {
 		FileVO vo = (FileVO) fileList.get(0);
@@ -52,7 +52,7 @@ public class FileManageDAO extends EgovComAbstractDAO {
 	 * 하나의 파일에 대한 정보(속성 및 상세)를 등록한다.
 	 *
 	 * @param vo
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	public void insertFileInf(FileVO vo) throws Exception {
 		insert("FileManageDAO.insertFileMaster", vo);
@@ -63,7 +63,7 @@ public class FileManageDAO extends EgovComAbstractDAO {
 	 * 여러 개의 파일에 대한 정보(속성 및 상세)를 수정한다.
 	 *
 	 * @param fileList
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	public void updateFileInfs(List<?> fileList) throws Exception {
 		FileVO vo;
@@ -79,7 +79,7 @@ public class FileManageDAO extends EgovComAbstractDAO {
 	 * 여러 개의 파일을 삭제한다.
 	 *
 	 * @param fileList
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	public void deleteFileInfs(List<?> fileList) throws Exception {
 		Iterator<?> iter = fileList.iterator();
@@ -95,7 +95,7 @@ public class FileManageDAO extends EgovComAbstractDAO {
 	 * 하나의 파일을 삭제한다.
 	 *
 	 * @param fvo
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	public void deleteFileInf(FileVO fvo) throws Exception {
 		delete("FileManageDAO.deleteFileDetail", fvo);
@@ -106,7 +106,7 @@ public class FileManageDAO extends EgovComAbstractDAO {
 	 *
 	 * @param vo
 	 * @return
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@SuppressWarnings("unchecked")
 	public List<FileVO> selectFileInfs(FileVO vo) throws Exception {
@@ -118,7 +118,7 @@ public class FileManageDAO extends EgovComAbstractDAO {
 	 *
 	 * @param fvo
 	 * @return
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	public int getMaxFileSN(FileVO fvo) throws Exception {
 		return (Integer) selectOne("FileManageDAO.getMaxFileSN", fvo);
@@ -129,7 +129,7 @@ public class FileManageDAO extends EgovComAbstractDAO {
 	 *
 	 * @param fvo
 	 * @return
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	public FileVO selectFileInf(FileVO fvo) throws Exception {
 		return (FileVO) selectOne("FileManageDAO.selectFileInf", fvo);
@@ -139,7 +139,7 @@ public class FileManageDAO extends EgovComAbstractDAO {
 	 * 전체 파일을 삭제한다.
 	 *
 	 * @param fvo
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	public void deleteAllFileInf(FileVO fvo) throws Exception {
 		update("FileManageDAO.deleteCOMTNFILE", fvo);
@@ -150,7 +150,7 @@ public class FileManageDAO extends EgovComAbstractDAO {
 	 *
 	 * @param vo
 	 * @return
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@SuppressWarnings("unchecked")
 	public List<FileVO> selectFileListByFileNm(FileVO fvo) throws Exception {
@@ -162,7 +162,7 @@ public class FileManageDAO extends EgovComAbstractDAO {
 	 *
 	 * @param fvo
 	 * @return
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	public int selectFileListCntByFileNm(FileVO fvo) throws Exception {
 		return (Integer) selectOne("FileManageDAO.selectFileListCntByFileNm", fvo);
@@ -173,7 +173,7 @@ public class FileManageDAO extends EgovComAbstractDAO {
 	 *
 	 * @param vo
 	 * @return
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	@SuppressWarnings("unchecked")
 	public List<FileVO> selectImageFileList(FileVO vo) throws Exception {
@@ -184,7 +184,7 @@ public class FileManageDAO extends EgovComAbstractDAO {
 	 * 파일에 대한 조회수를 업데이트 한다.
 	 *
 	 * @param fvo
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	public void updateFileInfRdcnt(FileVO fvo) throws Exception {
 		update("FileManageDAO.updateFileInfRdcnt", fvo);
@@ -194,7 +194,7 @@ public class FileManageDAO extends EgovComAbstractDAO {
 	 * IMG_URL을 삭제한다.
 	 *
 	 * @param fvo
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	public void deleteImgUrl(FileVO fvo) throws Exception {
 		update("FileManageDAO.deleteImgUrl", fvo);

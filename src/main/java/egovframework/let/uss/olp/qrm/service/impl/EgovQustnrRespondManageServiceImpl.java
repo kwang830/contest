@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
  * @version 1.0
  * @see
  *
- * <pre>
+ * "<pre>
  * << 개정이력(Modification Information) >>
  *
  *   수정일      수정자           수정내용
@@ -27,7 +27,7 @@ import org.springframework.stereotype.Service;
  *   2009.03.20  장동한          최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성
  *
- * </pre>
+ * </pre>"
  */
 @Service("egovQustnrRespondManageService")
 public class EgovQustnrRespondManageServiceImpl extends EgovAbstractServiceImpl implements EgovQustnrRespondManageService{
@@ -42,9 +42,6 @@ public class EgovQustnrRespondManageServiceImpl extends EgovAbstractServiceImpl 
 
     /**
 	 * 응답자정보 목록을 조회한다.
-	 * @param searchVO - 조회할 정보가 담긴 VO
-	 * @return List
-	 * @throws Exception
 	 */
 	@Override
 	public List<?> selectQustnrRespondManageList(ComDefaultVO searchVO) throws Exception{
@@ -53,9 +50,6 @@ public class EgovQustnrRespondManageServiceImpl extends EgovAbstractServiceImpl 
 
     /**
 	 * 응답자정보를(을) 상세조회 한다.
-	 * @param QustnrRespondManage - 회정정보가 담김 VO
-	 * @return List
-	 * @throws Exception
 	 */
 	@Override
 	public List<?> selectQustnrRespondManageDetail(QustnrRespondManageVO qustnrRespondManageVO) throws Exception{
@@ -64,9 +58,6 @@ public class EgovQustnrRespondManageServiceImpl extends EgovAbstractServiceImpl 
 
     /**
 	 * 응답자정보를(을) 목록 전체 건수를(을) 조회한다.
-	 * @param searchVO - 조회할 정보가 담긴 VO
-	 * @return int
-	 * @throws Exception
 	 */
 	@Override
 	public int selectQustnrRespondManageListCnt(ComDefaultVO searchVO) throws Exception{
@@ -75,8 +66,6 @@ public class EgovQustnrRespondManageServiceImpl extends EgovAbstractServiceImpl 
 
     /**
 	 * 응답자정보를(을) 등록한다.
-	 * @param qustnrRespondManageVO -  응답자정보 정보가 담긴 VO
-	 * @throws Exception
 	 */
 	@Override
 	public void insertQustnrRespondManage(QustnrRespondManageVO qustnrRespondManageVO) throws Exception {
@@ -89,8 +78,6 @@ public class EgovQustnrRespondManageServiceImpl extends EgovAbstractServiceImpl 
 
     /**
 	 * 응답자정보를(을) 수정한다.
-	 * @param qustnrRespondManageVO - 응답자정보 조회할 정보가 담긴 VO
-	 * @throws Exception
 	 */
 	@Override
 	public void updateQustnrRespondManage(QustnrRespondManageVO qustnrRespondManageVO) throws Exception{
@@ -99,9 +86,6 @@ public class EgovQustnrRespondManageServiceImpl extends EgovAbstractServiceImpl 
 
     /**
 	 * 응답자정보를(을) 삭제한다.
-	 * @param qustnrRespondManageVO - 응답자정보 정보가 담긴 VO
-	 * @return
-	 * @throws Exception
 	 */
 	@Override
 	public void deleteQustnrRespondManage(QustnrRespondManageVO qustnrRespondManageVO) throws Exception{

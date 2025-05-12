@@ -68,7 +68,7 @@ public class EgovFormBasedFileUtil {
 	 * 파일명 변환.
 	 * @param filename String
 	 * @return
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	protected static String convert(String filename) throws Exception {
 		//return java.net.URLEncoder.encode(filename, "utf-8");
@@ -126,7 +126,7 @@ public class EgovFormBasedFileUtil {
 	 * @param where
 	 * @param maxFileSize
 	 * @return
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	/*
 	public static List<EgovFormBasedFileVo> uploadFiles(HttpServletRequest request, String where, long maxFileSize) throws Exception {
@@ -195,7 +195,7 @@ public class EgovFormBasedFileUtil {
 	 * @param serverSubPath
 	 * @param physicalName
 	 * @param original
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	public static void downloadFile(HttpServletResponse response, String where, String serverSubPath, String physicalName, String original) throws Exception {
 		String downFileName = where + SEPERATOR + serverSubPath + SEPERATOR + physicalName;
@@ -247,7 +247,7 @@ public class EgovFormBasedFileUtil {
 	 * @param serverSubPath
 	 * @param physicalName
 	 * @param mimeType
-	 * @throws Exception
+	 * @throws Exception Exception
 	 */
 	public static void viewFile(HttpServletResponse response, String where, String serverSubPath, String physicalName, String mimeTypeParam) throws Exception {
 		String mimeType = mimeTypeParam;
