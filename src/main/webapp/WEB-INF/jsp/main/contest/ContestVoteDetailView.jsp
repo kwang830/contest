@@ -159,8 +159,8 @@
 							</c:import>
 						</div>
 					</c:if>
-					<div class="board_view_content_con">
-						<c:out value="${result.nttCn}" escapeXml="false" />
+					<div class="board_view_content_con" style="white-space: pre-line;">
+						<c:out value="${result.nttCn}" escapeXml="false"/>
 					</div>
 					<!--평가하기-->
 					<div class="vote-con">
