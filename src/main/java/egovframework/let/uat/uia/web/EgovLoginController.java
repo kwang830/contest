@@ -111,8 +111,9 @@ public class EgovLoginController {
 		try{
 			String JWT_KEY = "X19JQktTWVNURU1fT1BSSVNLX18=" ; // 암호화key
 
-			JwtParser jp = Jwts.parser() ;
-			jp.setSigningKey(JWT_KEY.getBytes("UTF-8"));
+			JwtParser jp = Jwts.parser()
+				.setSigningKey(JWT_KEY.getBytes("UTF-8"))
+				.build();
 			Jws<Claims> claims = jp.parseClaimsJws(tokenString);
 
 			/*
