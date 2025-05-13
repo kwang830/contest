@@ -311,4 +311,20 @@ public class EgovBBSManageServiceImpl extends EgovAbstractServiceImpl implements
 
 		return map;
 	}
+
+	/**
+	 * 평점 집계 목록을 조회 한다.
+	 *
+	 * @param boardVO boardVO
+	 * @throws Exception Exception
+	 */
+	public Map<String, Object> selectBoardScores(BoardVO boardVO) throws Exception {
+
+		List<BoardVO> result = bbsMngDAO.selectBoardScoreList(boardVO);
+		int cnt = bbsMngDAO.selectBoardScoreCnt(boardVO);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("resultList", result);
+		map.put("resultCnt", Integer.toString(cnt));
+		return map;
+	}
 }

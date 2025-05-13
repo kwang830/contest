@@ -102,8 +102,11 @@
 				<div class="intro-con type2">
 					<div class="intro-title">참가대상</div>
 					<div class="intro-desc">
-						IBK시스템 모든 임직원 누구나 참여가능 (개인 또는 팀 참가)<br/>
-						<span class="intro-small-desc">※ 개인 多건 참여, 팀당(2인~5인 이하) 한 개의 아이디어만 제출 가능</span>
+						응모작품 수는 개인 多건 참여 가능합니다.(건수 제한 없음)<br/>
+						<span class="intro-small-desc">
+                            ※ 팀당(2인~5인 이하) 한개의 아이디어만 제출 가능<br/>
+                            ※ 개인은 1개 팀에만 소속될 수 있습니다.
+                        </span>
 					</div>
 				</div>
 				<div class="intro-con type2">

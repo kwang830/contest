@@ -167,5 +167,12 @@ public interface EgovBBSManageService {
 	public Map<String, Object> selectBoardCommentMore(BoardVO boardVO)
 			throws Exception;
 
-
+	/**
+	 * 평점 집계 목록을 조회 한다.
+	 *
+	 * @param boardVO boardVO
+	 * @exception Exception Exception
+	 */
+	public Map<String, Object> selectBoardScores(BoardVO boardVO)
+			throws Exception;
 }

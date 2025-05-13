@@ -334,4 +334,25 @@ public class BBSManageDAO extends EgovAbstractMapper {
     public int selectBoardCommentMoreCnt(BoardVO boardVO) throws Exception {
         return (Integer)selectOne("BBSManageDAO.selectBoardCommentMoreCnt", boardVO);
     }
+
+    /**
+     * 평점 집계 목록을 조회 한다.
+     *
+     * @param boardVO boardVO
+     * @throws Exception Exception
+     */
+    @SuppressWarnings("unchecked")
+    public List<BoardVO> selectBoardScoreList(BoardVO boardVO) throws Exception {
+        return selectList("BBSManageDAO.selectBoardScoreList", boardVO);
+    }
+
+    /**
+     * 평점 집계 목록에 대한 전체 건수를 조회 한다.
+     *
+     * @param boardVO boardVO
+     * @throws Exception Exception
+     */
+    public int selectBoardScoreCnt(BoardVO boardVO) throws Exception {
+        return (Integer)selectOne("BBSManageDAO.selectBoardScoreCnt", boardVO);
+    }
 }

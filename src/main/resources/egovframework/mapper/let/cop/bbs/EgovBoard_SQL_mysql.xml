@@ -162,6 +162,11 @@
 		<result property="titleNm" column="TITLE_NM"/>
 	</resultMap>
 
+	<resultMap id="scoreList" type="egovframework.let.cop.bbs.service.BoardVO">
+		<result property="score" column="SCORE"/>
+		<result property="scoreCnt" column="SCORE_CNT"/>
+	</resultMap>
+
  	<select id="selectMaxNttId" resultType="java.lang.Long">
  		
 			SELECT IFNULL(MAX(NTT_ID),0)+1 AS NTT_ID  FROM LETTNBBS
@@ -704,4 +709,44 @@
 		  AND WRTER_ID = #{exmnId}
 
 	</update>
+
+	<select id="selectBoardScoreList" parameterType="egovframework.let.cop.bbs.service.BoardVO" resultMap="scoreList">
+
+		SELECT s.SCORE,
+			   COALESCE(cnt.SCORE_CNT, 0) AS SCORE_CNT
+		FROM (
+				 SELECT 1 AS SCORE UNION ALL
+				 SELECT 2 UNION ALL
+				 SELECT 3 UNION ALL
+				 SELECT 4 UNION ALL
+				 SELECT 5
+			 ) s
+				 LEFT JOIN (
+			SELECT SCORE, COUNT(1) AS SCORE_CNT
+			FROM lettnbbsscore
+			WHERE BBS_ID = #{bbsId} AND NTT_ID = #{nttId} AND USE_AT = 'Y'
+			GROUP BY SCORE
+		) cnt ON s.SCORE = cnt.SCORE
+		ORDER BY s.SCORE ASC
+	</select>
+
+	<select id="selectBoardScoreCnt" parameterType="egovframework.let.cop.bbs.service.BoardVO" resultType="java.lang.Integer">
+		SELECT count(1) as cnt FROM (
+										SELECT s.SCORE,
+											   COALESCE(cnt.SCORE_CNT, 0) AS SCORE_CNT
+										FROM (
+												 SELECT 1 AS SCORE UNION ALL
+												 SELECT 2 UNION ALL
+												 SELECT 3 UNION ALL
+												 SELECT 4 UNION ALL
+												 SELECT 5
+											 ) s
+												 LEFT JOIN (
+											SELECT SCORE, COUNT(1) AS SCORE_CNT
+											FROM lettnbbsscore
+											WHERE BBS_ID = #{bbsId} AND NTT_ID = #{nttId} AND USE_AT = 'Y'
+											GROUP BY SCORE
+										) cnt ON s.SCORE = cnt.SCORE
+									) aaa
+	</select>
 </mapper>

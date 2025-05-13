@@ -145,6 +145,12 @@ public class ContVoteManageController {
 			return "uat/uia/EgovLoginUsr";
 		}
 
+		if(EgovUserDetailsHelper.getAuthorities().contains("ROLE_ADMIN")) {
+			model.addAttribute("authFlag", "Y");
+		} else {
+			model.addAttribute("authFlag", "N");
+		}
+
 		LoginVO user = new LoginVO();
 		if (EgovUserDetailsHelper.isAuthenticated()) {
 			user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
@@ -163,9 +169,8 @@ public class ContVoteManageController {
 
 		model.addAttribute("result", vo);
 		model.addAttribute("sessionUniqId", user.getUniqId());
-		//----------------------------
+
 		// template 처리 (기본 BBS template 지정  포함)
-		//----------------------------
 		BoardMasterVO master = new BoardMasterVO();
 
 		master.setBbsId(boardVO.getBbsId());
@@ -178,8 +183,6 @@ public class ContVoteManageController {
 		}
 
 		model.addAttribute("brdMstrVO", masterVo);
-		
-		// 댓글 10개 가져오기
 
 		boardVO.setPageUnit(propertyService.getInt("pageUnit"));
 		boardVO.setPageSize(propertyService.getInt("pageSize"));
@@ -199,6 +202,9 @@ public class ContVoteManageController {
 		model.addAttribute("resultList", map.get("resultList"));
 		model.addAttribute("resultCnt", map.get("resultCnt"));
 
+		Map<String, Object> map2 = bbsMngService.selectBoardScores(boardVO);
+		model.addAttribute("scoreResultList", map2.get("resultList"));
+		model.addAttribute("scoreResultCnt", map2.get("resultCnt"));
 
 		return "main/contest/ContestVoteDetailView";
 	}

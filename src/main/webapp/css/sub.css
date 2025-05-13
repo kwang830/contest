@@ -215,11 +215,15 @@
 }
 
 .intro-small-desc {
-	font-size: 15px;
-	line-height: 24px;
-	font-weight: 500;
+	display: inline-block;
+	font-size: 20px;
+	line-height: 26px;
+	font-weight: 600;
 	color: #454545;
 	vertical-align: middle;
+	padding: 3px 10px;
+	margin-top: 7px;
+	background-color: #DFF5E3;
 }
 
 .intro-link {
@@ -1063,7 +1067,7 @@
 	/*===공모개요===*/
 	.intro-con.type2 {
 		display: flex;
-		align-items: center;
+		align-items: flex-start;
 		gap: 40px;
 	}
 
@@ -1093,6 +1097,10 @@
 
 	.intro-desc {
 		font-size: 20px;
+	}
+
+	.intro-con.type2 .intro-desc{
+		padding-top: 8px;
 	}
 
 	.intro-table th, .intro-table td {
