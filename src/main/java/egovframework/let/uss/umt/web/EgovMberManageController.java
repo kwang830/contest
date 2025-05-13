@@ -801,6 +801,6 @@ public class EgovMberManageController {
 		model.addAttribute("userSearchVO", userSearchVO);
 		model.addAttribute("resultMsg", resultMsg);
 
-		return "main/EgovMainView";
+		return "cmm/uss/umt/MemberMyInfoView";
 	}
 }

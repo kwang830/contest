@@ -24,6 +24,16 @@
     <link rel="stylesheet" href="<c:url value='/'/>css/sub-ios.css" type="text/css" media="all" />
     <link rel="preload" href="<c:url value='/'/>css/form.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
+    <style>
+        .form-error-text {
+            color: red !important;
+            font-size: 1.2em !important;
+            margin-top: 4px !important;
+            display: none;
+        }
+    </style>
+
+
     <!-- Document Title
     ============================================= -->
     <title>IBK시스템 AI 아이디어 챌린지</title>
@@ -33,15 +43,6 @@
 
     <script type="text/javascript">
         <!--
-        function fn_egov_downFile(atchFileId, fileSn) {
-            window.open("/cmm/fms/FileDown.do?atchFileId="+atchFileId+"&fileSn="+fileSn+"&authPass=yes");
-        }
-
-        function fn_contest_attach_file_down() {
-            // 공모전 참가 신청서
-            fn_egov_downFile('EcqfhYxRcnWG52hkOGYp/F3suq/5SFOvAnxJUaQhI01X9dgmJjJ+3mWoSYu1PsdTs4dfuDM2VdFX2fN3C0X4iQ==','0');
-        }
-
         <c:if test="${!empty resultMsg}">alert("<spring:message code='${resultMsg}' />");</c:if>
         //-->
     </script>
@@ -138,6 +139,12 @@
                         <div class="form-btn-con">
                             <button type="submit" class="submit-btn">저장</button>
                         </div>
+                        <div>
+                            <a href="/cmm/main/mainPage.do" class="form-btn">
+                                <img src="<c:url value='/'/>images/icon-back.png" alt="<" style="width: 18px;">
+                                <span>홈으로</span>
+                            </a>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -164,6 +171,57 @@
 <!-- Footer Scripts
 ============================================= -->
 <script type="text/javascript" src="<c:url value='/'/>js/functions.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("form");
 
+        form.addEventListener("submit", function (e) {
+            // 입력값 가져오기
+            const oldPassword = document.getElementById("oldPassword").value.trim();
+            const newPassword = document.getElementById("newPassword").value.trim();
+            const newPassword2 = document.getElementById("newPassword2").value.trim();
+
+            // 오류 메시 초기화
+            const errorTexts = document.querySelectorAll(".form-error-text");
+            errorTexts.forEach(el => el.style.display = "none");
+
+            // 유효성 검사
+            let isValid = true;
+
+            if (oldPassword === "") {
+                showError("oldPassword", "이전 비밀번호를 입력해 주세요.");
+                isValid = false;
+            }
+
+            if (newPassword === "") {
+                showError("newPassword", "신규 비밀번호를 입력해 주세요.");
+                isValid = false;
+            }
+
+            if (newPassword2 === "") {
+                showError("newPassword2", "비밀번호 확인을 입력해 주세요.");
+                isValid = false;
+            }
+
+            if (newPassword !== "" && newPassword2 !== "" && newPassword !== newPassword2) {
+                showError("newPassword2", "비밀번호가 일치하지 않습니다.");
+                isValid = false;
+            }
+
+            if (!isValid) {
+                e.preventDefault(); // 전송 중단
+            }
+        });
+
+        function showError(inputId, message) {
+            const inputEl = document.getElementById(inputId);
+            const errorEl = inputEl.closest(".form-list").querySelector(".form-error-text");
+            if (errorEl) {
+                errorEl.innerText = message;
+                errorEl.style.display = "block";
+            }
+        }
+    });
+</script>
 </body>
 </html>
